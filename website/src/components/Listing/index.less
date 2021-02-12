@@ -1,0 +1,172 @@
+@import "../../defaults.less";
+
+.listing {
+    margin: auto;
+    max-width: 80%;
+    padding: 50px 60px 0;
+    display: flex;
+    @media only screen and (max-width: 800px) {
+        padding: 20px 0;
+        margin: 20px auto;
+        flex-wrap: wrap;
+    }
+    &__title-border {
+        height: 4px;
+        width: 8vw;
+        margin-top: -1em;
+        margin-bottom: 1em;
+        background: rgb(255,255,255);
+        background: linear-gradient(90deg, rgba(9,164,200,0.2) 0%, rgba(9,164,200,1) 100%);
+    }
+
+    > div > h1 {
+        font-size: 2em;
+        font-weight: normal;
+        letter-spacing: .01em;
+    }
+    > div > div {
+        font-size: 1.2em;
+    }
+    
+    > div > ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__containers {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    &__pallets {
+        margin:auto;
+    }
+
+    &__faq-list {
+        margin: -50px -15px 60px !important;
+        flex: auto;
+        .ant-col {
+            padding: 15px !important;
+            &:after {
+                content: "";
+                display: block;
+                padding-bottom: calc(100% - 30px - 3.425em);
+            }
+            a {
+                display: table;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                z-index: 0;
+                position: relative;
+                overflow: hidden;
+                
+                background-color: @actions-item-background-hover;
+                border: 3px solid rgba(9,164,200,1);
+
+                transition: all .1s ease-in;
+                border-radius: @actions-item-border-radius;
+                
+                span {
+                    font-size: 1.7em;
+                    letter-spacing: .04em;
+                    line-height: 1.25em;
+                    color: rgba(9,164,200,1);
+                    display: table-cell;
+                    vertical-align: middle;
+                    z-index: 2;
+                    position: relative;
+                    transition: all .1s ease-in;
+                }
+                &:hover {
+                    cursor: pointer;
+                    background-color: rgba(9,164,200,1);
+                    span {
+                        color: #ffffff;
+                    }
+                }
+            }
+            
+            @media only screen and (max-width: 800px) {
+                &:after {
+                    padding-bottom: calc(100% - 30px - 1.425em);
+                }
+                a span {
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+
+    &__service-list, &__home-list  {
+        margin: -50px -15px 60px !important;
+        flex: auto;
+        .ant-col {
+            padding: 15px !important;
+            &:after {
+                content: "";
+                display: block;
+                padding-bottom: calc(100% - 30px - 3.425em);
+            }
+            a {
+                display: table;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                z-index: 0;
+                position: relative;
+                overflow: hidden;
+                
+                span {
+                    font-size: 1.7em;
+                    letter-spacing: .04em;
+                    line-height: 1.25em;
+                    color: #ffffff;
+                    display: table-cell;
+                    vertical-align: middle;
+                    z-index: 2;
+                    position: relative;
+                    text-shadow: 0 0 30px black;
+                }
+
+                .bg {
+                    transition: background-size 1s ease;
+                    background-size: cover;
+                    background-position: center;
+                    left: 0;
+                    top: 0;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    transition: all .25s ease-out;
+                }
+
+                .filter {
+                    left: 0;
+                    top: 0;
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1;
+                    background-color: @listing-service-list-service-bg;
+                }
+                &:hover {
+                    .bg {
+                        transform: scale(1.15);
+                    }
+                }
+            }
+            
+            @media only screen and (max-width: 800px) {
+                &:after {
+                    padding-bottom: calc(100% - 30px - 1.425em);
+                }
+                a span {
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+}

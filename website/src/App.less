@@ -1,0 +1,189 @@
+
+@import '../node_modules/sal.js/dist/sal.css';
+
+@import "./defaults.less";
+
+body {
+    background-color: @site-background;
+}
+
+.ant-layout {
+    margin-top: @header-size;
+    background-color: @page-background;
+    @media only screen and (max-width: @header-mobile-width) {
+        margin-top: @header-size-mobile;
+    }
+}
+
+.ant-layout-header {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    z-index: 1000;
+    top: 0;
+    width: 100%;
+    @media only screen and (max-width: @header-mobile-width) {
+        padding: 0 0;
+        height: @header-size-mobile;
+        line-height: @header-size-mobile;
+    }
+    height: @header-size;
+    line-height: @header-size;
+    background-color: @header-background;
+    //box-shadow: 0 0 @page-shadow-size @page-shadow-color;
+    
+    .logo {
+        display: block;
+        width: @logo-width;
+        height: auto;
+        a {
+            img {
+                padding: 10px 0;
+                width: auto;
+                max-height: 100%;
+            }
+        }
+        @media only screen and (max-width: @header-mobile-width) {
+            width: 55%;
+            max-width: 400px;
+            text-align: center;
+            a {
+                img {
+                    width: 90%;
+                }
+            } 
+        }
+    }
+
+    .menu {
+        display: flex;
+        width: 100%;
+        margin-top: 25px;
+        line-height: calc(@header-size - 50px);
+        @media only screen and (max-width: @header-mobile-width) {
+            display: none;
+        }
+        ul {
+            background-color: transparent;
+            margin-left: auto;
+            border-bottom: none;
+            border-right: none;
+            li {
+                a {
+                    color: rgba(0, 0, 0, 0.65);
+                    font-size: 1.4em;
+                }
+                &.ant-menu-submenu-horizontal::after {
+                    content: '>';
+                    color: rgba(0, 0, 0, 0.65);
+                    transform: rotate(90deg);
+                    position: absolute;
+                    right: -20px;
+                    top: 2px;
+                    font-weight: 600;
+                }
+            }
+        }
+        &-languages {
+            margin-left: 0 !important;
+            @media screen and (max-width: @header-mobile-width) {
+                margin-right: 85px;
+                margin-left: auto !important;
+            }
+        }
+    }
+    
+    .menu-burger-button {
+        position: absolute;
+        width: auto;
+        height: auto;
+        top: 18px;
+        right: calc(@header-size / 4);
+        @media only screen and (min-width: @header-mobile-width) {
+            display: none;
+        }
+
+        .burger {
+            height: calc(@header-size-mobile / 2);
+        }
+    }
+    .menu-burger {
+        @media only screen and (min-width: @header-mobile-width) {
+            display: none;
+        }
+    }
+}
+
+.ant-menu-sub, .ant-menu-submenu-popup {
+    border-radius: 2px !important;
+}
+
+.header-burger-open {
+    .menu {
+        display: block;
+        position: fixed;
+        width: 100%;
+        height: calc(100% - @header-size);
+        top: @header-size;
+        left: 0;
+        right: 0;
+        z-index: 9998;
+        background-color: @mobile-menu-background;
+        padding: @mobile-menu-padding-vertical @mobile-menu-padding-horizontal;
+        box-shadow: inset 0 0 @page-shadow-size @page-shadow-color;
+        overflow: auto;
+        margin-top: 0;
+        @media only screen and (max-width: @header-mobile-width) {
+            height: calc(100% - @header-size-mobile);
+            top: @header-size-mobile;
+        }
+    }
+}
+
+.burger .burger-lines,
+.burger .burger-lines:after,
+.burger .burger-lines:before {
+    background-color: @primary-color;
+}
+
+
+.ant-layout-content {
+    min-height: calc(100vh);
+    background-color: @page-background;
+    z-index: 2;
+}
+
+.ant-layout-footer {
+    background-color: @footer-background;
+    padding: 40px calc(10% + 50px) 30px !important;
+    @media only screen and (max-width: @header-mobile-width) {
+        padding: 40px 10% !important;
+        text-align: center;
+        .ant-row {
+            justify-content: center;
+        }
+    }
+    .logo {
+        max-width: 500px;
+        &s {
+            padding: 1.5em 0;
+            text-align: center;
+            img {
+                max-width: 100%;
+                max-height: 50px;
+            }
+        }
+    }
+    .legal {
+        color: rgba(0, 0, 0, 0.85);
+    }
+    hr {
+        margin-bottom: 20px;
+        border: 1px solid @page-background;
+    }
+    & > div:nth-child(2) {
+        p {
+            margin: 0;
+        }
+    }
+}
