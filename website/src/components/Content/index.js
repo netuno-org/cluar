@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { Row, Col, Button } from 'antd';
 
 import Actions from '../Actions';
-
-import Cluar from '../../Cluar';
+import Cluar from '../../common/Cluar';
 
 import './index.less';
 

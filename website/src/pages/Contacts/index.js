@@ -4,7 +4,7 @@ import './index.less';
 
 export default () => {
     return (
-        <main>
+        <main className="page--contact">
             <h1>Contatos</h1>
         </main>
     );

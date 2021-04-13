@@ -7,7 +7,7 @@ import './index.less';
 
 export default () => {
     return (
-        <main>
+        <main className="page--home">
           <Banner type="home"/>
           <Content type="introduction"/>
         </main>

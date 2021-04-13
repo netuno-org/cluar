@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-
-import { PhoneOutlined, HomeOutlined, MailOutlined } from '@ant-design/icons';
-
-import MapGL, {Marker, Popup, NavigationControl, FullscreenControl, ScaleControl} from 'react-map-gl';
-
 import { Row, Col } from 'antd';
+import { PhoneOutlined, HomeOutlined, MailOutlined } from '@ant-design/icons';
+import MapGL, {Marker, Popup, NavigationControl} from 'react-map-gl';
 
-import Cluar from '../../../Cluar';
-
-import config from '../../../config.json';
+import Cluar from '../../../common/Cluar';
+import config from '../../../config/config';
 
 import './index.less';
 
@@ -99,7 +95,6 @@ export default ({ title, content }) => {
                       closeOnClick={false}
                       onClose={()=> setShowPopup(false)}
                     >
-                      <h2></h2>
                       <strong><PhoneOutlined /></strong>
                       <address>
                         <HomeOutlined />

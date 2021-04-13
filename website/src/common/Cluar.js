@@ -1,7 +1,7 @@
 
-import config from './config.json';
-
 import CluarCustomData from './CluarCustomData';
+
+import config from '../config/config';
 
 let data = null;
 let currentLanguage = null;

@@ -9,7 +9,7 @@ export default ({ section, type, actions }) => {
     for (const action of actions) {
         list.push(<Item {...{section, type,...action}}/>);
     }
-    if (list.length == 0) {
+    if (list.length === 0) {
         return null;
     }
     return (

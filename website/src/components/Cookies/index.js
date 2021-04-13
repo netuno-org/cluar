@@ -1,11 +1,10 @@
 
 import React, { Component } from 'react';
-import { Layout, Button } from 'antd';
-import styles from './index.less';
-import Cluar from './../../Cluar.js';
-import {
-  Link
-} from "react-router-dom";
+import { Button } from 'antd';
+
+import Cluar from '../../common/Cluar';
+
+import './index.less';
 
 class Cookies extends Component {
 

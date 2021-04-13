@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Cluar from '../../Cluar';
+import Cluar from '../../common/Cluar';
 
 import './index.less';
 

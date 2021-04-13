@@ -1,29 +1,25 @@
 import React, { useState, useEffect } from 'react';
-
+import { Layout, Menu, Row, Col } from 'antd';
+import { GlobalOutlined, PhoneOutlined, HomeOutlined, MailOutlined } from '@ant-design/icons';
 import Burger from '@animated-burgers/burger-slip';
 import '@animated-burgers/burger-slip/dist/styles.css';
-
 import classNames from 'classnames';
-
-import { Layout, Menu, Row, Col } from 'antd';
-
-import { GlobalOutlined, PhoneOutlined, HomeOutlined, MailOutlined } from '@ant-design/icons';
-
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link,
-  Redirect
+  Redirect,
+  useLocation
 } from "react-router-dom";
 
-import Cluar from './Cluar.js';
+import Analytics from './common/Analytics';
+import Cluar from './common/Cluar';
+import Builder from './common/Builder';
+import Cookies from './components/Cookies';
+import NotFound from './pages/NotFound';
 
-import Builder from './Builder.js';
-
-import Cookies from './components/Cookies'
-
-import './App.less';
+import './styles/App.less';
 
 const { Header, Content, Footer } = Layout;
 const { SubMenu } = Menu;
@@ -70,7 +66,7 @@ export default () => {
     const buildMenu = (page) => {
       if (page.menu && language.code === Cluar.currentLanguage().code) {
         const key = `${page.link}`;
-        if (Cluar.pages()[language.code].find((p) => p.menu && p.parent == page.link)) {
+        if (Cluar.pages()[language.code].find((p) => p.menu && p.parent === page.link)) {
           subMenuKeys.push(key);
           return (
             <SubMenu key={key} title={
@@ -78,7 +74,7 @@ export default () => {
                 {page.title}
               </Link>
             }>
-              { Cluar.pages()[language.code].filter((p) => p.menu && p.parent == page.link).map((p) => buildMenu(p))}
+              { Cluar.pages()[language.code].filter((p) => p.menu && p.parent === page.link).map((p) => buildMenu(p))}
             </SubMenu>
           );
         } else {
@@ -96,7 +92,7 @@ export default () => {
 
     const subroutes = [];
     for (const page of Cluar.pages()[language.code]) {
-      if (page.menu && page.parent == "" && language.code === Cluar.currentLanguage().code) {
+      if (page.menu && page.parent === "" && language.code === Cluar.currentLanguage().code) {
         menu.push(
           buildMenu(page)
         );
@@ -119,12 +115,13 @@ export default () => {
 
   return (
     <Router>
+      { Analytics.init() && <Analytics.RouteTracker />}
       <div className="page">
         <Layout>
           <Header className={classNames({ 'header-burger-open': burgerMenu })}>
             <div className="logo">
               <Link to={`/${Cluar.currentLanguage().locale}/`} onClick={() => handleMenuClick('/')}>
-                <img src="/images/logo.png" />
+                <img alt="logo" src="/images/logo.png" />
               </Link>
             </div>
             <div className={
@@ -175,6 +172,7 @@ export default () => {
               <Route path="/" exact render={(propRouter) => {
                 return <Redirect to={`/${Cluar.currentLanguage().locale}/`} />;
               }} />
+              <Route component={NotFound} />
               {routes}
             </Switch>
           </Content>
@@ -182,7 +180,7 @@ export default () => {
             <Row align="middle" gutter={[0, 10]}>
               <Col xs={24} lg={8}>
                 <div className="logo" data-sal="slide-up" data-sal-duration="2000" data-sal-easing="ease-out-cubic">
-                  <img src="/images/logo.png" />
+                  <img alt="logo" src="/images/logo.png" />
                 </div>
               </Col>
               <Col xs={{ span: 24 }} lg={{ span: 8, offset: 8 }}>
@@ -204,6 +202,6 @@ export default () => {
           <Cookies />
         </Layout>
       </div>
-    </Router >
+    </Router>
   );
 }

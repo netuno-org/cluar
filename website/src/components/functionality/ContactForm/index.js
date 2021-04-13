@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-
 import { Row, Col, Form, Input, Button, notification } from 'antd';
 
-import Cluar from '../../../Cluar';
+import Cluar from '../../../common/Cluar';
 
 import './index.less';
-import FormItem from 'antd/lib/form/FormItem';
 
 const { TextArea } = Input;
 

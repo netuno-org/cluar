@@ -1,7 +1,7 @@
 
-@import '../node_modules/sal.js/dist/sal.css';
+@import '../../node_modules/sal.js/dist/sal.css';
 
-@import "./defaults.less";
+@import "../styles/variables.less";
 
 body {
     background-color: @site-background;
@@ -30,7 +30,6 @@ body {
     height: @header-size;
     line-height: @header-size;
     background-color: @header-background;
-    //box-shadow: 0 0 @page-shadow-size @page-shadow-color;
     
     .logo {
         display: block;
@@ -69,6 +68,7 @@ body {
             border-bottom: none;
             border-right: none;
             li {
+                border-bottom: none !important;
                 a {
                     color: rgba(0, 0, 0, 0.65);
                     font-size: 1.4em;
@@ -85,7 +85,7 @@ body {
             }
         }
         &-languages {
-            margin-left: 0 !important;
+            border-bottom: none;
             @media screen and (max-width: @header-mobile-width) {
                 margin-right: 85px;
                 margin-left: auto !important;

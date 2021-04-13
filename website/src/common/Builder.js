@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 
 import sal from 'sal.js';
 
-import Banner from './components/Banner';
-import Content from './components/Content';
-import Listing from './components/Listing';
-import ContactForm from './components/functionality/ContactForm';
-import Map from './components/functionality/Map';
+import Banner from '../components/Banner';
+import Content from '../components/Content';
+import Listing from '../components/Listing';
+import ContactForm from '../components/functionality/ContactForm';
+import Map from '../components/functionality/Map';
 
 export default ({ page }) => {
 

@@ -1,16 +1,14 @@
 import React from 'react';
+import { Row, Col } from 'antd';
 
 import Actions from '../Actions';
-
-import Cluar from '../../Cluar';
-
-import { Row, Col } from 'antd';
+import Cluar from '../../common/Cluar';
 
 import './index.less';
 
 export default ({ section, type, image, title, content, position, actions }) => {
-  let backgroundPositionX = position.x != "" ? position.x : "50%";
-  let backgroundPositionY = position.y != "" ? position.y : "50%";
+  let backgroundPositionX = position.x !== "" ? position.x : "50%";
+  let backgroundPositionY = position.y !== "" ? position.y : "50%";
 
   return (
     <section className="banner">
