@@ -1,0 +1,29 @@
+.cookies {
+    position: absolute;
+    height: 100px;
+    background-color: #777777;
+    &--popup {
+        position: fixed;
+        z-index: 10000;
+        width: 100%;
+        height: auto;
+        bottom: 0;
+        background-color: #fff;
+        box-shadow: 0 -1px 10px 0 rgba(172, 171, 171, 0.3);
+        &__content {
+            color: rgba(0, 0, 0, 0.85);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            p {
+                margin-bottom: 0;
+            }
+            @media only screen and (max-width: 768px) {
+                display: block;
+                p {
+                    margin-bottom: 1em;
+                }
+            }
+        }
+    }
+}

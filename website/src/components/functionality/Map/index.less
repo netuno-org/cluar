@@ -1,0 +1,60 @@
+@import "../../../styles/variables.less";
+
+.map {
+    max-width: 80%;
+    margin: 50px auto;
+
+    > h1 {
+        font-size: 2em;
+        font-weight: normal;
+        letter-spacing: .01em;
+    }
+    &__title-border {
+        height: 4px;
+        width: 8vw;
+        margin-top: -1em;
+        margin-bottom: 1em;
+        background: rgb(255,255,255);
+        background: linear-gradient(90deg, rgba(9,164,200,0.2) 0%, rgba(9,164,200,1) 100%);
+    }
+
+    &__container {
+        position: relative;
+        height: calc(80vh - @header-size);
+        .mapboxgl-popup {
+            .mapboxgl-popup-content {
+                padding: 20px;
+                box-shadow: 0 0 50px rgba(0,0,0,0.5);
+                .mapboxgl-popup-close-button {
+                    width: 25px;
+                }
+            }
+        }
+        .mapboxgl-marker {
+            svg {
+                fill: @primary-color;
+                fill-opacity: 0.8;
+            }
+        }
+        .mapboxgl-ctrl-top-right {
+            right: 20px;
+        }
+
+        .mapboxgl-ctrl-bottom-left {
+            display: none;
+        }
+
+        .mapboxgl-ctrl-bottom-right {
+            display: none;
+        }
+    }
+}
+
+.text {
+    > div {
+        font-size: 1.1em !important;
+        p {
+            margin-bottom: .5em;
+        }
+    }
+}

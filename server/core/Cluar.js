@@ -1,0 +1,479 @@
+
+// _core : CluarCustomData
+
+class Cluar {
+
+    static base() {
+        if (_env.is("dev")) {
+            return "website/public"
+        } else {
+            return "website/build"
+        }
+    }
+    
+    static build(settings) {
+        settings = settings || {}
+        
+        const data = _val.map()
+
+        /*
+         *
+         *  LANGUAGES
+         *
+         */        
+        const dbLanguages = _db.find(
+            'language',
+            _val.map()
+                .set(
+                    'where',
+                    _val.map()
+                        .set("active", true)
+                )
+        )
+        const languages = _val.list()
+        for (const dbLanguage of dbLanguages) {
+            languages.add(
+                _val.map()
+                    .set("code", dbLanguage.getString("code"))
+                    .set("locale", dbLanguage.getString("locale"))
+                    .set("description", dbLanguage.getString("description"))
+                    .set("default", dbLanguage.getBoolean("default"))
+            )
+        }
+        data.set("languages", languages)
+        
+        /*
+         *
+         *  CONFIGURATION
+         *
+         */
+        const configuration = _val.map()
+        const dbConfigurationWithLanguages = _db.query(`
+        SELECT
+            language.code "language",
+            configuration_parameter.code "code",
+            configuration.value
+        FROM language
+            INNER JOIN configuration ON language.id = configuration.language_id
+            INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
+        WHERE language.active = TRUE
+            AND configuration.active = TRUE
+            AND configuration_parameter.active = TRUE
+        ORDER BY language.code, configuration_parameter.code
+        `)
+        for (const dbParameter of dbConfigurationWithLanguages) {
+            if (!configuration.has(dbParameter.getString("language"))) {
+                configuration.set(dbParameter.getString("language"), _val.map())
+            }
+            configuration.getValues(dbParameter.getString("language"))
+                .set(dbParameter.getString("code"), dbParameter.getString("value"))
+        }
+        const dbConfigurationWithoutLanguages = _db.query(`
+        SELECT
+            configuration_parameter.code "code",
+            configuration.value
+        FROM configuration
+            INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
+        WHERE (configuration.language_id = 0 OR configuration.language_id IS NULL)
+            AND configuration.active = TRUE
+            AND configuration_parameter.active = TRUE
+        ORDER BY configuration_parameter.code
+        `)
+        for (const dbParameter of dbConfigurationWithoutLanguages) {
+            if (!configuration.has("GENERIC")) {
+                configuration.set("GENERIC", _val.map())
+            }
+            configuration.getValues("GENERIC")
+                .set(dbParameter.getString("code"), dbParameter.getString("value"))
+        }
+        data.set("configuration", configuration)
+        
+        /*
+         *
+         *  DICTIONARY
+         *
+         */
+        const dbDictionary = _db.query(`
+        SELECT
+            language.code "language",
+            dictionary_entry.code "code",
+            dictionary.value
+        FROM language
+            INNER JOIN dictionary ON dictionary.language_id = language.id
+            INNER JOIN dictionary_entry ON dictionary.entry_id = dictionary_entry.id
+        WHERE language.active = TRUE
+            AND dictionary.active = TRUE
+            AND dictionary_entry.active = TRUE
+        ORDER BY language.code, dictionary_entry.code
+        `)
+        const dictionary = _val.map()
+        for (const dbEntry of dbDictionary) {
+            if (!dictionary.has(dbEntry.getString("language"))) {
+                dictionary.set(dbEntry.getString("language"), _val.map())
+            }
+            dictionary.getValues(dbEntry.getString("language"))
+                .set(dbEntry.getString("code"), dbEntry.getString("value"))
+        }
+        data.set("dictionary", dictionary)
+
+        /*
+         *
+         *  PAGE
+         *
+         */
+        const dbPages = _db.query(`
+        SELECT
+            page.id,
+            language.code "language",
+            page.parent_id,
+            page.link,
+            page.title,
+            page.menu,
+            page.sorter
+        FROM language
+            INNER JOIN page ON language.id = page.language_id
+            INNER JOIN page_status ON page.status_id = page_status.id
+        WHERE language.active = TRUE
+            AND page.active = TRUE
+            AND page_status.active = TRUE
+            AND page_status.code = 'published'
+        ORDER BY language.code, page.sorter, page.link
+        `)
+        const pages = _val.map()
+        for (const dbPage of dbPages) {
+            if (!pages.has(dbPage.getString("language"))) {
+                pages.set(dbPage.getString("language"), _val.list())
+            }
+
+            const structure = _val.list()
+
+            /*
+             *
+             *  CONTENTS
+             *
+             */
+            const dbContents = _db.query(`
+            SELECT
+                content.id,
+                content_type.code "type",
+                content.title,
+                content.content,
+                content.image,
+                content.image_max_width,
+                content.sorter
+            FROM content
+                INNER JOIN content_type ON content.type_id = content_type.id
+            WHERE content.active = TRUE
+                AND content_type.active = TRUE
+                AND content.page_id = ${dbPage.getInt("id")}
+            `)
+            for (const dbContent of dbContents) {
+                structure.add(
+                    _val.map()
+                        .set("section", "content")
+                        .set("type", dbContent.getString("type"))
+                        .set("title", dbContent.getString("title"))
+                        .set("content", dbContent.getString("content"))
+                        .set("image", dbContent.getString("image"))
+                        .set("image_max_width", dbContent.getString("image_max_width"))
+                        .set("sorter", dbContent.getInt("sorter"))
+                        .set("actions", Cluar.actions("content", dbContent.getInt("id")))
+                )
+                if (settings.images === true) {
+                    Cluar.publishImage("content", dbContent.getString("image"))
+                }
+            }
+
+            /*
+             *
+             *  BANNERS
+             *
+             */
+            const dbBanners = _db.query(`
+            SELECT
+                banner.id,
+                banner_type.code "type",
+                banner.title,
+                banner.content,
+                banner.image,
+                banner.sorter,
+                banner.position_x,
+                banner.position_y
+            FROM banner
+                INNER JOIN banner_type ON banner.type_id = banner_type.id
+            WHERE banner.active = TRUE
+                AND banner_type.active = TRUE
+                AND banner.page_id = ${dbPage.getInt("id")}
+            `)
+            for (const dbBanner of dbBanners) {
+                structure.add(
+                    _val.map()
+                        .set("section", "banner")
+                        .set("type", dbBanner.getString("type"))
+                        .set("title", dbBanner.getString("title"))
+                        .set("content", dbBanner.getString("content"))
+                        .set("image", dbBanner.getString("image"))
+                        .set("sorter", dbBanner.getInt("sorter"))
+                        .set(
+                            "position",
+                            _val.map()
+                                .set("x", dbBanner.getString("position_x"))
+                                .set("y", dbBanner.getString("position_y"))
+                        )
+                        .set("actions", Cluar.actions("banner", dbBanner.getInt("id")))
+                )
+                if (settings.images === true) {
+                    Cluar.publishImage("banner", dbBanner.getString("image"))
+                }
+            }
+
+            /*
+             *
+             *  LISTING
+             *
+             */
+            const dbListings = _db.query(`
+            SELECT
+                listing.id,
+                listing_type.code "type",
+                listing.title,
+                listing.content,
+                listing.image,
+                listing.sorter
+            FROM listing
+                INNER JOIN listing_type ON listing.type_id = listing_type.id
+            WHERE listing.active = TRUE
+                AND listing_type.active = TRUE
+                AND listing.page_id = ${dbPage.getInt("id")}
+            `)
+            for (const dbListing of dbListings) {
+                const items = _val.list()
+                const dbItems = _db.query(`
+                SELECT
+                    title, content, image, sorter, link
+                FROM listing_item
+                WHERE listing_id = ${dbListing.getInt("id")}
+                `)
+                for (const dbItem of dbItems) {
+                    items.add(
+                        _val.map()
+                            .set("section", "listing_item")
+                            .set("title", dbItem.getString("title"))
+                            .set("content", dbItem.getString("content"))
+                            .set("image", dbItem.getString("image"))
+                            .set("sorter", dbItem.getInt("sorter"))
+                            .set("link", dbItem.getString("link"))
+                    )
+                    if (settings.images === true) {
+                        Cluar.publishImage("listing_item", dbItem.getString("image"))
+                    }
+                }
+                structure.add(
+                    _val.map()
+                        .set("section", "listing")
+                        .set("type", dbListing.getString("type"))
+                        .set("title", dbListing.getString("title"))
+                        .set("content", dbListing.getString("content"))
+                        .set("image", dbListing.getString("image"))
+                        .set("items", items)
+                        .set("sorter", dbListing.getInt("sorter"))
+                )
+                if (settings.images === true) {
+                    Cluar.publishImage("listing", dbListing.getString("image"))
+                }
+            }
+
+            /*
+             *
+             *  FUNCTIONALITY
+             *
+             */
+            const dbFunctionalities = _db.query(`
+            SELECT
+                functionality.id,
+                functionality_type.code "type",
+                functionality.title,
+                functionality.content,
+                functionality.image,
+                functionality.sorter
+            FROM functionality
+                INNER JOIN functionality_type ON functionality.type_id = functionality_type.id
+            WHERE functionality.active = TRUE
+                AND functionality_type.active = TRUE
+                AND functionality.page_id = ${dbPage.getInt("id")}
+            `)
+            for (const dbFunctionality of dbFunctionalities) {
+                structure.add(
+                    _val.map()
+                        .set("section", "functionality")
+                        .set("type", dbFunctionality.getString("type"))
+                        .set("title", dbFunctionality.getString("title"))
+                        .set("content", dbFunctionality.getString("content"))
+                        .set("image", dbFunctionality.getString("image"))
+                        .set("sorter", dbFunctionality.getInt("sorter"))
+                )
+                if (settings.images === true) {
+                    Cluar.publishImage("functionality", dbFunctionality.getString("image"))
+                }
+            }
+
+            structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"))
+            
+            let parentLink = ""
+            if (dbPage.getInt("parent_id") > 0) {
+                const dbParentPage = _db.findFirst(
+                    "page",
+                    _val.map()
+                        .set("where", _val.map().set("id", dbPage.getInt("parent_id")))
+                )
+                parentLink = dbParentPage.getString("link")
+            }
+
+            pages.getValues(dbPage.getString("language"))
+                .add(
+                    _val.map()
+                        .set("parent", parentLink)
+                        .set("link", dbPage.getString("link"))
+                        .set("title", dbPage.getString("title"))
+                        .set("menu", dbPage.getBoolean("menu"))
+                        .set("sorter", dbPage.getInt("sorter"))
+                        .set("structure", structure)
+                )
+        }
+        data.set("pages", pages)
+
+        /*
+         *
+         *  BANNERS
+         *
+         */
+        /*const dbBanners = _db.query(`
+        SELECT
+            banner_type.code "type",
+            language.code "language",
+            banner.image, banner.title, banner.content
+        FROM banner
+            INNER JOIN banner_type ON banner.type_id = banner_type.id
+            INNER JOIN language ON banner.language_id = language.id
+        WHERE banner.active = TRUE
+            AND banner_type.active = TRUE
+            AND language.active = TRUE
+        ORDER BY banner_type.code, language.code
+        `)
+        const banners = _val.list()
+        for (const dbBanner of dbBanners) {
+            banners.add(
+                _val.map()
+                    .set("type", dbBanner.getString("type"))
+                    .set("language", dbBanner.getString("language"))
+                    .set("image", dbBanner.getString("image"))
+                    .set("title", dbBanner.getString("title"))
+                    .set("content", dbBanner.getString("content"))
+            )
+        }
+        data.set("banners", banners)*/
+
+        
+        /*
+         *
+         *  CONTENTS
+         *
+         */
+        /*const dbContents = _db.query(`
+        SELECT
+            content_type.code "type",
+            language.code "language",
+            content.title, content.content
+        FROM content
+            INNER JOIN content_type ON content.type_id = content_type.id
+            INNER JOIN language ON content.language_id = language.id
+        WHERE content.active = TRUE
+            AND content_type.active = TRUE
+            AND language.active = TRUE
+        ORDER BY content_type.code, language.code
+        `)
+        const contents = _val.list()
+        for (const dbContent of dbContents) {
+            contents.add(
+                _val.map()
+                    .set("type", dbContent.getString("type"))
+                    .set("language", dbContent.getString("language"))
+                    .set("title", dbContent.getString("title"))
+                    .set("content", dbContent.getString("content"))
+            )
+        }
+        data.set("contents", contents)*/
+
+        CluarCustomData(data)
+        
+        /*
+         *
+         *  DATA FILE
+         *
+         */
+        const file = _app.file(`${Cluar.base()}/cluarData.js`)
+        file.output().print(`window.cluarData = ${data.toJSON(4)};`)
+    }
+
+    static publishImage(section, fileName) {
+        if (fileName == "") {
+            return;
+        }
+        const folder = _app.folder(`${Cluar.base()}/images/${section}`)
+        if (!folder.exists()) {
+            folder.mkdir()
+        }
+        _storage.database(section, "image", fileName)
+            .file()
+            .copy(`${folder.path()}/${fileName}`, true)
+    }
+
+    static actionDataItemProcessWithAnImage() {
+        const section = _dataItem.getTable()
+        
+        const folder = _app.folder(`${Cluar.base()}/images/${section}`)
+        
+        if (!folder.exists()) {
+            folder.mkdir()
+        }
+
+        if (_dataItem.getValues().has("image:old")) {
+            _app.file(`${folder.path()}/${_dataItem.getValues().getString("image:old")}`).delete()
+        }
+
+        if (_dataItem.getValues().has("image:new")) {
+            _storage.database(section, "image", _dataItem.getValues().getString("image:new"))
+                .file()
+                .copy(`${folder.path()}/${_dataItem.getValues().getString("image:new")}`)
+        }
+    }
+
+    static actions(section, id) {
+        const dbActions = _db.query(`
+        SELECT
+            action.title,
+            action.content,
+            action.indication,
+            action.link
+        FROM action
+            INNER JOIN ${section}_action ON ${section}_action.action_id = action.id
+        WHERE
+            action.active = true
+            AND ${section}_action.active = TRUE
+            AND ${section}_action.${section}_id = ${id}
+        ORDER BY ${section}_action.sorter
+        `)
+        const actions = _val.list()
+        for (const dbAction of dbActions) {
+            actions.add(
+                _val.map()
+                    .set("title", dbAction.getString("title"))
+                    .set("content", dbAction.getString("content"))
+                    .set("indication", dbAction.getString("indication"))
+                    .set("link", dbAction.getString("link"))
+                    .set("sorter", dbAction.getInt("sorter"))
+            )
+        }
+        return actions
+    }
+}

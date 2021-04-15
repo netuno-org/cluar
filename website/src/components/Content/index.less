@@ -1,0 +1,111 @@
+.content {
+    margin: auto;
+    max-width: 80%;
+    padding: 50px 60px 50px;
+    display: flex;
+    @media only screen and (max-width: 800px) {
+        padding: 20px 0;
+        margin: 20px auto;
+        flex-wrap: wrap;
+    }
+
+    > div {
+        width: 100%;
+    }
+    
+    > ul.actions {
+        width: 300px;
+        @media only screen and (max-width: 800px) {
+            width: 100%;
+        }
+    }
+
+    .image {
+        width: 100%;
+        height: auto;
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .text {
+        > h1 {
+            font-size: 2em;
+            font-weight: normal;
+            letter-spacing: .01em;
+        }
+        &__title-border {
+            height: 4px;
+            width: 8vw;
+            margin-top: -1em;
+            margin-bottom: 1em;
+            background: rgb(255,255,255);
+            background: linear-gradient(90deg, rgba(9,164,200,0.2) 0%, rgba(9,164,200,1) 100%);
+        }
+        > div {
+            font-size: 1.2em;
+            > ul {
+                margin-left: 40px !important;
+            }
+        }
+    }
+
+    &__text {
+
+    }
+
+    &__image-left {
+
+    }
+    &__image-right {
+
+    }
+    &__image-top {
+
+    }
+    &__image-bottom {
+
+    }
+
+    &__text-service {
+        > h1 {
+            font-size: 2em;
+            font-weight: normal;
+            letter-spacing: .01em;
+        }
+        &__title-border {
+            height: 4px;
+            width: 8vw;
+            margin-top: -1em;
+            margin-bottom: 1em;
+            background: rgb(255,255,255);
+            background: linear-gradient(90deg, rgba(9,164,200,0.2) 0%, rgba(9,164,200,1) 100%);
+        }
+        .ant-btn {
+            height: 50px;
+            min-width: 190px;
+            > span {
+                text-transform: uppercase;
+                letter-spacing: .05em;
+                font-size: 1.2em;
+                padding: 0 20px;
+            }
+        }
+    }
+
+    .actions__item {
+        background-color: rgba(9,164,200,1);
+        text-align: center;
+        border-color: rgba(9,164,200,1);
+        &:hover {
+            cursor: pointer;
+            background-color: #ffffff;
+            color: #000000;
+            a {
+                color: #00A0C6;
+            }
+        }
+    }
+}

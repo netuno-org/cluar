@@ -1,0 +1,38 @@
+@import "../../../styles/variables.less";
+
+.actions__item {
+    width: 280px;
+    padding: 15px;
+    margin: 0 0 20px 0;
+    @media only screen and (max-width: @header-mobile-width) {
+        margin: 0;
+    }
+    border: @actions-item-border-width solid @actions-item-border-color;
+    border-radius: @actions-item-border-radius;
+    transition: all .1s ease-in;
+    background-color: @actions-item-background;
+    color: @actions-item-text-color;
+    font-weight: 600;
+    &:hover {
+        cursor: pointer;
+        background-color: @actions-item-background-hover;
+        color: @actions-item-text-color-hover;
+        a {
+            color: @actions-item-link-color-hover;
+        }
+    }
+
+    h4 {
+        font-size: 1.2em;
+        margin-bottom: 0.2em;
+    }
+    p {
+        font-size: 1.0em;
+        margin-bottom: 0.5em;
+    }
+    a {
+        text-transform: uppercase;
+        font-size: 1.0em;
+        color: @actions-item-link-color;
+    }
+}
