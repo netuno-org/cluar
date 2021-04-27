@@ -1,8 +1,5 @@
 {
     "cluar": {
-        "api": "http://adraga.veks.net:38090/services/"
-    },
-    "mapbox": {
-        "accessToken": "pk.eyJ1Ijoic2l0YW5hIiwiYSI6ImNrZGtkcW5uMzBudnAycXM4azZkeTBxdWUifQ.5YXYCK-Vw-jVQb58SGyAsA"
+        "api": "http://localhost:9000/services/"
     }
 }
