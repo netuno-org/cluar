@@ -44,7 +44,7 @@ class Analytics extends Component {
 
 	static init(options = {}) {
 		let isGAEnabled = false;
-		if (config.analytics && config.analytics != ''){
+		if (config.analytics && config.analytics !== ''){
 			ReactGA.initialize(config.analytics);
 			isGAEnabled = true;
 		}

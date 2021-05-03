@@ -9,8 +9,7 @@ import {
   Switch,
   Route,
   Link,
-  Redirect,
-  useLocation
+  Redirect
 } from "react-router-dom";
 
 import Analytics from './common/Analytics';
