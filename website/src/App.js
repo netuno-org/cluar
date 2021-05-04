@@ -97,13 +97,13 @@ export default () => {
         );
       }
       subroutes.push(
-        <Route key={`/${language.locale}${page.link}`} path={`/${language.locale}${page.link}`} exact render={(propRouter) => {
+        <Route key={`/${language.locale}${page.link}`} exact path={`/${language.locale}${page.link}`} exact render={(propRouter) => {
           return <Builder page={page} />;
         }} />
       );
     }
     routes.push(
-      <Route key={`/${language.locale}/`} path={`/${language.locale}/`}>
+      <Route key={`/${language.locale}/`} exact path={`/${language.locale}/`}>
         {subroutes}
       </Route>
     );
@@ -171,8 +171,8 @@ export default () => {
               <Route path="/" exact render={(propRouter) => {
                 return <Redirect to={`/${Cluar.currentLanguage().locale}/`} />;
               }} />
-              <Route component={NotFound} />
               {routes}
+              <Route component={NotFound} />
             </Switch>
           </Content>
           <Footer>
