@@ -103,7 +103,7 @@ export default () => {
       );
     }
     routes.push(
-      <Route key={`/${language.locale}/`} exact path={`/${language.locale}/`}>
+      <Route key={`/${language.locale}/`} path={`/${language.locale}/`}>
         {subroutes}
       </Route>
     );
