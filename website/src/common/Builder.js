@@ -12,7 +12,12 @@ export default ({ page }) => {
 
     useEffect(() => {
         sal();
-    });
+
+        document.getElementsByTagName('meta')["keywords"].content = page.keywords;
+        document.getElementsByTagName('meta')["description"].content = page.description;
+        document.title = page.title + ' | Website Name';
+
+    }, []);
 
     const components = [];
     for (const item of page.structure) {
