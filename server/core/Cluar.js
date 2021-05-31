@@ -128,6 +128,8 @@ class Cluar {
             page.parent_id,
             page.link,
             page.title,
+            page.description,
+            page.keywords,
             page.menu,
             page.sorter
         FROM language
@@ -335,6 +337,8 @@ class Cluar {
                         .set("parent", parentLink)
                         .set("link", dbPage.getString("link"))
                         .set("title", dbPage.getString("title"))
+                        .set("description", dbPage.getString("description"))
+                        .set("keywords", dbPage.getString("keywords"))
                         .set("menu", dbPage.getBoolean("menu"))
                         .set("sorter", dbPage.getInt("sorter"))
                         .set("structure", structure)
