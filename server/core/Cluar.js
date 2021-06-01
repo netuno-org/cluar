@@ -161,6 +161,8 @@ class Cluar {
                 content.title,
                 content.content,
                 content.image,
+                content.image_alt,
+                content.image_title,
                 content.image_max_width,
                 content.sorter
             FROM content
@@ -177,6 +179,8 @@ class Cluar {
                         .set("title", dbContent.getString("title"))
                         .set("content", dbContent.getString("content"))
                         .set("image", dbContent.getString("image"))
+                        .set("image_alt", dbContent.getString("image_alt"))
+                        .set("image_title", dbContent.getString("image_title"))
                         .set("image_max_width", dbContent.getString("image_max_width"))
                         .set("sorter", dbContent.getInt("sorter"))
                         .set("actions", Cluar.actions("content", dbContent.getInt("id")))
@@ -198,6 +202,8 @@ class Cluar {
                 banner.title,
                 banner.content,
                 banner.image,
+                banner.image_alt,
+                banner.image_title,
                 banner.sorter,
                 banner.position_x,
                 banner.position_y
@@ -215,6 +221,8 @@ class Cluar {
                         .set("title", dbBanner.getString("title"))
                         .set("content", dbBanner.getString("content"))
                         .set("image", dbBanner.getString("image"))
+                        .set("image_alt", dbBanner.getString("image_alt"))
+                        .set("image_title", dbBanner.getString("image_title"))
                         .set("sorter", dbBanner.getInt("sorter"))
                         .set(
                             "position",
@@ -241,6 +249,8 @@ class Cluar {
                 listing.title,
                 listing.content,
                 listing.image,
+                listing.image_alt,
+                listing.image_title,
                 listing.sorter
             FROM listing
                 INNER JOIN listing_type ON listing.type_id = listing_type.id
@@ -252,7 +262,7 @@ class Cluar {
                 const items = _val.list()
                 const dbItems = _db.query(`
                 SELECT
-                    title, content, image, sorter, link
+                    title, content, image, image_title, image_alt, sorter, link
                 FROM listing_item
                 WHERE listing_id = ${dbListing.getInt("id")}
                 `)
@@ -263,6 +273,8 @@ class Cluar {
                             .set("title", dbItem.getString("title"))
                             .set("content", dbItem.getString("content"))
                             .set("image", dbItem.getString("image"))
+                            .set("image_alt", dbItem.getString("image_alt"))
+                            .set("image_title", dbItem.getString("image_title"))
                             .set("sorter", dbItem.getInt("sorter"))
                             .set("link", dbItem.getString("link"))
                     )
@@ -277,6 +289,8 @@ class Cluar {
                         .set("title", dbListing.getString("title"))
                         .set("content", dbListing.getString("content"))
                         .set("image", dbListing.getString("image"))
+                        .set("image_alt", dbListing.getString("image_alt"))
+                        .set("image_title", dbListing.getString("image_title"))
                         .set("items", items)
                         .set("sorter", dbListing.getInt("sorter"))
                 )

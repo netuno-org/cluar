@@ -5,7 +5,7 @@ import Item from './Item';
 
 import './index.less';
 
-export default ({section, type, image, title, content, items}) => {
+export default ({section, type, image, image_title, image_alt, title, content, items}) => {
     const children = [];
     for (const item of items) {
         children.push(<Item {...{type, ...item}} />);

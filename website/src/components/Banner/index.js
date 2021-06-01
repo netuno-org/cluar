@@ -6,7 +6,7 @@ import Cluar from '../../common/Cluar';
 
 import './index.less';
 
-export default ({ section, type, image, title, content, position, actions }) => {
+export default ({ section, type, image, image_title, image_alt, title, content, position, actions }) => {
   let backgroundPositionX = position.x !== "" ? position.x : "50%";
   let backgroundPositionY = position.y !== "" ? position.y : "50%";
 

@@ -6,7 +6,7 @@ import Cluar from '../../common/Cluar';
 
 import './index.less';
 
-export default ({section, type, title, content, image, image_max_width, actions}) => {
+export default ({section, type, title, content, image, image_title, image_alt, image_max_width, actions}) => {
     let layout = null;
     const imageStyle = {};
     if (image_max_width > 0) {
@@ -28,7 +28,7 @@ export default ({section, type, title, content, image, image_max_width, actions}
               <Row>
                 <Col md={8}>
                   <div className="image">
-                    <img src={`/images/${section}/${image}`} alt={ title } style={ imageStyle }/>
+                    <img src={`/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
                   </div>
                 </Col>
                 <Col md={16}>
@@ -54,7 +54,7 @@ export default ({section, type, title, content, image, image_max_width, actions}
                 </Col>
                 <Col md={8}>
                   <div className="image">
-                    <img src={`/images/${section}/${image}`} alt={ title } style={ imageStyle }/>
+                    <img src={`/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
                   </div>
                 </Col>
               </Row>
@@ -64,7 +64,7 @@ export default ({section, type, title, content, image, image_max_width, actions}
         layout = (
             <div className="content__image-top">
               <div className="image">
-                <img src={`/images/${section}/${image}`} alt={ title } style={ imageStyle }/>
+                <img src={`/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
               </div>
               <div className="text">
                 <h1>{ title }</h1>
@@ -80,7 +80,7 @@ export default ({section, type, title, content, image, image_max_width, actions}
                 <div dangerouslySetInnerHTML={{__html: content}}></div>
               </div>
               <div className="image">
-                <img src={`/images/${section}/${image}`} alt={ title } style={ imageStyle }/>
+                <img src={`/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
               </div>
             </div>
         );
@@ -88,7 +88,7 @@ export default ({section, type, title, content, image, image_max_width, actions}
       layout = (
           <div className="content__image">
             <div className="image">
-              <img src={`/images/${section}/${image}`} alt={ title } style={ imageStyle }/>
+              <img src={`/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
             </div>
           </div>
       );
@@ -114,7 +114,7 @@ export default ({section, type, title, content, image, image_max_width, actions}
             </Col>
             <Col md={10}>
               <div className="image">
-                <img src={`/images/${section}/${image}`} alt={ title } style={ imageStyle }/>
+                <img src={`/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
               </div>
             </Col>
           </Row>
@@ -124,7 +124,7 @@ export default ({section, type, title, content, image, image_max_width, actions}
         layout = (
             <div className={`content__${type}`}>
               <div className="image">
-                <img src={`/images/${section}/${image}`} alt={ title } style={ imageStyle }/>
+                <img src={`/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
               </div>
               <div className="text">
                 <h1>{ title }</h1>

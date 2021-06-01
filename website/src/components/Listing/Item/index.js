@@ -3,14 +3,14 @@ import { Col } from 'antd';
 
 import './index.less';
 
-export default ({ section, type, image, title, content, link }) => {
+export default ({ section, type, image, image_title, image_alt, title, content, link }) => {
   let layout = null;
   if (type === 'containers') {
     layout = (
       <li className="listing_item_containers">
         <div className={`item__containers`}>
           <h1>{title}</h1>
-          <img src={`/images/${section}/${image}`} alt={title} />
+          <img src={`/images/${section}/${image}`}  alt={ image_alt } title={ image_title } />
           <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </div>
       </li>
@@ -24,7 +24,7 @@ export default ({ section, type, image, title, content, link }) => {
   } else if (type === 'pallets') {
     layout = (
       <Col xs={24} sm={24} md={24} lg={12}>
-        <img src={`/images/${section}/${image}`} alt={title} />
+        <img src={`/images/${section}/${image}`}  alt={ image_alt } title={ image_title } />
         <div className="listing_item_pallets" dangerouslySetInnerHTML={{ __html: content }}></div>
       </Col>
     );
