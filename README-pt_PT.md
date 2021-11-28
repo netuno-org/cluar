@@ -6,7 +6,7 @@ Uma solução pronta para gestão de conteúdos e websites multilíngue utilizan
 
 ### Plataforma Netuno
 
-[Follow the steps here](https://doc.netuno.org/docs/en/installation/)
+[Siga os passos aqui](https://doc.netuno.org/docs/en/installation/)
 
 ## Instalação Automática da Aplicação
 
