@@ -4,11 +4,11 @@ Uma solução pronta para gestão de conteúdos e websites multilíngue utilizan
 
 ## Instalação
 
-#### Netuno
+### Netuno
 
 [Follow the steps here](https://doc.netuno.org/docs/en/installation/)
 
-#### Instalação Automática
+### Aplicação
 
 ```
 ./netuno app github=netuno-org/cluar
@@ -20,7 +20,7 @@ Renomeie a pasta da aplicação `(Netuno Root directory)/apps/cluar/` para o nom
 
 `config/_production.json`
 
-#### Clone e Instalação Manual
+## Clone e Instalação Manual
 
 Crie uma nova app com o Netuno denominada `cluar` executando (no diretório raíz do Netuno) 
 
