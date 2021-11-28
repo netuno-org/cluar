@@ -8,7 +8,19 @@ A ready to use solution for content management and multilingual websites using [
 
 [Follow the steps here](https://doc.netuno.org/docs/en/installation/)
 
-#### CLUAR
+#### Automatic Install
+
+```
+./netuno app github=netuno-org/cluar
+```
+
+Then rename the app folder `(Netuno Root directory)/apps/cluar/` to your desired name, and do not forget the `name` parameter in the configurations:
+
+`config/_development.json`
+
+`config/_production.json`
+
+#### Manual Clone and Setup
 
 Create an app with Netuno named `cluar` by running (in the Netuno root directory) 
 
@@ -28,7 +40,7 @@ in the `cluar/website/` directory.
 
 You'll need to copy the sample service config file by running 
 
-`cp config/sample.json config/_development.json`
+`cp config/sample.json config/_development.json` (be sure the `name` parameter)
 
 `cp website/src/config/config-dev.json website/src/config/config.json` 
 
