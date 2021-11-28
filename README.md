@@ -2,13 +2,13 @@
 
 A ready to use solution for content management and multilingual websites using [Netuno](https://www.netuno.org/), [ReactJS](https://reactjs.org/) and [Ant Design](https://ant.design/).
 
-## Installation
+## Requirement
 
-#### Netuno
+#### Netuno Platform
 
 [Follow the steps here](https://doc.netuno.org/docs/en/installation/)
 
-#### Automatic Install
+## Automatic Application Install
 
 ```
 ./netuno app github=netuno-org/cluar
@@ -20,7 +20,7 @@ Then rename the app folder `(Netuno Root directory)/apps/cluar/` to your desired
 
 `config/_production.json`
 
-#### Manual Clone and Setup
+## Manual Clone and Setup
 
 Create an app with Netuno named `cluar` by running (in the Netuno root directory) 
 
