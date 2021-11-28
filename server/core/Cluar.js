@@ -118,7 +118,7 @@ class Cluar {
 
         /*
          *
-         *  PAGE
+         *  PAGES
          *
          */
         const dbPages = _db.query(`
@@ -131,6 +131,7 @@ class Cluar {
             page.description,
             page.keywords,
             page.menu,
+            page.menu_title,
             page.sorter
         FROM language
             INNER JOIN page ON language.id = page.language_id
@@ -247,10 +248,10 @@ class Cluar {
                 listing.id,
                 listing_type.code "type",
                 listing.title,
-                listing.content,
-                listing.image,
                 listing.image_alt,
                 listing.image_title,
+                listing.content,
+                listing.image,
                 listing.sorter
             FROM listing
                 INNER JOIN listing_type ON listing.type_id = listing_type.id
@@ -262,7 +263,7 @@ class Cluar {
                 const items = _val.list()
                 const dbItems = _db.query(`
                 SELECT
-                    title, content, image, image_title, image_alt, sorter, link
+                    title, content, image, image_alt, image_title, sorter, link
                 FROM listing_item
                 WHERE listing_id = ${dbListing.getInt("id")}
                 `)
@@ -335,6 +336,11 @@ class Cluar {
 
             structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"))
             
+            /*
+             *
+             *  ADD PAGE
+             *
+             */       
             let parentLink = ""
             if (dbPage.getInt("parent_id") > 0) {
                 const dbParentPage = _db.findFirst(
@@ -344,7 +350,6 @@ class Cluar {
                 )
                 parentLink = dbParentPage.getString("link")
             }
-
             pages.getValues(dbPage.getString("language"))
                 .add(
                     _val.map()
@@ -354,74 +359,13 @@ class Cluar {
                         .set("description", dbPage.getString("description"))
                         .set("keywords", dbPage.getString("keywords"))
                         .set("menu", dbPage.getBoolean("menu"))
+                        .set("menu_title", dbPage.getString("menu_title"))
                         .set("sorter", dbPage.getInt("sorter"))
                         .set("structure", structure)
                 )
         }
         data.set("pages", pages)
-
-        /*
-         *
-         *  BANNERS
-         *
-         */
-        /*const dbBanners = _db.query(`
-        SELECT
-            banner_type.code "type",
-            language.code "language",
-            banner.image, banner.title, banner.content
-        FROM banner
-            INNER JOIN banner_type ON banner.type_id = banner_type.id
-            INNER JOIN language ON banner.language_id = language.id
-        WHERE banner.active = TRUE
-            AND banner_type.active = TRUE
-            AND language.active = TRUE
-        ORDER BY banner_type.code, language.code
-        `)
-        const banners = _val.list()
-        for (const dbBanner of dbBanners) {
-            banners.add(
-                _val.map()
-                    .set("type", dbBanner.getString("type"))
-                    .set("language", dbBanner.getString("language"))
-                    .set("image", dbBanner.getString("image"))
-                    .set("title", dbBanner.getString("title"))
-                    .set("content", dbBanner.getString("content"))
-            )
-        }
-        data.set("banners", banners)*/
-
         
-        /*
-         *
-         *  CONTENTS
-         *
-         */
-        /*const dbContents = _db.query(`
-        SELECT
-            content_type.code "type",
-            language.code "language",
-            content.title, content.content
-        FROM content
-            INNER JOIN content_type ON content.type_id = content_type.id
-            INNER JOIN language ON content.language_id = language.id
-        WHERE content.active = TRUE
-            AND content_type.active = TRUE
-            AND language.active = TRUE
-        ORDER BY content_type.code, language.code
-        `)
-        const contents = _val.list()
-        for (const dbContent of dbContents) {
-            contents.add(
-                _val.map()
-                    .set("type", dbContent.getString("type"))
-                    .set("language", dbContent.getString("language"))
-                    .set("title", dbContent.getString("title"))
-                    .set("content", dbContent.getString("content"))
-            )
-        }
-        data.set("contents", contents)*/
-
         CluarCustomData(data)
         
         /*
@@ -431,6 +375,73 @@ class Cluar {
          */
         const file = _app.file(`${Cluar.base()}/cluarData.js`)
         file.output().print(`window.cluarData = ${data.toJSON(4)};`)
+        
+        if (_app.settings.getBoolean("uglifyjs") == true) {
+            const osUglifyJS = _os.init()
+            osUglifyJS.directory(_app.folder(Cluar.base()))
+            const osUglifyJSResult = osUglifyJS.command(`uglifyjs -o cluarData.js -- cluarData.js`)
+            if (osUglifyJSResult.output() != '' && osUglifyJSResult.error() != '') {
+                _log.error(`UglifyJS failed:\n\tOutput: ${osUglifyJSResult.output()}\n\tError: ${osUglifyJSResult.error()}`)
+            }
+        }
+
+        /*
+         *
+         *  SITEMAP & ROBOTS
+         *
+         */
+        const origin = _app.settings.getValues("website").getString("origin")
+        const xml = _xml.create()
+        const document = xml.builder().newDocument()
+        const tagURLSet = document.createElement("urlset")
+        const attrNS = document.createAttribute("xmlns")
+        attrNS.setValue("http://www.sitemaps.org/schemas/sitemap/0.9")
+        tagURLSet.setAttributeNode(attrNS)
+        const attrNews = document.createAttribute("xmlns:news")
+        attrNews.setValue("http://www.google.com/schemas/sitemap-news/0.9")
+        tagURLSet.setAttributeNode(attrNews)
+        const attrXHTML = document.createAttribute("xmlns:xhtml")
+        attrXHTML.setValue("http://www.w3.org/1999/xhtml")
+        tagURLSet.setAttributeNode(attrXHTML)
+        const attrMobile = document.createAttribute("xmlns:mobile")
+        attrMobile.setValue("http://www.sitemaps.org/schemas/sitemap/0.9")
+        tagURLSet.setAttributeNode(attrMobile)
+        const attrImage = document.createAttribute("xmlns:image")
+        attrImage.setValue("http://www.google.com/schemas/sitemap-image/1.1")
+        tagURLSet.setAttributeNode(attrImage)
+        const attrVideo = document.createAttribute("xmlns:video")
+        attrVideo.setValue("http://www.google.com/schemas/sitemap-video/1.1")
+        tagURLSet.setAttributeNode(attrVideo)
+        for (const language of languages) {
+            for (const page of pages.getValues(language.getString("code"))) {
+                const tagURL = document.createElement("url")
+                const tagLoc = document.createElement("loc")
+                tagLoc.appendChild(document.createTextNode(origin +"/"+ language.getString("locale") + page.getString("link")))
+                tagURL.appendChild(tagLoc)
+                const tagChangeFreq = document.createElement("changefreq")
+                tagChangeFreq.appendChild(document.createTextNode("daily"))
+                tagURL.appendChild(tagChangeFreq)
+                let priority = "0.5"
+                if (page.getString("link") == '/') {
+                    priority = "1.0"
+                } else if (page.getString("parent") == '') {
+                    priority = "0.7"
+                }
+                const tagPriority = document.createElement("priority")
+                tagPriority.appendChild(document.createTextNode(priority))
+                tagURL.appendChild(tagPriority)
+                tagURLSet.appendChild(tagURL)
+            }
+        }
+        document.appendChild(tagURLSet)
+        xml.save(document, _app.file(`${Cluar.base()}/sitemap.xml`))
+        if (!_app.file(`${Cluar.base()}/robots.txt`).exists()) {
+            const output = _app.file(`${Cluar.base()}/robots.txt`).output()
+                .println('User-agent: *')
+                .println('Allow: /')
+                .println(`Sitemap: ${origin}/sitemap.xml`)
+                .close()
+        }
     }
 
     static publishImage(section, fileName) {

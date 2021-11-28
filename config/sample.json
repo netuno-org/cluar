@@ -1,0 +1,47 @@
+{
+    "cron": {"jobs": []},
+    "settings": {"public": {}},
+    "cors": [{
+        "origin": "*",
+        "enabled": true
+    }],
+    "smtp": {},
+    "name": "cluar",
+    "setup": {
+        "schema": {
+            "execution": true,
+            "auto_create": true
+        },
+        "scripts": {"execution": true},
+        "enabled": true
+    },
+    "language": "en_GB",
+    "firebase": {
+        "app_name": "",
+        "database_url": "",
+        "key_file": "",
+        "listener_secret": ""
+    },
+    "locale": "en_GB",
+    "remote": {},
+    "commands": [
+        {
+            "path": "ui",
+            "command": "npm run watch",
+            "enabled": true
+        },
+        {
+            "path": "website",
+            "command": "npm start",
+            "enabled": true
+        }
+    ],
+    "db": {"default": {
+        "password": "",
+        "engine": "h2",
+        "port": "",
+        "host": "",
+        "name": "cluar",
+        "username": ""
+    }}
+}

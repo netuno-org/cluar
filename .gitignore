@@ -18,3 +18,7 @@ config/_development.json
 config/_production.json
 
 dbs/
+
+public/scripts/main.*
+
+storage/database/

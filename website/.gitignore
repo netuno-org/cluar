@@ -28,5 +28,12 @@ yarn.lock
 *~*
 *#*
 
-build/data.js
-public/data.js
+build/cluarData.js
+public/cluarData.js
+
+public/images/banner/
+public/images/content/
+public/images/functionality/
+public/images/listing/
+public/images/listing_item/
+
