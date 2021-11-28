@@ -24,9 +24,11 @@ Then install the NPM dependencies by running
 
 in the `cluar/website/` directory.
 
-## Configuration
+## Manual Configuration
 
 You'll need to copy the sample service config file by running 
+
+`cp config/sample.json config/_development.json`
 
 `cp website/src/config/config-dev.json website/src/config/config.json` 
 
