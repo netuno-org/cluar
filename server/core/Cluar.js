@@ -413,6 +413,9 @@ class Cluar {
         attrVideo.setValue("http://www.google.com/schemas/sitemap-video/1.1")
         tagURLSet.setAttributeNode(attrVideo)
         for (const language of languages) {
+            if (pages.getValues(language.getString("code")) == null) {
+                continue
+            }
             for (const page of pages.getValues(language.getString("code"))) {
                 const tagURL = document.createElement("url")
                 const tagLoc = document.createElement("loc")

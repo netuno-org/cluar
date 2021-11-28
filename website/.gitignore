@@ -31,6 +31,8 @@ yarn.lock
 build/cluarData.js
 public/cluarData.js
 
+public/sitemap.xml
+
 public/images/banner/
 public/images/content/
 public/images/functionality/

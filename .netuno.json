@@ -7,6 +7,9 @@
             "cron": {"jobs": []},
             "settings": {
                 "public": {},
+                "website": {
+                    "origin": "http://localhost:3000"
+                },
                 "uglifyjs": false
             },
             "cors": [{

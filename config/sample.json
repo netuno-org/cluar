@@ -1,6 +1,12 @@
 {
     "cron": {"jobs": []},
-    "settings": {"public": {}},
+    "settings": {
+        "public": {},
+        "website": {
+            "origin": "http://localhost:3000"
+        },
+        "uglifyjs": false
+    },
     "cors": [{
         "origin": "*",
         "enabled": true
