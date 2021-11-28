@@ -28,6 +28,8 @@ no diretório `cluar/website/`.
 
 Copie o ficheiro de amostra de configuração de serviços executando o seguinte
 
+`cp config/sample.json config/_development.json`
+
 `cp website/src/config/config-dev.json website/src/config/config.json` 
 
 e modifique de acordo com a configuração do seu ambiente local.
