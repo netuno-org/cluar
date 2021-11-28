@@ -2,13 +2,13 @@
 
 Uma solução pronta para gestão de conteúdos e websites multilíngue utilizando [Netuno](https://www.netuno.org/), [ReactJS](https://reactjs.org/) e [Ant Design](https://ant.design/).
 
-## Instalação
+## Requisito
 
-### Netuno
+### Plataforma Netuno
 
 [Follow the steps here](https://doc.netuno.org/docs/en/installation/)
 
-### Aplicação
+## Instalação Automática da Aplicação
 
 ```
 ./netuno app github=netuno-org/cluar
