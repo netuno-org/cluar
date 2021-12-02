@@ -22,13 +22,13 @@ export default ({section, type, image, image_title, image_alt, title, content, i
       </div>   
     );
 
-    if(type === 'service-list' || type === 'faq-list' || type === 'home-list') {
+    if (type === 'YOUR-CUSTOM-TYPE-HERE') {
       listLayout = (
         <Row className={`listing__${type}`} justify="start">
           { children }
         </Row>
       );
-    } else if(type === 'pallets') {
+    } else if (type === 'OTHER-CUSTOM-TYPE-HERE') {
       listLayout = (
           <Row className={`listing__${type}`}>
             { children }

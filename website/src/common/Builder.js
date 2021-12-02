@@ -7,16 +7,15 @@ import Content from '../components/Content';
 import Listing from '../components/Listing';
 import ContactForm from '../components/functionality/ContactForm';
 import Map from '../components/functionality/Map';
+import config from '../config/config.json';
 
 export default ({ page }) => {
 
     useEffect(() => {
         sal();
-
         document.getElementsByTagName('meta')["keywords"].content = page.keywords;
         document.getElementsByTagName('meta')["description"].content = page.description;
-        document.title = page.title + ' | Website Name';
-
+        document.title = page.title + ' | ' + config.website.name;
     }, []);
 
     const components = [];

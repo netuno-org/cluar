@@ -28,6 +28,8 @@ yarn.lock
 *~*
 *#*
 
+src/config/config.json
+
 build/cluarData.js
 public/cluarData.js
 

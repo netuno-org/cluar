@@ -1,5 +1,11 @@
 {
+    "website": {
+        "name": "Website Name"
+    },
     "cluar": {
+        "api": "http://localhost:9000/services/"
+    },
+    "services": {
         "api": "http://localhost:9000/services/"
     }
 }

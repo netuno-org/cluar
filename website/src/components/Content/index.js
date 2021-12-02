@@ -92,34 +92,6 @@ export default ({section, type, title, content, image, image_title, image_alt, i
             </div>
           </div>
       );
-    } else if (type === 'text-service') {
-
-      let serviceButtonLink = null;
-
-      switch(localStorage.locale) {
-        case 'pt': serviceButtonLink = `/pt/cotacao`; break;
-        default: serviceButtonLink = `/en/request-quote`; break;
-      }
-
-      layout = (
-        <div className="content__text-service">
-          <Row justify="space-between">
-            <Col md={10}>
-              <div className="text">
-                <h1>{ title }</h1>
-                <div className="text__title-border"></div>
-                <div dangerouslySetInnerHTML={{__html: content}}></div>
-                <a href={serviceButtonLink}><Button type="primary" size="larger">{(Cluar.dictionary('services-button')).replace(/<\/?p[^>]*>/g, "")}</Button></a>
-              </div>
-            </Col>
-            <Col md={10}>
-              <div className="image">
-                <img src={`/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
-              </div>
-            </Col>
-          </Row>
-        </div>
-    );
     } else {
         layout = (
             <div className={`content__${type}`}>

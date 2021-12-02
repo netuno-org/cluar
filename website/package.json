@@ -5,6 +5,7 @@
   "dependencies": {
     "@animated-burgers/burger-slip": "^1.1.2",
     "@ant-design/icons": "^4.2.1",
+    "@netuno/service-client": "^1.0.10",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2pm i",
