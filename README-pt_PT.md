@@ -14,11 +14,27 @@ Uma solução pronta para gestão de conteúdos e websites multilíngue utilizan
 ./netuno app github=netuno-org/cluar
 ```
 
-Renomeie a pasta da aplicação `(Netuno Root directory)/apps/cluar/` para o nome desejado, e não esqueça do parâmetro `name` nas configurações:
+Em seguida, crie o config.json no website, por exemplo:
+
+```
+cp apps/cluar/website/src/config/config-dev.json apps/cluar/website/src/config/config.json
+```
+
+Inicie o servidor Netuno:
+
+```
+./netuno server app=cluar
+```
+
+> Pode demorar porque é a primeira vez e a instalação do NPM será executada nas pastas `ui` e` website` dentro da pasta raiz do aplicativo.
+
+Não é obrigatório, mas é recomendado renomar a pasta da aplicação `(Netuno Root directory)/apps/cluar/` para o nome desejado, e não esqueça do parâmetro `name` nas configurações:
 
 `config/_development.json`
 
 `config/_production.json`
+
+> Lembre-se de iniciar o servidor Netuno com seu novo nome de aplicativo.
 
 ## Clone e Instalação Manual
 
