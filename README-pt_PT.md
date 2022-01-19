@@ -1,3 +1,5 @@
+![Logo](https://raw.githubusercontent.com/netuno-org/cluar/main/docs/logo.svg)
+
 # Netuno CLUAR
 
 Uma solução pronta para gestão de conteúdos e websites multilíngue utilizando [Netuno](https://www.netuno.org/), [ReactJS](https://reactjs.org/) e [Ant Design](https://ant.design/).

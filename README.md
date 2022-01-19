@@ -1,3 +1,5 @@
+![Logo](https://raw.githubusercontent.com/netuno-org/cluar/main/docs/logo.svg)
+
 # CLUAR CMS
 
 A ready to use solution for content management and multilingual websites using [Netuno](https://www.netuno.org/), [ReactJS](https://reactjs.org/) and [Ant Design](https://ant.design/).
