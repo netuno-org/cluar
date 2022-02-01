@@ -62,21 +62,35 @@ export default () => {
       );
     }
 
-    const buildMenu = (page) => {
+    const buildMenu = (page, level) => {
       if (page.menu && language.code === Cluar.currentLanguage().code) {
         const key = `${page.link}`;
         if (Cluar.pages()[language.code].find((p) => p.menu && p.parent === page.link)) {
           subMenuKeys.push(key);
           return (
-            <SubMenu key={key} title={
+            <SubMenu key={key} popupClassName={`menu-level-${level + 1}`} title={
               <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
                 {page.title}
               </Link>
             }>
-              { Cluar.pages()[language.code].filter((p) => p.menu && p.parent === page.link).map((p) => buildMenu(p))}
+              { Cluar.pages()[language.code].filter((p) => p.menu && p.parent === page.link).map((p) => buildMenu(p, level + 1))}
             </SubMenu>
           );
         } else {
+          /**
+           * Sample of submenu items customization, only on level 1:
+           * 
+          if (level == 1) {
+            return (
+              <Menu.Item key={key}>
+                <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
+                  <h2>{page.title}</h2>
+                  <p>{page.description}</p>
+                </Link>
+              </Menu.Item>
+            );
+          }
+          **/
           return (
             <Menu.Item key={key}>
               <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
@@ -93,7 +107,7 @@ export default () => {
     for (const page of Cluar.pages()[language.code]) {
       if (page.menu && page.parent === "" && language.code === Cluar.currentLanguage().code) {
         menu.push(
-          buildMenu(page)
+          buildMenu(page, 0)
         );
       }
       subroutes.push(

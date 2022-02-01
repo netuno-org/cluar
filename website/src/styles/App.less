@@ -152,6 +152,10 @@ body {
             display: none;
         }
     }
+
+    .menu-level-1 {
+        /* SAMPLE OF MENU CUSTOM LEVEL */
+    }
 }
 
 .ant-menu-sub,
@@ -209,21 +213,22 @@ body {
     z-index: 3;
     width: 100%;
     position: relative;
-    padding: 0 0 20px;
+    padding: 0 20px 20px 20px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2),
         0 1px 1px 0 rgba(0, 0, 0, .14),
         0 2px 1px -1px rgba(0, 0, 0, .12);
     background: @footer-background;
+    
+    .logo {
+        img {
+            width: 100%;
+            max-width: 200px;
+        }
+    }
 
     @media only screen and (max-width: @header-mobile-width) {
         text-align: center;
         padding: 20px 0 10px;
-
-        .logo {
-            img {
-                width: 100%;
-            }
-        }
         > div:last-child {
             padding: 0 20px;
         }

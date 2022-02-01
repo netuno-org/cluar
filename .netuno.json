@@ -13,7 +13,7 @@
                 "uglifyjs": false
             },
             "cors": [{
-                "origin": "*",
+                "origins": [ "*" ],
                 "enabled": true
             }],
             "smtp": {},
@@ -63,7 +63,7 @@
                 "uglifyjs": false
             },
             "cors": [{
-                "origin": "*",
+                "origins": [ "*" ],
                 "enabled": true
             }],
             "smtp": {},

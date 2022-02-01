@@ -5,9 +5,121 @@ HERE YOUR CUSTOM CSS
 **/
 
 .navbar, .navbar-inverse {
-    background-color: #5b5ce1 !important;
+    background-color: #1178FF !important;
+    border-bottom: none;
 }
 
 .dev .navbar, .dev .navbar-inverse {
-    background-color: #333333 !important;
+    background-color: #202020 !important;
+}
+
+.dev .top-nav > li > a:hover, .dev .top-nav > li > a:focus, .dev .top-nav > li.active > a, .dev .top-nav > .open > a, .dev .top-nav > .open > a:hover, .dev .top-nav > .open > a:focus {
+    background-color: #1178FF;
+    color: #ffffff;
+}
+
+.top-nav > li.active > a {
+	background-color: #FF8116;
+    color: #202020;
+}
+
+.dropdown button {
+    color: #FF8116;
+}
+
+.btn-primary {
+	background-color: #1178FF;
+	border-color: transparent;
+}
+
+.btn-primary.focus, .btn-primary:focus, .btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary, .btn-primary:hover {
+	background-color: #5b5ce1;
+	border-color: transparent;
+}
+
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: 5px auto #000000;
+    outline-color: #000000;
+    outline-style: auto;
+    outline-width: 5px;
+    outline-offset: -2px;
+}
+
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover {
+    background-color: #5b5ce1;
+    border-color: #FF8116;
+}
+
+.btn-link {
+    color: #1178FF;
+}
+
+.btn-link:focus, .btn-link:hover {
+    color: #0053BF;
+}
+
+.text-primary {
+    color: #1178FF;
+}
+
+.badge-warning {
+    background-color: #1178FF;
+}
+
+.select2-container--bootstrap .select2-dropdown,
+.select2-container--bootstrap.select2-container--focus .select2-selection,
+.select2-container--bootstrap.select2-container--open .select2-selection {
+    border-color: #1178FF;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
+    background-color: #1178FF;
+}
+
+.form-control:focus {
+    border-color: #1178FF;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary, 
+.bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
+    background: #1178FF !important;
+}
+
+.datepicker table tr td.active.active, .datepicker table tr td.active.highlighted.active, .datepicker table tr td.active.highlighted:active, .datepicker table tr td.active:active {
+    background: #1178FF;
+}
+
+.clockpicker-canvas line {
+    stroke: #1178FF !important;
+}
+
+.clockpicker-canvas-bg-trans, .clockpicker-canvas-bg {
+    fill: rgba(201,80,0,.25) !important;
+}
+
+.clockpicker-canvas-bearing, .clockpicker-canvas-fg {
+    fill: #1178FF !important;
+}
+
+.clockpicker-tick.active,
+.clockpicker-tick:hover {
+        background-color: #5b5ce1;
+        background-color: rgba(201,80,0,.25);
+}
+
+.search-content .btn-search,
+.search-content .btn-filter {
+    background: #1178FF !important;
+}
+
+.pagination>li>a, .pagination>li>span {
+	color: #1178FF !important;
+}
+
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
+	color: #5b5ce1 !important;
 }

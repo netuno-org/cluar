@@ -7,25 +7,28 @@ export default ({ section, type, image, image_title, image_alt, title, content, 
   let layout = null;
   if (type === 'YOUR-CUSTOM-TYPE-HERE') {
     layout = (
-      <li className="listing__item__YOUR-CUSTOM-TYPE-HERE">
-        <div className={`listing__item__YOUR-CUSTOM-TYPE-HERE__content`}>
+      <Col className={`listing__item__${type}`} xs={12} lg={6}>
+        <a href={link} alt={title}>
+          <span>{title}</span>
+          <div className="listing__item__bgimage" style={{ backgroundImage: `url('/images/${section}/${image}')` }}></div>
+        </a>
+      </Col>
+    );
+  } else if(type === 'OTHER-CUSTOM-TYPE-HERE') {
+    layout = (
+      <li className={`listing__item__${type}`} style={{ backgroundImage: `url(/images/${section}/${image})` }}>
+        <div className={`listing__item__${type}__content`}>
           <h1>{title}</h1>
-          <img src={`/images/${section}/${image}`}  alt={ image_alt } title={ image_title } />
           <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </div>
       </li>
     );
-  } else if(type === 'OTHER-CUSTOM-TYPE-HERE') {
-    layout = (
-      <Col xs={12} lg={6}>
-        <a href={link} alt={title}><span>{title}</span><div className="filter"></div><div className="bg" style={{ backgroundImage: `url('/images/${section}/${image}')` }} ></div></a>
-      </Col>
-    );
   } else {
     layout = (
-      <li className="listing_item" style={{ backgroundImage: `url(/images/${section}/${image})` }}>
-        <div className={`item__${type}`}>
+      <li className="listing__item">
+        <div className={`listing__item`}>
           <h1>{title}</h1>
+          <img src={`/images/${section}/${image}`}  alt={ image_alt } title={ image_title } />
           <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </div>
       </li>

@@ -1,0 +1,38 @@
+body {
+    background-color: #f1f1f1;
+}
+
+.form-control {
+    background-color: #f1f1f1;
+    color: #202020;
+    border: 1px solid #84B9FF;
+    margin-bottom: 10px;
+}
+
+.form-control:focus {
+    border-color: #202020;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+hr {
+    border-top: none;
+}
+
+.btn-primary {
+    background-color: #1178FF !important;
+    border-color: transparent;
+}
+
+.btn-primary.focus, .btn-primary:focus, .btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary, .btn-primary:hover {
+    background-color: #84B9FF !important;
+    border-color: transparent;
+}
+
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn:active:focus, .btn:focus {
+    outline: 5px auto #000000;
+    outline-color: #000000;
+    outline-style: auto;
+    outline-width: 5px;
+    outline-offset: -2px;
+}
