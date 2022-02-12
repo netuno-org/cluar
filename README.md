@@ -22,6 +22,12 @@ Then load the config.json in the website, example:
 cp apps/cluar/website/src/config/config-dev.json apps/cluar/website/src/config/config.json
 ```
 
+> :warning: Inside the `apps/cluar/website/src/config/` folder is needed to copy the `config-dev.json` file to `config.json`.
+> 
+> Creating the file `config.json` is mandatory to avoid this error:
+> 
+> `Module not found: Can't resolve '../config/config' in ...`
+
 Start the Netuno Server:
 
 ```
