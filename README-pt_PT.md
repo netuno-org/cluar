@@ -22,6 +22,12 @@ Em seguida, crie o config.json no website, por exemplo:
 cp apps/cluar/website/src/config/config-dev.json apps/cluar/website/src/config/config.json
 ```
 
+> :warning: Dentro da pasta `apps/cluar/website/src/config/` é preciso copiar o ficheiro `config-dev.json` para `config.json`.
+> 
+> Criar o `config.json` é obrigatório para evitar o erro:
+> 
+> `Module not found: Can't resolve '../config/config' in ...`
+
 Inicie o servidor Netuno:
 
 ```
