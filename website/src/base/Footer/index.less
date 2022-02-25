@@ -1,0 +1,113 @@
+@import "../../styles/variables.less";
+
+.ant-layout-footer {
+    z-index: 3;
+    width: 100%;
+    position: relative;
+    padding: 0 20px 20px 20px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2),
+        0 1px 1px 0 rgba(0, 0, 0, .14),
+        0 2px 1px -1px rgba(0, 0, 0, .12);
+    background: @footer-background;
+    
+    .logo {
+        img {
+            width: 100%;
+            max-width: 200px;
+        }
+    }
+
+    @media only screen and (max-width: @header-mobile-width) {
+        text-align: center;
+        padding: 20px 0 10px;
+        > div:last-child {
+            padding: 0 20px;
+        }
+    }
+
+    h1 {
+        color: @footer-color;
+        font-size: 25px;
+        padding: 0 10px;
+
+
+        @media only screen and (min-width: 1200px) {
+            margin: 0 calc((100% - 1200px) / 2);
+        }
+
+        @media only screen and (max-width: @header-mobile-width) {
+            width: 100%;
+            margin: 0 auto;
+            font-size: 20px;
+        }
+    }
+
+    .line {
+        height: 20px;
+        opacity: .5;
+        border: 0;
+        border-radius: 50%;
+        border-bottom: 2px solid @primary-color;
+        width: 100%;
+    }
+
+
+    .links-bar,
+    .copyright {
+        padding: 0 10px;
+        display: inline-block;
+        width: 50%;
+        font-size: .875em;
+
+        a {
+            color: @footer-color;
+            text-decoration: underline;
+        }
+
+        @media screen and (min-width: @header-desktop-width) {
+            width: calc(50% - calc((100% - @header-desktop-width) / 2));
+        }
+
+        @media only screen and (max-width: @header-mobile-width) {
+            display: block;
+            width: 100%;
+            margin: 20px auto !important;
+            font-size: 12px;
+            text-align: center;
+        }
+    }
+
+    .links-bar {
+        margin: 20px auto;
+
+        @media screen and (min-width: @header-desktop-width) {
+            margin-left: calc((100% - @header-desktop-width) / 2);
+        }
+    }
+
+    .copyright {
+        color: @footer-color;
+        text-align: right;
+
+        @media screen and (min-width: @header-desktop-width) {
+            margin-right: calc((100% - @header-desktop-width) / 2);
+        }
+    }
+
+    .cellphone {
+        color: @footer-color;
+        text-align: left;
+
+        @media screen and (min-width: @header-desktop-width) {
+            margin-right: calc((100% - @header-desktop-width) / 2);
+        }
+    }
+
+    .copyright,
+    .cellphone {
+        @media screen and (max-width: @header-mobile-width) {
+            text-align: center;
+        }
+    }
+
+}

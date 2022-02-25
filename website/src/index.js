@@ -13,22 +13,22 @@ import config from './config/config.json';
 import './styles/index.less';
 
 _service.config({
-    prefix: config.services.api
+  prefix: config.services.api
 });
 
 const CluarDataScript = document.createElement("script");
 CluarDataScript.src = `/cluarData.js?time=${new Date().getTime()}`;
-CluarDataScript.onload = ()=>{
-    Cluar.init();
-    ReactDOM.render(
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-    // If you want your app to work offline and load faster, you can change
-    // unregister() to register() below. Note this comes with some pitfalls.
-    // Learn more about service workers: https://bit.ly/CRA-PWA
-    serviceWorker.unregister();
+CluarDataScript.onload = () => {
+  Cluar.init();
+  ReactDOM.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+  // If you want your app to work offline and load faster, you can change
+  // unregister() to register() below. Note this comes with some pitfalls.
+  // Learn more about service workers: https://bit.ly/CRA-PWA
+  serviceWorker.unregister();
 };
 document.body.appendChild(CluarDataScript);

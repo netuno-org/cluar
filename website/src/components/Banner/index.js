@@ -6,7 +6,7 @@ import Cluar from '../../common/Cluar';
 
 import './index.less';
 
-export default ({ section, type, image, image_title, image_alt, title, content, position, actions }) => {
+function Banner({ section, type, image, image_title, image_alt, title, content, position, actions }) {
   let backgroundPositionX = position.x !== "" ? position.x : "50%";
   let backgroundPositionY = position.y !== "" ? position.y : "50%";
 
@@ -18,7 +18,7 @@ export default ({ section, type, image, image_title, image_alt, title, content, 
         backgroundPositionY: backgroundPositionY
       }}>
         <Row>
-          < Col lg={18} sm={(type === 'default-sub-banner') ? (24) : (18)}  xs={(type === 'default-sub-banner') ? (24) : (18)}>
+          <Col lg={18} sm={(type === 'default-sub-banner') ? (24) : (18)}  xs={(type === 'default-sub-banner') ? (24) : (18)}>
             <div>
               <h1 data-sal="slide-down" data-sal-duration="2000" data-sal-easing="ease-out-cubic">{title}</h1>
               <div data-sal="fade" data-sal-duration="2000" data-sal-easing="ease-out-cubic" dangerouslySetInnerHTML={{ __html: content }}></div>
@@ -33,6 +33,8 @@ export default ({ section, type, image, image_title, image_alt, title, content, 
         </div>
         <div className="banner__darken-bg"></div>
       </div>
-    </section >
+    </section>
   );
 }
+
+export default Banner;

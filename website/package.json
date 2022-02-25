@@ -4,36 +4,39 @@
   "private": true,
   "dependencies": {
     "@animated-burgers/burger-slip": "^1.1.2",
-    "@ant-design/icons": "^4.2.1",
+    "@ant-design/icons": "^4.7.0",
     "@netuno/service-client": "^1.0.10",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2pm i",
-    "antd": "^4.4.1",
-    "babel-plugin-import": "^1.13.0",
-    "classnames": "^2.2.6",
-    "customize-cra": "^1.0.0",
-    "import": "0.0.6",
-    "less-loader": "^6.2.0",
-    "react": "^16.13.1",
-    "react-app-rewired": "^2.1.6",
-    "react-dom": "^16.13.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "antd": "^4.18.7",
+    "classnames": "^2.3.1",
+    "craco": "^0.0.3",
+    "craco-antd": "^1.19.0",
+    "craco-less": "^2.0.0",
+    "mapbox-gl": "^2.7.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-ga": "^3.3.0",
-    "react-map-gl": "^5.2.7",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-scroll-parallax": "^2.3.4",
-    "sal.js": "^0.8.1",
-    "sprintf-js": "^1.1.2"
+    "react-map-gl": "^7.0.6",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "5.0.0",
+    "react-scroll-parallax": "^3.0.3",
+    "sal.js": "^0.8.5",
+    "sprintf-js": "^1.1.2",
+    "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [

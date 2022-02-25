@@ -3,7 +3,7 @@ import { Col } from 'antd';
 
 import './index.less';
 
-export default ({ section, type, image, image_title, image_alt, title, content, link }) => {
+function Item({ section, type, image, image_title, image_alt, title, content, link }) {
   let layout = null;
   if (type === 'YOUR-CUSTOM-TYPE-HERE') {
     layout = (
@@ -38,3 +38,5 @@ export default ({ section, type, image, image_title, image_alt, title, content, 
       layout
   );
 }
+
+export default Item;

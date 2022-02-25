@@ -4,9 +4,9 @@ import Cluar from '../../common/Cluar';
 
 import './index.less';
 
-export default (props) => {
-  let value = Cluar.dictionary(props.entry);
-  if (props.oneLine) {
+function Dictionary ({entry, oneLine}) {
+  let value = Cluar.dictionary(entry);
+  if (oneLine) {
     value = (value).replace(/<\/?p[^>]*>/g, "");
     return (
       <span dangerouslySetInnerHTML={{__html: value}} />
@@ -16,3 +16,5 @@ export default (props) => {
     <div dangerouslySetInnerHTML={{__html: value}} />
   );
 }
+
+export default Dictionary;

@@ -21,15 +21,7 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
     "functionality_type",
     _val.init()
-        .set("uid", "f16671f5-39a3-483a-b6d0-8e71f4720d3d")
-        .set("code", "budget-request")
-        .set("description", "Pedido de Or\u00E7amento")
-);
-
-_db.insertIfNotExists(
-    "functionality_type",
-    _val.init()
         .set("uid", "a1d26bda-57cd-4ba1-9aa3-868714260b01")
-        .set("code", "map")
+        .set("code", "contact-map")
         .set("description", "Mapa")
 );

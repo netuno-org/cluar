@@ -2,10 +2,11 @@
     "website": {
         "name": "Website Name"
     },
-    "cluar": {
-        "api": "/services/"
-    },
     "services": {
         "api": "/services/"
+    },
+    "mapbox": {
+        "dark": false,
+        "accessToken": "$__YOUR__ACCESS___TOKEN__$"
     }
 }
