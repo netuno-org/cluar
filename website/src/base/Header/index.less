@@ -4,6 +4,7 @@
     padding: 0 calc((100% - @header-desktop-width) / 2);
     position: fixed;
     display: flex;
+    justify-content: center;
     flex-direction: row;
     z-index: 1000;
     top: 0;
@@ -12,6 +13,13 @@
     line-height: @header-size;
     background: @header-background;
     box-shadow: 0 0px 10px 7px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+
+    &__wrapper{
+      width: 100%;
+      max-width: @site-max-width;
+      display: flex;
+    }
 
     >*:not(.menu-burger-open) {
         z-index: 3;
@@ -22,7 +30,6 @@
     }
 
     .logo {
-        padding: 0 10px;
         display: block;
         width: @logo-width;
         height: auto;
@@ -75,6 +82,7 @@
             margin-left: auto;
             border-bottom: none;
             border-right: none;
+            justify-content: flex-end;
 
             li {
                 border: 0 !important;
