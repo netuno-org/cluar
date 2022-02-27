@@ -15,7 +15,7 @@ Estes são os principais mecanismos que o CLUAR CMS oferece por padrão:
 2. [Idioma](https://github.com/netuno-org/cluar/blob/main/docs/language/README-pt_PT.md)
 3. [Conteúdo](https://github.com/netuno-org/cluar/blob/main/docs/content/README-pt_PT.md)
 4. [Estandarte](https://github.com/netuno-org/cluar/blob/main/docs/banner/README-pt_PT.md)
-5. [Listagem](https://github.com/netuno-org/cluar/blob/main/docs/listagem/README-pt_PT.md)
+5. [Listagem](https://github.com/netuno-org/cluar/blob/main/docs/listing/README-pt_PT.md)
 6. [Ação](https://github.com/netuno-org/cluar/blob/main/docs/action/README-pt_PT.md)
 7. [Dicionário](https://github.com/netuno-org/cluar/blob/main/docs/dictionary/README-pt_PT.md)
 8. [Configuração](https://github.com/netuno-org/cluar/blob/main/docs/configuration/README-pt_PT.md)
