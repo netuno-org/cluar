@@ -20,7 +20,7 @@ export default class Cluar {
     return data.languages.find((e) => e.default === true);
   }
 
-  static currentLanguage(codeOrLocale) {
+  static currentLanguage() {
     return currentLanguage;
   }
 

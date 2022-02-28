@@ -1,6 +1,8 @@
 
 # Pagina (`page`)
 
+[:arrow_backward: Principal](../README-pt_PT.md)
+
 No menu do backoffice em `Página` é onde é gerida as páginas, navegação e o menu do website.
 
 ### Idioma
@@ -55,3 +57,5 @@ Se o campo de Menu estiver ativo então a página aparece no menu de navegação
 No campo Ordem define o número de posição da página no menu.
 
 O campo Menu Título permite ter um título diferente para ser apresentado no menu de navegação do website, assim o título que aparecerá no menu de navegação poderá ser diferente do título da página, não é obrigatório o seu preenchimento e quando não preenchido é utilizado o título da página.
+
+[:arrow_backward: Principal](../README-pt_PT.md)
