@@ -33,7 +33,6 @@ function Content({section, type, title, content, image, image_title, image_alt, 
           <Col md={16}>
             <div className="text">
               <h1>{ title }</h1>
-              <div className="text__title-border"></div>
               <div dangerouslySetInnerHTML={{__html: content}}></div>
             </div>
           </Col>

@@ -17,7 +17,7 @@ function Banner({ section, type, image, image_title, image_alt, title, content, 
         backgroundPositionX: backgroundPositionX,
         backgroundPositionY: backgroundPositionY
       }}>
-        <Row>
+        <Row className="banner__wrapper">
           <Col lg={18} sm={(type === 'default-sub-banner') ? (24) : (18)}  xs={(type === 'default-sub-banner') ? (24) : (18)}>
             <div>
               <h1 data-sal="slide-down" data-sal-duration="2000" data-sal-easing="ease-out-cubic">{title}</h1>

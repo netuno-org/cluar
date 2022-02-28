@@ -10,7 +10,7 @@ const { Footer } = Layout;
 function BaseFooter() {
   return (
     <Footer>
-      <Row align="middle" gutter={[0, 10]}>
+      <Row className="ant-layout-footer__wrapper" align="middle" gutter={[0, 10]}>
         <Col xs={24} lg={8}>
           <div className="logo" data-sal="slide-up" data-sal-duration="2000" data-sal-easing="ease-out-cubic">
             <img alt="logo" src="/images/logo.png" />
@@ -19,6 +19,7 @@ function BaseFooter() {
         <Col xs={{ span: 24 }} lg={{ span: 8, offset: 8 }}>
           <Row>
             <Col><HomeOutlined /></Col>
+            <Col>&nbsp;</Col>
             <Col>
               <address><Dictionary entry="footer-address"/></address>
             </Col>

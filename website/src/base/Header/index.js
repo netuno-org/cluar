@@ -107,53 +107,55 @@ function BaseHeader() {
   
   return (
     <Header className={classNames({ 'header-burger-open': burgerMenu })}>
-      <div className="logo">
-        <Link to={`/${Cluar.currentLanguage().locale}/`} onClick={() => handleMenuClick('/')}>
-          <img alt="logo" src="/images/logo.png" />
-        </Link>
-      </div>
-      <div className={
-        classNames({
-          'menu': true
-        })
-      }>
+      <div className="ant-layout-header__wrapper">
+        <div className="logo">
+          <Link to={`/${Cluar.currentLanguage().locale}/`} onClick={() => handleMenuClick('/')}>
+            <img alt="logo" src="/images/logo.png" />
+          </Link>
+        </div>
+        <div className={
+          classNames({
+            'menu': true
+          })
+        }>
+          <Menu
+            theme="light"
+            mode="horizontal"
+            defaultSelectedKeys={[activeMenu]}
+            selectedKeys={[activeMenu]}>
+            {menu}
+          </Menu>
+        </div>
+        <div className={
+          classNames({
+            'menu': true,
+            'menu-burger': true,
+            'menu-burger-open': burgerMenu
+          })
+        }>
+          <Menu
+            theme="light"
+            mode="inline"
+            defaultSelectedKeys={[activeMenu]}
+            selectedKeys={[activeMenu]}
+            openKeys={subMenuKeys}>
+            {menu}
+          </Menu>
+        </div>
+        <div className="menu-burger-button">
+          <Burger isOpen={burgerMenu} onClick={() => { setBurgerMenu(!burgerMenu); }} />
+        </div>
         <Menu
           theme="light"
-          mode="horizontal"
+          className="menu-languages"
+          mode={'horizontal'}
           defaultSelectedKeys={[activeMenu]}
           selectedKeys={[activeMenu]}>
-          {menu}
+          <SubMenu icon={<GlobalOutlined />} title={Cluar.currentLanguage().code}>
+            {menuLanguages}
+          </SubMenu>
         </Menu>
       </div>
-      <div className={
-        classNames({
-          'menu': true,
-          'menu-burger': true,
-          'menu-burger-open': burgerMenu
-        })
-      }>
-        <Menu
-          theme="light"
-          mode="inline"
-          defaultSelectedKeys={[activeMenu]}
-          selectedKeys={[activeMenu]}
-          openKeys={subMenuKeys}>
-          {menu}
-        </Menu>
-      </div>
-      <div className="menu-burger-button">
-        <Burger isOpen={burgerMenu} onClick={() => { setBurgerMenu(!burgerMenu); }} />
-      </div>
-      <Menu
-        theme="light"
-        className="menu-languages"
-        mode={'horizontal'}
-        defaultSelectedKeys={[activeMenu]}
-        selectedKeys={[activeMenu]}>
-        <SubMenu icon={<GlobalOutlined />} title={Cluar.currentLanguage().code}>
-          {menuLanguages}
-        </SubMenu>
-      </Menu>
     </Header>
   );
 }
