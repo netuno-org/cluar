@@ -17,14 +17,14 @@ function Banner({ section, type, image, image_title, image_alt, title, content, 
         backgroundPositionX: backgroundPositionX,
         backgroundPositionY: backgroundPositionY
       }}>
-        <Row className="banner__wrapper">
-          <Col lg={18} sm={(type === 'default-sub-banner') ? (24) : (18)}  xs={(type === 'default-sub-banner') ? (24) : (18)}>
+        <Row className="banner__wrapper" justify="center">
+          <Col lg={18} sm={24}>
             <div>
               <h1 data-sal="slide-down" data-sal-duration="2000" data-sal-easing="ease-out-cubic">{title}</h1>
               <div data-sal="fade" data-sal-duration="2000" data-sal-easing="ease-out-cubic" dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
           </Col>
-          <Col lg={6} sm={(type === 'default-sub-banner') ? (24) : (6)}  xs={(type === 'default-sub-banner') ? (24) : (6)}>
+          <Col lg={6} sm={24}>
             <Actions {... { section, type, actions }} />
           </Col>
         </Row>

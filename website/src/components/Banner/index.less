@@ -1,15 +1,22 @@
 @import "../../styles/variables.less";
 
 .banner {
+  position: relative;
+
     &__wrapper{
       width: 100%;
       max-width: @site-max-width;
+      margin-top: -32px;
+
+      @media only screen and (max-width: @header-mobile-width) {
+        margin-top: 0
+      }
     }
 
     &__sub-banner {
         display: none;
         position: absolute;
-        bottom: 0;
+        bottom: 32px;
         left: 0;
         background-color: @banner-sub-banner-bg;
         padding: 15px 0;
@@ -22,10 +29,12 @@
         color: @banner-sub-banner-color;
         @media only screen and (max-width: @header-mobile-width) {
             font-size: 1.2em;
+            bottom: 0
         }
     }
 
     &__default-sub-banner {
+        padding-top: calc(1.8em + 30px) !important;
         padding-bottom: calc(1.8em + 30px) !important;
         .banner__sub-banner {
             display: block;
@@ -116,7 +125,8 @@
                         }
                     }
                     @media only screen and (max-width: @header-mobile-width) {
-                        width: 80%;
+                        width: 100%;
+                        padding: 0 20px
                     }
                     > div {
                         > p {

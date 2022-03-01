@@ -15,6 +15,10 @@
     box-shadow: 0 0px 10px 7px rgba(0, 0, 0, 0.25);
     padding: 20px;
 
+    @media (max-width: @header-mobile-width) {
+      padding: 0 20px !important;
+     }
+
     &__wrapper{
       width: 100%;
       max-width: @site-max-width;
@@ -42,8 +46,14 @@
         }
 
         @media only screen and (max-width: @header-mobile-width) {
-            width: 55%;
+            width: auto;
             max-width: 400px;
+            a {
+              img {
+                  max-width: 124px;
+                  height: auto;
+              }
+          }
         }
     }
 
@@ -115,7 +125,7 @@
             margin-left: 0 !important;
 
             @media screen and (max-width: @header-mobile-width) {
-                margin-right: 85px;
+                margin-right: 32px;
                 margin-left: auto !important;
             }
         }
@@ -178,5 +188,9 @@
 .burger .burger-lines,
 .burger .burger-lines:after,
 .burger .burger-lines:before {
-    background-color: @header-menu-color;
+    background-color: @header-menu-color !important;
+}
+
+.burger.burger-slip.open .burger-lines{
+  background-color: initial !important;
 }
