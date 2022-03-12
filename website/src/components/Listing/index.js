@@ -8,7 +8,7 @@ import './index.less';
 function Listing({section, type, image, image_title, image_alt, title, content, items}) {
   const children = [];
   for (const item of items) {
-    children.push(<Item {...{type, ...item}} />);
+    children.push(<Item key={item.uid} {...{type, ...item}} />);
   }
 
   let listLayout = (

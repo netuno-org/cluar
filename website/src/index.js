@@ -4,17 +4,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './common/serviceWorker';
 
-import _service from '@netuno/service-client';
-
 import Cluar from './common/Cluar';
 
-import config from './config/config.json';
-
 import './styles/index.less';
-
-_service.config({
-  prefix: config.services.api
-});
 
 const CluarDataScript = document.createElement("script");
 CluarDataScript.src = `/cluarData.js?time=${new Date().getTime()}`;

@@ -151,7 +151,7 @@ function BaseHeader() {
           mode={'horizontal'}
           defaultSelectedKeys={[activeMenu]}
           selectedKeys={[activeMenu]}>
-          <SubMenu icon={<GlobalOutlined />} title={Cluar.currentLanguage().code}>
+          <SubMenu key="langs" icon={<GlobalOutlined />} title={Cluar.currentLanguage().code}>
             {menuLanguages}
           </SubMenu>
         </Menu>

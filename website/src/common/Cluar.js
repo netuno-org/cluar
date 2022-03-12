@@ -1,19 +1,37 @@
 
+import _service from '@netuno/service-client';
+import ReactGA from 'react-ga';
 import CluarCustomData from './CluarCustomData';
 
 let data = null;
 let currentLanguage = null;
 let customData = null;
+let gaEnabled = false;
 
 export default class Cluar {
   static init() {
     data = window.cluarData;
     currentLanguage = Cluar.defaultLanguage();
     customData = new CluarCustomData(data);
+    _service.config({
+      prefix: data.config.services.api
+    });
+    if (data.config.analytics && data.config.analytics !== '') {
+      ReactGA.initialize(data.config.analytics);
+      gaEnabled = true;
+    }
   }
 
   static customData() {
     return customData;
+  }
+
+  static config() {
+    return data.config;
+  }
+
+  static isGAEnabled() {
+    return gaEnabled;
   }
 
   static defaultLanguage() {

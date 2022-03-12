@@ -7,10 +7,21 @@
             "cron": {"jobs": []},
             "settings": {
                 "public": {},
-                "website": {
-                    "origin": "http://localhost:3000"
-                },
-                "uglifyjs": false
+                "cluar": {
+                    "website": {
+                        "url": "http://localhost:3000",
+                        "name": "Website Name",
+                        "analytics": null,
+                        "mapbox": {
+                            "dark": false,
+                            "accessToken": null
+                        },
+                        "services": {
+                            "api": "http://localhost:9000/services/"
+                        }
+                    },
+                    "uglifyjs": false
+                }
             },
             "cors": [{
                 "origins": [ "*" ],
@@ -60,7 +71,21 @@
             "cron": {"jobs": []},
             "settings": {
                 "public": {},
-                "uglifyjs": false
+                "cluar": {
+                    "website": {
+                        "url": "http://localhost:3000",
+                        "name": "Website Name",
+                        "analytics": null,
+                        "mapbox": {
+                            "dark": false,
+                            "accessToken": null
+                        },
+                        "services": {
+                            "api": "http://localhost:9000/services/"
+                        }
+                    },
+                    "uglifyjs": false
+                }
             },
             "cors": [{
                 "origins": [ "*" ],

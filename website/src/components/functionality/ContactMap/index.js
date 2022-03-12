@@ -4,7 +4,6 @@ import { PhoneOutlined, HomeOutlined, MailOutlined } from '@ant-design/icons';
 import Map, {Marker, Popup, NavigationControl} from 'react-map-gl';
 
 import Cluar from '../../../common/Cluar';
-import config from '../../../config/config';
 
 import './index.less';
 
@@ -18,7 +17,7 @@ function ContactMap({ title, content }){
   const latitude = Cluar.configurationNumber("map-latitude");
   const longitude = Cluar.configurationNumber("map-longitude");
   let mapStyle = "mapbox://styles/mapbox/light-v10";
-  if (config.mapbox.dark) {
+  if (Cluar.config().mapbox.dark) {
     mapStyle = "mapbox://styles/mapbox/dark-v9";
   }
   return (
@@ -68,7 +67,7 @@ function ContactMap({ title, content }){
               }}
               width="100%"
               mapStyle={mapStyle}
-              mapboxAccessToken={config.mapbox.accessToken}
+              mapboxAccessToken={Cluar.config().mapbox.accessToken}
               scrollZoom={false}
             >
               <NavigationControl showCompass={false} />

@@ -47,7 +47,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      { Analytics.init() && <Analytics.RouteTracker />}
+      { Cluar.isGAEnabled() && <Route component={Analytics} />}
       <div className="page">
         <Layout>
           <BaseHeader />
