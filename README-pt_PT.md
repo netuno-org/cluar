@@ -16,17 +16,7 @@ Uma solução pronta para gestão de conteúdos e websites multilíngue utilizan
 ./netuno app github=netuno-org/cluar
 ```
 
-Em seguida, crie o config.json no website, por exemplo:
-
-```
-cp apps/cluar/website/src/config/config-dev.json apps/cluar/website/src/config/config.json
-```
-
-> :warning: Dentro da pasta `apps/cluar/website/src/config/` é preciso copiar o ficheiro `config-dev.json` para `config.json`.
-> 
-> Criar o `config.json` é obrigatório para evitar o erro:
-> 
-> `Module not found: Can't resolve '../config/config' in ...`
+### Execução
 
 Inicie o servidor Netuno:
 
@@ -36,7 +26,18 @@ Inicie o servidor Netuno:
 
 > Pode demorar porque é a primeira vez e a instalação do NPM será executada nas pastas `ui` e` website` dentro da pasta raiz do aplicativo.
 
-Não é obrigatório, mas é recomendado renomar a pasta da aplicação `(Netuno Root directory)/apps/cluar/` para o nome desejado, e não esqueça do parâmetro `name` nas configurações:
+:warning: Se tiver o error:
+ 
+```
+ npm ERR! code ERESOLVE
+ npm ERR! ERESOLVE unable to resolve dependency tree
+```
+
+Então execute o comando abaixo dentro da pasta `website`:
+
+`npm install --force`
+
+:white_check_mark: Não é obrigatório, mas é recomendado renomar a pasta da aplicação `(Netuno Root directory)/apps/cluar/` para o nome desejado, e não esqueça do parâmetro `name` nas configurações:
 
 `config/_development.json`
 
@@ -44,7 +45,9 @@ Não é obrigatório, mas é recomendado renomar a pasta da aplicação `(Netuno
 
 > Lembre-se de iniciar o servidor Netuno com seu novo nome de aplicativo.
 
-## Clone e Instalação Manual
+## Processo Manual
+
+### Clone e Instalação
 
 Crie uma nova app com o Netuno denominada `cluar` executando (no diretório raíz do Netuno) 
 
@@ -56,21 +59,19 @@ Depois clone este projeto para o diretório `(Netuno Root directory)/apps/cluar/
 
 Depois instale as dependências NPM excutando
 
-`npm install` 
+`npm install --force` 
 
 no diretório `cluar/website/`.
 
-## Configuração Manual
+### Configuração
 
-Copie o ficheiro de amostra de configuração de serviços executando o seguinte
+Copie o ficheiro de exemplo de configuração executando o seguinte
 
 `cp config/sample.json config/_development.json` (certifique-se do parâmetro `name`)
 
-`cp website/src/config/config-dev.json website/src/config/config.json` 
-
 e modifique de acordo com a configuração do seu ambiente local.
 
-## Execução
+### Execução
 
 No diretório raíz do Netuno execute
 
