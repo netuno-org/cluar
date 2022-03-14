@@ -55,6 +55,7 @@
                 {
                     "path": "website",
                     "command": "npm start",
+                    "install": "npm install --force",
                     "enabled": true
                 }
             ],
@@ -119,6 +120,7 @@
                 {
                     "path": "website",
                     "command": "npm start",
+                    "install": "npm install --force",
                     "enabled": false
                 }
             ],
