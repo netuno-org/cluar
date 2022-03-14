@@ -468,9 +468,13 @@ class Cluar {
         if (!folder.exists()) {
             folder.mkdir()
         }
-        _storage.database(section, "image", fileName)
-            .file()
-            .copy(`${folder.path()}/${fileName}`, true)
+        const websiteFile = _app.file(`${folder.path()}/${fileName}`)
+        const databaseFile = _storage.database(section, "image", fileName).file()
+        if (!websiteFile.exists() || databaseFile.available() != websiteFile.available()) {
+            _storage.database(section, "image", fileName)
+                .file()
+                .copy(`${folder.path()}/${fileName}`, true)
+        }
     }
 
     static actionDataItemProcessWithAnImage() {
