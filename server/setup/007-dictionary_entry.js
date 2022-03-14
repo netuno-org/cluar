@@ -1,14 +1,9 @@
 
-
 // -----------------------------------------------------------
 // 
 // DICTIONARY_ENTRY
 // 
 // -----------------------------------------------------------
-// 
-// CODE GENERATED AUTOMATICALLY
-// 
-
 
 _db.insertIfNotExists(
     "dictionary_entry",

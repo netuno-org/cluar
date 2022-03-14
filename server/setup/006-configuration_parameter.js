@@ -1,14 +1,9 @@
 
-
 // -----------------------------------------------------------
 // 
 // CONFIGURATION_PARAMETER
 // 
 // -----------------------------------------------------------
-// 
-// CODE GENERATED AUTOMATICALLY
-// 
-
 
 _db.insertIfNotExists(
     "configuration_parameter",

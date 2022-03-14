@@ -1,14 +1,9 @@
 
-
 // -----------------------------------------------------------
 // 
 // FUNCTIONALITY_TYPE
 // 
 // -----------------------------------------------------------
-// 
-// CODE GENERATED AUTOMATICALLY
-// 
-
 
 _db.insertIfNotExists(
     "functionality_type",
