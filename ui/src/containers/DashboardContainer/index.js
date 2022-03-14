@@ -1,27 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 
-import MyButton from "../../components/MyButton";
+import { Typography, Tabs } from "antd";
+
+import ContactTable from "../ContactTable";
 
 import "./index.less";
 
+const { Title } = Typography;
+
+const { TabPane } = Tabs;
+
 function DashboardContainer() {
-  const [counter, setCounter] = useState(0);
-
-  const refButton = useRef();
-
-  useEffect(() => {
-    $(refButton.current).fadeOut(250).fadeIn(250);
-  }, [counter]);
-
-  const onClick = () => {
-    setCounter(counter + 1);
-  };
-
   return (
-    <div className="my-dashboard">
-      <div ref={refButton} className="my-dashboard__button">
-        <MyButton text={`ReactJS ⚡ Ant.Design 👉 Click me! ${counter}`} onClick={onClick} />
-      </div>
+    <div>
+      <Title level={2}>Dashboard</Title>
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="Contactos" key="1">
+          <p>Lista de contactos submetidos pelo formulário do website.</p>
+          <ContactTable />
+        </TabPane>
+      </Tabs> 
     </div>
   );
 }
