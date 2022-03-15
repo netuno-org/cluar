@@ -16,8 +16,8 @@ function Listing({section, type, image, image_title, image_alt, title, content, 
       <h1>{ title }</h1>
       <div className="listing__title-border"></div>
       <div dangerouslySetInnerHTML={{__html: content}}></div>
-        <ul className={`listing__${type}`}>
-          { children }
+      <ul className={`listing__${type}`}>
+        { children }
       </ul>   
     </div>   
   );
