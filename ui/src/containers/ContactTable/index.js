@@ -176,6 +176,19 @@ function ContactTable() {
 
     useEffect(() => {
         loadTable();
+        const handleNavigationLoad = () => {
+            $('[netuno-navigation]').find('a').on('netuno:click', (e) => {
+                const link = $(e.target);
+                if (link.is('[netuno-navigation-dashboard]')) {
+                    // Memu > Dashboard > Clicked!
+                    loadTable();
+                }
+            });
+        };
+        netuno.addNavigationLoad(handleNavigationLoad);
+        return () => {
+            netuno.removeNavigatoinLoad(handleNavigationLoad);
+        };
     }, []);
     return (
         <Table
