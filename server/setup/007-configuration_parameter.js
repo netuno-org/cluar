@@ -5,7 +5,7 @@
 // 
 // -----------------------------------------------------------
 
-if (_db.query(`SELECT * FROM page`).size() == 0) {
+if (_val.global().getBoolean('cluar:setup')) {
     _db.insertIfNotExists(
         "configuration_parameter",
         _val.init()
