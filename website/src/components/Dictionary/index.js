@@ -2,12 +2,12 @@ import React from 'react';
 
 import Cluar from '../../common/Cluar';
 
-import './index.less';
-
-function Dictionary ({entry, oneLine}) {
+function Dictionary({entry, oneLine, noParagraph}) {
   let value = Cluar.dictionary(entry);
-  if (oneLine) {
-    value = (value).replace(/<\/?p[^>]*>/g, "");
+  if (noParagraph) {
+    value = Cluar.dictionaryNoParagraph(entry);
+  } else if (oneLine) {
+    value = Cluar.plainDictionary(entry);
     return (
       <span dangerouslySetInnerHTML={{__html: value}} />
     )

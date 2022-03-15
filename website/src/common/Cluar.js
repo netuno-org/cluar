@@ -74,8 +74,22 @@ export default class Cluar {
     }
   }
 
+  static configurationMultilines(parameter) {
+    let value = Cluar.configuration(parameter);
+    value = value.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    return value;
+  }
+
   static plainDictionary(entry) {
-    let value = data.dictionary[Cluar.currentLanguage().code] ? data.dictionary[Cluar.currentLanguage().code][entry] : null;
+    let value = Cluar.dictionary(entry);
+    if (value) {
+      return (value).replace(/<\/?((p)|(br))[^>]*>/g, "")
+    }
+    return entry;
+  }
+
+  static dictionaryNoParagraph(entry) {
+    let value = Cluar.dictionary(entry);
     if (value) {
       return (value).replace(/<\/?p[^>]*>/g, "")
     }
