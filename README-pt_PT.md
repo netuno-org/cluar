@@ -1,6 +1,6 @@
 ![Logo](https://raw.githubusercontent.com/netuno-org/cluar/main/docs/logo.svg)
 
-# Netuno CLUAR
+# CLUAR CMS
 
 Uma solução pronta para gestão de conteúdos e websites multilíngue utilizando [Netuno](https://www.netuno.org/), [ReactJS](https://reactjs.org/) e [Ant Design](https://ant.design/).
 
@@ -8,7 +8,11 @@ Uma solução pronta para gestão de conteúdos e websites multilíngue utilizan
 
 ### Plataforma Netuno
 
-[Siga os passos aqui](https://doc.netuno.org/docs/en/installation/)
+[Siga os passos aqui](https://doc.netuno.org/docs/pt-PT/installation/)
+
+## Documentação
+
+[Documentação Geral do CLUAR CMS](docs/README-pt_PT.md)
 
 ## Instalação Automática da Aplicação
 
