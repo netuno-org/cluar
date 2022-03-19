@@ -1,6 +1,11 @@
+/*************
+ * Dark Mode *
+ *///////////*/
+//@import '~antd/lib/style/themes/dark.less';
+
+@import '~antd/dist/antd.less';
 
 @import '~@animated-burgers/burger-slip/dist/styles.css';
-@import '~antd/dist/antd.less';
 @import '~sal.js/dist/sal.css';
 
 @import "./variables.less";
@@ -21,7 +26,7 @@ body {
 }
 
 .ant-layout-content {
-    background-color: @page-background;
+    background-color: @page-background !important;
     z-index: 2;
 
     a {

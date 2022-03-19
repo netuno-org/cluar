@@ -1,21 +1,23 @@
 
 @site-background: #ffffff;
-@site-max-width: 1200px;
 
 @primary-color: #1178FF;
 @secondary-color: #d1d1d1;
 
-@primary-link-color:  #1178FF;
-@primary-link-hover-color: #000000;
+@site-max-width: 1200px;
+@header-size: 100px;
+@logo-width: 360px;
+
+@primary-link-color: @primary-color;
+@primary-link-hover-color: darken(@primary-color, 25%);
 
 @page-shadow-size: 25px;
 @page-shadow-color: lighten(@primary-color, 50%);
-@page-background: #ffffff;
+@page-background: @site-background;
 
-@header-background: #ffffff;
-@header-menu-color: #1178FF;
-@header-menu-color-hover: #000000;
-@header-size: 100px;
+@header-background: @site-background;
+@header-menu-color: @primary-color;
+@header-menu-color-hover: darken(@primary-color, 25%);
 @header-line-height-fix: 0;
 @header-line-height: @header-size;
 @header-size-mobile: @header-size;
@@ -25,28 +27,26 @@
 
 @mobile-menu-padding-vertical: 25px;
 @mobile-menu-padding-horizontal: 25px;
-@mobile-menu-background: #ffffff;
-
-@logo-width: 360px;
+@mobile-menu-background: @site-background;
 
 @footer-color: inherit;
-@footer-background: #d1d1d1;
+@footer-background: darken(@site-background, 10%);
 
-@actions-item-border-color: #ffffff;
+@actions-item-border-color: @site-background;
 @actions-item-border-width: 2px;
 @actions-item-border-radius: 2px;
 @actions-item-background: rgba(0,0,0,.25);
-@actions-item-text-color: #ffffff;
+@actions-item-text-color: @site-background;
 @actions-item-text-color-hover: #000000;
-@actions-item-link-color: #ffffff;
-@actions-item-link-color-hover: #1178FF;
-@actions-item-background-hover: #ffffff;
+@actions-item-link-color: @site-background;
+@actions-item-link-color-hover: @primary-color;
+@actions-item-background-hover: @site-background;
 
 @listing-service-list-service-bg: rgba(0,0,0,0.35);
 
 @banner-secondary-darken-bg-color: rgba(0,0,0,0.35);
 @banner-secondary-text-shadow: rgba(0,0,0,0.25);
 
-@banner-sub-banner-bg: #ffffff;
+@banner-sub-banner-bg: @site-background;
 @banner-sub-banner-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
 @banner-sub-banner-color: rgba(0, 0, 0, 0.8);
