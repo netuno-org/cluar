@@ -17,7 +17,9 @@
 
     @media (max-width: @header-mobile-width) {
       padding: 0 20px !important;
-     }
+      height: @header-size-mobile !important;
+      line-height: @header-size-mobile !important;
+    }
 
     &__wrapper{
       width: 100%;
@@ -141,6 +143,9 @@
 
         @media only screen and (min-width: @header-mobile-width) {
             display: none;
+        }
+        @media only screen and (max-width: @header-mobile-width) {
+            top: calc(@header-size-mobile / 4);
         }
 
         .burger {
