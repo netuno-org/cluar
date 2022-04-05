@@ -98,16 +98,18 @@ Os componentes principais
 
 ## Cabeçalho (Header) e Menu
 
-
+- `website/src/base/Header`
+  Contem os ficheiros responsáveis pelo header e menu.
 
 ## Rodapé (Footer)
 
-
+- `website/src/base/Footer`
+  Contem os ficheiros responsáveis pelo footer.
 
 ## Motor
 
 
+## Rotas com React Router
 
-## Rotas com React Rouer
-
-
+- `website/src/app.js`
+  Ficheiro responsável por definir as rotas.
