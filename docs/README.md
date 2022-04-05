@@ -96,21 +96,26 @@ The styling of Ant.Design is done in the `website/craco.config.js` file, inside 
 
 The main components
 
-## Cabeçalho (Header) e Menu
+## Header e Menu
 
 - `website/src/base/Header`
   Contains the files responsible for the header and menu.
 
-## Rodapé (Footer)
+## Footer
 
 - `website/src/base/Footer`
   Contains the files responsible for the footer.
 
-## Motor
+## Engine
 
-## Rotas com React Router
+- `website/src/common/Cluar.js`
+- `website/src/common/Builder.js`
+  Files Responsible for building the interface.
 
-- `website/src/app.js`
+
+## Routes with React Router
+
+- `website/src/App.js`
   File responsible for defining the routes.
 
 

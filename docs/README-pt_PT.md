@@ -108,6 +108,9 @@ Os componentes principais
 
 ## Motor
 
+- `website/src/common/Cluar.js`
+- `website/src/common/Builder.js`
+  Ficheiros Responsáveis por construir a interface.
 
 ## Rotas com React Router
 
