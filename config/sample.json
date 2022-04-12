@@ -2,13 +2,24 @@
     "cron": {"jobs": []},
     "settings": {
         "public": {},
-        "website": {
-            "origin": "http://localhost:3000"
-        },
-        "uglifyjs": false
+        "cluar": {
+            "website": {
+                "url": "http://localhost:3000",
+                "name": "Website Name",
+                "analytics": null,
+                "mapbox": {
+                    "dark": false,
+                    "accessToken": null
+                },
+                "services": {
+                    "api": "http://localhost:9000/services/"
+                }
+            },
+            "uglifyjs": false
+        }
     },
     "cors": [{
-        "origin": "*",
+        "origins": [ "*" ],
         "enabled": true
     }],
     "smtp": {},
@@ -39,6 +50,7 @@
         {
             "path": "website",
             "command": "npm start",
+            "install": "npm install --force",
             "enabled": true
         }
     ],
