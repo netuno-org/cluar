@@ -116,3 +116,9 @@ Os componentes principais
 
 - `website/src/app.js`
   Ficheiro responsável por definir as rotas.
+
+## Produção
+
+Siga estas instruções para publicar o seu website feito em CLUAR:
+
+- [NGINX](nginx/README-pt_PT.md)
