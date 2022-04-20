@@ -118,4 +118,8 @@ The main components
 - `website/src/App.js`
   File responsible for defining the routes.
 
+## Produção
 
+Follow these instructions to publish your website made in CLUAR:
+
+- [NGINX](nginx/README.md)
