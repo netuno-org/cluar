@@ -21,7 +21,7 @@ class Cluar {
             _app.settings.getValues("cluar", _val.map())
                 .getValues("website", _val.map())
         )
-        
+
         /*
          *
          *  LANGUAGES
@@ -130,6 +130,7 @@ class Cluar {
         const dbPages = _db.query(`
         SELECT
             page.id,
+            page.uid,
             language.code "language",
             page.parent_id,
             page.link,
@@ -164,6 +165,7 @@ class Cluar {
             const dbContents = _db.query(`
             SELECT
                 content.id,
+                content.uid,
                 content_type.code "type",
                 content.title,
                 content.content,
@@ -181,6 +183,7 @@ class Cluar {
             for (const dbContent of dbContents) {
                 structure.add(
                     _val.map()
+                        .set("uid", dbContent.getString("uid"))
                         .set("section", "content")
                         .set("type", dbContent.getString("type"))
                         .set("title", dbContent.getString("title"))
@@ -205,6 +208,7 @@ class Cluar {
             const dbBanners = _db.query(`
             SELECT
                 banner.id,
+                banner.uid,
                 banner_type.code "type",
                 banner.title,
                 banner.content,
@@ -223,6 +227,7 @@ class Cluar {
             for (const dbBanner of dbBanners) {
                 structure.add(
                     _val.map()
+                        .set("uid", dbBanner.getString("uid"))
                         .set("section", "banner")
                         .set("type", dbBanner.getString("type"))
                         .set("title", dbBanner.getString("title"))
@@ -252,6 +257,7 @@ class Cluar {
             const dbListings = _db.query(`
             SELECT
                 listing.id,
+                listing.uid,
                 listing_type.code "type",
                 listing.title,
                 listing.image_alt,
@@ -269,13 +275,14 @@ class Cluar {
                 const items = _val.list()
                 const dbItems = _db.query(`
                 SELECT
-                    title, content, image, image_alt, image_title, sorter, link
+                    uid, title, content, image, image_alt, image_title, sorter, link
                 FROM listing_item
                 WHERE listing_id = ${dbListing.getInt("id")} AND active = TRUE
                 `)
                 for (const dbItem of dbItems) {
                     items.add(
                         _val.map()
+                            .set("uid", dbItem.getString("uid"))
                             .set("section", "listing_item")
                             .set("title", dbItem.getString("title"))
                             .set("content", dbItem.getString("content"))
@@ -291,6 +298,7 @@ class Cluar {
                 }
                 structure.add(
                     _val.map()
+                        .set("uid", dbListing.getString("uid"))
                         .set("section", "listing")
                         .set("type", dbListing.getString("type"))
                         .set("title", dbListing.getString("title"))
@@ -314,6 +322,7 @@ class Cluar {
             const dbFunctionalities = _db.query(`
             SELECT
                 functionality.id,
+                functionality.uid,
                 functionality_type.code "type",
                 functionality.title,
                 functionality.content,
@@ -328,6 +337,7 @@ class Cluar {
             for (const dbFunctionality of dbFunctionalities) {
                 structure.add(
                     _val.map()
+                        .set("uid", dbFunctionality.getString("uid"))
                         .set("section", "functionality")
                         .set("type", dbFunctionality.getString("type"))
                         .set("title", dbFunctionality.getString("title"))
@@ -359,6 +369,7 @@ class Cluar {
             pages.getValues(dbPage.getString("language"))
                 .add(
                     _val.map()
+                        .set("uid", dbPage.getString("uid"))
                         .set("parent", parentLink)
                         .set("link", dbPage.getString("link"))
                         .set("title", dbPage.getString("title"))
@@ -382,7 +393,7 @@ class Cluar {
         const file = _app.file(`${Cluar.base()}/cluarData.js`)
         file.output().print(`window.cluarData = ${data.toJSON(4)};`)
         
-        if (_app.settings.getBoolean("uglifyjs") == true) {
+        if (_app.settings.getValues('cluar', _val.map()).getBoolean("uglifyjs") == true) {
             const osUglifyJS = _os.init()
             osUglifyJS.directory(_app.folder(Cluar.base()))
             const osUglifyJSResult = osUglifyJS.command(`uglifyjs -o cluarData.js -- cluarData.js`)
@@ -461,9 +472,15 @@ class Cluar {
         if (!folder.exists()) {
             folder.mkdir()
         }
-        _storage.database(section, "image", fileName)
-            .file()
-            .copy(`${folder.path()}/${fileName}`, true)
+        const websiteFile = _app.file(`${folder.path()}/${fileName}`)
+        const databaseFile = _storage.database(section, "image", fileName).file()
+        if (!websiteFile.exists()
+             || databaseFile.available() != websiteFile.available()
+             || databaseFile.lastModified() > websiteFile.lastModified()) {
+            _storage.database(section, "image", fileName)
+                .file()
+                .copy(`${folder.path()}/${fileName}`, true)
+        }
     }
 
     static actionDataItemProcessWithAnImage() {

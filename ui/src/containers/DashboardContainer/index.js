@@ -4,6 +4,8 @@ import { Typography, Tabs } from "antd";
 
 import ContactTable from "../ContactTable";
 
+import CluarSync from "../../components/cluar/Sync";
+
 import "./index.less";
 
 const { Title } = Typography;
@@ -19,7 +21,8 @@ function DashboardContainer() {
           <p>Lista de contactos submetidos pelo formulário do website.</p>
           <ContactTable />
         </TabPane>
-      </Tabs> 
+      </Tabs>
+      <CluarSync />
     </div>
   );
 }
