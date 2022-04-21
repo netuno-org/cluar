@@ -390,7 +390,7 @@ class Cluar {
          *  SITEMAP & ROBOTS
          *
          */
-        const origin = _app.settings.getValues("website").getString("origin")
+        const origin = _app.settings.getValues("cluar", _val.map()).getValues("website", _val.map()).getString("url")
         const xml = _xml.create()
         const document = xml.builder().newDocument()
         const tagURLSet = document.createElement("urlset")
