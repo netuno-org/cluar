@@ -137,6 +137,7 @@ class Cluar {
             page.title,
             page.description,
             page.keywords,
+            page.navigable,
             page.menu,
             page.menu_title,
             page.sorter
@@ -375,6 +376,7 @@ class Cluar {
                         .set("title", dbPage.getString("title"))
                         .set("description", dbPage.getString("description"))
                         .set("keywords", dbPage.getString("keywords"))
+                        .set("navigable", dbPage.getBoolean("navigable"))
                         .set("menu", dbPage.getBoolean("menu"))
                         .set("menu_title", dbPage.getString("menu_title"))
                         .set("sorter", dbPage.getInt("sorter"))
@@ -434,6 +436,9 @@ class Cluar {
                 continue
             }
             for (const page of pages.getValues(language.getString("code"))) {
+                if (page.getBoolean('navigable') == false) {
+                    continue
+                }
                 const tagURL = document.createElement("url")
                 const tagLoc = document.createElement("loc")
                 tagLoc.appendChild(document.createTextNode(origin +"/"+ language.getString("locale") + page.getString("link")))

@@ -53,9 +53,11 @@ function BaseHeader() {
           subMenuKeys.push(key);
           return (
             <SubMenu key={key} popupClassName={`menu-level-${level + 1}`} title={
-              <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
-                {page.title}
-              </Link>
+              page.navigable ?
+                <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
+                  {page.title}
+                </Link>
+              : <a>{page.title}</a>
             }>
               { Cluar.pages()[language.code].filter((p) => p.menu && p.parent === page.link).map((p) => buildMenu(p, level + 1))}
             </SubMenu>
@@ -63,23 +65,30 @@ function BaseHeader() {
         } else {
           /**
            * Sample of submenu items customization, only on level 1:
-           * 
+           *
           if (level == 1) {
             return (
               <Menu.Item key={key}>
-                <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
-                  <h2>{page.title}</h2>
-                  <p>{page.description}</p>
-                </Link>
+                { page.navigable ?
+                  <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
+                    <h2>{page.title}</h2>
+                    <p>{page.description}</p>
+                  </Link>
+                  : <a>
+                      <p className="sub-menu-item-title">{page.title}</p>
+                      <p className="sub-menu-item-description">{page.description}</p>
+                    </a> }
               </Menu.Item>
             );
           }
           **/
           return (
             <Menu.Item key={key}>
-              <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
-                {page.title}
-              </Link>
+              { page.navigable ? 
+                <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
+                  {page.title}
+                </Link>
+                : <a>{page.title}</a> }
             </Menu.Item>
           );
         }
@@ -93,6 +102,9 @@ function BaseHeader() {
         menu.push(
           buildMenu(page, 0)
         );
+      }
+      if (page.navigable == false) {
+        continue;
       }
       subroutes.push(
         <Route key={`/${language.locale}${page.link}`} path={`/${language.locale}${page.link}`} exact element={<Builder page={page} />} />

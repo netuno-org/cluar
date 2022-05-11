@@ -83,7 +83,7 @@ export default class Cluar {
   static plainDictionary(entry) {
     let value = Cluar.dictionary(entry);
     if (value) {
-      return (value).replace(/<\/?((p)|(br))[^>]*>/g, "")
+      return (value).replace(/<\/?((p)|(br))[^>]*>/g, "");
     }
     return entry;
   }
@@ -91,7 +91,7 @@ export default class Cluar {
   static dictionaryNoParagraph(entry) {
     let value = Cluar.dictionary(entry);
     if (value) {
-      return (value).replace(/<\/?p[^>]*>/g, "")
+      return (value).replace(/<\/?p[^>]*>/g, "");
     }
     return entry;
   }
