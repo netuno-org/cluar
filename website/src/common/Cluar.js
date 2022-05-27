@@ -44,6 +44,7 @@ export default class Cluar {
 
   static changeLanguage(codeOrLocale) {
     currentLanguage = data.languages.find((e) => e.code === codeOrLocale || e.locale === codeOrLocale);
+    window.localStorage.setItem('locale', currentLanguage.locale);
   }
 
   static languages() {

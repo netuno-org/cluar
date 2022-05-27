@@ -20,11 +20,16 @@ import './styles/App.less';
 const { Content } = Layout;
 
 function App() {
-  const storageLocale = window.localStorage.getItem('locale');
-  if (storageLocale == null) {
-    window.localStorage.setItem('locale', Cluar.currentLanguage().locale);
+  let urlLang = null;
+  if (urlLang = /^\/([a-z]+)\//ig.exec(window.location.pathname)) {
+    Cluar.changeLanguage(urlLang[1]);
   } else {
-    Cluar.changeLanguage(storageLocale);
+    const storageLocale = window.localStorage.getItem('locale');
+    if (storageLocale == null) {
+      Cluar.changeLanguage(Cluar.defaultLanguage().locale);
+    } else {
+      Cluar.changeLanguage(storageLocale);
+    }
   }
 
   const routes = [];
