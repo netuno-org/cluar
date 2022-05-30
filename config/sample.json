@@ -45,6 +45,7 @@
         {
             "path": "ui",
             "command": "npm run watch",
+            "install": "npm install --force",
             "enabled": true
         },
         {
