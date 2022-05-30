@@ -4,15 +4,13 @@ if [ -f "build/cluarData.js" ]; then
     mv build/cluarData.js .cluarData.js
 fi
 
-cp src/config-prod.json src/config.json
+if [ -d "build/images" ]; then
+    rsync -av build/images/ public/images/
+fi
 
-rsync -av build/images/ public/images/
+npm install --force
 
-yarn install
-
-yarn build
-
-cp src/config-dev.json src/config.json
+npm run build
 
 if [ -f ".cluarData.js" ]; then
     mv .cluarData.js build/cluarData.js
