@@ -11,3 +11,7 @@ if (_service.path == 'samples/my-service') {
     _service.allow()
 }
 */
+
+if (_service.path == 'contact/post') {
+    _service.allow()
+}
