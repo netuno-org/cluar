@@ -54,7 +54,7 @@ function BaseHeader() {
           return (
             <SubMenu key={key} popupClassName={`menu-level-${level + 1}`} title={
               page.navigable ?
-                (page.link.indexOf('://') < 0 ?
+                (page.link.indexOf('//') >= 0 ?
                   <a href={`${page.link}`} target="_blank">
                     {page.title}
                   </a>
@@ -74,7 +74,7 @@ function BaseHeader() {
             return (
               <Menu.Item key={key}>
                 { page.navigable ?
-                  (page.link.indexOf('://') < 0 ?
+                  (page.link.indexOf('//') >= 0 ?
                     <a href={`${page.link}`} target="_blank">
                       <h2>{page.title}</h2>
                       <p>{page.description}</p>
@@ -94,11 +94,11 @@ function BaseHeader() {
           return (
             <Menu.Item key={key}>
               { page.navigable ? 
-                (page.link.indexOf('://') < 0 ?
-                  <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
+                (page.link.indexOf('//') >= 0 ?
+                  <a href={`${page.link}`} target="_blank">{page.title}</a>
+                : <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
                     {page.title}
-                  </Link>
-                : <a href={`${page.link}`} target="_blank">{page.title}</a>)
+                  </Link>)
                 : <a>{page.title}</a> }
             </Menu.Item>
           );
@@ -117,7 +117,7 @@ function BaseHeader() {
       if (page.navigable == false) {
         continue;
       }
-      if (page.link.indexOf('://') < 0) {
+      if (page.link.indexOf('//') < 0) {
         subroutes.push(
           <Route key={`/${language.locale}${page.link}`} path={`/${language.locale}${page.link}`} exact element={<Builder page={page} />} />
         );
