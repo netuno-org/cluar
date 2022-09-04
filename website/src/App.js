@@ -39,6 +39,9 @@ function App() {
     }
     const subroutes = [];
     for (const page of Cluar.pages()[language.code]) {
+      if (page.navigable == false || page.link.indexOf('//') >= 0) {
+        continue;
+      }
       subroutes.push(
         <Route key={`/${language.locale}${page.link}`} path={`/${language.locale}${page.link}`} exact element={<Builder page={page} />} />
       );

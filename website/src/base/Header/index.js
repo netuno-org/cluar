@@ -114,20 +114,7 @@ function BaseHeader() {
           buildMenu(page, 0)
         );
       }
-      if (page.navigable == false) {
-        continue;
-      }
-      if (page.link.indexOf('//') < 0) {
-        subroutes.push(
-          <Route key={`/${language.locale}${page.link}`} path={`/${language.locale}${page.link}`} exact element={<Builder page={page} />} />
-        );
-      }
     }
-    routes.push(
-      <Route key={`/${language.locale}/`} path={`/${language.locale}/`}>
-        {subroutes}
-      </Route>
-    );
   }
   
   return (
