@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'antd';
+import { ConfigProvider, Layout } from 'antd';
 import {
   BrowserRouter,
   Routes,
@@ -54,23 +54,33 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      { Cluar.isGAEnabled() && <Route component={Analytics} />}
-      <div className="page">
-        <Layout>
-          <BaseHeader />
-          <Content>
-            <Routes>
-              <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
-              {routes}
-              <Route element={<NotFound />} />
-            </Routes>
-          </Content>
-          <BaseFooter />
-          <BaseCookies />
-        </Layout>
-      </div>
-    </BrowserRouter>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#1178FF',
+          fontSize: 16,
+          borderRadius: 20
+        }
+      }}
+    >
+      <BrowserRouter>
+        { Cluar.isGAEnabled() && <Route component={Analytics} />}
+        <div className="page">
+          <Layout>
+            <BaseHeader />
+            <Content>
+              <Routes>
+                <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
+                {routes}
+                <Route element={<NotFound />} />
+              </Routes>
+            </Content>
+            <BaseFooter />
+            <BaseCookies />
+          </Layout>
+        </div>
+      </BrowserRouter>
+    </ConfigProvider>
   );
 }
 

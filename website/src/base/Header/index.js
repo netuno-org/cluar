@@ -28,7 +28,12 @@ function BaseHeader() {
     window.scrollTo(0, 0);
   };
 
-  const menuLanguages = [];
+  const menuLanguages = {
+    label: Cluar.currentLanguage().code,
+    key: "langs",
+    icon: <GlobalOutlined />,
+    children: []
+  };
   const menu = [];
   const subMenuKeys = [];
   const routes = [];
@@ -37,71 +42,73 @@ function BaseHeader() {
       continue;
     }
     if (language.code !== Cluar.currentLanguage().code) {
-      menuLanguages.push(
-        <Menu.Item key={language.code} onClick={() => {
-          Cluar.changeLanguage(language.locale);
-          window.localStorage.setItem('locale', Cluar.currentLanguage().locale);
-          window.location.href = `/${language.locale}/`;
-        }}>{language.description}</Menu.Item>
-      );
+      menuLanguages.children.push({
+        key: language.code,
+        label: (
+          <div
+            onClick={() => {
+              Cluar.changeLanguage(language.locale);
+              window.localStorage.setItem('locale', Cluar.currentLanguage().locale);
+              window.location.href = `/${language.locale}/`;
+            }}
+          >
+            {language.description}
+          </div>
+        )
+      });
     }
+    const buildChildren = (page) => {
+      const children = Cluar.pages()[language.code]
+        .filter((p) => p.parent === page.link);
 
-    const buildMenu = (page, level) => {
+      if (children.length === 0) {
+        return;
+      }
+
+      return children.map((p) => {
+        const key = p.link;
+
+        subMenuKeys.push(key);
+
+        return {
+          key,
+          label: p.navigable ? (
+            p.link.indexOf('//') >= 0 ? (
+              <a href={`${p.link}`} target="_blank">{p.title}</a>
+            ) : (
+              <Link to={`/${Cluar.currentLanguage().locale}${p.link}`} onClick={() => handleMenuClick(key)}>
+                {p.title}
+              </Link>
+            )
+          ) : (
+            <a>{p.title}</a>
+          ),
+          children: buildChildren(p)
+        }
+      });
+    }
+    const buildMenu = (page) => {
       if (page.menu && language.code === Cluar.currentLanguage().code) {
         const key = `${page.link}`;
-        if (Cluar.pages()[language.code].find((p) => p.menu && p.parent === page.link)) {
-          subMenuKeys.push(key);
-          return (
-            <SubMenu key={key} popupClassName={`menu-level-${level + 1}`} title={
-              page.navigable ?
-                (page.link.indexOf('//') >= 0 ?
-                  <a href={`${page.link}`} target="_blank">
-                    {page.title}
-                  </a>
-                : <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
-                    {page.title}
-                  </Link>)
-              : <a>{page.title}</a>
-            }>
-              { Cluar.pages()[language.code].filter((p) => p.menu && p.parent === page.link).map((p) => buildMenu(p, level + 1))}
-            </SubMenu>
-          );
-        } else {
-          /**
-           * Sample of submenu items customization, only on level 1:
-           *
-          if (level == 1) {
-            return (
-              <Menu.Item key={key}>
-                { page.navigable ?
-                  (page.link.indexOf('//') >= 0 ?
-                    <a href={`${page.link}`} target="_blank">
-                      <h2>{page.title}</h2>
-                      <p>{page.description}</p>
-                    </a>
-                    : <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
-                        <h2>{page.title}</h2>
-                        <p>{page.description}</p>
-                      </Link>)
-                  : <a>
-                      <p className="sub-menu-item-title">{page.title}</p>
-                      <p className="sub-menu-item-description">{page.description}</p>
-                    </a> }
-              </Menu.Item>
-            );
-          }
-          **/
-          return (
-            <Menu.Item key={key}>
-              { page.navigable ? 
-                (page.link.indexOf('//') >= 0 ?
-                  <a href={`${page.link}`} target="_blank">{page.title}</a>
-                : <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
-                    {page.title}
-                  </Link>)
-                : <a>{page.title}</a> }
-            </Menu.Item>
-          );
+
+        subMenuKeys.push(key);
+
+        if (!page.parent) {
+          return ({
+            label: page.navigable ? (
+              page.link.indexOf('//') >= 0 ? (
+                <a href={`${page.link}`} target="_blank">{page.title}</a>
+              ) : (
+                <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
+                  {page.title}
+                </Link>
+              )
+            ) : (
+              <a>{page.title}</a>
+            ),
+            key,
+            children: buildChildren(page)
+          });
         }
       }
       return null;
@@ -116,7 +123,7 @@ function BaseHeader() {
       }
     }
   }
-  
+
   return (
     <Header className={classNames({ 'header-burger-open': burgerMenu })}>
       <div className="ant-layout-header__wrapper">
@@ -134,9 +141,9 @@ function BaseHeader() {
             theme="light"
             mode="horizontal"
             defaultSelectedKeys={[activeMenu]}
-            selectedKeys={[activeMenu]}>
-            {menu}
-          </Menu>
+            selectedKeys={[activeMenu]}
+            items={menu}
+          />
         </div>
         <div className={
           classNames({
@@ -150,9 +157,9 @@ function BaseHeader() {
             mode="inline"
             defaultSelectedKeys={[activeMenu]}
             selectedKeys={[activeMenu]}
-            openKeys={subMenuKeys}>
-            {menu}
-          </Menu>
+            openKeys={subMenuKeys}
+            items={menu}
+          />
         </div>
         <div className="menu-burger-button">
           <Burger isOpen={burgerMenu} onClick={() => { setBurgerMenu(!burgerMenu); }} />
@@ -162,11 +169,9 @@ function BaseHeader() {
           className="menu-languages"
           mode={'horizontal'}
           defaultSelectedKeys={[activeMenu]}
-          selectedKeys={[activeMenu]}>
-          <SubMenu key="langs" icon={<GlobalOutlined />} title={Cluar.currentLanguage().code}>
-            {menuLanguages}
-          </SubMenu>
-        </Menu>
+          selectedKeys={[activeMenu]}
+          items={[menuLanguages]}
+        />
       </div>
     </Header>
   );
