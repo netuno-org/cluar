@@ -70,20 +70,22 @@ function BaseHeader() {
 
         subMenuKeys.push(key);
 
-        return {
-          key,
-          label: p.navigable ? (
-            p.link.indexOf('//') >= 0 ? (
-              <a href={`${p.link}`} target="_blank">{p.title}</a>
+        if (p.menu) {
+          return {
+            key,
+            label: p.navigable ? (
+              p.link.indexOf('//') >= 0 ? (
+                <a href={`${p.link}`} target="_blank">{p.title}</a>
+              ) : (
+                <Link to={`/${Cluar.currentLanguage().locale}${p.link}`} onClick={() => handleMenuClick(key)}>
+                  {p.title}
+                </Link>
+              )
             ) : (
-              <Link to={`/${Cluar.currentLanguage().locale}${p.link}`} onClick={() => handleMenuClick(key)}>
-                {p.title}
-              </Link>
-            )
-          ) : (
-            <a>{p.title}</a>
-          ),
-          children: buildChildren(p)
+              <a>{p.title}</a>
+            ),
+            children: buildChildren(p)
+          }
         }
       });
     }
@@ -93,7 +95,7 @@ function BaseHeader() {
 
         subMenuKeys.push(key);
 
-        if (!page.parent) {
+        if (!page.parent && page.menu) {
           return ({
             label: page.navigable ? (
               page.link.indexOf('//') >= 0 ? (
@@ -111,7 +113,7 @@ function BaseHeader() {
           });
         }
       }
-      return null;
+      return;
     };
 
     const subroutes = [];
