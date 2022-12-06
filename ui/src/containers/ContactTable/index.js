@@ -153,7 +153,7 @@ function ContactTable() {
             onFilter: (value, record) => {
                 return record;
             },
-            onFilterDropdownVisibleChange: visible => {
+            onFilterDropdownOpenChange: visible => {
                 if (visible && searchInput.current) {
                     window.setTimeout(() => searchInput.current.select());
                 }
