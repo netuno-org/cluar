@@ -29,7 +29,7 @@
     "@ant-design/icons": "^4.8.0",
     "@netuno/service-client": "^1.1.1",
     "@netuno/ws-client": "^1.0.8",
-    "antd": "^5.0.4",
+    "antd": "^5.0.5",
     "chart.js": "^4.0.1",
     "react-chartjs-2": "^5.0.1",
     "react-highlight-words": "^0.18.0"
