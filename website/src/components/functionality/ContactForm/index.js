@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { Row, Col, Form, Input, Button, notification } from 'antd';
 import _service from '@netuno/service-client';
 import Cluar from '../../../common/Cluar';
+import ReCAPTCHA from "react-google-recaptcha";
 
 import './index.less';
 
 const { TextArea } = Input;
 
 function ContactForm({ title }) {
+  const [isHuman, setIsHuman] = useState(false)
+  const [recaptchaValue, setRecaptchaValue] = useState("")
+
   const validateMessages = {
     required: Cluar.plainDictionary('contact-form-validate-message-required'),
     types: {
@@ -35,7 +39,10 @@ function ContactForm({ title }) {
     _service({
       url: "contact",
       method: 'POST',
-      data: values.contactForm,
+      data: {
+        recaptchaValue,
+        ...values.contactForm
+      },
       success: (response) => {
         if (response.json && response.json.result === true) {
           setLoading(false);
@@ -85,10 +92,29 @@ function ContactForm({ title }) {
               </Form.Item>
             </Col>
           </Row>
+          {process.env.REACT_APP_RECAPTCHA_SITE_KEY && (
+            <Row {...layout.rowGutter}>
+              <Col>
+                <ReCAPTCHA
+                  sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                  style={{ marginBottom: 24 }}
+                  onChange={(value) => {
+                    if(value){
+                      setRecaptchaValue(value)
+                      setIsHuman(true)
+                    } else {
+                      setRecaptchaValue("")
+                      setIsHuman(false)
+                    }
+                  }}
+                />
+              </Col>
+            </Row>
+          )}
           <Row {...layout.rowGutter}>
             <Col span={24}>
               <Form.Item wrapperCol={24}>
-                <Button htmlType="submit" type="primary" block {...{loading}}>{Cluar.plainDictionary('contact-form-send')}</Button>
+                <Button disabled={!isHuman && process.env.REACT_APP_RECAPTCHA_SITE_KEY} htmlType="submit" type="primary" block {...{loading}}>{Cluar.plainDictionary('contact-form-send')}</Button>
               </Form.Item>
             </Col>
           </Row>

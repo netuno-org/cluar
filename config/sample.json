@@ -16,6 +16,10 @@
                 }
             },
             "uglifyjs": false
+        },
+        "recaptcha": {
+            "url": "https://www.google.com/recaptcha/api/siteverify",
+            "secret_key": ""
         }
     },
     "cors": [{
@@ -40,7 +44,11 @@
         "listener_secret": ""
     },
     "locale": "en_GB",
-    "remote": {},
+    "remote": {
+        "recaptcha": {
+            "json": true
+        }
+    },
     "commands": [
         {
             "path": "ui",
