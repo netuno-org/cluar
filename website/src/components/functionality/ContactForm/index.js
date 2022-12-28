@@ -64,7 +64,7 @@ function ContactForm({ title }) {
   return (
       <section className="contact-form">
         <hr/>
-        <Form {...layout} validateMessages={validateMessages} onFinish={handleFinish}>
+        <Form labelCol={layout.labelCol} validateMessages={validateMessages} onFinish={handleFinish}>
           <h2>{title}</h2>
           <Row {...layout.rowGutter}>
             <Col lg={12} md={12} sm={24} xs={24}>
