@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import App from './App';
 import * as serviceWorker from './common/serviceWorker';
@@ -12,11 +12,12 @@ const CluarDataScript = document.createElement("script");
 CluarDataScript.src = `/cluarData.js?time=${new Date().getTime()}`;
 CluarDataScript.onload = () => {
   Cluar.init();
-  ReactDOM.render(
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>,
-    document.getElementById('root')
   );
   // If you want your app to work offline and load faster, you can change
   // unregister() to register() below. Note this comes with some pitfalls.
