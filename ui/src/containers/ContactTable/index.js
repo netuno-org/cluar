@@ -111,6 +111,7 @@ function ContactTable() {
                 let buttons = [];
                 buttons.push(
                     <Button
+                      key={buttons.length}
                       type="primary"
                       onClick={() => handleSearch(selectedKeys, confirm, selectedKeys.length > 0 ? selectedKeys[0] : '', dataIndex)}
                       icon={<SearchOutlined />}
@@ -121,7 +122,7 @@ function ContactTable() {
                     </Button>
                 );
                 buttons.push(
-                    <Button onClick={() => handleReset(clearFilters, dataIndex)} size="small" style={{ width: 90 }}>
+                    <Button key={buttons.length} onClick={() => handleReset(clearFilters, dataIndex)} size="small" style={{ width: 90 }}>
                       Limpar
                     </Button>
                 );
@@ -199,7 +200,7 @@ function ContactTable() {
         onChange={handleTableChange}
         >
         {columnsNames.map(
-            (columnName) => 
+            (columnName) =>
                 <Column
                     title={columnsTitles[columnName]}
                     dataIndex={columnName}
