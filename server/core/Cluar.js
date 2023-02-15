@@ -58,7 +58,7 @@ class Cluar {
         SELECT
             language.code "language",
             configuration_parameter.code "code",
-            configuration.value
+            configuration.${_db.escape('value')}
         FROM language
             INNER JOIN configuration ON language.id = configuration.language_id
             INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
@@ -77,7 +77,7 @@ class Cluar {
         const dbConfigurationWithoutLanguages = _db.query(`
         SELECT
             configuration_parameter.code "code",
-            configuration.value
+            configuration.${_db.escape('value')}
         FROM configuration
             INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
         WHERE (configuration.language_id = 0 OR configuration.language_id IS NULL)
@@ -103,7 +103,7 @@ class Cluar {
         SELECT
             language.code "language",
             dictionary_entry.code "code",
-            dictionary.value
+            dictionary.${_db.escape('value')}
         FROM language
             INNER JOIN dictionary ON dictionary.language_id = language.id
             INNER JOIN dictionary_entry ON dictionary.entry_id = dictionary_entry.id
