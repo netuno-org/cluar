@@ -35,12 +35,11 @@ function BaseFooter() {
     { title: "Instagram", url: "https://www.instagram.com/netuno_org/", icon: <InstagramLogo size={24} /> }
   ];
 
-  const AdressContact = [
+  const addressContact = [
     { title: 'Endereço', paramater: "footer-address", icon: <House size={24} /> },
     { title: 'Telephone', paramater: "footer-phone", icon: <Phone size={24} /> },
     { title: 'Email', paramater: "footer-email", icon: <EnvelopeSimpleOpen size={24} /> },
   ]
-
 
   return (
     <Footer style={styles(colorMode).body}>
@@ -52,7 +51,7 @@ function BaseFooter() {
         </Col>
         <Col xs={{ span: 24 }} lg={{ span: 8, offset: 8 }}>
           <Row gutter={[12, 12]} className='ant-layout-footer__wrapper_contacts'>
-            {AdressContact.map((link, index) => {
+            {addressContact.map((link, index) => {
               return (
                 <Col title={link.title} key={index}>
                   {link.icon}

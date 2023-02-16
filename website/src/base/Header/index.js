@@ -43,7 +43,6 @@ function BaseHeader() {
     key: "langs",
     icon: <GlobeHemisphereEast size={24} weight="bold" />,
     children: [],
-    style: styles(colorMode).paragraph
   };
 
   const menu = [];
@@ -56,8 +55,10 @@ function BaseHeader() {
     if (language.code !== Cluar.currentLanguage().code) {
       menuLanguages.children.push({
         key: language.code,
+        style: styles(colorMode).body,
         label: (
           <div
+            style={styles(colorMode).body}
             onClick={() => {
               Cluar.changeLanguage(language.locale);
               window.localStorage.setItem('locale', Cluar.currentLanguage().locale);
@@ -179,7 +180,8 @@ function BaseHeader() {
           <Burger isOpen={burgerMenu} onClick={() => { setBurgerMenu(!burgerMenu); }} />
         </div>
         <Menu
-          theme="light"
+          style={{ top: '22px' }}
+          theme={colorMode}
           className="menu-languages"
           mode={'horizontal'}
           defaultSelectedKeys={[activeMenu]}

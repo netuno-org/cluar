@@ -5,15 +5,20 @@
 
   &__default {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       position: relative;
       text-align: center;
       height: 68.75rem;
 
+      @media only screen and (max-width: @header-mobile-width) {
+        height: 40rem;
+
+    }
+
         &__wrapper{
             width: 100%;
-            max-width: @site-max-width;
+            .spacing-top-banner();
 
             @media only screen and (max-width: @header-mobile-width) {
                 margin-top: 0
@@ -64,6 +69,7 @@
                     justify-content: center;
                     gap: 16px;
                     text-transform: uppercase;
+                    cursor: pointer;
                 }
 
                 span {

@@ -26,7 +26,7 @@ function Banner({ section, type, image, image_title, image_alt, title, content, 
             backgroundPositionX: backgroundPositionX,
             backgroundPositionY: backgroundPositionY
           }}>
-            <Row className={`banner__${type}__wrapper`} justify="center" gutter={[24, 24]}>
+            <Row className={`banner__${type}__wrapper container`} justify="center" gutter={[24, 24]}>
               <Col span={24}>
                 <div className={`banner__${type}__wrapper_text`}>
                   <div className={`banner__${type}__wrapper_text--subtitle`}>
@@ -54,10 +54,12 @@ function Banner({ section, type, image, image_title, image_alt, title, content, 
                   {console.log(`Styles link: ${JSON.stringify(styles(colorMode).title)}`)}
                 </div>
                 <div className={`banner__${type}__wrapper_button`}>
-                  <button>Embarcar no foguete
-                    <span>
-                      <ArrowRight size={24} />
-                    </span>
+                  <button onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = `https://github.com/netuno-org`
+                  }}>
+                    Embarcar no foguete
+                    <ArrowRight size={24} />
                   </button>
                 </div>
               </Col>

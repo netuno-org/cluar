@@ -80,7 +80,7 @@ function App() {
           {Cluar.isGAEnabled() && <Route component={Analytics} />}
           <div className="page">
             <Layout>
-              <BaseHeader />
+              <BaseHeader style={styles(colorMode).body}/>
               <Content style={styles(colorMode).body}>
                 <Routes>
                   <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />

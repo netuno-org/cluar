@@ -181,9 +181,25 @@
     }
 }
 
+.ant-menu-dark.ant-menu-submenu > .ant-menu {
+    background-color: rgb(24 24 27) !important;
+}
+
 .ant-menu-sub,
 .ant-menu-submenu-popup {
     border-radius: 2px !important;
+
+    > ul {
+        border-top: 2px solid #ff8319;
+
+        .ant-menu-title-content {
+            > div {
+                &:hover {
+                    color: @primary-color !important; 
+                }
+            }
+        }
+    }
 }
 
 .header-burger-open {
