@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Row, Col } from 'antd';
+
+import { Planet, ArrowRight, Sun } from 'phosphor-react'
 
 import Actions from '../Actions';
 import Cluar from '../../common/Cluar';
+
+import styles from '../../utils/styles'
+import ThemeContext from '../../context';
 
 import './index.less';
 
@@ -10,31 +15,68 @@ function Banner({ section, type, image, image_title, image_alt, title, content, 
   let backgroundPositionX = position.x !== "" ? position.x : "50%";
   let backgroundPositionY = position.y !== "" ? position.y : "50%";
 
-  return (
-    <section className="banner">
-      <div className={`banner__${type}`} style={{
-        backgroundImage: `url(/images/${section}/${image})`,
-        backgroundPositionX: backgroundPositionX,
-        backgroundPositionY: backgroundPositionY
-      }}>
-        <Row className="banner__wrapper" justify="center">
-          <Col lg={18} sm={24}>
-            <div>
-              <h1 data-sal="slide-down" data-sal-duration="2000" data-sal-easing="ease-out-cubic">{title}</h1>
-              <div data-sal="fade" data-sal-duration="2000" data-sal-easing="ease-out-cubic" dangerouslySetInnerHTML={{ __html: content }}></div>
+  const { colorMode } = useContext(ThemeContext);
+
+  switch (type) {
+    case 'default':
+      return (
+        <section className="banner">
+          <div className={`banner__${type}`} style={{
+            backgroundImage: `url(/images/${section}/${image})`,
+            backgroundPositionX: backgroundPositionX,
+            backgroundPositionY: backgroundPositionY
+          }}>
+            <Row className={`banner__${type}__wrapper`} justify="center" gutter={[24, 24]}>
+              <Col span={24}>
+                <div className={`banner__${type}__wrapper_text`}>
+                  <div className={`banner__${type}__wrapper_text--subtitle`}>
+                    <Planet size={32} color="#ff8319" weight="bold">
+                      <animate
+                        attributeName="opacity"
+                        values="0;1;0"
+                        dur="4s"
+                        repeatCount="indefinite"
+                      ></animate>
+                      <animateTransform
+                        attributeName="transform"
+                        attributeType="XML"
+                        type="rotate"
+                        dur="5s"
+                        from="0 0 0"
+                        to="360 0 0"
+                        repeatCount="indefinite"
+                      ></animateTransform>
+                    </Planet>
+                    <span>Netuno.org</span>
+                  </div>
+                  <h1 style={styles(colorMode).title} className="title" data-sal="slide-down" data-sal-duration="2000" data-sal-easing="ease-out-cubic">{title}</h1>
+                  <div data-sal="fade" data-sal-duration="2000" data-sal-easing="ease-out-cubic" dangerouslySetInnerHTML={{ __html: content }}></div>
+                  {console.log(`Styles link: ${JSON.stringify(styles(colorMode).title)}`)}
+                </div>
+                <div className={`banner__${type}__wrapper_button`}>
+                  <button>Embarcar no foguete
+                    <span>
+                      <ArrowRight size={24} />
+                    </span>
+                  </button>
+                </div>
+              </Col>
+            </Row>
+            <div className="banner__sub-banner">
+              {Cluar.plainDictionary('text-sub-banner')}
             </div>
-          </Col>
-          <Col lg={6} sm={24}>
-            <Actions {... { section, type, actions }} />
-          </Col>
-        </Row>
-        <div className="banner__sub-banner">
-          {Cluar.plainDictionary('text-sub-banner')}
-        </div>
-        <div className="banner__darken-bg"></div>
-      </div>
-    </section>
-  );
+            <div className="background-details" style={{ backgroundImage: "url(https://tailwindui.com/img/beams-templates-header.png)" }} />
+          </div>
+        </section>
+      )
+    default:
+      return (
+        <section className="banner">
+
+        </section>
+      )
+  }
+
 }
 
 export default Banner;

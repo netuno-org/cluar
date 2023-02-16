@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ConfigProvider, Layout } from 'antd';
 import {
   BrowserRouter,
@@ -16,10 +16,18 @@ import BaseFooter from './base/Footer';
 import NotFound from './pages/NotFound';
 
 import './styles/App.less';
+import ThemeContext from "./context/index";
+import styles from './utils/styles'
 
 const { Content } = Layout;
 
 function App() {
+
+  const [colorMode, setColorMode] = useState(
+    localStorage.getItem("color-mode") || "light"
+  );
+  const [acceptedCookies, setAcceptedCookies] = useState(sessionStorage.getItem('cookies-accepted'));
+
   let urlLang = null;
   if (urlLang = /^\/([a-z]+)\//ig.exec(window.location.pathname)) {
     Cluar.changeLanguage(urlLang[1]);
@@ -53,34 +61,40 @@ function App() {
     );
   }
 
+  useEffect(() => {
+  }, [acceptedCookies]);
+
+
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: '#1178FF',
-          fontSize: 16,
-          borderRadius: 20
-        }
-      }}
-    >
-      <BrowserRouter>
-        { Cluar.isGAEnabled() && <Route component={Analytics} />}
-        <div className="page">
-          <Layout>
-            <BaseHeader />
-            <Content>
-              <Routes>
-                <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
-                {routes}
-                <Route element={<NotFound />} />
-              </Routes>
-            </Content>
-            <BaseFooter />
-            <BaseCookies />
-          </Layout>
-        </div>
-      </BrowserRouter>
-    </ConfigProvider>
+    <ThemeContext.Provider value={{ colorMode, setColorMode }}>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: '#1178FF',
+            fontSize: 16,
+            borderRadius: 20
+          }
+        }}
+      >
+        <BrowserRouter>
+          {Cluar.isGAEnabled() && <Route component={Analytics} />}
+          <div className="page">
+            <Layout>
+              <BaseHeader />
+              <Content style={styles(colorMode).body}>
+                <Routes>
+                  <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
+                  {routes}
+                  <Route  element={<NotFound />} />
+                </Routes>
+              </Content>
+              <BaseFooter />
+              <BaseCookies />
+            </Layout>
+          </div>
+        </BrowserRouter>
+      </ConfigProvider>
+    </ThemeContext.Provider>
   );
 }
 

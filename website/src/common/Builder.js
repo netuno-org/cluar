@@ -9,6 +9,7 @@ import Content from '../components/Content';
 import Listing from '../components/Listing';
 import ContactForm from '../components/functionality/ContactForm';
 import ContactMap from '../components/functionality/ContactMap';
+import ContactFix from '../components/functionality/ContactFix';
 
 function Builder({ page }) {
   useEffect(() => {
@@ -32,6 +33,8 @@ function Builder({ page }) {
         components.push(<ContactForm key={uid} {...item} />);
       } else if (item.type === 'contact-map') {
         components.push(<ContactMap key={uid} {...item} />);
+      } else if (item.type === 'contact-fix') {
+        components.push(<ContactFix key={uid} {...item} />);
       }
     }
   }

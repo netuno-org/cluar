@@ -1,10 +1,10 @@
 
-@site-background: #ffffff;
+@site-background: #f6f8fb;
 
 @primary-color: #1178FF;
-@secondary-color: #d1d1d1;
+@secondary-color: rgb(148 163 184);
 
-@site-max-width: 1200px;
+@site-max-width: 1100px;
 @header-size: 100px;
 @logo-width: 360px;
 
@@ -17,7 +17,7 @@
 
 @header-background: @site-background;
 @header-menu-color: @primary-color;
-@header-menu-color-hover: darken(@primary-color, 25%);
+@header-menu-color-hover: rgb(82 82 91);
 @header-line-height-fix: 0;
 @header-line-height: @header-size;
 @header-size-mobile: @header-size;
@@ -50,3 +50,67 @@
 @banner-sub-banner-bg: @site-background;
 @banner-sub-banner-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
 @banner-sub-banner-color: rgba(0, 0, 0, 0.8);
+
+@color-highlight: #ff8319;
+
+/* MIXINS */
+
+
+#spacings-section-py() {
+    mobile: 40px;
+    desktop: 80px;
+}
+
+.spacing-py-medium() {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+.spacing-py-large() {
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
+}
+
+.spacing-my() {
+
+}
+
+.spacing-mx-small() {
+
+}
+
+.spacing-mx-large() {
+
+}
+
+.container {
+    width: ~"min(90%, 1120px)" !important;
+    margin: 0 auto;
+}
+
+.text-primary() {
+    font-size: 4rem;
+    line-height: 3.75rem;
+    font-weight: 700;
+    padding-bottom: 1rem;
+}
+
+
+.text-secundary() {
+    font-size: 1.5rem;
+    line-height: 26px;
+}
+
+.link-header() {
+    font-size: 1.5rem;
+    letter-spacing: 0.025em;
+    line-height: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+        color: @primary-color !important;
+    }
+}
+
+
+

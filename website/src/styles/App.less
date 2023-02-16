@@ -10,33 +10,41 @@
 
 @import "./variables.less";
 
+:root {
+    font-size: 62.5%;
+
+    body {
+      font-size: 1.6rem;
+    }
+}
+
+
 html,
 body {
-    background-color: @site-background;
+    font-family: 'Montserrat', sans-serif;
+    background: unset !important;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .ant-layout {
     padding-top: @header-size;
-    background-color: @page-background;
     min-height: 100vh;
-
+    background: unset !important;
     @media only screen and (max-width: @header-mobile-width) {
         padding-top: @header-size-mobile;
     }
 }
 
 .ant-layout-content {
-    background-color: @page-background !important;
     z-index: 2;
 
     a {
-        color: @primary-link-color;
         text-decoration: underline;
 
         &:hover,
         &:active,
         &:focus {
-            color: @primary-link-hover-color;
             text-decoration: underline;
         }
     }

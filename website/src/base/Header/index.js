@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Layout, Menu } from 'antd';
 import { GlobalOutlined } from '@ant-design/icons';
+import { GlobeHemisphereEast, Sun, MoonStars } from 'phosphor-react';
 import Burger from '@animated-burgers/burger-slip';
 import '@animated-burgers/burger-slip/dist/styles.css';
 import classNames from 'classnames';
@@ -12,6 +13,8 @@ import Cluar from '../../common/Cluar';
 import Builder from '../../common/Builder';
 
 import './index.less';
+import styles from '../../utils/styles';
+import ThemeContext from '../../context';
 
 const { Header } = Layout;
 const { SubMenu } = Menu;
@@ -19,6 +22,13 @@ const { SubMenu } = Menu;
 function BaseHeader() {
   const [burgerMenu, setBurgerMenu] = useState(false);
   const [activeMenu, setActiveMenu] = useState('main');
+
+  const { colorMode, setColorMode } = useContext(ThemeContext);
+
+  useEffect(() => {
+    localStorage.setItem("color-mode", colorMode);
+  }, [colorMode]);
+
 
   const handleMenuClick = (selectMenu) => {
     setBurgerMenu(false);
@@ -31,9 +41,11 @@ function BaseHeader() {
   const menuLanguages = {
     label: Cluar.currentLanguage().code,
     key: "langs",
-    icon: <GlobalOutlined />,
-    children: []
+    icon: <GlobeHemisphereEast size={24} weight="bold" />,
+    children: [],
+    style: styles(colorMode).paragraph
   };
+
   const menu = [];
   const subMenuKeys = [];
   const routes = [];
@@ -101,7 +113,7 @@ function BaseHeader() {
               page.link.indexOf('//') >= 0 ? (
                 <a href={`${page.link}`} target="_blank">{page.title}</a>
               ) : (
-                <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)}>
+                <Link to={`/${Cluar.currentLanguage().locale}${page.link}`} onClick={() => handleMenuClick(key)} style={styles(colorMode).paragraph}>
                   {page.title}
                 </Link>
               )
@@ -127,8 +139,8 @@ function BaseHeader() {
   }
 
   return (
-    <Header className={classNames({ 'header-burger-open': burgerMenu })}>
-      <div className="ant-layout-header__wrapper">
+    <Header style={styles(colorMode).body} className={classNames({ 'header-burger-open': burgerMenu })}>
+      <div className="ant-layout-header__wrapper container">
         <div className="logo">
           <Link to={`/${Cluar.currentLanguage().locale}/`} onClick={() => handleMenuClick('/')}>
             <img alt="logo" src="/images/logo.png" />
@@ -174,6 +186,31 @@ function BaseHeader() {
           selectedKeys={[activeMenu]}
           items={[menuLanguages]}
         />
+        <div className='menu-theme' style={{ cursor: 'pointer' }}>
+          <button onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}>
+            {colorMode == 'dark' ?
+              <MoonStars
+                style={{
+                  background: '#1e1e20',
+                  borderRadius: '8px',
+                  padding: '4px'
+                }}
+                size={32}
+                color="#1178FF"
+              />
+              :
+              <Sun
+                style={{
+                  background: '#e3e3e5',
+                  borderRadius: '8px',
+                  padding: '4px'
+                }}
+                size={32}
+                color="#1178FF"
+              />}
+          </button>
+        </div>
+
       </div>
     </Header>
   );
