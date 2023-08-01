@@ -19,8 +19,8 @@ function DashboardContainer() {
         <p>Lista de contactos submetidos pelo formulário do website.</p>
         <ContactTable />
       </div>
-    )
-  }
+    );
+  };
   const item = [
     {
       label: 'Contactos',
