@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="apple-touch-icon" href="/images/favicon-192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>Cluar CMS</title>
+    <style>
+     body {
+       background-color: #ffffff;
+     }
+     .base-loading__container {
+       padding-top: calc((100vh / 2) - 90px);
+       width: 250px;
+       margin-left: auto;
+       margin-right: auto;
+       text-align: center;
+     }
+
+     .base-loading {
+       display: inline-block;
+       position: relative;
+       width: 80px;
+       height: 80px;
+     }
+
+     .base-loading div {
+       display: inline-block;
+       position: absolute;
+       left: 8px;
+       width: 16px;
+       background: #1178FF;
+       animation: base-loading 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+     }
+
+     .base-loading div:nth-child(1) {
+       left: 8px;
+       animation-delay: -0.24s;
+     }
+
+     .base-loading div:nth-child(2) {
+       left: 32px;
+       animation-delay: -0.12s;
+     }
+
+     .base-loading div:nth-child(3) {
+       left: 56px;
+       animation-delay: 0;
+     }
+
+     @keyframes base-loading {
+       0% {
+         top: 8px;
+         height: 64px;
+       }
+
+       50%,
+       100% {
+         top: 24px;
+         height: 32px;
+       }
+     }
+    </style>
+  </head>
+  <body>
+    <div class="base-loading__container">
+      <div class="base-loading">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <div id="root" style="display: none;"></div>
+    <script>
+     (function () {
+       var baseLodingContainer = document.querySelector('.base-loading__container');
+       window.addEventListener("DOMContentLoaded", function () {
+         baseLodingContainer.remove();
+         document.querySelector('#root').style.display = 'block';
+       }, false);
+     })();
+    </script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -19,7 +19,7 @@ function BaseFooter() {
           </div>
         </Col>
         <Col xs={{ span: 24 }} lg={{ span: 8, offset: 8 }}>
-          <Row>
+          <Row className="footer__address">
             <Col><HomeOutlined /></Col>
             <Col>&nbsp;</Col>
             <Col>
@@ -36,7 +36,7 @@ function BaseFooter() {
               <p><MailOutlined /> <Configuration parameter="footer-email"/></p>
             </Col>
           </Row>
-          <p className="social-links">
+          <p className="footer__social-links">
             <a href="https://github.com/netuno-org" className="share-icons">
               <FaGithub />
             </a>
