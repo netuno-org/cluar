@@ -55,7 +55,7 @@
                 },
                 {
                     "path": "website",
-                    "command": "npm start",
+                    "command": "npm run dev",
                     "install": "npm install --force",
                     "enabled": true
                 }
@@ -121,7 +121,7 @@
                 },
                 {
                     "path": "website",
-                    "command": "npm start",
+                    "command": "npm run dev",
                     "install": "npm install --force",
                     "enabled": false
                 }
