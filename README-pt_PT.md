@@ -83,6 +83,6 @@ No diretório raíz do Netuno execute
 
 que irá iniciar o servidor de backend e depois execute no diretório `(cluar app directory)/website/` o seguinte
 
-`npm run start`
+`npm run dev`
 
 para iniciar o servidor de frontend.
