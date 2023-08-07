@@ -78,6 +78,6 @@ In the Netuno root directory run
 
 to start the backend server and then in the `(cluar app directory)/website/` run
 
-`npm run start`
+`npm run dev`
 
 to start the frontend server.
