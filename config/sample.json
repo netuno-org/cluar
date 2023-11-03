@@ -26,7 +26,17 @@
         "origins": [ "*" ],
         "enabled": true
     }],
-    "smtp": {},
+    "smtp": {
+        "default": {
+            "enabled": true,
+            "host": "smtp.gmail.com",
+            "port": 465,
+            "ssl": true,
+            "from": "email@gmail.com",
+            "username": "username",
+            "password": "s3cr37"
+          }      
+    },
     "name": "cluar",
     "setup": {
         "schema": {

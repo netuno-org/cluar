@@ -45,4 +45,12 @@ if (_val.global().getBoolean('cluar:setup')) {
             .set("code", "map-longitude")
             .set("description", "Mapa - Longitude")
     );
+
+    _db.insertIfNotExists(
+        "configuration_parameter",
+        _val.init()
+          .set("uid", "5af389c8-ca95-4430-8f24-0e8517ff90a0")
+          .set("code", "contact-notification-recipient")
+          .set("description", "Destinat\u00E1rio da notifica\u00E7\u00E3o de contato")
+      );
 }
