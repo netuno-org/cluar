@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { Alert } from 'antd';
 
 import sal from 'sal.js';
 
@@ -11,15 +13,33 @@ import ContactForm from '../components/functionality/ContactForm';
 import ContactMap from '../components/functionality/ContactMap';
 
 function Builder({ page }) {
+  const [error, setError] = useState(false);
+  const [structure, setStructure] = useState([]);
   useEffect(() => {
-    sal();
+    fetch(`/cluar/structures/${page.uid}.json?time=${new Date().getTime()}`)
+      .then(response => response.json())
+      .then(data => {
+        setError(false);
+        setStructure(data);
+      })
+      .catch(error => {
+        setError(true);
+        console.error('Failed to load page structure: ', {page, error});
+      });
     document.getElementsByTagName('meta')["keywords"].content = page.keywords;
     document.getElementsByTagName('meta')["description"].content = page.description;
     document.title = page.title + ' | ' + Cluar.config().name;
   }, [page]);
 
+  useEffect(() => {
+    sal({
+      threshold: 1,
+      once: false,
+    });
+  }, [structure]);
+
   const components = [];
-  for (const item of page.structure) {
+  for (const item of structure) {
     const { uid } = item;
     if (item.section === 'banner') {
       components.push(<Banner key={uid} {...item} />);
@@ -34,6 +54,19 @@ function Builder({ page }) {
         components.push(<ContactMap key={uid} {...item} />);
       }
     }
+  }
+  if (error) {
+    return (
+      <main>
+        <Alert
+          style={{maxWidth: '400px', width: 'calc(100% - 20px)', margin: '50px auto 50px auto'}}
+          message="Error"
+          description="The page content could not be loaded."
+          type="error"
+          showIcon
+        />
+      </main>
+    );
   }
   return (
     <main>

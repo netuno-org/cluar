@@ -9,7 +9,7 @@ import Cluar from './common/Cluar';
 import './styles/index.less';
 
 const CluarDataScript = document.createElement("script");
-CluarDataScript.src = `/cluarData.js?time=${new Date().getTime()}`;
+CluarDataScript.src = `/cluar/data.js?time=${new Date().getTime()}`;
 CluarDataScript.onload = () => {
   Cluar.init();
 

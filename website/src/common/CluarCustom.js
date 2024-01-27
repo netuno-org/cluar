@@ -1,5 +1,5 @@
 
-export default class CluarCustomData {
+export default class CluarCustom {
   constructor(data) {
     this.data = data;
   }
