@@ -1,5 +1,5 @@
 
-// _core : CluarCustomData
+// _core : CluarCustom
 
 class Cluar {
 
@@ -188,7 +188,7 @@ class Cluar {
     }
     data.set("pages", pages)
     
-    CluarCustomData(data)
+    CluarCustom.build(settings, data)
     
     /*
      *
@@ -261,6 +261,7 @@ class Cluar {
         tagURLSet.appendChild(tagURL)
       }
     }
+    CluarCustom.siteMap(origin, document, tagURLSet)
     document.appendChild(tagURLSet)
     xml.save(document, _app.file(`${Cluar.base()}/sitemap.xml`))
     if (!_app.file(`${Cluar.base()}/robots.txt`).exists()) {

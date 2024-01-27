@@ -32,14 +32,17 @@ pnpm-lock.yaml
 
 src/config/config.json
 
-build/cluarData.js
-public/cluarData.js
+/build/
+/dist/
 
-public/sitemap.xml
+/public/cluar
 
-public/images/banner/
-public/images/content/
-public/images/functionality/
-public/images/listing/
-public/images/listing_item/
+/public/cluarData.js
 
+/public/sitemap.xml
+
+/public/images/banner/
+/public/images/content/
+/public/images/functionality/
+/public/images/listing/
+/public/images/listing_item/
