@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-import { Table, Input, Button, notification } from 'antd';
+import { Table, Input, Button, notification, Modal } from 'antd';
 
 import { SearchOutlined } from '@ant-design/icons';
 
@@ -12,18 +12,21 @@ const { Column } = Table;
 
 const pageSize = 10;
 
-const columnsNames = [ 'name', 'email', 'subject', 'moment' ];
+const columnsNames = [ 'name', 'email', 'subject', 'moment', 'actions' ];
 
 const columnsTitles = {
     name: 'Nome',
     email: 'E-mail',
     subject: 'Título',
-    moment: 'Momento'
+    moment: 'Momento',
+    actions: "Ações"
 };
 
 function ContactTable() {
     const [ uid, setUID ] = useState(null);
     const [ dataSource, setDataSource ] = useState([]);
+    const [showDetails, setShowDetails] = useState(false);
+    const [currentDetails, setCurrentDetails] = useState({})
     const [ loading, setLoading ] = useState(true);
     const [ filter, setFilter ] = useState({
         name: '',
@@ -65,7 +68,26 @@ function ContactTable() {
             url: "/admin/contact/list",
             data: { filter, pagination, sorter },
             success: (response) => {
-                setDataSource(response.json.resultados);
+                setDataSource(response.json.resultados.map(item => {
+                    const momentArr = item.moment.split(" ");
+                    const dateArr = momentArr[0].split("-");
+                    const timeArr = momentArr[1].slice(0, 5);
+                    const moment = `${dateArr[2]}/${dateArr[1]}/${dateArr[0]} ${timeArr}`;
+                    return {
+                        ...item,
+                        moment,
+                        actions: (
+                            <Button 
+                                onClick={() => {
+                                    setCurrentDetails({...item, moment})
+                                    setShowDetails(true)
+                                }}
+                            >
+                                Detalhes
+                            </Button>
+                        )
+                    }
+                }));
                 setPagination({
                     ...pagination,
                     total: response.json.total
@@ -192,7 +214,21 @@ function ContactTable() {
         };
     }, []);
     return (
-        <Table
+        <>
+             <Modal 
+                title="Detalhes do contacto"
+                open={showDetails}
+                onOk={() => setShowDetails(false)}
+                onCancel={() => setShowDetails(false)}
+                cancelButtonProps={{ style: { display: 'none' } }}
+            >
+                <p><strong>Nome:</strong> {currentDetails?.name}</p>
+                <p><strong>E-mail:</strong> {currentDetails?.email}</p>
+                <p><strong>Data:</strong> {currentDetails?.moment}</p>
+                <p><strong>Assunto:</strong> {currentDetails?.subject}</p>
+                <p style={{whiteSpace: "pre-wrap"}}>{currentDetails?.message}</p>
+            </Modal>
+            <Table
         size="small"
         loading={loading}
         pagination={pagination}
@@ -210,6 +246,7 @@ function ContactTable() {
                 />
         )}
         </Table>
+        </>
     );
 }
 
