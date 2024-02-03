@@ -294,12 +294,14 @@ class Cluar {
                 content.image_alt,
                 content.image_title,
                 content.image_max_width,
-                content.sorter
+                page_content.sorter
             FROM content
                 INNER JOIN content_type ON content.type_id = content_type.id
+                INNER JOIN page_content ON page_content.content_id = content.id
             WHERE content.active = TRUE
                 AND content_type.active = TRUE
-                AND content.page_id = ${dbPage.getInt("id")}
+                AND page_content.active = TRUE
+                AND page_content.page_id = ${dbPage.getInt("id")}
             `)
     for (const dbContent of dbContents) {
       structure.add(
@@ -336,14 +338,16 @@ class Cluar {
                 banner.image,
                 banner.image_alt,
                 banner.image_title,
-                banner.sorter,
                 banner.position_x,
-                banner.position_y
+                banner.position_y,
+                page_banner.sorter
             FROM banner
                 INNER JOIN banner_type ON banner.type_id = banner_type.id
+                INNER JOIN page_banner ON page_banner.banner_id = banner.id
             WHERE banner.active = TRUE
                 AND banner_type.active = TRUE
-                AND banner.page_id = ${dbPage.getInt("id")}
+                AND page_banner.active = TRUE
+                AND page_banner.page_id = ${dbPage.getInt("id")}
             `)
     for (const dbBanner of dbBanners) {
       structure.add(
@@ -385,12 +389,14 @@ class Cluar {
                 listing.image_title,
                 listing.content,
                 listing.image,
-                listing.sorter
+                page_listing.sorter
             FROM listing
                 INNER JOIN listing_type ON listing.type_id = listing_type.id
+                INNER JOIN page_listing ON page_listing.listing_id = listing.id
             WHERE listing.active = TRUE
                 AND listing_type.active = TRUE
-                AND listing.page_id = ${dbPage.getInt("id")}
+                AND page_listing.active = TRUE
+                AND page_listing.page_id = ${dbPage.getInt("id")}
             `)
     for (const dbListing of dbListings) {
       const items = _val.list()
@@ -448,12 +454,14 @@ class Cluar {
                 functionality.title,
                 functionality.content,
                 functionality.image,
-                functionality.sorter
+                page_functionality.sorter
             FROM functionality
                 INNER JOIN functionality_type ON functionality.type_id = functionality_type.id
+                INNER JOIN page_functionality ON page_functionality.functionality_id = functionality.id
             WHERE functionality.active = TRUE
                 AND functionality_type.active = TRUE
-                AND functionality.page_id = ${dbPage.getInt("id")}
+                AND page_functionality.active = TRUE
+                AND page_functionality.page_id = ${dbPage.getInt("id")}
             `)
     for (const dbFunctionality of dbFunctionalities) {
       structure.add(
