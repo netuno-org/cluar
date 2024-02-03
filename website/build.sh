@@ -9,9 +9,9 @@ if [ -d "dist/images" ]; then
     rsync -av dist/images/ public/images/
 fi
 
-npm install --force
+pnpm install
 
-npm run build
+pnpm run build
 
 if [ -f ".cluarData.js" ]; then
     mv .cluarData.js dist/cluarData.js
