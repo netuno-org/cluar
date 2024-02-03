@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import vitePluginImp from 'vite-plugin-imp';
-import react from '@vitejs/plugin-react-swc'
+import react from '@vitejs/plugin-react-swc';
+import styleX from "vite-plugin-stylex";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -9,6 +10,7 @@ export default defineConfig({
     strictPort: true
   },
   plugins: [
-    react()
+    react(),
+    styleX()
   ]
 })
