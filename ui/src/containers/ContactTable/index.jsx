@@ -26,7 +26,7 @@ function ContactTable() {
     const [ uid, setUID ] = useState(null);
     const [ dataSource, setDataSource ] = useState([]);
     const [showDetails, setShowDetails] = useState(false);
-    const [currentDetails, setCurrentDetails] = useState({})
+    const [currentDetails, setCurrentDetails] = useState({});
     const [ loading, setLoading ] = useState(true);
     const [ filter, setFilter ] = useState({
         name: '',
@@ -79,14 +79,14 @@ function ContactTable() {
                         actions: (
                             <Button 
                                 onClick={() => {
-                                    setCurrentDetails({...item, moment})
-                                    setShowDetails(true)
+                                    setCurrentDetails({...item, moment});
+                                    setShowDetails(true);
                                 }}
                             >
                                 Detalhes
                             </Button>
                         )
-                    }
+                    };
                 }));
                 setPagination({
                     ...pagination,
@@ -104,7 +104,7 @@ function ContactTable() {
                 setLoading(false);
             }
         });
-    }
+    };
     
     const handleTableChange = (pagination, filters, sorter) => {
         loadTable({ pagination, filters, sorter: { field: sorter.field, order: sorter.order } });

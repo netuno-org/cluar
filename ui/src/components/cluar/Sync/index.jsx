@@ -28,7 +28,9 @@ function CluarSync() {
             }
         });
     };
-    return <Button onClick={onClick} loading={loading}>Sincronizar com o website.</Button>
+    return (
+      <Button onClick={onClick} loading={loading}>Sincronizar com o website.</Button>
+    );
 }
 
 export default CluarSync;

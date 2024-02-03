@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
+import styleX from "vite-plugin-stylex";
 
 // https://vitejs.dev/config/
-
 
 /**
  * Library Mode
@@ -11,7 +11,8 @@ import react from '@vitejs/plugin-react-swc'
 
 export default defineConfig({
   plugins: [
-    react()
+    react(),
+    styleX()
   ],
   build: {
     sourcemap: true,

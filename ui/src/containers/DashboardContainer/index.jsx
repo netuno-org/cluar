@@ -6,8 +6,6 @@ import ContactTable from "../ContactTable";
 
 import CluarSync from "../../components/cluar/Sync";
 
-import "./index.less";
-
 const { Title } = Typography;
 
 const { TabPane } = Tabs;
