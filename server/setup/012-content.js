@@ -10,7 +10,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     "content",
     _val.init()
       .set("uid", "f110a9d1-c9cd-40a3-9359-7b472234e0ac")
-      .set("page_id", "0194d0aa-c5ec-4f9d-abab-de6298c5f9e9")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("type_id", "5d68fe7f-bfc9-424b-98bc-50c0bfe96f2f")
       .set("image", "")
       .set("image_title", "")
@@ -25,7 +25,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     "content",
     _val.init()
       .set("uid", "ed312fe0-b839-4367-82c1-1445464b39d0")
-      .set("page_id", "0194d0aa-c5ec-4f9d-abab-de6298c5f9e9")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("type_id", "5d68fe7f-bfc9-424b-98bc-50c0bfe96f2f")
       .set("image", "")
       .set("image_title", "")
@@ -40,7 +40,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     "content",
     _val.init()
       .set("uid", "b0697f9e-3eb0-468f-bb71-13d5a9e211fe")
-      .set("page_id", "5002a742-e092-4c0b-8536-546bd1319c7f")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("type_id", "5d68fe7f-bfc9-424b-98bc-50c0bfe96f2f")
       .set("image", "")
       .set("image_title", "")
@@ -55,7 +55,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     "content",
     _val.init()
       .set("uid", "d7564744-f70f-4859-9070-86a3b2a83e91")
-      .set("page_id", "5002a742-e092-4c0b-8536-546bd1319c7f")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("type_id", "5d68fe7f-bfc9-424b-98bc-50c0bfe96f2f")
       .set("image", "")
       .set("image_title", "")
