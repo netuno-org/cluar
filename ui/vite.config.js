@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import styleX from "vite-plugin-stylex";
+import { promises as fs } from 'fs';
 
 // https://vitejs.dev/config/
 
