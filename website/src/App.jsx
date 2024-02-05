@@ -15,6 +15,9 @@ import BaseHeader from './base/Header';
 import BaseFooter from './base/Footer';
 import NotFound from './pages/NotFound';
 
+import '@animated-burgers/burger-slip/dist/styles.css?inline';
+import 'sal.js/dist/sal.css?inline';
+
 import './styles/App.less';
 
 const { Content } = Layout;
