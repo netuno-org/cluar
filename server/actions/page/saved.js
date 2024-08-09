@@ -1,4 +1,4 @@
-// _core : Cluar
+// _core : cluar/main
 
-Cluar.build()
+cluar.page.publish(_dataItem.getRecord())
 

@@ -1,3 +1,3 @@
-// _core : Cluar
+// _core : cluar/main
 
-Cluar.build()
+cluar.build()
