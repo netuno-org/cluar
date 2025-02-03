@@ -23,7 +23,7 @@ export default defineConfig({
         // Using Tables causes very slow interactions on the entire page because an infinite loop executes the scrollTo function.
         const bundlePath = `${outputBasePath}/${outputFilePath}`
         let data = await fs.readFile(bundlePath, 'utf-8');
-        data = data.replace('function scrollTo(o){', 'function $_scrollTo_antd_bug_$(o){');
+        data = data.replace('function scrollTo(', 'function $_scrollTo_antd_bug_$(');
         await fs.writeFile(bundlePath, data, 'utf-8');
       }
     }
