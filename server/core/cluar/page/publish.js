@@ -213,4 +213,11 @@ cluar.page.publish = (dbPage)=> {
 
   const file = _app.file(`${cluar.base()}/cluar/structures/${dbPage.getString("uid")}.json`)
   file.output().print(`${structure.toJSON(4)}`).close()
+
+  const htmlContent = _template.getOutput('cluar/builder', 
+    {
+      structure, 
+    }
+  );
+  _log.info("templateHTML", htmlContent)
 }

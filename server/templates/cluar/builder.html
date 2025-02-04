@@ -1,0 +1,25 @@
+#foreach( $item in $data.get("structure") )
+  #if($item.getString("section") == "banner" ||
+      $item.getString("section") == "content" ||
+      $item.getString("section") == "functionality" ||
+      $item.getString("section") == "standard"
+    )
+    <section>
+      <h1>$item.getString("title")</h1>
+      <div>$item.getString("content")</div>
+    </section>
+  #elseif($item.getString("section") == "listing")
+    <section>
+      <h1>$item.getString("title")</h1>
+      <div>$item.getString("content")</div>
+      <ul>
+        #foreach( $listItem in $item.get("items") )
+          <li>
+            <strong>$listItem.getString("title"):</strong> 
+            <div>$listItem.getString("content")</div>
+          </li>
+        #end
+      </ul>
+    </section>
+  #end
+#end
