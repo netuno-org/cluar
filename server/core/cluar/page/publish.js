@@ -1,8 +1,8 @@
-cluar.page.publish = (dbPage)=> {
+cluar.page.publish = (dbPage) => {
   const settings = { images: true }
-  
+
   const structure = _val.list()
-  
+
   /*
    *
    *  CONTENTS
@@ -214,10 +214,47 @@ cluar.page.publish = (dbPage)=> {
   const file = _app.file(`${cluar.base()}/cluar/structures/${dbPage.getString("uid")}.json`)
   file.output().print(`${structure.toJSON(4)}`).close()
 
-  const htmlContent = _template.getOutput('cluar/builder', 
-    {
-      structure, 
+  if (!_env.is("dev")) {
+    const htmlContent = _template.getOutput('cluar/builder',
+      {
+        structure,
+      }
+    );
+    
+    const basePath = `/website/dist`;
+    const locale = _db.queryFirst(`SELECT * FROM language WHERE code = ?`, dbPage.getString("language")).getString("locale");
+    const fullPath = `${basePath}/${locale}` + dbPage.getString("link");
+    const HTMLIndexFile = _app.file(`${basePath}/index.html`);
+
+    if (HTMLIndexFile.exists()) {
+      const websiteConfig = _app.settings().getValues("cluar").getValues("website") || _val.map()
+      const HTMLIndexDocument = _html.parse(HTMLIndexFile, "UTF-8", "");
+      const headElement = HTMLIndexDocument.select("head").first();
+      const bodyElement = HTMLIndexDocument.select("body").first();
+
+      if (headElement && bodyElement) {
+        if (dbPage.getString("social_image") != "") {
+          /**
+           * PUBLISH SOCIAL IMAGE IN PRODUCTION
+           */
+          cluar.publishSocialImage(dbPage.getString("social_image"));
+        }
+
+        headElement.prepend(`<meta property="og:title" content="${dbPage.getString("title")}" />`);
+        headElement.prepend(`<meta property="og:description" content="${dbPage.getString("social_description", "")}" />`);
+        headElement.prepend(`<meta property="og:image" content="images/${dbPage.getString("social_image", "")}"/>`);
+        headElement.prepend(`<meta property="og:site_name" content="${websiteConfig.getString("name", "")}" />`);
+        headElement.prepend(`<meta property="og:url" content="${websiteConfig.getString("url", "") + dbPage.getString("link")}" />`);
+        bodyElement.prepend(htmlContent);
+
+        const folder = _app.folder(fullPath);
+        if (!folder.exists()) {
+          folder.mkdirs();
+        }
+        
+        const finalFile = _app.file(`${fullPath}/index.html`);
+        finalFile.output().printAndClose(HTMLIndexDocument.outerHtml());
+      }
     }
-  );
-  _log.info("templateHTML", htmlContent)
+  }
 }
