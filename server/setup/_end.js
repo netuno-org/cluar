@@ -1,6 +1,6 @@
-// _core : Cluar
+// _core : cluar/main
 
 if (_val.global().getBoolean('cluar:setup')) {
-    Cluar.build({ images: true });
+    cluar.build({ images: true });
     _val.global().set('cluar:setup', false)
 }
