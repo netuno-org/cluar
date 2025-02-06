@@ -19,25 +19,8 @@ cluar.build = (settings)=> {
    *  LANGUAGES
    *
    */        
-  const dbLanguages = _db.find(
-    'language',
-    _val.map()
-      .set(
-        'where',
-        _val.map()
-          .set("active", true)
-      )
-  )
-  const languages = _val.list()
-  for (const dbLanguage of dbLanguages) {
-    languages.add(
-      _val.map()
-        .set("code", dbLanguage.getString("code"))
-        .set("locale", dbLanguage.getString("locale"))
-        .set("description", dbLanguage.getString("description"))
-        .set("default", dbLanguage.getBoolean("default"))
-    )
-  }
+
+  const languages = cluar.base.languages();
   data.set("languages", languages)
   
   /*
@@ -45,134 +28,24 @@ cluar.build = (settings)=> {
    *  CONFIGURATION
    *
    */
-  const configuration = _val.map()
-  const dbConfigurationWithLanguages = _db.query(`
-        SELECT
-            language.code "language",
-            configuration_parameter.code "code",
-            configuration.${_db.escape('value')}
-        FROM language
-            INNER JOIN configuration ON language.id = configuration.language_id
-            INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
-        WHERE language.active = TRUE
-            AND configuration.active = TRUE
-            AND configuration_parameter.active = TRUE
-        ORDER BY language.code, configuration_parameter.code
-        `)
-  for (const dbParameter of dbConfigurationWithLanguages) {
-    if (!configuration.has(dbParameter.getString("language"))) {
-      configuration.set(dbParameter.getString("language"), _val.map())
-    }
-    configuration.getValues(dbParameter.getString("language"))
-      .set(dbParameter.getString("code"), dbParameter.getString("value"))
-  }
-  const dbConfigurationWithoutLanguages = _db.query(`
-        SELECT
-            configuration_parameter.code "code",
-            configuration.${_db.escape('value')}
-        FROM configuration
-            INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
-        WHERE (configuration.language_id = 0 OR configuration.language_id IS NULL)
-            AND configuration.active = TRUE
-            AND configuration_parameter.active = TRUE
-        ORDER BY configuration_parameter.code
-        `)
-  for (const dbParameter of dbConfigurationWithoutLanguages) {
-    if (!configuration.has("GENERIC")) {
-      configuration.set("GENERIC", _val.map())
-    }
-    configuration.getValues("GENERIC")
-      .set(dbParameter.getString("code"), dbParameter.getString("value"))
-  }
-  data.set("configuration", configuration)
+  
+  data.set("configuration", cluar.base.configuration())
   
   /*
    *
    *  DICTIONARY
    *
    */
-  const dbDictionary = _db.query(`
-        SELECT
-            language.code "language",
-            dictionary_entry.code "code",
-            dictionary.${_db.escape('value')}
-        FROM language
-            INNER JOIN dictionary ON dictionary.language_id = language.id
-            INNER JOIN dictionary_entry ON dictionary.entry_id = dictionary_entry.id
-        WHERE language.active = TRUE
-            AND dictionary.active = TRUE
-            AND dictionary_entry.active = TRUE
-        ORDER BY language.code, dictionary_entry.code
-        `)
-  const dictionary = _val.map()
-  for (const dbEntry of dbDictionary) {
-    if (!dictionary.has(dbEntry.getString("language"))) {
-      dictionary.set(dbEntry.getString("language"), _val.map())
-    }
-    dictionary.getValues(dbEntry.getString("language"))
-      .set(dbEntry.getString("code"), dbEntry.getString("value"))
-  }
-  data.set("dictionary", dictionary)
+  
+  data.set("dictionary", cluar.base.dictionary())
 
   /*
    *
    *  PAGES
    *
    */
-  const dbPages = _db.query(`
-        SELECT
-            page.id,
-            page.uid,
-            language.code "language",
-            page.parent_id,
-            page.link,
-            page.title,
-            page.description,
-            page.keywords,
-            page.navigable,
-            page.menu,
-            page.menu_title,
-            page.sorter
-        FROM language
-            INNER JOIN page ON language.id = page.language_id
-            INNER JOIN page_status ON page.status_id = page_status.id
-        WHERE language.active = TRUE
-            AND page.active = TRUE
-            AND page_status.active = TRUE
-            AND page_status.code = 'published'
-        ORDER BY language.code, page.sorter, page.link
-        `)
-  const pages = _val.map()
-  for (const dbPage of dbPages) {
-    if (!pages.has(dbPage.getString("language"))) {
-      pages.set(dbPage.getString("language"), _val.list())
-    }
-    let parentLink = ""
-    if (dbPage.getInt("parent_id") > 0) {
-      const dbParentPage = _db.findFirst(
-        "page",
-        _val.map()
-          .set("where", _val.map().set("id", dbPage.getInt("parent_id")))
-      )
-      parentLink = dbParentPage.getString("link")
-    }
-    pages.getValues(dbPage.getString("language"))
-      .add(
-        _val.map()
-          .set("uid", dbPage.getString("uid"))
-          .set("parent", parentLink)
-          .set("link", dbPage.getString("link"))
-          .set("title", dbPage.getString("title"))
-          .set("description", dbPage.getString("description"))
-          .set("keywords", dbPage.getString("keywords"))
-          .set("navigable", dbPage.getBoolean("navigable"))
-          .set("menu", dbPage.getBoolean("menu"))
-          .set("menu_title", dbPage.getString("menu_title"))
-          .set("sorter", dbPage.getInt("sorter"))
-          .set("structure", null)
-      )
-    cluar.page.publish(dbPage)
-  }
+
+  const pages = cluar.base.pages({publish: true})
   data.set("pages", pages)
   
   cluar.custom.build(settings, data)

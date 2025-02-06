@@ -1,0 +1,9 @@
+<header>
+  <nav>
+    <ul>
+      #foreach( $page in $data.get("pages").get($data.get("currentLanguage")) )
+      <li><a href="$page.getString('link')">$page.getString("title")></a></li>
+      #end
+    </ul>
+  </nav>
+</header>

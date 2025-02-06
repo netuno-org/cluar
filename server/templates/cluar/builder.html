@@ -1,9 +1,11 @@
+_{include=cluar/header}
+
 #foreach( $item in $data.get("structure") )
-  #if($item.getString("section") == "banner" ||
-      $item.getString("section") == "content" ||
-      $item.getString("section") == "functionality" ||
-      $item.getString("section") == "standard"
-    )
+  #if (
+    $item.getString("section") == "banner" ||
+    $item.getString("section") == "content" ||
+    $item.getString("section") == "standard"
+  )
     <section>
       <h1>$item.getString("title")</h1>
       <div>$item.getString("content")</div>
@@ -21,5 +23,15 @@
         #end
       </ul>
     </section>
+  #elseif($item.getString("section") == "functionality")
+    <section>
+      <h1>$item.getString("title")</h1>
+      <div>$item.getString("content")</div>
+      #if ($item.getString("type") == "CUSTOM_FUNCTIONALITY")
+        <!-- html content -->
+      #end
+    </section>
   #end
 #end
+
+_{include=cluar/footer}

@@ -214,10 +214,25 @@ cluar.page.publish = (dbPage)=> {
   const file = _app.file(`${cluar.base()}/cluar/structures/${dbPage.getString("uid")}.json`)
   file.output().print(`${structure.toJSON(4)}`).close()
 
+  let currentLanguage = _db.get("language", dbPage.getInt("language_id"))
+
+  if (currentLanguage) {
+    currentLanguage = currentLanguage.getString("code")
+  } else {
+    currentLanguage = dbPage.getString("language")
+  }
+
   const htmlContent = _template.getOutput('cluar/builder', 
     {
-      structure, 
+      structure,
+      configuration: cluar.base.configuration(),
+      dictionary: cluar.base.dictionary(),
+      languages: cluar.base.languages(),
+      currentLanguage,
+      pages: cluar.base.pages({}),
+      page: dbPage,
     }
   );
-  _log.info("templateHTML", htmlContent)
+
+  _log.info("htmlContent", htmlContent)
 }
