@@ -118,7 +118,9 @@ cluar.base.pages = ({publish = false}) => {
             page.navigable,
             page.menu,
             page.menu_title,
-            page.sorter
+            page.sorter,
+            page.social_description,
+            page.social_image
         FROM language
             INNER JOIN page ON language.id = page.language_id
             INNER JOIN page_status ON page.status_id = page_status.id
