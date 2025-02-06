@@ -228,7 +228,7 @@ cluar.page.publish = (dbPage) => {
 
     if (HTMLIndexFile.exists()) {
       const websiteConfig = _app.settings().getValues("cluar").getValues("website") || _val.map()
-      const HTMLIndexDocument = _html.parse(HTMLIndexFile, "UTF-8", "");
+      const HTMLIndexDocument = _html.parse(HTMLIndexFile, "US-ASCII", "");
       const headElement = HTMLIndexDocument.select("head").first();
       const bodyElement = HTMLIndexDocument.select("body").first();
 
@@ -253,7 +253,7 @@ cluar.page.publish = (dbPage) => {
         }
         
         const finalFile = _app.file(`${fullPath}/index.html`);
-        finalFile.output().printAndClose(HTMLIndexDocument.outerHtml());
+        finalFile.output().printAndClose(HTMLIndexDocument.html());
       }
     }
   }
