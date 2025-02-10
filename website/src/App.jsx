@@ -14,6 +14,8 @@ import BaseCookies from './base/Cookies';
 import BaseHeader from './base/Header';
 import BaseFooter from './base/Footer';
 import NotFound from './pages/NotFound';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
@@ -73,7 +75,9 @@ function App() {
             <BaseHeader />
             <Content>
               <Routes>
-                <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
+              <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
+              <Route path="/register" element={<Register/>} /> 
+              <Route path="/login" element={<Login/>} /> 
                 {routes}
                 <Route element={<NotFound />} />
               </Routes>

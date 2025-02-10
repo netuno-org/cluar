@@ -22,6 +22,12 @@ export default class Cluar {
     }
   }
 
+  static authProviders() {
+    const { config } = window.cluar;
+    console.log(config)
+    return config.auth.providers;
+  }
+
   static custom() {
     return custom;
   }
