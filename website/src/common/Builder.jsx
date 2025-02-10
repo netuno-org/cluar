@@ -6,6 +6,7 @@ import sal from 'sal.js';
 
 import Cluar from '../common/Cluar';
 
+import PageSection from '../base/PageSection';
 import Banner from '../components/Banner';
 import Content from '../components/Content';
 import Listing from '../components/Listing';
@@ -42,11 +43,23 @@ function Builder({ page }) {
   for (const item of structure) {
     const { uid } = item;
     if (item.section === 'banner') {
-      components.push(<Banner key={uid} {...item} />);
+      components.push(
+        <PageSection sectionData={item}>
+          <Banner key={uid} {...item} />
+        </PageSection>
+      );
     } else if (item.section === 'content') {
-      components.push(<Content key={uid} {...item} />);
+      components.push(
+        <PageSection sectionData={item}>
+          <Content key={uid} {...item} />
+        </PageSection>
+      );
     } else if (item.section === 'listing') {
-      components.push(<Listing key={uid} {...item} />);
+      components.push(
+        <PageSection sectionData={item}>
+          <Listing key={uid} {...item} />
+        </PageSection>
+      );
     } else if (item.section === 'functionality') {
       if (item.type === 'contact-form') {
         components.push(<ContactForm key={uid} {...item} />);

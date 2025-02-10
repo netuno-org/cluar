@@ -1,0 +1,25 @@
+@import "../../styles/variables.less";
+
+.page-section {
+  position: relative;
+  outline: 0px solid white;
+
+  &:hover {
+    outline: 2px solid @primary-color;
+    transition: outline 0.6s linear;
+
+    .page-section__edit-btn {
+      opacity: 1;
+      transition: opacity 0.4s linear;
+    }
+  }
+
+  &__edit-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.4s linear;
+  }
+}
