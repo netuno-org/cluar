@@ -5,12 +5,16 @@
   outline: 0px solid white;
 
   &:hover {
-    outline: 2px solid @primary-color;
+    outline: 1px solid @primary-color;
     transition: outline 0.6s linear;
 
     .page-section__edit-btn {
       opacity: 1;
       transition: opacity 0.4s linear;
+    }
+
+    .page-section__new {
+      display: flex;
     }
   }
 
@@ -21,5 +25,15 @@
     z-index: 10;
     opacity: 0;
     transition: opacity 0.4s linear;
+  }
+
+  &__new {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+    opacity: 1;
+    padding: 12px 0;
   }
 }

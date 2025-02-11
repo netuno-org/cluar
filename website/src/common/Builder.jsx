@@ -32,6 +32,26 @@ function Builder({ page }) {
     document.title = page.title + ' | ' + Cluar.config().name;
   }, [page]);
 
+  const handleAddNewSection = (data, current) => {
+    const index = structure.findIndex((item) => item.uid === current);
+
+    if (index !== -1) {
+      const newStructure = [...structure];
+      newStructure.splice(index + 1, 0, data);
+      setStructure(newStructure);
+    }
+  };
+
+  const handleChangeSection = (data, current) => {
+    const index = structure.findIndex((item) => item.uid === current);
+
+    if (index !== -1) {
+      const newStructure = [...structure];
+      newStructure[index] = data;
+      setStructure(newStructure);
+    }
+  };
+
   useEffect(() => {
     sal({
       threshold: 1,
@@ -42,28 +62,40 @@ function Builder({ page }) {
   const components = [];
   for (const item of structure) {
     const { uid } = item;
-    if (item.section === 'banner') {
+    if (item.section === "banner") {
       components.push(
-        <PageSection sectionData={item}>
+        <PageSection
+          sectionData={item}
+          onNewSection={(data) => handleAddNewSection(data, uid)}
+          onConfirmChanges={(data) => handleChangeSection(data, uid)}
+        >
           <Banner key={uid} {...item} />
         </PageSection>
       );
-    } else if (item.section === 'content') {
+    } else if (item.section === "content") {
       components.push(
-        <PageSection sectionData={item}>
+        <PageSection
+          sectionData={item}
+          onNewSection={(data) => handleAddNewSection(data, uid)}
+          onConfirmChanges={(data) => handleChangeSection(data, uid)}
+        >
           <Content key={uid} {...item} />
         </PageSection>
       );
-    } else if (item.section === 'listing') {
+    } else if (item.section === "listing") {
       components.push(
-        <PageSection sectionData={item}>
+        <PageSection
+          sectionData={item}
+          onNewSection={(data) => handleAddNewSection(data, uid)}
+          onConfirmChanges={(data) => handleChangeSection(data, uid)}
+        >
           <Listing key={uid} {...item} />
         </PageSection>
       );
-    } else if (item.section === 'functionality') {
-      if (item.type === 'contact-form') {
+    } else if (item.section === "functionality") {
+      if (item.type === "contact-form") {
         components.push(<ContactForm key={uid} {...item} />);
-      } else if (item.type === 'contact-map') {
+      } else if (item.type === "contact-map") {
         components.push(<ContactMap key={uid} {...item} />);
       }
     }

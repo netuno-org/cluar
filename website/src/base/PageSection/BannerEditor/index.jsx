@@ -13,7 +13,7 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const BannerEditor = ({ sectionData }) => {
+const BannerEditor = ({ sectionData, form }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState([]);
@@ -26,7 +26,26 @@ const BannerEditor = ({ sectionData }) => {
     setPreviewOpen(true);
   };
 
-  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  const handleChange = async ({ fileList }) => {
+    if (fileList.length > 0) {
+      let file = fileList[0];
+
+      if (!file.thumbUrl && file.originFileObj) {
+        file.thumbUrl = await getBase64(file.originFileObj);
+      }
+
+      setFileList([...fileList]);
+
+      if (form) {
+        form.setFieldValue("image", file.thumbUrl);
+      }
+    } else {
+      setFileList([]);
+      if (form) {
+        form.setFieldValue("image", "");
+      }
+    }
+  };
 
   const uploadButton = (
     <button
@@ -52,7 +71,10 @@ const BannerEditor = ({ sectionData }) => {
       if (sectionData.image) {
         setFileList([
           {
-            url: `/images/${sectionData.section}/${sectionData.image}`,
+            url:
+              sectionData.image.indexOf("base64") === -1
+                ? `/images/${sectionData.section}/${sectionData.image}`
+                : sectionData.image,
           },
         ]);
       }
