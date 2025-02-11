@@ -1,0 +1,22 @@
+@import '../../styles/variables.less';
+
+.dashboard-layout-content {
+  text-align: center;
+
+  img {
+    margin-top: 20px;
+    max-width: 60%;
+
+    @media screen and (max-width: @mobile-width) {
+      max-width: 90%;
+    }
+  }
+
+  .content-main {
+    padding-top: 0px;
+
+    .ant-layout {
+      padding-top: 5px;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+    "_schema":"tags/people",
+    "summary": "Remove Account (Sample)",
+    "description": "Example of how to delete the user logged account and their info."
+}

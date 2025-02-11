@@ -1,0 +1,15 @@
+{
+    "info": {
+      "title": "Cluar",
+      "description": "REST API of a ready-to-use solution for user registration, authentication, profile, and more.",
+      "version": "1.0"
+    },
+    "components": {
+      "securitySchemes": {
+        "BearerAuth": {
+          "type": "http",
+          "scheme": "bearer"
+        }
+      }
+    }
+  }

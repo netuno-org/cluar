@@ -1,0 +1,18 @@
+{
+    "_schema":"tags/recovery",
+    "summary": "New Password",
+    "description": "Save the new password.",
+    "type": "object",
+    "properties": {
+      "key": {
+        "type": "string-not-empty"
+      },
+      "password": {
+        "type": "string-not-empty"
+      }
+    },
+    "required": [
+      "key",
+      "password"
+    ]
+  }

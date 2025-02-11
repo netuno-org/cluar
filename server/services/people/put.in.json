@@ -1,0 +1,25 @@
+{
+    "_schema":"tags/people",
+    "summary": "Update Account",
+    "description": "Change the information of the logged user.",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string-not-empty"
+      },
+      "username": {
+        "type": "string-not-empty"
+      },
+      "email": {
+        "type": "string-not-empty"
+      },
+      "password": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "name",
+      "username",
+      "email"
+    ]
+  }
