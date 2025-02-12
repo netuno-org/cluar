@@ -13,12 +13,13 @@ const PageSection = ({
   onConfirmChanges,
 }) => {
   const [openEditor, setOpenEditor] = useState(false);
+  const [newSectionVisible, setNewSectionVisible] = useState(false);
 
-  const handleNewSection = (type) => {
+  const handleNewSection = (section) => {
     const newSectionData = {
       uid: new Date().getTime(),
-      section: type,
-      title: type,
+      section,
+      title: section,
       image: "",
       actions: [],
       items: [],
@@ -28,6 +29,12 @@ const PageSection = ({
       },
     };
 
+    if (section === "banner") {
+      newSectionData.type = "default";
+    } else if (section === "content") {
+      newSectionData.type = "text";
+    }
+
     if (onNewSection) {
       onNewSection(newSectionData);
     }
@@ -36,7 +43,7 @@ const PageSection = ({
   const newSection = (
     <Flex vertical gap={8}>
       <Button onClick={() => handleNewSection("banner")}>Banner</Button>
-      <Button onClick={() => handleNewSection("listing")}>List</Button>
+      <Button onClick={() => handleNewSection("listing")}>Lista</Button>
       <Button onClick={() => handleNewSection("content")}>Conteúdo</Button>
     </Flex>
   );
@@ -56,8 +63,17 @@ const PageSection = ({
         onConfirmChanges={onConfirmChanges}
       />
       {children}
-      <div className="page-section__new">
-        <Popover title="Nova seção" content={newSection}>
+      <div
+        className={`page-section__new ${
+          newSectionVisible && "page-section__new--visible"
+        }`}
+      >
+        <Popover
+          title="Nova seção"
+          trigger="click"
+          content={newSection}
+          onVisibleChange={setNewSectionVisible}
+        >
           <Button>
             <PlusCircleOutlined />
           </Button>

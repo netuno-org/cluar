@@ -10,11 +10,12 @@
 
     .page-section__edit-btn {
       opacity: 1;
-      transition: opacity 0.4s linear;
+      transition: opacity 0.2s linear;
     }
 
     .page-section__new {
-      display: flex;
+      opacity: 1;
+      transition: height 0.2s linear;
     }
   }
 
@@ -24,16 +25,21 @@
     right: 24px;
     z-index: 10;
     opacity: 0;
-    transition: opacity 0.4s linear;
+    transition: opacity 0.2s linear;
   }
 
   &__new {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     max-width: 100%;
     overflow: hidden;
-    opacity: 1;
-    padding: 12px 0;
+    opacity: 0;
+    padding: 4px 0;
+    transition: opacity 0.2s linear;
+
+    &--visible{
+      opacity: 1;
+    }
   }
 }

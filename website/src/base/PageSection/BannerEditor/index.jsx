@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Form, Upload, Image, Input } from "antd";
+import { Form, Upload, Image, Input, Select } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
 import "./index.less";
@@ -83,6 +83,15 @@ const BannerEditor = ({ sectionData, form }) => {
 
   return (
     <div className="banner-editor">
+      <Form.Item label="Tipo" name="type">
+        <Select
+          options={[
+            { value: "default", label: "Padrão" },
+            { value: "secondary", label: "Página secundária" },
+            { value: "default-sub-banner", label: "Padrão com Destaque" },
+          ]}
+        />
+      </Form.Item>
       <Form.Item label="Imagem" name="image">
         <Upload
           listType="picture-card"
