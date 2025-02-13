@@ -6,6 +6,10 @@ import _service from '@netuno/service-client';
 import Cluar from '../../common/Cluar';
 import RecoverModal from './RecoverModal';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { loggedUserInfoAction } from '../../redux/actions';
+
 import {
   FaFacebook, FaGoogle, FaDiscord, FaGithub
 } from "react-icons/fa";
@@ -15,7 +19,7 @@ import './index.less';
 const { Title } = Typography;
 const { Content, Sider } = Layout;
 
-function Login() {
+function Login({loggedUserInfoAction}) {
   const servicePrefix = _service.config().prefix;
   const [submitting, setSubmitting] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -65,7 +69,8 @@ function Login() {
         return data;
       },
       success: (data) => {
-        // loggedUserInfoAction(data.json.extra);
+        console.log(data)
+        loggedUserInfoAction(data.json.extra);
         setSubmitting(false);
       },
       fail: (data) => {
@@ -186,5 +191,12 @@ function Login() {
   }
 }
 
+const mapStateToProps = store => {
+  return { };
+};
 
-export default Login;
+const mapDispatchToProps = dispatch => bindActionCreators({
+  loggedUserInfoAction
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

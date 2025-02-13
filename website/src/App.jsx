@@ -17,6 +17,8 @@ import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ReservedArea from './pages/reservedArea';
+import { Provider } from 'react-redux';
+import { Store } from './redux/store';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
@@ -65,30 +67,32 @@ function App() {
         token: {
           colorPrimary: '#1178FF',
           fontSize: 16,
-          borderRadius: 20
+          borderRadius: 5
         }
       }}
     >
-      <BrowserRouter>
-        { Cluar.isGAEnabled() && <Route component={Analytics} />}
-        <div className="page">
-          <Layout>
-            <BaseHeader />
-            <Content>
-              <Routes>
-              <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
-              <Route path="/register" element={<Register/>} /> 
-              <Route path="/login" element={<Login/>} /> 
-              <Route path="/reserved-area" element={<ReservedArea/>} /> 
-                {routes}
-                <Route element={<NotFound />} />
-              </Routes>
-            </Content>
-            <BaseFooter />
-            <BaseCookies />
-          </Layout>
-        </div>
-      </BrowserRouter>
+      <Provider store={Store}>
+        <BrowserRouter>
+          {Cluar.isGAEnabled() && <Route component={Analytics} />}
+          <div className="page">
+            <Layout>
+              <BaseHeader />
+              <Content>
+                <Routes>
+                  <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/reserved-area" element={<ReservedArea />} />
+                  {routes}
+                  <Route element={<NotFound />} />
+                </Routes>
+              </Content>
+              <BaseFooter />
+              <BaseCookies />
+            </Layout>
+          </div>
+        </BrowserRouter>
+      </Provider>
     </ConfigProvider>
   );
 }
