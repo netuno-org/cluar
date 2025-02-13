@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navigate } from "react-router-dom";
+import React, {useEffect} from 'react';
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 
 import { Typography, Spin, Layout } from 'antd';
 
@@ -13,6 +13,16 @@ import SideMenu from '../../components/SideMenu';
 const { Title } = Typography;
 
 function ReservedArea() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    _auth.config({
+      onLogout: () => {
+        navigate('/login');
+      }
+    });
+  }, []);
+
   if (_auth.isLogged()) {
     let content = null;
     if (!true) {
@@ -21,10 +31,8 @@ function ReservedArea() {
       content = (
         <Layout hasSider className='content-main'>
           <SideMenu/>
-          <Layout>
-            {/* <Title level={2}>Olá {loggedUserInfo.name}!</Title> */}
-            <Title level={2}>Olá jailton!</Title>
-            <Title level={3} style={{ marginTop: 0 }}>Bem-vindo(a) à sua Área Reservada!</Title>
+          <Layout className='content-main__layout-content'>
+            <Outlet/>
           </Layout>
         </Layout>
       );

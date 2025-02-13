@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { SettingOutlined, UserOutlined, MenuOutlined, CloseOutlined } from '@ant-design/icons';
-import { Col, Layout, Menu, Row, Typography, notification, Dropdown, Skeleton } from 'antd';
+import { SettingOutlined, UserOutlined, MenuOutlined, CloseOutlined, EditOutlined, LogoutOutlined } from '@ant-design/icons';
+import { Col, Layout, Menu, Row, Typography, notification, Dropdown, Skeleton, Button } from 'antd';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,7 +10,7 @@ import _service from '@netuno/service-client';
 import _auth from '@netuno/auth-client';
 
 import "./index.less"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const items = [
   {
     key: '1',
@@ -26,11 +26,33 @@ const items = [
     ],
   },
 ];
+
 const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [sideMenuMobileMode, setSideMenuMobileMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [avatarImageURL, setAvatarImageURL] = useState('/images/profile-default.png');
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  function onLogout () {
+    _auth.logout();
+    navigate('/login');
+  }
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="1">
+        <Link to="/reserved-area/profile">
+          <EditOutlined />&nbsp;&nbsp;&nbsp;Editar Perfil
+        </Link></Menu.Item>
+      <Menu.Item key="2">
+        <Button type="link" onClick={onLogout} danger style={{padding:"0px"}}>
+          <LogoutOutlined /> Terminar Sessão
+        </Button>
+      </Menu.Item>
+    </Menu>
+  );
 
   useEffect(() => {
     setLoading(true);
@@ -130,8 +152,10 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           <Row className='side-menu__user-info' justify={'center'}>
             <Col className='side-menu__user-info__content' span={24}>
               <Row className='side-menu__user-info__content__logo' justify={'center'}>
-                <Link title='Perfil'>
-                  {avatarImageURL && <img src={avatarImageURL} alt="logo" />}
+                <Link>
+                  <Dropdown placement='bottom' overlay={menu} trigger={['hover']} arrow={{pointAtCenter: true,}}>
+                    {avatarImageURL && <img src={avatarImageURL} alt="logo" />}
+                  </Dropdown>
                 </Link>
               </Row>
               <Row className='side-menu__user-info__content__user' justify={'center'}>

@@ -7,6 +7,9 @@ import {
   Navigate
 } from "react-router-dom";
 
+import { Provider } from 'react-redux';
+import { Store } from './redux/store';
+
 import Analytics from './common/Analytics';
 import Cluar from './common/Cluar';
 import Builder from './common/Builder';
@@ -17,8 +20,7 @@ import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ReservedArea from './pages/reservedArea';
-import { Provider } from 'react-redux';
-import { Store } from './redux/store';
+import Profile from './pages/Profile';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
@@ -67,7 +69,7 @@ function App() {
         token: {
           colorPrimary: '#1178FF',
           fontSize: 16,
-          borderRadius: 5
+          borderRadius: 2
         }
       }}
     >
@@ -82,7 +84,9 @@ function App() {
                   <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
-                  <Route path="/reserved-area" element={<ReservedArea />} />
+                  <Route path="/reserved-area" element={<ReservedArea />}> 
+                      <Route path="profile" element={<Profile/>}/>
+                  </Route>
                   {routes}
                   <Route element={<NotFound />} />
                 </Routes>
