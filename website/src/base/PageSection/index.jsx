@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 
 import { Button, Drawer, Form, Input, Divider, Popover, Flex } from "antd";
-import { EditOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  PlusCircleOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 import SectionEditor from "./SectionEditor";
 
 import "./index.less";
@@ -11,6 +15,8 @@ const PageSection = ({
   sectionData,
   onNewSection,
   onConfirmChanges,
+  onRemoveSection,
+  editMode,
 }) => {
   const [openEditor, setOpenEditor] = useState(false);
   const [newSectionVisible, setNewSectionVisible] = useState(false);
@@ -27,6 +33,7 @@ const PageSection = ({
         x: "",
         y: "",
       },
+      status: "to_create",
     };
 
     if (section === "banner") {
@@ -40,6 +47,13 @@ const PageSection = ({
     }
   };
 
+  const handleRemoveSection = () => {
+    onRemoveSection({
+      ...sectionData,
+      status: "to_remove",
+    });
+  };
+
   const newSection = (
     <Flex vertical gap={8}>
       <Button onClick={() => handleNewSection("banner")}>Banner</Button>
@@ -49,36 +63,44 @@ const PageSection = ({
   );
 
   return (
-    <section className="page-section">
-      <Button
-        className="page-section__edit-btn"
-        onClick={() => setOpenEditor(true)}
-      >
-        <EditOutlined />
-      </Button>
-      <SectionEditor
-        onClose={() => setOpenEditor(false)}
-        open={openEditor}
-        sectionData={sectionData}
-        onConfirmChanges={onConfirmChanges}
-      />
+    <section className={editMode && "page-section"}>
       {children}
-      <div
-        className={`page-section__new ${
-          newSectionVisible && "page-section__new--visible"
-        }`}
-      >
-        <Popover
-          title="Nova seção"
-          trigger="click"
-          content={newSection}
-          onVisibleChange={setNewSectionVisible}
-        >
-          <Button>
-            <PlusCircleOutlined />
-          </Button>
-        </Popover>
-      </div>
+      {editMode && (
+        <div>
+          {sectionData && (
+            <div className="page-section__buttons-group">
+              <Button onClick={() => setOpenEditor(true)}>
+                <EditOutlined />
+              </Button>
+              <Button onClick={handleRemoveSection}>
+                <DeleteOutlined />
+              </Button>
+            </div>
+          )}
+          <SectionEditor
+            onClose={() => setOpenEditor(false)}
+            open={openEditor}
+            sectionData={sectionData}
+            onConfirmChanges={onConfirmChanges}
+          />
+          <div
+            className={`page-section__new ${
+              newSectionVisible && "page-section__new--visible"
+            }`}
+          >
+            <Popover
+              title="Nova seção"
+              trigger="click"
+              content={newSection}
+              onVisibleChange={setNewSectionVisible}
+            >
+              <Button>
+                <PlusCircleOutlined />
+              </Button>
+            </Popover>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

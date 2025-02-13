@@ -20,6 +20,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       onConfirmChanges({
         ...sectionData,
         ...form.getFieldsValue(),
+        status: "to_update",
       });
 
       if (onClose) {

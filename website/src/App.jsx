@@ -60,20 +60,26 @@ function App() {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: '#1178FF',
+          colorPrimary: "#1178FF",
           fontSize: 16,
-          borderRadius: 20
-        }
+          borderRadius: 20,
+        },
       }}
     >
       <BrowserRouter>
-        { Cluar.isGAEnabled() && <Route component={Analytics} />}
+        {Cluar.isGAEnabled() && <Route component={Analytics} />}
         <div className="page">
           <Layout>
             <BaseHeader />
             <Content>
               <Routes>
-                <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
+                <Route
+                  path="/"
+                  exact
+                  element={
+                    <Navigate to={`/${Cluar.currentLanguage().locale}/`} />
+                  }
+                />
                 {routes}
                 <Route element={<NotFound />} />
               </Routes>

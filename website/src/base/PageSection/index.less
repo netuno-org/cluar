@@ -8,7 +8,7 @@
     outline: 1px solid @primary-color;
     transition: outline 0.6s linear;
 
-    .page-section__edit-btn {
+    .page-section__buttons-group {
       opacity: 1;
       transition: opacity 0.2s linear;
     }
@@ -19,7 +19,10 @@
     }
   }
 
-  &__edit-btn {
+  &__buttons-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     position: absolute;
     top: 24px;
     right: 24px;
