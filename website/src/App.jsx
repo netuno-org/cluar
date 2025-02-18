@@ -46,7 +46,12 @@ function App() {
         continue;
       }
       subroutes.push(
-        <Route key={`/${language.locale}${page.link}`} path={`/${language.locale}${page.link}`} exact element={<Builder page={page} />} />
+        <Route
+          key={`/${language.locale}${page.link}`}
+          path={`/${language.locale}${page.link}`}
+          exact
+          element={<Builder page={page} />}
+        />
       );
     }
     routes.push(

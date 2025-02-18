@@ -6,6 +6,7 @@ import {
   PlusCircleOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
+
 import SectionEditor from "./SectionEditor";
 
 import "./index.less";
@@ -40,6 +41,8 @@ const PageSection = ({
       newSectionData.type = "default";
     } else if (section === "content") {
       newSectionData.type = "text";
+    } else if (section === "functionality") {
+      newSectionData.type = "contact-form";
     }
 
     if (onNewSection) {
@@ -59,6 +62,9 @@ const PageSection = ({
       <Button onClick={() => handleNewSection("banner")}>Banner</Button>
       <Button onClick={() => handleNewSection("listing")}>Lista</Button>
       <Button onClick={() => handleNewSection("content")}>Conteúdo</Button>
+      <Button onClick={() => handleNewSection("functionality")}>
+        Funcionalidade
+      </Button>
     </Flex>
   );
 

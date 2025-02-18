@@ -122,9 +122,29 @@ function Builder({ page }) {
         );
       } else if (item.section === "functionality") {
         if (item.type === "contact-form") {
-          components.push(<ContactForm key={uid} {...item} />);
+          components.push(
+            <PageSection
+              sectionData={item}
+              onNewSection={(data) => handleAddNewSection(data, uid)}
+              onConfirmChanges={(data) => handleChangeSection(data, uid)}
+              onRemoveSection={(data) => handleChangeSection(data, uid)}
+              editMode={editMode}
+            >
+              <ContactForm key={uid} {...item} />
+            </PageSection>
+          );
         } else if (item.type === "contact-map") {
-          components.push(<ContactMap key={uid} {...item} />);
+          components.push(
+            <PageSection
+              sectionData={item}
+              onNewSection={(data) => handleAddNewSection(data, uid)}
+              onConfirmChanges={(data) => handleChangeSection(data, uid)}
+              onRemoveSection={(data) => handleChangeSection(data, uid)}
+              editMode={editMode}
+            >
+              <ContactMap key={uid} {...item} />
+            </PageSection>
+          );
         }
       }
     }
@@ -146,11 +166,13 @@ function Builder({ page }) {
       </main>
     );
   }
+
   return (
     <main>
       <AdminBar
         onChangeEditMode={setEditMode}
         extra={hasDiff && extraBarAdmin}
+        pageData={page}
       />
       <PageSection
         editMode={editMode}

@@ -7,10 +7,13 @@ function Item({ section, type, image, image_title, image_alt, title, content, li
   let layout = null;
   if (type === 'YOUR-CUSTOM-TYPE-HERE') {
     layout = (
-      <Col className={`listing__item__${type}`} xs={12} lg={6}>
+      <Col className={`listing__item__${type}`} xs={12} lg={12}>
         <a href={link} alt={title}>
           <span>{title}</span>
-          <div className="listing__item__bgimage" style={{ backgroundImage: `url('/images/${section}/${image}')` }}></div>
+          <div
+            className="listing__item__bgimage"
+            style={{ backgroundImage: `url('/images/${section}/${image}')` }}
+          ></div>
         </a>
       </Col>
     );
