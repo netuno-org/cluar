@@ -1,0 +1,14 @@
+{
+    "_schema":"tags/user",
+    "summary":"Get user by uid",
+    "description":"Get user by uid",
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        }
+    },
+    "required":[
+        "uid"
+    ]
+}

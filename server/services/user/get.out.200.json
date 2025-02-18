@@ -1,0 +1,8 @@
+{
+    "type":"object",
+    "properties":{
+        "user":{
+            "_schema":"response/user"
+        }
+    }
+}
