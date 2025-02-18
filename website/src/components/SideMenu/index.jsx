@@ -11,21 +11,6 @@ import _auth from '@netuno/auth-client';
 
 import "./index.less"
 import { Link, useNavigate } from 'react-router-dom';
-const items = [
-  {
-    key: '1',
-    label: 'Configurações',
-    icon: <SettingOutlined />,
-    children: [
-      {
-        key: 'users',
-        label: 'Utilizadores',
-        icon: <UserOutlined />
-
-      }
-    ],
-  },
-];
 
 const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -35,7 +20,24 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  function onLogout () {
+  const items = [
+    {
+      key: '1',
+      label: 'Configurações',
+      icon: <SettingOutlined />,
+      children: [
+        {
+          key: 'users',
+          label: 'Utilizadores',
+          icon: <UserOutlined />,
+          onClick: () => navigate("/reserved-area/users")
+
+        }
+      ],
+    },
+  ];
+
+  function onLogout() {
     _auth.logout();
     navigate('/login');
   }
@@ -47,7 +49,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           <EditOutlined />&nbsp;&nbsp;&nbsp;Editar Perfil
         </Link></Menu.Item>
       <Menu.Item key="2">
-        <Button type="link" onClick={onLogout} danger style={{padding:"0px"}}>
+        <Button type="link" onClick={onLogout} danger style={{ padding: "0px" }}>
           <LogoutOutlined /> Terminar Sessão
         </Button>
       </Menu.Item>
@@ -101,8 +103,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         trigger={collapsed ? <MenuOutlined /> : <CloseOutlined />}
         collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}
         zeroWidthTriggerStyle={{
-          top: 15,
-          left: collapsed && 10
+          top: 7,
+          left: collapsed && 7
         }}
         theme='light'
         width={240}
@@ -142,8 +144,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         trigger={collapsed ? <MenuOutlined /> : <CloseOutlined />}
         collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}
         zeroWidthTriggerStyle={{
-          top: 15,
-          left: collapsed && 10
+          top: 7,
+          left: collapsed && 7
         }}
         theme='light'
         width={240}
@@ -153,7 +155,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
             <Col className='side-menu__user-info__content' span={24}>
               <Row className='side-menu__user-info__content__logo' justify={'center'}>
                 <Link>
-                  <Dropdown placement='bottom' overlay={menu} trigger={['hover']} arrow={{pointAtCenter: true,}}>
+                  <Dropdown placement='bottom' overlay={menu} trigger={['hover']} arrow={{ pointAtCenter: true, }}>
                     {avatarImageURL && <img src={avatarImageURL} alt="logo" />}
                   </Dropdown>
                 </Link>

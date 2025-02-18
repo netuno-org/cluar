@@ -6,7 +6,7 @@ import { PasswordInput } from "antd-password-input-strength";
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { loggedUserInfoReloadAction } from '../../redux/actions';
+import { loggedUserInfoReloadAction } from '../../../redux/actions';
 
 import _service from '@netuno/service-client';
 
