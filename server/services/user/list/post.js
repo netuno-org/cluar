@@ -47,6 +47,8 @@ const query = _db.form("people")
 .get("netuno_user.active")
 .get("netuno_group.name", "group_name")
 .get("netuno_group.code", "group_code")
+.order("people.id", "desc")
+.group("people.id, people.name, people.email, netuno_user.user, netuno_user.active, netuno_group.name, netuno_group.code")
 
 const pageUsers = query.page(page);
 const dbItems = pageUsers.getList("items") 

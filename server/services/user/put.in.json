@@ -20,7 +20,7 @@
             "type":"string-not-empty"
         },
         "password":{
-            "type":"string-not-empty"
+            "type":"string"
         },
         "group_code":{
             "type":"string-not-empty"
@@ -31,7 +31,6 @@
         "name",
         "email",
         "username",
-        "password",
         "group_code"
     ]
 }

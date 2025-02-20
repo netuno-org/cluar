@@ -14,12 +14,13 @@ import _service from '@netuno/service-client';
 
 import "./index.less"
 
-const UserModal = forwardRef(({ }, ref) => {
+const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [groups, setGroups] = useState([]);
     const [loadingGroup, setLoadingGroup] = useState(false);
     const [onFinishLoading, setOnFinishLoading] = useState(false);
     const [formRef] = Form.useForm();
+    const editMode = userData ? true : false;
 
     const configColumn = {
         xs: {
@@ -28,11 +29,6 @@ const UserModal = forwardRef(({ }, ref) => {
         sm: {
             span: 12
         }
-    }
-
-    const onCloseModal = () => {
-        setIsModalOpen(false);
-        formRef.resetFields();
     }
 
     const openModal = () => {
@@ -60,33 +56,77 @@ const UserModal = forwardRef(({ }, ref) => {
 
     useImperativeHandle(ref, () => {
         return {
-            openModal
-        }
+            openModal,
+        };
     }, []);
 
+
+    useEffect(() => {
+        if (editMode && isModalOpen) {
+            formRef.setFieldsValue({
+                ...userData,
+                group_code: {
+                    value: userData.group.code,
+                    label: userData.group.name
+                }
+            })
+        }
+    }, [isModalOpen])
+
     const onFinish = (values) => {
+        const data = {
+            ...values,
+            group_code: values.group_code.value
+        }
         setOnFinishLoading(true);
-        _service({
-            method: "POST",
-            url: "user/",
-            data:{
-                ...values
-            },
-            success: (response) => {
-               setOnFinishLoading(false);
-               notification.success({
-                message:"Utilizador registado com sucesso."
-               });
-               onCloseModal();
-            },
-            fail: (error) => {
-               setOnFinishLoading(false);
-                console.error(error);
-                notification.error({
-                    message: "Falha ao registar utilizador."
-                })
-            }
-        })
+        if (userData) {
+            _service({
+                method: "PUT",
+                url: "user/",
+                data: {
+                    ...data,
+                    uid: userData.uid
+                },
+                success: (response) => {
+                    setOnFinishLoading(false);
+                    notification.success({
+                        message: "Utilizador atulizado com sucesso."
+                    });
+                    setIsModalOpen(false);
+                    onReloadTable();
+                },
+                fail: (error) => {
+                    setOnFinishLoading(false);
+                    console.error(error);
+                    notification.error({
+                        message: "Falha ao atulizar utilizador."
+                    })
+                }
+            })
+        } else {
+            _service({
+                method: "POST",
+                url: "user/",
+                data: {
+                    ...data
+                },
+                success: (response) => {
+                    setOnFinishLoading(false);
+                    notification.success({
+                        message: "Utilizador registado com sucesso."
+                    });
+                    setIsModalOpen(false);
+                    onReloadTable();
+                },
+                fail: (error) => {
+                    setOnFinishLoading(false);
+                    console.error(error);
+                    notification.error({
+                        message: "Falha ao registar utilizador."
+                    })
+                }
+            })
+        }
     }
 
     useEffect(() => {
@@ -96,17 +136,19 @@ const UserModal = forwardRef(({ }, ref) => {
     return (
         <div className="modal-content">
             <Modal
-                title="Novo Utilizador"
+                title={userData ? "Editar Utilizador" : "Novo Utilizador"}
                 maskClosable={false}
+                destroyOnClose={true}
                 centered
                 open={isModalOpen}
                 onOk={() => { }}
-                onCancel={onCloseModal}
+                onCancel={() => setIsModalOpen(false)}
+                afterClose={() => formRef.resetFields()}
                 footer={[
-                    <Button key="back" onClick={onCloseModal}>
+                    <Button key="back" onClick={() => setIsModalOpen(false)}>
                         Cancelar
                     </Button>,
-                    <Button key="send" type="primary" onClick={() => {formRef.submit()}} loading={onFinishLoading}>
+                    <Button key="send" type="primary" onClick={() => { formRef.submit() }} loading={onFinishLoading}>
                         Guardar
                     </Button>
                 ]}
@@ -148,9 +190,9 @@ const UserModal = forwardRef(({ }, ref) => {
                             <Form.Item
                                 label="Palavra-passe"
                                 name="password"
-                                rules={[{ required: true, message: "Insira uma palavra-passe." }]}
+                                rules={[{ required: userData ? false : true, message: "Insira uma palavra-passe." }]}
                             >
-                                <Input.Password />
+                                <Input.Password autoComplete="off" />
                             </Form.Item>
                         </Col>
                         <Col {...configColumn}>
@@ -170,6 +212,7 @@ const UserModal = forwardRef(({ }, ref) => {
                             >
                                 <Select
                                     loading={loadingGroup}
+                                    labelInValue={true}
                                     options={groups.map((group) => ({
                                         value: group.code, label: group.name
                                     }))}

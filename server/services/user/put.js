@@ -97,3 +97,8 @@ _db.update(
     peopleData
 );
 
+_out.json(
+    _val.map()
+        .set('result', true)
+)
+
