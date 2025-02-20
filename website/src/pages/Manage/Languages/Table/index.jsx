@@ -10,6 +10,10 @@ const LanguageTable = forwardRef(({}, ref) => {
         key:"",
         isLoading:false
     });
+    const [loadingChangeDefult, setLoadingChangeDefult] = useState({
+        key:"",
+        isLoading:false
+    });
     const [filters, setFilters] = useState({});
     const [pagination, setPagination] = useState({
         page:1,
@@ -69,6 +73,9 @@ const LanguageTable = forwardRef(({}, ref) => {
                         return item;
                     })
                 });
+                notification.success({
+                    message:`Idioma ${active ? "desactivado" : "activado"} com sucesso.`
+                })
             },
             fail: (error) => {
                 setActiveLoading({
@@ -81,6 +88,53 @@ const LanguageTable = forwardRef(({}, ref) => {
                 });
             }
         })
+    }
+
+    const onChangeDefaultLanguage = (data) => {
+        if (data) {
+            setLoadingChangeDefult({
+                key:data.uid,
+                isLoading:true
+            });
+            _service({
+                url:"language",
+                method:"PUT",
+                data:{
+                    ...data,
+                    default:!data.default
+                },
+                success: (response) => {
+                    setLoadingChangeDefult({
+                        key:data.uid,
+                        isLoading:false
+                    });
+                    setData((prev) => {
+                        return prev.map((item) => {
+                            if (item.uid === data.uid) {
+                                return ({
+                                    ...item,
+                                    default:!item.default
+                                })
+                            }
+                            return item;
+                        })
+                    });
+                    notification.success({
+                        message:`Idioma editado com sucesso.`
+                    });
+                },
+                fail: (error) => {
+                    setLoadingChangeDefult({
+                        key:data.uid,
+                        isLoading:false
+                    });
+                    console.log(error);
+                    notification.error({
+                        message:`Falha ao editar idioma.`
+                    });
+                }
+            })
+        }
     }
 
     const onReloadTable = () => {
@@ -129,6 +183,11 @@ const LanguageTable = forwardRef(({}, ref) => {
                 <Switch
                     size="small"
                     checked={val}
+                    loading={loadingChangeDefult.key === record.uid && loadingChangeDefult.isLoading}
+                    disabled={loadingChangeDefult.key === record.uid && loadingChangeDefult.isLoading}
+                    onChange={() => {
+                        onChangeDefaultLanguage(record);
+                    }}
                 />
             )
         },
