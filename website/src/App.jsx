@@ -22,6 +22,7 @@ import Register from './pages/Register';
 import ReservedArea from './pages/reservedArea';
 import Profile from './pages/Manage/Profile';
 import Users from './pages/Manage/Users';
+import Languages from './pages/Manage/Languages';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
@@ -88,6 +89,7 @@ function App() {
                   <Route path="/reserved-area" element={<ReservedArea />}> 
                       <Route path="profile" element={<Profile/>}/>
                       <Route path="users" element={<Users/>}/>
+                      <Route path="languages" element={<Languages/>}/>
                   </Route>
                   {routes}
                   <Route element={<NotFound />} />

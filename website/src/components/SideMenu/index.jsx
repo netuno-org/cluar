@@ -1,6 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { SettingOutlined, UserOutlined, MenuOutlined, CloseOutlined, EditOutlined, LogoutOutlined } from '@ant-design/icons';
-import { Col, Layout, Menu, Row, Typography, notification, Dropdown, Skeleton, Button } from 'antd';
+import { 
+  SettingOutlined, 
+  UserOutlined, 
+  MenuOutlined, 
+  CloseOutlined, 
+  EditOutlined, 
+  LogoutOutlined,
+  GlobalOutlined 
+} from '@ant-design/icons';
+import { 
+  Col, 
+  Layout, 
+  Menu, 
+  Row, 
+  Typography, 
+  notification, 
+  Dropdown, 
+  Skeleton, 
+  Button 
+} from 'antd';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -31,6 +49,13 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           label: 'Utilizadores',
           icon: <UserOutlined />,
           onClick: () => navigate("/reserved-area/users")
+
+        },
+        {
+          key: 'languages',
+          label: 'Idiomas',
+          icon: <GlobalOutlined />,
+          onClick: () => navigate("/reserved-area/languages")
 
         }
       ],
