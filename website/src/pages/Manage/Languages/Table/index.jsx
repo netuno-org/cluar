@@ -16,7 +16,7 @@ const LanguageTable = forwardRef(({}, ref) => {
         size:10
     });
 
-    const onLoadLanguage = () => {
+    const onLoadLanguages = () => {
         setLoading(true);
         _service({
             url:"language/list",
@@ -83,6 +83,12 @@ const LanguageTable = forwardRef(({}, ref) => {
         })
     }
 
+    const onReloadTable = () => {
+        setFilters({});
+        setPagination({page:1, size:0});
+        onLoadLanguages();
+    }
+
     const columns = [
         {
             title: 'Active',
@@ -130,13 +136,17 @@ const LanguageTable = forwardRef(({}, ref) => {
 
     useImperativeHandle(ref, () => {
         return {
-
+            onReloadTable
         }
     }, []);
 
     useEffect(() => {
-        onLoadLanguage();
+        onLoadLanguages();
     },[])
+
+    useEffect(() => {
+        onLoadLanguages();
+    },[pagination])
 
     return (
         <div>
@@ -145,6 +155,13 @@ const LanguageTable = forwardRef(({}, ref) => {
                 dataSource={data}
                 loading={loading}
                 scroll={{ x: 600 }}
+                pagination={{
+                    total:total,
+                    pageSize:pagination.size,
+                    current:pagination.page,
+                    position:["topRight", "bottomRight"],
+                    onChange:(current) => {setPagination({page:current, size:pagination.size})}
+                }}
             />
         </div>
     )
