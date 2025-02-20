@@ -25,7 +25,7 @@ const Languages = () => {
                             <Button
                                 type="primary"
                                 icon={<PlusOutlined />}
-                                onClick={() => userModalRef.current.openModal()}
+                                onClick={() => {}}
                             >
                                 Novo
                             </Button>

@@ -6,6 +6,10 @@ const LanguageTable = forwardRef(({}, ref) => {
     const [data, setData] = useState([]);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [activeLoading, setActiveLoading] = useState({
+        key:"",
+        isLoading:false
+    });
     const [filters, setFilters] = useState({});
     const [pagination, setPagination] = useState({
         page:1,
@@ -37,6 +41,48 @@ const LanguageTable = forwardRef(({}, ref) => {
         })
     }
 
+    const onActive = ({uid, active}) => {
+        setActiveLoading({
+            key:uid,
+            isLoading:true
+        });
+        _service({
+            url:"language/active",
+            method:"PUT",
+            data:{
+                uid,
+                active:!active
+            },
+            success: (response) => {
+                setActiveLoading({
+                    key:uid,
+                    isLoading:false
+                });
+                setData((prev) => {
+                    return prev.map((item) => {
+                        if (item.uid === uid) {
+                            return ({
+                                ...item,
+                                active:!active
+                            })
+                        }
+                        return item;
+                    })
+                });
+            },
+            fail: (error) => {
+                setActiveLoading({
+                    key:uid,
+                    isLoading:false
+                });
+                console.log(error);
+                notification.error({
+                    message:`Falha ao ${active ? "desactivar" : "activar"} idioma.`
+                });
+            }
+        })
+    }
+
     const columns = [
         {
             title: 'Active',
@@ -46,6 +92,11 @@ const LanguageTable = forwardRef(({}, ref) => {
                 <Switch
                     size="small"
                     checked={val}
+                    loading={activeLoading.key === record.uid && activeLoading.isLoading}
+                    disabled={activeLoading.key === record.uid && activeLoading.isLoading}
+                    onChange={() => {
+                        onActive({uid:record.uid, active:val});
+                    }}
                 />
             )
         },
