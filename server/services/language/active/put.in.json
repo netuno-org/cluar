@@ -1,0 +1,18 @@
+{
+    "_schema":"tags/language",
+    "summary":"Active/Desactive an existente language by uid",
+    "description":"Active/Desactive an existente language by uid",
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        },
+        "active":{
+            "type":"boolean"
+        }
+    },
+    "required":[
+        "uid",
+        "active"
+    ]
+}

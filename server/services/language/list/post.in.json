@@ -1,0 +1,15 @@
+{
+    "summary":"get all languages with filters and pagination",
+    "description":"get all languages with filters and pagination",
+    "_schema":"tags/language",
+    "type":"object",
+    "properties":{
+        "pagination":{
+            "_schema":"request/pagination"
+        },
+        "filters":{
+            "type":"object",
+            "properties":{}
+        }
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        },
+        "active":{
+            "type":"boolean"
+        },
+        "default":{
+            "type":"boolean"
+        },
+        "code":{
+            "type":"string"
+        },
+        "description":{
+            "type":"string"
+        },
+        "locale":{
+            "type":"string"
+        }
+    }
+}

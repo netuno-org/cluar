@@ -1,0 +1,11 @@
+{
+    "type":"object",
+    "properties":{
+        "language":{
+            "_schema":"response/language"
+        },
+        "result":{
+            "type":"boolean"
+        }
+    }
+}
