@@ -7,14 +7,20 @@ import { PlusOutlined } from "@ant-design/icons"
 
 import HeadTitle from "../../../components/HeadTitle";
 import LanguageTable from "./Table";
+import LanguageModal from "./Modal";
 
 import "./index.less"
 import { useRef } from "react";
 
 const Languages = () => {
     const languageTableRef = useRef();
+    const languageModalRef = useRef();
     return (
         <div className="languages-page">
+            <LanguageModal
+                ref={languageModalRef}
+                onReloadTable={() => languageTableRef.current.onReloadTable()}
+            />
             <Row gutter={[0, 40]} >
                 <Col span={24}>
                     <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
@@ -25,7 +31,7 @@ const Languages = () => {
                             <Button
                                 type="primary"
                                 icon={<PlusOutlined />}
-                                onClick={() => {}}
+                                onClick={() => {languageModalRef.current.openModal()}}
                             >
                                 Novo
                             </Button>
@@ -35,7 +41,9 @@ const Languages = () => {
                 <Col span={24}>
                     <Row>
                         <Col span={24}>
-                            <LanguageTable/>
+                            <LanguageTable
+                                ref={languageTableRef}
+                            />
                         </Col>
                     </Row>
                 </Col>
