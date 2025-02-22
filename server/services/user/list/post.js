@@ -36,10 +36,12 @@ const query = _db.form("people")
     ).join(
        _db.manyToOne(
             "netuno_group",
-            "group_id"
+            "group_id",
+            groupWhere
        )
     )
 )
+.where(peopleWhere)
 .get("people.name")
 .get("people.uid")
 .get("people.email")

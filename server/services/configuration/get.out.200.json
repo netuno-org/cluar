@@ -1,0 +1,11 @@
+{
+    "type":"object",
+    "properties":{
+        "configuration":{
+            "_schema":"response/configuration"
+        },
+        "result":{
+            "type":"boolean"
+        }
+    }
+}
