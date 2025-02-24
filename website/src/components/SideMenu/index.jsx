@@ -57,6 +57,13 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           icon: <GlobalOutlined />,
           onClick: () => navigate("/reserved-area/languages")
 
+        },
+        {
+          key: 'configuration',
+          label: 'Configurações',
+          icon: <SettingOutlined />,
+          onClick: () => navigate("/reserved-area/configuration")
+
         }
       ],
     },
