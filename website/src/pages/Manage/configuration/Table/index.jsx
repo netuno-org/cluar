@@ -9,9 +9,13 @@ import _service from "@netuno/service-client";
 import ConfigurationModal from "../Modal";
 
 const ConfigurationTable = forwardRef(({}, ref) => {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState({
+        configuration:false,
+        language:false
+    });
     const [data, setData] = useState(false);
     const [total, setTotal] = useState(false);
+    const [languages, setLanguages] = useState([]);
     const [filters, setFilters] = useState({});
     const configurationModalRef = useRef();
     const [configurationData, setConfigurationData] = useState(null);
@@ -21,7 +25,7 @@ const ConfigurationTable = forwardRef(({}, ref) => {
     });
 
     const onLoadConfigurations = () => {
-        setLoading(true);
+        setLoading({...loading, configuration:true});
         _service({
             url:"configuration/list",
             method:"POST",
@@ -30,13 +34,13 @@ const ConfigurationTable = forwardRef(({}, ref) => {
                 pagination
             },
             success: (response) => {
-                setLoading(false);
+                setLoading({...loading, configuration:false});
                 const { totalElements, items } = response.json.page;
                 setData(items);
                 setTotal(totalElements);
             },
             fail: (error) => {
-                setLoading(false);
+                setLoading({...loading, configuration:false});
                 console.log(error);
                 notification.error({
                     message:"Falha ao carregar configurações."
@@ -44,6 +48,26 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             }
         });
     }
+
+    const onLoadLanguages = () => {
+            setLoading({ ...loading, language: true });
+            _service({
+                url: "language/list",
+                method: "POST",
+                success: (response) => {
+                    setLoading({ ...loading, language: false });
+                    const { items } = response.json.page;
+                    setLanguages(items);
+                },
+                fail: (error) => {
+                    setLoading({ ...loading, language: false });
+                    console.error(error);
+                    notification.error({
+                        message: "Falha ao carregar idiomas."
+                    })
+                }
+            })
+        }
 
     const onReloadTable = () => {
         setFilters({});
@@ -62,14 +86,24 @@ const ConfigurationTable = forwardRef(({}, ref) => {
 
     useEffect(() => {
         onLoadConfigurations();
+        onLoadLanguages();
     },[]);
+
+    useEffect(() => {
+        onLoadConfigurations();
+    },[pagination, filters]);
 
     const columns = [
         {
             title: 'Idioma',
             dataIndex: 'language',
-            key: 'parameter',
-            render:(val) => val.description
+            key: 'language_codes',
+            render:(val) => val.description,
+            filtered: filters.language_codes,
+            filters: languages.map((language) => ({
+                text: language.description,
+                value: language.code
+            }))
         },
         {
             title: 'Parâmetro',
@@ -109,12 +143,25 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             <Table
                 columns={columns}
                 dataSource={data}
-                loading={loading}
+                loading={loading.configuration}
                 pagination={{
                     onChange: (current) => {setPagination({page:current, size:pagination.size})},
                     total:total,
                     position:["bottomRight", "topRight"],
                     pageSize:pagination.size
+                }}
+                onChange={(pagination, currentFilters, currentSorter, { action }) => {
+                    if (action === "filter") {
+                        const newFilters = {
+                            ...filters
+                        }
+                        Object.keys(currentFilters).forEach((key) => {
+                            const value = currentFilters[key];
+
+                            newFilters[key] = value;
+                        })
+                        setFilters(newFilters);
+                    }
                 }}
             />
         </div>
