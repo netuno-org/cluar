@@ -109,6 +109,7 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             <Table
                 columns={columns}
                 dataSource={data}
+                loading={loading}
                 pagination={{
                     onChange: (current) => {setPagination({page:current, size:pagination.size})},
                     total:total,

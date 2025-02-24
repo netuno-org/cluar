@@ -84,9 +84,9 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
             setLoading({ ...loading, save: true });
             _service({
                 url: "configuration",
-                method: "POST",
+                method: "PUT",
                 data: {
-                    uid: configColumn.uid,
+                    uid: configurationData.uid,
                     ...data
                 },
                 success: (reponse) => {
@@ -106,10 +106,11 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                 }
             });
         } else {
+            console.log("ta batendo aqui")
             setLoading({ ...loading, save: true });
             _service({
                 url: "configuration",
-                method: "PUT",
+                method: "POST",
                 data: {
                     ...data
                 },
