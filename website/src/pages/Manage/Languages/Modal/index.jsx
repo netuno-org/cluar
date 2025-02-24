@@ -109,6 +109,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
             onCancel={() => setIsModalOpen(false)}
             onClose={() => setIsModalOpen(false)}
             destroyOnClose
+            maskClosable={false}
             afterClose={() => formRef.resetFields()}
             centered
             footer={[
