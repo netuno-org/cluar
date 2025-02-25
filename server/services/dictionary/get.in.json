@@ -1,0 +1,14 @@
+{
+    "_schema":"tags/dictionary",
+    "summary":"Get a dictionary by uid",
+    "description":"Get a dictionary by uid",
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        }
+    },
+    "required":[
+        "uid"
+    ]
+}

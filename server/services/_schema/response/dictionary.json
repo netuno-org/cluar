@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "properties": {
+        "uid": {
+            "type": "uuid"
+        },
+        "value": {
+            "type": "string"
+        },
+        "language": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        },
+        "entry": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

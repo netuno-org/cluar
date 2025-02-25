@@ -1,0 +1,22 @@
+{
+    "_schema":"tags/dictionary",
+    "summary":"Register a new dictionary",
+    "description":"Register a new dictionary",
+    "type":"object",
+    "properties":{
+        "value":{
+            "type":"string"
+        },
+        "language_code":{
+            "type":"string"
+        },
+        "entry_code":{
+            "type":"string"
+        }
+    },
+    "required":[
+        "value",
+        "language_code",
+        "entry_code"
+    ]
+}
