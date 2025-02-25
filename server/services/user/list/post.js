@@ -45,12 +45,18 @@ const query = _db.form("people")
 .get("people.name")
 .get("people.uid")
 .get("people.email")
+.get("netuno_user.id", "netuno_user_id")
 .get("netuno_user.user")
 .get("netuno_user.active")
+.get("netuno_group.id", "group_id")
 .get("netuno_group.name", "group_name")
 .get("netuno_group.code", "group_code")
+.group(
+    'people.id',
+    'netuno_user.id',
+    'netuno_group.id'
+)
 .order("people.id", "desc")
-.group("people.id, people.name, people.email, netuno_user.user, netuno_user.active, netuno_group.name, netuno_group.code")
 
 const pageUsers = query.page(page);
 const dbItems = pageUsers.getList("items") 

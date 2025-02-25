@@ -37,13 +37,22 @@ const query = _db.form('configuration')
     'language',
     where.get('language')
 )
+.get('configuration.id', 'configuration_id')
 .get('configuration.value')
 .get('configuration.uid', 'configuration_uid')
 .get('configuration.active', 'configuration_active')
+.get('language.id', 'language_id')
 .get('language.description', 'language_description')
 .get('language.code', 'languge_code')
+.get('configuration_parameter.id', 'parameter_id')
 .get('configuration_parameter.code', 'parameter_code')
 .get('configuration_parameter.description', 'parameter_description')
+.group(
+    'configuration.id',
+    'language.id',
+    'configuration_parameter.id'
+)
+.order('configuration.id', 'desc')
 
 const dbPage = query.page(page);
 const items = _val.list();
