@@ -23,7 +23,7 @@ import ReservedArea from './pages/reservedArea';
 import Profile from './pages/Manage/Profile';
 import Users from './pages/Manage/Users';
 import Languages from './pages/Manage/Languages';
-import Configuration from './pages/Manage/configuration';
+import Configuration from './pages/Manage/Configuration';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
