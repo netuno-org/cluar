@@ -143,6 +143,7 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             <Table
                 columns={columns}
                 dataSource={data}
+                scroll={{ x: 600 }}
                 loading={loading.configuration}
                 pagination={{
                     onChange: (current) => {setPagination({page:current, size:pagination.size})},

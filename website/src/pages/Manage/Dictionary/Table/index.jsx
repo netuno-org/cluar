@@ -129,6 +129,7 @@ const DictionaryTable = () => {
                 columns={columns}
                 loading={loading.dictionary}
                 dataSource={data}
+                scroll={{ x: 600 }}
                 pagination={{
                     pageSize: pagination.size,
                     total: total,
