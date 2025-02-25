@@ -64,6 +64,13 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           icon: <SettingOutlined />,
           onClick: () => navigate("/reserved-area/configuration")
 
+        },
+        {
+          key: 'dictionary',
+          label: 'Dicionários',
+          icon: <SettingOutlined />,
+          onClick: () => navigate("/reserved-area/dictionary")
+
         }
       ],
     },
