@@ -13,11 +13,13 @@ import { useRef } from "react";
 
 const Dictionary = () => {
     const dictionaryModalRef = useRef();
+    const dictionaryTableRef = useRef();
 
     return (
         <div className="dictionary-page">
             <DictionaryModal
                 ref={dictionaryModalRef}
+                onReloadTable={() => dictionaryTableRef.current.onReloadTable()}
             />
             <Row gutter={[0, 40]} >
                 <Col span={24}>
@@ -39,7 +41,9 @@ const Dictionary = () => {
                 <Col span={24}>
                     <Row>
                         <Col span={24}>
-                            <DictionaryTable/>
+                            <DictionaryTable
+                                ref={dictionaryTableRef}
+                            />
                         </Col>
                     </Row>
                 </Col>

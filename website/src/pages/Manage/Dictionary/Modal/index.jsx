@@ -5,7 +5,8 @@ import {
     Row,
     Col,
     Select,
-    Input
+    Input,
+    notification
 } from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import _service from "@netuno/service-client";
@@ -26,7 +27,8 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     const [entries, setEntries] = useState([]);
     const [loading, setLoading] = useState({
         language: false,
-        entry: false
+        entry: false,
+        save:false
     });
 
     const onOpenModal = () => {
@@ -72,6 +74,42 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
         })
     }
 
+    const onFinish = (values) => {
+        console.log(values)
+        const data = {
+            ...values,
+            language_code:values.language_code.value,
+            entry_code:values.entry_code.value
+        }
+        if (editeMode) {
+
+        } else {
+            setLoading({...loading, save:true});
+            _service({
+                url:"dictionary",
+                method:"POST",
+                data:{
+                    ...data
+                },
+                success: (response) => {
+                    setLoading({...loading, save:false});
+                    notification.success({
+                        message:"Dicionário registado com sucesso."
+                    });
+                    setIsModalOpen(false);
+                    onReloadTable();
+                },
+                fail: (error) => {
+                    console.error(error);
+                    setLoading({...loading, save:false});
+                    notification.success({
+                        message:"Dicionário editado com sucesso."
+                    });
+                }
+            });
+        }
+    }
+
     useImperativeHandle(ref, () => {
         return {
             onOpenModal
@@ -113,6 +151,8 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 <Button onClick={() => setIsModalOpen(false)} >Cancelar</Button>,
                 <Button
                     type="primary"
+                    onClick={() => formRef.submit()}
+                    loading={loading.save}
                 >
                     Guardar
                 </Button>
@@ -121,6 +161,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
             <Form
                 layout="vertical"
                 form={formRef}
+                onFinish={onFinish}
             >
                 <Row justify={"space-between"} align={"middle"} gutter={[10, 0]} >
                     <Col span={24}>
@@ -130,6 +171,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                             rules={[{ required: true, message: "Selecione um idioma." }]}
                         >
                             <Select
+                                labelInValue
                                 options={languages.map((language) => ({
                                     label: language.description,
                                     value: language.code
@@ -144,6 +186,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                             rules={[{ required: true, message: "Selecione uma chave." }]}
                         >
                             <Select
+                                labelInValue
                                 showSearch
                                 optionFilterProp="label"
                                 listHeight={200}
