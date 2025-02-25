@@ -139,7 +139,7 @@ const DictionaryTable = forwardRef(({}, ref) => {
             <DictionaryModal
                 ref={dictionaryModalRef}
                 dictionaryData={dictionaryData}
-                onRelaodTable={onReloadTable}
+                onReloadTable={onReloadTable}
             />
             <Table
                 columns={columns}

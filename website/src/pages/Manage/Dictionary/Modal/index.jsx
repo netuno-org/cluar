@@ -82,7 +82,30 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
             entry_code:values.entry_code.value
         }
         if (editeMode) {
-
+            setLoading({...loading, save:true});
+            _service({
+                url:"dictionary",
+                method:"PUT",
+                data:{
+                    uid:dictionaryData.uid,
+                    ...data
+                },
+                success: (response) => {
+                    setLoading({...loading, save:false});
+                    notification.success({
+                        message:"Dicionário editado com sucesso."
+                    });
+                    setIsModalOpen(false);
+                    onReloadTable();
+                },
+                fail: (error) => {
+                    console.error(error);
+                    setLoading({...loading, save:false});
+                    notification.error({
+                        message:"Falha ao editar Dicionário."
+                    });
+                }
+            });
         } else {
             setLoading({...loading, save:true});
             _service({
@@ -102,8 +125,8 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 fail: (error) => {
                     console.error(error);
                     setLoading({...loading, save:false});
-                    notification.success({
-                        message:"Dicionário editado com sucesso."
+                    notification.error({
+                        message:"Falha ao registar Dicionário."
                     });
                 }
             });
