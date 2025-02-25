@@ -12,35 +12,57 @@ const DictionaryTable = () => {
     const [data, setData] = useState([]);
     const [total, setTotal] = useState(0);
     const [filters, setFilters] = useState({});
+    const [languages, setLanguages] = useState([]);
     const [pagination, setPagination] = useState({
-        page:1,
-        size:10
+        page: 1,
+        size: 10
     });
     const [loading, setLoading] = useState({
-        dictionary:false
+        dictionary: false,
+        language: false
     });
 
     const onLoadDictionaries = () => {
-        setLoading({...loading, dictionary:true});
+        setLoading({ ...loading, dictionary: true });
         _service({
-            url:"dictionary/list",
-            method:"POST",
-            data:{
+            url: "dictionary/list",
+            method: "POST",
+            data: {
                 filters,
                 pagination
             },
             success: (response) => {
-                setLoading({...loading, dictionary:false});
+                setLoading({ ...loading, dictionary: false });
                 const { totalElements, items } = response.json.page;
                 setData(items);
                 setTotal(totalElements);
             },
             fail: (error) => {
-                setLoading({...loading, dictionary:false});
+                setLoading({ ...loading, dictionary: false });
                 console.log(error);
                 notification.error({
-                    message:"Falha ao carregar Dicionários."
+                    message: "Falha ao carregar Dicionários."
                 });
+            }
+        })
+    }
+
+    const onLoadLanguages = () => {
+        setLoading({ ...loading, language: true });
+        _service({
+            url: "language/list",
+            method: "POST",
+            success: (response) => {
+                setLoading({ ...loading, language: false });
+                const { items } = response.json.page;
+                setLanguages(items);
+            },
+            fail: (error) => {
+                setLoading({ ...loading, language: false });
+                console.error(error);
+                notification.error({
+                    message: "Falha ao carregar idiomas."
+                })
             }
         })
     }
@@ -48,26 +70,32 @@ const DictionaryTable = () => {
     const onRelaodTable = () => {
         setFilters({});
         setPagination({
-            page:1,
-            size:10
+            page: 1,
+            size: 10
         });
         onLoadDictionaries();
     }
 
     useEffect(() => {
         onLoadDictionaries();
-    },[]);
+        onLoadLanguages();
+    }, []);
 
     useEffect(() => {
         onLoadDictionaries();
-    }, [pagination]) 
+    }, [pagination, filters])
 
     const columns = [
         {
             title: 'Idioma',
             dataIndex: 'language',
-            key: 'language_code',
-            render: (val) => val.description
+            key: 'language_codes',
+            render: (val) => val.description,
+            filtered: filters.language_codes,
+            filters: languages.map((language) => ({
+                text: language.description,
+                value: language.code
+            }))
         },
         {
             title: 'Chave',
@@ -88,24 +116,37 @@ const DictionaryTable = () => {
                 <Button
                     type="text"
                     title="Editar"
-                    icon={<EditOutlined/>}
-                    onClick={() => {}}
+                    icon={<EditOutlined />}
+                    onClick={() => { }}
                 />
             )
         }
     ]
 
-    return(
+    return (
         <div>
             <Table
                 columns={columns}
                 loading={loading.dictionary}
                 dataSource={data}
                 pagination={{
-                    pageSize:pagination.size,
-                    total:total,
-                    position:["bottomRight", "topRight"],
-                    onChange: (current) => {setPagination({...pagination, page:current})} 
+                    pageSize: pagination.size,
+                    total: total,
+                    position: ["bottomRight", "topRight"],
+                    onChange: (current) => { setPagination({ ...pagination, page: current }) }
+                }}
+                onChange={(pagination, currentFilters, currentSorter, { action }) => {
+                    if (action === "filter") {
+                        const newFilters = {
+                            ...filters
+                        }
+                        Object.keys(currentFilters).forEach((key) => {
+                            const value = currentFilters[key];
+
+                            newFilters[key] = value;
+                        })
+                        setFilters(newFilters);
+                    }
                 }}
             />
         </div>

@@ -2,6 +2,7 @@ const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
 const page = _db.pagination(1, 10);
 const where = _val.map()
+    .set('language', _db.where())
 
 if (pagination) {
     page.size(pagination.getInt("size"));
@@ -13,12 +14,17 @@ if (pagination) {
 }
 
 if (filters) {
+    const languageCodes = filters.has('language_codes') && filters.getList('language_codes');
 
+    if (languageCodes && languageCodes.size() > 0) {
+        where.get('language').and('code').in(languageCodes);
+    }
 }
 
 const query = _db.form('dictionary')
 .link(
-    'language'
+    'language',
+    where.get('language')
 )
 .link(
     'dictionary_entry'

@@ -24,6 +24,7 @@ import Profile from './pages/Manage/Profile';
 import Users from './pages/Manage/Users';
 import Languages from './pages/Manage/Languages';
 import Configuration from './pages/Manage/Configuration';
+import Dictionary from './pages/Manage/Dictionary';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
@@ -92,6 +93,7 @@ function App() {
                       <Route path="users" element={<Users/>}/>
                       <Route path="languages" element={<Languages/>}/>
                       <Route path="configuration" element={<Configuration/>}/>
+                      <Route path="dictionary" element={<Dictionary/>}/>
                   </Route>
                   {routes}
                   <Route element={<NotFound />} />
