@@ -10,7 +10,7 @@ import {
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import _service from "@netuno/service-client";
 
-const DictionaryModal = forwardRef(({ dictionaryData }, ref) => {
+const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     const configColumn = {
         xs: {
             span: 24
@@ -81,7 +81,23 @@ const DictionaryModal = forwardRef(({ dictionaryData }, ref) => {
     useEffect(() => {
         onLoadEntries();
         onLoadLanguages();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        if (editeMode && isModalOpen) {
+            formRef.setFieldsValue({
+                ...dictionaryData,
+                language_code:{
+                    label:dictionaryData.language.description,
+                    value:dictionaryData.language.code
+                },
+                entry_code:{
+                    label:dictionaryData.entry.description,
+                    value:dictionaryData.entry.code
+                }
+            });
+        }
+    }, [isModalOpen])
 
     return (
         <Modal
@@ -104,6 +120,7 @@ const DictionaryModal = forwardRef(({ dictionaryData }, ref) => {
         >
             <Form
                 layout="vertical"
+                form={formRef}
             >
                 <Row justify={"space-between"} align={"middle"} gutter={[10, 0]} >
                     <Col span={24}>
@@ -122,7 +139,7 @@ const DictionaryModal = forwardRef(({ dictionaryData }, ref) => {
                     </Col>
                     <Col span={24}>
                         <Form.Item
-                            name="Entry_code"
+                            name="entry_code"
                             label="Chave"
                             rules={[{ required: true, message: "Selecione uma chave." }]}
                         >

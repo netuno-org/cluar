@@ -5,14 +5,16 @@ import {
     Table
 } from "antd";
 import { EditOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
+import DictionaryModal from "../Modal";
 
 const DictionaryTable = () => {
     const [data, setData] = useState([]);
     const [total, setTotal] = useState(0);
     const [filters, setFilters] = useState({});
     const [languages, setLanguages] = useState([]);
+    const [dictionaryData, setDictionaryData] = useState(null);
+    const dictionaryModalRef = useRef();
     const [pagination, setPagination] = useState({
         page: 1,
         size: 10
@@ -117,7 +119,10 @@ const DictionaryTable = () => {
                     type="text"
                     title="Editar"
                     icon={<EditOutlined />}
-                    onClick={() => { }}
+                    onClick={() => {
+                        setDictionaryData(record);
+                        dictionaryModalRef.current.onOpenModal();
+                     }}
                 />
             )
         }
@@ -125,6 +130,11 @@ const DictionaryTable = () => {
 
     return (
         <div>
+            <DictionaryModal
+                ref={dictionaryModalRef}
+                dictionaryData={dictionaryData}
+                onRelaodTable={onRelaodTable}
+            />
             <Table
                 columns={columns}
                 loading={loading.dictionary}
