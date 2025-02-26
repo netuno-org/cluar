@@ -13,7 +13,13 @@
                 },
                 "services": {
                     "api": "http://localhost:9000/services/"
-                }
+                },
+                "auth": {"providers": {
+                    "discord": false,
+                    "facebook": false,
+                    "github": false,
+                    "google": false
+                }}
             },
             "uglifyjs": false
         },
