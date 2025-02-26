@@ -202,7 +202,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                                 labelInValue
                                 showSearch
                                 optionFilterProp="label"
-                                dropdownStyle={{maxHeight:"170px", overflow:"auto"}}
+                                listHeight={170}
                                 options={parameters.map((parameter) => ({
                                     label: parameter.description,
                                     value: parameter.code
