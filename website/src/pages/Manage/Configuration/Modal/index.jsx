@@ -191,7 +191,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                 onFinish={onFinish}
             >
                 <Row justify={"space-between"} align={"middle"} gutter={[10, 0]}>
-                    <Col {...configColumn}>
+                    <Col span={24}>
                         <Form.Item
                             label="Paramêtro"
                             name={"parameter_code"}
@@ -210,7 +210,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                             />
                         </Form.Item>
                     </Col>
-                    <Col  {...configColumn}>
+                    <Col  span={24}>
                         <Form.Item
                             label="Idioma"
                             name={"language_code"}

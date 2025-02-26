@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeftOutlined } from '@ant-design/icons';
-import { Typography, Form, Input, Button, Divider, notification } from 'antd';
+import { Typography, Form, Input, Button, Divider, notification, Row, Col } from 'antd';
 import { PasswordInput } from "antd-password-input-strength";
 
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ import Avatar from './Avatar';
 
 const { Title } = Typography;
 
-function Profile({loggedUserInfo, loggedUserInfoReloadAction}) {
+function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
   const [submitting, setSubmitting] = useState(false);
   const [passwordRequired, setPasswordRequired] = useState(false);
   const [avatarImageURL, setAvatarImageURL] = useState('/images/profile-default.png');
@@ -110,7 +110,7 @@ function Profile({loggedUserInfo, loggedUserInfoReloadAction}) {
         <Title level={2}>Editar Perfil</Title>
       </div>
       <div className="content-body">
-        <Avatar ref={profileAvatar} currentImage={avatarImageURL}/>
+        <Avatar ref={profileAvatar} currentImage={avatarImageURL} />
         <Divider orientation="left" plain>Informações Gerais</Divider>
         <Form
           {...layout}
@@ -179,11 +179,15 @@ function Profile({loggedUserInfo, loggedUserInfoReloadAction}) {
           >
             <Input.Password maxLength={25} />
           </Form.Item>
-          <Form.Item>
-            <Button type="primary" htmlType="submit" loading={submitting}>
-              Atualizar Perfil
-            </Button>
-          </Form.Item>
+          <Row justify={'start'}>
+            <Col>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" loading={submitting}>
+                  Atualizar Perfil
+                </Button>
+              </Form.Item>
+            </Col>
+          </Row>
         </Form>
       </div>
     </div>

@@ -104,7 +104,7 @@ function Login({loggedUserInfoAction}) {
   }
 
   if (_auth.isLogged()) {
-    return <Navigate to="/reserved-area" />;
+    return <Navigate to="/reserved-area/users" />;
   } else {
     return (
       <Layout>

@@ -163,7 +163,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                             <Input />
                         </Form.Item>
                     </Col>
-                    <Col {...configColumn}>
+                    <Col span={24}>
                         <Form.Item
                             name="locale"
                             label="Localidade"
