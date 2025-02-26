@@ -1,8 +1,10 @@
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
 let page = _db.pagination(1, 10);
-const peopleWhere = _db.where();
-const groupWhere = _db.where();
+const where = _val.map()
+    .set('people', _db.where())
+    .set('group', _db.where())
+    .set('user', _db.where())
 
 if (pagination) {
     page = _db.pagination(
@@ -16,15 +18,29 @@ if (pagination) {
 
 if (filters) {
     const name = filters.has("name") && filters.getString("name")
-    
     if (name) {
-        peopleWhere.and('name').contains(name);
+        where.get('people').and('name').contains(name);
     }
 
+    const email = filters.has("email") && filters.getString("email")
+    if (email) {
+        where.get('people').and('email').contains(email);
+    }
+
+    const active = filters.has('active') && filters.getList('active');
+
+    if (active.length > 0) {
+        where.get('user').and('active').in(active);
+    }
+
+    const username = filters.has('username') && filters.getString('username');
+    if (username) {
+        where.get('user').and('user').contains(username);
+    }
     
-    const groupCodes = filters.contains("group_codes") && filters.getList("group_codes");
+    const groupCodes = filters.has("group_codes") && filters.getList("group_codes");
     if (groupCodes) {
-        groupWhere.and('code').in(groupCodes);
+        where.get('group').and('code').in(groupCodes);
     }
 }
 
@@ -32,16 +48,17 @@ const query = _db.form("people")
 .join(
     _db.manyToOne(
         "netuno_user",
-        "people_user_id"
+        "people_user_id",
+        where.get('user')
     ).join(
        _db.manyToOne(
             "netuno_group",
             "group_id",
-            groupWhere
+            where.get('group')
        )
     )
 )
-.where(peopleWhere)
+.where(where.get('people'))
 .get("people.name")
 .get("people.uid")
 .get("people.email")

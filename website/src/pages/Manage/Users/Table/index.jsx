@@ -190,6 +190,7 @@ const UserTable = forwardRef(({ }, ref) => {
                     }}
                 />
             ),
+            filtered:filters.active,
             filters: [
                 {
                     text: "Activo",
@@ -268,13 +269,16 @@ const UserTable = forwardRef(({ }, ref) => {
                 scroll={{ x: 600 }}
                 onChange={(pagination, currentFilters, currentSorter, { action }) => {
                     if (action === "filter") {
+                        const filtersModify = ['group_codes', 'active'];
+                        console.log(currentFilters)
                         const newFilters = {
                             ...filters
                         }
                         Object.keys(currentFilters).forEach((key) => {
                             const value = currentFilters[key];
-
-                            newFilters[key] = value;
+                            if (filtersModify.includes(key)) {
+                                newFilters[key] = value;
+                            }
                         })
                         setFilters(newFilters);
                     }
