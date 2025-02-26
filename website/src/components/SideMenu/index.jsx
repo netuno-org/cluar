@@ -6,7 +6,8 @@ import {
   CloseOutlined, 
   EditOutlined, 
   LogoutOutlined,
-  GlobalOutlined 
+  GlobalOutlined,
+  FontSizeOutlined 
 } from '@ant-design/icons';
 import { 
   Col, 
@@ -41,7 +42,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const items = [
     {
       key: '1',
-      label: 'Configurações',
+      label: 'Gestão',
       icon: <SettingOutlined />,
       children: [
         {
@@ -68,7 +69,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         {
           key: 'dictionary',
           label: 'Dicionários',
-          icon: <SettingOutlined />,
+          icon: <FontSizeOutlined />,
           onClick: () => navigate("/reserved-area/dictionary")
 
         }
