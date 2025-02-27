@@ -1,4 +1,5 @@
-const mail = _req.getString("mail")
+const mail = _req.getString("mail");
+const currentLanguageCode = _req.getString("current_language");
 
 const dbPeople = _db.findFirst(
   "people",
@@ -9,6 +10,22 @@ const dbPeople = _db.findFirst(
         .set("email", mail)
     )
 )
+
+const dbLanguage = _db.form('language')
+.get('id')
+.where(
+  _db.where('code').equals(currentLanguageCode)
+).first();
+
+if (!dbLanguage) {
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', 'language-not-exists')
+  );
+  _exec.stop();
+}
 
 if (dbPeople != null && dbPeople.getBoolean("active")) {
   const recoveryKey = _crypto.sha512(_uid.generate())
@@ -25,16 +42,30 @@ if (dbPeople != null && dbPeople.getBoolean("active")) {
 
   const smtp = _smtp.init()
   smtp.to = dbPeople.getString("email")
-  smtp.subject = `Cluar - Recuperação de password`
   smtp.text = `
-    Caro ${dbPeople.getString("name")},
-
-    Para fazer a recuperação da password clique neste link: ${dbPeople.getString("recovery_link")}
-    Obrigado,
-    netuno.org
+   
   `
+  const dictionaries = _db.form('dictionary')
+  .link(
+    'dictionary_entry',
+    _db.where('code').in('recovery-mail-message', 'recovery-mail-subject')
+  )
+  .where(
+    _db.where('language_id').equals(dbLanguage.getInt("id"))
+  )
+  .get('dictionary.value')
+  .get('dictionary_entry.code')
+  .all();
+
+  const subject = dictionaries.find((dictionary) => dictionary.getString('code') === "recovery-mail-subject").getString('value') || "";
+  let content = dictionaries.find((dictionary) => dictionary.getString('code') === "recovery-mail-message").getString('value') || "";
+  content = content.replace('${name}', dbPeople.getString('name'));
+  content = content.replace('${link}', dbPeople.getString('recovery_link'));
+
+  smtp.subject = subject;
   smtp.html = _template.getOutput(
-    "email/recovery-mail", dbPeople
+    "email/recovery-mail", _val.map()
+      .set('content', content)
   )
   smtp.attachment(
     "logo.png",
