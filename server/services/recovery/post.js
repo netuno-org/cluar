@@ -25,7 +25,7 @@ if (dbPeople != null && dbPeople.getBoolean("active")) {
 
   const smtp = _smtp.init()
   smtp.to = dbPeople.getString("email")
-  smtp.subject = `ReAuthKit - Recuperação de password`
+  smtp.subject = `Cluar - Recuperação de password`
   smtp.text = `
     Caro ${dbPeople.getString("name")},
 
@@ -34,12 +34,12 @@ if (dbPeople != null && dbPeople.getBoolean("active")) {
     netuno.org
   `
   smtp.html = _template.getOutput(
-    "recovery-mail", dbPeople
+    "email/recovery-mail", dbPeople
   )
   smtp.attachment(
     "logo.png",
     "image/png",
-    _storage.filesystem("server", "images", "mail-logo.png").file(),
+    _storage.filesystem("server", "images", "logo.png").file(),
     "logo"
   )
   smtp.send()
