@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Modal, Button, Form, Input, notification } from 'antd';
 
 import _service from '@netuno/service-client';
+import Cluar from '../../../common/Cluar';
 
 export default function RecoverModal(props) {
 
@@ -21,6 +22,7 @@ export default function RecoverModal(props) {
       url: 'recovery',
       data: {
         mail,
+        currentLanguge:Cluar.currentLanguage().code
       },
       success: (response) => {
         if (response.json.result) {
