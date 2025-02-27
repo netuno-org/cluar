@@ -125,19 +125,19 @@ function Login({loggedUserInfoAction}) {
                 >
                   {Cluar.authProviders().facebook &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}/_auth_provider/login/facebook`} icon={<FaFacebook />}>Entrar com o Facebook</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/facebook`} icon={<FaFacebook />}>Entrar com o Facebook</Button>
                     </Form.Item>}
                   {Cluar.authProviders().google &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}/_auth_provider/login/google`} icon={<FaGoogle />}>Entrar com o Google</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/google`} icon={<FaGoogle />}>Entrar com o Google</Button>
                     </Form.Item>}
                   {Cluar.authProviders().github &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}/_auth_provider/login/github`} icon={<FaGithub />}>Entrar com o GitHub</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/github`} icon={<FaGithub />}>Entrar com o GitHub</Button>
                     </Form.Item>}
                   {Cluar.authProviders().discord &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}/_auth_provider/login/discord`} icon={<FaDiscord />}>Entrar com o Discord</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/discord`} icon={<FaDiscord />}>Entrar com o Discord</Button>
                     </Form.Item>}
 
                   <Form.Item

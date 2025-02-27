@@ -22,7 +22,7 @@ export default function RecoverModal(props) {
       url: 'recovery',
       data: {
         mail,
-        currentLanguge:Cluar.currentLanguage().code
+        current_language:Cluar.currentLanguage().code
       },
       success: (response) => {
         if (response.json.result) {
