@@ -25,6 +25,7 @@ import Users from './pages/Manage/Users';
 import Languages from './pages/Manage/Languages';
 import Configuration from './pages/Manage/Configuration';
 import Dictionary from './pages/Manage/Dictionary';
+import Recovery from './pages/Recovery';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
@@ -88,6 +89,7 @@ function App() {
                   <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
+                  <Route path="/recovery" element={<Recovery />} />
                   <Route path="/reserved-area" element={<ReservedArea />}> 
                       <Route path="profile" element={<Profile/>}/>
                       <Route path="users" element={<Users/>}/>
