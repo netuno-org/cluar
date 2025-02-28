@@ -78,17 +78,15 @@ function Login({loggedUserInfoAction}) {
         if (data.isJSON) {
           if (data.json.blocked) {
             notification["error"]({
-              message: 'Login Bloqueado',
-              description:
-              'O login foi bloqueado, realize o processo de desbloqueamento ou contate o suporte.',
+              message: Cluar.plainDictionary('login-form-user-blocked-message'),
+              description:Cluar.plainDictionary('login-form-user-blocked-description'),
             });
             return;
           }
         }
         notification["error"]({
-          message: 'Login Inválido',
-          description:
-          'Por favor verifique as credenciais inseridas.',
+          message: Cluar.plainDictionary('login-form-wrong-credentials-message'),
+          description:Cluar.plainDictionary('login-form-wrong-credentials-description'),
         });
       }
     });
@@ -112,10 +110,10 @@ function Login({loggedUserInfoAction}) {
           <Col {...columnConfig}>
             <Content className="login-container">
               <div className="content-title">
-                <Title>Iniciar sessão.</Title>
+                <Title>{Cluar.plainDictionary('login-form-subject')}</Title>
               </div>
               <div className="content-body">
-                <p>Inicie sessão com os seus dados.</p>
+                <p>{Cluar.plainDictionary('login-form-prividers-title')}</p>
                 <Form
                   layout="vertical"
                   name="basic"
@@ -125,60 +123,60 @@ function Login({loggedUserInfoAction}) {
                 >
                   {Cluar.authProviders().facebook &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/facebook`} icon={<FaFacebook />}>Entrar com o Facebook</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/facebook`} name='facebook' icon={<FaFacebook />}>{Cluar.plainDictionary('login-form-login-provider').replace('${label}', 'Facebook')}</Button>
                     </Form.Item>}
                   {Cluar.authProviders().google &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/google`} icon={<FaGoogle />}>Entrar com o Google</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/google`} icon={<FaGoogle />}>{Cluar.plainDictionary('login-form-login-provider').replace('${label}', 'Google')}</Button>
                     </Form.Item>}
                   {Cluar.authProviders().github &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/github`} icon={<FaGithub />}>Entrar com o GitHub</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/github`} icon={<FaGithub />}>{Cluar.plainDictionary('login-form-login-provider').replace('${label}', 'GitHub')}</Button>
                     </Form.Item>}
                   {Cluar.authProviders().discord &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/discord`} icon={<FaDiscord />}>Entrar com o Discord</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/discord`} icon={<FaDiscord />}>{Cluar.plainDictionary('login-form-login-provider').replace('${label}', 'Discord')}</Button>
                     </Form.Item>}
 
                   <Form.Item
-                    label="Utilizador"
+                    label={Cluar.plainDictionary('login-form-username')}
                     name="username"
                     rules={[
-                      { required: true, message: 'Insira o seu usuário.' },
-                      { type: 'string', message: 'Usuário inválido, apenas letras minúsculas e maiúsculas.', pattern: "^[a-z]+[a-z0-9]{1,24}$" }
+                      { required: true, message:Cluar.plainDictionary('login-form-validate-message-required')},
+                      { type: 'string', message: Cluar.plainDictionary('login-form-invalid-username-message'), pattern: "^[a-z]+[a-z0-9]{1,24}$" }
                     ]}
                   >
                     <Input />
                   </Form.Item>
 
                   <Form.Item
-                    label="Palavra-passe"
+                    label={Cluar.plainDictionary('login-form-password')}
                     name="password"
-                    rules={[{ required: true, message: 'Insira a palavra-passe.' }]}
+                    rules={[{ required: true, message:Cluar.plainDictionary('login-form-validate-message-required')}]}
                   >
                     <Input.Password />
                   </Form.Item>
 
                   <Form.Item name="remember" valuePropName="checked">
-                    <Checkbox>Relembrar</Checkbox>
+                    <Checkbox>{Cluar.plainDictionary('login-form-remember')}</Checkbox>
                   </Form.Item>
 
                   <Form.Item>
                     <Button loading={submitting} type="primary" className="login-btn" htmlType="submit">
-                      Iniciar Sessão
+                      {Cluar.plainDictionary('login-form-sign-in')}
                     </Button>
                   </Form.Item>
 
                   <Form.Item style={{ textAlign: 'center' }}>
-                    <Button type="link" onClick={() => setVisible(!visible)} >Esqueceu-se da palavra passe?</Button>
+                    <Button type="link" onClick={() => setVisible(!visible)} >{Cluar.plainDictionary('login-form-forgot-password')}</Button>
                     {visible && <RecoverModal onClose={() => { setVisible(false) }} />}
                   </Form.Item>
 
                   <hr />
-                  <span><p>ou</p></span>
+                  <span><p>{Cluar.plainDictionary('login-form-division-title')}</p></span>
                   <Link to="/register">
                     <Button loading={submitting} type="default" className={"register-btn"}>
-                      Criar Conta
+                      {Cluar.plainDictionary('login-form-register')}
                     </Button>
                   </Link>
                 </Form>
