@@ -27,8 +27,8 @@ export default function RecoverModal(props) {
       success: (response) => {
         if (response.json.result) {
           notification["success"]({
-            message: 'Alteração da Palavra-Passe ',
-            description: 'Foi enviado um e-mail para a alteração da Palavra-Passe.',
+            message: Cluar.plainDictionary('recovery-form-success-message'),
+            description: Cluar.plainDictionary('recovery-form-success-description'),
           });
           setSubmitting(false);
           setOpen(false);
@@ -37,8 +37,8 @@ export default function RecoverModal(props) {
       fail: () => {
         setSubmitting(false);
         notification["error"]({
-          message: 'Erro na Alteração da Palavra-Passe',
-          description: 'Não foi possível alterar a palavra-passe, contacte-nos através do chat de suporte.',
+          message: Cluar.plainDictionary('recovery-form-failed-message'),
+          description: Cluar.plainDictionary('recovery-form-failed-description'),
         });
       }
     });
@@ -69,15 +69,15 @@ export default function RecoverModal(props) {
   return (
     <Modal
       className={'modal-recover'}
-      title="Recuperar o Acesso"
+      title={Cluar.plainDictionary('recovery-modal-title')}
       open={open}
       onCancel={onCancel}
       footer={[
         <Button key="back" onClick={onCancel}>
-          Cancelar
+          {Cluar.plainDictionary('recovery-form-cancel')}
         </Button>,
         <Button key="send" type="primary" htmlType="submit" loading={submitting} onClick={onSubmit} >
-          Enviar
+           {Cluar.plainDictionary('recovery-form-send')}
         </Button>
       ]}
     >
@@ -87,11 +87,11 @@ export default function RecoverModal(props) {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="Endereço de Mail"
+          label= {Cluar.plainDictionary('recovery-form-mail')}
           name="mail"
           rules={[
-            { type: 'email', message: 'O e-mail inserido não é válido.' },
-            { required: true, message: 'Insira o e-mail.' }
+            { type: 'email', message: Cluar.plainDictionary('recovery-form-mail-valid-message')},
+            { required: true, message: Cluar.plainDictionary('recovery-form-validate-message-required')}
           ]}
         >
           <Input disabled={submitting} maxLength={250} />
