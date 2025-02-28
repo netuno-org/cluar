@@ -222,4 +222,203 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("description", "Formul\u00E1rio de Login - Entrar com Providers")
   );
   
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2918a23d-6180-4a78-85f0-760ce8f7f838")
+      .set("code", "register-form-confirm-password")
+      .set("description", "Formul\u00E1rio de Registo - Confirmar Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9fd434b1-50f5-4fa4-8ba4-713eb35cdc03")
+      .set("code", "register-form-providers-title")
+      .set("description", "Formul\u00E1rio de Registo - Providers - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "6a954dd9-e370-494b-9d60-aa960f5442f2")
+      .set("code", "register-form-subject")
+      .set("description", "Formul\u00E1rio de Registo - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "84371ded-38cf-4516-b47c-1aed6f6c3ea7")
+      .set("code", "register-form-register-provider")
+      .set("description", "Formul\u00E1rio de Registo - Registar com Providers")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "20de2489-c499-49a5-88cd-16c9ec31dd48")
+      .set("code", "register-form-register")
+      .set("description", "Formulario de Registo - Criar Conta")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "fcfefd34-10f1-42ea-a5be-54673b4600a9")
+      .set("code", "register-form-name")
+      .set("description", "Formul\u00E1rio de Registo - Nome")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "58e835de-45b8-4fb9-b8b0-8cfb8cf5dcf7")
+      .set("code", "register-form-username")
+      .set("description", "Formul\u00E1rio de Registo - Utilizador")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "e8fcc665-c129-4d35-a777-636d181ae4ec")
+      .set("code", "register-form-password")
+      .set("description", "Formul\u00E1rio de Registo - Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "20ab0348-1b1f-4f7f-87c7-92597641ab03")
+      .set("code", "register-form-mail")
+      .set("description", "Formul\u00E1rio de Registo - E-mail")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "86cd0e21-810e-40d0-8671-1e34bc91a49a")
+      .set("code", "register-form-validate-message-required")
+      .set("description", "Formul\u00E1rio de Registo - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f57f4c30-7567-4bb4-b5e2-ae13122e2017")
+      .set("code", "register-form-division-title")
+      .set("description", "Formulario de Registo - Descri\u00E7\u00E3o da Divis\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "55050e8a-7e5d-424b-bd90-5251be74eda0")
+      .set("code", "register-form-sign-in")
+      .set("description", "Formul\u00E1rio de Registo - Iniciar Sess\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "cc053026-bd19-4170-ac1e-5398c94e7ddd")
+      .set("code", "register-form-mail-valid-message")
+      .set("description", "Formul\u00E1rio de Registo - Valida\u00E7\u00E3o de E-mail - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "17e575b7-3b9b-4ffc-92f6-1a68ee404a59")
+      .set("code", "register-form-name-valid-message")
+      .set("description", "Formul\u00E1rio de Registo - Valida\u00E7\u00E3o de Nome - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9570c3fa-0576-45b1-be93-aaeb15fd13f1")
+      .set("code", "register-form-username-valid-message")
+      .set("description", "Formul\u00E1rio de Registo - Valida\u00E7\u00E3o de Utilizador - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "bd48eea8-8de1-408b-ae12-1f8559632eac")
+      .set("code", "register-form-password-valid-message")
+      .set("description", "Formul\u00E1rio de Registo - Valida\u00E7\u00E3o de Palavra-passe - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "3d036cba-067c-4a95-b294-cacc26ee936b")
+      .set("code", "register-form-passwords-not-equals-message")
+      .set("description", "Formul\u00E1rio de Registo - Palavras-passes Diferentes - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "359bd760-8623-426e-8cfb-152b49fb9ca8")
+      .set("code", "register-form-success-description")
+      .set("description", "Formul\u00E1rio de Registo - Sucesso - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "406f7d5a-4096-4113-b7ab-d016efb268fe")
+      .set("code", "register-form-success-message")
+      .set("description", "Formul\u00E1rio de Registo - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a03419cf-3f04-4293-9c09-74f565b05b33")
+      .set("code", "register-form-existing-mail-message")
+      .set("description", "Formul\u00E1rio de Registo - E-mail Existente - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "5e663edf-3134-4447-bd6f-bac5e02fb4cd")
+      .set("code", "register-form-existing-mail-description")
+      .set("description", "Formul\u00E1rio de Registo - E-mail Existente - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "fb143426-3b21-4c4f-9e5b-30f38b65debd")
+      .set("code", "register-form-existing-username-message")
+      .set("description", "Formul\u00E1rio de Registo - Utilizador Existente - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0cdd3033-37f6-4054-a040-cc174ebbec30")
+      .set("code", "register-form-existing-username-description")
+      .set("description", "Formul\u00E1rio de Registo - Utilizador Existente - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9c1e97de-f486-493c-89aa-797117e3a895")
+      .set("code", "register-form-failed-message")
+      .set("description", "Formul\u00E1rio de Registo - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c061db42-4cc6-407d-a0a7-ad9900df07b4")
+      .set("code", "register-form-failed-description")
+      .set("description", "Formul\u00E1rio de Registo - Falha - Descri\u00E7\u00E3o")
+  );  
 }

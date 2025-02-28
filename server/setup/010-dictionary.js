@@ -486,9 +486,441 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary",
     _val.init()
+      .set("uid", "8757e0bf-3189-4d83-a68c-28140a30c7c6")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "6a954dd9-e370-494b-9d60-aa960f5442f2")
+      .set("value", "<p>Criar conta.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
       .set("uid", "ff37d8b8-412b-4498-b235-54384b7b4665")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "9c94ed1c-bcf4-4002-80c1-95ee0afafd59")
       .set("value", "<p>Remember</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "04a486cc-9fe0-4458-bd6b-164a70b37390")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "6a954dd9-e370-494b-9d60-aa960f5442f2")
+      .set("value", "<p>Register.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "4b721504-b947-4a2b-86d4-2cd6a4b1b3fb")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "84371ded-38cf-4516-b47c-1aed6f6c3ea7")
+      .set("value", "<p>Registar com ${label}</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "ded98a1d-fc1a-4a3f-ad72-8ca690400fdf")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "84371ded-38cf-4516-b47c-1aed6f6c3ea7")
+      .set("value", "<p>Register with ${label}</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "33c823a3-b8bc-4caa-a7ac-d533f97f140b")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "fcfefd34-10f1-42ea-a5be-54673b4600a9")
+      .set("value", "<p>Nome</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "934bac64-97c4-4593-8f9b-70569d6e2ba0")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "fcfefd34-10f1-42ea-a5be-54673b4600a9")
+      .set("value", "Name")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "2ee2fdd0-392f-49ec-8081-d3d006011854")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "58e835de-45b8-4fb9-b8b0-8cfb8cf5dcf7")
+      .set("value", "<p>Utilizador</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "eb3011c7-b56f-479d-9de9-557e3f562b05")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "58e835de-45b8-4fb9-b8b0-8cfb8cf5dcf7")
+      .set("value", "<p>Username</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "f352984a-07a8-4b18-96b6-d38a5ee13ff9")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "20ab0348-1b1f-4f7f-87c7-92597641ab03")
+      .set("value", "<p>E-mail</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "3205ee9b-9a80-4a70-9147-827305d08d6f")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "20ab0348-1b1f-4f7f-87c7-92597641ab03")
+      .set("value", "<p>E-mail</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "64e6617e-6529-44db-8b89-295e31a1cc74")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "e8fcc665-c129-4d35-a777-636d181ae4ec")
+      .set("value", "<p>Palavra-passe</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "b4b43b90-6105-45b4-b3d6-00dc92e5049d")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "e8fcc665-c129-4d35-a777-636d181ae4ec")
+      .set("value", "<p>Password</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "b0822730-a9a0-4f83-86c7-6b59cd0ccaf9")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "2918a23d-6180-4a78-85f0-760ce8f7f838")
+      .set("value", "<p>Confirmar a Palavra-passe</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "889baa3f-1587-4ebc-ae6c-68b6ef404d2e")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "fb143426-3b21-4c4f-9e5b-30f38b65debd")
+      .set("value", "<p>Utilizador Existente</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "7096a8b6-14a7-4b24-bdd0-1b0f69d8d71c")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "20de2489-c499-49a5-88cd-16c9ec31dd48")
+      .set("value", "<p>Criar Conta</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "de6096a3-c323-43bf-91d3-ce7b344fd8f8")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "9c1e97de-f486-493c-89aa-797117e3a895")
+      .set("value", "<p>Erro na Cria\u00E7\u00E3o de Conta</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "6bbd7b48-fabb-4958-9de8-a88587f2b046")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "20de2489-c499-49a5-88cd-16c9ec31dd48")
+      .set("value", "<p>Register</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "3f066682-fe5d-42f5-86db-09e12338b30d")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "c061db42-4cc6-407d-a0a7-ad9900df07b4")
+      .set("value", "<p>N\u00E3o foi poss\u00EDvel criar a conta, contacte-nos atrav\u00E9s do chat de suporte.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "fae24e25-b069-42b0-ae2e-1ad5d1211fdd")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "2918a23d-6180-4a78-85f0-760ce8f7f838")
+      .set("value", "<p>Confirm Password</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "c5e2902b-a90c-482d-abf7-125945c60190")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "f57f4c30-7567-4bb4-b5e2-ae13122e2017")
+      .set("value", "<p>ou</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "1d79962d-01a7-459d-9870-b9bdd709a77f")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "fb143426-3b21-4c4f-9e5b-30f38b65debd")
+      .set("value", "<p>Username already exists</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "100c1839-ec5f-48d5-81a0-c33f4de71a2b")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "f57f4c30-7567-4bb4-b5e2-ae13122e2017")
+      .set("value", "<p>or</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "e37f58f3-5b52-4bb7-a21a-47b32af5f139")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "55050e8a-7e5d-424b-bd90-5251be74eda0")
+      .set("value", "<p>Iniciar Sess\u00E3o</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "73006731-ef12-4652-ad6c-226a577c82e1")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "0cdd3033-37f6-4054-a040-cc174ebbec30")
+      .set("value", "<p>Este utilizador j\u00E1 existe, fa\u00E7a a recupera\u00E7\u00E3o do acesso no ecr\u00E3 de login ou escolha outro.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "12c80d0d-5242-4494-ad42-c4006cf47b8e")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "55050e8a-7e5d-424b-bd90-5251be74eda0")
+      .set("value", "<p>Sign In</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "adbae296-a6f5-40d1-8c9a-1715cd1d99b4")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "86cd0e21-810e-40d0-8671-1e34bc91a49a")
+      .set("value", "<p>${label} \u00E9 de preenchimento obrigat\u00F3rio.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "0e3a38a4-e6e8-4005-a766-b855bd7b5662")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "0cdd3033-37f6-4054-a040-cc174ebbec30")
+      .set("value", "This username already exists, regain access in sign in page or choose another one.")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "7eeef947-79f3-4533-ae1d-1b3001d13edf")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "86cd0e21-810e-40d0-8671-1e34bc91a49a")
+      .set("value", "<p>${label} is mandatory.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "cc0530af-ca4e-4d32-9fb6-931f1077a866")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "17e575b7-3b9b-4ffc-92f6-1a68ee404a59")
+      .set("value", "<p>Nome inv\u00E1lido, apenas letras min\u00FAsculas e mai\u00FAsculas.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "989e4c52-19c8-4ad9-bfdf-db66692074e8")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "9c1e97de-f486-493c-89aa-797117e3a895")
+      .set("value", "<p>Failed to Create Account</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "98e5e022-3cbe-4d3b-a5f9-a3b42109946f")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "17e575b7-3b9b-4ffc-92f6-1a68ee404a59")
+      .set("value", "<p>Invalid name, only lowercase e uppercase letters.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "eaea9081-fa7e-4643-b5c9-ddddd843df13")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "9570c3fa-0576-45b1-be93-aaeb15fd13f1")
+      .set("value", "<p>Utilizador inv\u00E1lido, apenas letras min\u00FAsculas e mai\u00FAsculas.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "2d1da46c-e81b-48b0-8d30-6055d4852888")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "c061db42-4cc6-407d-a0a7-ad9900df07b4")
+      .set("value", "<p>It was not possible to create an account. Please contact us through the support chat.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "24e4d9c0-a448-4fd4-bf5f-3a20bcb6fb09")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "9570c3fa-0576-45b1-be93-aaeb15fd13f1")
+      .set("value", "<p>Invalid username, only lowercase and uppercase letters.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "faf78241-ae1e-40de-939f-4694e7d3b1b2")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "5e663edf-3134-4447-bd6f-bac5e02fb4cd")
+      .set("value", "<p>This e-mail already exists, regain access on the sign in page or choose another one.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "ec5291a8-b2fb-4669-bf92-d486bdff93a1")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "cc053026-bd19-4170-ac1e-5398c94e7ddd")
+      .set("value", "<p>O e-mail inserido n\u00E3o \u00E9 v\u00E1lido.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "f2f36726-9d33-4aa7-9abd-7ba0d79be96c")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "cc053026-bd19-4170-ac1e-5398c94e7ddd")
+      .set("value", "<p>The entered mail is not valid.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "9f0cb9b8-bb01-4aa0-8850-a1bf7718eff1")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "bd48eea8-8de1-408b-ae12-1f8559632eac")
+      .set("value", "<p>Palavra-passe dever\u00E1 ter entre 8 a 25 caracteres.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "6a3c0e13-5110-408b-ac04-e20526779a88")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "bd48eea8-8de1-408b-ae12-1f8559632eac")
+      .set("value", "<p>Password must be between 8 and 25 characters.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "615b9668-dbd4-4f8b-b5bb-85b16e2c98a0")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "3d036cba-067c-4a95-b294-cacc26ee936b")
+      .set("value", "<p>As palavras-passes n\u00E3o s\u00E3o iguais.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "89285105-b628-486a-a310-b19b27725400")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "3d036cba-067c-4a95-b294-cacc26ee936b")
+      .set("value", "<p>The passwords are not same.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "e3a39177-fc31-4ac3-801d-a169ade528c8")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "406f7d5a-4096-4113-b7ab-d016efb268fe")
+      .set("value", "<p>Conta Criada</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "6ec00225-2ea4-46a9-90a6-3bc05d26508e")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "406f7d5a-4096-4113-b7ab-d016efb268fe")
+      .set("value", "<p>Account Created</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "b65506c4-a67c-429c-b9c9-2810ee95b358")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "359bd760-8623-426e-8cfb-152b49fb9ca8")
+      .set("value", "<p>A conta foi criada com sucesso, pode iniciar sess\u00E3o.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "7402f9e9-65c7-494e-a7a5-a0da4781d569")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "359bd760-8623-426e-8cfb-152b49fb9ca8")
+      .set("value", "<p>Account successfully created, you can sign in.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "9ac1350f-5216-4f62-a631-efaa544e8b11")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "a03419cf-3f04-4293-9c09-74f565b05b33")
+      .set("value", "<p>E-mail existente</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "b486faec-854f-411e-868d-4ccc400441c5")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "a03419cf-3f04-4293-9c09-74f565b05b33")
+      .set("value", "<p>E-mail already exists</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "32d32e22-bc42-4f19-80e0-f1b8d79b7588")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "5e663edf-3134-4447-bd6f-bac5e02fb4cd")
+      .set("value", "<p>Este e-mail j\u00E1 existe, fa\u00E7a a recupera\u00E7\u00E3o no ecr\u00E3 de login ou escolha outro.</p>")
   );
 }
