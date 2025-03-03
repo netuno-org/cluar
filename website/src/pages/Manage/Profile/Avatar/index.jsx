@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useImperativeHandle } from 'react';
 import { Row, Col, Button, Slider, Divider } from 'antd';
 import {useDropzone} from 'react-dropzone';
 import AvatarEditor from 'react-avatar-editor';
+import Cluar from '../../../../common/Cluar';
 
 function Avatar({currentImage}, ref) {
   const [image, setImage] = useState(currentImage);
@@ -50,22 +51,22 @@ function Avatar({currentImage}, ref) {
         </div>
       </Col>
         <Col>
-          <p><Button onClick={open} type="primary" ghost>Carregar Outra Imagem</Button></p>
+          <p><Button onClick={open} type="primary" ghost>{Cluar.plainDictionary('profile-form-image-upload')}</Button></p>
           { imageEditing &&
             <>
-              <Divider orientation="left" plain>Configurar Imagem</Divider>
+              <Divider orientation="left" plain>{Cluar.plainDictionary('profile-form-image-config')}</Divider>
               <p>
-                Dimensionar: <Slider min={0.5} max={1.5} defaultValue={scale} step={0.01} onChange={(value) => setScale(value)}></Slider>
+              {Cluar.plainDictionary('profile-form-image-scale')}<Slider min={0.5} max={1.5} defaultValue={scale} step={0.01} onChange={(value) => setScale(value)}></Slider>
               </p>
               <p>
-                Rodar: <Slider min={-180} max={180} defaultValue={rotate} step={1} onChange={(value) => setRotate(value)}></Slider>
+              {Cluar.plainDictionary('profile-form-image-ratation')}<Slider min={-180} max={180} defaultValue={rotate} step={1} onChange={(value) => setRotate(value)}></Slider>
               </p>
               <p>
-                Color de Fundo: <input type="color" defaultValue={color} onChange={(e) => setColor(e.target.value)}/>
-                <br/><i>Apenas para imagens com transparência.</i>
+              {Cluar.plainDictionary('profile-form-image-background-color')}<input type="color" defaultValue={color} onChange={(e) => setColor(e.target.value)}/>
+                <br/><i>{Cluar.plainDictionary('profile-form-image-background-color-description')}</i>
               </p>
               <p>
-                <Button onClick={() => setImage(currentImage)} type="dashed" danger>Desfazer</Button>
+                <Button onClick={() => setImage(currentImage)} type="dashed" danger>{Cluar.plainDictionary('profile-form-image-undo')}</Button>
               </p>
             </>
           }

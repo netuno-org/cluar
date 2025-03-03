@@ -425,9 +425,25 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "ad342be1-4e9d-47da-8a9f-d8295c1ba982")
+      .set("code", "profile-form-name-validate-message")
+      .set("description", "Formul\u00E1rio do Perfil - Valida\u00E7\u00E3o Nome - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "ac2923d0-7278-4665-887e-ac10690805fd")
       .set("code", "recovery-modal-title")
       .set("description", "Modal Recuperar Acesso - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "14566191-f6f5-46fa-9430-3afd54765073")
+      .set("code", "profile-form-mail-validate-message")
+      .set("description", "Formul\u00E1rio do Perfil - Valida\u00E7\u00E3o do E-mail - Mensagem")
   );
   
   _db.insertIfNotExists(
@@ -444,6 +460,38 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "22476929-015c-4ded-8364-10fad2c27953")
       .set("code", "recovery-form-failed-description")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Falha - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "98844598-1635-46e2-b118-1f9a9508c192")
+      .set("code", "profile-form-validate-password-message")
+      .set("description", "Formul\u00E1rio do Perfil - Valida\u00E7\u00E3o de Palavra-passe - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "7140f2ec-41ff-41d8-8e2f-0144291afa66")
+      .set("code", "profile-form-password-not-equals-message")
+      .set("description", "Formul\u00E1rio do Perfil - Palavras-passes Diferentes - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "16a2cda9-4161-457a-b201-06ef90c5152a")
+      .set("code", "profile-page-general-info")
+      .set("description", "P\u00E1gina de Perfil - Informa\u00E7\u00F5es Gerais")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ab84558e-5bbf-427c-bc8a-93c8222004fb")
+      .set("code", "profile-form-success-message")
+      .set("description", "Formul\u00E1rio do Perfil - Sucesso - Mensagem")
   );
   
   _db.insertIfNotExists(
@@ -521,9 +569,25 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "6a96ad63-3798-4290-acb0-8527dd9aee57")
+      .set("code", "profile-form-success-description")
+      .set("description", "Formul\u00E1rio do Perfil - Sucesso - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "68d1e1c1-bca9-49dd-b0fa-1fbfca27fbbb")
       .set("code", "recovery-form-password")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ce1a750e-2671-4ce8-bd89-490473488d09")
+      .set("code", "profile-form-user-exists-message")
+      .set("description", "Formul\u00E1rio do Perfil - Utilizador Existente - Mensagem")
   );
   
   _db.insertIfNotExists(
@@ -545,6 +609,14 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "6b356877-27fe-40cc-93e9-71b5328744e4")
+      .set("code", "profile-form-user-exists-description")
+      .set("description", "Formul\u00E1rio do Perfil - Utilizador Existente - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "ff9656e8-796c-4efe-b9cf-c741aeb2848f")
       .set("code", "recovery-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
@@ -556,6 +628,14 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "26106564-6c4c-487e-99e4-9cb001e67300")
       .set("code", "recovery-form-passwords-not-equals-message")
       .set("description", "Fomul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Palavras-passes Diferentes - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "63261db9-2127-4a43-9fb7-1a651fa005b4")
+      .set("code", "profile-form-failed-message")
+      .set("description", "Formul\u00E1rio do Perfil - Falha - Mensagem")
   );
   
   _db.insertIfNotExists(
@@ -577,6 +657,14 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "685ad355-51cc-49a8-9a3a-c24171a9deed")
+      .set("code", "profile-form-failed-description")
+      .set("description", "Formul\u00E1rio do Perfil - Falha - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "aca1863c-af41-4b84-ac23-fae36ad20ae6")
       .set("code", "recovery-form-success-description")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Sucesso - Descri\u00E7\u00E3o")
@@ -588,6 +676,134 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ff81abe7-b2e8-4f55-a0f4-9844885071f1")
       .set("code", "recovery-form-failed-message")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c91ca4ff-4434-4d5f-afc0-0cb72e051719")
+      .set("code", "profile-page-previus")
+      .set("description", "P\u00E1gina de Perfil - Voltar atr\u00E1s")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0b635075-6de0-46df-ae0a-a549947d49ad")
+      .set("code", "profile-page-title")
+      .set("description", "P\u00E1gina de Perfil - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "dae1b64b-4cd8-493b-b44a-3632b6ff8a27")
+      .set("code", "profile-form-image-scale")
+      .set("description", "Formul\u00E1rio do Perfil - Imagem - Dimensionar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "555e48fd-f034-4321-9a14-77fd88d1eb3f")
+      .set("code", "profile-form-name")
+      .set("description", "Formul\u00E1rio do Perfil - Nome")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "e96ed750-b07e-4859-a7a7-9a384f339a8b")
+      .set("code", "profile-form-image-upload")
+      .set("description", "Fomul\u00E1rio do Perfil - Imagem - Carregar Outra")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a863275c-13a3-4159-8ca6-caa72bf2ee4d")
+      .set("code", "profile-form-username")
+      .set("description", "Formul\u00E1rio do Perfil - Utilizador")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "39cdaeb6-0f27-45ff-8d58-8122d8fd0508")
+      .set("code", "profile-form-image-ratation")
+      .set("description", "Formul\u00E1rio do Perfil - Imagem - Rodar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f52f48be-1b8c-4998-9b1d-e37bf4695b85")
+      .set("code", "profile-form-mail")
+      .set("description", "Formul\u00E1rio do Perfil - E-mail")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "499febae-d1b5-425a-b052-907ad97b4aa4")
+      .set("code", "profile-form-password")
+      .set("description", "Formul\u00E1rio do Perfil - Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "27fc4363-7d18-4717-a030-d8d0bbe0da80")
+      .set("code", "profile-form-image-background-color")
+      .set("description", "Formul\u00E1rio do Perfil - Imagem - Cor de Fundo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "047e1c9d-9ce4-4dfa-93aa-c796ae4cde59")
+      .set("code", "profile-form-confirm-password")
+      .set("description", "Formul\u00E1rio do Perfil - Confirme Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ec2f7187-59bb-4792-849a-e6de254bbbfe")
+      .set("code", "profile-form-update")
+      .set("description", "Formul\u00E1rio do Perfil - Atualizar Perfil")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ea8484b0-6760-42b8-bfa6-50f4d5327b3e")
+      .set("code", "profile-form-image-background-color-description")
+      .set("description", "Formul\u00E1rio do Perfil - Imagem - Cor de Fundo - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "5525a1b5-afe8-481d-a635-dfbb70121f74")
+      .set("code", "profile-form-validate-message-required")
+      .set("description", "Formul\u00E1rio do Perfil - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "eb7c2c2f-0860-44c2-a044-c75e1d381966")
+      .set("code", "profile-form-image-undo")
+      .set("description", "Formul\u00E1rio do Perfil - Imagem - Desfazer")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "31e14337-7030-45fc-8fe6-48e023d058e4")
+      .set("code", "profile-form-image-config")
+      .set("description", "Formul\u00E1rio do Perfil - Imagem - Configurar")
   );
   
 }

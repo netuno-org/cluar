@@ -7,6 +7,7 @@ import { PasswordInput } from "antd-password-input-strength";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loggedUserInfoReloadAction } from '../../../redux/actions';
+import Cluar from '../../../common/Cluar';
 
 import _service from '@netuno/service-client';
 
@@ -58,8 +59,8 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
       success: (response) => {
         if (response.json.result) {
           notification["success"]({
-            message: 'Edição do Perfil',
-            description: 'Os dados do seu perfil foram alterados com sucesso.',
+            message: Cluar.plainDictionary('profile-form-success-message'),
+            description: Cluar.plainDictionary('profile-form-success-description'),
           });
           setSubmitting(false);
           profileForm.current.setFieldsValue({
@@ -69,8 +70,8 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
           loggedUserInfoReloadAction();
         } else {
           notification["warning"]({
-            message: 'Utilizador existente',
-            description: response.json.error,
+            message: Cluar.plainDictionary('profile-form-user-exists-message'),
+            description: Cluar.plainDictionary('profile-form-user-exists-description'),
           });
           setSubmitting(false);
           profileForm.current.setFieldsValue({
@@ -82,8 +83,8 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
       fail: () => {
         setSubmitting(false);
         notification["error"]({
-          message: 'Erro na Edição do Perfil',
-          description: 'Ocorreu um erro na edição do seu perfil, por favor contacte-nos através do chat de suporte.',
+          message: Cluar.plainDictionary('profile-form-failed-message'),
+          description: Cluar.plainDictionary('profile-form-failed-description'),
         });
       }
     });
@@ -104,14 +105,14 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
   return (
     <div>
       <div className="content-title">
-        <Button className="go-back-btn" type="link" onClick={() => navigate(-1)}><ArrowLeftOutlined /> Voltar atrás</Button>
+        <Button className="go-back-btn" type="link" onClick={() => navigate(-1)}><ArrowLeftOutlined /> {Cluar.plainDictionary('profile-page-previus')}</Button>
       </div>
       <div className="content-title">
-        <Title level={2}>Editar Perfil</Title>
+        <Title level={2}>{Cluar.plainDictionary('profile-page-title')}</Title>
       </div>
       <div className="content-body">
         <Avatar ref={profileAvatar} currentImage={avatarImageURL} />
-        <Divider orientation="left" plain>Informações Gerais</Divider>
+        <Divider orientation="left" plain>{Cluar.plainDictionary('profile-page-general-info')}</Divider>
         <Form
           {...layout}
           onValuesChange={onValuesChange}
@@ -123,56 +124,56 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Nome"
+            label={Cluar.plainDictionary('profile-form-name')}
             name="name"
             rules={[
-              { required: true, message: 'Insira o seu nome.' },
-              { type: 'string', message: 'Nome inválido, apenas letras minúsculas e maiúsculas.', pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
+              { required: true, message: Cluar.plainDictionary('profile-form-validate-message-required') },
+              { type: 'string', message: Cluar.plainDictionary('profile-form-name-validate-message'), pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
             ]}
           >
             <Input disabled={submitting} maxLength={25} />
           </Form.Item>
           <Form.Item
-            label="Nome de utilizador"
+            label={Cluar.plainDictionary('profile-form-username')}
             name="username"
             rules={[
-              { required: true, message: 'Insira o seu nome.' },
-              { type: 'string', message: 'Nome inválido, apenas letras minúsculas e maiúsculas.', pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
+              { required: true, message: Cluar.plainDictionary('profile-form-validate-message-required') },
+              { type: 'string', message: Cluar.plainDictionary('profile-form-name-validate-message'), pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
             ]}
           >
             <Input disabled={submitting} maxLength={25} />
           </Form.Item>
           <Form.Item
-            label="E-mail"
+            label={Cluar.plainDictionary('profile-form-mail')}
             name="email"
             rules={[
-              { type: 'email', message: 'O e-mail inserido não é válido.' },
-              { required: true, message: 'Insira o e-mail.' }
+              { type: 'email', message: Cluar.plainDictionary('profile-form-mail-validate-message') },
+              { required: true, message: Cluar.plainDictionary('profile-form-validate-message-required') }
             ]}
           >
             <Input disabled={submitting} maxLength={250} />
           </Form.Item>
           <Form.Item
-            label="Nova Palavra-passe"
+            label={Cluar.plainDictionary('profile-form-password')}
             name="password"
             rules={[
-              { type: 'string', message: 'Palavra-Passe deverá ter entre 8 a 25 caracteres.', min: 8, max: 25 },
+              { type: 'string', message: Cluar.plainDictionary('profile-form-validate-password-message'), min: 8, max: 25 },
             ]}
           >
             <PasswordInput />
           </Form.Item>
           <Form.Item
-            label="Confirmar nova Palavra-passe"
+            label={Cluar.plainDictionary('profile-form-confirm-password')}
             name="password_confirm"
             rules={[
-              { required: passwordRequired, message: 'Insira a confirmação da nova palavra-passe.' },
-              { type: 'string', message: 'Palavra-Passe deverá ter entre 8 a 25 caracteres.', min: 8, max: 25 },
+              { required: passwordRequired, message: Cluar.plainDictionary('profile-form-validate-message-required') },
+              { type: 'string', message: Cluar.plainDictionary('profile-form-validate-password-message'), min: 8, max: 25 },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject('As palavras-passes não são iguais.');
+                  return Promise.reject(Cluar.plainDictionary('profile-form-password-not-equals-message'));
                 },
               })
             ]}
@@ -183,7 +184,7 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
             <Col>
               <Form.Item>
                 <Button type="primary" htmlType="submit" loading={submitting}>
-                  Atualizar Perfil
+                  {Cluar.plainDictionary('profile-form-update')}
                 </Button>
               </Form.Item>
             </Col>
