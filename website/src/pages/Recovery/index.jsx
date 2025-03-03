@@ -3,6 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { Layout, Typography, Form, Input, Button, notification, Row, Col } from 'antd';
 import { PasswordInput } from "antd-password-input-strength";
 import _service from '@netuno/service-client';
+import Cluar from '../../common/Cluar';
 
 import './index.less';
 
@@ -55,8 +56,8 @@ export default function Recovery(props) {
             success: (response) => {
                 if (response.json.result) {
                     notification["success"]({
-                        message: 'Alteração de Palavra-Passe',
-                        description: 'A sua palavra-passe foi alterada com sucesso.',
+                        message: Cluar.plainDictionary('recovery-form-success-message'),
+                        description: Cluar.plainDictionary('recovery-form-success-description'),
                     });
                     setSubmitting(false);
                     setReady(true);
@@ -65,8 +66,8 @@ export default function Recovery(props) {
             fail: () => {
                 setSubmitting(false);
                 notification["error"]({
-                    message: 'Erro na alteração de Palavra-Passe',
-                    description: 'Não foi possível alterar a sua palavra-passe, por favor contacte-nos através do chat de suporte.',
+                    message: Cluar.plainDictionary('recovery-form-failed-message'),
+                    description: Cluar.plainDictionary('recovery-form-failed-description'),
                 });
             }
         });
@@ -85,10 +86,9 @@ export default function Recovery(props) {
                     <Row justify={'center'}>
                         <Col {...columnConfig}>
                             <div className="content-title">
-                                <Title>Recuperar Acesso</Title>
+                                <Title>{Cluar.plainDictionary('recovery-form-title')}</Title>
                             </div>
                             <div className="content-body">
-                                <p>Alteração da palavra-passe da sua conta.</p>
                                 <Form
                                     ref={recoveryForm}
                                     layout="vertical"
@@ -98,27 +98,27 @@ export default function Recovery(props) {
                                     onFinishFailed={onFinishFailed}
                                 >
                                     <Form.Item
-                                        label="Palavra-passe"
+                                        label={Cluar.plainDictionary('recovery-form-password')}
                                         name="password"
                                         rules={[
-                                            { required: true, message: 'Insira a palavra-passe.' },
-                                            { type: 'string', message: 'Palavra-Passe deverá ter entre 8 a 25 caracteres.', min: 8, max: 25 },
+                                            { required: true, message: Cluar.plainDictionary('recovery-form-validate-message-required') },
+                                            { type: 'string', message: Cluar.plainDictionary('recovery-form-password-valid-message'), min: 8, max: 25 },
                                         ]}
                                     >
                                         <PasswordInput disabled={submitting} maxLength={25} />
                                     </Form.Item>
                                     <Form.Item
-                                        label="Confirmar a Palavra-passe"
+                                        label={Cluar.plainDictionary('recovery-form-confirm-password')}
                                         name="password_confirm"
                                         rules={[
-                                            { required: true, message: 'Insira a confirmação da palavra-passe.' },
-                                            { type: 'string', message: 'Palavra-Passe deverá ter entre 8 a 25 caracteres.', min: 8, max: 25 },
+                                            { required: true, message: Cluar.plainDictionary('recovery-form-validate-message-required') },
+                                            { type: 'string', message: Cluar.plainDictionary('recovery-form-password-valid-message'), min: 8, max: 25 },
                                             ({ getFieldValue }) => ({
                                                 validator(_, value) {
                                                     if (!value || getFieldValue('password') === value) {
                                                         return Promise.resolve();
                                                     }
-                                                    return Promise.reject('As palavras-passes não são iguais.');
+                                                    return Promise.reject(Cluar.plainDictionary('recovery-form-passwords-not-equals-message'));
                                                 },
                                             })
                                         ]}
@@ -127,7 +127,7 @@ export default function Recovery(props) {
                                     </Form.Item>
                                     <Form.Item>
                                         <Button type="primary" htmlType="submit" loading={submitting}>
-                                            Redefinir Palavra-passe
+                                            {Cluar.plainDictionary('recovery-form-confirm-password')}
                                         </Button>
                                     </Form.Item>
                                 </Form>

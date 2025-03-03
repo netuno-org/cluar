@@ -433,15 +433,119 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "cb174d2b-7c0d-49c8-b179-d008c00e7299")
+      .set("code", "recovery-form-title")
+      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "22476929-015c-4ded-8364-10fad2c27953")
+      .set("code", "recovery-form-failed-description")
+      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Falha - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "f3ed0c3f-77f9-45b8-884f-25bffeb1969a")
-      .set("code", "recovery-form-mail")
-      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - E-mail")
+      .set("code", "recovery-modal-mail")
+      .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - E-mail")
   );
   
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
       .set("uid", "dbba73e3-df9e-4902-810f-a0d077c4dc88")
+      .set("code", "recovery-modal-validate-message-required")
+      .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a2a7b5ad-0084-4892-9d58-137ee2ce1d05")
+      .set("code", "recovery-modal-mail-valid-message")
+      .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Valida\u00E7\u00E3o de E-mail - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d0384103-b28d-4960-a9b7-248b5c97f18e")
+      .set("code", "recovery-modal-cancel")
+      .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Cancelar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "10b39eb3-03ae-47a8-9258-d93619aab8e3")
+      .set("code", "recovery-modal-send")
+      .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Enviar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "302c52b2-84da-4681-b306-fdd82044690c")
+      .set("code", "recovery-modal-success-message")
+      .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "7585150e-bf0f-49c2-9294-60e0bf120889")
+      .set("code", "recovery-modal-success-description")
+      .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Sucesso - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "98971777-122b-4cf5-a875-e91e72b2aa51")
+      .set("code", "recovery-modal-failed-message")
+      .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Failed - Message")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "731da96c-df13-4758-8598-6a76fea886a8")
+      .set("code", "recovery-modal-failed-description")
+      .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Failed - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "68d1e1c1-bca9-49dd-b0fa-1fbfca27fbbb")
+      .set("code", "recovery-form-password")
+      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a14404a3-4752-4cfd-b6f7-f8a078f748f2")
+      .set("code", "recovery-form-confirm-password")
+      .set("description", "Fomul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Confirmar Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "fc39a4ed-536b-4f90-9960-cee7da711873")
+      .set("code", "recovery-form-reset-password")
+      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Redefinir Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ff9656e8-796c-4efe-b9cf-c741aeb2848f")
       .set("code", "recovery-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
   );
@@ -449,31 +553,23 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
-      .set("uid", "a2a7b5ad-0084-4892-9d58-137ee2ce1d05")
-      .set("code", "recovery-form-mail-valid-message")
-      .set("description", "Fomul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Valida\u00E7\u00E3o de E-mail - Mensagem")
+      .set("uid", "26106564-6c4c-487e-99e4-9cb001e67300")
+      .set("code", "recovery-form-passwords-not-equals-message")
+      .set("description", "Fomul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Palavras-passes Diferentes - Mensagem")
   );
   
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
-      .set("uid", "d0384103-b28d-4960-a9b7-248b5c97f18e")
-      .set("code", "recovery-form-cancel")
-      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Cancelar")
+      .set("uid", "77f85f74-1ce6-4728-9388-e8f621eef787")
+      .set("code", "recovery-form-password-valid-message")
+      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Valida\u00E7\u00E3o de Palavra-passe")
   );
   
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
-      .set("uid", "10b39eb3-03ae-47a8-9258-d93619aab8e3")
-      .set("code", "recovery-form-send")
-      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Enviar")
-  );
-  
-  _db.insertIfNotExists(
-    "dictionary_entry",
-    _val.init()
-      .set("uid", "302c52b2-84da-4681-b306-fdd82044690c")
+      .set("uid", "8d9deec7-9898-4629-bd98-37054f69fc77")
       .set("code", "recovery-form-success-message")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Sucesso - Mensagem")
   );
@@ -481,24 +577,17 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
-      .set("uid", "7585150e-bf0f-49c2-9294-60e0bf120889")
+      .set("uid", "aca1863c-af41-4b84-ac23-fae36ad20ae6")
       .set("code", "recovery-form-success-description")
-      .set("description", "Fomul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Sucesso - Descri\u00E7\u00E3o")
+      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Sucesso - Descri\u00E7\u00E3o")
   );
   
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
-      .set("uid", "98971777-122b-4cf5-a875-e91e72b2aa51")
+      .set("uid", "ff81abe7-b2e8-4f55-a0f4-9844885071f1")
       .set("code", "recovery-form-failed-message")
-      .set("description", "Fomul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Failed - Message")
+      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Falha - Mensagem")
   );
   
-  _db.insertIfNotExists(
-    "dictionary_entry",
-    _val.init()
-      .set("uid", "731da96c-df13-4758-8598-6a76fea886a8")
-      .set("code", "recovery-form-failed-description")
-      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Failed - Descri\u00E7\u00E3o")
-  ); 
 }
