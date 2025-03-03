@@ -20,6 +20,7 @@ import {
   Skeleton, 
   Button 
 } from 'antd';
+import Cluar from '../../common/Cluar'
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -42,33 +43,33 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const items = [
     {
       key: '1',
-      label: 'Gestão',
+      label: Cluar.plainDictionary('side-menu-options-manage'),
       icon: <SettingOutlined />,
       children: [
         {
           key: 'users',
-          label: 'Utilizadores',
+          label: Cluar.plainDictionary('side-menu-options-users'),
           icon: <UserOutlined />,
           onClick: () => navigate("/reserved-area/users")
 
         },
         {
           key: 'languages',
-          label: 'Idiomas',
+          label: Cluar.plainDictionary('side-menu-options-languages'),
           icon: <GlobalOutlined />,
           onClick: () => navigate("/reserved-area/languages")
 
         },
         {
           key: 'configuration',
-          label: 'Configurações',
+          label: Cluar.plainDictionary('side-menu-options-configurations'),
           icon: <SettingOutlined />,
           onClick: () => navigate("/reserved-area/configuration")
 
         },
         {
           key: 'dictionary',
-          label: 'Dicionários',
+          label: Cluar.plainDictionary('side-menu-options-dictionaries'),
           icon: <FontSizeOutlined />,
           onClick: () => navigate("/reserved-area/dictionary")
 
@@ -86,11 +87,11 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     <Menu>
       <Menu.Item key="1">
         <Link to="/reserved-area/profile">
-          <EditOutlined />&nbsp;&nbsp;&nbsp;Editar Perfil
+          <EditOutlined />&nbsp;&nbsp;&nbsp;{Cluar.plainDictionary('user-menu-edit-profile')}
         </Link></Menu.Item>
       <Menu.Item key="2">
         <Button type="link" onClick={onLogout} danger style={{ padding: "0px" }}>
-          <LogoutOutlined /> Terminar Sessão
+          <LogoutOutlined /> {Cluar.plainDictionary('user-menu-sign-out')}
         </Button>
       </Menu.Item>
     </Menu>
@@ -117,8 +118,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         console.error('Dados do Utilizador', e);
         setLoading(false);
         notification["error"]({
-          message: 'Dados do Utilizador',
-          description: 'Ocorreu um erro a carregar os dados, por favor tente novamente.',
+          message: Cluar.plainDictionary('side-menu-load-user-info-failed-message'),
+          description: Cluar.plainDictionary('side-menu-load-user-info-failed-message'),
         });
         _auth.logout();
       }

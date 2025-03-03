@@ -806,4 +806,76 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("description", "Formul\u00E1rio do Perfil - Imagem - Configurar")
   );
   
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "596c06af-d381-407d-a36f-2990080bf5f2")
+      .set("code", "side-menu-options-manage")
+      .set("description", "Menu Lateral - Op\u00E7\u00F5es - Gest\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0c5189d7-4671-48ab-a250-f4c9e8522772")
+      .set("code", "side-menu-options-users")
+      .set("description", "Menu Lateral - Op\u00E7\u00F5es - Utilizadores")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0efeb924-2c00-4fa9-934f-61b1deb727d1")
+      .set("code", "side-menu-options-languages")
+      .set("description", "Menu Lateral - Op\u00E7\u00F5es - Idiomas")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "58a903b7-9c78-49e2-acc2-0e2fedb3694f")
+      .set("code", "side-menu-options-configurations")
+      .set("description", "Menu Lateral - Op\u00E7\u00F5es - Configura\u00E7\u00F5es")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "46088a01-26bf-4a60-8738-1a1d1f4c9ac5")
+      .set("code", "side-menu-options-dictionaries")
+      .set("description", "Menu Lateral - Op\u00E7\u00F5es - Dicion\u00E1rios")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "afa8733f-39f9-4d22-afc8-7c513f0dcfd1")
+      .set("code", "user-menu-edit-profile")
+      .set("description", "Menu Utilizador - Editar Perfil")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "615ab387-5d27-4b30-a79b-5deda5d75543")
+      .set("code", "user-menu-sign-out")
+      .set("description", "Menu Utilizador - Terminar Sess\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ec8c39fd-8f93-4bf9-9f28-5a886dcba63c")
+      .set("code", "side-menu-load-user-info-failed-message")
+      .set("description", "Menu Lateral - Falha ao Carregar Utilizadror - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "44d841f5-560d-4bb9-a778-bc5574e7e5c0")
+      .set("code", "side-menu-load-user-info-failed-description")
+      .set("description", "Menu Lateral - Falha ao Carregar Utilizadror - Descri\u00E7\u00E3o")
+  );
+  
 }
