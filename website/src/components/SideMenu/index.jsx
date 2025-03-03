@@ -119,7 +119,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         setLoading(false);
         notification["error"]({
           message: Cluar.plainDictionary('side-menu-load-user-info-failed-message'),
-          description: Cluar.plainDictionary('side-menu-load-user-info-failed-message'),
+          description: Cluar.plainDictionary('side-menu-load-user-info-failed-description'),
         });
         _auth.logout();
       }

@@ -878,4 +878,156 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("description", "Menu Lateral - Falha ao Carregar Utilizadror - Descri\u00E7\u00E3o")
   );
   
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "01329d49-b5e8-460f-9af5-fedc8acf7c5f")
+      .set("code", "users-page-title")
+      .set("description", "P\u00E1gina de Utilizadores - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "939cb82a-1a03-467e-af9c-4c585c5d456e")
+      .set("code", "users-page-new")
+      .set("description", "P\u00E1gina de Utilizadores - Novo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "32d95621-1eec-475a-ac75-b219b86ad488")
+      .set("code", "users-table-active")
+      .set("description", "Tabela de Utilizadores - Activo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "7d5ec0e1-3c9a-4bc4-90df-e159a62af600")
+      .set("code", "users-table-name")
+      .set("description", "Tabela de Utilizadores - Nome")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9a481dbc-6f15-4df0-9ed2-eff1988d8ce0")
+      .set("code", "users-table-mail")
+      .set("description", "Tabela de Utilizadores - E-mail")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "fc9bb440-6c0d-4a47-a262-7de29a1ba3de")
+      .set("code", "users-table-group")
+      .set("description", "Tabela de Utilizadores - Grupo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "fe721b26-ab85-4878-b349-5d37a9f186d9")
+      .set("code", "users-table-actions")
+      .set("description", "Tabela de Utilizadores - A\u00E7\u00F5es")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "1e19f885-a528-4538-95ac-dfa2a90bae7e")
+      .set("code", "users-table-actions-edit-title")
+      .set("description", "Tabela de Utilizadores - A\u00E7\u00F5es - Editar - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2f315e92-ccb7-4ee1-aa3f-416a8b66d967")
+      .set("code", "users-table-user")
+      .set("description", "Tabela de Utilizadores - Utilizador")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9f447ef7-d096-4b0e-886c-13db1971afd8")
+      .set("code", "users-table-active-success-message")
+      .set("description", "Tabela de Utilizadores - Active - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ef55fd8a-0777-4726-bc57-920e528de15a")
+      .set("code", "users-table-active-success-description")
+      .set("description", "Tabela de Utilizadores - Active - Sucesso - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9fa040cb-6bf9-49c7-805c-946e88768171")
+      .set("code", "users-table-active-failed-message")
+      .set("description", "Tabela de Utilizadores - Active - Failed - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "671aa3d2-79e6-44a2-85fd-39db4aa1805b")
+      .set("code", "users-table-active-failed-description")
+      .set("description", "Tabela de Utilizadores - Active - Failed - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "95e71496-e332-439a-a98f-d314fb99f1ee")
+      .set("code", "users-table-load-failed-message")
+      .set("description", "Tabela de Utilizadores - Falha no Carregamento - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c0a02b36-ed83-4084-b01a-36c5f1548ff0")
+      .set("code", "users-table-load-failed-description")
+      .set("description", "Tabela de Utilizadores - Falha no Carregamento - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c11efd6a-9634-4ba0-bbe2-fedffa97bc82")
+      .set("code", "users-table-desactive-success-message")
+      .set("description", "Tabela de Utilizadores - Desactive - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ab2dbd34-3b6b-4696-a157-188ce223b266")
+      .set("code", "users-table-desactive-success-description")
+      .set("description", "Tabela de Utilizadores - Desactive - Sucesso - Description")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "384101dd-2e4e-4d41-9ee3-cff1e35883f0")
+      .set("code", "users-table-desactive-failed-description")
+      .set("description", "Tabela de Utilizadores - Desactive - Falha - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f9aac546-1091-4eda-a930-ca49915cb3a2")
+      .set("code", "users-table-desactive-failed-message")
+      .set("description", "Tabela de Utilizadores - Desactive - Falha - Mensagem")
+  );
+  
 }

@@ -14,6 +14,7 @@ import "./index.less"
 import { forwardRef, useEffect, useRef, useState, useImperativeHandle } from "react";
 import UserModal from "../Modal";
 import _service from '@netuno/service-client';
+import Cluar from "../../../../common/Cluar";
 
 const debounces = {};
 
@@ -44,7 +45,7 @@ const UserTable = forwardRef(({ }, ref) => {
             fail: (error) => {
                 console.error(error);
                 notification.error({
-                    message: "Falha ao carrear grupos."
+                    message: Cluar.plainDictionary('users-table-load-failed-message')
                 })
             }
         })
@@ -80,7 +81,7 @@ const UserTable = forwardRef(({ }, ref) => {
                     key: uid
                 });
                 notification.success({
-                    message: `Utilizador ${active ? "desactivado" : "activado"} com sucesso.`
+                    message: active ? Cluar.plainDictionary('users-table-desactive-success-message') : Cluar.plainDictionary('users-table-active-success-message')
                 })
             },
             fail: (error) => {
@@ -90,7 +91,7 @@ const UserTable = forwardRef(({ }, ref) => {
                 });
                 console.log(error);
                 notification.error({
-                    message: `Falha ao ${active ? "desactivar" : "activar"} utilizador.`
+                    message: active ? Cluar.plainDictionary('users-table-desactive-failed-message') : Cluar.plainDictionary('users-table-active-failed-message')
                 });
             }
         })
@@ -173,7 +174,7 @@ const UserTable = forwardRef(({ }, ref) => {
 
     const columns = [
         {
-            title: 'Active',
+            title: Cluar.plainDictionary('users-table-active'),
             dataIndex: 'active',
             key: 'active',
             render: (val, record) => (
@@ -204,25 +205,25 @@ const UserTable = forwardRef(({ }, ref) => {
 
         },
         {
-            title: 'Nome',
+            title: Cluar.plainDictionary('users-table-name'),
             dataIndex: 'name',
             key: 'name',
             ...getTextFilterProps("name")
         },
         {
-            title: 'Utilizador',
+            title: Cluar.plainDictionary('users-table-user'),
             dataIndex: 'username',
             key: 'username',
             ...getTextFilterProps("username")
         },
         {
-            title: 'E-mail',
+            title: Cluar.plainDictionary('users-table-mail'),
             dataIndex: 'email',
             key: 'email',
             ...getTextFilterProps("email")
         },
         {
-            title: 'Grupo',
+            title: Cluar.plainDictionary('users-table-group'),
             dataIndex: 'group',
             key: 'group_codes',
             render: (val) => val.name,
@@ -233,7 +234,7 @@ const UserTable = forwardRef(({ }, ref) => {
             }))
         },
         {
-            title: 'Ações',
+            title: Cluar.plainDictionary('users-table-actions'),
             dataIndex: 'actions',
             key: 'action',
             render: (val, record) => (
@@ -242,7 +243,7 @@ const UserTable = forwardRef(({ }, ref) => {
                         <Button
                             icon={<EditOutlined />}
                             type="text"
-                            title="Editar"
+                            title={Cluar.plainDictionary('users-table-actions-edit-title')}
                             onClick={() => {
                                 setEditeUser(record);
                                 userModalRef.current.openModal()

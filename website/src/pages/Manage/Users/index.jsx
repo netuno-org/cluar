@@ -9,6 +9,7 @@ import HeadTitle from "../../../components/HeadTitle";
 import UserModal from "./Modal";
 import UserTable from "./Table";
 import { PlusOutlined } from "@ant-design/icons"
+import Cluar from "../../../common/Cluar";
 
 import "./index.less";
 import { useRef, useState } from "react";
@@ -27,7 +28,7 @@ const Users = () => {
                 <Col span={24}>
                     <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
                         <Col>
-                            <HeadTitle text={"Utilizadores"} level={4} type={"secondary"} />
+                            <HeadTitle text={Cluar.plainDictionary('users-page-title')} level={4} type={"secondary"} />
                         </Col>
                         <Col>
                             <Button
@@ -35,7 +36,7 @@ const Users = () => {
                                 icon={<PlusOutlined />}
                                 onClick={() => userModalRef.current.openModal()}
                             >
-                                Novo
+                                {Cluar.plainDictionary('users-page-new')}
                             </Button>
                         </Col>
                     </Row>
