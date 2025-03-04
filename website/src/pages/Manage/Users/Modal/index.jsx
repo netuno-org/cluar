@@ -11,6 +11,7 @@ import {
 } from "antd";
 import { useState, useImperativeHandle, forwardRef, useEffect } from "react";
 import _service from '@netuno/service-client';
+import Cluar from "../../../../common/Cluar";
 
 import "./index.less"
 
@@ -48,7 +49,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 setLoadingGroup(false);
                 console.error(error);
                 notification.error({
-                    message: "Falha ao carrear grupos."
+                    message: Cluar.plainDictionary('users-form-load-groups-failed-message')
                 })
             }
         })
@@ -90,7 +91,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 success: (response) => {
                     setOnFinishLoading(false);
                     notification.success({
-                        message: "Utilizador atulizado com sucesso."
+                        message: Cluar.plainDictionary('users-form-edit-success-message')
                     });
                     setIsModalOpen(false);
                     onReloadTable();
@@ -99,7 +100,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                     setOnFinishLoading(false);
                     console.error(error);
                     notification.error({
-                        message: "Falha ao atulizar utilizador."
+                        message: Cluar.plainDictionary('users-form-edit-failed-message')
                     })
                 }
             })
@@ -113,7 +114,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 success: (response) => {
                     setOnFinishLoading(false);
                     notification.success({
-                        message: "Utilizador registado com sucesso."
+                        message: Cluar.plainDictionary('users-form-save-success-message')
                     });
                     setIsModalOpen(false);
                     onReloadTable();
@@ -122,7 +123,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                     setOnFinishLoading(false);
                     console.error(error);
                     notification.error({
-                        message: "Falha ao registar utilizador."
+                        message: Cluar.plainDictionary('users-form-save-failed-message')
                     })
                 }
             })
@@ -136,7 +137,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     return (
         <div className="modal-content">
             <Modal
-                title={userData ? "Editar Utilizador" : "Novo Utilizador"}
+                title={userData ? Cluar.plainDictionary('users-modal-title-edit') : Cluar.plainDictionary('users-modal-title-new')}
                 maskClosable={false}
                 destroyOnClose={true}
                 centered
@@ -146,10 +147,10 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 afterClose={() => formRef.resetFields()}
                 footer={[
                     <Button key="back" onClick={() => setIsModalOpen(false)}>
-                        Cancelar
+                        {Cluar.plainDictionary('users-form-cancel')}
                     </Button>,
                     <Button key="send" type="primary" onClick={() => { formRef.submit() }} loading={onFinishLoading}>
-                        Guardar
+                        {Cluar.plainDictionary('users-form-save')}
                     </Button>
                 ]}
             >
@@ -161,7 +162,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                     <Row justify={"space-between"} align={"middle"} gutter={[10, 0]}>
                         <Col {...configColumn}>
                             <Form.Item
-                                label="Activo"
+                                label={Cluar.plainDictionary('users-form-active')}
                                 name="active"
                                 initialValue={false}
                             >
@@ -170,45 +171,45 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                         </Col>
                         <Col {...configColumn}>
                             <Form.Item
-                                label="Nome"
+                                label={Cluar.plainDictionary('users-form-name')}
                                 name="name"
-                                rules={[{ required: true, message: "Insira em nome." }]}
+                                rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
                             >
                                 <Input />
                             </Form.Item>
                         </Col>
                         <Col {...configColumn}>
                             <Form.Item
-                                label="Utilizador"
+                                label={Cluar.plainDictionary('users-form-username')}
                                 name="username"
-                                rules={[{ required: true, message: "Insira um utilizador." }]}
+                                rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
                             >
                                 <Input />
                             </Form.Item>
                         </Col>
                         <Col {...configColumn}>
                             <Form.Item
-                                label="Palavra-passe"
+                                label={Cluar.plainDictionary('users-form-password')}
                                 name="password"
-                                rules={[{ required: userData ? false : true, message: "Insira uma palavra-passe." }]}
+                                rules={[{ required: userData ? false : true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
                             >
                                 <Input.Password autoComplete="off" />
                             </Form.Item>
                         </Col>
                         <Col {...configColumn}>
                             <Form.Item
-                                label="E-mail"
+                                label={Cluar.plainDictionary('users-form-email')}
                                 name="email"
-                                rules={[{ required: true, type: "email", message: "Insira um e-mail válido" }]}
+                                rules={[{ required: true, type: "email", message: Cluar.plainDictionary('users-form-validate-message-required') }]}
                             >
                                 <Input />
                             </Form.Item>
                         </Col>
                         <Col {...configColumn}>
                             <Form.Item
-                                label="Grupo"
+                                label={Cluar.plainDictionary('users-form-group')}
                                 name="group_code"
-                                rules={[{ required: true, message: "Selecione um grupo." }]}
+                                rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
                             >
                                 <Select
                                     loading={loadingGroup}

@@ -1030,4 +1030,172 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("description", "Tabela de Utilizadores - Desactive - Falha - Mensagem")
   );
   
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "62cdf9d3-f760-4df4-b27f-132a86f2894f")
+      .set("code", "users-form-active")
+      .set("description", "Formul\u00E1rio de Utilizadores - Activo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0deeec16-fbc5-4121-9971-571f84020489")
+      .set("code", "users-form-name")
+      .set("description", "Formul\u00E1rio de Utilizadores - Nome")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "5765fb68-58e1-468e-ac4b-e5e523fb773e")
+      .set("code", "users-form-username")
+      .set("description", "Formul\u00E1rio de Utilizadores - Utilizador")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f8ba1570-686c-4e27-9511-42357e574aa3")
+      .set("code", "users-form-password")
+      .set("description", "Formul\u00E1rio de Utilizadores - Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c2a55741-9e10-4568-b35a-17d1d94161f1")
+      .set("code", "users-form-email")
+      .set("description", "Formul\u00E1rio de Utilizadores - E-mail")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "de64a4fd-c309-438f-a2ad-f1a01a758a3c")
+      .set("code", "users-form-cancel")
+      .set("description", "Formul\u00E1rio de Utilizadores - Cancelar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "3a37f86e-4ed5-486d-b4ec-b951164eefaf")
+      .set("code", "users-form-save")
+      .set("description", "Formul\u00E1rio de Utilizadores - Guardar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "7faf345a-8348-44df-8727-d1f359b38a5e")
+      .set("code", "users-modal-title-new")
+      .set("description", "Modal de Utilizadores - T\u00EDtulo - Novo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a39f13d4-a3e8-4ad6-9375-9667b6fe6f8f")
+      .set("code", "users-modal-title-edit")
+      .set("description", "Modal de Utilizadores - T\u00EDtulo - Editar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "204b44bc-537e-45e6-a510-c25ed15f29fd")
+      .set("code", "users-form-group")
+      .set("description", "Formul\u00E1rio de Utilizadores - Grupo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f3dafdf1-0e4c-409a-98fb-aec0a4231aae")
+      .set("code", "users-form-validate-message-required")
+      .set("description", "Formul\u00E1rio de Utilizadores - Valida\u00E7\u00E3o Mensagem - Obrigat\u00F3rio")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "650ba746-8ac2-4486-b4c4-73ba611b10c4")
+      .set("code", "users-form-load-groups-failed-message")
+      .set("description", "Formul\u00E1rio de Utilizadores - Carregar Grupos - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "cac15cb8-b9f0-47a2-adce-7c5cd6596878")
+      .set("code", "users-form-load-groups-failed-description")
+      .set("description", "Formul\u00E1rio de Utilizadores - Carregar Grupos - Falha - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "eac3f61f-2672-4aa2-bf44-657a66bb1050")
+      .set("code", "users-form-save-success-description")
+      .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Sucesso - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "70c03cc5-523d-483d-82e3-db9e35a6e5b2")
+      .set("code", "users-form-save-success-message")
+      .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2c6c6417-bb02-4533-89c1-edb779bc014b")
+      .set("code", "users-form-save-failed-message")
+      .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2980c79d-89f6-4a31-aabe-765788b53047")
+      .set("code", "users-form-save-failed-description")
+      .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Falha - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "69367e06-9a65-4908-849b-9cdcd1e42a2a")
+      .set("code", "users-form-edit-success-message")
+      .set("description", "Formul\u00E1rio de Utilizadores - Editar - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "6c0e9206-20eb-4fc9-b4e9-30f5dd022383")
+      .set("code", "users-form-edit-success-description")
+      .set("description", "Formul\u00E1rio de Utilizadores - Editar - Sucesso - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f212f926-3c99-4fe7-91fc-bb4acf5d0d95")
+      .set("code", "users-form-edit-failed-message")
+      .set("description", "Formul\u00E1rio de Utilizadores - Editar - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ea4cddb1-aee0-42b9-bd7d-47eb7c6cec80")
+      .set("code", "users-form-edit-failed-description")
+      .set("description", "Formul\u00E1rio de Utilizadores - Editar - Falha - Descri\u00E7\u00E3o")
+  );
+
 }
