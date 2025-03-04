@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { Alert, Row, Col, Button } from "antd";
 
+import {useParams} from "react-router-dom"
+
 import sal from "sal.js";
 
 import Cluar from "../common/Cluar";
@@ -19,9 +21,10 @@ function Builder({ page }) {
   const [structure, setStructure] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [hasDiff, setHasDiff] = useState(false);
+  const params = useParams()
 
   useEffect(() => {
-    fetch(`/cluar/structures/${page.uid}.json?time=${new Date().getTime()}`)
+    fetch(`/cluar/structures/${params.version || page.uid}.json?time=${new Date().getTime()}`)
       .then((response) => response.json())
       .then((data) => {
         setError(false);
@@ -65,7 +68,7 @@ function Builder({ page }) {
   const extraBarAdmin = (
     <Row gutter={12}>
       <Col>
-        <Button>Salvar</Button>
+        <Button>Guardar</Button>
       </Col>
       <Col>
         <Button type="primary">Publicar</Button>

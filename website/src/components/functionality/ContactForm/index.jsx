@@ -92,7 +92,7 @@ function ContactForm({ title }) {
               </Form.Item>
             </Col>
           </Row>
-          {process.env.REACT_APP_RECAPTCHA_SITE_KEY && (
+          {/* {process.env.REACT_APP_RECAPTCHA_SITE_KEY && (
             <Row {...layout.rowGutter}>
               <Col>
                 <ReCAPTCHA
@@ -110,11 +110,11 @@ function ContactForm({ title }) {
                 />
               </Col>
             </Row>
-          )}
+          )} */}
           <Row {...layout.rowGutter}>
             <Col span={24}>
               <Form.Item wrapperCol={24}>
-                <Button disabled={!isHuman && process.env.REACT_APP_RECAPTCHA_SITE_KEY} htmlType="submit" type="primary" block {...{loading}}>{Cluar.plainDictionary('contact-form-send')}</Button>
+                {/* <Button disabled={!isHuman && process.env.REACT_APP_RECAPTCHA_SITE_KEY} htmlType="submit" type="primary" block {...{loading}}>{Cluar.plainDictionary('contact-form-send')}</Button> */}
               </Form.Item>
             </Col>
           </Row>

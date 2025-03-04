@@ -11,7 +11,7 @@ const PageConfiguration = ({ pageData, open, onClose }) => {
       onClose={onClose}
       width={520}
       title="Configurações da Página"
-      extra={<Button type="primary">Salvar</Button>}
+      extra={<Button type="primary">Publicar</Button>}
     >
       <Form layout="vertical" initialValues={pageData} form={form}>
         <Form.Item label="Título" name="title">

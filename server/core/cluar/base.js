@@ -106,45 +106,50 @@ cluar.base.pages = ({publish = false}) => {
   }
 
   const dbPages = _db.query(`
-        SELECT
-            page.id,
-            page.uid,
-            language.code "language",
-            page.parent_id,
-            page.link,
-            page.title,
-            page.description,
-            page.keywords,
-            page.navigable,
-            page.menu,
-            page.menu_title,
-            page.sorter
-        FROM language
-            INNER JOIN page ON language.id = page.language_id
-            INNER JOIN page_status ON page.status_id = page_status.id
-        WHERE language.active = TRUE
-            AND page.active = TRUE
-            AND page_status.active = TRUE
-            AND page_status.code = 'published'
-        ORDER BY language.code, page.sorter, page.link
-        `)
-  const pages = _val.map()
+  SELECT
+    page.id,
+    page.uid,
+    page_version.uid "page_version_uid",
+    language.code "language",
+    page.parent_id,
+    page.link,
+    page.title,
+    page.description,
+    page.keywords,
+    page.navigable,
+    page.menu,
+    page.menu_title,
+    page.sorter
+  FROM language
+    INNER JOIN page ON language.id = page.language_id
+  INNER JOIN page_version ON page_version.page_id = page.id 
+    INNER JOIN page_status ON page_version.status_id = page_status.id
+  WHERE language.active = TRUE
+    AND page.active = TRUE
+    AND page_status.active = TRUE
+    AND page_status.code = 'published'
+  ORDER BY language.code, page.sorter, page.link
+        `);
+  const pages = _val.map();
   for (const dbPage of dbPages) {
     if (!pages.has(dbPage.getString("language"))) {
-      pages.set(dbPage.getString("language"), _val.list())
+      pages.set(dbPage.getString("language"), _val.list());
     }
-    let parentLink = ""
+    let parentLink = "";
     if (dbPage.getInt("parent_id") > 0) {
       const dbParentPage = _db.findFirst(
         "page",
-        _val.map()
+        _val
+          .map()
           .set("where", _val.map().set("id", dbPage.getInt("parent_id")))
-      )
-      parentLink = dbParentPage.getString("link")
+      );
+      parentLink = dbParentPage.getString("link");
     }
-    pages.getValues(dbPage.getString("language"))
+    pages
+      .getValues(dbPage.getString("language"))
       .add(
-        _val.map()
+        _val
+          .map()
           .set("uid", dbPage.getString("uid"))
           .set("parent", parentLink)
           .set("link", dbPage.getString("link"))
@@ -156,10 +161,11 @@ cluar.base.pages = ({publish = false}) => {
           .set("menu_title", dbPage.getString("menu_title"))
           .set("sorter", dbPage.getInt("sorter"))
           .set("structure", null)
-      )
-      
+          .set("page_version_uid", dbPage.getString("page_version_uid"))
+      );
+
     if (publish) {
-      cluar.page.publish(dbPage)
+      cluar.page.publish(dbPage);
     }
   }
 

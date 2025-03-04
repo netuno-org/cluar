@@ -1,8 +1,28 @@
 cluar.page.publish = (dbPage)=> {
-  const settings = { images: true }
-  
-  const structure = _val.list()
-  
+
+  const dbPageStatus = _db.queryFirst(`
+    SELECT * FROM page_status WHERE page_status.code = 'published'
+  `);
+
+  const dbPageVersion = _db.queryFirst(`
+    SELECT
+      *
+    FROM
+      page_version pv
+    WHERE
+      pv.status_id = ${dbPageStatus.getInt("id")}
+  `);
+
+  if (dbPageVersion) {
+    dbPage
+      .set("page_version_id", dbPageVersion.getInt("id"))
+      .set("page_version_uid", dbPageVersion.getString("uid"));
+  }
+
+  const settings = { images: true };
+
+  const structure = _val.list();
+
   /*
    *
    *  CONTENTS
@@ -26,8 +46,10 @@ cluar.page.publish = (dbPage)=> {
             WHERE content.active = TRUE
                 AND content_type.active = TRUE
                 AND page_content.active = TRUE
-                AND page_content.page_id = ${dbPage.getInt("id")}
-            `)
+                AND page_content.page_version_id = ${dbPage.getInt(
+                  "page_version_id"
+                )}
+            `);
   for (const dbContent of dbContents) {
     structure.add(
       _val.map()
@@ -72,11 +94,14 @@ cluar.page.publish = (dbPage)=> {
             WHERE banner.active = TRUE
                 AND banner_type.active = TRUE
                 AND page_banner.active = TRUE
-                AND page_banner.page_id = ${dbPage.getInt("id")}
-            `)
+                AND page_banner.page_version_id = ${dbPage.getInt(
+                  "page_version_id"
+                )}
+            `);
   for (const dbBanner of dbBanners) {
     structure.add(
-      _val.map()
+      _val
+        .map()
         .set("uid", dbBanner.getString("uid"))
         .set("section", "banner")
         .set("type", dbBanner.getString("type"))
@@ -88,14 +113,15 @@ cluar.page.publish = (dbPage)=> {
         .set("sorter", dbBanner.getInt("sorter"))
         .set(
           "position",
-          _val.map()
+          _val
+            .map()
             .set("x", dbBanner.getString("position_x"))
             .set("y", dbBanner.getString("position_y"))
         )
         .set("actions", cluar.actions("banner", dbBanner.getInt("id")))
-    )
+    );
     if (settings.images === true) {
-      cluar.publishImage("banner", dbBanner.getString("image"))
+      cluar.publishImage("banner", dbBanner.getString("image"));
     }
   }
 
@@ -121,8 +147,10 @@ cluar.page.publish = (dbPage)=> {
             WHERE listing.active = TRUE
                 AND listing_type.active = TRUE
                 AND page_listing.active = TRUE
-                AND page_listing.page_id = ${dbPage.getInt("id")}
-            `)
+                AND page_listing.page_version_id = ${dbPage.getInt(
+                  "page_version_id"
+                )}
+            `);
   for (const dbListing of dbListings) {
     const items = _val.list()
     const dbItems = _db.query(`
@@ -186,8 +214,10 @@ cluar.page.publish = (dbPage)=> {
             WHERE functionality.active = TRUE
                 AND functionality_type.active = TRUE
                 AND page_functionality.active = TRUE
-                AND page_functionality.page_id = ${dbPage.getInt("id")}
-            `)
+                AND page_functionality.page_version_id = ${dbPage.getInt(
+                  "page_version_id"
+                )}
+            `);
   for (const dbFunctionality of dbFunctionalities) {
     structure.add(
       _val.map()

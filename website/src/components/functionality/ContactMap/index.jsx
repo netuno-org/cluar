@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Col } from 'antd';
 import { PhoneOutlined, HomeOutlined, MailOutlined } from '@ant-design/icons';
-import Map, {Marker, Popup, NavigationControl} from 'react-map-gl';
+// import Map, {Marker, Popup, NavigationControl} from 'react-map-gl';
 
 import Cluar from '../../../common/Cluar';
 
@@ -56,7 +56,7 @@ function ContactMap({ title, content }){
           </div>
         </Col>
         <Col xs={24} sm={24} md={24} lg={24} xl={12}>
-          <div className="map__container">
+          {/* <div className="map__container">
             <Map
               initialViewState={{
                   latitude,
@@ -102,7 +102,7 @@ function ContactMap({ title, content }){
                   </Popup>
               )}
             </Map>
-          </div>
+          </div> */}
         </Col>
       </Row>
     </section>
