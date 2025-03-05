@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 
 import { Row, Col, Switch, Divider, Button } from "antd";
+import { HistoryOutlined } from "@ant-design/icons";
 import PageConfiguration from "../PageConfiguration";
+import PageVersions from "../PageVersions";
 
 import "./index.less";
 
 const AdminBar = ({ onChangeEditMode, extra, pageData }) => {
   const [isPageConfigOpen, setIsPageConfigOpen] = useState(false);
+  const [isPageVersionsOpen, setIsPageVersionsOpen] = useState(false);
 
   return (
     <div className="admin-bar">
@@ -35,6 +38,14 @@ const AdminBar = ({ onChangeEditMode, extra, pageData }) => {
               <Divider type="vertical" />
             </Col>
             <Col>
+              <Button type="text" onClick={() => setIsPageVersionsOpen(true)}>
+                <HistoryOutlined style={{ fontSize: 18 }} />
+              </Button>
+            </Col>
+            <Col>
+              <Divider type="vertical" />
+            </Col>
+            <Col>
               <Switch
                 onChange={onChangeEditMode}
                 checkedChildren="Editar"
@@ -53,6 +64,11 @@ const AdminBar = ({ onChangeEditMode, extra, pageData }) => {
       <PageConfiguration
         open={isPageConfigOpen}
         onClose={() => setIsPageConfigOpen(false)}
+        pageData={pageData}
+      />
+      <PageVersions
+        open={isPageVersionsOpen}
+        onClose={() => setIsPageVersionsOpen(false)}
         pageData={pageData}
       />
     </div>

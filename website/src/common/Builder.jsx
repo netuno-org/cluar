@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { Alert, Row, Col, Button } from "antd";
+import { Alert, Row, Col, Button, message } from "antd";
 
-import {useParams} from "react-router-dom"
+import { useSearchParams } from "react-router-dom";
 
 import sal from "sal.js";
 
@@ -16,30 +16,51 @@ import ContactForm from "../components/functionality/ContactForm";
 import ContactMap from "../components/functionality/ContactMap";
 import AdminBar from "../base/AdminBar";
 
+import _service from "@netuno/service-client";
+
 function Builder({ page }) {
   const [error, setError] = useState(false);
   const [structure, setStructure] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [hasDiff, setHasDiff] = useState(false);
-  const params = useParams()
+  const [saving, setSaving] = useState(false);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    fetch(`/cluar/structures/${params.version || page.uid}.json?time=${new Date().getTime()}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setError(false);
-        setStructure(data);
-        setHasDiff(false);
-      })
-      .catch((error) => {
-        setError(true);
-        console.error("Failed to load page structure: ", { page, error });
+    if (searchParams.get("version")) {
+      _service({
+        url: "/editor/page-version",
+        method: "GET",
+        data: {
+          version: searchParams.get("version"),
+        },
+        success: (res) => {
+          if (res.json.result) {
+            setStructure(res.json.structure);
+          }
+        },
+        fail: (res) => {
+          console.log(res);
+        },
       });
+    } else {
+      fetch(`/cluar/structures/${page.uid}.json?time=${new Date().getTime()}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setError(false);
+          setStructure(data);
+          setHasDiff(false);
+        })
+        .catch((error) => {
+          setError(true);
+          console.error("Failed to load page structure: ", { page, error });
+        });
+    }
     document.getElementsByTagName("meta")["keywords"].content = page.keywords;
     document.getElementsByTagName("meta")["description"].content =
       page.description;
     document.title = page.title + " | " + Cluar.config().name;
-  }, [page]);
+  }, [page, searchParams]);
 
   const handleAddNewSection = (data, current) => {
     const index = structure.findIndex((item) => item.uid === current);
@@ -65,10 +86,35 @@ function Builder({ page }) {
     }
   };
 
+  const handleSavePage = () => {
+    setSaving(true);
+    _service({
+      url: "/editor/page-version/save",
+      method: "POST",
+      data: {
+        structures: structure,
+        page: page.uid,
+      },
+      success: (res) => {
+        if (res.json.result) {
+          message.success("Página guardada com sucesso");
+        }
+        setSaving(false);
+      },
+      fail: (error) => {
+        message.error("Falha ao guardar página");
+        console.log(error);
+        setSaving(false);
+      },
+    });
+  };
+
   const extraBarAdmin = (
     <Row gutter={12}>
       <Col>
-        <Button>Guardar</Button>
+        <Button onClick={handleSavePage} loading={saving}>
+          Guardar
+        </Button>
       </Col>
       <Col>
         <Button type="primary">Publicar</Button>

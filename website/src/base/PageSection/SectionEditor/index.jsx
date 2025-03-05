@@ -23,7 +23,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       const confirmData = {
         ...sectionData,
         ...form.getFieldsValue(),
-        status: "to_update",
+        status: sectionData.status === "to_create" ? "to_create" : "to_update",
       };
 
       onConfirmChanges(confirmData);
