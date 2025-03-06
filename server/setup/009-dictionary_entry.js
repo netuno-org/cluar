@@ -1589,5 +1589,157 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-new-failed-message")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Novo - Falha - Mensagem")
   );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "402a690a-d0d6-4d1d-bb52-dd97af58349a")
+      .set("code", "dictionary-table-language")
+      .set("description", "Tabela de Dicion\u00E1rio - Idioma")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a1b52138-3b67-439f-9228-5062189903d5")
+      .set("code", "dictionary-table-entry")
+      .set("description", "Tabela de Dicion\u00E1rio - Chave")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9cbda42e-28b7-44a5-893c-d819b6f5a89c")
+      .set("code", "dictionary-table-value")
+      .set("description", "Tabela de Dicion\u00E1rio - Valor")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "b35a25a5-3efe-4dd2-b337-c958b1be2c24")
+      .set("code", "dictionary-table-actions")
+      .set("description", "Tabela de Dicion\u00E1rio - A\u00E7\u00F5es")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "40fbbeed-393e-4ee9-9178-12b3eac13af8")
+      .set("code", "dictionary-page-title")
+      .set("description", "P\u00E1gina de Dicion\u00E1rio - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "aa18e013-5806-4704-8e0e-73a9444e26fc")
+      .set("code", "dictionary-page-new")
+      .set("description", "P\u00E1gina de Dicion\u00E1rio - Novo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c9a40e9a-bdb8-454c-b5f9-81c182fedf64")
+      .set("code", "dictionary-load-failed-message")
+      .set("description", "P\u00E1gina de Dicion\u00E1rio - Falha no Carregamento - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "28b78dd0-58a9-44a1-aa61-fbc128974156")
+      .set("code", "dictionary-form-value")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Valor")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a910f0ba-a452-4646-8aca-03ea2f4cffe3")
+      .set("code", "dictionary-form-save")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Salvar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "4d337149-f744-4301-8a42-4025c4f7528a")
+      .set("code", "dictionary-form-cancel")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Cancelar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "8d717a42-63a7-47f4-b0e6-364c5f1b1c7a")
+      .set("code", "dictionary-form-validate-message-required")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Valida\u00E7\u00E3o Mensagem - Obrigar\u00F3rio")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "391d9bc8-312b-46b3-8700-4f169560da23")
+      .set("code", "dictionary-form-new-success-message")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Novo - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c98a1856-eda5-47fd-aeae-3d6b0feaab56")
+      .set("code", "dictionary-form-new-failed-message")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Novo - falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0496ed82-7447-42f8-b3f7-69cc39020553")
+      .set("code", "dictionary-form-edit-success-message")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Editar - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "33834852-597e-421a-bdf6-c17619c41622")
+      .set("code", "dictionary-form-edit-failed-message")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Editar - falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "3a5820d8-b9f9-4a58-8577-345e7a0973f2")
+      .set("code", "dictionary-modal-new-title")
+      .set("description", "Modal de Dicion\u00E1rio - Novo - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "4eb1851b-58ca-44d4-ae75-d205ba3b424b")
+      .set("code", "dictionary-modal-edit-title")
+      .set("description", "Modal de Dicion\u00E1rio - Editar - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f759c970-119f-4915-a10b-a754cd20a353")
+      .set("code", "dictionary-form-language")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Idioma")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "3877cb25-ea48-4cd2-a865-37c647f9cbf6")
+      .set("code", "dictionary-form-entry")
+      .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Chave")
+  );
 
 }
