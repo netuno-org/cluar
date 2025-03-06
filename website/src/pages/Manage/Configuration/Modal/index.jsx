@@ -10,6 +10,7 @@ import {
 } from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import _service from "@netuno/service-client";
+import Cluar from "../../../../common/Cluar";
 
 const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref) => {
     const configColumn = {
@@ -93,7 +94,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     setLoading({ ...loading, save: false });
                     setIsModalOpen(false);
                     notification.success({
-                        message: "Configuração atualizada com sucesso."
+                        message: Cluar.plainDictionary('configuration-modal-edit-success-message')
                     })
                     onReloadTable();
                 },
@@ -101,12 +102,11 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     setLoading({ ...loading, save: false });
                     console.error(error);
                     notification.error({
-                        message: "Falha ao atualizar configuração."
+                        message: Cluar.plainDictionary('configuration-form-edit-failed-message')
                     });
                 }
             });
         } else {
-            console.log("ta batendo aqui")
             setLoading({ ...loading, save: true });
             _service({
                 url: "configuration",
@@ -118,7 +118,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     setLoading({ ...loading, save: false });
                     setIsModalOpen(false);
                     notification.success({
-                        message: "Configuração registada com sucesso."
+                        message: Cluar.plainDictionary('configuration-form-new-success-message')
                     })
                     onReloadTable();
                 },
@@ -126,7 +126,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     setLoading({ ...loading, save: false });
                     console.error(error);
                     notification.error({
-                        message: "Falha ao registar configuração."
+                        message: Cluar.plainDictionary('configuration-form-new-failed-message')
                     });
                 }
             });
@@ -162,7 +162,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
 
     return (
         <Modal
-            title={editeMode ? "Editar Configuração" : "Nova Configuração"}
+            title={editeMode ? Cluar.plainDictionary('configuration-modal-edit-title') : Cluar.plainDictionary('configuration-modal-new-title')}
             open={isModalOpen}
             maskClosable={false}
             onCancel={() => { setIsModalOpen(false) }}
@@ -174,14 +174,14 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                 <Button
                     onClick={() => { setIsModalOpen(false) }}
                 >
-                    Cancelar
+                    {Cluar.plainDictionary('configuration-form-cancel')}
                 </Button>,
                 <Button
                     type="primary"
                     loading={loading.save}
                     onClick={() => formRef.submit()}
                 >
-                    Guardar
+                    {Cluar.plainDictionary('configuration-form-save')}
                 </Button>
             ]}
         >
@@ -193,9 +193,9 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                 <Row justify={"space-between"} align={"middle"} gutter={[10, 0]}>
                     <Col span={24}>
                         <Form.Item
-                            label="Paramêtro"
+                            label={Cluar.plainDictionary('configuration-form-parameter_code')}
                             name={"parameter_code"}
-                            rules={[{ required: true, message: "Selecione um paramêtro." }]}
+                            rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
                         >
                             <Select
                                 loading={loading.parameter}
@@ -212,9 +212,9 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     </Col>
                     <Col  span={24}>
                         <Form.Item
-                            label="Idioma"
+                            label={Cluar.plainDictionary('configuration-form-language_code')}
                             name={"language_code"}
-                            rules={[{ required: true, message: "Selecione um Idioma." }]}
+                            rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
                         >
                             <Select
                                 loading={loading.language}
@@ -228,9 +228,9 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     </Col>
                     <Col span={24}>
                         <Form.Item
-                            label="Valor"
+                            label={Cluar.plainDictionary('configuration-form-value')}
                             name={"value"}
-                            rules={[{ required: true, message: "Insira um Valor." }]}
+                            rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
                         >
                             <Input />
                         </Form.Item>

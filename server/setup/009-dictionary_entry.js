@@ -1409,6 +1409,14 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "c28388dc-a19a-4430-ae23-d6db2258ad4d")
+      .set("code", "configuration-page-load-failed-message")
+      .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - Falha no Carregamento - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "7bbfce83-2661-4360-b294-453953b91abd")
       .set("code", "language-modal-new-title")
       .set("description", "Modal de Idioma - Novo - T\u00EDtulo")
@@ -1436,6 +1444,150 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "36a6dfaf-b246-4be3-801c-4eef3514fcf0")
       .set("code", "language-form-edit-failed-message")
       .set("description", "Formul\u00E1rio de Idioma - Editar - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "5fd54121-3338-4a7e-947f-54a9eddac87e")
+      .set("code", "configuration-table-language")
+      .set("description", "Tabela de Configura\u00E7\u00E3o - Idioma")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "423445fd-e1da-49f7-bd8a-4fe1e6075d1f")
+      .set("code", "configuration-table-parameter")
+      .set("description", "Tabela de Configura\u00E7\u00E3o - Par\u00E2metro")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "5493a821-70b1-4e3f-b656-5b59f1778853")
+      .set("code", "configuration-table-value")
+      .set("description", "Tabela de Configura\u00E7\u00E3o - Valor")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "830edd57-0318-40f2-b016-87e755e9e29b")
+      .set("code", "configuration-table-actions")
+      .set("description", "Tabela de Configura\u00E7\u00E3o - A\u00E7\u00F5es")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "53acceb0-1a0b-4554-949a-3d59dc121f5d")
+      .set("code", "configuration-page-title")
+      .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a73528a8-5c4c-46d5-bff6-55df42332125")
+      .set("code", "configuration-page-new")
+      .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - Novo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "46092aaf-4897-4cf2-911d-fb06ff2af921")
+      .set("code", "configuration-form-parameter_code")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Param\u00EAtro")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "90a1a0ca-4590-43ce-8c92-dfac9b63e683")
+      .set("code", "configuration-form-language_code")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Idioma")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "593020a1-626f-4530-986a-7bb14a61b15d")
+      .set("code", "configuration-form-value")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Valor")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "448ddc3e-62fa-42a2-b6ce-f01aabf4ef77")
+      .set("code", "configuration-form-save")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Salvar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a4083d2d-4899-419a-9341-42fee39cc765")
+      .set("code", "configuration-form-cancel")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Cancelar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "77605255-4ac8-4400-9371-1a5e59404bee")
+      .set("code", "configuration-form-validate-message-required")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Valida\u00E7\u00E3o Mensagem - Obrigar\u00F3rio")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "eddfa972-32c8-445f-bb7d-1d555fe5b4ff")
+      .set("code", "configuration-modal-edit-success-message")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Editar - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "68c68489-6603-4c30-8d7b-85422b6c4dd0")
+      .set("code", "configuration-form-edit-failed-message")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Editar - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "87b56caa-b055-435e-9cf1-6d3bfc605719")
+      .set("code", "configuration-modal-new-title")
+      .set("description", "Modal de Configura\u00E7\u00E3o - Novo - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "5d436742-18bf-4ee9-8d40-0c727b5e1e49")
+      .set("code", "configuration-modal-edit-title")
+      .set("description", "Modal de Configura\u00E7\u00E3o - Editar - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "cf9d6a57-b31c-4673-8dbe-1eaa8ba22011")
+      .set("code", "configuration-form-new-success-message")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Novo - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "175a2b74-7e9b-45e6-a95c-bbfc039895e5")
+      .set("code", "configuration-form-new-failed-message")
+      .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Novo - Falha - Mensagem")
   );
 
 }
