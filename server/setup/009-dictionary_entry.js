@@ -825,6 +825,14 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "c0e85d7c-adc6-486c-8de1-53c988eb8696")
+      .set("code", "language-table-desactive-success-message")
+      .set("description", "Tabela de Idioma - Desactivar - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "0efeb924-2c00-4fa9-934f-61b1deb727d1")
       .set("code", "side-menu-options-languages")
       .set("description", "Menu Lateral - Op\u00E7\u00F5es - Idiomas")
@@ -1196,6 +1204,238 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ea4cddb1-aee0-42b9-bd7d-47eb7c6cec80")
       .set("code", "users-form-edit-failed-description")
       .set("description", "Formul\u00E1rio de Utilizadores - Editar - Falha - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "1089597b-1e53-473a-9b6f-019aa20c577c")
+      .set("code", "language-table-active")
+      .set("description", "Tabela de Idioma - Active")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "19999ff0-ea70-45dc-9f08-45c4ace29641")
+      .set("code", "language-table-description")
+      .set("description", "Tabela de Idioma - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "24ec84ca-6c16-4d2a-9de8-d84fa9bf0734")
+      .set("code", "language-table-code")
+      .set("description", "Tabela de Idioma - C\u00F3digo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "af965b06-e729-4228-ab7e-cecd43abda9d")
+      .set("code", "language-table-locale")
+      .set("description", "Tabela de Idioma - Localiza\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "99924c2c-d3c8-428a-bb90-5692fb81e67a")
+      .set("code", "language-table-default")
+      .set("description", "Tabela de Idioma - Padr\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0d7d2f4d-2cdc-49f6-9b7c-62bbb5008ed1")
+      .set("code", "language-table-actions")
+      .set("description", "Tabela de Idioma - A\u00E7\u00F5es")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9441c47c-ef63-472d-8b6c-d723141ec762")
+      .set("code", "language-page-title")
+      .set("description", "P\u00E1gina de Idioma - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "58eae766-a1e9-4976-b5d0-830707eddcab")
+      .set("code", "language-page-new")
+      .set("description", "P\u00E1gina de Idioma - Novo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "4999cd5c-e2c3-41ee-bd39-cfb26bf0932e")
+      .set("code", "language-load-failed-message")
+      .set("description", "P\u00E1gina de Idioma - Falha no Carregamento - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "742718d1-b1ef-4061-8020-7e6f93517546")
+      .set("code", "language-load-failed-description")
+      .set("description", "P\u00E1gina de Idioma - Falha no Carregamento - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "b7032ed4-515e-4794-91ef-233002dc7dc4")
+      .set("code", "language-table-active-failed-message")
+      .set("description", "Tabela de Idioma - Activar - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0e16b5e4-777f-4c53-a55e-157d5ec99fd8")
+      .set("code", "language-table-desactive-failed-message")
+      .set("description", "Tabela de Idioma - Desactivar - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f98114e4-46b5-43ec-a056-88b6a373043f")
+      .set("code", "language-table-default-success-message")
+      .set("description", "Tabela de Idioma - Padr\u00E3o - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "e5295fc7-4f85-4e61-8516-524f6245722a")
+      .set("code", "language-form-active")
+      .set("description", "Formul\u00E1rio de Idioma - Activo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a8487bbe-cdc8-4fc7-bcb0-41848b46bc8c")
+      .set("code", "language-table-default-failed-message")
+      .set("description", "Tabela de Idioma - Padr\u00E3o - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "135dd3e4-331f-48f1-821b-1ca4a21a3257")
+      .set("code", "language-table-active-success-message")
+      .set("description", "Tabela de Idioma - Activar - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "71ba2954-01b1-4850-a22e-75ffc4675110")
+      .set("code", "language-form-default")
+      .set("description", "Formul\u00E1rio de Idioma - Padr\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "43a7dd91-e95f-46ae-b293-f6946529797f")
+      .set("code", "language-form-description")
+      .set("description", "Formul\u00E1rio de Idioma - Descri\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "1b5370e7-35f4-4203-848f-596235a790cb")
+      .set("code", "language-form-code")
+      .set("description", "Formul\u00E1rio de Idioma - C\u00F3digo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "7c646556-7fa2-439f-a200-5e3686f0e085")
+      .set("code", "language-form-locale")
+      .set("description", "Formul\u00E1rio de Idioma - Localidade")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9bc40e20-c585-4da5-bd86-a77e37133df5")
+      .set("code", "language-form-save")
+      .set("description", "Formul\u00E1rio de Idioma - Salvar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "8916ad4b-8610-4e6a-9479-548ed028d255")
+      .set("code", "language-form-cancel")
+      .set("description", "Formul\u00E1rio de Idioma - Cancelar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "8a3f27bb-e54f-414b-8c51-f5dbf5fbe2e3")
+      .set("code", "language-form-validate-message-required")
+      .set("description", "Formul\u00E1rio de Idioma - Valida\u00E7\u00E3o Mensagem - Obrigar\u00F3rio")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "47d34694-353e-46cb-89ab-9bb9fd4326ed")
+      .set("code", "language-form-save-success-message")
+      .set("description", "Formul\u00E1rio de Idioma - Guardar - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "aac3fdcc-7140-4f67-86fe-19135da4013c")
+      .set("code", "language-form-save-failed-message")
+      .set("description", "Formul\u00E1rio de Idioma - Guardar - falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "7bbfce83-2661-4360-b294-453953b91abd")
+      .set("code", "language-modal-new-title")
+      .set("description", "Modal de Idioma - Novo - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "3de00b94-0c1a-4742-8e78-b35ad7b23b45")
+      .set("code", "language-modal-edit-title")
+      .set("description", "Modal de Idioma - Editar - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2097e99b-c1b4-42c6-8b8a-9fcd2e304a32")
+      .set("code", "language-form-edit-success-message")
+      .set("description", "Formul\u00E1rio de Idioma - Editar - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "36a6dfaf-b246-4be3-801c-4eef3514fcf0")
+      .set("code", "language-form-edit-failed-message")
+      .set("description", "Formul\u00E1rio de Idioma - Editar - Falha - Mensagem")
   );
 
 }

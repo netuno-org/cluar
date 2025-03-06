@@ -16,6 +16,7 @@ import {
 import { EditOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import LanguageModal from "../Modal";
+import Cluar from "../../../../common/Cluar";
 
 const LanguageTable = forwardRef(({ }, ref) => {
     const [data, setData] = useState([]);
@@ -56,7 +57,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
                 setLoading(false);
                 console.error(error);
                 notification.error({
-                    message: "Falha ao carregar idiomas."
+                    message: Cluar.plainDictionary('language-load-failed-message')
                 })
             }
         })
@@ -91,7 +92,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
                     })
                 });
                 notification.success({
-                    message: `Idioma ${active ? "desactivado" : "activado"} com sucesso.`
+                    message: active ? Cluar.plainDictionary('language-table-desactive-success-message') : Cluar.plainDictionary('language-table-active-success-message') 
                 })
             },
             fail: (error) => {
@@ -101,7 +102,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
                 });
                 console.log(error);
                 notification.error({
-                    message: `Falha ao ${active ? "desactivar" : "activar"} idioma.`
+                    message: active ? Cluar.plainDictionary('language-table-desactive-failed-message') : Cluar.plainDictionary('language-table-active-failed-message') 
                 });
             }
         })
@@ -137,7 +138,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
                         })
                     });
                     notification.success({
-                        message: `Idioma editado com sucesso.`
+                        message: Cluar.plainDictionary('language-table-default-success-message')
                     });
                 },
                 fail: (error) => {
@@ -147,7 +148,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
                     });
                     console.log(error);
                     notification.error({
-                        message: `Falha ao editar idioma.`
+                        message: Cluar.plainDictionary('language-table-default-failed-message')
                     });
                 }
             })
@@ -162,9 +163,12 @@ const LanguageTable = forwardRef(({ }, ref) => {
 
     const columns = [
         {
-            title: 'Active',
+            title: Cluar.plainDictionary('language-table-active'),
             dataIndex: 'active',
             key: 'active',
+            onHeaderCell: () => ({
+                "data-column-key": "active",
+            }),
             render: (val, record) => (
                 <Switch
                     size="small"
@@ -178,24 +182,36 @@ const LanguageTable = forwardRef(({ }, ref) => {
             )
         },
         {
-            title: 'Descrição',
+            title: Cluar.plainDictionary('language-table-description'),
             dataIndex: 'description',
             key: 'description',
+            onHeaderCell: () => ({
+                "data-column-key": "description",
+            }),
         },
         {
-            title: 'Código',
+            title: Cluar.plainDictionary('language-table-code'),
             dataIndex: 'code',
             key: 'code',
+            onHeaderCell: () => ({
+                "data-column-key": "code",
+            }),
         },
         {
-            title: 'Localização',
+            title: Cluar.plainDictionary('language-table-locale'),
             dataIndex: 'locale',
+            onHeaderCell: () => ({
+                "data-column-key": "locale",
+            }),
             key: 'locale',
         },
         {
-            title: 'Padrão',
+            title: Cluar.plainDictionary('language-table-default'),
             dataIndex: 'default',
             key: 'default',
+            onHeaderCell: () => ({
+                "data-column-key": "default",
+            }),
             render: (val, record) => (
                 <Switch
                     size="small"
@@ -209,9 +225,12 @@ const LanguageTable = forwardRef(({ }, ref) => {
             )
         },
         {
-            title: 'Ações',
+            title: Cluar.plainDictionary('language-table-actions'),
             dataIndex: 'Actions',
             key: 'actions',
+            onHeaderCell: () => ({
+                "data-column-key": "actions",
+            }),
             render: (val, record) => (
                 <Row>
                     <Col>
