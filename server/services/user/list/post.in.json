@@ -1,0 +1,25 @@
+{
+    "_schema":"tags/user",
+    "summary":"List users with filters and pagination",
+    "description":"List users with filters and pagination",
+    "type":"object",
+    "properties":{
+        "filters":{
+            "type":"object",
+            "properties":{
+                "name":{
+                    "type":"string"
+                },
+                "group_codes":{
+                    "type":"array",
+                    "items":{
+                        "type":"string"
+                    }
+                }
+            }
+        },
+        "pagination":{
+            "_schema":"request/pagination"
+        }
+    }
+}

@@ -7,6 +7,9 @@ import {
   Navigate
 } from "react-router-dom";
 
+import { Provider } from 'react-redux';
+import { Store } from './redux/store';
+
 import Analytics from './common/Analytics';
 import Cluar from './common/Cluar';
 import Builder from './common/Builder';
@@ -14,6 +17,15 @@ import BaseCookies from './base/Cookies';
 import BaseHeader from './base/Header';
 import BaseFooter from './base/Footer';
 import NotFound from './pages/NotFound';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ReservedArea from './pages/reservedArea';
+import Profile from './pages/Manage/Profile';
+import Users from './pages/Manage/Users';
+import Languages from './pages/Manage/Languages';
+import Configuration from './pages/Manage/Configuration';
+import Dictionary from './pages/Manage/Dictionary';
+import Recovery from './pages/Recovery';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
@@ -67,33 +79,39 @@ function App() {
         token: {
           colorPrimary: "#1178FF",
           fontSize: 16,
-          borderRadius: 20,
-        },
+          borderRadius: 2
+        }
       }}
     >
-      <BrowserRouter>
-        {Cluar.isGAEnabled() && <Route component={Analytics} />}
-        <div className="page">
-          <Layout>
-            <BaseHeader />
-            <Content>
-              <Routes>
-                <Route
-                  path="/"
-                  exact
-                  element={
-                    <Navigate to={`/${Cluar.currentLanguage().locale}/`} />
-                  }
-                />
-                {routes}
-                <Route element={<NotFound />} />
-              </Routes>
-            </Content>
-            <BaseFooter />
-            <BaseCookies />
-          </Layout>
-        </div>
-      </BrowserRouter>
+      <Provider store={Store}>
+        <BrowserRouter>
+          {Cluar.isGAEnabled() && <Route component={Analytics} />}
+          <div className="page">
+            <Layout>
+              <BaseHeader />
+              <Content>
+                <Routes>
+                  <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/recovery" element={<Recovery />} />
+                  <Route path="/reserved-area" element={<ReservedArea />}> 
+                      <Route path="profile" element={<Profile/>}/>
+                      <Route path="users" element={<Users/>}/>
+                      <Route path="languages" element={<Languages/>}/>
+                      <Route path="configuration" element={<Configuration/>}/>
+                      <Route path="dictionary" element={<Dictionary/>}/>
+                  </Route>
+                  {routes}
+                  <Route element={<NotFound />} />
+                </Routes>
+              </Content>
+              <BaseFooter />
+              <BaseCookies />
+            </Layout>
+          </div>
+        </BrowserRouter>
+      </Provider>
     </ConfigProvider>
   );
 }

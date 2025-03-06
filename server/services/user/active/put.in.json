@@ -1,0 +1,18 @@
+{
+    "_schema":"tags/user",
+    "summary":"Active/Dasactive a user",
+    "description":"Active/Dasactive a user",
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        },
+        "active":{
+            "type":"boolean"
+        }
+    },
+    "required":[
+        "uid",
+        "active"
+    ]
+}

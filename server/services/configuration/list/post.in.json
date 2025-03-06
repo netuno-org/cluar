@@ -1,0 +1,28 @@
+{
+    "_schema": "tags/configuration",
+    "summary": "List all configuration with filters and pagination",
+    "description": "List all configuration with filters and pagination",
+    "type": "object",
+    "properties": {
+        "filters": {
+            "type": "object",
+            "properties": {
+                "parameter_codes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "language_codes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "pagination": {
+            "_schema": "request/pagination"
+        }
+    }
+}

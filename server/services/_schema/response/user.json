@@ -1,0 +1,28 @@
+{
+    "type":"object",
+    "properties":{
+        "name":{
+            "type":"string"
+        },
+        "email":{
+            "type":"string"
+        },
+        "active":{
+            "type":"boolean"
+        },
+        "username":{
+            "type":"string"
+        },
+        "group":{
+            "type":"object",
+            "properties":{
+                "name":{
+                    "type":"string"
+                },
+                "code":{
+                    "type":"string"
+                }
+            }
+        }
+    }
+}

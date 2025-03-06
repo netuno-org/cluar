@@ -1,0 +1,30 @@
+{
+    "_schema":"tags/people",
+    "summary": "Register",
+    "description": "Create a new account.",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string-not-empty"
+      },
+      "username": {
+        "type": "string-not-empty"
+      },
+      "email": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      },
+      "code": {
+        "type": "string"
+      },
+      "provider": {
+        "type": "string"
+      }
+    },
+    "required": [
+      "name",
+      "username"
+    ]
+  }

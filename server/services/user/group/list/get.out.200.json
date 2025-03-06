@@ -1,0 +1,19 @@
+{
+    "type":"object",
+    "properties":{
+        "groups":{
+            "type":"array",
+            "items":{
+                "type":"object",
+                "properties":{
+                    "code":{
+                        "type":"string"
+                    },
+                    "name":{
+                        "type":"string"
+                    }
+                }
+            }
+        }
+    }
+}

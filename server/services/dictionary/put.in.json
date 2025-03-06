@@ -1,0 +1,26 @@
+{
+    "_schema":"tags/dictionary",
+    "summary":"Update a existent dictionary",
+    "description":"Update a existent dictionary",
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        },
+        "value":{
+            "type":"string"
+        },
+        "language_code":{
+            "type":"string"
+        },
+        "entry_code":{
+            "type":"string"
+        }
+    },
+    "required":[
+        "uid",
+        "value",
+        "language_code",
+        "entry_code"
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "type": "object",
+    "properties": {
+        "result": {
+            "type": "boolean"
+        },
+        "data": {
+            "type": "object",
+            "properties": {
+                "uid": {
+                    "type": "uid"
+                },
+                "name": {
+                    "type": "string-not-empty"
+                },
+                "username": {
+                    "type": "string-not-empty"
+                },
+                "email": {
+                    "type": "string-not-empty"
+                }
+            },
+            "required": [
+                "uid",
+                "name",
+                "username",
+                "email"
+            ]
+        }
+    },
+    "required": [
+        "result",
+        "data"
+    ]
+}

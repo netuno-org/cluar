@@ -1,0 +1,30 @@
+{
+    "_schema":"tags/language",
+    "summary":"Register a new language",
+    "description":"Register a new language",
+    "type":"object",
+    "properties":{
+        "description":{
+            "type":"string-not-empty"
+        },
+        "code":{
+            "type":"string-not-empty"
+        },
+        "locale":{
+            "type":"string-not-empty"
+        },
+        "active":{
+            "type":"boolean"
+        },
+        "default":{
+            "type":"boolean"
+        }
+    },
+    "required":[
+        "description",
+        "code",
+        "locale",
+        "active",
+        "default"
+    ]
+}

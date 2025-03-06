@@ -1,0 +1,34 @@
+{
+    "_schema":"tags/language",
+    "summary":"Update an existente language",
+    "description":"Update an existente language",
+    "type":"object",
+    "properties":{
+        "uid": {
+            "type":"uuid"
+        },
+        "description":{
+            "type":"string-not-empty"
+        },
+        "code":{
+            "type":"string-not-empty"
+        },
+        "locale":{
+            "type":"string-not-empty"
+        },
+        "active":{
+            "type":"boolean"
+        },
+        "default":{
+            "type":"boolean"
+        }
+    },
+    "required":[
+        "uid",
+        "description",
+        "code",
+        "locale",
+        "active",
+        "default"
+    ]
+}

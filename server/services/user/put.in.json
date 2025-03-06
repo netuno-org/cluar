@@ -1,0 +1,36 @@
+{
+    "_schema":"tags/user",
+    "summary":"Update an user",
+    "description":"Update an user",
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        },
+        "name":{
+            "type":"string-not-empty"
+        },
+        "email":{
+            "type":"string-not-empty"
+        },
+        "active":{
+            "type":"boolean"
+        },
+        "username":{
+            "type":"string-not-empty"
+        },
+        "password":{
+            "type":"string"
+        },
+        "group_code":{
+            "type":"string-not-empty"
+        }
+    },
+    "required":[
+        "uid",
+        "name",
+        "email",
+        "username",
+        "group_code"
+    ]
+}

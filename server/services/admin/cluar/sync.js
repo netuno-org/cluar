@@ -1,5 +1,5 @@
-// _core : Cluar
+// _core : cluar/main
 
-Cluar.build({ images: true })
+cluar.build({ images: true })
 
 _out.json(_val.map().set('result', true))

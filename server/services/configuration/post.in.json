@@ -1,0 +1,22 @@
+{
+    "_schema":"tags/configuration",
+    "summary":"Register a new configuration",
+    "description":"Register a new configuration",
+    "type":"object",
+    "properties":{
+        "value":{
+            "type":"string"
+        },
+        "parameter_code":{
+            "type":"string"
+        },
+        "language_code":{
+            "type":"string"
+        }
+    },
+    "required":[
+        "value",
+        "parameter_code",
+        "language_code"
+    ]
+}
