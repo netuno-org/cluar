@@ -6,18 +6,22 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
+    top: 0;
     z-index: 3;
-    top: 40px;
     width: 100%;
     height: @header-size !important;
     line-height: @header-size !important;
     background: @header-background !important;
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.25);
-
+    
     @media (max-width: @header-mobile-width) {
-      padding: 0 20px !important;
-      height: @header-size-mobile !important;
-      line-height: @header-size-mobile !important;
+        padding: 0 20px !important;
+        height: @header-size-mobile !important;
+        line-height: @header-size-mobile !important;
+    }
+    
+    &--logged {
+        top: 40px;
     }
 
     &__wrapper{

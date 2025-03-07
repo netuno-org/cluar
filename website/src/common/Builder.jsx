@@ -4,6 +4,8 @@ import { Alert, Row, Col, Button, message } from "antd";
 
 import { useSearchParams } from "react-router-dom";
 
+import _auth from "@netuno/auth-client";
+
 import sal from "sal.js";
 
 import Cluar from "../common/Cluar";
@@ -218,11 +220,13 @@ function Builder({ page }) {
 
   return (
     <main>
-      <AdminBar
-        onChangeEditMode={setEditMode}
-        extra={hasDiff && extraBarAdmin}
-        pageData={page}
-      />
+      {_auth.isLogged() && (
+        <AdminBar
+          onChangeEditMode={setEditMode}
+          extra={hasDiff && extraBarAdmin}
+          pageData={page}
+        />
+      )}
       <PageSection
         editMode={editMode}
         onNewSection={handleAddNewSection}

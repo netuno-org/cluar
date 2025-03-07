@@ -30,6 +30,8 @@ import Recovery from './pages/Recovery';
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
 
+import _auth from "@netuno/auth-client";
+
 import './styles/App.less';
 
 const { Content } = Layout;
@@ -79,28 +81,34 @@ function App() {
         token: {
           colorPrimary: "#1178FF",
           fontSize: 16,
-          borderRadius: 2
-        }
+          borderRadius: 2,
+        },
       }}
     >
       <Provider store={Store}>
         <BrowserRouter>
           {Cluar.isGAEnabled() && <Route component={Analytics} />}
           <div className="page">
-            <Layout>
+            <Layout className={_auth.isLogged() && "ant-layout--logged"}>
               <BaseHeader />
               <Content>
                 <Routes>
-                  <Route path="/" exact element={<Navigate to={`/${Cluar.currentLanguage().locale}/`} />} />
+                  <Route
+                    path="/"
+                    exact
+                    element={
+                      <Navigate to={`/${Cluar.currentLanguage().locale}/`} />
+                    }
+                  />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/recovery" element={<Recovery />} />
-                  <Route path="/reserved-area" element={<ReservedArea />}> 
-                      <Route path="profile" element={<Profile/>}/>
-                      <Route path="users" element={<Users/>}/>
-                      <Route path="languages" element={<Languages/>}/>
-                      <Route path="configuration" element={<Configuration/>}/>
-                      <Route path="dictionary" element={<Dictionary/>}/>
+                  <Route path="/reserved-area" element={<ReservedArea />}>
+                    <Route path="profile" element={<Profile />} />
+                    <Route path="users" element={<Users />} />
+                    <Route path="languages" element={<Languages />} />
+                    <Route path="configuration" element={<Configuration />} />
+                    <Route path="dictionary" element={<Dictionary />} />
                   </Route>
                   {routes}
                   <Route element={<NotFound />} />

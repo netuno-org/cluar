@@ -7,13 +7,17 @@ body {
 }
 
 .ant-layout {
-    padding-top: calc(@header-size + 40px);
-    background-color: @page-background;
-    min-height: 100vh;
+  background-color: @page-background;
+  min-height: 100vh;
+  padding-top: @header-size;
 
-    @media only screen and (max-width: @header-mobile-width) {
-        padding-top: calc(@header-size-mobile + 40px);
-    }
+  @media only screen and (max-width: @header-mobile-width) {
+    padding-top: calc(@header-size-mobile + 40px);
+  }
+  
+  &--logged {
+    padding-top: calc(@header-size + 40px);
+  }
 }
 
 .ant-layout-content {
