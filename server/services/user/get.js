@@ -1,15 +1,11 @@
 const uid = _req.getString("uid");
 
 const dbUser = _db.form('people')
+link('user_group')
 .join(
     _db.manyToOne(
         'netuno_user',
         'people_user_id'
-    ).join(
-        _db.manyToOne(
-            'netuno_group',
-            'group_id'
-        )
     )
 )
 .where(
@@ -20,8 +16,8 @@ const dbUser = _db.form('people')
 .get('people.uid', 'people_uid')
 .get('netuno_user.active', 'user_active')
 .get('netuno_user.user', 'username')
-.get('netuno_group.name', 'group_name')
-.get('netuno_group.code', 'group_code')
+.get('user_group.name', 'group_name')
+.get('user_group.code', 'group_code')
 .first();
 
 if (!dbUser) {

@@ -19,7 +19,7 @@ if (userEmailExists || usernameExists) {
   _exec.stop();
 }
 
-const dbGroup = _group.firstByCode(groupCode);
+const dbGroup = _db.queryFirst('SELECT id, name, code FROM user_group WHERE code = ?::varchar', groupCode);
 
 if (!dbGroup) {
     _header.status(404);
@@ -36,12 +36,13 @@ const userData = _val.map()
     .set("user", username)
     .set("pass", password)
     .set("mail", email)
-    .set("group_id", dbGroup.getInt("id"))
+    .set("group_id", _group.firstByCode('people').getInt('id'))
 
 const peopleData = _val.map()
   .set("name", name)
   .set("active", active)
   .set("email", email)
+  .set("user_group_id", dbGroup.getInt("id"))
 
 const userId = _user.create(userData);
 peopleData.set("people_user_id", userId);
@@ -66,3 +67,4 @@ const registedUser = _user.get(userId);
         )
       )
   )
+  

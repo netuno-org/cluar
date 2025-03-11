@@ -2,7 +2,7 @@ const dbGroups = _db.query(`
     SELECT
       name,
       code
-    FROM netuno_group
+    FROM user_group
     WHERE code <> '' AND name <> ''
   `);
   

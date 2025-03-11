@@ -45,17 +45,15 @@ if (filters) {
 }
 
 const query = _db.form("people")
+.link(
+    'user_group',
+    where.get('group')
+)
 .join(
     _db.manyToOne(
         "netuno_user",
         "people_user_id",
         where.get('user')
-    ).join(
-       _db.manyToOne(
-            "netuno_group",
-            "group_id",
-            where.get('group')
-       )
     )
 )
 .where(where.get('people'))
@@ -65,13 +63,13 @@ const query = _db.form("people")
 .get("netuno_user.id", "netuno_user_id")
 .get("netuno_user.user")
 .get("netuno_user.active")
-.get("netuno_group.id", "group_id")
-.get("netuno_group.name", "group_name")
-.get("netuno_group.code", "group_code")
+.get("user_group.id", "group_id")
+.get("user_group.name", "group_name")
+.get("user_group.code", "group_code")
 .group(
     'people.id',
     'netuno_user.id',
-    'netuno_group.id'
+    'user_group.id'
 )
 .order("people.id", "desc")
 

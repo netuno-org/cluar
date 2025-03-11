@@ -21,7 +21,7 @@ if (!dbPeople) {
     _exec.stop();
 }
 
-const dbGroup = _group.firstByCode(groupCode);
+const dbGroup = _db.queryFirst('SELECT id, name, code FROM user_group WHERE code = ?::varchar', groupCode);
 
 if (!dbGroup) {
     _header.status(404);
@@ -68,7 +68,7 @@ const userData = _val.map()
     .set("user", username)
     .set("mail", email)
     .set("pass", password)
-    .set("group_id", dbGroup.getInt("id"))
+    .set("group_id", _group.firstByCode('people').getInt('id'))
 
 let shouldUpdatePass = false;
 
@@ -79,6 +79,7 @@ if (password.length > 1) {
 const peopleData = _val.map()
   .set("name", name)
   .set("email", email)
+  .set("user_group_id", dbGroup.getInt("id"))
 
 if (_req.has("active")) {
     userData.set("active", _req.getBoolean("active"));
