@@ -3,21 +3,21 @@
 const {
     name,
     code,
-    parent_uid,
+    parent_code,
     active
 } = JSON.parse(_req.toJSON());
 
 let dbParent = null;
 
-if (parent_uid) {
-    dbParent = _db.get('organization', parent_uid);
+if (parent_code) {
+    dbParent = _db.queryFirst(`SELECT * FROM organization WHERE code = ?`, parent_code);
     if (!dbParent) {
         _header.status(404);
         _out.json(
             _val.map()
                 .set('result', false)
                 .set('error_code', 'parent-organization-not-found')
-                .set('error', `not fund parent organization with uid: ${parent_uid}`)
+                .set('error', `not fund parent organization with code: ${parent_code}`)
         )
         _exec.stop();
     }

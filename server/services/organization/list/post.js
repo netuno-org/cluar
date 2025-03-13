@@ -30,13 +30,13 @@ if (filters) {
         queryParams.add(filters.getBoolean('active'));
     }
 
-    const parentUID = filters.has('parent_uid') && filters.getString('parent_uid');
+    const parentCode = filters.has('parent_code') && filters.getString('parent_code');
 
-    if (parentUID) {
+    if (parentCode) {
         queryWhere += `
-            AND parent.uid = ?::uuid
+            AND parent.code = ?
         `
-        queryParams.add(parentUID)
+        queryParams.add(parentCode)
     }
 }
 
