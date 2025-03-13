@@ -21,16 +21,12 @@
         },
         "password":{
             "type":"string"
-        },
-        "group_code":{
-            "type":"string-not-empty"
         }
     },
     "required":[
         "uid",
         "name",
         "email",
-        "username",
-        "group_code"
+        "username"
     ]
 }

@@ -37,18 +37,9 @@ if (filters) {
     if (username) {
         where.get('user').and('user').contains(username);
     }
-    
-    const groupCodes = filters.has("group_codes") && filters.getList("group_codes");
-    if (groupCodes) {
-        where.get('group').and('code').in(groupCodes);
-    }
 }
 
 const query = _db.form("people")
-.link(
-    'user_group',
-    where.get('group')
-)
 .join(
     _db.manyToOne(
         "netuno_user",
@@ -63,13 +54,9 @@ const query = _db.form("people")
 .get("netuno_user.id", "netuno_user_id")
 .get("netuno_user.user")
 .get("netuno_user.active")
-.get("user_group.id", "group_id")
-.get("user_group.name", "group_name")
-.get("user_group.code", "group_code")
 .group(
     'people.id',
-    'netuno_user.id',
-    'user_group.id'
+    'netuno_user.id'
 )
 .order("people.id", "desc")
 
@@ -86,11 +73,6 @@ for (const dbItem of dbItems) {
             .set('email', dbItem.getString("email"))
             .set('username', dbItem.getString("user"))
             .set('active', dbItem.getBoolean("active"))
-            .set('group', 
-                _val.map()
-                    .set('name', dbItem.getString("group_name"))
-                    .set('code', dbItem.getString("group_code"))
-            )
     );
 }
 

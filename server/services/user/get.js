@@ -1,7 +1,6 @@
 const uid = _req.getString("uid");
 
 const dbUser = _db.form('people')
-link('user_group')
 .join(
     _db.manyToOne(
         'netuno_user',
@@ -16,8 +15,6 @@ link('user_group')
 .get('people.uid', 'people_uid')
 .get('netuno_user.active', 'user_active')
 .get('netuno_user.user', 'username')
-.get('user_group.name', 'group_name')
-.get('user_group.code', 'group_code')
 .first();
 
 if (!dbUser) {
@@ -37,10 +34,6 @@ const user = _val.map()
     .set('uid', dbUser.getString('people_uid'))
     .set('active', dbUser.getBoolean('user_active'))
     .set('username', dbUser.getString('username'))
-    .set('group', _val.map()
-        .set('name', dbUser.getString('group_name'))
-        .set('code', dbUser.getString('group_code'))
-    )
 
 _out.json(
     _val.map()

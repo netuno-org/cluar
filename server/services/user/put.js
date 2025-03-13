@@ -3,7 +3,6 @@ const name = _req.getString("name");
 const username = _req.getString("username");
 let email = _req.getString("email");
 const password = _req.getString("password");
-const groupCode = _req.getString("group_code");
 
 const userEmailExists = _user.firstByMail(email);
 const usernameExists = _user.firstByUser(username);
@@ -17,19 +16,6 @@ if (!dbPeople) {
             .set('result', false)
             .set('error', `user not found with uid: ${uid}`)
             .set('error-code', 'user-not-found')
-    )
-    _exec.stop();
-}
-
-const dbGroup = _db.queryFirst('SELECT id, name, code FROM user_group WHERE code = ?::varchar', groupCode);
-
-if (!dbGroup) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `group not found with code: ${groupCode}`)
-            .set('error-code', 'group-not-found')
     )
     _exec.stop();
 }
@@ -79,7 +65,6 @@ if (password.length > 1) {
 const peopleData = _val.map()
   .set("name", name)
   .set("email", email)
-  .set("user_group_id", dbGroup.getInt("id"))
 
 if (_req.has("active")) {
     userData.set("active", _req.getBoolean("active"));

@@ -20,7 +20,6 @@ const debounces = {};
 
 const UserTable = forwardRef(({ }, ref) => {
     const [items, setItems] = useState([]);
-    const [groups, setGroups] = useState([]);
     const [total, setTotal] = useState(0);
     const [filters, setFilters] = useState({});
     const [loading, setLoading] = useState(false);
@@ -34,22 +33,6 @@ const UserTable = forwardRef(({ }, ref) => {
         page: 1,
         size: 10
     });
-
-    const getGroups = () => {
-        _service({
-            method: "GET",
-            url: "user/group/list",
-            success: (response) => {
-                setGroups(response.json.groups);
-            },
-            fail: (error) => {
-                console.error(error);
-                notification.error({
-                    message: Cluar.plainDictionary('users-table-load-failed-message')
-                })
-            }
-        })
-    }
 
     const onActive = ({ uid, active }) => {
         console.log({ uid, active })
@@ -164,7 +147,6 @@ const UserTable = forwardRef(({ }, ref) => {
 
     useEffect(() => {
         onLoadData();
-        getGroups();
     }, []);
 
 
@@ -223,17 +205,6 @@ const UserTable = forwardRef(({ }, ref) => {
             ...getTextFilterProps("email")
         },
         {
-            title: Cluar.plainDictionary('users-table-group'),
-            dataIndex: 'group',
-            key: 'group_codes',
-            render: (val) => val.name,
-            filtered: filters.group_code,
-            filters: groups.map((group) => ({
-                text: group.name,
-                value: group.code
-            }))
-        },
-        {
             title: Cluar.plainDictionary('users-table-actions'),
             dataIndex: 'actions',
             key: 'action',
@@ -270,7 +241,7 @@ const UserTable = forwardRef(({ }, ref) => {
                 scroll={{ x: 600 }}
                 onChange={(pagination, currentFilters, currentSorter, { action }) => {
                     if (action === "filter") {
-                        const filtersModify = ['group_codes', 'active'];
+                        const filtersModify = ['active'];
                         console.log(currentFilters)
                         const newFilters = {
                             ...filters

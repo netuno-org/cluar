@@ -36,25 +36,6 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         setIsModalOpen(true);
     }
 
-    const getGroups = () => {
-        setLoadingGroup(true);
-        _service({
-            method: "GET",
-            url: "user/group/list",
-            success: (response) => {
-                setLoadingGroup(false);
-                setGroups(response.json.groups);
-            },
-            fail: (error) => {
-                setLoadingGroup(false);
-                console.error(error);
-                notification.error({
-                    message: Cluar.plainDictionary('users-form-load-groups-failed-message')
-                })
-            }
-        })
-    }
-
     useImperativeHandle(ref, () => {
         return {
             openModal,
@@ -65,19 +46,14 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     useEffect(() => {
         if (editMode && isModalOpen) {
             formRef.setFieldsValue({
-                ...userData,
-                group_code: {
-                    value: userData.group.code,
-                    label: userData.group.name
-                }
+                ...userData
             })
         }
     }, [isModalOpen])
 
     const onFinish = (values) => {
         const data = {
-            ...values,
-            group_code: values.group_code.value
+            ...values
         }
         setOnFinishLoading(true);
         if (userData) {
@@ -129,10 +105,6 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
             })
         }
     }
-
-    useEffect(() => {
-        getGroups();
-    }, []);
 
     return (
         <div className="modal-content">
@@ -196,28 +168,13 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                                 <Input.Password autoComplete="off" />
                             </Form.Item>
                         </Col>
-                        <Col {...configColumn}>
+                        <Col span={24}>
                             <Form.Item
                                 label={Cluar.plainDictionary('users-form-email')}
                                 name="email"
                                 rules={[{ required: true, type: "email", message: Cluar.plainDictionary('users-form-validate-message-required') }]}
                             >
                                 <Input />
-                            </Form.Item>
-                        </Col>
-                        <Col {...configColumn}>
-                            <Form.Item
-                                label={Cluar.plainDictionary('users-form-group')}
-                                name="group_code"
-                                rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
-                            >
-                                <Select
-                                    loading={loadingGroup}
-                                    labelInValue={true}
-                                    options={groups.map((group) => ({
-                                        value: group.code, label: group.name
-                                    }))}
-                                />
                             </Form.Item>
                         </Col>
                     </Row>

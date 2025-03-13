@@ -18,16 +18,12 @@
         },
         "password":{
             "type":"string-not-empty"
-        },
-        "group_code":{
-            "type":"string-not-empty"
         }
     },
     "required":[
         "name",
         "email",
         "username",
-        "password",
-        "group_code"
+        "password"
     ]
 }

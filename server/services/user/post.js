@@ -19,17 +19,6 @@ if (userEmailExists || usernameExists) {
   _exec.stop();
 }
 
-const dbGroup = _db.queryFirst('SELECT id, name, code FROM user_group WHERE code = ?::varchar', groupCode);
-
-if (!dbGroup) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('error', `not found group with code ${groupCode}`)
-    );
-    _exec.stop();
-}
-
 const userData = _val.map()
     .set("name", name)
     .set("active", active)
@@ -42,7 +31,6 @@ const peopleData = _val.map()
   .set("name", name)
   .set("active", active)
   .set("email", email)
-  .set("user_group_id", dbGroup.getInt("id"))
 
 const userId = _user.create(userData);
 peopleData.set("people_user_id", userId);
@@ -61,10 +49,6 @@ const registedUser = _user.get(userId);
         .set('active', registedUser.getBoolean('active'))
         .set('uid', registedPeople.getString('uid'))
         .set('username', registedUser.getString('user'))
-        .set('group', _val.map()
-          .set('name', dbGroup.getString('name'))
-          .set('code', dbGroup.getString('code'))
-        )
       )
   )
   
