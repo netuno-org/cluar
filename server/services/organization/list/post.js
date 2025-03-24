@@ -89,6 +89,7 @@ const dbOrganizationTotal = _db.queryFirst(`
         ${queryWhere}  
 `, queryParams);
 
+_header.status(201);
 _out.json(
     _val.map()
         .set('organizationa', organizations)

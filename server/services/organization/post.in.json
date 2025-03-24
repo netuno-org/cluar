@@ -1,0 +1,22 @@
+{
+    "summary":"Resgiter a new organization",
+    "description":"Resgiter a new organization",
+    "_schema":"tags/organization",
+    "type":"object",
+    "properties":{
+        "name":{
+            "type":"string-not-empty"
+        },
+        "code":{
+            "type":"string-not-empty"
+        },
+        "parent_code":{
+            "type":"string-not-empty"
+        }
+    },
+    "required":[
+        "name",
+        "code",
+        "parent_code"
+    ]
+}

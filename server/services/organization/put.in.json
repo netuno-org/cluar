@@ -1,0 +1,26 @@
+{
+    "summary":"Update a existent organization",
+    "description":"Update a existent organization",
+    "_schema":"tags/organization",
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        },
+        "name":{
+            "type":"string-not-empty"
+        },
+        "code":{
+            "type":"string-not-empty"
+        },
+        "parent_code":{
+            "type":"string-not-empty"
+        }
+    },
+    "required":[
+        "uid",
+        "name",
+        "code",
+        "parent_code"
+    ]
+}
