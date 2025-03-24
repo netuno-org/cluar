@@ -1741,5 +1741,28 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-entry")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Chave")
   );
-
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9f5477f2-28eb-4e82-9ba4-9974f1c3418c")
+      .set("code", "organization-page-title")
+      .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "748da9ef-a657-407e-92a7-0a16229b7232")
+      .set("code", "organization-page-new")
+      .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Novo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "125d55aa-c207-44a4-be25-9ae51f923e86")
+      .set("code", "side-menu-options-organizations")
+      .set("description", "Menu Lateral - Op\u00E7\u00F5es - Organiza\u00E7\u00F5es")
+  );
 }

@@ -7,7 +7,8 @@ import {
   EditOutlined, 
   LogoutOutlined,
   GlobalOutlined,
-  FontSizeOutlined 
+  FontSizeOutlined,
+  ApartmentOutlined 
 } from '@ant-design/icons';
 import { 
   Col, 
@@ -72,6 +73,13 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           label: Cluar.plainDictionary('side-menu-options-dictionaries'),
           icon: <FontSizeOutlined />,
           onClick: () => navigate("/reserved-area/dictionary")
+
+        },
+        {
+          key: 'organization',
+          label: Cluar.plainDictionary('side-menu-options-organizations'),
+          icon: <ApartmentOutlined  />,
+          onClick: () => navigate("/reserved-area/organization")
 
         }
       ],
