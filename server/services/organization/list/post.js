@@ -92,6 +92,6 @@ const dbOrganizationTotal = _db.queryFirst(`
 _header.status(201);
 _out.json(
     _val.map()
-        .set('organizationa', organizations)
+        .set('organizations', organizations)
         .set('organization_total', dbOrganizationTotal.getInt('total'))
 )

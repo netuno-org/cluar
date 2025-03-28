@@ -5,6 +5,7 @@ import {
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import HeadTitle from "../../../components/HeadTitle";
+import OrganizationTable from "./Table";
 import Cluar from "../../../common/Cluar";
 
 import "./index.less";
@@ -40,9 +41,9 @@ const Organization = () => {
                 <Col span={24}>
                     <Row>
                         <Col span={24}>
-                           {/* <ConfigurationTable
+                           <OrganizationTable
                             ref={organizationTableRef}
-                           /> */}
+                           />
                         </Col>
                     </Row>
                 </Col>
