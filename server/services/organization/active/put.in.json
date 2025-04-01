@@ -1,0 +1,18 @@
+{
+    "summary":"Desactive/Active a existent organization",
+    "description":"Desactive/Active a existent organization",
+    "_schema":"tags/organization",
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        },
+        "active":{
+            "type":"boolean"
+        }
+    },
+    "required":[
+        "uid",
+        "active"
+    ]
+}

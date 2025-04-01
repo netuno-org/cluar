@@ -40,7 +40,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
             isLoading: true
         });
         _service({
-            url: "language/active",
+            url: "organization/active",
             method: "PUT",
             data: {
                 uid,
