@@ -23,20 +23,30 @@ if (filters) {
         queryParams.add(`%${name}%`)
     }
 
-    if (filters.has('active')) {
+    const code = filters.has('code') && filters.getString('code');
+    
+    if (code) {
         queryWhere += `
-            AND org.active = ?
+            AND org.code like ?
         `
-        queryParams.add(filters.getBoolean('active'));
+        queryParams.add(`%${code}%`)
     }
 
-    const parentCode = filters.has('parent_code') && filters.getString('parent_code');
+    const active = filters.has('active') && filters.getList('active');
 
-    if (parentCode) {
+    if (active.length > 0) {
         queryWhere += `
-            AND parent.code = ?
+            AND org.active IN (${active.join(", ")})
         `
-        queryParams.add(parentCode)
+    }
+
+    const parentName = filters.has('parent_name') && filters.getString('parent_name');
+
+    if (parentName) {
+        queryWhere += `
+            AND parent.name like ?
+        `
+        queryParams.add(`%${parentName}%`)
     }
 }
 

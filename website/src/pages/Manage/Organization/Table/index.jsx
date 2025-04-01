@@ -4,7 +4,8 @@ import {
     notification,
     Row,
     Switch,
-    Table
+    Table,
+    Input
 } from "antd";
 import {
     forwardRef,
@@ -13,10 +14,12 @@ import {
     useRef,
     useState
 } from "react";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 import OrganizationModal from "../Modal";
+
+const debounces = {}
 
 const OrganizationTable = forwardRef(({ }, ref) => {
     const [data, setData] = useState([]);
@@ -79,17 +82,44 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         })
     }
 
+
+    const getTextFilterProps = (key) => {
+        return ({
+            filterDropdown: () => (
+                <div>
+                    <Input
+                        allowClear
+                        prefix={<SearchOutlined />}
+                        onChange={(event) => {
+                            if (debounces[key]) {
+                                clearTimeout(debounces[key]);
+                            }
+
+                            debounces[key] = setTimeout(() => {
+                                setFilters({
+                                    ...filters,
+                                    [key]: event.target.value
+                                });
+                            }, 700);
+                        }}
+                    />
+                </div>
+            )
+        });
+    };
+
     const onLoadOrganizations = () => {
         setLoading(true);
         _service({
-            url:"organization/list",
-            method:"POST",
-            data:{
-               pagination
+            url: "organization/list",
+            method: "POST",
+            data: {
+                pagination,
+                filters
             },
             success: (response) => {
                 setLoading(false);
-                const {organizations, organization_total} = response.json
+                const { organizations, organization_total } = response.json
                 setData(organizations);
                 setTotal(organization_total);
             },
@@ -97,7 +127,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
                 setLoading(false);
                 console.error(error);
                 notification.error({
-                    message:Cluar.plainDictionary("organization-table-load-failed")
+                    message: Cluar.plainDictionary("organization-table-load-failed")
                 })
             }
         })
@@ -126,12 +156,24 @@ const OrganizationTable = forwardRef(({ }, ref) => {
                         onActive({ uid: record.uid, active: val });
                     }}
                 />
-            )
+            ),
+            filtered: filters.active,
+            filters: [
+                {
+                    text: "Activo",
+                    value: true
+                },
+                {
+                    text: "Inactivo",
+                    value: false
+                }
+            ]
         },
         {
             title: Cluar.plainDictionary('organization-table-name'),
             dataIndex: 'name',
             key: 'name',
+            ...getTextFilterProps("name"),
             onHeaderCell: () => ({
                 "data-column-key": "name",
             }),
@@ -139,6 +181,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         {
             title: Cluar.plainDictionary('organization-table-code'),
             dataIndex: 'code',
+            ...getTextFilterProps("code"),
             onHeaderCell: () => ({
                 "data-column-key": "code",
             }),
@@ -147,6 +190,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         {
             title: Cluar.plainDictionary('organization-table-parent'),
             dataIndex: 'parent',
+            ...getTextFilterProps("parent_name"),
             onHeaderCell: () => ({
                 "data-column-key": "parent",
             }),
@@ -186,11 +230,11 @@ const OrganizationTable = forwardRef(({ }, ref) => {
 
     useEffect(() => {
         onLoadOrganizations();
-    },[])
+    }, [])
 
     useEffect(() => {
         onLoadOrganizations();
-    }, [pagination])
+    }, [pagination, filters])
 
     return (
         <div>
@@ -210,6 +254,21 @@ const OrganizationTable = forwardRef(({ }, ref) => {
                     current: pagination.page,
                     position: ["topRight", "bottomRight"],
                     onChange: (current) => { setPagination({ page: current, size: pagination.size }) }
+                }}
+                onChange={(pagination, currentFilters, currentSorter, { action }) => {
+                    if (action === "filter") {
+                        const filtersModify = ['active'];
+                        const newFilters = {
+                            ...filters
+                        }
+                        Object.keys(currentFilters).forEach((key) => {
+                            const value = currentFilters[key];
+                            if (filtersModify.includes(key)) {
+                                newFilters[key] = value;
+                            }
+                        })
+                        setFilters(newFilters);
+                    }
                 }}
             />
         </div>

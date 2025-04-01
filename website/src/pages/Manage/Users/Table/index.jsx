@@ -242,7 +242,6 @@ const UserTable = forwardRef(({ }, ref) => {
                 onChange={(pagination, currentFilters, currentSorter, { action }) => {
                     if (action === "filter") {
                         const filtersModify = ['active'];
-                        console.log(currentFilters)
                         const newFilters = {
                             ...filters
                         }
