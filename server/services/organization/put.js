@@ -22,7 +22,7 @@ if (!dbOrganization) {
 let dbParent = null;
 
 if (parent_code) {
-    dbParent = _db.get('organization', parent_code);
+    dbParent = _db.queryFirst(`SELECT id FROM organization WHERE code = ?`, parent_code);
     if (!dbParent) {
         _header.status(404);
         _out.json(

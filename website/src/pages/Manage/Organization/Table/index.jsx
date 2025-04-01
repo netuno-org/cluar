@@ -189,7 +189,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
     },[])
 
     useEffect(() => {
-        
+        onLoadOrganizations();
     }, [pagination])
 
     return (

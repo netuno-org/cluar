@@ -20,7 +20,11 @@ import Cluar from "../../../../common/Cluar";
 
 const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [organizations, setOrganizations] = useState([]);
+    const [loading, setLoading] = useState({
+        saving: false,
+        organization: false
+    });
     const editeMode = organizationData ? true : false;
     const [formRef] = Form.useForm();
 
@@ -28,18 +32,43 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
         setIsModalOpen(true);
     }
 
+    const onLoadOrganizations = () => {
+        setLoading({ ...loading, organization: true });
+        _service({
+            url: "organization/list",
+            method: "POST",
+            data: {
+
+            },
+            success: (response) => {
+                setLoading({ ...loading, organization: false });
+                const { organizations } = response.json;
+                setOrganizations(organizations);
+            },
+            fail: (error) => {
+                setLoading({ ...loading, organization: false });
+                console.log(error);
+            }
+        })
+    }
+
     const onFinish = (values) => {
+        const data = {
+            ...values,
+            parent_code: values.parent_code ? values.parent_code.value : ""
+        }
+
         if (editeMode) {
-            setLoading(true);
+            setLoading({ ...loading, saving: true });
             _service({
-                url: "language",
+                url: "organization",
                 method: "PUT",
                 data: {
-                    ...values,
+                    ...data,
                     uid: organizationData.uid
                 },
                 success: (response) => {
-                    setLoading(false);
+                    setLoading({ ...loading, saving: false });
                     setIsModalOpen(false);
                     onReloadTable();
                     notification.success({
@@ -47,7 +76,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                     });
                 },
                 fail: (error) => {
-                    setLoading(false);
+                    setLoading({ ...loading, saving: false });
                     console.log(error);
                     notification.error({
                         message: Cluar.plainDictionary('organization-form-edit-failed-message')
@@ -55,15 +84,15 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                 }
             })
         } else {
-            setLoading(true);
+            setLoading({ ...loading, saving: true });
             _service({
-                url: "language",
+                url: "organization",
                 method: "POST",
                 data: {
-                    ...values
+                    ...data
                 },
                 success: (response) => {
-                    setLoading(false);
+                    setLoading({ ...loading, saving: false });
                     setIsModalOpen(false);
                     onReloadTable();
                     notification.success({
@@ -71,7 +100,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                     });
                 },
                 fail: (error) => {
-                    setLoading(false);
+                    setLoading({ ...loading, saving: false });
                     console.log(error);
                     notification.error({
                         message: Cluar.plainDictionary('organization-form-save-failed-message')
@@ -99,6 +128,10 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
         }
     }, [isModalOpen]);
 
+    useEffect(() => {
+        onLoadOrganizations();
+    }, []);
+
     return (
         <Modal
             title={editeMode ? Cluar.plainDictionary('organization-modal-new-title') : Cluar.plainDictionary('organization-modal-new-title')}
@@ -113,7 +146,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                 <Button onClick={() => setIsModalOpen(false)}>
                     {Cluar.plainDictionary('organization-form-cancel')}
                 </Button>,
-                <Button type="primary" onClick={() => formRef.submit()} loading={loading} disabled={loading}>
+                <Button type="primary" onClick={() => formRef.submit()} loading={loading.saving} disabled={loading.saving}>
                     {Cluar.plainDictionary('organization-form-save')}
                 </Button>
             ]}
@@ -135,6 +168,24 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                     </Col>
                     <Col span={24}>
                         <Form.Item
+                            name="parent_code"
+                            label={Cluar.plainDictionary('organization-form-parent')}
+                            rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required') }]}
+                        >
+                            <Select
+                                labelInValue
+                                showSearch
+                                optionFilterProp="label"
+                                listHeight={200}
+                                options={organizations.map((organization) => ({
+                                    label: organization.name,
+                                    value: organization.code
+                                }))}
+                            />
+                        </Form.Item>
+                    </Col>
+                    <Col span={24}>
+                        <Form.Item
                             name="name"
                             label={Cluar.plainDictionary('organization-form-name')}
                             rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required') }]}
@@ -149,20 +200,6 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                             rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required') }]}
                         >
                             <Input />
-                        </Form.Item>
-                    </Col>
-                    <Col span={24}>
-                        <Form.Item
-                            name="parent_code"
-                            label={Cluar.plainDictionary('organization-form-parent')}
-                            rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required') }]}
-                        >
-                            <Select
-                                labelInValue
-                                showSearch
-                                optionFilterProp="label"
-                                listHeight={200}
-                            />
                         </Form.Item>
                     </Col>
                 </Row>
