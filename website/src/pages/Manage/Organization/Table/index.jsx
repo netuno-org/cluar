@@ -85,7 +85,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
             url:"organization/list",
             method:"POST",
             data:{
-
+               pagination
             },
             success: (response) => {
                 setLoading(false);
