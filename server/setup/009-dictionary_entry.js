@@ -1765,4 +1765,44 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-options-organizations")
       .set("description", "Menu Lateral - Op\u00E7\u00F5es - Organiza\u00E7\u00F5es")
   );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "8e0d5702-5ea2-4ada-a186-204d3bcd5e8e")
+      .set("code", "organization-table-active")
+      .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - Active")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "09b66002-7950-4c96-bb50-876ed814b3f6")
+      .set("code", "organization-table-actions")
+      .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - A\u00E7\u00F5es")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "136253f7-05df-44d2-a063-c98809a8b5cc")
+      .set("code", "organization-table-parent")
+      .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - Pai")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "59024300-b55d-4665-b302-8cf0dfbb7c02")
+      .set("code", "organization-table-code")
+      .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - C\u00F3digo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "82e4ead0-1146-4716-bcdb-d0db44c2d4a3")
+      .set("code", "organization-table-name")
+      .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - Nome")
+  );
 }
