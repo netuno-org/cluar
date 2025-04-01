@@ -16,6 +16,7 @@ import {
 import { EditOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
+import OrganizationModal from "../Modal";
 
 const OrganizationTable = forwardRef(({ }, ref) => {
     const [data, setData] = useState([]);
@@ -168,7 +169,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
                             title="Editar"
                             onClick={() => {
                                 setOrganizationEditeData(record);
-                                organizationModalRef.current.openModal();
+                                organizationModalRef.current.onOpenModal();
                             }}
                         />
                     </Col>
@@ -193,11 +194,11 @@ const OrganizationTable = forwardRef(({ }, ref) => {
 
     return (
         <div>
-            {/* <LanguageModal
+            <OrganizationModal
                 ref={organizationModalRef}
-                languageData={languageEditeData}
+                organizationData={organizationEditeData}
                 onReloadTable={onReloadTable}
-            /> */}
+            />
             <Table
                 columns={columns}
                 dataSource={data}

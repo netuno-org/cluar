@@ -5,6 +5,7 @@ import {
     Input,
     Modal,
     Row,
+    Select,
     Switch,
     notification
 } from "antd";
@@ -17,10 +18,10 @@ import {
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 
-const OrganizationModal = forwardRef(({ onReloadTable, languageData }, ref) => {
+const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const editeMode = languageData ? true : false;
+    const editeMode = organizationData ? true : false;
     const [formRef] = Form.useForm();
 
     const onOpenModal = () => {
@@ -35,7 +36,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                 method: "PUT",
                 data: {
                     ...values,
-                    uid:languageData.uid
+                    uid: organizationData.uid
                 },
                 success: (response) => {
                     setLoading(false);
@@ -89,7 +90,11 @@ const OrganizationModal = forwardRef(({ onReloadTable, languageData }, ref) => {
     useEffect(() => {
         if (editeMode && isModalOpen) {
             formRef.setFieldsValue({
-                ...languageData
+                ...organizationData,
+                parent_code: {
+                    label: organizationData?.parent?.name,
+                    value: organizationData?.parent?.code
+                }
             })
         }
     }, [isModalOpen]);
@@ -132,7 +137,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                         <Form.Item
                             name="name"
                             label={Cluar.plainDictionary('organization-form-name')}
-                            rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required')}]}
+                            rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required') }]}
                         >
                             <Input />
                         </Form.Item>
@@ -150,9 +155,14 @@ const OrganizationModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                         <Form.Item
                             name="parent_code"
                             label={Cluar.plainDictionary('organization-form-parent')}
-                            rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required')}]}
+                            rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required') }]}
                         >
-                            <Input />
+                            <Select
+                                labelInValue
+                                showSearch
+                                optionFilterProp="label"
+                                listHeight={200}
+                            />
                         </Form.Item>
                     </Col>
                 </Row>
