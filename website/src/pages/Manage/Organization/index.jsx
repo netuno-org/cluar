@@ -7,6 +7,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import HeadTitle from "../../../components/HeadTitle";
 import OrganizationTable from "./Table";
 import Cluar from "../../../common/Cluar";
+import OrganizationModal from "./Modal";
 
 import "./index.less";
 import { useRef } from "react";
@@ -17,10 +18,10 @@ const Organization = () => {
 
     return (
         <div className="configuration-page">
-          {/* <ConfigurationModal
+          <OrganizationModal
             ref={organizationModalRef}
             onReloadTable={() => organizationTableRef.current.onReloadTable()}
-          /> */}
+          />
             <Row gutter={[0, 40]} >
                 <Col span={24}>
                     <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>

@@ -1805,4 +1805,108 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-name")
       .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - Nome")
   );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "95c955f4-81e2-415c-b1a6-71f387c31b3f")
+      .set("code", "organization-form-edit-success-message")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Edi\u00E7\u00E3o - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "1c0b5b13-6710-4f25-ae7f-e73dfd7f9062")
+      .set("code", "organization-form-edit-failed-message")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Edi\u00E7\u00E3o - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "cb9111a2-eb58-4518-a425-b987042a1564")
+      .set("code", "organization-form-save-success-message")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Registar - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "705d5773-59fc-4cce-98d9-6d2f9d31885e")
+      .set("code", "organization-form-save-failed-message")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Registar - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "52b890b9-6907-4a10-91e1-bb73bde6ec3c")
+      .set("code", "organization-modal-new-title")
+      .set("description", "Modal de Organiza\u00E7\u00F5es - Novo - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d009f0e9-dcfe-43d5-afbd-4ee243d1e6c1")
+      .set("code", "organization-modal-edit-title")
+      .set("description", "Modal de Organiza\u00E7\u00F5es - Edi\u00E7\u00E3o - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "791a07c5-f1e2-4ace-8467-f47010d90d4c")
+      .set("code", "organization-form-code")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - C\u00F3digo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "886c03c0-327e-49be-9e67-01f26e12397f")
+      .set("code", "organization-form-parent")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Pai")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9e16bf01-7c52-4f2e-8988-79effcec8026")
+      .set("code", "organization-form-name")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Nome")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "07db142b-fb6b-423a-b3ba-798f040b4e03")
+      .set("code", "organization-form-validate-message-required")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Valida\u00E7\u00E3o - Obrigat\u00F3rio")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "12f09ff2-6e0a-42c8-9557-1b26473e6e59")
+      .set("code", "organization-form-cancel")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Cancelar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "304b4775-7c88-477b-a3e9-763b1e8e67fa")
+      .set("code", "organization-form-save")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Salvar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "888ba0d7-e076-4e65-8aec-a7238d528d79")
+      .set("code", "organization-form-active")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Activo")
+  );
 }
