@@ -40,7 +40,7 @@ _form.createComponentIfNotExists(
 	.set("min", 0)
 	.set("name", "code")
 	.set("notnull", false)
-	.set("primarykey", false)
+	.set("primarykey", true)
 	.set("properties", "{\"MASK\":{\"default\":\"\",\"type\":\"STRING\",\"value\":\"\"},\"MASK_REVERSE\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"},\"MASK_SELECTONFOCUS\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"}}")
 	.set("rowspan", 0)
 	.set("tdheight", 0)

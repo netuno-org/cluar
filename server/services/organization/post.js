@@ -23,6 +23,24 @@ if (parent_code) {
     }
 }
 
+const codeAlreadyInUse = _db.queryFirst(`
+    SELECT 1
+    FROM organization
+    WHERE 1 = 1
+        AND code = ?   
+`, code);
+
+if (codeAlreadyInUse) {
+    _header.status(409);
+    _out.json(
+        _val.map()
+            .set('result', false)
+            .set('error_code', 'code-alread-in-use')
+            .set('error', `the code ${code} already in use in other organization.`)
+    )
+    _exec.stop();
+}
+
 const insertedOrganization = insertAndReturn(
     'organization', 
     _val.map()

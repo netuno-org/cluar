@@ -19,6 +19,24 @@ if (!dbOrganization) {
     _exec.stop();
 }
 
+const codeAlreadyInUse = _db.queryFirst(`
+    SELECT 1
+    FROM organization
+    WHERE 1 = 1
+        AND code = ? AND id != ?    
+`, code, dbOrganization.getInt("id"));
+
+if (codeAlreadyInUse) {
+    _header.status(409);
+    _out.json(
+        _val.map()
+            .set('result', false)
+            .set('error_code', 'code-alread-in-use')
+            .set('error', `the code ${code} already in use in other organization.`)
+    )
+    _exec.stop();
+}
+
 let dbParent = null;
 
 if (parent_code) {
@@ -30,6 +48,17 @@ if (parent_code) {
                 .set('result', false)
                 .set('error_code', 'parent-organization-not-found')
                 .set('error', `not fund parent organization with code: ${parent_code}`)
+        )
+        _exec.stop();
+    }
+
+    if (dbParent.getInt("id") == dbOrganization.getInt("id")) {
+        _header.status(409);
+        _out.json(
+            _val.map()
+                .set('result', false)
+                .set('error_code', 'redundant-organization')
+                .set('error', `the organization cannot have itself as parent`)
         )
         _exec.stop();
     }
