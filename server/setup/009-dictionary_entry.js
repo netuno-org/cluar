@@ -1909,4 +1909,36 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-active")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Activo")
   );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "aa6d53ed-05d1-4882-a11c-47ac91973e3d")
+      .set("code", "organization-table-desactive-success-message")
+      .set("description", "Tabela de Organiza\u00E7\u00F5es - Desactive - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "1fc54c9f-9df3-4f7f-bdaa-89ede681e789")
+      .set("code", "organization-table-active-success-message")
+      .set("description", "Tabela de Organiza\u00E7\u00F5es - Active - Sucesso - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f67ca465-d026-40c7-8af0-33b6161a4a4b")
+      .set("code", "organization-table-active-failed-message")
+      .set("description", "Tabela de Organiza\u00E7\u00F5es - Active - Falha - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "e0d784bc-8283-4fb4-aae2-d74117c908f4")
+      .set("code", "organization-table-desactive-failed-message")
+      .set("description", "Tabela de Organiza\u00E7\u00F5es - Desactive - Falha - Mensagem")
+  );
 }

@@ -4298,4 +4298,76 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("entry_id", "886c03c0-327e-49be-9e67-01f26e12397f")
       .set("value", "<p>Pai</p>")
   );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "6b8c45d1-8957-44db-9fff-fbf399a6db39")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "f67ca465-d026-40c7-8af0-33b6161a4a4b")
+      .set("value", "<p>Falha ao activar organiza\u00E7\u00E3o.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "25bb4eef-e7ba-4167-9c17-6d8df4703718")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "f67ca465-d026-40c7-8af0-33b6161a4a4b")
+      .set("value", "<p>Failed to active organization.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "321f3573-08cf-4b82-942c-083f41919ff3")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "1fc54c9f-9df3-4f7f-bdaa-89ede681e789")
+      .set("value", "<p>Organiza\u00E7\u00E3o activada com sucesso.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "085712b8-05c9-443b-a936-c0ad45331c85")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "1fc54c9f-9df3-4f7f-bdaa-89ede681e789")
+      .set("value", "<p>Organization sucessfully activated.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "037d5f3a-6b1b-453f-a766-8c2c0714abac")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "e0d784bc-8283-4fb4-aae2-d74117c908f4")
+      .set("value", "<p>Falha ao desactivar organiza\u00E7\u00E3o.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "ea38a9f7-2fc4-464e-a881-50caf126c7c6")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "e0d784bc-8283-4fb4-aae2-d74117c908f4")
+      .set("value", "<p>Failed to desactive organization.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "6bdbf129-6a36-40c2-92e5-bb106ff0d0ab")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "aa6d53ed-05d1-4882-a11c-47ac91973e3d")
+      .set("value", "<p>Organiza\u00E7\u00E3o desactivada com sucesso.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "a1cff852-3112-4166-82bf-06b5cab44b7e")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "aa6d53ed-05d1-4882-a11c-47ac91973e3d")
+      .set("value", "<p>Organization successfully desabled.</p>")
+  );
 }
