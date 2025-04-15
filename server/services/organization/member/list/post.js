@@ -46,7 +46,7 @@ const dbPeople = _db.queryFirst(`
     SELECT id FROM people WHERE people_user_id = ? 
 `, _user.id());
 
-const dbPetterns = _db.query(`
+const dbMembers = _db.query(`
     WITH RECURSIVE user_orgs AS (
         SELECT 
             org.name, 
@@ -99,7 +99,7 @@ const dbPetterns = _db.query(`
     LIMIT ${page.size()} OFFSET ${page.offset()}  
 `, queryParams);
 
-const dbPetternsTotal = _db.queryFirst(`
+const dbMembersTotal = _db.queryFirst(`
     WITH RECURSIVE user_orgs AS (
         SELECT 
             org.name, 
@@ -143,31 +143,31 @@ const dbPetternsTotal = _db.queryFirst(`
         ${queryWhere}
 `, queryParams);
 
-const patterns = _val.list();
+const members = _val.list();
 
-for (const dbPattern of dbPetterns) {
-    patterns.add(
+for (const dbMember of dbMembers) {
+    members.add(
         _val.map()
-            .set('uid', dbPattern.getString("organization_people_uid"))
+            .set('uid', dbMember.getString("organization_people_uid"))
             .set('organization', _val.map()
-                .set('uid', dbPattern.getString("org_uid"))
-                .set('name', dbPattern.getString("org_name"))
-                .set('code', dbPattern.getString("org_code"))
+                .set('uid', dbMember.getString("org_uid"))
+                .set('name', dbMember.getString("org_name"))
+                .set('code', dbMember.getString("org_code"))
             )
             .set('user', _val.map()
-                .set('uid', dbPattern.getString("people_uid"))
-                .set('name', dbPattern.getString("people_name"))
+                .set('uid', dbMember.getString("people_uid"))
+                .set('name', dbMember.getString("people_name"))
             )
             .set('group', _val.map()
-                .set('uid', dbPattern.getString("group_uid"))
-                .set('name', dbPattern.getString("group_name"))
-                .set('code', dbPattern.getString("group_code"))
+                .set('uid', dbMember.getString("group_uid"))
+                .set('name', dbMember.getString("group_name"))
+                .set('code', dbMember.getString("group_code"))
             )
     )
 }
 
 _out.json(
     _val.map()
-        .set('patterns', patterns)
-        .set('total', dbPetternsTotal.getInt("total"))
+        .set('members', members)
+        .set('total', dbMembersTotal.getInt("total"))
 )

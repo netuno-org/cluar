@@ -13,7 +13,7 @@ _form.createIfNotExists(
 	.set("control_group", false)
 	.set("control_user", false)
 	.set("description", "")
-	.set("displayname", "Pessoas da Organiza\u00E7\u00E3o")
+	.set("displayname", "Membros")
 	.set("export_id", false)
 	.set("export_json", true)
 	.set("export_lastchange", false)
