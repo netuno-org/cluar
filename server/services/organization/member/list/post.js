@@ -32,13 +32,13 @@ if (filters) {
         queryParams.add(`%${peopleName}%`)
     }
 
-    const groupCodes = filters.has("group_codes") && filters.getList("group_codes");
+    const groupName = filters.has("group_name") && filters.getString("group_name");
 
-    if (groupCodes.length > 0) {
+    if (groupName) {
         queryWhere += `
-            AND user_group.code IN (${groupCodes.map(() => '?').join(", ")})
+            AND user_group.name like ?
         `
-        queryParams.addAll(groupCodes)
+        queryParams.add(`%${groupName}%`)
     }
 }
 
@@ -74,24 +74,25 @@ const dbMembers = _db.query(`
             organization org
         INNER JOIN user_orgs uo ON org.parent_id = uo.id
     )
-    SELECT DISTINCT ON (user_orgs.uid, people.uid)
+    SELECT
         organization_people.uid AS organization_people_uid,
         organization_people.active AS organization_people_active, 
-        user_orgs.id AS user_orgs_id,
         user_orgs.name AS org_name,
         user_orgs.code AS org_code,
         user_orgs.uid AS org_uid,
-        people.id AS people_id,
         people.uid AS people_uid,
-        people.name AS people_name
+        people.name AS people_name,
+        user_group.name AS group_name,
+        user_group.code AS group_code,
+        user_group.uid AS group_uid
     FROM 
         user_orgs
 	INNER JOIN 
         organization_people ON organization_people.organization_id = user_orgs.id
 	INNER JOIN
 		people ON people.id = organization_people.people_id
-    INNER JOIN 
-        user_group ON user_group.id = organization_people.user_group_id
+	INNER JOIN
+		user_group ON user_group.id = organization_people.user_group_id
     WHERE 1 = 1
         ${queryWhere}
     LIMIT ${page.size()} OFFSET ${page.offset()}  
@@ -126,15 +127,15 @@ const dbMembersTotal = _db.queryFirst(`
         INNER JOIN user_orgs uo ON org.parent_id = uo.id
     )
     SELECT
-        COUNT(DISTINCT (user_orgs.uid, people.uid)) AS "total"
+        COUNT(1) AS "total"
     FROM 
         user_orgs
 	INNER JOIN 
         organization_people ON organization_people.organization_id = user_orgs.id
 	INNER JOIN
 		people ON people.id = organization_people.people_id
-    INNER JOIN 
-        user_group ON user_group.id = organization_people.user_group_id
+	INNER JOIN
+		user_group ON user_group.id = organization_people.user_group_id
     WHERE 1 = 1
         ${queryWhere}
 `, queryParams);
@@ -142,17 +143,6 @@ const dbMembersTotal = _db.queryFirst(`
 const members = _val.list();
 
 for (const dbMember of dbMembers) {
-    const dbGroups = _db.form('user_group')
-        .link(
-            'organization_people',
-            _db.where()
-                .and('people_id').equals(dbMember.getInt("people_id"))
-                .and('organization_id').equals(dbMember.getInt("user_orgs_id"))
-        )
-        .get("user_group.name")
-        .get("user_group.code")
-        .all()
-
     members.add(
         _val.map()
             .set('uid', dbMember.getString("organization_people_uid"))
@@ -166,7 +156,11 @@ for (const dbMember of dbMembers) {
                 .set('uid', dbMember.getString("people_uid"))
                 .set('name', dbMember.getString("people_name"))
             )
-            .set('groups', dbGroups)
+            .set('group', _val.map()
+                .set('uid', dbMember.getString("group_uid"))
+                .set('name', dbMember.getString("group_name"))
+                .set('code', dbMember.getString("group_code"))
+            )
     )
 }
 

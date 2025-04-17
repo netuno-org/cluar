@@ -14,11 +14,8 @@
             "people_name":{
                 "type":"string"
             },
-            "group_codes":{
-                "type":"array",
-                "items":{
-                    "type":"string"
-                }
+            "group_code":{
+                "type":"string"
             }
         }
     }

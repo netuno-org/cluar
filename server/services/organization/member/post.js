@@ -53,15 +53,14 @@ const memberAlreadyExists = _db.queryFirst(`
    WHERE 1 = 1
     AND people_id = ?::integer
     AND organization_id = ?::integer
-    AND user_group_id = ?::integer 
-`, dbPeople.getInt("id"), dbOrganization.getInt("id"), dbGroup.getInt("id"));
+`, dbPeople.getInt("id"), dbOrganization.getInt("id"));
 
 if (memberAlreadyExists) {
     _header.status(409);
     _out.json(
         _val.map()
             .set('result', false)
-            .set('error', `this person is already a member of this organization with this group`)
+            .set('error', `this person is already a member of this organization, but you can manager your group`)
             .set('error_code', `person-already-member`)
     );
     _exec.stop();
