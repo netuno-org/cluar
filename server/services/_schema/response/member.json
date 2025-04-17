@@ -1,0 +1,44 @@
+{
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        },
+        "active":{
+            "type":"boolean"
+        },
+        "people":{
+            "type":"object",
+            "properties": {
+                "uid":{
+                    "type":"uuid"
+                },
+                "name":{
+                    "type":"string"
+                }
+            }
+        },
+        "organization":{
+            "type":"object",
+            "properties":{
+                "name":{
+                    "type":"string"
+                },
+                "code":{
+                    "type":"string"
+                }
+            }
+        },
+        "group":{
+            "type":"object",
+            "properties":{
+                "name":{
+                    "type":"string"
+                },
+                "code":{
+                    "type":"string"
+                }
+            }
+        }
+    }
+}
