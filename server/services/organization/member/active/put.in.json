@@ -1,0 +1,18 @@
+{
+    "summary":"Active/desactive organization member by uid",
+    "description":"Active/desactive organization member by uid",
+    "_schema":"tags/member",
+    "type":"object",
+    "properties":{
+        "uid" : {
+            "type":"uuid"
+        },
+        "active":{
+            "type":"boolean"
+        }
+    },
+    "required":[
+        "uid",
+        "active"
+    ]
+}
