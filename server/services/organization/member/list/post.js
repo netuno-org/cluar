@@ -75,7 +75,8 @@ const dbMembers = _db.query(`
         INNER JOIN user_orgs uo ON org.parent_id = uo.id
     )
     SELECT
-        organization_people.uid AS organization_people_uid, 
+        organization_people.uid AS organization_people_uid,
+        organization_people.active AS organization_people_active, 
         user_orgs.name AS org_name,
         user_orgs.code AS org_code,
         user_orgs.uid AS org_uid,
@@ -149,6 +150,7 @@ for (const dbMember of dbMembers) {
     members.add(
         _val.map()
             .set('uid', dbMember.getString("organization_people_uid"))
+            .set('active', dbMember.getBoolean('organization_people_active'))
             .set('organization', _val.map()
                 .set('uid', dbMember.getString("org_uid"))
                 .set('name', dbMember.getString("org_name"))

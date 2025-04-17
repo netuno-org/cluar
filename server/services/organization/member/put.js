@@ -1,12 +1,23 @@
-//_core: db/insertAndReturn
-
 const {
+    uid,
     people_uid,
     organization_code,
     group_code,
     active
 } = JSON.parse(_req.toJSON());
 
+const dbMember = _db.queryFirst(`SELECT id FROM organization_people WHERE uid = ?::uuid`, uid);
+
+if (!dbMember) {
+    _header.status(404);
+    _out.json(
+        _val.map()
+            .set('result', false)
+            .set('error', `member not found with uid: ${uid}`)
+            .set('error_code', `member-not-found`)
+    );
+    _exec.stop();
+}
 
 const dbPeople = _db.queryFirst(`SELECT id, uid, name FROM people WHERE uid = ?::uuid`, people_uid);
 
@@ -48,13 +59,19 @@ if (!dbGroup) {
 }
 
 const memberAlreadyExists = _db.queryFirst(`
-   SELECT 1
-   FROM organization_people
-   WHERE 1 = 1
-    AND people_id = ?::integer
-    AND organization_id = ?::integer
-    AND user_group_id = ?::integer 
-`, dbPeople.getInt("id"), dbOrganization.getInt("id"), dbGroup.getInt("id"));
+    SELECT 1
+    FROM organization_people
+    WHERE 1 = 1
+     AND people_id = ?::integer
+     AND organization_id = ?::integer
+     AND user_group_id = ?::integer
+     AND id != ?::integer 
+ `, _val.init()
+    .add(dbPeople.getInt("id"))
+    .add(dbOrganization.getInt("id"))
+    .add(dbGroup.getInt("id"))
+    .add(dbMember.getInt("id"))
+);
 
 if (memberAlreadyExists) {
     _header.status(409);
@@ -73,26 +90,13 @@ const memberData = _val.map()
     .set("user_group_id", dbGroup.getInt("id"))
     .set("active", active)
 
-const createdMember = insertAndReturn("organization_people", memberData);
+_db.update(
+    'organization_people',
+    dbMember.getInt("id"),
+    memberData
+);
 
-_header.status(201);
 _out.json(
     _val.map()
         .set('result', true)
-        .set('member', _val.map()
-            .set('uid', createdMember.getString("uid"))
-            .set('active', createdMember.getBoolean("active"))
-            .set('people', _val.map()
-                .set('name', dbPeople.getString("name"))
-                .set('uid', dbPeople.getString("uid"))
-            )
-            .set('group', _val.map()
-                .set('name', dbGroup.getString("name"))
-                .set('code', dbGroup.getString("code"))
-            )
-            .set('organization', _val.map()
-                .set('name', dbOrganization.getString("name"))
-                .set('code', dbOrganization.getString("code"))
-            )
-        )
 )
