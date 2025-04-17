@@ -10,8 +10,11 @@
         "organization_code":{
             "type":"string-not-empty"
         },
-        "group_code":{
-            "type":"string-not-empty"
+        "group_codes":{
+            "type":"array",
+            "items":{
+                "type":"string-not-empty"
+            }
         },
         "active":{
             "type":"boolean"
@@ -20,7 +23,7 @@
     "required":[
         "people_uid",
         "organization_code",
-        "group_code",
+        "group_codes",
         "active"
     ]
 }
