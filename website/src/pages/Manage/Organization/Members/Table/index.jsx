@@ -197,7 +197,30 @@ const MembersTable = forwardRef(({ }, ref) => {
             }),
             key: 'group',
             render: (val, record) => val?.name
-        }
+        },
+        {
+            title: Cluar.plainDictionary('members-table-actions'),
+            dataIndex: 'Actions',
+            key: 'actions',
+            onHeaderCell: () => ({
+                "data-column-key": "actions",
+            }),
+            render: (val, record) => (
+                <Row>
+                    <Col>
+                        <Button
+                            icon={<EditOutlined />}
+                            type="text"
+                            title="Editar"
+                            onClick={() => {
+                                setMemberEditeData(record);
+                                // organizationModalRef.current.onOpenModal();
+                            }}
+                        />
+                    </Col>
+                </Row>
+            )
+        },
     ]
 
     useImperativeHandle(ref, () => {
