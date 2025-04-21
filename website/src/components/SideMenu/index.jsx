@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  SettingOutlined, 
-  UserOutlined, 
-  MenuOutlined, 
-  CloseOutlined, 
-  EditOutlined, 
+import {
+  SettingOutlined,
+  UserOutlined,
+  MenuOutlined,
+  CloseOutlined,
+  EditOutlined,
   LogoutOutlined,
   GlobalOutlined,
   FontSizeOutlined,
-  ApartmentOutlined 
+  ApartmentOutlined,
+  TeamOutlined
 } from '@ant-design/icons';
-import { 
-  Col, 
-  Layout, 
-  Menu, 
-  Row, 
-  Typography, 
-  notification, 
-  Dropdown, 
-  Skeleton, 
-  Button 
+import {
+  Col,
+  Layout,
+  Menu,
+  Row,
+  Typography,
+  notification,
+  Dropdown,
+  Skeleton,
+  Button
 } from 'antd';
 import Cluar from '../../common/Cluar'
 
@@ -78,9 +79,14 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         {
           key: 'organization',
           label: Cluar.plainDictionary('side-menu-options-organizations'),
-          icon: <ApartmentOutlined  />,
-          onClick: () => navigate("/reserved-area/organization")
-
+          icon: <ApartmentOutlined />,
+          onClick: () => navigate("/reserved-area/organization"),
+        },
+        {
+          key: 'organization/member',
+          label: Cluar.plainDictionary('side-menu-options-members'),
+          icon: <TeamOutlined />,
+          onClick: () => navigate("/reserved-area/organization/members"),
         }
       ],
     },
