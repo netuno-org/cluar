@@ -1941,4 +1941,108 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-desactive-failed-message")
       .set("description", "Tabela de Organiza\u00E7\u00F5es - Desactive - Falha - Mensagem")
   );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "65048a18-f9de-42a9-9e9d-94b31f5a0b0b")
+      .set("code", "side-menu-options-members")
+      .set("description", "Menu Lateral - Op\u00E7\u00F5es - Membros")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "b3d5d524-15af-493f-a11e-727df00fd4fd")
+      .set("code", "members-page-title")
+      .set("description", "P\u00E1gina de Membros - T\u00EDtulo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "8209f931-d4ee-4fd1-b7c0-b3c286b54bd4")
+      .set("code", "members-page-new")
+      .set("description", "P\u00E1gina de Membros - Novo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0227f944-4457-420c-a573-125b908a5952")
+      .set("code", "members-table-desactive-success-message")
+      .set("description", "Tabela de Membros - Desactivo - Sucesso")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d9a81108-c5b6-4695-9a3a-79c28fdcf8b3")
+      .set("code", "members-table-active-success-message")
+      .set("description", "Tabela de Membros - Activo - Sucesso")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d2f6a57b-a310-4035-8534-04d0aa1b4c6d")
+      .set("code", "members-table-desactive-failed-message")
+      .set("description", "Tabela de Membros - Desactivo - Falha")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9a173070-390c-4ffa-869a-dfdbf0a7e325")
+      .set("code", "members-table-active-failed-message")
+      .set("description", "Tabela de Membros - Activo - Falha")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "3a226649-cbad-414d-9d78-56b395d422b8")
+      .set("code", "members-table-load-failed")
+      .set("description", "Tabela de Membros - Carregar - Falha")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2bfa0550-0c45-45f1-943f-fd65640ba018")
+      .set("code", "members-table-active")
+      .set("description", "Tabela de Membros - Activo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "abe67bcd-0c27-42cb-a2f7-c4fe64dba1f8")
+      .set("code", "members-table-user")
+      .set("description", "Tabela de Membros - Utilizador")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9066ed56-778f-41a6-8ef8-57971b508508")
+      .set("code", "members-table-organization")
+      .set("description", "Tabela de Membros - Organiza\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f0a58c1f-1a0d-449d-b7bf-a50f9a1acdb0")
+      .set("code", "members-table-group")
+      .set("description", "Tabela de Membros - Grupo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "76f495d3-6cd3-4577-8fa9-ba43ba4bd81c")
+      .set("code", "members-table-actions")
+      .set("description", "Tabela de Membros - A\u00E7\u00F5es")
+  );
 }

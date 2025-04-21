@@ -4370,4 +4370,238 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("entry_id", "aa6d53ed-05d1-4882-a11c-47ac91973e3d")
       .set("value", "<p>Organization successfully desabled.</p>")
   );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "f9f2c873-9004-43a4-8009-39096f8cacaa")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "65048a18-f9de-42a9-9e9d-94b31f5a0b0b")
+      .set("value", "<p>Membros</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "68c553fe-b35b-4458-a8b1-fbf12456bc58")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "65048a18-f9de-42a9-9e9d-94b31f5a0b0b")
+      .set("value", "<p>Members</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "858894a9-b661-49a9-aab1-9a70af28732e")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "b3d5d524-15af-493f-a11e-727df00fd4fd")
+      .set("value", "<p>Membros</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "c908b25a-fab6-4225-a514-6b7c6a78d423")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "b3d5d524-15af-493f-a11e-727df00fd4fd")
+      .set("value", "<p>Members</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "eca4e75d-e5f1-41b8-86e9-f418d76abd43")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "8209f931-d4ee-4fd1-b7c0-b3c286b54bd4")
+      .set("value", "<p>Novo</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "5ac3dad1-144c-4bcc-a94b-454f81171574")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "8209f931-d4ee-4fd1-b7c0-b3c286b54bd4")
+      .set("value", "<p>New</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "38fdbec5-f995-4fb2-b978-70eacc56ee67")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "d9a81108-c5b6-4695-9a3a-79c28fdcf8b3")
+      .set("value", "<p>Membro activado com sucesso.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "41063cbe-412b-41e2-a12e-6a2ad2684e36")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "d9a81108-c5b6-4695-9a3a-79c28fdcf8b3")
+      .set("value", "<p>Member successfully actived.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "84916150-3ba8-4702-addb-26053f690f9c")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "0227f944-4457-420c-a573-125b908a5952")
+      .set("value", "<p>Membro desactivado com sucesso.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "43baf907-269b-4aee-87bd-93d1fb246d61")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "0227f944-4457-420c-a573-125b908a5952")
+      .set("value", "<p>Member successfully desactivated.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "5a688ca4-5cfa-4dda-a3cf-ba8b20a5ad09")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "d2f6a57b-a310-4035-8534-04d0aa1b4c6d")
+      .set("value", "<p>Falha ao desactivar membro.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "c0678c46-041b-4842-89c6-14990c830180")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "d2f6a57b-a310-4035-8534-04d0aa1b4c6d")
+      .set("value", "<p>Failed to desactive member.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "e1131d79-8d04-492d-897f-ad9985001385")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "9a173070-390c-4ffa-869a-dfdbf0a7e325")
+      .set("value", "<p>Falha ao activar membro.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "cdc2d497-1e70-448a-82ed-c301b9444f36")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "9a173070-390c-4ffa-869a-dfdbf0a7e325")
+      .set("value", "<p>Failed to desactive member.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "bdad3772-d1dc-4cdf-9c0d-771e3096d35d")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "3a226649-cbad-414d-9d78-56b395d422b8")
+      .set("value", "<p>Falha ao cerregar membros.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "da4d128c-35c7-4a28-a584-c25ad86f1d47")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "3a226649-cbad-414d-9d78-56b395d422b8")
+      .set("value", "<p>Failed to load members.</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "d5bc6bc2-43c7-44e6-805f-071ff41e3ad1")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "abe67bcd-0c27-42cb-a2f7-c4fe64dba1f8")
+      .set("value", "<p>Utilizador</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "68f0ae7a-903f-4e02-9a19-01f4f9475ae1")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "abe67bcd-0c27-42cb-a2f7-c4fe64dba1f8")
+      .set("value", "<p>User</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "63d89d06-9788-492c-9057-18ac8fef31a0")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "9066ed56-778f-41a6-8ef8-57971b508508")
+      .set("value", "<p>Organiza\u00E7\u00E3o</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "387fcfd9-35cc-4ea0-905d-a8793a244298")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "9066ed56-778f-41a6-8ef8-57971b508508")
+      .set("value", "<p>Organization</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "9ce4ccf1-4e2d-47aa-87a1-00fb8d8e98ec")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "f0a58c1f-1a0d-449d-b7bf-a50f9a1acdb0")
+      .set("value", "<p>Grupo</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "ffb95b13-e797-49db-9518-9173e33f1236")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "f0a58c1f-1a0d-449d-b7bf-a50f9a1acdb0")
+      .set("value", "<p>Group</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "c9a4ccaf-8ea3-45b2-a24d-1cbd873733d9")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "2bfa0550-0c45-45f1-943f-fd65640ba018")
+      .set("value", "<p>Activo</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "540bdaed-a345-414f-a625-de396357e0c1")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "2bfa0550-0c45-45f1-943f-fd65640ba018")
+      .set("value", "<p>Activo</p>")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "c6af7db2-c2ea-4b1a-8c31-72339bd03e83")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "76f495d3-6cd3-4577-8fa9-ba43ba4bd81c")
+      .set("value", "A\u00E7\u00F5es")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "ee97cebb-afd5-44d0-b871-6b13a9079dc0")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "76f495d3-6cd3-4577-8fa9-ba43ba4bd81c")
+      .set("value", "<p>Actions</p>")
+  );
 }
