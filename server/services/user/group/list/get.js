@@ -1,7 +1,8 @@
 const dbGroups = _db.query(`
     SELECT
       name,
-      code
+      code,
+      uid
     FROM user_group
     WHERE code <> '' AND name <> ''
   `);

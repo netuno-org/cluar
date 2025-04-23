@@ -18,14 +18,24 @@ import {
 import _service from "@netuno/service-client";
 import Cluar from "../../../../../common/Cluar";
 
-const MembersModal = forwardRef(({ onReloadTable, organizationData }, ref) => {
+const debounces = {}
+
+const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [organizations, setOrganizations] = useState([]);
+    const [users, setUsers] = useState([]);
+    const [groups, setGroups] = useState([]);
     const [loading, setLoading] = useState({
         saving: false,
-        organization: false
+        organization: false,
+        user: false,
+        group: false
     });
-    const editeMode = organizationData ? true : false;
+    const  [filters, setFilters] = useState({
+        option:"",
+        value:""
+    }); 
+    const editeMode = memberData ? true : false;
     const [formRef] = Form.useForm();
 
     const onOpenModal = () => {
@@ -37,7 +47,15 @@ const MembersModal = forwardRef(({ onReloadTable, organizationData }, ref) => {
         _service({
             url: "organization/list",
             method: "POST",
-            data: {},
+            data: {
+                pagination:{
+                    size:10,
+                    page:1
+                },
+                filters:{
+                    name:filters.value
+                }
+            },
             success: (response) => {
                 setLoading({ ...loading, organization: false });
                 const { organizations } = response.json;
@@ -48,6 +66,65 @@ const MembersModal = forwardRef(({ onReloadTable, organizationData }, ref) => {
                 console.log(error);
             }
         })
+    }
+
+    const onLoadUsers = () => {
+        setLoading({ ...loading, user: true });
+        _service({
+            url: "user/list",
+            method: "POST",
+            data: {
+                pagination:{
+                    size:10,
+                    page:1
+                },
+                filters:{
+                    name:filters.value
+                }
+            },
+            success: (response) => {
+                setLoading({ ...loading, user: false });
+                const { items } = response.json.page;
+                setUsers(items);
+            },
+            fail: (error) => {
+                setLoading({ ...loading, user: false });
+                console.log(error);
+            }
+        })
+    }
+
+    const onLoadGroups = () => {
+        setLoading({ ...loading, group: true });
+        _service({
+            url: "user/group/list",
+            method: "GET",
+            data: {},
+            success: (response) => {
+                setLoading({ ...loading, group: false });
+                const { groups } = response.json;
+                setGroups(groups);
+            },
+            fail: (error) => {
+                setLoading({ ...loading, group: false });
+                console.log(error);
+            }
+        })
+    }
+
+    const onFilter = (filter) => {
+        const {option, value} = filter;
+        if (debounces[option]) {
+            clearTimeout(debounces[option])
+        }
+
+        debounces[option] = setTimeout(() => {
+            setFilters({option, value});
+        }, 600);
+    }
+
+    const clearfilters = (option) => {
+        setFilters({option, value:""});
     }
 
     const onFinish = (values) => {
@@ -63,7 +140,7 @@ const MembersModal = forwardRef(({ onReloadTable, organizationData }, ref) => {
                 method: "PUT",
                 data: {
                     ...data,
-                    uid: organizationData.uid
+                    uid: memberData.uid
                 },
                 success: (response) => {
                     setLoading({ ...loading, saving: false });
@@ -122,11 +199,22 @@ const MembersModal = forwardRef(({ onReloadTable, organizationData }, ref) => {
 
     useEffect(() => {
         onLoadOrganizations();
+        onLoadGroups();
+        onLoadUsers();
     }, []);
+
+    useEffect(() => {
+        if (filters.option === "user") {
+            onLoadUsers();
+        }
+        if (filters.option === "organization") {
+            onLoadOrganizations();
+        }
+    }, [filters]);
 
     return (
         <Modal
-            title={editeMode ? Cluar.plainDictionary('members-modal-new-title') : Cluar.plainDictionary('members-modal-edit-title')}
+            title={editeMode ? Cluar.plainDictionary('members-modal-edit-title') : Cluar.plainDictionary('members-modal-new-title')}
             open={isModalOpen}
             onCancel={() => setIsModalOpen(false)}
             onClose={() => setIsModalOpen(false)}
@@ -166,35 +254,44 @@ const MembersModal = forwardRef(({ onReloadTable, organizationData }, ref) => {
                         >
                             <Select
                                 labelInValue
+                                loading={loading.user}
                                 showSearch
+                                filterOption={false}
+                                allowClear
+                                onClear={() => {clearfilters("user")}}
+                                onSearch={(value) => onFilter({option:"user", value})}
                                 listHeight={200}
-                                options={organizations.map((organization) => ({
-                                    label: organization.name,
-                                    value: organization.uid
+                                options={users.map((user) => ({
+                                    label: user.name,
+                                    value: user.uid
                                 }))}
                             />
                         </Form.Item>
                     </Col>
                     <Col span={24}>
                         <Form.Item
-                            name="organization_uid"
+                            name="organization_code"
                             label={Cluar.plainDictionary('members-form-organization')}
                             rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
                         >
                             <Select
                                 labelInValue
                                 showSearch
+                                filterOption = {false}
+                                allowClear
+                                onClear={() => {clearfilters("organization")}}
+                                onSearch={(value) => onFilter({option:"organization", value})}
                                 listHeight={200}
                                 options={organizations.map((organization) => ({
                                     label: organization.name,
-                                    value: organization.uid
+                                    value: organization.code
                                 }))}
                             />
                         </Form.Item>
                     </Col>
                     <Col span={24}>
                         <Form.Item
-                            name="group_uid"
+                            name="group_code"
                             label={Cluar.plainDictionary('members-form-group')}
                             rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
                         >
@@ -202,9 +299,9 @@ const MembersModal = forwardRef(({ onReloadTable, organizationData }, ref) => {
                                 labelInValue
                                 showSearch
                                 listHeight={200}
-                                options={organizations.map((organization) => ({
-                                    label: organization.name,
-                                    value: organization.uid
+                                options={groups.map((group) => ({
+                                    label: group.name,
+                                    value: group.code
                                 }))}
                             />
                         </Form.Item>

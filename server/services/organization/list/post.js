@@ -18,7 +18,7 @@ if (filters) {
 
     if (name) {
         queryWhere += `
-            AND org.name like ?
+            AND user_orgs.name like ?
         `
         queryParams.add(`%${name}%`)
     }
@@ -27,7 +27,7 @@ if (filters) {
 
     if (code) {
         queryWhere += `
-            AND org.code like ?
+            AND user_orgs.code like ?
         `
         queryParams.add(`%${code}%`)
     }
@@ -36,7 +36,7 @@ if (filters) {
 
     if (active.length > 0) {
         queryWhere += `
-            AND org.active IN (${active.join(", ")})
+            AND user_orgs.active IN (${active.join(", ")})
         `
     }
 
