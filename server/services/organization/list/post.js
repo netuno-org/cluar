@@ -70,6 +70,7 @@ const dbOrganizations = _db.query(`
         WHERE 1 = 1 
             AND op.people_id = ${dbPeople.getInt("id")}
             AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
+            AND op.active = true
         UNION
         SELECT 
             org.name, 
@@ -135,6 +136,7 @@ const dbOrganizationTotal = _db.queryFirst(`
         WHERE 1 = 1 
             AND op.people_id = ${dbPeople.getInt("id")}
             AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
+            AND op.active = true
         UNION
         SELECT 
             org.name, 

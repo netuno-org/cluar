@@ -130,7 +130,9 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
     const onFinish = (values) => {
         const data = {
             ...values,
-            parent_code: values.parent_code ? values.parent_code.value : ""
+            organization_code:values.organization_code.value,
+            group_code:values.group_code.value,
+            people_uid: values.user_uid.value
         }
 
         if (editeMode) {
@@ -161,7 +163,7 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
         } else {
             setLoading({ ...loading, saving: true });
             _service({
-                url: "organization",
+                url: "organization/member",
                 method: "POST",
                 data: {
                     ...data
