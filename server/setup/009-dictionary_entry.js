@@ -2045,4 +2045,108 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-actions")
       .set("description", "Tabela de Membros - A\u00E7\u00F5es")
   );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "71f61d7c-0ee5-4381-8cd8-27c36dc3c33c")
+      .set("code", "members-form-edit-failed-message")
+      .set("description", "Formul\u00E1rio de Membros - Editar - Falha")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d365088c-7315-4f1a-8fca-ce5b208ac10f")
+      .set("code", "members-form-save-success-message")
+      .set("description", "Formul\u00E1rio de Membros - Registar - Sucesso")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "350ab06f-d9c0-4870-ad92-816700442733")
+      .set("code", "members-form-save-failed-message")
+      .set("description", "Formul\u00E1rio de Membros - Registar - Falha")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "cd3a71cb-d46b-4e3c-8fa6-782183bf1047")
+      .set("code", "members-form-edit-success-message")
+      .set("description", "Formul\u00E1rio de Membros - Editar - Sucesso")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "8dc6a2d2-6917-463d-8c4c-9d4392283c33")
+      .set("code", "members-modal-new-title")
+      .set("description", "Formul\u00E1rio de Membros - T\u00EDtulo - Novo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c8baa7ee-9475-4c80-9c84-d60b26522ffe")
+      .set("code", "members-modal-edit-title")
+      .set("description", "Formul\u00E1rio de Membros - T\u00EDtulo - Editar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "1f8a0bca-6eeb-4289-af0e-0eafe8d74d3f")
+      .set("code", "members-form-cancel")
+      .set("description", "Formul\u00E1rio de Membros - Cancelar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c3839a26-a4f6-4349-909d-78645661e3ab")
+      .set("code", "members-form-save")
+      .set("description", "Formul\u00E1rio de Membros - Guardar")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "7453deef-535b-4537-93ff-c517dfb4696f")
+      .set("code", "members-form-active")
+      .set("description", "Formul\u00E1rio de Membros - Activo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "abd3c711-4b0f-4ffb-a43c-a936bf2a5500")
+      .set("code", "members-form-user")
+      .set("description", "Formul\u00E1rio de Membros - Utilizador")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "02472161-92c4-4d9e-b802-edd52eddc744")
+      .set("code", "members-form-validate-message-required")
+      .set("description", "Formul\u00E1rio de Membros - Obrigat\u00F3rio - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0cc13f0f-280f-4790-86b2-f64e943ab9bc")
+      .set("code", "members-form-organization")
+      .set("description", "Formul\u00E1rio de Membros - Organiza\u00E7\u00E3o")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2885a2e0-ac23-4002-a625-dbbdfc3fe281")
+      .set("code", "members-form-group")
+      .set("description", "Formul\u00E1rio de Membros - Grupo")
+  );
 }
