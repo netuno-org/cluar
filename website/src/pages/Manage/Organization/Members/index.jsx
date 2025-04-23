@@ -7,20 +7,21 @@ import { PlusOutlined } from "@ant-design/icons";
 import HeadTitle from "../../../../components/HeadTitle";
 import Cluar from "../../../../common/Cluar";
 import MembersTable from "./Table";
+import MembersModal from "./Modal";
 
 import "./index.less";
 import { useRef } from "react";
 
 const Members = () => {
-    // const organizationModalRef = useRef();
+    const membersModalRef = useRef();
     const membersTableRef = useRef();
 
     return (
         <div className="configuration-page">
-          {/* <OrganizationModal
-            ref={organizationModalRef}
+          <MembersModal
+            ref={membersModalRef}
             onReloadTable={() => membersTableRef.current.onReloadTable()}
-          /> */}
+          />
             <Row gutter={[0, 40]} >
                 <Col span={24}>
                     <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
@@ -31,7 +32,7 @@ const Members = () => {
                             <Button
                                 type="primary"
                                 icon={<PlusOutlined />}
-                                // onClick={() => {organizationModalRef.current.onOpenModal()}}
+                                onClick={() => {membersModalRef.current.onOpenModal()}}
                             >
                                 {Cluar.plainDictionary('members-page-new')}
                             </Button>

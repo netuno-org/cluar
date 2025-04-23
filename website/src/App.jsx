@@ -27,6 +27,7 @@ import Configuration from './pages/Manage/Configuration';
 import Dictionary from './pages/Manage/Dictionary';
 import Recovery from './pages/Recovery';
 import Organization from './pages/Manage/Organization';
+import Members from './pages/Manage/Organization/Members';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
@@ -98,6 +99,7 @@ function App() {
                       <Route path="configuration" element={<Configuration/>}/>
                       <Route path="dictionary" element={<Dictionary/>}/>
                       <Route path="organization" element={<Organization/>}/>
+                      <Route path="organization/members" element={<Members/>}/>
                   </Route>
                   {routes}
                   <Route element={<NotFound />} />
