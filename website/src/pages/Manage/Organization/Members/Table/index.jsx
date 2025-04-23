@@ -17,6 +17,7 @@ import {
 import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../../common/Cluar";
+import MembersModal from "../Modal";
 
 const debounces = {}
 
@@ -214,7 +215,7 @@ const MembersTable = forwardRef(({ }, ref) => {
                             title="Editar"
                             onClick={() => {
                                 setMemberEditeData(record);
-                                // organizationModalRef.current.onOpenModal();
+                                membersModalRef.current.onOpenModal();
                             }}
                         />
                     </Col>
@@ -239,11 +240,11 @@ const MembersTable = forwardRef(({ }, ref) => {
 
     return (
         <div>
-            {/* <OrganizationModal
+            <MembersModal
                 ref={membersModalRef}
-                organizationData={memberEditeData}
+                memberData={memberEditeData}
                 onReloadTable={onReloadTable}
-            /> */}
+            />
             <Table
                 columns={columns}
                 dataSource={data}

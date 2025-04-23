@@ -193,7 +193,21 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
 
     useEffect(() => {
         if (editeMode && isModalOpen) {
-
+            formRef.setFieldsValue({
+                ...memberData,
+                user_uid:{
+                    label:memberData?.user?.name,
+                    value:memberData?.user?.uid
+                },
+                group_code:{
+                    label: memberData.group.name,
+                    value: memberData.group.code
+                },
+                organization_code:{
+                    label: memberData.organization.name,
+                    value: memberData.organization.code
+                }
+            })
         }
     }, [isModalOpen]);
 
