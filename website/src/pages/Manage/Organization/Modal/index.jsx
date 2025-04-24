@@ -193,10 +193,14 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                                 showSearch
                                 optionFilterProp="label"
                                 listHeight={200}
-                                options={organizations.map((organization) => ({
-                                    label: organization.name,
-                                    value: organization.code
-                                }))}
+                                options={
+                                    organizations
+                                        .filter(organization => organization.uid != organizationData?.uid)
+                                        .map((organization) => ({
+                                            label: organization.name,
+                                            value: organization.code
+                                        }))
+                                }
                             />
                         </Form.Item>
                     </Col>
