@@ -138,7 +138,7 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
         if (editeMode) {
             setLoading({ ...loading, saving: true });
             _service({
-                url: "organization",
+                url: "organization/member",
                 method: "PUT",
                 data: {
                     ...data,

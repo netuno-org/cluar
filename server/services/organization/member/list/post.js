@@ -96,6 +96,7 @@ const dbMembers = _db.query(`
 		user_group ON user_group.id = organization_people.user_group_id
     WHERE 1 = 1
         ${queryWhere}
+    ORDER BY organization_people.id DESC
     LIMIT ${page.size()} OFFSET ${page.offset()}  
 `, queryParams);
 
