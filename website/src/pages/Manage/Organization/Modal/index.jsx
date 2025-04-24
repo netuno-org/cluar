@@ -78,6 +78,14 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                 fail: (error) => {
                     setLoading({ ...loading, saving: false });
                     console.log(error);
+
+                    if (error?.json?.error_code === "code-alread-in-use") {
+                        notification.error({
+                            message: Cluar.plainDictionary('organization-form-edit-failed-message'),
+                            description: Cluar.plainDictionary('organization-form-already-exists-message')
+                        });
+                        return;
+                    }
                     notification.error({
                         message: Cluar.plainDictionary('organization-form-edit-failed-message')
                     });
@@ -102,6 +110,14 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                 fail: (error) => {
                     setLoading({ ...loading, saving: false });
                     console.log(error);
+
+                    if (error?.json?.error_code === "code-alread-in-use") {
+                        notification.error({
+                            message: Cluar.plainDictionary('organization-form-save-failed-message'),
+                            description: Cluar.plainDictionary('organization-form-already-exists-message')
+                        });
+                        return;
+                    }
                     notification.error({
                         message: Cluar.plainDictionary('organization-form-save-failed-message')
                     });

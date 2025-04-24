@@ -155,6 +155,14 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
                 fail: (error) => {
                     setLoading({ ...loading, saving: false });
                     console.log(error);
+
+                    if (error?.json?.error_code === "person-already-member") {
+                        notification.error({
+                            description: Cluar.plainDictionary('members-form-already-exists-validation-message'),
+                            message: Cluar.plainDictionary('members-form-edit-failed-message')
+                        });
+                        return;
+                    }
                     notification.error({
                         message: Cluar.plainDictionary('members-form-edit-failed-message')
                     });
@@ -179,6 +187,14 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
                 fail: (error) => {
                     setLoading({ ...loading, saving: false });
                     console.log(error);
+
+                    if (error?.json?.error_code === "person-already-member") {
+                        notification.error({
+                            description: Cluar.plainDictionary('members-form-already-exists-validation-message'),
+                            message: Cluar.plainDictionary('members-form-save-failed-message')
+                        });
+                        return;
+                    }
                     notification.error({
                         message: Cluar.plainDictionary('members-form-save-failed-message')
                     });
