@@ -1,20 +1,52 @@
 const uid = _req.getString('uid');
 
+const dbPeople = _db.queryFirst(`
+    SELECT id FROM people WHERE people_user_id = ? 
+`, _user.id());
+
 const dbOrganization = _db.queryFirst(`
-    SELECT
-        org.active AS org_active,
-        org.uid AS org_uid, 
-        org.code AS org_code,
-        org.name AS org_name,
+     WITH RECURSIVE user_orgs AS (
+        SELECT 
+            org.name, 
+            org.id, 
+            org.parent_id,
+            org.code,
+            org.uid,
+            org.active
+        FROM 
+            organization org
+        INNER JOIN 
+            organization_people op ON org.id = op.organization_id
+        WHERE 1 = 1 
+            AND op.people_id = ${dbPeople.getInt("id")}
+            AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
+            AND op.active = true
+        UNION
+        SELECT 
+            org.name, 
+            org.id, 
+            org.parent_id,
+            org.code,
+            org.uid,
+            org.active
+        FROM 
+            organization org
+        INNER JOIN user_orgs uo ON org.parent_id = uo.id
+    )
+    SELECT 
+        user_orgs.name AS org_name,
+        user_orgs.code AS org_code,
+        user_orgs.uid AS org_uid,
+        user_orgs.active AS org_active,
         parent.uid AS parent_uid,
         parent.code AS parent_code,
         parent.name AS parent_name
     FROM 
-        organization org
+        user_orgs
     LEFT JOIN 
-        organization parent on org.parent_id = parent.id
+        organization parent ON user_orgs.parent_id = parent.id
     WHERE 1 = 1
-        AND org.uid = ?::uuid
+        AND user_orgs.uid = ?::uuid
 `, uid);
 
 if (!dbOrganization) {
