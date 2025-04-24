@@ -1,4 +1,5 @@
 //_core: db/insertAndReturn
+//_core: utils/organization
 
 const {
     name,
@@ -18,6 +19,22 @@ if (parent_code) {
                 .set('result', false)
                 .set('error_code', 'parent-organization-not-found')
                 .set('error', `not fund parent organization with code: ${parent_code}`)
+        )
+        _exec.stop();
+    }
+
+    const isBelongs = isUserAuthorizedInOrganization(
+        _val.map()
+            .set('organization', dbParent)
+    );
+    
+    if (!isBelongs) {
+        _header.status(401);
+        _out.json(
+            _val.map()
+                .set('result', false)
+                .set('error_code', 'user-unauthorized')
+                .set('error', `user not authorized in the organization`)
         )
         _exec.stop();
     }
