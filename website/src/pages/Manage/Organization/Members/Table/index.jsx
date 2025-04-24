@@ -36,6 +36,22 @@ const MembersTable = forwardRef(({ }, ref) => {
         page: 1,
         size: 10
     });
+    const [groups, setGroups] = useState([]);
+
+    const onLoadGroups = () => {
+        _service({
+            url: "user/group/list",
+            method: "GET",
+            data: {},
+            success: (response) => {
+                const { groups } = response.json;
+                setGroups(groups);
+            },
+            fail: (error) => {
+                console.log(error);
+            }
+        })
+    }
 
     const onActive = ({ uid, active }) => {
         setActiveLoading({
@@ -173,7 +189,7 @@ const MembersTable = forwardRef(({ }, ref) => {
             title: Cluar.plainDictionary('members-table-user'),
             dataIndex: 'user',
             key: 'user',
-            ...getTextFilterProps("user"),
+            ...getTextFilterProps("people_name"),
             onHeaderCell: () => ({
                 "data-column-key": "user",
             }),
@@ -182,7 +198,7 @@ const MembersTable = forwardRef(({ }, ref) => {
         {
             title: Cluar.plainDictionary('members-table-organization'),
             dataIndex: 'organization',
-            ...getTextFilterProps("organization"),
+            ...getTextFilterProps("organization_name"),
             onHeaderCell: () => ({
                 "data-column-key": "organization",
             }),
@@ -192,12 +208,17 @@ const MembersTable = forwardRef(({ }, ref) => {
         {
             title: Cluar.plainDictionary('members-table-group'),
             dataIndex: 'group',
-            ...getTextFilterProps("group"),
             onHeaderCell: () => ({
                 "data-column-key": "group",
             }),
-            key: 'group',
-            render: (val, record) => val?.name
+            key: 'group_codes',
+            render: (val, record) => val?.name,
+            filtered: filters.group_codes,
+            filters: groups.map((group) => ({
+                text: group.name,
+                value: group.code
+            }))
+
         },
         {
             title: Cluar.plainDictionary('members-table-actions'),
@@ -232,6 +253,7 @@ const MembersTable = forwardRef(({ }, ref) => {
 
     useEffect(() => {
         onLoadMembers();
+        onLoadGroups();
     }, [])
 
     useEffect(() => {
@@ -265,9 +287,9 @@ const MembersTable = forwardRef(({ }, ref) => {
                         }
                         Object.keys(currentFilters).forEach((key) => {
                             const value = currentFilters[key];
-                            if (filtersModify.includes(key)) {
+                          
                                 newFilters[key] = value;
-                            }
+                            
                         })
                         setFilters(newFilters);
                     }

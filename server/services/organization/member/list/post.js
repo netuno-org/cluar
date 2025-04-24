@@ -32,13 +32,22 @@ if (filters) {
         queryParams.add(`%${peopleName}%`)
     }
 
-    const groupName = filters.has("group_name") && filters.getString("group_name");
+    const groupCodes = filters.has("group_codes") && filters.getList("group_codes");
 
-    if (groupName) {
+    if (groupCodes && groupCodes.size() > 0) {
         queryWhere += `
-            AND user_group.name like ?
+            AND user_group.code IN (${groupCodes.map(() => "?").join(", ")})
         `
-        queryParams.add(`%${groupName}%`)
+        queryParams.addAll(groupCodes)
+    }
+
+    const active = filters.has("active") && filters.getList("active");
+
+    if (active && active.size() > 0) {
+        queryWhere += `
+            AND organization_people.active IN (${active.map(() => "?").join(", ")})
+        `
+        queryParams.addAll(active)
     }
 }
 
