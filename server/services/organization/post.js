@@ -23,12 +23,12 @@ if (parent_code) {
         _exec.stop();
     }
 
-    const isBelongs = isUserAuthorizedInOrganization(
+    const isAuthorized = isUserAuthorizedInOrganization(
         _val.map()
             .set('organization', dbParent)
     );
     
-    if (!isBelongs) {
+    if (!isAuthorized) {
         _header.status(401);
         _out.json(
             _val.map()

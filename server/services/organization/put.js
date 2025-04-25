@@ -21,12 +21,12 @@ if (!dbOrganization) {
     _exec.stop();
 }
 
-const isBelongs = isUserAuthorizedInOrganization(
+const isAuthorized = isUserAuthorizedInOrganization(
     _val.map()
         .set('organization', dbOrganization)
 );
 
-if (!isBelongs) {
+if (!isAuthorized) {
     _header.status(401);
     _out.json(
         _val.map()

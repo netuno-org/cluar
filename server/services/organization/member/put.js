@@ -1,3 +1,5 @@
+//_core: utils/organization
+
 const {
     uid,
     people_uid,
@@ -42,6 +44,22 @@ if (!dbOrganization) {
             .set('error', `organization not found with uid: ${organization_code}`)
             .set('error_code', `organization-not-found`)
     );
+    _exec.stop();
+}
+
+const isAuthorized = isUserAuthorizedInOrganization(
+    _val.map()
+        .set('organization', dbOrganization)
+);
+
+if (!isAuthorized) {
+    _header.status(401);
+    _out.json(
+        _val.map()
+            .set('result', false)
+            .set('error_code', 'user-unauthorized')
+            .set('error', `user not authorized in the organization`)
+    )
     _exec.stop();
 }
 
