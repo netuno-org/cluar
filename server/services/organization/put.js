@@ -80,6 +80,39 @@ if (parent_code) {
         )
         _exec.stop();
     }
+
+    const isAuthorized = isUserAuthorizedInOrganization(
+        _val.map()
+            .set('organization', dbParent)
+    );
+
+    if (!isAuthorized) {
+        _header.status(401);
+        _out.json(
+            _val.map()
+                .set('result', false)
+                .set('error_code', 'user-unauthorized')
+                .set('error', `user not authorized in the organization`)
+        )
+        _exec.stop();
+    }
+
+    const isDescendant = organizationIsDescendant(
+        _val.map()
+            .set('organizationChildren', dbOrganization)
+            .set('organizationParent', dbParent)
+    )
+
+    if (isDescendant) {
+        _header.status(401);
+        _out.json(
+            _val.map()
+                .set('result', false)
+                .set('error_code', 'hierarchy-breakdown')
+                .set('error', `An organization can not have as parent an organization below your hierarchy`)
+        )
+        _exec.stop();
+    }
 }
 
 _db.update(
