@@ -1,3 +1,5 @@
+//_core: utils/user
+
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
 let page = _db.pagination(1, 10);
@@ -39,6 +41,11 @@ if (filters) {
     }
 }
 
+const userOrganizations = getUserOrganizations();
+const organizationWhere = _db.where(
+    'organization_id'
+).in(userOrganizations.map((organization) => organization.getInt("id"))).or('organization_id').equals(0)
+
 const query = _db.form("people")
 .join(
     _db.manyToOne(
@@ -46,6 +53,10 @@ const query = _db.form("people")
         "people_user_id",
         where.get('user')
     )
+)
+.link(
+    'organization_people',
+    organizationWhere
 )
 .where(where.get('people'))
 .get("people.name")
@@ -59,6 +70,7 @@ const query = _db.form("people")
     'netuno_user.id'
 )
 .order("people.id", "desc")
+
 
 const pageUsers = query.page(page);
 const dbItems = pageUsers.getList("items") 

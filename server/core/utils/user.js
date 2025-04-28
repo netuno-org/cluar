@@ -75,11 +75,13 @@ const getUserOrganizations = () => {
             user_orgs.name,
             user_orgs.code,
             user_orgs.uid,
-            user_orgs.uid
+            user_orgs.id
         FROM 
             user_orgs
         WHERE 1 = 1   
         `);
+
+    return dbOrganizations;
 }
 
 const getUserGroupEachOrganization = () => {
