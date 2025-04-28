@@ -17,11 +17,19 @@ import "./index.less"
 
 const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [organizations, setOrganizations] = useState([]);
     const [groups, setGroups] = useState([]);
-    const [loadingGroup, setLoadingGroup] = useState(false);
     const [onFinishLoading, setOnFinishLoading] = useState(false);
+    const [loading, setLoading] = useState({
+        organization: false,
+        group: false
+    });
     const [formRef] = Form.useForm();
     const editMode = userData ? true : false;
+    const [filters, setFilters] = useState({
+        option: "",
+        value: ""
+    });
 
     const configColumn = {
         xs: {
@@ -30,6 +38,65 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         sm: {
             span: 12
         }
+    }
+
+    const onLoadOrganizations = () => {
+        setLoading({ ...loading, organization: true });
+        _service({
+            url: "organization/list",
+            method: "POST",
+            data: {
+                pagination: {
+                    size: 10,
+                    page: 1
+                },
+                filters: {
+                    name: filters.value
+                }
+            },
+            success: (response) => {
+                setLoading({ ...loading, organization: false });
+                const { organizations } = response.json;
+                setOrganizations(organizations);
+            },
+            fail: (error) => {
+                setLoading({ ...loading, organization: false });
+                console.log(error);
+            }
+        })
+    }
+
+    const onLoadGroups = () => {
+        setLoading({ ...loading, group: true });
+        _service({
+            url: "user/group/list",
+            method: "GET",
+            data: {},
+            success: (response) => {
+                setLoading({ ...loading, group: false });
+                const { groups } = response.json;
+                setGroups(groups);
+            },
+            fail: (error) => {
+                setLoading({ ...loading, group: false });
+                console.log(error);
+            }
+        })
+    }
+
+    const onFilter = (filter) => {
+        const { option, value } = filter;
+        if (debounces[option]) {
+            clearTimeout(debounces[option])
+        }
+
+        debounces[option] = setTimeout(() => {
+            setFilters({ option, value });
+        }, 600);
+    }
+
+    const clearfilters = (option) => {
+        setFilters({ option, value: "" });
     }
 
     const openModal = () => {
@@ -53,7 +120,9 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
 
     const onFinish = (values) => {
         const data = {
-            ...values
+            ...values,
+            organization_code: values?.organization_code?.value,
+            group_code: values?.group_code?.value,
         }
         setOnFinishLoading(true);
         if (userData) {
@@ -105,6 +174,11 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
             })
         }
     }
+
+    useEffect(() => {
+        onLoadGroups();
+        onLoadOrganizations()
+    }, [])
 
     return (
         <div className="modal-content">
@@ -177,6 +251,48 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                                 <Input />
                             </Form.Item>
                         </Col>
+                        {!editMode && (
+                            <>
+                                <Col span={24}>
+                                    <Form.Item
+                                        name="organization_code"
+                                        label={Cluar.plainDictionary('members-form-organization')}
+                                        rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
+                                    >
+                                        <Select
+                                            labelInValue
+                                            showSearch
+                                            filterOption={false}
+                                            allowClear
+                                            onClear={() => { clearfilters("organization") }}
+                                            onSearch={(value) => onFilter({ option: "organization", value })}
+                                            listHeight={200}
+                                            options={organizations.map((organization) => ({
+                                                label: organization.name,
+                                                value: organization.code
+                                            }))}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={24}>
+                                    <Form.Item
+                                        name="group_code"
+                                        label={Cluar.plainDictionary('members-form-group')}
+                                        rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
+                                    >
+                                        <Select
+                                            labelInValue
+                                            showSearch
+                                            listHeight={200}
+                                            options={groups.map((group) => ({
+                                                label: group.name,
+                                                value: group.code
+                                            }))}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                            </>
+                        )}
                     </Row>
                 </Form>
             </Modal>
