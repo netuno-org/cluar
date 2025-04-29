@@ -20,17 +20,16 @@ import Cluar from "../../../../../common/Cluar";
 
 const debounces = {}
 
-const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
+const MembersModal = forwardRef(({ onReloadTable, memberData, userData }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [organizations, setOrganizations] = useState([]);
-    const [users, setUsers] = useState([]);
     const [groups, setGroups] = useState([]);
     const [loading, setLoading] = useState({
         saving: false,
         organization: false,
-        user: false,
         group: false
     });
+    
     const  [filters, setFilters] = useState({
         option:"",
         value:""
@@ -63,32 +62,6 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
             },
             fail: (error) => {
                 setLoading({ ...loading, organization: false });
-                console.log(error);
-            }
-        })
-    }
-
-    const onLoadUsers = () => {
-        setLoading({ ...loading, user: true });
-        _service({
-            url: "user/list",
-            method: "POST",
-            data: {
-                pagination:{
-                    size:10,
-                    page:1
-                },
-                filters:{
-                    name:filters.value
-                }
-            },
-            success: (response) => {
-                setLoading({ ...loading, user: false });
-                const { items } = response.json.page;
-                setUsers(items);
-            },
-            fail: (error) => {
-                setLoading({ ...loading, user: false });
                 console.log(error);
             }
         })
@@ -214,8 +187,8 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
             formRef.setFieldsValue({
                 ...memberData,
                 user_uid:{
-                    label:memberData?.user?.name,
-                    value:memberData?.user?.uid
+                    label: userData?.name,
+                    value: userData?.uid
                 },
                 group_code:{
                     label: memberData.group.name,
@@ -226,19 +199,22 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
                     value: memberData.organization.code
                 }
             })
+        } else {
+            formRef.setFieldsValue({
+                user_uid:{
+                    label: userData?.name,
+                    value: userData?.uid
+                },
+            })
         }
     }, [isModalOpen]);
 
     useEffect(() => {
         onLoadOrganizations();
         onLoadGroups();
-        onLoadUsers();
     }, []);
 
     useEffect(() => {
-        if (filters.option === "user") {
-            onLoadUsers();
-        }
         if (filters.option === "organization") {
             onLoadOrganizations();
         }
@@ -286,17 +262,7 @@ const MembersModal = forwardRef(({ onReloadTable, memberData }, ref) => {
                         >
                             <Select
                                 labelInValue
-                                loading={loading.user}
-                                showSearch
-                                filterOption={false}
-                                allowClear
-                                onClear={() => {clearfilters("user")}}
-                                onSearch={(value) => onFilter({option:"user", value})}
-                                listHeight={200}
-                                options={users.map((user) => ({
-                                    label: user.name,
-                                    value: user.uid
-                                }))}
+                                disabled
                             />
                         </Form.Item>
                     </Col>

@@ -8,9 +8,9 @@ import { PlusOutlined } from "@ant-design/icons";
 import { forwardRef, useState, useImperativeHandle } from "react";
 import Cluar from "../../../../common/Cluar";
 import MembersTable from "../../Organization/Members/Table"
-import MembersModal from "../../Organization/Modal"
+import MembersModal from "../../Organization/Members/Modal"
 import HeadTitle from "../../../../components/HeadTitle";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 const OrganizationModal = forwardRef(({userData}, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -46,6 +46,7 @@ const OrganizationModal = forwardRef(({userData}, ref) => {
             <div >
                 <MembersModal
                     ref={membersModalRef}
+                    userData={userData}
                     onReloadTable={() => membersTableRef.current.onReloadTable()}
                 />
                 <Row gutter={[0, 40]} >

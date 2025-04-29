@@ -272,6 +272,7 @@ const MembersTable = forwardRef(({ configs, userData }, ref) => {
             <MembersModal
                 ref={membersModalRef}
                 memberData={memberEditeData}
+                userData={memberEditeData?.user}
                 onReloadTable={onReloadTable}
             />
             <Table

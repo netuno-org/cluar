@@ -13,7 +13,7 @@ import { EditOutlined, SearchOutlined, ApartmentOutlined } from "@ant-design/ico
 import "./index.less"
 import { forwardRef, useEffect, useRef, useState, useImperativeHandle } from "react";
 import UserModal from "../Modal";
-import OrganizationModal from "../OrganizationModal";
+import OrganizationModal from "../MembersModal";
 import _service from '@netuno/service-client';
 import Cluar from "../../../../common/Cluar";
 
