@@ -8,11 +8,12 @@ import {
     Switch
 } from "antd";
 
-import { EditOutlined, SearchOutlined } from "@ant-design/icons"
+import { EditOutlined, SearchOutlined, ApartmentOutlined } from "@ant-design/icons"
 
 import "./index.less"
 import { forwardRef, useEffect, useRef, useState, useImperativeHandle } from "react";
 import UserModal from "../Modal";
+import OrganizationModal from "../OrganizationModal";
 import _service from '@netuno/service-client';
 import Cluar from "../../../../common/Cluar";
 
@@ -24,7 +25,8 @@ const UserTable = forwardRef(({ }, ref) => {
     const [filters, setFilters] = useState({});
     const [loading, setLoading] = useState(false);
     const userModalRef = useRef();
-    const [editeUser, setEditeUser] = useState(null);
+    const organizationModalRef = useRef();
+    const [userData, setUserData] = useState(null);
     const [loadingActive, setLoadingActive] = useState({
         isLoading: false,
         key: ""
@@ -173,7 +175,7 @@ const UserTable = forwardRef(({ }, ref) => {
                     }}
                 />
             ),
-            filtered:filters.active,
+            filtered: filters.active,
             filters: [
                 {
                     text: "Activo",
@@ -216,14 +218,25 @@ const UserTable = forwardRef(({ }, ref) => {
                             type="text"
                             title={Cluar.plainDictionary('users-table-actions-edit-title')}
                             onClick={() => {
-                                setEditeUser(record);
+                                setUserData(record);
                                 userModalRef.current.openModal()
+                            }}
+                        />
+                    </Col>
+                    <Col>
+                        <Button
+                            icon={<ApartmentOutlined />}
+                            type="text"
+                            title={"Organizações"}
+                            onClick={() => {
+                                setUserData(record);
+                                organizationModalRef.current.openModal();
                             }}
                         />
                     </Col>
                 </Row>
             )
-        },
+        }
     ];
 
 
@@ -231,8 +244,12 @@ const UserTable = forwardRef(({ }, ref) => {
         <div>
             <UserModal
                 ref={userModalRef}
-                userData={editeUser}
+                userData={userData}
                 onReloadTable={onReloadTable}
+            />
+            <OrganizationModal
+                ref={organizationModalRef}
+                userData={userData}
             />
             <Table
                 columns={columns}

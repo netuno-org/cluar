@@ -21,7 +21,7 @@ import MembersModal from "../Modal";
 
 const debounces = {}
 
-const MembersTable = forwardRef(({ }, ref) => {
+const MembersTable = forwardRef(({ configs, userData }, ref) => {
     const [data, setData] = useState([]);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -131,7 +131,10 @@ const MembersTable = forwardRef(({ }, ref) => {
             method: "POST",
             data: {
                 pagination,
-                filters
+                filters: {
+                    people_uid: userData.uid,
+                    ...filters
+                }
             },
             success: (response) => {
                 setLoading(false);
@@ -252,12 +255,16 @@ const MembersTable = forwardRef(({ }, ref) => {
     }, []);
 
     useEffect(() => {
-        onLoadMembers();
-        onLoadGroups();
+        if (userData) {
+            onLoadMembers();
+            onLoadGroups();
+        }
     }, [])
 
     useEffect(() => {
-        onLoadMembers();
+        if (userData) {
+            onLoadMembers();
+        }
     }, [pagination, filters])
 
     return (
@@ -268,6 +275,7 @@ const MembersTable = forwardRef(({ }, ref) => {
                 onReloadTable={onReloadTable}
             />
             <Table
+                {...configs}
                 columns={columns}
                 dataSource={data}
                 loading={loading}
@@ -276,7 +284,7 @@ const MembersTable = forwardRef(({ }, ref) => {
                     total: total,
                     pageSize: pagination.size,
                     current: pagination.page,
-                    position: ["topRight", "bottomRight"],
+                    position: ["bottomRight"],
                     onChange: (current) => { setPagination({ page: current, size: pagination.size }) }
                 }}
                 onChange={(pagination, currentFilters, currentSorter, { action }) => {
@@ -287,9 +295,9 @@ const MembersTable = forwardRef(({ }, ref) => {
                         }
                         Object.keys(currentFilters).forEach((key) => {
                             const value = currentFilters[key];
-                          
-                                newFilters[key] = value;
-                            
+
+                            newFilters[key] = value;
+
                         })
                         setFilters(newFilters);
                     }

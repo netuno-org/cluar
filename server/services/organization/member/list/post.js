@@ -32,6 +32,15 @@ if (filters) {
         queryParams.add(`%${peopleName}%`)
     }
 
+    const peopleUID = filters.has("people_uid") && filters.getString("people_uid");
+
+    if (peopleUID) {
+        queryWhere += `
+            AND people.uid = ?::uuid
+        `
+        queryParams.add(peopleUID)
+    }
+
     const groupCodes = filters.has("group_codes") && filters.getList("group_codes");
 
     if (groupCodes && groupCodes.size() > 0) {
