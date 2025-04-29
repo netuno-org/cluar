@@ -17,11 +17,11 @@ import {
 import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../../common/Cluar";
-import MembersModal from "../Modal";
+import MembersModal from "../../../Users/Members/FormModal";
 
 const debounces = {}
 
-const MembersTable = forwardRef(({ configs, userData }, ref) => {
+const MembersTable = forwardRef(({ userData }, ref) => {
     const [data, setData] = useState([]);
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(false);
@@ -188,16 +188,16 @@ const MembersTable = forwardRef(({ configs, userData }, ref) => {
                 }
             ]
         },
-        {
-            title: Cluar.plainDictionary('members-table-user'),
-            dataIndex: 'user',
-            key: 'user',
-            ...getTextFilterProps("people_name"),
-            onHeaderCell: () => ({
-                "data-column-key": "user",
-            }),
-            render: (val, record) => val?.name
-        },
+        // {
+        //     title: Cluar.plainDictionary('members-table-user'),
+        //     dataIndex: 'user',
+        //     key: 'user',
+        //     ...getTextFilterProps("people_name"),
+        //     onHeaderCell: () => ({
+        //         "data-column-key": "user",
+        //     }),
+        //     render: (val, record) => val?.name
+        // },
         {
             title: Cluar.plainDictionary('members-table-organization'),
             dataIndex: 'organization',
@@ -276,7 +276,6 @@ const MembersTable = forwardRef(({ configs, userData }, ref) => {
                 onReloadTable={onReloadTable}
             />
             <Table
-                {...configs}
                 columns={columns}
                 dataSource={data}
                 loading={loading}

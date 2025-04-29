@@ -7,14 +7,13 @@ import {
 import { PlusOutlined } from "@ant-design/icons";
 import { forwardRef, useState, useImperativeHandle } from "react";
 import Cluar from "../../../../common/Cluar";
-import MembersTable from "../../Organization/Members/Table"
-import MembersModal from "../../Organization/Members/Modal"
-import HeadTitle from "../../../../components/HeadTitle";
-import { useRef, useEffect } from "react";
+import MembersTable from "./Table";
+import MembersFormModal from "./FormModal"
+import { useRef} from "react";
 
-const OrganizationModal = forwardRef(({userData}, ref) => {
+const MembersModal = forwardRef(({userData}, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const membersModalRef = useRef();
+    const membersFormModalRef = useRef();
     const membersTableRef = useRef();
 
     const openModal = () => {
@@ -44,8 +43,8 @@ const OrganizationModal = forwardRef(({userData}, ref) => {
             ]}
         >
             <div >
-                <MembersModal
-                    ref={membersModalRef}
+                <MembersFormModal
+                    ref={membersFormModalRef}
                     userData={userData}
                     onReloadTable={() => membersTableRef.current.onReloadTable()}
                 />
@@ -56,7 +55,7 @@ const OrganizationModal = forwardRef(({userData}, ref) => {
                                 <Button
                                     type="primary"
                                     icon={<PlusOutlined />}
-                                    onClick={() => { membersModalRef.current.onOpenModal() }}
+                                    onClick={() => { membersFormModalRef.current.onOpenModal() }}
                                 >
                                     {Cluar.plainDictionary('members-page-new')}
                                 </Button>
@@ -79,4 +78,4 @@ const OrganizationModal = forwardRef(({userData}, ref) => {
     )
 })
 
-export default OrganizationModal;
+export default MembersModal;

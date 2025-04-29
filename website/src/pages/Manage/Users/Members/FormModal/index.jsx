@@ -20,7 +20,7 @@ import Cluar from "../../../../../common/Cluar";
 
 const debounces = {}
 
-const MembersModal = forwardRef(({ onReloadTable, memberData, userData }, ref) => {
+const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [organizations, setOrganizations] = useState([]);
     const [groups, setGroups] = useState([]);
@@ -310,4 +310,4 @@ const MembersModal = forwardRef(({ onReloadTable, memberData, userData }, ref) =
     )
 })
 
-export default MembersModal;
+export default MembersFormModal;

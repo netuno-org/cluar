@@ -13,7 +13,7 @@ import { EditOutlined, SearchOutlined, ApartmentOutlined } from "@ant-design/ico
 import "./index.less"
 import { forwardRef, useEffect, useRef, useState, useImperativeHandle } from "react";
 import UserModal from "../Modal";
-import OrganizationModal from "../MembersModal";
+import MembersModal from "../Members";
 import _service from '@netuno/service-client';
 import Cluar from "../../../../common/Cluar";
 
@@ -25,7 +25,7 @@ const UserTable = forwardRef(({ }, ref) => {
     const [filters, setFilters] = useState({});
     const [loading, setLoading] = useState(false);
     const userModalRef = useRef();
-    const organizationModalRef = useRef();
+    const membersModalRef = useRef();
     const [userData, setUserData] = useState(null);
     const [loadingActive, setLoadingActive] = useState({
         isLoading: false,
@@ -230,7 +230,7 @@ const UserTable = forwardRef(({ }, ref) => {
                             title={"Organizações"}
                             onClick={() => {
                                 setUserData(record);
-                                organizationModalRef.current.openModal();
+                                membersModalRef.current.openModal();
                             }}
                         />
                     </Col>
@@ -247,8 +247,8 @@ const UserTable = forwardRef(({ }, ref) => {
                 userData={userData}
                 onReloadTable={onReloadTable}
             />
-            <OrganizationModal
-                ref={organizationModalRef}
+            <MembersModal
+                ref={membersModalRef}
                 userData={userData}
             />
             <Table

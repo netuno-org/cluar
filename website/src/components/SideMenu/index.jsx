@@ -81,12 +81,6 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           label: Cluar.plainDictionary('side-menu-options-organizations'),
           icon: <ApartmentOutlined />,
           onClick: () => navigate("/reserved-area/organization"),
-        },
-        {
-          key: 'organization/member',
-          label: Cluar.plainDictionary('side-menu-options-members'),
-          icon: <TeamOutlined />,
-          onClick: () => navigate("/reserved-area/organization/members"),
         }
       ],
     },
