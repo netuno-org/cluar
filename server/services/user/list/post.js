@@ -44,7 +44,7 @@ if (filters) {
 const userOrganizations = getUserOrganizations();
 const organizationWhere = _db.where(
     'organization_id'
-).in(userOrganizations.map((organization) => organization.getInt("id"))).or('organization_id').equals(0)
+).in(userOrganizations.map((organization) => organization.getInt("id")))
 
 const query = _db.form("people")
 .join(

@@ -85,6 +85,12 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                             description: Cluar.plainDictionary('organization-form-already-exists-message')
                         });
                         return;
+                    } else if (error?.json?.error_code === "hierarchy-breakdown") {
+                        notification.error({
+                            message: Cluar.plainDictionary('organization-form-edit-failed-message'),
+                            description: Cluar.plainDictionary('members-form-validation-hierarchy-breakdown')
+                        });
+                        return;
                     }
                     notification.error({
                         message: Cluar.plainDictionary('organization-form-edit-failed-message')
@@ -115,6 +121,12 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                         notification.error({
                             message: Cluar.plainDictionary('organization-form-save-failed-message'),
                             description: Cluar.plainDictionary('organization-form-already-exists-message')
+                        });
+                        return;
+                    } else if (error?.json?.error_code === "hierarchy-breakdown") {
+                        notification.error({
+                            message: Cluar.plainDictionary('organization-form-save-failed-message'),
+                            description: Cluar.plainDictionary('members-form-validation-hierarchy-breakdown')
                         });
                         return;
                     }

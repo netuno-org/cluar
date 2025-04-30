@@ -465,9 +465,25 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "e96ed750-b07e-4859-a7a7-9a384f339a8b")
+      .set("code", "profile-form-image-upload")
+      .set("description", "Formul\u00E1rio do Perfil - Imagem - Carregar Outra")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "98844598-1635-46e2-b118-1f9a9508c192")
       .set("code", "profile-form-validate-password-message")
       .set("description", "Formul\u00E1rio do Perfil - Valida\u00E7\u00E3o de Palavra-passe - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "26106564-6c4c-487e-99e4-9cb001e67300")
+      .set("code", "recovery-form-passwords-not-equals-message")
+      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Palavras-passes Diferentes - Mensagem")
   );
   
   _db.insertIfNotExists(
@@ -593,14 +609,6 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
-      .set("uid", "a14404a3-4752-4cfd-b6f7-f8a078f748f2")
-      .set("code", "recovery-form-confirm-password")
-      .set("description", "Fomul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Confirmar Palavra-passe")
-  );
-  
-  _db.insertIfNotExists(
-    "dictionary_entry",
-    _val.init()
       .set("uid", "fc39a4ed-536b-4f90-9960-cee7da711873")
       .set("code", "recovery-form-reset-password")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Redefinir Palavra-passe")
@@ -620,14 +628,6 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ff9656e8-796c-4efe-b9cf-c741aeb2848f")
       .set("code", "recovery-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
-  );
-  
-  _db.insertIfNotExists(
-    "dictionary_entry",
-    _val.init()
-      .set("uid", "26106564-6c4c-487e-99e4-9cb001e67300")
-      .set("code", "recovery-form-passwords-not-equals-message")
-      .set("description", "Fomul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Palavras-passes Diferentes - Mensagem")
   );
   
   _db.insertIfNotExists(
@@ -708,14 +708,6 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "555e48fd-f034-4321-9a14-77fd88d1eb3f")
       .set("code", "profile-form-name")
       .set("description", "Formul\u00E1rio do Perfil - Nome")
-  );
-  
-  _db.insertIfNotExists(
-    "dictionary_entry",
-    _val.init()
-      .set("uid", "e96ed750-b07e-4859-a7a7-9a384f339a8b")
-      .set("code", "profile-form-image-upload")
-      .set("description", "Fomul\u00E1rio do Perfil - Imagem - Carregar Outra")
   );
   
   _db.insertIfNotExists(
@@ -2148,5 +2140,37 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "2885a2e0-ac23-4002-a625-dbbdfc3fe281")
       .set("code", "members-form-group")
       .set("description", "Formul\u00E1rio de Membros - Grupo")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a14404a3-4752-4cfd-b6f7-f8a078f748f2")
+      .set("code", "recovery-form-confirm-password")
+      .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Confirmar Palavra-passe")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "090ad0da-732a-48ee-92b5-45150e500d2c")
+      .set("code", "members-form-already-exists-validation-message")
+      .set("description", "Formul\u00E1rio de Membros - Valida\u00E7\u00E3o - J\u00E1 existente - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "617577cc-29e6-4735-b449-7d96ab869cb3")
+      .set("code", "organization-form-already-exists-message")
+      .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Valida\u00E7\u00E3o - J\u00E1 existente - Mensagem")
+  );
+  
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d7aed264-c531-4b34-a368-07bef7943613")
+      .set("code", "members-form-validation-hierarchy-breakdown")
+      .set("description", "Formul\u00E1rio de Membros - Valida\u00E7\u00E3o - Quebra de Hierarquia")
   );
 }
