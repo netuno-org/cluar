@@ -13,24 +13,23 @@ if (dbPageVersion) {
    *
    */
   const dbContents = _db.query(`
-  SELECT
+    SELECT
       content.id,
       content.uid,
-      content_type.code "type",
+      page_content_type.code "type",
       content.title,
       content.content,
       content.image,
       content.image_alt,
       content.image_title,
       content.image_max_width,
-      page_content.sorter
-  FROM content
-      INNER JOIN content_type ON content.type_id = content_type.id
-      INNER JOIN page_content ON page_content.content_id = content.id
-  WHERE content.active = TRUE
-      AND content_type.active = TRUE
-      AND page_content.active = TRUE
-      AND page_content.page_version_id = ${dbPageVersion.getInt("id")}
+      content.sorter
+    FROM page_content content
+      INNER JOIN page_content_type ON content.type_id = page_content_type.id
+    WHERE content.active = TRUE
+      AND page_content_type.active = TRUE
+      AND content.active = TRUE
+      AND content.page_version_id = ${dbPageVersion.getInt("id")}
   `);
 
   for (const dbContent of dbContents) {
@@ -60,10 +59,10 @@ if (dbPageVersion) {
    *
    */
   const dbBanners = _db.query(`
-  SELECT
+    SELECT
       banner.id,
       banner.uid,
-      banner_type.code "type",
+      page_banner_type.code "type",
       banner.title,
       banner.content,
       banner.image,
@@ -71,14 +70,13 @@ if (dbPageVersion) {
       banner.image_title,
       banner.position_x,
       banner.position_y,
-      page_banner.sorter
-  FROM banner
-      INNER JOIN banner_type ON banner.type_id = banner_type.id
-      INNER JOIN page_banner ON page_banner.banner_id = banner.id
-  WHERE banner.active = TRUE
-      AND banner_type.active = TRUE
-      AND page_banner.active = TRUE
-      AND page_banner.page_version_id = ${dbPageVersion.getInt("id")}
+      banner.sorter
+    FROM page_banner banner
+      INNER JOIN page_banner_type ON banner.type_id = page_banner_type.id
+    WHERE banner.active = TRUE
+      AND page_banner_type.active = TRUE
+      AND banner.active = TRUE
+      AND banner.page_version_id = ${dbPageVersion.getInt("id")}
   `);
 
   for (const dbBanner of dbBanners) {
@@ -115,23 +113,22 @@ if (dbPageVersion) {
    *
    */
   const dbListings = _db.query(`
-  SELECT
+    SELECT
       listing.id,
       listing.uid,
-      listing_type.code "type",
+      page_listing_type.code "type",
       listing.title,
       listing.image_alt,
       listing.image_title,
       listing.content,
       listing.image,
-      page_listing.sorter
-  FROM listing
-      INNER JOIN listing_type ON listing.type_id = listing_type.id
-      INNER JOIN page_listing ON page_listing.listing_id = listing.id
-  WHERE listing.active = TRUE
-      AND listing_type.active = TRUE
-      AND page_listing.active = TRUE
-      AND page_listing.page_version_id = ${dbPageVersion.getInt("id")}
+      listing.sorter
+    FROM page_listing listing
+      INNER JOIN page_listing_type ON listing.type_id = page_listing_type.id
+    WHERE listing.active = TRUE
+      AND page_listing_type.active = TRUE
+      AND listing.active = TRUE
+      AND listing.page_version_id = ${dbPageVersion.getInt("id")}
   `);
 
   for (const dbListing of dbListings) {
@@ -189,21 +186,20 @@ if (dbPageVersion) {
    *
    */
   const dbFunctionalities = _db.query(`
-  SELECT
+    SELECT
       functionality.id,
       functionality.uid,
-      functionality_type.code "type",
+      page_functionality_type.code "type",
       functionality.title,
       functionality.content,
       functionality.image,
-      page_functionality.sorter
-  FROM functionality
-      INNER JOIN functionality_type ON functionality.type_id = functionality_type.id
-      INNER JOIN page_functionality ON page_functionality.functionality_id = functionality.id
-  WHERE functionality.active = TRUE
-      AND functionality_type.active = TRUE
-      AND page_functionality.active = TRUE
-      AND page_functionality.page_version_id = ${dbPageVersion.getInt("id")}
+      functionality.sorter
+    FROM page_functionality functionality
+      INNER JOIN page_functionality_type ON functionality.type_id = page_functionality_type.id
+    WHERE functionality.active = TRUE
+      AND page_functionality_type.active = TRUE
+      AND functionality.active = TRUE
+      AND functionality.page_version_id = ${dbPageVersion.getInt("id")}
   `);
 
   for (const dbFunctionality of dbFunctionalities) {

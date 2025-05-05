@@ -56,7 +56,6 @@ cluar.build = (settings)=> {
    *
    */
 
-  _log.info("jjjjjjjjjjj");
   const file = _app.file(`${cluar.base()}/cluar/data.js`)
   file.output().print(`window.cluar = ${data.toJSON(4)};`).close()
   

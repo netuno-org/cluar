@@ -6,13 +6,13 @@ cluar.actions = (section, id) => {
             action.indication,
             action.link
         FROM action
-            INNER JOIN ${section}_action ON ${section}_action.action_id = action.id
+            INNER JOIN page_${section}_action ON page_${section}_action.action_id = action.id
         WHERE
             action.active = true
-            AND ${section}_action.active = TRUE
-            AND ${section}_action.${section}_id = ${id}
-        ORDER BY ${section}_action.sorter
-        `)
+            AND page_${section}_action.active = TRUE
+            AND page_${section}_action.page_${section}_id = ${id}
+        ORDER BY page_${section}_action.sorter
+        `);
   const actions = _val.list()
   for (const dbAction of dbActions) {
     actions.add(

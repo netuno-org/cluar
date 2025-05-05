@@ -33,7 +33,6 @@ if (lastPageVersion) {
   for (const structure of structures) {
     const status = structure.getString("status");
     const sectionType = structure.getString("section");
-    _log.info("idwdiwijdij", structure);
 
     if (status === "to_create") {
       if (sectionType === "banner") {
@@ -41,50 +40,36 @@ if (lastPageVersion) {
           SELECT
             *
           FROM
-            banner_type
+            page_banner_type
           WHERE code = '${structure.getString("type")}'
         `);
-
-        const newSection = _db.insert(
-          "banner",
-          _val
-            .map()
-            .set("title", structure.getString("title"))
-            .set("content", structure.getString("content"))
-            .set("type_id", newSectionType.getInt("id"))
-        );
 
         _db.insert(
           "page_banner",
           _val
             .map()
-            .set("banner_id", newSection)
+            .set("title", structure.getString("title"))
+            .set("content", structure.getString("content"))
+            .set("type_id", newSectionType.getInt("id"))
             .set("page_version_id", newPageVersion)
             .set("sorter", 0)
         );
-      } else if (sectionType === "content"){
+      } else if (sectionType === "content") {
         const newSectionType = _db.queryFirst(`
           SELECT
             *
           FROM
-            content_type
+            page_content_type
           WHERE code = '${structure.getString("type")}'
         `);
-
-        const newSection = _db.insert(
-          "content",
-          _val
-            .map()
-            .set("title", structure.getString("title"))
-            .set("content", structure.getString("content"))
-            .set("type_id", newSectionType.getInt("id"))
-        );
 
         _db.insert(
           "page_content",
           _val
             .map()
-            .set("content_id", newSection)
+            .set("title", structure.getString("title"))
+            .set("content", structure.getString("content"))
+            .set("type_id", newSectionType.getInt("id"))
             .set("page_version_id", newPageVersion)
             .set("sorter", 0)
         );
