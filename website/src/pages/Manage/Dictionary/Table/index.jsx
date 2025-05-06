@@ -7,6 +7,7 @@ import {
 import { EditOutlined } from "@ant-design/icons";
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import DictionaryModal from "../Modal";
+import Cluar from "../../../../common/Cluar";
 
 const DictionaryTable = forwardRef(({}, ref) => {
     const [data, setData] = useState([]);
@@ -43,7 +44,7 @@ const DictionaryTable = forwardRef(({}, ref) => {
                 setLoading({ ...loading, dictionary: false });
                 console.log(error);
                 notification.error({
-                    message: "Falha ao carregar Dicionários."
+                    message: Cluar.plainDictionary('dictionary-load-failed-message')
                 });
             }
         })
@@ -95,9 +96,12 @@ const DictionaryTable = forwardRef(({}, ref) => {
 
     const columns = [
         {
-            title: 'Idioma',
+            title: Cluar.plainDictionary('dictionary-table-language'),
             dataIndex: 'language',
             key: 'language_codes',
+            onHeaderCell: () => ({
+                "data-column-key": "language",
+            }),
             render: (val) => val.description,
             filtered: filters.language_codes,
             filters: languages.map((language) => ({
@@ -106,20 +110,29 @@ const DictionaryTable = forwardRef(({}, ref) => {
             }))
         },
         {
-            title: 'Chave',
+            title: Cluar.plainDictionary('dictionary-table-entry'),
             dataIndex: 'entry',
             key: 'entry_code',
+            onHeaderCell: () => ({
+                "data-column-key": "entry",
+            }),
             render: (val) => val.description
         },
         {
-            title: 'Valor',
+            title: Cluar.plainDictionary('dictionary-table-value'),
             dataIndex: 'value',
-            key: 'value'
+            key: 'value',
+            onHeaderCell: () => ({
+                "data-column-key": "value",
+            }),
         },
         {
-            title: 'Ações',
+            title: Cluar.plainDictionary('dictionary-table-actions'),
             dataIndex: 'actions',
             key: 'actions',
+            onHeaderCell: () => ({
+                "data-column-key": "actions",
+            }),
             render: (val, record) => (
                 <Button
                     type="text"

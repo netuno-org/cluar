@@ -9,12 +9,6 @@
             "properties":{
                 "name":{
                     "type":"string"
-                },
-                "group_codes":{
-                    "type":"array",
-                    "items":{
-                        "type":"string"
-                    }
                 }
             }
         },

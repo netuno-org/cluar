@@ -26,6 +26,7 @@ import Languages from './pages/Manage/Languages';
 import Configuration from './pages/Manage/Configuration';
 import Dictionary from './pages/Manage/Dictionary';
 import Recovery from './pages/Recovery';
+import Organization from './pages/Manage/Organization';
 
 import '@animated-burgers/burger-slip/dist/styles.css?inline';
 import 'sal.js/dist/sal.css?inline';
@@ -103,12 +104,13 @@ function App() {
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/recovery" element={<Recovery />} />
-                  <Route path="/reserved-area" element={<ReservedArea />}>
-                    <Route path="profile" element={<Profile />} />
-                    <Route path="users" element={<Users />} />
-                    <Route path="languages" element={<Languages />} />
-                    <Route path="configuration" element={<Configuration />} />
-                    <Route path="dictionary" element={<Dictionary />} />
+                  <Route path="/reserved-area" element={<ReservedArea />}> 
+                      <Route path="profile" element={<Profile/>}/>
+                      <Route path="users" element={<Users/>}/>
+                      <Route path="languages" element={<Languages/>}/>
+                      <Route path="configuration" element={<Configuration/>}/>
+                      <Route path="dictionary" element={<Dictionary/>}/>
+                      <Route path="organization" element={<Organization/>}/>
                   </Route>
                   {routes}
                   <Route element={<NotFound />} />

@@ -7,6 +7,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "re
 import { EditOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import ConfigurationModal from "../Modal";
+import Cluar from "../../../../common/Cluar";
 
 const ConfigurationTable = forwardRef(({}, ref) => {
     const [loading, setLoading] = useState({
@@ -43,7 +44,7 @@ const ConfigurationTable = forwardRef(({}, ref) => {
                 setLoading({...loading, configuration:false});
                 console.log(error);
                 notification.error({
-                    message:"Falha ao carregar configurações."
+                    message: Cluar.plainDictionary('configuration-page-load-failed-message')
                 })
             }
         });
@@ -95,9 +96,12 @@ const ConfigurationTable = forwardRef(({}, ref) => {
 
     const columns = [
         {
-            title: 'Idioma',
+            title: Cluar.plainDictionary('configuration-table-language'),
             dataIndex: 'language',
             key: 'language_codes',
+            onHeaderCell: () => ({
+                "data-column-key": "language",
+            }),
             render:(val) => val.description,
             filtered: filters.language_codes,
             filters: languages.map((language) => ({
@@ -106,20 +110,29 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             }))
         },
         {
-            title: 'Parâmetro',
+            title: Cluar.plainDictionary('configuration-table-parameter'),
             dataIndex: 'parameter',
             key: 'parameter',
+            onHeaderCell: () => ({
+                "data-column-key": "parameter",
+            }),
             render:(val) => val.description
         },
         {
-            title: 'Valor',
+            title: Cluar.plainDictionary('configuration-table-value'),
             dataIndex: 'value',
             key: 'value',
+            onHeaderCell: () => ({
+                "data-column-key": "value",
+            }),
         },
         {
-            title: 'Ações',
+            title: Cluar.plainDictionary('configuration-table-actions'),
             dataIndex: 'actions',
             key: 'actions',
+            onHeaderCell: () => ({
+                "data-column-key": "actions",
+            }),
             render: (val, record) => (
                 <Button
                     type="text"

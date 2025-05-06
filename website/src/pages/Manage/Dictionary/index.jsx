@@ -7,6 +7,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import HeadTitle from "../../../components/HeadTitle";
 import DictionaryTable from "./Table";
 import DictionaryModal from "./Modal";
+import Cluar from "../../../common/Cluar";
 
 import "./index.less"
 import { useRef } from "react";
@@ -25,7 +26,7 @@ const Dictionary = () => {
                 <Col span={24}>
                     <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
                         <Col>
-                            <HeadTitle level={4} type={"secondary"} text={"Dicionários"} />
+                            <HeadTitle level={4} type={"secondary"} text={Cluar.plainDictionary('dictionary-page-title')} />
                         </Col>
                         <Col>
                             <Button
@@ -33,7 +34,7 @@ const Dictionary = () => {
                                 icon={<PlusOutlined/>}
                                 onClick={() => { dictionaryModalRef.current.onOpenModal() }}
                             >
-                                Novo
+                                {Cluar.plainDictionary('dictionary-page-new')}
                             </Button>
                         </Col>
                     </Row>

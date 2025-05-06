@@ -1,0 +1,25 @@
+{
+    "summary":"List all organization with filters and pagination",
+    "description":"List all organization with filters and pagination",
+    "_schema":"tags/organization",
+    "type":"object",
+    "properties":{
+        "pagination":{
+            "_schema":"request/pagination"
+        },
+        "filters":{
+            "type":"object",
+            "properties":{
+                "name":{
+                    "type":"string"
+                },
+                "code":{
+                    "type":"string"
+                },
+                "parent_code":{
+                    "type":"string"
+                }
+            }
+        }
+    }
+}

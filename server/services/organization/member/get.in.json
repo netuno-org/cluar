@@ -1,0 +1,14 @@
+{
+    "summary":"Get an organization member by uid",
+    "description":"Get an organization member by uid",
+    "_schema":"tags/member",
+    "type":"object",
+    "properties":{
+        "uid":{
+            "type":"uuid"
+        }
+    },
+    "required":[
+        "uid"
+    ]
+}

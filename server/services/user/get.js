@@ -5,11 +5,6 @@ const dbUser = _db.form('people')
     _db.manyToOne(
         'netuno_user',
         'people_user_id'
-    ).join(
-        _db.manyToOne(
-            'netuno_group',
-            'group_id'
-        )
     )
 )
 .where(
@@ -20,8 +15,6 @@ const dbUser = _db.form('people')
 .get('people.uid', 'people_uid')
 .get('netuno_user.active', 'user_active')
 .get('netuno_user.user', 'username')
-.get('netuno_group.name', 'group_name')
-.get('netuno_group.code', 'group_code')
 .first();
 
 if (!dbUser) {
@@ -41,10 +34,6 @@ const user = _val.map()
     .set('uid', dbUser.getString('people_uid'))
     .set('active', dbUser.getBoolean('user_active'))
     .set('username', dbUser.getString('username'))
-    .set('group', _val.map()
-        .set('name', dbUser.getString('group_name'))
-        .set('code', dbUser.getString('group_code'))
-    )
 
 _out.json(
     _val.map()

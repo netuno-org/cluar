@@ -14,7 +14,8 @@ import {
     useImperativeHandle,
     useState
 } from "react";
-import _service from "@netuno/service-client"
+import _service from "@netuno/service-client";
+import Cluar from "../../../../common/Cluar";
 import "./index.less"
 
 const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
@@ -50,14 +51,14 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                     setIsModalOpen(false);
                     onReloadTable();
                     notification.success({
-                        message: `Idioma editado com sucesso.`
+                        message: Cluar.plainDictionary('language-form-edit-success-message')
                     });
                 },
                 fail: (error) => {
                     setLoading(false);
                     console.log(error);
                     notification.error({
-                        message: `Falha ao editar idioma.`
+                        message: Cluar.plainDictionary('language-form-edit-failed-message')
                     });
                 }
             })
@@ -74,14 +75,14 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                     setIsModalOpen(false);
                     onReloadTable();
                     notification.success({
-                        message: `Idioma registado com sucesso.`
+                        message: Cluar.plainDictionary('language-form-save-success-message')
                     });
                 },
                 fail: (error) => {
                     setLoading(false);
                     console.log(error);
                     notification.error({
-                        message: `Falha ao registar idioma.`
+                        message: Cluar.plainDictionary('language-form-save-failed-message')
                     });
                 }
             })
@@ -104,7 +105,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
 
     return (
         <Modal
-            title={editeMode ? "Editar Idioma" : "Novo Idioma"}
+            title={editeMode ? Cluar.plainDictionary('language-modal-new-title') : Cluar.plainDictionary('language-modal-new-title')}
             open={isModalOpen}
             onCancel={() => setIsModalOpen(false)}
             onClose={() => setIsModalOpen(false)}
@@ -114,10 +115,10 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
             centered
             footer={[
                 <Button onClick={() => setIsModalOpen(false)}>
-                    Cancelar
+                    {Cluar.plainDictionary('language-form-cancel')}
                 </Button>,
                 <Button type="primary" onClick={() => formRef.submit()} loading={loading} disabled={loading}>
-                    Guardar
+                    {Cluar.plainDictionary('language-form-save')}
                 </Button>
             ]}
         >
@@ -130,7 +131,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                     <Col {...configColumn}>
                         <Form.Item
                             name="active"
-                            label="Activo"
+                            label={Cluar.plainDictionary('language-form-active')}
                             initialValue={false}
                         >
                             <Switch />
@@ -139,7 +140,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                     <Col {...configColumn}>
                         <Form.Item
                             name="default"
-                            label="Padrão"
+                            label={Cluar.plainDictionary('language-form-default')}
                             initialValue={false}
                         >
                             <Switch />
@@ -148,8 +149,8 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                     <Col {...configColumn}>
                         <Form.Item
                             name="description"
-                            label="Descrição"
-                            rules={[{ required: true, message: "Insira uma descrição." }]}
+                            label={Cluar.plainDictionary('language-form-description')}
+                            rules={[{ required: true, message: Cluar.plainDictionary('language-form-validate-message-required')}]}
                         >
                             <Input />
                         </Form.Item>
@@ -157,8 +158,8 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                     <Col {...configColumn}>
                         <Form.Item
                             name="code"
-                            label="Código"
-                            rules={[{ required: true, message: "Insira um código." }]}
+                            label={Cluar.plainDictionary('language-form-code')}
+                            rules={[{ required: true, message: Cluar.plainDictionary('language-form-validate-message-required') }]}
                         >
                             <Input />
                         </Form.Item>
@@ -166,8 +167,8 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                     <Col span={24}>
                         <Form.Item
                             name="locale"
-                            label="Localidade"
-                            rules={[{ required: true, message: "Insira uma uma localidate." }]}
+                            label={Cluar.plainDictionary('language-form-locale')}
+                            rules={[{ required: true, message: Cluar.plainDictionary('language-form-validate-message-required')}]}
                         >
                             <Input />
                         </Form.Item>

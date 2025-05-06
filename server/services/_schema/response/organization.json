@@ -1,0 +1,31 @@
+{
+    "type": "object",
+    "properties": {
+        "active": {
+            "type": "boolean"
+        },
+        "uid": {
+            "type": "uuid"
+        },
+        "name": {
+            "type": "string"
+        },
+        "code": {
+            "type": "string"
+        },
+        "parent": {
+            "type": "object",
+            "properties": {
+                "uid": {
+                    "type": "uuid"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

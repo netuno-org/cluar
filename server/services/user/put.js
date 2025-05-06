@@ -3,7 +3,6 @@ const name = _req.getString("name");
 const username = _req.getString("username");
 let email = _req.getString("email");
 const password = _req.getString("password");
-const groupCode = _req.getString("group_code");
 
 const userEmailExists = _user.firstByMail(email);
 const usernameExists = _user.firstByUser(username);
@@ -17,19 +16,6 @@ if (!dbPeople) {
             .set('result', false)
             .set('error', `user not found with uid: ${uid}`)
             .set('error-code', 'user-not-found')
-    )
-    _exec.stop();
-}
-
-const dbGroup = _group.firstByCode(groupCode);
-
-if (!dbGroup) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `group not found with code: ${groupCode}`)
-            .set('error-code', 'group-not-found')
     )
     _exec.stop();
 }
@@ -68,7 +54,7 @@ const userData = _val.map()
     .set("user", username)
     .set("mail", email)
     .set("pass", password)
-    .set("group_id", dbGroup.getInt("id"))
+    .set("group_id", _group.firstByCode('people').getInt('id'))
 
 let shouldUpdatePass = false;
 

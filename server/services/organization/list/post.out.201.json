@@ -1,0 +1,14 @@
+{
+    "type":"object",
+    "properties":{
+        "organizations":{
+            "type":"array",
+            "items":{
+                "_schema":"response/organization"
+            }
+        },
+        "organization_total":{
+            "type":"number"
+        }
+    }
+}

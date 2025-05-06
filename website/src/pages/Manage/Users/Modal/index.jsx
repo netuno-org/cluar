@@ -17,11 +17,19 @@ import "./index.less"
 
 const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [organizations, setOrganizations] = useState([]);
     const [groups, setGroups] = useState([]);
-    const [loadingGroup, setLoadingGroup] = useState(false);
     const [onFinishLoading, setOnFinishLoading] = useState(false);
+    const [loading, setLoading] = useState({
+        organization: false,
+        group: false
+    });
     const [formRef] = Form.useForm();
     const editMode = userData ? true : false;
+    const [filters, setFilters] = useState({
+        option: "",
+        value: ""
+    });
 
     const configColumn = {
         xs: {
@@ -32,27 +40,67 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         }
     }
 
-    const openModal = () => {
-        setIsModalOpen(true);
-    }
-
-    const getGroups = () => {
-        setLoadingGroup(true);
+    const onLoadOrganizations = () => {
+        setLoading({ ...loading, organization: true });
         _service({
-            method: "GET",
-            url: "user/group/list",
+            url: "organization/list",
+            method: "POST",
+            data: {
+                pagination: {
+                    size: 10,
+                    page: 1
+                },
+                filters: {
+                    name: filters.value
+                }
+            },
             success: (response) => {
-                setLoadingGroup(false);
-                setGroups(response.json.groups);
+                setLoading({ ...loading, organization: false });
+                const { organizations } = response.json;
+                setOrganizations(organizations);
             },
             fail: (error) => {
-                setLoadingGroup(false);
-                console.error(error);
-                notification.error({
-                    message: Cluar.plainDictionary('users-form-load-groups-failed-message')
-                })
+                setLoading({ ...loading, organization: false });
+                console.log(error);
             }
         })
+    }
+
+    const onLoadGroups = () => {
+        setLoading({ ...loading, group: true });
+        _service({
+            url: "user/group/list",
+            method: "GET",
+            data: {},
+            success: (response) => {
+                setLoading({ ...loading, group: false });
+                const { groups } = response.json;
+                setGroups(groups);
+            },
+            fail: (error) => {
+                setLoading({ ...loading, group: false });
+                console.log(error);
+            }
+        })
+    }
+
+    const onFilter = (filter) => {
+        const { option, value } = filter;
+        if (debounces[option]) {
+            clearTimeout(debounces[option])
+        }
+
+        debounces[option] = setTimeout(() => {
+            setFilters({ option, value });
+        }, 600);
+    }
+
+    const clearfilters = (option) => {
+        setFilters({ option, value: "" });
+    }
+
+    const openModal = () => {
+        setIsModalOpen(true);
     }
 
     useImperativeHandle(ref, () => {
@@ -65,11 +113,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     useEffect(() => {
         if (editMode && isModalOpen) {
             formRef.setFieldsValue({
-                ...userData,
-                group_code: {
-                    value: userData.group.code,
-                    label: userData.group.name
-                }
+                ...userData
             })
         }
     }, [isModalOpen])
@@ -77,7 +121,8 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     const onFinish = (values) => {
         const data = {
             ...values,
-            group_code: values.group_code.value
+            organization_code: values?.organization_code?.value,
+            group_code: values?.group_code?.value,
         }
         setOnFinishLoading(true);
         if (userData) {
@@ -131,8 +176,9 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     }
 
     useEffect(() => {
-        getGroups();
-    }, []);
+        onLoadGroups();
+        onLoadOrganizations()
+    }, [])
 
     return (
         <div className="modal-content">
@@ -196,7 +242,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                                 <Input.Password autoComplete="off" />
                             </Form.Item>
                         </Col>
-                        <Col {...configColumn}>
+                        <Col span={24}>
                             <Form.Item
                                 label={Cluar.plainDictionary('users-form-email')}
                                 name="email"
@@ -205,21 +251,48 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                                 <Input />
                             </Form.Item>
                         </Col>
-                        <Col {...configColumn}>
-                            <Form.Item
-                                label={Cluar.plainDictionary('users-form-group')}
-                                name="group_code"
-                                rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
-                            >
-                                <Select
-                                    loading={loadingGroup}
-                                    labelInValue={true}
-                                    options={groups.map((group) => ({
-                                        value: group.code, label: group.name
-                                    }))}
-                                />
-                            </Form.Item>
-                        </Col>
+                        {!editMode && (
+                            <>
+                                <Col span={24}>
+                                    <Form.Item
+                                        name="organization_code"
+                                        label={Cluar.plainDictionary('members-form-organization')}
+                                        rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
+                                    >
+                                        <Select
+                                            labelInValue
+                                            showSearch
+                                            filterOption={false}
+                                            allowClear
+                                            onClear={() => { clearfilters("organization") }}
+                                            onSearch={(value) => onFilter({ option: "organization", value })}
+                                            listHeight={200}
+                                            options={organizations.map((organization) => ({
+                                                label: organization.name,
+                                                value: organization.code
+                                            }))}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                                <Col span={24}>
+                                    <Form.Item
+                                        name="group_code"
+                                        label={Cluar.plainDictionary('members-form-group')}
+                                        rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
+                                    >
+                                        <Select
+                                            labelInValue
+                                            showSearch
+                                            listHeight={200}
+                                            options={groups.map((group) => ({
+                                                label: group.name,
+                                                value: group.code
+                                            }))}
+                                        />
+                                    </Form.Item>
+                                </Col>
+                            </>
+                        )}
                     </Row>
                 </Form>
             </Modal>

@@ -19,6 +19,9 @@
         "password":{
             "type":"string-not-empty"
         },
+        "organization_code":{
+            "type":"string-not-empty"
+        },
         "group_code":{
             "type":"string-not-empty"
         }
@@ -28,6 +31,7 @@
         "email",
         "username",
         "password",
+        "organization_code",
         "group_code"
     ]
 }

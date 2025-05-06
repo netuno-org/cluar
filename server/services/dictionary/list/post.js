@@ -1,6 +1,6 @@
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
-const page = _db.pagination(1, 10);
+const page = _db.pagination(1, 10).useGroup(false);
 const where = _val.map()
     .set('language', _db.where())
 

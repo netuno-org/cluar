@@ -7,6 +7,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import HeadTitle from "../../../components/HeadTitle";
 import ConfigurationTable from "./Table";
 import ConfigurationModal from "./Modal";
+import Cluar from "../../../common/Cluar";
 
 import "./index.less";
 import { useRef } from "react";
@@ -25,7 +26,7 @@ const Configuration = () => {
                 <Col span={24}>
                     <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
                         <Col>
-                            <HeadTitle level={4} type={"secondary"} text={"Configurações"} />
+                            <HeadTitle level={4} type={"secondary"} text={Cluar.plainDictionary('configuration-page-title')} />
                         </Col>
                         <Col>
                             <Button
@@ -33,7 +34,7 @@ const Configuration = () => {
                                 icon={<PlusOutlined />}
                                 onClick={() => {configurationModalRef.current.onOpenModal()}}
                             >
-                                Novo
+                                {Cluar.plainDictionary('configuration-page-new')}
                             </Button>
                         </Col>
                     </Row>

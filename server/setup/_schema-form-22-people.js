@@ -56,7 +56,7 @@ _form.createComponentIfNotExists(
 	.set("whenview", true)
 	.set("width", 0)
 	.set("x", 1)
-	.set("y", 4)
+	.set("y", 5)
 )
 _form.createComponentIfNotExists(
 	"607cc695-f3c9-4e00-98be-1d8ccfb37560",
@@ -87,7 +87,7 @@ _form.createComponentIfNotExists(
 	.set("whenview", true)
 	.set("width", 0)
 	.set("x", 1)
-	.set("y", 3)
+	.set("y", 4)
 )
 _form.createComponentIfNotExists(
 	"607cc695-f3c9-4e00-98be-1d8ccfb37560",
@@ -180,7 +180,7 @@ _form.createComponentIfNotExists(
 	.set("whenview", true)
 	.set("width", 0)
 	.set("x", 1)
-	.set("y", 5)
+	.set("y", 6)
 )
 _form.createComponentIfNotExists(
 	"607cc695-f3c9-4e00-98be-1d8ccfb37560",
@@ -211,5 +211,5 @@ _form.createComponentIfNotExists(
 	.set("whenview", true)
 	.set("width", 0)
 	.set("x", 1)
-	.set("y", 6)
+	.set("y", 7)
 )

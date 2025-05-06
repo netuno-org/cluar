@@ -1,0 +1,22 @@
+{
+    "summary":"List all organization members with pagination and filters",
+    "description":"List all organization members with pagination and filters",
+    "_schema":"tags/member",
+    "type":"object",
+    "properties":{
+        "pagination":{
+            "_schema":"request/pagination"
+        },
+        "filters":{
+            "organization_name":{
+                "type":"string"
+            },
+            "people_name":{
+                "type":"string"
+            },
+            "group_code":{
+                "type":"string"
+            }
+        }
+    }
+}

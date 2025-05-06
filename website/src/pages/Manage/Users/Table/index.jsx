@@ -8,11 +8,12 @@ import {
     Switch
 } from "antd";
 
-import { EditOutlined, SearchOutlined } from "@ant-design/icons"
+import { EditOutlined, SearchOutlined, ApartmentOutlined } from "@ant-design/icons"
 
 import "./index.less"
 import { forwardRef, useEffect, useRef, useState, useImperativeHandle } from "react";
 import UserModal from "../Modal";
+import MembersModal from "../Members";
 import _service from '@netuno/service-client';
 import Cluar from "../../../../common/Cluar";
 
@@ -20,12 +21,12 @@ const debounces = {};
 
 const UserTable = forwardRef(({ }, ref) => {
     const [items, setItems] = useState([]);
-    const [groups, setGroups] = useState([]);
     const [total, setTotal] = useState(0);
     const [filters, setFilters] = useState({});
     const [loading, setLoading] = useState(false);
     const userModalRef = useRef();
-    const [editeUser, setEditeUser] = useState(null);
+    const membersModalRef = useRef();
+    const [userData, setUserData] = useState(null);
     const [loadingActive, setLoadingActive] = useState({
         isLoading: false,
         key: ""
@@ -34,22 +35,6 @@ const UserTable = forwardRef(({ }, ref) => {
         page: 1,
         size: 10
     });
-
-    const getGroups = () => {
-        _service({
-            method: "GET",
-            url: "user/group/list",
-            success: (response) => {
-                setGroups(response.json.groups);
-            },
-            fail: (error) => {
-                console.error(error);
-                notification.error({
-                    message: Cluar.plainDictionary('users-table-load-failed-message')
-                })
-            }
-        })
-    }
 
     const onActive = ({ uid, active }) => {
         console.log({ uid, active })
@@ -164,7 +149,6 @@ const UserTable = forwardRef(({ }, ref) => {
 
     useEffect(() => {
         onLoadData();
-        getGroups();
     }, []);
 
 
@@ -191,7 +175,7 @@ const UserTable = forwardRef(({ }, ref) => {
                     }}
                 />
             ),
-            filtered:filters.active,
+            filtered: filters.active,
             filters: [
                 {
                     text: "Activo",
@@ -223,17 +207,6 @@ const UserTable = forwardRef(({ }, ref) => {
             ...getTextFilterProps("email")
         },
         {
-            title: Cluar.plainDictionary('users-table-group'),
-            dataIndex: 'group',
-            key: 'group_codes',
-            render: (val) => val.name,
-            filtered: filters.group_code,
-            filters: groups.map((group) => ({
-                text: group.name,
-                value: group.code
-            }))
-        },
-        {
             title: Cluar.plainDictionary('users-table-actions'),
             dataIndex: 'actions',
             key: 'action',
@@ -245,14 +218,25 @@ const UserTable = forwardRef(({ }, ref) => {
                             type="text"
                             title={Cluar.plainDictionary('users-table-actions-edit-title')}
                             onClick={() => {
-                                setEditeUser(record);
+                                setUserData(record);
                                 userModalRef.current.openModal()
+                            }}
+                        />
+                    </Col>
+                    <Col>
+                        <Button
+                            icon={<ApartmentOutlined />}
+                            type="text"
+                            title={"Organizações"}
+                            onClick={() => {
+                                setUserData(record);
+                                membersModalRef.current.openModal();
                             }}
                         />
                     </Col>
                 </Row>
             )
-        },
+        }
     ];
 
 
@@ -260,8 +244,12 @@ const UserTable = forwardRef(({ }, ref) => {
         <div>
             <UserModal
                 ref={userModalRef}
-                userData={editeUser}
+                userData={userData}
                 onReloadTable={onReloadTable}
+            />
+            <MembersModal
+                ref={membersModalRef}
+                userData={userData}
             />
             <Table
                 columns={columns}
@@ -270,8 +258,7 @@ const UserTable = forwardRef(({ }, ref) => {
                 scroll={{ x: 600 }}
                 onChange={(pagination, currentFilters, currentSorter, { action }) => {
                     if (action === "filter") {
-                        const filtersModify = ['group_codes', 'active'];
-                        console.log(currentFilters)
+                        const filtersModify = ['active'];
                         const newFilters = {
                             ...filters
                         }

@@ -1,0 +1,26 @@
+{
+    "summary":"Register a new organization member",
+    "description":"Register a new organization member",
+    "_schema":"tags/member",
+    "type":"object",
+    "properties":{
+        "people_uid":{
+            "type":"uuid"
+        },
+        "organization_code":{
+            "type":"string-not-empty"
+        },
+        "group_code":{
+            "type":"string-not-empty"
+        },
+        "active":{
+            "type":"boolean"
+        }
+    },
+    "required":[
+        "people_uid",
+        "organization_code",
+        "group_code",
+        "active"
+    ]
+}

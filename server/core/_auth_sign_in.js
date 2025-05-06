@@ -11,7 +11,33 @@ const dbPeople = _db.queryFirst(`
     )
     _exec.stop()
   }
-  
+
+const authorizedGroups = ['administrator']
+
+const isAuthorized = _db.queryFirst(`
+  SELECT 1
+  FROM organization_people
+  WHERE 1 = 1
+    AND people_id = ${dbPeople.getInt("id")}
+    AND user_group_id IN (
+      SELECT id FROM user_group WHERE code IN (
+        ${authorizedGroups.map((group) => `'${group}'`).join(", ")}
+      )
+    )
+    AND active = true
+`);
+
+
+if (!isAuthorized) {
+  _auth.signInAbortWithData(
+    _val.map()
+      .set('result', false)
+      .set('error', 'user unauthorized')
+      .set('error_code', 'user-unauthorized')
+  )
+  _exec.stop()
+}
+
   // _log.info(_req.getString('myparameter'))
   
   const data = _val.map()

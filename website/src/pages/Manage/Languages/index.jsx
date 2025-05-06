@@ -8,6 +8,7 @@ import { PlusOutlined } from "@ant-design/icons"
 import HeadTitle from "../../../components/HeadTitle";
 import LanguageTable from "./Table";
 import LanguageModal from "./Modal";
+import Cluar from "../../../common/Cluar";
 
 import "./index.less"
 import { useRef } from "react";
@@ -25,7 +26,7 @@ const Languages = () => {
                 <Col span={24}>
                     <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
                         <Col>
-                            <HeadTitle level={4} type={"secondary"} text={"Idiomas"} />
+                            <HeadTitle level={4} type={"secondary"} text={Cluar.plainDictionary('language-page-title')} />
                         </Col>
                         <Col>
                             <Button
@@ -33,7 +34,7 @@ const Languages = () => {
                                 icon={<PlusOutlined />}
                                 onClick={() => {languageModalRef.current.openModal()}}
                             >
-                                Novo
+                                {Cluar.plainDictionary('language-page-new')}
                             </Button>
                         </Col>
                     </Row>

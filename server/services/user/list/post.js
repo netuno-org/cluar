@@ -1,3 +1,5 @@
+//_core: utils/user
+
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
 let page = _db.pagination(1, 10);
@@ -37,12 +39,12 @@ if (filters) {
     if (username) {
         where.get('user').and('user').contains(username);
     }
-    
-    const groupCodes = filters.has("group_codes") && filters.getList("group_codes");
-    if (groupCodes) {
-        where.get('group').and('code').in(groupCodes);
-    }
 }
+
+const userOrganizations = getUserOrganizations();
+const organizationWhere = _db.where(
+    'organization_id'
+).in(userOrganizations.map((organization) => organization.getInt("id")))
 
 const query = _db.form("people")
 .join(
@@ -50,13 +52,11 @@ const query = _db.form("people")
         "netuno_user",
         "people_user_id",
         where.get('user')
-    ).join(
-       _db.manyToOne(
-            "netuno_group",
-            "group_id",
-            where.get('group')
-       )
     )
+)
+.link(
+    'organization_people',
+    organizationWhere
 )
 .where(where.get('people'))
 .get("people.name")
@@ -65,15 +65,12 @@ const query = _db.form("people")
 .get("netuno_user.id", "netuno_user_id")
 .get("netuno_user.user")
 .get("netuno_user.active")
-.get("netuno_group.id", "group_id")
-.get("netuno_group.name", "group_name")
-.get("netuno_group.code", "group_code")
 .group(
     'people.id',
-    'netuno_user.id',
-    'netuno_group.id'
+    'netuno_user.id'
 )
 .order("people.id", "desc")
+
 
 const pageUsers = query.page(page);
 const dbItems = pageUsers.getList("items") 
@@ -88,11 +85,6 @@ for (const dbItem of dbItems) {
             .set('email', dbItem.getString("email"))
             .set('username', dbItem.getString("user"))
             .set('active', dbItem.getBoolean("active"))
-            .set('group', 
-                _val.map()
-                    .set('name', dbItem.getString("group_name"))
-                    .set('code', dbItem.getString("group_code"))
-            )
     );
 }
 

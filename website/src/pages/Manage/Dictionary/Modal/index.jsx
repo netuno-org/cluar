@@ -10,6 +10,7 @@ import {
 } from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import _service from "@netuno/service-client";
+import Cluar from "../../../../common/Cluar";
 
 const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     const configColumn = {
@@ -93,7 +94,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 success: (response) => {
                     setLoading({...loading, save:false});
                     notification.success({
-                        message:"Dicionário editado com sucesso."
+                        message: Cluar.plainDictionary('dictionary-form-edit-success-message')
                     });
                     setIsModalOpen(false);
                     onReloadTable();
@@ -102,7 +103,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                     console.error(error);
                     setLoading({...loading, save:false});
                     notification.error({
-                        message:"Falha ao editar Dicionário."
+                        message: Cluar.plainDictionary('dictionary-form-edit-failed-message')
                     });
                 }
             });
@@ -117,7 +118,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 success: (response) => {
                     setLoading({...loading, save:false});
                     notification.success({
-                        message:"Dicionário registado com sucesso."
+                        message: Cluar.plainDictionary('dictionary-form-new-success-message')
                     });
                     setIsModalOpen(false);
                     onReloadTable();
@@ -126,7 +127,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                     console.error(error);
                     setLoading({...loading, save:false});
                     notification.error({
-                        message:"Falha ao registar Dicionário."
+                        message: Cluar.plainDictionary('dictionary-form-new-failed-message')
                     });
                 }
             });
@@ -162,7 +163,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
 
     return (
         <Modal
-            title={editeMode ? "Editar Dicionário" : "Novo Dicionário"}
+            title={editeMode ? Cluar.plainDictionary('dictionary-modal-edit-title') : Cluar.plainDictionary('dictionary-modal-new-title')}
             open={isModalOpen}
             onCancel={() => setIsModalOpen(false)}
             onClose={() => { setIsModalOpen(false) }}
@@ -171,13 +172,13 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
 
             afterClose={() => formRef.resetFields()}
             footer={[
-                <Button onClick={() => setIsModalOpen(false)} >Cancelar</Button>,
+                <Button onClick={() => setIsModalOpen(false)} > {Cluar.plainDictionary('dictionary-form-cancel')} </Button>,
                 <Button
                     type="primary"
                     onClick={() => formRef.submit()}
                     loading={loading.save}
                 >
-                    Guardar
+                    {Cluar.plainDictionary('dictionary-form-save')}
                 </Button>
             ]}
         >
@@ -190,8 +191,8 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                     <Col span={24}>
                         <Form.Item
                             name="language_code"
-                            label="Idioma"
-                            rules={[{ required: true, message: "Selecione um idioma." }]}
+                            label={Cluar.plainDictionary('dictionary-form-language')}
+                            rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required') }]}
                         >
                             <Select
                                 labelInValue
@@ -205,8 +206,8 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                     <Col span={24}>
                         <Form.Item
                             name="entry_code"
-                            label="Chave"
-                            rules={[{ required: true, message: "Selecione uma chave." }]}
+                            label={Cluar.plainDictionary('dictionary-form-entry')}
+                            rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required')}]}
                         >
                             <Select
                                 labelInValue
@@ -223,8 +224,8 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                     <Col span={24}>
                         <Form.Item
                             name="value"
-                            label="Valor"
-                            rules={[{ required: true, message: "Insira um valor." }]}
+                            label={Cluar.plainDictionary('dictionary-form-value')}
+                            rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required') }]}
                         >
                             <Input.TextArea />
                         </Form.Item>
