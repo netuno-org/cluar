@@ -9,7 +9,8 @@ import {
   GlobalOutlined,
   FontSizeOutlined,
   ApartmentOutlined,
-  TeamOutlined
+  TeamOutlined,
+  FileOutlined
 } from '@ant-design/icons';
 import {
   Col,
@@ -49,18 +50,22 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       icon: <SettingOutlined />,
       children: [
         {
+          key: 'pages',
+          label: Cluar.plainDictionary('side-menu-options-pages'),
+          icon: <FileOutlined />,
+          onClick: () => navigate("/reserved-area/pages")
+        },
+        {
           key: 'users',
           label: Cluar.plainDictionary('side-menu-options-users'),
           icon: <UserOutlined />,
           onClick: () => navigate("/reserved-area/users")
-
         },
         {
           key: 'languages',
           label: Cluar.plainDictionary('side-menu-options-languages'),
           icon: <GlobalOutlined />,
           onClick: () => navigate("/reserved-area/languages")
-
         },
         {
           key: 'configuration',

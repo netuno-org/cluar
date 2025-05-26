@@ -1,5 +1,5 @@
 cluar.page.publish = (dbPage)=> {
-
+  //_log.debug("publish", dbPage);
   const dbPageStatus = _db.queryFirst(`
     SELECT * FROM page_status WHERE page_status.code = 'published'
   `);
@@ -11,6 +11,7 @@ cluar.page.publish = (dbPage)=> {
       page_version pv
     WHERE
       pv.status_id = ${dbPageStatus.getInt("id")}
+        AND pv.page_id = ${dbPage.getInt("id")}
   `);
 
   if (dbPageVersion) {
@@ -243,6 +244,8 @@ cluar.page.publish = (dbPage)=> {
   if (!folder.exists()) {
     folder.mkdir()
   }
+
+  //_log.debug("structure", structure);
 
   const file = _app.file(`${cluar.base()}/cluar/structures/${dbPage.getString("uid")}.json`)
   file.output().print(`${structure.toJSON(4)}`).close()

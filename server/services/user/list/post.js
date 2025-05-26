@@ -71,10 +71,11 @@ const query = _db.form("people")
 )
 .order("people.id", "desc")
 
-
+_log.debug("DEBUG 3");
 const pageUsers = query.page(page);
+_log.debug("DEBUG 3.5");
 const dbItems = pageUsers.getList("items") 
-
+_log.debug("DEBUG 4");
 const users = _val.list();
 
 for (const dbItem of dbItems) {

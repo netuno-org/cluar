@@ -10,6 +10,16 @@ import "./index.less";
 const AdminBar = ({ onChangeEditMode, extra, pageData }) => {
   const [isPageConfigOpen, setIsPageConfigOpen] = useState(false);
   const [isPageVersionsOpen, setIsPageVersionsOpen] = useState(false);
+  const [isNewPage, setIsNewPage] = useState(false);
+
+  const openPageConfig = (isNew = false) => {
+    setIsNewPage(isNew);
+    setIsPageConfigOpen(true);
+  };
+
+  const navigateToReservedArea = () => {
+    window.location.href = "/reserved-area/";
+  };
 
   return (
     <div className="admin-bar">
@@ -17,20 +27,24 @@ const AdminBar = ({ onChangeEditMode, extra, pageData }) => {
         <Col>
           <Row align="middle" gutter={12}>
             <Col>
-              <Button type="text">Configurações do Site</Button>
+              <Button type="text" onClick={navigateToReservedArea}>
+                Configurações do Site
+              </Button>
             </Col>
           </Row>
         </Col>
         <Col>
           <Row align="middle" gutter={6}>
             <Col>
-              <Button type="text">Nova Página</Button>
+              <Button type="text" onClick={() => openPageConfig(true)}>
+                Nova Página
+              </Button>
             </Col>
             <Col>
               <Divider type="vertical" />
             </Col>
             <Col>
-              <Button type="text" onClick={() => setIsPageConfigOpen(true)}>
+              <Button type="text" onClick={() => openPageConfig(false)}>
                 Configurações da Página
               </Button>
             </Col>
@@ -64,7 +78,7 @@ const AdminBar = ({ onChangeEditMode, extra, pageData }) => {
       <PageConfiguration
         open={isPageConfigOpen}
         onClose={() => setIsPageConfigOpen(false)}
-        pageData={pageData}
+        pageData={isNewPage ? null : pageData}
       />
       <PageVersions
         open={isPageVersionsOpen}

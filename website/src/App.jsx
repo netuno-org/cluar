@@ -10,7 +10,7 @@ import {
 import { Provider } from 'react-redux';
 import { Store } from './redux/store';
 
-import Analytics from './common/Analytics';
+//import Analytics from './common/Analytics';
 import Cluar from './common/Cluar';
 import Builder from './common/Builder';
 import BaseCookies from './base/Cookies';
@@ -19,8 +19,9 @@ import BaseFooter from './base/Footer';
 import NotFound from './pages/NotFound';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import ReservedArea from './pages/reservedArea';
+import ReservedArea from './pages/ReservedArea';
 import Profile from './pages/Manage/Profile';
+import Pages from './pages/Manage/Pages';
 import Users from './pages/Manage/Users';
 import Languages from './pages/Manage/Languages';
 import Configuration from './pages/Manage/Configuration';
@@ -76,6 +77,8 @@ function App() {
     );
   }
 
+  console.log("routes", routes);
+
   return (
     <ConfigProvider
       theme={{
@@ -88,7 +91,7 @@ function App() {
     >
       <Provider store={Store}>
         <BrowserRouter>
-          {Cluar.isGAEnabled() && <Route component={Analytics} />}
+          
           <div className="page">
             <Layout className={_auth.isLogged() && "ant-layout--logged"}>
               <BaseHeader />
@@ -106,6 +109,7 @@ function App() {
                   <Route path="/recovery" element={<Recovery />} />
                   <Route path="/reserved-area" element={<ReservedArea />}> 
                       <Route path="profile" element={<Profile/>}/>
+                      <Route path="pages" element={<Pages/>}/>
                       <Route path="users" element={<Users/>}/>
                       <Route path="languages" element={<Languages/>}/>
                       <Route path="configuration" element={<Configuration/>}/>

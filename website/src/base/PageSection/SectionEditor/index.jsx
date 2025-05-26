@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Drawer, Form, Input, Button } from "antd";
+import { Drawer, Form, Input, Button, Space, message } from "antd";
+import { RobotOutlined } from "@ant-design/icons";
 import BannerEditor from "../BannerEditor";
 import ListEditor from "../ListEditor";
 import FunctionalityEditor from "../FunctionalityEditor";
+import _service from "@netuno/service-client";
+import TesteEditor from "../../TesteEditor";
 
 const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const [form] = Form.useForm();
+  const [showAIPrompt, setShowAIPrompt] = useState(false);
+  const [aiPrompt, setAIPrompt] = useState("");
+  const [generating, setGenerating] = useState(false);
 
   const MoreEditor = () => {
     if (sectionData?.section === "banner") {
@@ -34,6 +40,42 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
     }
   };
 
+  const handleAIGenerate = () => {
+    if (!aiPrompt.trim()) {
+      message.warning("Por favor, insira instruções para a IA");
+      return;
+    }
+
+    setGenerating(true);
+    
+    _service({
+      url: "/test",
+      method: "POST",
+      data: {
+        html: form.getFieldValue("content") || "",
+        prompt: aiPrompt
+      },
+      success: (res) => {
+        if (res.json.result) {
+          form.setFieldsValue({ content: res.json.html });
+          message.success("Conteúdo gerado com sucesso");
+          setAIPrompt("");
+          setShowAIPrompt(false);
+        } else {
+          message.error(res.json.error || "Falha ao gerar conteúdo");
+        }
+        setGenerating(false);
+      },
+      fail: (error) => {
+        console.error("Erro ao gerar conteúdo:", error);
+        message.error("Falha ao gerar conteúdo");
+        setGenerating(false);
+      }
+    });
+  };
+
+  const isContentSection = sectionData?.section === "content";
+
   return (
     <Drawer
       open={open}
@@ -45,6 +87,42 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         <Form.Item name="title" label="Título">
           <Input />
         </Form.Item>
+        
+        {isContentSection && (
+          <div style={{ marginBottom: 16 }}>
+            <Button 
+              type="primary" 
+              icon={<RobotOutlined />} 
+              onClick={() => setShowAIPrompt(!showAIPrompt)}
+            >
+              {showAIPrompt ? "Esconder AI" : "Assistente AI"}
+            </Button>
+          </div>
+        )}
+        
+        {isContentSection && showAIPrompt && (
+          <Form.Item label="Instruções para IA">
+            <Space style={{ width: '100%' }} direction="vertical">
+              <Input.TextArea 
+                rows={3} 
+                value={aiPrompt}
+                onChange={(e) => setAIPrompt(e.target.value)}
+                placeholder="Descreva o que você deseja que a IA gere ou modifique no conteúdo..."
+              />
+              <Button 
+                type="primary" 
+                onClick={handleAIGenerate} 
+                loading={generating}
+                style={{ alignSelf: 'flex-end' }}
+              >
+                Gerar
+              </Button>
+            </Space>
+          </Form.Item>
+        )}
+
+        <TesteEditor />
+        
         <Form.Item name="content" label="Conteúdo">
           <Input.TextArea rows={6} />
         </Form.Item>

@@ -34,49 +34,60 @@ if (lastPageVersion) {
     const status = structure.getString("status");
     const sectionType = structure.getString("section");
 
-    if (status === "to_create") {
-      if (sectionType === "banner") {
-        const newSectionType = _db.queryFirst(`
-          SELECT
-            *
-          FROM
-            page_banner_type
-          WHERE code = '${structure.getString("type")}'
-        `);
+    if (sectionType === "banner") {
+      const newSectionType = _db.queryFirst(`
+        SELECT
+          *
+        FROM
+          page_banner_type
+        WHERE code = '${structure.getString("type")}'
+      `);
 
-        _db.insert(
-          "page_banner",
-          _val
-            .map()
-            .set("title", structure.getString("title"))
-            .set("content", structure.getString("content"))
-            .set("type_id", newSectionType.getInt("id"))
-            .set("page_version_id", newPageVersion)
-            .set("sorter", 0)
-        );
-      } else if (sectionType === "content") {
-        const newSectionType = _db.queryFirst(`
-          SELECT
-            *
-          FROM
-            page_content_type
-          WHERE code = '${structure.getString("type")}'
-        `);
+      _db.insert(
+        "page_banner",
+        _val
+          .map()
+          .set("title", structure.getString("title"))
+          .set("content", structure.getString("content"))
+          .set("type_id", newSectionType.getInt("id"))
+          .set("page_version_id", newPageVersion)
+          .set("sorter", 0)
+      );
+    } else if (sectionType === "content") {
+      const newSectionType = _db.queryFirst(`
+        SELECT
+          *
+        FROM
+          page_content_type
+        WHERE code = '${structure.getString("type")}'
+      `);
 
-        _db.insert(
-          "page_content",
-          _val
-            .map()
-            .set("title", structure.getString("title"))
-            .set("content", structure.getString("content"))
-            .set("type_id", newSectionType.getInt("id"))
-            .set("page_version_id", newPageVersion)
-            .set("sorter", 0)
-        );
-      }
-    } else if (status === "to_update") {
+      _db.insert(
+        "page_content",
+        _val
+          .map()
+          .set("title", structure.getString("title"))
+          .set("content", structure.getString("content"))
+          .set("type_id", newSectionType.getInt("id"))
+          .set("page_version_id", newPageVersion)
+          .set("sorter", 0)
+      );
     }
+
+    /*if (status === "to_create") {
+
+    } else if (status === "to_update") {
+      
+    }*/
   }
+
+  _out.json(
+    _val.map()
+      .set("result", true)
+      .set("data", newPageVersion)
+  );
+} else {
+
 }
 
-_out.json(_val.map().set("result", true));
+
