@@ -47,4 +47,3 @@ _db.insertIfNotExists(
       .set("name", "Assinante")
       .set("code", "subscriber")
   );
-  
