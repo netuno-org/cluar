@@ -290,7 +290,33 @@ cluar.page.publish = (dbPage)=> {
           cluar.publishSocialImage(dbPage.getString("social_image"));
         }
 
-        headElement.prepend(`<meta property="og:title" content="${dbPage.getString("title")}" />`);
+        const removeNewLineRegex = /(\r\n|\r|\n)/g;
+
+        const pageTitle = dbPage.getString("title");
+        const documentTitle = headElement.selectFirst("title");
+        if (documentTitle) {
+          documentTitle.text(pageTitle);
+        } else {
+          headElement.appendElement("title").text(pageTitle);
+        }
+
+        const pageKeywords = dbPage.getString("keywords").replaceAll(removeNewLineRegex, "");
+        const metaKeywordsElement = headElement.selectFirst("[name=keywords]");
+        if (metaKeywordsElement) {
+          metaKeywordsElement.attr("content", pageKeywords);
+        } else {
+          headElement.prependElement(`<meta name="keywords" content="${pageKeywords}" />`);
+        }
+
+        const pageDescription = dbPage.getString("description").replaceAll(removeNewLineRegex, "");
+        const metaDescriptionElement = headElement.selectFirst("[name=description]");
+        if (metaDescriptionElement) {
+          metaDescriptionElement.attr("content", pageDescription);
+        } else {
+          headElement.prependElement(`<meta name="description" content="${pageDescription}" />`);
+        }
+
+        headElement.prepend(`<meta property="og:title" content="${pageTitle}" />`);
         headElement.prepend(`<meta property="og:description" content="${dbPage.getString("social_description", "")}" />`);
         headElement.prepend(`<meta property="og:image" content="images/${dbPage.getString("social_image", "")}"/>`);
         headElement.prepend(`<meta property="og:site_name" content="${websiteConfig.getString("name", "")}" />`);
