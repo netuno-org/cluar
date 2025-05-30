@@ -8,6 +8,8 @@ const link = _req.getString("link");
 const menu = _req.getBoolean("menu");
 const menuTitle = _req.getString("menu_title");
 const navigable = _req.getBoolean("navigable");
+const social_image = _req.getFile("social_image");
+const social_description = _req.getString("social_description");
 
 const dbPage = _db.get('page', uid);
 if (!dbPage) {
@@ -53,6 +55,8 @@ const data = _val.map()
     .set('menu_title', menuTitle)
     .set('navigable', navigable)
     .set("parent_id", parentPage ? parentPage.getInt("id") : 0)
+    .set("social_image", social_image)
+    .set("social_description", social_description)
 
 _db.update(
     'page',
