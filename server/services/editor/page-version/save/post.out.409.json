@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "boolean"
+    },
+    "error": {
+      "type": "string",
+      "example": "page-has-no-previous-version"
+    }
+  }
+}

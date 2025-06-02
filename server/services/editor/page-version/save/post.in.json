@@ -15,7 +15,8 @@
         "type": "object",
         "properties": {
           "section": {
-            "type": "string"
+            "type": "string",
+            "description": "Field to identify which type of section is.</br>Can be: `banner`, `content`, `listing` or `functionality`"
           },
           "type": {
             "type": "string"
