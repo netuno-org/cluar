@@ -10,6 +10,8 @@ const link = _req.getString("link");
 const menu = _req.getBoolean("menu");
 const menuTitle = _req.getString("menu_title");
 const navigable = _req.getBoolean("navigable");
+const social_image = _req.getFile("social_image");
+const social_description = _req.getString("social_description");
 
 const dbLanguage = _db.queryFirst(`
     SELECT id, code, description FROM language WHERE code = ?
@@ -44,9 +46,8 @@ if (linkExists) {
 }
 
 const dbPageStatusPublished = _db.queryFirst(`SELECT id, code, description FROM page_status WHERE code = 'published'`);
-
 let parentPage = null;
-if (parentUid){
+if (parentUid != null) {
     parentPage = _db.get("page", parentUid);
 }
 
@@ -61,7 +62,9 @@ const data = _val.map()
     .set("language_id", dbLanguage.getInt("id"))
     .set("status_id", dbPageStatusPublished.getInt("id"))
     .set("parent_id", parentPage ? parentPage.getInt("id") : 0)
-    
+    .set("social_image", social_image)
+    .set("social_description", social_description)
+
 const dbPage = insertAndReturn('page', data);
 
 _log.info("dbPage:", dbPage);
