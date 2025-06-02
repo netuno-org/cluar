@@ -104,6 +104,46 @@ if (lastPageVersion) {
           );
         }
       }
+    } else if (sectionType === "listing") {
+      const listingItems = structure.getList("items", _val.list());
+      const listingData = _val.map()
+        .set("page_version_id", newPageVersion)
+        .set("title", structure.getString("title"))
+        .set("sorter", structure.getInt("sorter", 0))
+        .set("image_title", structure.getString("image_title"))
+        .set("image_alt", structure.getString("image_alt"))
+
+      if (structures.getString("type")) {
+        const dbListingType = _db.queryFirst(
+          `
+            SELECT
+              *
+            FROM page_listing_type
+            WHERE code = ?
+          `,
+          structures.getString("type")
+        );
+
+        if (dbListingType) {
+          listingData.set("type_id", dbListingType.getInt("id"));
+        }
+      }
+
+      const listingID = _db.insert("page_listing", listingData);
+
+      for (const listingItem of listingItems) {
+        _db.insert(
+          "page_listing_item",
+          _val.map()
+            .set("page_listing_id", listingID)
+            .set("title", listingItem.getString("title"))
+            .set("content", listingItem.getString("content"))
+            .set("link", listingItem.getString("link"))
+            .set("sorter", listingItem.getString("sorter"))
+            .set("image_title", listingItem.getString("image_title"))
+            .set("image_alt", listingItem.getString("image_alt"))
+        );
+      }
     }
 
     /*if (status === "to_create") {
