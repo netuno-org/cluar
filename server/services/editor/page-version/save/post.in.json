@@ -1,0 +1,95 @@
+{
+  "summary": "Save Page Content",
+  "description": "Save page content",
+  "tags": [
+    "editor"
+  ],
+  "type": "object",
+  "properties": {
+    "page": {
+      "type": "uuid"
+    },
+    "structures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "section": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "sorter": {
+            "type": "number"
+          },
+          "image": {
+            "type": "string"
+          },
+          "image_title": {
+            "type": "string"
+          },
+          "image_alt": {
+            "type": "string"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "uid": {
+                  "type": "uuid"
+                },
+                "sorter": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "link": {
+                  "type": "string"
+                },
+                "sorter": {
+                  "type": "number"
+                },
+                "image": {
+                  "type": "string"
+                },
+                "image_title": {
+                  "type": "string"
+                },
+                "image_alt": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "requried": [
+          "section"
+        ]
+      }
+    }
+  },
+  "required": [
+    "page",
+    "structures"
+  ]
+}
