@@ -35,6 +35,8 @@ if (lastPageVersion) {
     const sectionType = structure.getString("section");
 
     if (sectionType === "banner") {
+      const bannerActions = structure.getList("actions", _val.list());
+
       const newSectionType = _db.queryFirst(`
         SELECT
           *
@@ -43,7 +45,7 @@ if (lastPageVersion) {
         WHERE code = '${structure.getString("type")}'
       `);
 
-      _db.insert(
+      const bannerId = _db.insert(
         "page_banner",
         _val
           .map()
@@ -51,9 +53,25 @@ if (lastPageVersion) {
           .set("content", structure.getString("content"))
           .set("type_id", newSectionType.getInt("id"))
           .set("page_version_id", newPageVersion)
-          .set("sorter", 0)
+          .set("sorter", structure.getInt("sorter", 0))
       );
+
+      for (const action of bannerActions) {
+        const dbAction = _db.get("action", action.getString("uid"));
+
+        if (dbAction) {
+          _db.insert(
+            "page_banner_action",
+            _val.map()
+              .set("page_banner_id", bannerId)
+              .set("action_id", dbAction.getInt("id"))
+              .set("sorter", action.getInt("sorter"))
+          );
+        }
+      }
     } else if (sectionType === "content") {
+      const contentActions = structure.getList("actions", _val.list());
+
       const newSectionType = _db.queryFirst(`
         SELECT
           *
@@ -62,7 +80,7 @@ if (lastPageVersion) {
         WHERE code = '${structure.getString("type")}'
       `);
 
-      _db.insert(
+      const contentId = _db.insert(
         "page_content",
         _val
           .map()
@@ -72,6 +90,20 @@ if (lastPageVersion) {
           .set("page_version_id", newPageVersion)
           .set("sorter", 0)
       );
+
+      for (const action of contentActions) {
+        const dbAction = _db.get("action", action.getString("uid"));
+
+        if (dbAction) {
+          _db.insert(
+            "page_content_action",
+            _val.map()
+              .set("page_content_id", contentId)
+              .set("action_id", dbAction.getInt("id"))
+              .set("sorter", action.getInt("sorter"))
+          );
+        }
+      }
     }
 
     /*if (status === "to_create") {
@@ -87,7 +119,8 @@ if (lastPageVersion) {
       .set("data", newPageVersion)
   );
 } else {
-
+  _out.json(
+    _val.map()
+      .set("error", "page-has-no-previous-version")
+  )
 }
-
-
