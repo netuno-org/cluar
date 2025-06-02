@@ -144,6 +144,28 @@ if (lastPageVersion) {
             .set("image_alt", listingItem.getString("image_alt"))
         );
       }
+    } else if (sectionType === "functionality") {
+      const dbFunctionalityType = _db.queryFirst(
+        `
+          SELECT
+            *
+          FROM page_functionality_type
+          WHERE code = ?
+        `,
+        structure.getString("type")
+      );
+
+      if (dbFunctionalityType) {
+        _db.insert(
+          "page_functionality",
+          _val.map()
+            .set("page_version_id", newPageVersion)
+            .set("type_id", dbFunctionalityType.getInt("id"))
+            .set("title", structure.getString("title"))
+            .set("content", structure.getString("content"))
+            .set("sorter", structure.getInt("sorter", 0))
+        );
+      }
     }
 
     /*if (status === "to_create") {
@@ -159,8 +181,9 @@ if (lastPageVersion) {
       .set("data", newPageVersion)
   );
 } else {
+  _header.status(409);
   _out.json(
     _val.map()
       .set("error", "page-has-no-previous-version")
-  )
+  );
 }
