@@ -136,8 +136,8 @@ if (dbPageVersion) {
     const dbItems = _db.query(`
       SELECT
           uid, title, content, image, image_alt, image_title, sorter, link
-      FROM listing_item
-      WHERE listing_id = ${dbListing.getInt("id")} AND active = TRUE
+      FROM page_listing_item
+      WHERE page_listing_id = ${dbListing.getInt("id")} AND active = TRUE
       `);
 
     for (const dbItem of dbItems) {
