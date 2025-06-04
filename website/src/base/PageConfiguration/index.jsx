@@ -43,12 +43,12 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
       setFileList([...fileList]);
 
       if (form) {
-        form.setFieldValue("image", file.thumbUrl);
+        form.setFieldValue("social_image", file.thumbUrl);
       }
     } else {
       setFileList([]);
       if (form) {
-        form.setFieldValue("image", "");
+        form.setFieldValue("social_image", "");
       }
     }
   };
@@ -167,6 +167,21 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
       });
     });
   };
+
+  useEffect(() => {
+    if (pageData) {
+      if (pageData.image) {
+        setFileList([
+          {
+            url:
+              pageData.image.indexOf("base64") === -1
+                ? `/images/${pageData.section}/${pageData.image}`
+                : pageData.image,
+          },
+        ]);
+      }
+    }
+  }, [pageData]);
 
   // Verifica se o link é "/" para desabilitar a edição
   const isRootLink = pageData?.link === "/";
