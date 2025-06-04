@@ -13,6 +13,14 @@ const lastPageVersion = _db.queryFirst(`
 `);
 
 if (lastPageVersion) {
+  const imagesToPublish = {
+    banner: [],
+    content: [],
+    listing: [],
+    listing_item: [],
+    functionality: [],
+  };
+
   const draftStatus = _db.queryFirst(`
     SELECT
       *
@@ -33,10 +41,16 @@ if (lastPageVersion) {
   for (const structure of structures) {
     const status = structure.getString("status");
     const sectionType = structure.getString("section");
+    const structuresToPublishImages = imagesToPublish[sectionType];
+    let image = null;
+
+    if (structure.getString("image") !== "") {
+      image = structure.getFile("image");
+    }
 
     if (sectionType === "banner") {
+      _log.info(sectionType, structure.getString("type"))
       const bannerActions = structure.getList("actions", _val.list());
-
       const newSectionType = _db.queryFirst(`
         SELECT
           *
@@ -44,17 +58,22 @@ if (lastPageVersion) {
           page_banner_type
         WHERE code = '${structure.getString("type")}'
       `);
+      const bannerData = _val.map()
+        .set("title", structure.getString("title"))
+        .set("content", structure.getString("content"))
+        .set("type_id", newSectionType.getInt("id"))
+        .set("page_version_id", newPageVersion)
+        .set("sorter", structure.getInt("sorter", 0));
 
-      const bannerId = _db.insert(
-        "page_banner",
-        _val
-          .map()
-          .set("title", structure.getString("title"))
-          .set("content", structure.getString("content"))
-          .set("type_id", newSectionType.getInt("id"))
-          .set("page_version_id", newPageVersion)
-          .set("sorter", structure.getInt("sorter", 0))
-      );
+      if (image) {
+        bannerData.set("image", image);
+      }
+
+      const bannerId = _db.insert("page_banner", bannerData);
+
+      if (image) {
+        structuresToPublishImages.push(bannerId);
+      }
 
       for (const action of bannerActions) {
         const dbAction = _db.get("action", action.getString("uid"));
@@ -70,8 +89,8 @@ if (lastPageVersion) {
         }
       }
     } else if (sectionType === "content") {
+      _log.info(sectionType, structure.getString("type"))
       const contentActions = structure.getList("actions", _val.list());
-
       const newSectionType = _db.queryFirst(`
         SELECT
           *
@@ -79,17 +98,22 @@ if (lastPageVersion) {
           page_content_type
         WHERE code = '${structure.getString("type")}'
       `);
+      const contentData = _val.map()
+        .set("title", structure.getString("title"))
+        .set("content", structure.getString("content"))
+        .set("type_id", newSectionType.getInt("id"))
+        .set("page_version_id", newPageVersion)
+        .set("sorter", 0)
 
-      const contentId = _db.insert(
-        "page_content",
-        _val
-          .map()
-          .set("title", structure.getString("title"))
-          .set("content", structure.getString("content"))
-          .set("type_id", newSectionType.getInt("id"))
-          .set("page_version_id", newPageVersion)
-          .set("sorter", 0)
-      );
+      if (image) {
+        contentData.set("image", image);
+      }
+
+      const contentId = _db.insert("page_content", contentData);
+
+      if (image) {
+        structuresToPublishImages.push(contentId);
+      }
 
       for (const action of contentActions) {
         const dbAction = _db.get("action", action.getString("uid"));
@@ -113,7 +137,8 @@ if (lastPageVersion) {
         .set("image_title", structure.getString("image_title"))
         .set("image_alt", structure.getString("image_alt"))
 
-      if (structures.getString("type")) {
+      if (structure.getString("type")) {
+        _log.info(sectionType, structure.getString("type"))
         const dbListingType = _db.queryFirst(
           `
             SELECT
@@ -121,7 +146,7 @@ if (lastPageVersion) {
             FROM page_listing_type
             WHERE code = ?
           `,
-          structures.getString("type")
+          structure.getString("type")
         );
 
         if (dbListingType) {
@@ -129,22 +154,44 @@ if (lastPageVersion) {
         }
       }
 
-      const listingID = _db.insert("page_listing", listingData);
+      if (image) {
+        listingData.set("image", image);
+      }
+
+      const listingId = _db.insert("page_listing", listingData);
+
+      if (image) {
+        structuresToPublishImages.push(listingId);
+      }
 
       for (const listingItem of listingItems) {
-        _db.insert(
-          "page_listing_item",
-          _val.map()
-            .set("page_listing_id", listingID)
-            .set("title", listingItem.getString("title"))
-            .set("content", listingItem.getString("content"))
-            .set("link", listingItem.getString("link"))
-            .set("sorter", listingItem.getString("sorter"))
-            .set("image_title", listingItem.getString("image_title"))
-            .set("image_alt", listingItem.getString("image_alt"))
-        );
+        let listingItemImage = null;
+
+        if (listingItem.getString("image") !== "") {
+          listingItemImage = listingItem.getFile("image");
+        }
+
+        const listingItemData = _val.map()
+          .set("page_listing_id", listingId)
+          .set("title", listingItem.getString("title"))
+          .set("content", listingItem.getString("content"))
+          .set("link", listingItem.getString("link"))
+          .set("sorter", listingItem.getString("sorter"))
+          .set("image_title", listingItem.getString("image_title"))
+          .set("image_alt", listingItem.getString("image_alt"))
+
+        if (listingItemImage) {
+          listingItemData.set("image", listingItemImage);
+        }
+
+        const listingItemId = _db.insert("page_listing_item", listingItemData);
+
+        if (listingItemImage) {
+          imagesToPublish["listing_item"].push(listingItemId);
+        }
       }
     } else if (sectionType === "functionality") {
+      _log.info(sectionType, structure.getString("type"))
       const dbFunctionalityType = _db.queryFirst(
         `
           SELECT
@@ -156,15 +203,22 @@ if (lastPageVersion) {
       );
 
       if (dbFunctionalityType) {
-        _db.insert(
-          "page_functionality",
-          _val.map()
-            .set("page_version_id", newPageVersion)
-            .set("type_id", dbFunctionalityType.getInt("id"))
-            .set("title", structure.getString("title"))
-            .set("content", structure.getString("content"))
-            .set("sorter", structure.getInt("sorter", 0))
-        );
+        const functionalityData = _val.map()
+          .set("page_version_id", newPageVersion)
+          .set("type_id", dbFunctionalityType.getInt("id"))
+          .set("title", structure.getString("title"))
+          .set("content", structure.getString("content"))
+          .set("sorter", structure.getInt("sorter", 0));
+
+        if (image) {
+          functionalityData.set("image", image);
+        }
+
+        const functionlityId = _db.insert("page_functionality", functionalityData);
+
+        if (image) {
+          structuresToPublishImages.push(functionlityId);
+        }
       }
     }
 
@@ -173,6 +227,42 @@ if (lastPageVersion) {
     } else if (status === "to_update") {
       
     }*/
+  }
+
+  for (const key in imagesToPublish) {
+    const structuresIdsToPublishImages = imagesToPublish[key];
+
+    if (structuresIdsToPublishImages.length == 0) {
+      continue;
+    }
+
+    const dbStructures = _db.query(
+      `
+        SELECT
+          *
+        FROM page_${key}
+        WHERE id IN (${structuresIdsToPublishImages.map(() => "?").join(",")})
+      `,
+      structuresIdsToPublishImages
+    );
+
+    for (const dbStructure of dbStructures) {
+      const baseImageDir = `${_app.getPathBase()}/website/public/images`;
+      let finalImageDir = `${baseImageDir}/${key}`;
+
+      const storage = _storage.database(`page_${key}`, "image", dbStructure.getString("image"));
+      const file = storage.file();
+
+      if (file.exists()) {
+        const folder = _app.folder(finalImageDir);
+
+        if (!folder.exists()) {
+          folder.mkdir();
+        }
+
+        file.save(`${finalImageDir}/${dbStructure.getString("image")}`);
+      }
+    }
   }
 
   _out.json(
