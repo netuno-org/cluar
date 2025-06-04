@@ -170,13 +170,13 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
 
   useEffect(() => {
     if (pageData) {
-      if (pageData.image) {
+      if (pageData.social_image) {
         setFileList([
           {
             url:
-              pageData.image.indexOf("base64") === -1
-                ? `/cluar/images/${pageData.section}/${pageData.image}`
-                : pageData.image,
+              pageData.social_image.indexOf("base64") === -1
+                ? `/cluar/images/page/${pageData.social_image}`
+                : pageData.social_image,
           },
         ]);
       }

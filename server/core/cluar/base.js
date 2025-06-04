@@ -167,6 +167,7 @@ cluar.base.pages = ({publish = false}) => {
           .set("menu_title", dbPage.getString("menu_title"))
           .set("sorter", dbPage.getInt("sorter"))
           .set("structure", null)
+          .set("social_image", dbPage.getString("social_image"))
           .set("page_version_uid", dbPage.getString("page_version_uid"))
       );
 

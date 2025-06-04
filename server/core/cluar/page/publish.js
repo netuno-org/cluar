@@ -1,4 +1,4 @@
-cluar.page.publish = (dbPage)=> {
+cluar.page.publish = (dbPage) => {
   //_log.debug("publish", dbPage);
   const dbPageStatus = _db.queryFirst(`
     SELECT * FROM page_status WHERE page_status.code = 'published'
@@ -30,7 +30,7 @@ cluar.page.publish = (dbPage)=> {
    *
    */
 
-  
+
   const dbContents = _db.query(`
             SELECT
                 content.id,
@@ -49,8 +49,8 @@ cluar.page.publish = (dbPage)=> {
                 AND page_content_type.active = TRUE
                 AND content.active = TRUE
                 AND content.page_version_id = ${dbPage.getInt(
-                  "page_version_id"
-                )}
+    "page_version_id"
+  )}
             `);
 
   for (const dbContent of dbContents) {
@@ -67,7 +67,7 @@ cluar.page.publish = (dbPage)=> {
         .set("image_title", dbContent.getString("image_title"))
         .set("image_max_width", dbContent.getString("image_max_width"))
         .set("sorter", dbContent.getInt("sorter"))
-      .set("actions", cluar.actions("content", dbContent.getInt("id")))
+        .set("actions", cluar.actions("content", dbContent.getInt("id")))
     );
     // if (settings.images === true) {
     //   cluar.publishImage("content", dbContent.getString("image"))
@@ -148,8 +148,8 @@ cluar.page.publish = (dbPage)=> {
                 AND page_listing_type.active = TRUE
                 AND listing.active = TRUE
                 AND listing.page_version_id = ${dbPage.getInt(
-                  "page_version_id"
-                )}
+    "page_version_id"
+  )}
             `);
   for (const dbListing of dbListings) {
     const items = _val.list();
@@ -158,8 +158,8 @@ cluar.page.publish = (dbPage)=> {
                     uid, title, content, image, image_alt, image_title, sorter, link
                 FROM page_listing_item
                 WHERE page_listing_id = ${dbListing.getInt(
-                  "id"
-                )} AND active = TRUE
+      "id"
+    )} AND active = TRUE
                 `);
     for (const dbItem of dbItems) {
       items.add(
@@ -218,8 +218,8 @@ cluar.page.publish = (dbPage)=> {
                 AND page_functionality_type.active = TRUE
                 AND functionality.active = TRUE
                 AND functionality.page_version_id = ${dbPage.getInt(
-                  "page_version_id"
-                )}
+    "page_version_id"
+  )}
             `);
   for (const dbFunctionality of dbFunctionalities) {
     structure.add(
@@ -270,6 +270,13 @@ cluar.page.publish = (dbPage)=> {
     }
   );
 
+  if (dbPage.getString("social_image") != "") {
+    /**
+     * PUBLISH SOCIAL IMAGE IN PRODUCTION
+     */
+    cluar.publishPageSocialImage(dbPage.getString("social_image"));
+  }
+
   if (!_env.is("dev")) {
     const basePath = `/website/dist`;
     const locale = _db.queryFirst(`SELECT * FROM language WHERE code = ?`, dbPage.getString("language")).getString("locale");
@@ -283,13 +290,6 @@ cluar.page.publish = (dbPage)=> {
       const bodyElement = HTMLIndexDocument.select("body").first();
 
       if (headElement && bodyElement) {
-        if (dbPage.getString("social_image") != "") {
-          /**
-           * PUBLISH SOCIAL IMAGE IN PRODUCTION
-           */
-          cluar.publishPageSocialImage(dbPage.getString("social_image"));
-        }
-
         const removeNewLineRegex = /(\r\n|\r|\n)/g;
 
         const pageTitle = dbPage.getString("title");
