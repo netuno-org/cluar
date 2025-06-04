@@ -17,7 +17,7 @@ function Banner({ section, type, image, image_title, image_alt, title, content, 
         style={{
           backgroundImage:
             image.indexOf("base64") === -1
-              ? `url(/images/${section}/${image})`
+              ? `url(/cluar/images/${section}/${image})`
               : `url(${image})`,
           backgroundPositionX: backgroundPositionX,
           backgroundPositionY: backgroundPositionY,

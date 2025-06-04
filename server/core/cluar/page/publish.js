@@ -287,7 +287,7 @@ cluar.page.publish = (dbPage)=> {
           /**
            * PUBLISH SOCIAL IMAGE IN PRODUCTION
            */
-          cluar.publishSocialImage(dbPage.getString("social_image"));
+          cluar.publishPageSocialImage(dbPage.getString("social_image"));
         }
 
         const removeNewLineRegex = /(\r\n|\r|\n)/g;
@@ -318,7 +318,7 @@ cluar.page.publish = (dbPage)=> {
 
         headElement.prepend(`<meta property="og:title" content="${pageTitle}" />`);
         headElement.prepend(`<meta property="og:description" content="${dbPage.getString("social_description", "")}" />`);
-        headElement.prepend(`<meta property="og:image" content="images/${dbPage.getString("social_image", "")}"/>`);
+        headElement.prepend(`<meta property="og:image" content="/cluar/images/page/${dbPage.getString("social_image", "")}"/>`);
         headElement.prepend(`<meta property="og:site_name" content="${websiteConfig.getString("name", "")}" />`);
         headElement.prepend(`<meta property="og:url" content="${websiteConfig.getString("url", "") + dbPage.getString("link")}" />`);
         bodyElement.prepend(htmlContent);

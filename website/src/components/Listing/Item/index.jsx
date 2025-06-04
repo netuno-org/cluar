@@ -12,14 +12,14 @@ function Item({ section, type, image, image_title, image_alt, title, content, li
           <span>{title}</span>
           <div
             className="listing__item__bgimage"
-            style={{ backgroundImage: `url('/images/${section}/${image}')` }}
+            style={{ backgroundImage: `url('/cluar/images/${section}/${image}')` }}
           ></div>
         </a>
       </Col>
     );
   } else if(type === 'OTHER-CUSTOM-TYPE-HERE') {
     layout = (
-      <li className={`listing__item__${type}`} style={{ backgroundImage: `url(/images/${section}/${image})` }}>
+      <li className={`listing__item__${type}`} style={{ backgroundImage: `url(/cluar/images/${section}/${image})` }}>
         <div className={`listing__item__${type}__content`}>
           <h1>{title}</h1>
           <div dangerouslySetInnerHTML={{ __html: content }}></div>
@@ -31,7 +31,7 @@ function Item({ section, type, image, image_title, image_alt, title, content, li
       <li className="listing__item">
         <div className={`listing__item`}>
           <h1>{title}</h1>
-          <img src={`/images/${section}/${image}`}  alt={ image_alt } title={ image_title } />
+          <img src={`/cluar/images/${section}/${image}`}  alt={ image_alt } title={ image_title } />
           <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </div>
       </li>

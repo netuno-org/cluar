@@ -1,7 +1,7 @@
 cluar.dataItemSavedWithImage = ()=> {
   const section = _dataItem.getTable()
 
-  const folder = _app.folder(`${cluar.base()}/images/${section}`)
+  const folder = _app.folder(`${cluar.base()}/cluar/images/${section}`)
   
   if (!folder.exists()) {
     folder.mkdir()

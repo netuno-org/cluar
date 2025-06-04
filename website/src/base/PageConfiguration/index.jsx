@@ -175,7 +175,7 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
           {
             url:
               pageData.image.indexOf("base64") === -1
-                ? `/images/${pageData.section}/${pageData.image}`
+                ? `/cluar/images/${pageData.section}/${pageData.image}`
                 : pageData.image,
           },
         ]);

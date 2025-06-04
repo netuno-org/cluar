@@ -2,9 +2,9 @@ cluar.publishImage = (section, fileName)=> {
   if (fileName == "") {
     return;
   }
-  const folder = _app.folder(`${cluar.base()}/images/${section}`)
+  const folder = _app.folder(`${cluar.base()}/cluar/images/${section}`)
   if (!folder.exists()) {
-    folder.mkdir()
+    folder.mkdirs()
   }
   const websiteFile = _app.file(`${folder.path()}/${fileName}`)
   const databaseFile = _storage.database(section, "image", fileName).file()
@@ -17,13 +17,13 @@ cluar.publishImage = (section, fileName)=> {
   }
 }
 
-cluar.publishSocialImage = (fileName)=> {
+cluar.publishPageSocialImage = (fileName)=> {
   if (fileName == "") {
     return;
   }
-  const folder = _app.folder(`/website/dist/images`)
+  const folder = _app.folder(`${cluar.base()}/cluar/images/page`)
   if (!folder.exists()) {
-    folder.mkdir()
+    folder.mkdirs()
   }
   const websiteFile = _app.file(`${folder.path()}/${fileName}`)
   const databaseFile = _storage.database("page", "social_image", fileName).file()
