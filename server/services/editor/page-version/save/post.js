@@ -1,3 +1,5 @@
+// _core: cluar/main
+
 const page = _req.getString("page");
 const structures = _req.get("structures");
 
@@ -247,21 +249,7 @@ if (lastPageVersion) {
     );
 
     for (const dbStructure of dbStructures) {
-      const baseImageDir = `${_app.getPathBase()}/website/public/images`;
-      let finalImageDir = `${baseImageDir}/${key}`;
-
-      const storage = _storage.database(`page_${key}`, "image", dbStructure.getString("image"));
-      const file = storage.file();
-
-      if (file.exists()) {
-        const folder = _app.folder(finalImageDir);
-
-        if (!folder.exists()) {
-          folder.mkdir();
-        }
-
-        file.save(`${finalImageDir}/${dbStructure.getString("image")}`);
-      }
+      cluar.publishImage(`page_${key}`, dbStructure.getString("image"));
     }
   }
 
