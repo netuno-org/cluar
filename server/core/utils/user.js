@@ -43,7 +43,7 @@ const getUserOrganizations = () => {
     const dbPeople = _db.queryFirst(`SELECT id FROM people WHERE people_user_id = ?`, _user.id());
 
     const dbOrganizations = _db.query(`
-        WITH RECURSIVE user_orgs AS (
+        WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (
             SELECT 
                 org.name, 
                 org.id, 

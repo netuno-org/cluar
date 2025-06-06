@@ -63,7 +63,7 @@ const query = _db.form("people")
 .get("people.uid")
 .get("people.email")
 .get("netuno_user.id", "netuno_user_id")
-.get("netuno_user.user")
+.get('netuno_user."user"')
 .get("netuno_user.active")
 .group(
     'people.id',

@@ -55,7 +55,7 @@ const dbPeople = _db.queryFirst(`
 `, _user.id());
 
 const dbOrganizations = _db.query(`
-    WITH RECURSIVE user_orgs AS (
+    WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (
         SELECT 
             org.name, 
             org.id, 
@@ -121,7 +121,7 @@ for (const dbOrganization of dbOrganizations) {
 }
 
 const dbOrganizationTotal = _db.queryFirst(`
-    WITH RECURSIVE user_orgs AS (
+    WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (
         SELECT 
             org.name, 
             org.id, 
