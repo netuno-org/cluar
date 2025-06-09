@@ -73,7 +73,7 @@ const BannerEditor = ({ sectionData, form }) => {
           {
             url:
               sectionData.image.indexOf("base64") === -1
-                ? `/cluar/images/${sectionData.section}/${sectionData.image}`
+                ? `/cluar/images/page_${sectionData.section}/${sectionData.image}`
                 : sectionData.image,
           },
         ]);
