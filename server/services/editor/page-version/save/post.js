@@ -46,7 +46,10 @@ if (lastPageVersion) {
     const structuresToPublishImages = imagesToPublish[sectionType];
     let image = null;
 
-    if (structure.getString("image") !== "") {
+    if (
+      structure.getString("image") !== "" &&
+      structure.getString("image")?.includes("base64")
+    ) {
       image = structure.getFile("image");
     }
 
@@ -68,13 +71,20 @@ if (lastPageVersion) {
         .set("page_version_id", newPageVersion)
         .set("sorter", structure.getInt("sorter", 0));
 
-      if (image) {
+      if (structure.getString("image")?.includes("base64")) {
         bannerData.set("image", image);
+      } else if (structure.getString("image")) {
+        const imageFile = _storage
+          .database("page_banner", "image", structure.getString("image"))
+          .file();
+        if (imageFile.exists()) {
+          bannerData.set("image", imageFile);
+        }
       }
 
       const bannerId = _db.insert("page_banner", bannerData);
 
-      if (image) {
+      if (structure.getString("image")) {
         structuresToPublishImages.push(bannerId);
       }
 
