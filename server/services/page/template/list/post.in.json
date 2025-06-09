@@ -1,0 +1,14 @@
+{
+  "summary": "List Pages templates",
+  "description": "List pages templates",
+  "tags": [
+    "Page"
+  ],
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "descriptio": "Language code to access info.json properties"
+    }
+  }
+}
