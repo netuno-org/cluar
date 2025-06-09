@@ -51,7 +51,7 @@ if (lastPageVersion) {
     }
 
     if (sectionType === "banner") {
-      _log.info(sectionType, structure.getString("type"))
+      _log.info(sectionType, structure.getString("type"));
       const bannerActions = structure.getList("actions", _val.list());
       const newSectionType = _db.queryFirst(`
         SELECT
@@ -60,7 +60,8 @@ if (lastPageVersion) {
           page_banner_type
         WHERE code = '${structure.getString("type")}'
       `);
-      const bannerData = _val.map()
+      const bannerData = _val
+        .map()
         .set("title", structure.getString("title"))
         .set("content", structure.getString("content"))
         .set("type_id", newSectionType.getInt("id"))
@@ -83,15 +84,16 @@ if (lastPageVersion) {
         if (dbAction) {
           _db.insert(
             "page_banner_action",
-            _val.map()
+            _val
+              .map()
               .set("page_banner_id", bannerId)
               .set("action_id", dbAction.getInt("id"))
-              .set("sorter", action.getInt("sorter"))
+              .set("sorter", action.getInt("sorter", 0))
           );
         }
       }
     } else if (sectionType === "content") {
-      _log.info(sectionType, structure.getString("type"))
+      _log.info(sectionType, structure.getString("type"));
       const contentActions = structure.getList("actions", _val.list());
       const newSectionType = _db.queryFirst(`
         SELECT
@@ -100,12 +102,13 @@ if (lastPageVersion) {
           page_content_type
         WHERE code = '${structure.getString("type")}'
       `);
-      const contentData = _val.map()
+      const contentData = _val
+        .map()
         .set("title", structure.getString("title"))
         .set("content", structure.getString("content"))
         .set("type_id", newSectionType.getInt("id"))
         .set("page_version_id", newPageVersion)
-        .set("sorter", 0)
+        .set("sorter", structure.getString("sorter"));
 
       if (image) {
         contentData.set("image", image);
@@ -123,7 +126,8 @@ if (lastPageVersion) {
         if (dbAction) {
           _db.insert(
             "page_content_action",
-            _val.map()
+            _val
+              .map()
               .set("page_content_id", contentId)
               .set("action_id", dbAction.getInt("id"))
               .set("sorter", action.getInt("sorter"))
@@ -132,15 +136,16 @@ if (lastPageVersion) {
       }
     } else if (sectionType === "listing") {
       const listingItems = structure.getList("items", _val.list());
-      const listingData = _val.map()
+      const listingData = _val
+        .map()
         .set("page_version_id", newPageVersion)
         .set("title", structure.getString("title"))
         .set("sorter", structure.getInt("sorter", 0))
         .set("image_title", structure.getString("image_title"))
-        .set("image_alt", structure.getString("image_alt"))
+        .set("image_alt", structure.getString("image_alt"));
 
       if (structure.getString("type")) {
-        _log.info(sectionType, structure.getString("type"))
+        _log.info(sectionType, structure.getString("type"));
         const dbListingType = _db.queryFirst(
           `
             SELECT
@@ -173,14 +178,15 @@ if (lastPageVersion) {
           listingItemImage = listingItem.getFile("image");
         }
 
-        const listingItemData = _val.map()
+        const listingItemData = _val
+          .map()
           .set("page_listing_id", listingId)
           .set("title", listingItem.getString("title"))
           .set("content", listingItem.getString("content"))
           .set("link", listingItem.getString("link"))
           .set("sorter", listingItem.getString("sorter"))
           .set("image_title", listingItem.getString("image_title"))
-          .set("image_alt", listingItem.getString("image_alt"))
+          .set("image_alt", listingItem.getString("image_alt"));
 
         if (listingItemImage) {
           listingItemData.set("image", listingItemImage);
@@ -193,7 +199,7 @@ if (lastPageVersion) {
         }
       }
     } else if (sectionType === "functionality") {
-      _log.info(sectionType, structure.getString("type"))
+      _log.info(sectionType, structure.getString("type"));
       const dbFunctionalityType = _db.queryFirst(
         `
           SELECT
@@ -205,7 +211,8 @@ if (lastPageVersion) {
       );
 
       if (dbFunctionalityType) {
-        const functionalityData = _val.map()
+        const functionalityData = _val
+          .map()
           .set("page_version_id", newPageVersion)
           .set("type_id", dbFunctionalityType.getInt("id"))
           .set("title", structure.getString("title"))
@@ -216,7 +223,10 @@ if (lastPageVersion) {
           functionalityData.set("image", image);
         }
 
-        const functionlityId = _db.insert("page_functionality", functionalityData);
+        const functionlityId = _db.insert(
+          "page_functionality",
+          functionalityData
+        );
 
         if (image) {
           structuresToPublishImages.push(functionlityId);
@@ -253,15 +263,8 @@ if (lastPageVersion) {
     }
   }
 
-  _out.json(
-    _val.map()
-      .set("result", true)
-      .set("data", newPageVersion)
-  );
+  _out.json(_val.map().set("result", true).set("data", newPageVersion));
 } else {
   _header.status(409);
-  _out.json(
-    _val.map()
-      .set("error", "page-has-no-previous-version")
-  );
+  _out.json(_val.map().set("error", "page-has-no-previous-version"));
 }

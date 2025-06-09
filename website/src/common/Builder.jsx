@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 import { Alert, Row, Col, Button, message } from "antd";
 
@@ -68,11 +68,21 @@ function Builder({ page }) {
     const index = structure.findIndex((item) => item.uid === current);
 
     if (index !== -1) {
-      const newStructure = [...structure];
-      newStructure.splice(index + 1, 0, data);
-      setStructure(newStructure);
+      const structureBefore = structure[index];
+      let newStructure = [...structure];
+      newStructure.splice(index + 1, 0, {
+        ...data,
+        sorter: structureBefore.sorter ? structureBefore.sorter + 1 : 10,
+      });
+      newStructure = newStructure
+        .sort((a, b) => a.sorter - b.sorter)
+        .map((item, index) => ({ ...item, sorter: (index + 1) * 10 }));
+      setStructure([...newStructure]);
     } else {
-      setStructure([data, ...structure]);
+      const newStructure = [{ ...data, sorter: 1 }, ...structure]
+        .sort((a, b) => a.sorter - b.sorter)
+        .map((item, index) => ({ ...item, sorter: (index + 1) * 10 }));
+      setStructure([newStructure]);
     }
     setHasDiff(true);
   };
@@ -81,9 +91,13 @@ function Builder({ page }) {
     const index = structure.findIndex((item) => item.uid === current);
 
     if (index !== -1) {
-      const newStructure = [...structure];
+      let newStructure = [...structure];
       newStructure[index] = data;
-      setStructure(newStructure);
+      newStructure = newStructure
+        .sort((a, b) => a.sorter - b.sorter)
+        .map((item, index) => ({ ...item, sorter: (index + 1) * 10 }));
+
+      setStructure([...newStructure]);
       setHasDiff(true);
     }
   };
@@ -131,75 +145,6 @@ function Builder({ page }) {
     });
   }, [structure]);
 
-  const components = [];
-  for (const item of structure) {
-    const { uid } = item;
-    if (item.status !== "to_remove") {
-      if (item.section === "banner") {
-        components.push(
-          <PageSection
-            sectionData={item}
-            onNewSection={(data) => handleAddNewSection(data, uid)}
-            onConfirmChanges={(data) => handleChangeSection(data, uid)}
-            onRemoveSection={(data) => handleChangeSection(data, uid)}
-            editMode={editMode}
-          >
-            <Banner key={uid} {...item} />
-          </PageSection>
-        );
-      } else if (item.section === "content") {
-        components.push(
-          <PageSection
-            sectionData={item}
-            onNewSection={(data) => handleAddNewSection(data, uid)}
-            onConfirmChanges={(data) => handleChangeSection(data, uid)}
-            onRemoveSection={(data) => handleChangeSection(data, uid)}
-            editMode={editMode}
-          >
-            <Content key={uid} {...item} />
-          </PageSection>
-        );
-      } else if (item.section === "listing") {
-        components.push(
-          <PageSection
-            sectionData={item}
-            onNewSection={(data) => handleAddNewSection(data, uid)}
-            onConfirmChanges={(data) => handleChangeSection(data, uid)}
-            onRemoveSection={(data) => handleChangeSection(data, uid)}
-            editMode={editMode}
-          >
-            <Listing key={uid} {...item} />
-          </PageSection>
-        );
-      } else if (item.section === "functionality") {
-        if (item.type === "contact-form") {
-          components.push(
-            <PageSection
-              sectionData={item}
-              onNewSection={(data) => handleAddNewSection(data, uid)}
-              onConfirmChanges={(data) => handleChangeSection(data, uid)}
-              onRemoveSection={(data) => handleChangeSection(data, uid)}
-              editMode={editMode}
-            >
-              <ContactForm key={uid} {...item} />
-            </PageSection>
-          );
-        } else if (item.type === "contact-map") {
-          components.push(
-            <PageSection
-              sectionData={item}
-              onNewSection={(data) => handleAddNewSection(data, uid)}
-              onConfirmChanges={(data) => handleChangeSection(data, uid)}
-              onRemoveSection={(data) => handleChangeSection(data, uid)}
-              editMode={editMode}
-            >
-              <ContactMap key={uid} {...item} />
-            </PageSection>
-          );
-        }
-      }
-    }
-  }
   if (error) {
     return (
       <main>
@@ -231,7 +176,46 @@ function Builder({ page }) {
         editMode={editMode}
         onNewSection={handleAddNewSection}
       ></PageSection>
-      {components}
+      {structure
+        .filter((item) => item.status !== "to_remove")
+        .map((item) => {
+          let SectionComponent;
+
+          switch (item.section) {
+            case "banner":
+              SectionComponent = <Banner {...item} />;
+              break;
+            case "content":
+              SectionComponent = <Content {...item} />;
+              break;
+            case "listing":
+              SectionComponent = <Listing {...item} />;
+              break;
+            case "functionality":
+              if (item.type === "contact-form") {
+                SectionComponent = <ContactForm {...item} />;
+              } else if (item.type === "contact-map") {
+                SectionComponent = <ContactMap {...item} />;
+              }
+              break;
+            default:
+              SectionComponent = null;
+          }
+
+          return (
+            <div key={item.uid}>
+              <PageSection
+                sectionData={item}
+                onNewSection={(data) => handleAddNewSection(data, item.uid)}
+                onConfirmChanges={(data) => handleChangeSection(data, item.uid)}
+                onRemoveSection={(data) => handleChangeSection(data, item.uid)}
+                editMode={editMode}
+              >
+                {SectionComponent}
+              </PageSection>
+            </div>
+          );
+        })}
     </main>
   );
 }

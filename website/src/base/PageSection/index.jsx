@@ -84,6 +84,7 @@ const PageSection = ({
             </div>
           )}
           <SectionEditor
+            key={sectionData?.sorter}
             onClose={() => setOpenEditor(false)}
             open={openEditor}
             sectionData={sectionData}

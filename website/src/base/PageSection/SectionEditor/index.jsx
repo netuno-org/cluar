@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Drawer, Form, Input, Button, Space, message } from "antd";
+import { Drawer, Form, Input, Button, Space, message, InputNumber } from "antd";
 import { RobotOutlined } from "@ant-design/icons";
 import BannerEditor from "../BannerEditor";
 import ListEditor from "../ListEditor";
@@ -47,13 +47,13 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
     }
 
     setGenerating(true);
-    
+
     _service({
       url: "/test",
       method: "POST",
       data: {
         html: form.getFieldValue("content") || "",
-        prompt: aiPrompt
+        prompt: aiPrompt,
       },
       success: (res) => {
         if (res.json.result) {
@@ -70,7 +70,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         console.error("Erro ao gerar conteúdo:", error);
         message.error("Falha ao gerar conteúdo");
         setGenerating(false);
-      }
+      },
     });
   };
 
@@ -81,39 +81,43 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       open={open}
       onClose={onClose}
       width={580}
-      extra={<Button onClick={handleConfirmChanges}>Aplicar</Button>}
+      extra={
+        <Button type="primary" onClick={handleConfirmChanges}>
+          Aplicar
+        </Button>
+      }
     >
       <Form layout="vertical" initialValues={sectionData} form={form}>
         <Form.Item name="title" label="Título">
           <Input />
         </Form.Item>
-        
+
         {isContentSection && (
           <div style={{ marginBottom: 16 }}>
-            <Button 
-              type="primary" 
-              icon={<RobotOutlined />} 
+            <Button
+              type="primary"
+              icon={<RobotOutlined />}
               onClick={() => setShowAIPrompt(!showAIPrompt)}
             >
               {showAIPrompt ? "Esconder AI" : "Assistente AI"}
             </Button>
           </div>
         )}
-        
+
         {isContentSection && showAIPrompt && (
           <Form.Item label="Instruções para IA">
-            <Space style={{ width: '100%' }} direction="vertical">
-              <Input.TextArea 
-                rows={3} 
+            <Space style={{ width: "100%" }} direction="vertical">
+              <Input.TextArea
+                rows={3}
                 value={aiPrompt}
                 onChange={(e) => setAIPrompt(e.target.value)}
                 placeholder="Descreva o que você deseja que a IA gere ou modifique no conteúdo..."
               />
-              <Button 
-                type="primary" 
-                onClick={handleAIGenerate} 
+              <Button
+                type="primary"
+                onClick={handleAIGenerate}
                 loading={generating}
-                style={{ alignSelf: 'flex-end' }}
+                style={{ alignSelf: "flex-end" }}
               >
                 Gerar
               </Button>
@@ -122,9 +126,13 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         )}
 
         <TesteEditor />
-        
+
         <Form.Item name="content" label="Conteúdo">
           <Input.TextArea rows={6} />
+        </Form.Item>
+
+        <Form.Item name="sorter" label="Ordem">
+          <InputNumber style={{ width: "100%" }} />
         </Form.Item>
         <MoreEditor />
       </Form>
