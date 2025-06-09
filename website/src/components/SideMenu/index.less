@@ -1,29 +1,42 @@
-.ant-layout-sider {
-    box-shadow: 0 0 15px #00000026;
-    .ant-menu {
-        li {
-            
-        }
+.page {
+    .reset-ant-layout {
+        padding-top: 0;
+    }
+
+    .dashboard-layout-content {
+        text-align: left !important;
     }
 }
+
+.ant-layout-sider {
+    box-shadow: 0 0 15px #00000026;
+
+    .ant-menu {
+        li {}
+    }
+}
+
 .side-menu {
     width: 100%;
+
     &__user-info {
         width: 100%;
+
         &__content {
             &__logo {
                 margin-bottom: 0.5rem;
 
                 img {
                     width: 100%;
-                    max-width: 60px;
-                    max-height: 60px;
+                    max-width: 50px;
+                    max-height: 50px;
                     border-radius: 100px;
                 }
             }
 
             &__user {
                 padding: 0px 5px 0px 5px;
+
                 span {
                     font-size: 16px !important;
                     color: #737380;
@@ -37,8 +50,9 @@
     }
 
     &__divider {
-        color: #737380;
+        color: #FF6E1A;
         margin-top: 10px;
         margin-bottom: 10px;
+        opacity: 0.5;
     }
 }

@@ -1,12 +1,22 @@
-import React from 'react';
-import { Row, Col } from 'antd';
+import React from "react";
+import { Row, Col } from "antd";
 
-import Actions from '../Actions';
-import Cluar from '../../common/Cluar';
+import Actions from "../Actions";
+import Cluar from "../../common/Cluar";
 
-import './index.less';
+import "./index.less";
 
-function Banner({ section, type, image, image_title, image_alt, title, content, position, actions }) {
+function Banner({
+  section,
+  type,
+  image,
+  image_title,
+  image_alt,
+  title,
+  content,
+  position,
+  actions,
+}) {
   let backgroundPositionX = position.x !== "" ? position.x : "50%";
   let backgroundPositionY = position.y !== "" ? position.y : "50%";
 
@@ -17,7 +27,7 @@ function Banner({ section, type, image, image_title, image_alt, title, content, 
         style={{
           backgroundImage:
             image.indexOf("base64") === -1
-              ? `url(/cluar/images/${section}/${image})`
+              ? `url(/cluar/images/page_${section}/${image})`
               : `url(${image})`,
           backgroundPositionX: backgroundPositionX,
           backgroundPositionY: backgroundPositionY,

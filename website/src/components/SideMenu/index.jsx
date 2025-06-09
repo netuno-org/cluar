@@ -10,7 +10,8 @@ import {
   FontSizeOutlined,
   ApartmentOutlined,
   TeamOutlined,
-  FileOutlined
+  FileOutlined,
+  RollbackOutlined
 } from '@ant-design/icons';
 import {
   Col,
@@ -45,9 +46,21 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
 
   const items = [
     {
+      key: 'profile',
+      label: Cluar.plainDictionary('user-menu-edit-profile'),
+      icon: <UserOutlined />,
+      onClick: () => navigate("/reserved-area/profile"),
+    },
+    {
+      key: 'return',
+      label: Cluar.plainDictionary('Voltar ao site'),
+      icon: <RollbackOutlined />,
+      onClick: () => navigate("/pt/"),
+    },
+    {
       key: '1',
       label: Cluar.plainDictionary('side-menu-options-manage'),
-      icon: <SettingOutlined />,
+      type: 'group',
       children: [
         {
           key: 'pages',
@@ -89,6 +102,13 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         }
       ],
     },
+    {
+      key: 'logout',
+      label: Cluar.plainDictionary('user-menu-sign-out'),
+      icon: <LogoutOutlined />,
+      danger: true,
+      onClick: () => onLogout(),
+    },
   ];
 
   function onLogout() {
@@ -98,15 +118,15 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
 
   const menu = (
     <Menu>
-      <Menu.Item key="1">
+      {/* <Menu.Item key="1">
         <Link to="/reserved-area/profile">
           <EditOutlined />&nbsp;&nbsp;&nbsp;{Cluar.plainDictionary('user-menu-edit-profile')}
-        </Link></Menu.Item>
-      <Menu.Item key="2">
+        </Link></Menu.Item> */}
+      {/* <Menu.Item key="2">
         <Button type="link" onClick={onLogout} danger style={{ padding: "0px" }}>
           <LogoutOutlined /> {Cluar.plainDictionary('user-menu-sign-out')}
         </Button>
-      </Menu.Item>
+      </Menu.Item> */}
     </Menu>
   );
 
