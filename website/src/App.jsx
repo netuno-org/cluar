@@ -4,7 +4,8 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Navigate
+  Navigate,
+  useLocation
 } from "react-router-dom";
 
 import { Provider } from 'react-redux';
@@ -80,51 +81,61 @@ function App() {
 
   console.log("routes", routes);
 
+  const AppContent = () => {
+    const location = useLocation();
+    const isReservedArea = location.pathname.startsWith("/reserved-area");
+    const isLoginPage = location.pathname.startsWith("/login");
+
+    return (
+      <div className="page">
+        <Layout className={(_auth.isLogged() && !isReservedArea) ? "ant-layout--logged" : "reset-ant-layout"}>
+          {!isReservedArea && !isLoginPage && <BaseHeader />}
+          <Content>
+            <Routes>
+              <Route
+                path="/"
+                exact
+                element={
+                  <Navigate to={`/${Cluar.currentLanguage().locale}/`} />
+                }
+              />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/recovery" element={<Recovery />} />
+              <Route path="/reserved-area" element={<ReservedArea />}>
+                <Route path="profile" element={<Profile />} />
+                <Route path="pages" element={<Pages />} />
+                <Route path="users" element={<Users />} />
+                <Route path="languages" element={<Languages />} />
+                <Route path="configuration" element={<Configuration />} />
+                <Route path="dictionary" element={<Dictionary />} />
+                <Route path="organization" element={<Organization />} />
+              </Route>
+              {routes}
+              <Route element={<NotFound />} />
+            </Routes>
+          </Content>
+          {!isReservedArea && !isLoginPage && <BaseFooter />}
+          <BaseCookies />
+        </Layout>
+      </div>
+    );
+  };
+
+
   return (
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#1178FF",
+          colorPrimary: "#FF6E1A",
           fontSize: 16,
-          borderRadius: 2,
+          borderRadius: 7,
         },
       }}
     >
       <Provider store={Store}>
         <BrowserRouter>
-          
-          <div className="page">
-            <Layout className={_auth.isLogged() && "ant-layout--logged"}>
-              <BaseHeader />
-              <Content>
-                <Routes>
-                  <Route
-                    path="/"
-                    exact
-                    element={
-                      <Navigate to={`/${Cluar.currentLanguage().locale}/`} />
-                    }
-                  />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/recovery" element={<Recovery />} />
-                  <Route path="/reserved-area" element={<ReservedArea />}> 
-                      <Route path="profile" element={<Profile/>}/>
-                      <Route path="pages" element={<Pages/>}/>
-                      <Route path="users" element={<Users/>}/>
-                      <Route path="languages" element={<Languages/>}/>
-                      <Route path="configuration" element={<Configuration/>}/>
-                      <Route path="dictionary" element={<Dictionary/>}/>
-                      <Route path="organization" element={<Organization/>}/>
-                  </Route>
-                  {routes}
-                  <Route element={<NotFound />} />
-                </Routes>
-              </Content>
-              <BaseFooter />
-              <BaseCookies />
-            </Layout>
-          </div>
+          <AppContent />
         </BrowserRouter>
       </Provider>
     </ConfigProvider>
