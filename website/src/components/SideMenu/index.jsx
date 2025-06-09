@@ -10,7 +10,8 @@ import {
   FontSizeOutlined,
   ApartmentOutlined,
   TeamOutlined,
-  FileOutlined
+  FileOutlined,
+  RollbackOutlined
 } from '@ant-design/icons';
 import {
   Col,
@@ -49,6 +50,12 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       label: Cluar.plainDictionary('user-menu-edit-profile'),
       icon: <UserOutlined />,
       onClick: () => navigate("/reserved-area/profile"),
+    },
+    {
+      key: 'return',
+      label: Cluar.plainDictionary('Voltar ao site'),
+      icon: <RollbackOutlined />,
+      onClick: () => navigate("/pt/"),
     },
     {
       key: '1',
