@@ -178,7 +178,7 @@ function Builder({ page }) {
       ></PageSection>
       {structure
         .filter((item) => item.status !== "to_remove")
-        .map((item) => {
+        .map((item, index) => {
           let SectionComponent;
 
           switch (item.section) {
@@ -210,6 +210,21 @@ function Builder({ page }) {
                 onConfirmChanges={(data) => handleChangeSection(data, item.uid)}
                 onRemoveSection={(data) => handleChangeSection(data, item.uid)}
                 editMode={editMode}
+                sortArrowsVisible={true}
+                disableSortUp={index === 0}
+                disableSortDown={index === structure.length - 1}
+                onSortDown={(data) =>
+                  handleChangeSection(
+                    { ...data, sorter: data.sorter + 11 },
+                    item.uid
+                  )
+                }
+                onSortUp={(data) =>
+                  handleChangeSection(
+                    { ...data, sorter: data.sorter - 11 },
+                    item.uid
+                  )
+                }
               >
                 {SectionComponent}
               </PageSection>

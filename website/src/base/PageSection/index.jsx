@@ -5,6 +5,8 @@ import {
   EditOutlined,
   PlusCircleOutlined,
   DeleteOutlined,
+  ArrowDownOutlined,
+  ArrowUpOutlined,
 } from "@ant-design/icons";
 
 import SectionEditor from "./SectionEditor";
@@ -18,6 +20,11 @@ const PageSection = ({
   onConfirmChanges,
   onRemoveSection,
   editMode,
+  sortArrowsVisible,
+  onSortUp,
+  onSortDown,
+  disableSortUp = false,
+  disableSortDown = false,
 }) => {
   const [openEditor, setOpenEditor] = useState(false);
   const [newSectionVisible, setNewSectionVisible] = useState(false);
@@ -95,6 +102,14 @@ const PageSection = ({
               newSectionVisible && "page-section__new--visible"
             }`}
           >
+            {sortArrowsVisible && (
+              <Button
+                onClick={() => onSortDown(sectionData)}
+                disabled={disableSortDown}
+              >
+                <ArrowDownOutlined />
+              </Button>
+            )}
             <Popover
               title="Nova seção"
               trigger="click"
@@ -105,6 +120,14 @@ const PageSection = ({
                 <PlusCircleOutlined />
               </Button>
             </Popover>
+            {sortArrowsVisible && (
+              <Button
+                onClick={() => onSortUp(sectionData)}
+                disabled={disableSortUp}
+              >
+                <ArrowUpOutlined />
+              </Button>
+            )}
           </div>
         </div>
       )}
