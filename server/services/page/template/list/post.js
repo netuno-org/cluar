@@ -1,33 +1,35 @@
 const language = _req.getString("language");
 
-const templatesPath = _app.getPathBase() + "/website/src/templates";
-const command = _os.command("ls " + templatesPath);
-
-const entries = command.getOutput().split("\n");
-
 const templates = [];
-for (const entrie of entries) {
-  const templatePath = `${templatesPath}/${entrie}/info.json`;
+const templatesPath = _app.getPathBase() + "/website/src/templates";
 
-  if (!_app.isFile(templatePath)) {
-    continue;
-  }
+if (_app.isFolder(templatesPath)) {
+  const templatesFolder = _app.getFolder(templatesPath);
+  const templatesFolders = templatesFolder.list();
 
-  const file = _app.file(templatePath);
-  const reader = file.bufferedReader()
+  templatesFolders.forEach((templateFolder) => {
+    const templateInfoPath = `${templateFolder.getFullPath()}/info.json`;
 
-  let fileContent = "";
-  let line = reader.readLine();
-  while (line) {
-    fileContent += line;
-    line = reader.readLine();
-  }
+    if (!_app.isFile(templateInfoPath)) {
+      return;
+    }
 
-  reader.close();
+    const file = _app.file(templateInfoPath);
+    const reader = file.bufferedReader()
 
-  templates.push({
-    name: entrie,
-    info: _val.fromJSON(fileContent).getValues(language)
+    let fileContent = "";
+    let line = reader.readLine();
+    while (line) {
+      fileContent += line;
+      line = reader.readLine();
+    }
+
+    reader.close();
+
+    templates.push({
+      name: templateFolder.getName(),
+      info: _val.fromJSON(fileContent).getValues(language)
+    });
   });
 }
 
