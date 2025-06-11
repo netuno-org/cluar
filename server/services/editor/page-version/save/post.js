@@ -273,7 +273,11 @@ if (lastPageVersion) {
     }
   }
 
-  _out.json(_val.map().set("result", true).set("data", newPageVersion));
+  const newPageVersionUID = _db.get("page_version", newPageVersion);
+
+  _out.json(
+    _val.map().set("result", true).set("data", newPageVersionUID.get("uid"))
+  );
 } else {
   _header.status(409);
   _out.json(_val.map().set("error", "page-has-no-previous-version"));
