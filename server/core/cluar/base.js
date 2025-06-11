@@ -122,7 +122,8 @@ cluar.base.pages = ({publish = false}) => {
       page.menu,
       page.menu_title,
       page.sorter,
-      page.social_image
+      page.social_image,
+      page.template
     FROM language
       INNER JOIN page ON language.id = page.language_id
     INNER JOIN page_version ON page_version.page_id = page.id 
@@ -169,6 +170,7 @@ cluar.base.pages = ({publish = false}) => {
           .set("structure", null)
           .set("social_image", dbPage.getString("social_image"))
           .set("page_version_uid", dbPage.getString("page_version_uid"))
+          .set("template", dbPage.getString("template"))
       );
 
     if (publish) {
