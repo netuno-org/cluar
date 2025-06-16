@@ -253,36 +253,41 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
   }, [pageData]);
 
   useEffect(() => {
-    if (searchParams.get("version")) {
-      _service({
-        url: "/editor/page-version",
-        method: "GET",
-        data: {
-          version: searchParams.get("version"),
-        },
-        success: (res) => {
-          if (res.json.result) {
-            setStructure(res.json.structure);
-          }
-        },
-        fail: (res) => {
-          console.log(res);
-        },
-      });
-    } else {
-      fetch(
-        `/cluar/structures/${pageData.uid}.json?time=${new Date().getTime()}`
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setError(false);
-          setStructure(data);
-          setHasDiff(false);
-        })
-        .catch((error) => {
-          setError(true);
-          console.error("Failed to load page structure: ", { pageData, error });
+    if (pageData) {
+      if (searchParams.get("version")) {
+        _service({
+          url: "/editor/page-version",
+          method: "GET",
+          data: {
+            version: searchParams.get("version"),
+          },
+          success: (res) => {
+            if (res.json.result) {
+              setStructure(res.json.structure);
+            }
+          },
+          fail: (res) => {
+            console.log(res);
+          },
         });
+      } else {
+        fetch(
+          `/cluar/structures/${pageData.uid}.json?time=${new Date().getTime()}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            setError(false);
+            setStructure(data);
+            setHasDiff(false);
+          })
+          .catch((error) => {
+            setError(true);
+            console.error("Failed to load page structure: ", {
+              pageData,
+              error,
+            });
+          });
+      }
     }
   }, [pageData, searchParams]);
 
@@ -328,7 +333,16 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
           >
             <Input />
           </Form.Item>
-          <Form.Item label="Template" name="template">
+          <Form.Item
+            label="Template"
+            name="template"
+            rules={[
+              {
+                required: true,
+                message: "Por favor, selecione um template",
+              },
+            ]}
+          >
             <Select
               options={templateOptions.map((item) => ({
                 label: item.name,
