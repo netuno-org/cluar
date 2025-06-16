@@ -1,0 +1,10 @@
+{
+  "en": {
+    "label": "Default",
+    "description": "For pages that use generic styling."
+  },
+  "pt": {
+    "label": "Padrão",
+    "description": "Para páginas que utilizam o estilo genérico."
+  }
+}

@@ -47,3 +47,6 @@ src/config/config.json
 /public/images/functionality/
 /public/images/listing/
 /public/images/listing_item/
+
+src/pages/templates/*
+!src/pages/templates/Default/

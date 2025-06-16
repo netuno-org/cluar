@@ -47,6 +47,7 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
   const [pagesOptions, setPagesOptions] = useState([]);
   const [structure, setStructure] = useState([]);
   const [searchParams] = useSearchParams();
+  const [templateOptions, setTemplateOptions] = useState([]);
   const navigate = useNavigate();
   const isNewPage = !pageData;
 
@@ -285,6 +286,19 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
     }
   }, [pageData, searchParams]);
 
+  useEffect(() => {
+    _service({
+      url: "/page/template/list",
+      method: "POST",
+      success: (res) => {
+        setTemplateOptions(res.json.templates);
+      },
+      fail: (error) => {
+        console.log(error);
+      },
+    });
+  }, []);
+
   // Verifica se o link é "/" para desabilitar a edição
   const isRootLink = pageData?.link === "/";
 
@@ -313,6 +327,14 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
             ]}
           >
             <Input />
+          </Form.Item>
+          <Form.Item label="Template" name="template">
+            <Select
+              options={templateOptions.map((item) => ({
+                label: item.name,
+                value: item.name,
+              }))}
+            />
           </Form.Item>
           <Form.Item label="Descrição" name="description">
             <Input.TextArea rows={3} />

@@ -12,39 +12,37 @@ import { Provider } from 'react-redux';
 import { Store } from './redux/store';
 
 //import Analytics from './common/Analytics';
-import Cluar from './common/Cluar';
-import Builder from './common/Builder';
-import BaseCookies from './base/Cookies';
-import BaseHeader from './base/Header';
-import BaseFooter from './base/Footer';
-import NotFound from './pages/NotFound';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import ReservedArea from './pages/ReservedArea';
-import Profile from './pages/Manage/Profile';
-import Pages from './pages/Manage/Pages';
-import Users from './pages/Manage/Users';
-import Languages from './pages/Manage/Languages';
-import Configuration from './pages/Manage/Configuration';
-import Dictionary from './pages/Manage/Dictionary';
-import Recovery from './pages/Recovery';
-import Organization from './pages/Manage/Organization';
+import Cluar from "./common/Cluar";
+import BaseCookies from "./base/Cookies";
+import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ReservedArea from "./pages/ReservedArea";
+import Profile from "./pages/Manage/Profile";
+import Pages from "./pages/Manage/Pages";
+import Users from "./pages/Manage/Users";
+import Languages from "./pages/Manage/Languages";
+import Configuration from "./pages/Manage/Configuration";
+import Dictionary from "./pages/Manage/Dictionary";
+import Recovery from "./pages/Recovery";
+import Organization from "./pages/Manage/Organization";
+import Template from "./pages/Template";
 
-import '@animated-burgers/burger-slip/dist/styles.css?inline';
-import 'sal.js/dist/sal.css?inline';
+import "@animated-burgers/burger-slip/dist/styles.css?inline";
+import "sal.js/dist/sal.css?inline";
 
 import _auth from "@netuno/auth-client";
 
-import './styles/App.less';
+import "./styles/App.less";
 
 const { Content } = Layout;
 
 function App() {
   let urlLang = null;
-  if (urlLang = /^\/([a-z]+)\//ig.exec(window.location.pathname)) {
+  if ((urlLang = /^\/([a-z]+)\//gi.exec(window.location.pathname))) {
     Cluar.changeLanguage(urlLang[1]);
   } else {
-    const storageLocale = window.localStorage.getItem('locale');
+    const storageLocale = window.localStorage.getItem("locale");
     if (storageLocale == null) {
       Cluar.changeLanguage(Cluar.defaultLanguage().locale);
     } else {
@@ -59,15 +57,18 @@ function App() {
     }
     const subroutes = [];
     for (const page of Cluar.pages()[language.code]) {
-      if (page.navigable == false || page.link.indexOf('//') >= 0) {
+      if (page.navigable == false || page.link.indexOf("//") >= 0) {
         continue;
       }
+
+      let comPage = <Template page={page} />;
+
       subroutes.push(
         <Route
           key={`/${language.locale}${page.link}`}
           path={`/${language.locale}${page.link}`}
           exact
-          element={<Builder page={page} />}
+          element={comPage}
         />
       );
     }
@@ -79,17 +80,19 @@ function App() {
     console.log("Cluar.pages()", Cluar.pages());
   }
 
-  console.log("routes", routes);
-
   const AppContent = () => {
     const location = useLocation();
     const isReservedArea = location.pathname.startsWith("/reserved-area");
-    const isLoginPage = location.pathname.startsWith("/login");
 
     return (
       <div className="page">
-        <Layout className={(_auth.isLogged() && !isReservedArea) ? "ant-layout--logged" : "reset-ant-layout"}>
-          {!isReservedArea && !isLoginPage && <BaseHeader />}
+        <Layout
+          className={
+            _auth.isLogged() && !isReservedArea
+              ? "ant-layout--logged"
+              : "reset-ant-layout"
+          }
+        >
           <Content>
             <Routes>
               <Route
@@ -115,13 +118,11 @@ function App() {
               <Route element={<NotFound />} />
             </Routes>
           </Content>
-          {!isReservedArea && !isLoginPage && <BaseFooter />}
           <BaseCookies />
         </Layout>
       </div>
     );
   };
-
 
   return (
     <ConfigProvider

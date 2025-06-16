@@ -1,7 +1,7 @@
 const language = _req.getString("language");
 
 const templates = [];
-const templatesPath = _app.getPathBase() + "/website/src/templates";
+const templatesPath = _app.getPathBase() + "/website/src/pages/Template";
 
 if (_app.isFolder(templatesPath)) {
   const templatesFolder = _app.getFolder(templatesPath);
@@ -15,7 +15,7 @@ if (_app.isFolder(templatesPath)) {
     }
 
     const file = _app.file(templateInfoPath);
-    const reader = file.bufferedReader()
+    const reader = file.bufferedReader();
 
     let fileContent = "";
     let line = reader.readLine();
@@ -28,11 +28,11 @@ if (_app.isFolder(templatesPath)) {
 
     templates.push({
       name: templateFolder.getName(),
-      info: _val.fromJSON(fileContent).getValues(language)
+      info: _val.fromJSON(fileContent).getValues(language),
     });
   });
 }
 
 _out.json({
-  templates
+  templates,
 });
