@@ -82,7 +82,7 @@ function Builder({ page }) {
       const newStructure = [{ ...data, sorter: 1 }, ...structure]
         .sort((a, b) => a.sorter - b.sorter)
         .map((item, index) => ({ ...item, sorter: (index + 1) * 10 }));
-      setStructure([newStructure]);
+      setStructure([...newStructure]);
     }
     setHasDiff(true);
   };
