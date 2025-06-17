@@ -170,6 +170,9 @@ function Builder({ page }) {
           onChangeEditMode={setEditMode}
           extra={hasDiff && extraBarAdmin}
           pageData={page}
+          currentStructure={structure.filter(
+            (item) => item.status !== "to_remove"
+          )}
         />
       )}
       <PageSection

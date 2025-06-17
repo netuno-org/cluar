@@ -7,7 +7,12 @@ import PageVersions from "../PageVersions";
 
 import "./index.less";
 
-const AdminBar = ({ onChangeEditMode, extra, pageData }) => {
+const AdminBar = ({
+  onChangeEditMode,
+  extra,
+  pageData,
+  currentStructure = [],
+}) => {
   const [isPageConfigOpen, setIsPageConfigOpen] = useState(false);
   const [isPageVersionsOpen, setIsPageVersionsOpen] = useState(false);
   const [isNewPage, setIsNewPage] = useState(false);
@@ -79,6 +84,7 @@ const AdminBar = ({ onChangeEditMode, extra, pageData }) => {
         open={isPageConfigOpen}
         onClose={() => setIsPageConfigOpen(false)}
         pageData={isNewPage ? null : pageData}
+        currentStructure={currentStructure}
       />
       <PageVersions
         open={isPageVersionsOpen}

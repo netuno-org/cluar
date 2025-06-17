@@ -48,5 +48,6 @@ src/config/config.json
 /public/images/listing/
 /public/images/listing_item/
 
-src/pages/templates/*
-!src/pages/templates/Default/
+src/pages/Template/*
+!src/pages/Template/Default/
+!src/pages/Template/Default/index.jsx

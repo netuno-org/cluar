@@ -10,26 +10,14 @@ import {
   Select,
   Upload,
   List,
+  Flex,
+  Tag,
 } from "antd";
 import { PlusOutlined, HolderOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../common/Cluar";
 import { useSearchParams, useNavigate } from "react-router-dom";
-
-import {
-  DndContext,
-  closestCenter,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from "@dnd-kit/core";
-import {
-  arrayMove,
-  SortableContext,
-  useSortable,
-  verticalListSortingStrategy,
-} from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import SortableStructure from "./SortableStructure";
 
 import "./index.less";
 
@@ -41,7 +29,13 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
+const PageConfiguration = ({
+  pageData,
+  open,
+  onClose,
+  onSuccess,
+  currentStructure = [],
+}) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [pagesOptions, setPagesOptions] = useState([]);
@@ -146,9 +140,9 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
         }
       });
 
-      if (isNewPage) {
-        formData.append("language_code", Cluar.currentLanguage().code);
-      } else {
+      formData.append("language_code", Cluar.currentLanguage().code);
+
+      if (!isNewPage) {
         formData.append("uid", pageData.uid);
       }
 
@@ -169,7 +163,9 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
               : "Página atualizada com sucesso",
           });
 
-          if (onClose) onClose();
+          if (onClose) {
+            onClose();
+          }
 
           if (onSuccess) {
             onSuccess(response);
@@ -253,43 +249,10 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
   }, [pageData]);
 
   useEffect(() => {
-    if (pageData) {
-      if (searchParams.get("version")) {
-        _service({
-          url: "/editor/page-version",
-          method: "GET",
-          data: {
-            version: searchParams.get("version"),
-          },
-          success: (res) => {
-            if (res.json.result) {
-              setStructure(res.json.structure);
-            }
-          },
-          fail: (res) => {
-            console.log(res);
-          },
-        });
-      } else {
-        fetch(
-          `/cluar/structures/${pageData.uid}.json?time=${new Date().getTime()}`
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            setError(false);
-            setStructure(data);
-            setHasDiff(false);
-          })
-          .catch((error) => {
-            setError(true);
-            console.error("Failed to load page structure: ", {
-              pageData,
-              error,
-            });
-          });
-      }
+    if (pageData && open && !isNewPage) {
+      setStructure([...currentStructure]);
     }
-  }, [pageData, searchParams]);
+  }, [pageData, searchParams, open, currentStructure]);
 
   useEffect(() => {
     _service({
@@ -304,6 +267,18 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (!open) {
+      form.resetFields();
+      setLoading(false);
+      setPagesOptions([]);
+      setStructure([]);
+      setPreviewOpen(false);
+      setPreviewImage("");
+      setFileList([]);
+    }
+  }, [open]);
+
   // Verifica se o link é "/" para desabilitar a edição
   const isRootLink = pageData?.link === "/";
 
@@ -313,6 +288,7 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
         open={open}
         onClose={onClose}
         width={520}
+        destroyOnClose
         title={isNewPage ? "Nova Página" : "Configurações da Página"}
         extra={
           <Button type="primary" onClick={handleSave} loading={loading}>
@@ -438,63 +414,14 @@ const PageConfiguration = ({ pageData, open, onClose, onSuccess }) => {
           >
             <Switch />
           </Form.Item>
-          <Form.Item label="Estrutura">
-            <DndContext
-              sensors={useSensors(useSensor(PointerSensor))}
-              collisionDetection={closestCenter}
-              onDragEnd={({ active, over }) => {
-                if (active.id !== over?.id) {
-                  const oldIndex = structure.findIndex(
-                    (i) => i.uid === active.id
-                  );
-                  const newIndex = structure.findIndex(
-                    (i) => i.uid === over?.id
-                  );
-                  setStructure((items) => arrayMove(items, oldIndex, newIndex));
-                }
-              }}
-            >
-              <SortableContext
-                items={structure.map((item) => item.uid)}
-                strategy={verticalListSortingStrategy}
-              >
-                <List
-                  dataSource={structure}
-                  size="small"
-                  className="structure-config"
-                  renderItem={(item) => {
-                    const {
-                      attributes,
-                      listeners,
-                      setNodeRef,
-                      transform,
-                      transition,
-                    } = useSortable({ id: item.uid });
-
-                    const style = {
-                      transform: CSS.Transform.toString(transform),
-                      transition,
-                      cursor: "grab",
-                    };
-
-                    return (
-                      <List.Item
-                        key={item.uid}
-                        ref={setNodeRef}
-                        style={style}
-                        {...attributes}
-                        {...listeners}
-                        className="structure-config__item"
-                      >
-                        <HolderOutlined style={{ marginRight: 8 }} />{" "}
-                        {item.title}
-                      </List.Item>
-                    );
-                  }}
-                />
-              </SortableContext>
-            </DndContext>
-          </Form.Item>
+          {!isNewPage && (
+            <Form.Item label="Estrutura">
+              <SortableStructure
+                structure={structure}
+                setStructure={setStructure}
+              />
+            </Form.Item>
+          )}
         </Form>
       </Drawer>
     </div>
