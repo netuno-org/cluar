@@ -180,81 +180,92 @@ const PageTable = forwardRef(({ }, ref) => {
     }
 
     const columns = [
-        {
-            title: Cluar.plainDictionary('page-table-language'),
-            dataIndex: 'language',
-            key: 'language_code',
-            onHeaderCell: () => ({
-                "data-column-key": "language",
-            }),
-            render: (val, record) => {
-                const language = languages.find(lang => lang.code === record.language_code);
-                return language ? language.description : record.language_code || "-";
-            },
-            filtered: filters.language_code,
-            filters: languages.map((language) => ({
-                text: language.description,
-                value: language.code
-            }))
+      {
+        title: Cluar.plainDictionary("page-table-language"),
+        dataIndex: "language",
+        key: "language_code",
+        onHeaderCell: () => ({
+          "data-column-key": "language",
+        }),
+        render: (val, record) => {
+          const language = languages.find(
+            (lang) => lang.code === record.language_code
+          );
+          return language ? language.description : record.language_code || "-";
         },
-        {
-            title: Cluar.plainDictionary('page-table-title'),
-            dataIndex: 'title',
-            key: 'title',
-            ...getTextFilterProps("title"),
-            onHeaderCell: () => ({
-                "data-column-key": "title",
-            }),
-        },
-        {
-            title: Cluar.plainDictionary('page-table-link'),
-            dataIndex: 'link',
-            key: 'link',
-            ...getTextFilterProps("link"),
-            onHeaderCell: () => ({
-                "data-column-key": "link",
-            }),
-        },
-        {
-            title: Cluar.plainDictionary('page-table-menu'),
-            dataIndex: 'menu',
-            key: 'menu',
-            onHeaderCell: () => ({
-                "data-column-key": "menu",
-            }),
-            render: (val) => val ? "Sim" : "Não",
-            filtered: filters.menu,
-            filterMultiple: false,
-            filters: [
-                {
-                    text: "Sim",
-                    value: true
-                },
-                {
-                    text: "Não",
-                    value: false
-                }
-            ]
-        },
-        {
-            title: Cluar.plainDictionary('page-table-actions'),
-            dataIndex: 'actions',
-            key: 'actions',
-            onHeaderCell: () => ({
-                "data-column-key": "actions",
-            }),
-            render: (val, record) => (
-                <Button
-                    type="text"
-                    title="Editar"
-                    icon={<EditOutlined />}
-                    onClick={() => {
-                        setPageEditeData(record);
-                        pageModalRef.current.openModal();
-                    }}
-                />
-            )
-        }
+        filtered: filters.language_code,
+        filters: languages.map((language) => ({
+          text: language.description,
+          value: language.code,
+        })),
+      },
+      {
+        title: Cluar.plainDictionary("page-table-title"),
+        dataIndex: "title",
+        key: "title",
+        ...getTextFilterProps("title"),
+        onHeaderCell: () => ({
+          "data-column-key": "title",
+        }),
+      },
+      {
+        title: Cluar.plainDictionary("page-table-template"),
+        dataIndex: "template",
+        key: "template",
+        ...getTextFilterProps("template"),
+        onHeaderCell: () => ({
+          "data-column-key": "template",
+        }),
+      },
+      {
+        title: Cluar.plainDictionary("page-table-link"),
+        dataIndex: "link",
+        key: "link",
+        ...getTextFilterProps("link"),
+        onHeaderCell: () => ({
+          "data-column-key": "link",
+        }),
+      },
+      {
+        title: Cluar.plainDictionary("page-table-menu"),
+        dataIndex: "menu",
+        key: "menu",
+        onHeaderCell: () => ({
+          "data-column-key": "menu",
+        }),
+        render: (val) => (val ? "Sim" : "Não"),
+        filtered: filters.menu,
+        filterMultiple: false,
+        filters: [
+          {
+            text: "Sim",
+            value: true,
+          },
+          {
+            text: "Não",
+            value: false,
+          },
+        ],
+      },
+      {
+        title: Cluar.plainDictionary("page-table-actions"),
+        dataIndex: "actions",
+        key: "actions",
+        onHeaderCell: () => ({
+          "data-column-key": "actions",
+        }),
+        render: (val, record) => (
+          <Button
+            type="text"
+            title="Editar"
+            icon={<EditOutlined />}
+            onClick={() => {
+              setPageEditeData(record);
+              pageModalRef.current.openModal();
+            }}
+          />
+        ),
+      },
     ];
 
     useImperativeHandle(ref, () => {
