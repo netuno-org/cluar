@@ -49,15 +49,7 @@ const ListEditor = ({ sectionData, form }) => {
   return (
     <div className="list-editor">
       <Form.Item label="Tipo" name="type">
-        <Select
-          options={[
-            { value: "YOUR-CUSTOM-TYPE-HERE", label: "Custom" },
-            {
-              value: "OTHER-CUSTOM-TYPE-HERE",
-              label: "Outro Custom",
-            },
-          ]}
-        />
+        <Select options={[{ value: "default", label: "Padrão" }]} />
       </Form.Item>
       <Divider />
       <Row gutter={[12, 12]}>

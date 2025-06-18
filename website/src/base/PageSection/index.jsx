@@ -48,6 +48,8 @@ const PageSection = ({
       newSectionData.type = "default";
     } else if (section === "content") {
       newSectionData.type = "text";
+    } else if (section === "listing") {
+      newSectionData.type = "default";
     } else if (section === "functionality") {
       newSectionData.type = "contact-form";
     }
