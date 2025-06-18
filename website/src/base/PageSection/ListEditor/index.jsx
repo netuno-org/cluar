@@ -86,6 +86,12 @@ const ListEditor = ({ sectionData, form }) => {
                           <Input.TextArea rows={3} />
                         </Form.Item>
                         <Form.Item
+                          label="URL"
+                          name={["items", itemIndex, "link"]}
+                        >
+                          <Input />
+                        </Form.Item>
+                        <Form.Item
                           label="Section"
                           name={["items", itemIndex, "section"]}
                           initialValue={item.section}
