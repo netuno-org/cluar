@@ -18,6 +18,8 @@ import ContactForm from "../components/functionality/ContactForm";
 import ContactMap from "../components/functionality/ContactMap";
 import AdminBar from "../base/AdminBar";
 
+import { useNavigate } from "react-router-dom";
+
 import _service from "@netuno/service-client";
 
 function Builder({ page }) {
@@ -27,6 +29,7 @@ function Builder({ page }) {
   const [hasDiff, setHasDiff] = useState(false);
   const [saving, setSaving] = useState(false);
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (searchParams.get("version")) {
@@ -115,6 +118,8 @@ function Builder({ page }) {
         if (res.json.result) {
           message.success("Página guardada com sucesso");
         }
+        navigate(`?version=${res.json.data}`);
+        setHasDiff(false);
         setSaving(false);
       },
       fail: (error) => {
