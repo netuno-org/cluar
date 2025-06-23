@@ -26,7 +26,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
 
   const handleConfirmChanges = () => {
     if (onConfirmChanges) {
-      const confirmData = {
+      let confirmData = {
         ...sectionData,
         ...form.getFieldsValue(),
         status: sectionData.status === "to_create" ? "to_create" : "to_update",

@@ -1,120 +1,109 @@
 import React, { useState, useEffect } from "react";
+import { Form, Select, Row, Col, Input, Divider, Button } from "antd";
 
-import {
-  Form,
-  Select,
-  Row,
-  Col,
-  Typography,
-  Divider,
-  Button,
-  Collapse,
-  Input,
-} from "antd";
+import SortableListItem from "./SortableListItem";
 
 const ListEditor = ({ sectionData, form }) => {
-  const [items, setItems] = useState([]);
+  const [itemsOrder, setItemsOrder] = useState([]);
+  const [itemsByUid, setItemsByUid] = useState({});
 
   const handleChangeItem = (uid, property, value) => {
-    const itemIndex = items.findIndex((item) => item.uid === uid);
+    const updatedItem = {
+      ...itemsByUid[uid],
+      [property]: value,
+    };
 
-    if (itemIndex !== -1) {
-      const newItems = [...items];
-      newItems[itemIndex] = {
-        ...newItems[itemIndex],
-        [property]: value,
-      };
-      setItems([...newItems]);
+    const newItemsByUid = {
+      ...itemsByUid,
+      [uid]: updatedItem,
+    };
 
-      form.setFieldsValue({ items: newItems });
-    }
+    setItemsByUid(newItemsByUid);
+    form.setFieldsValue({
+      itemsByUid: newItemsByUid,
+    });
   };
 
   const handleAddItem = () => {
-    setItems([
-      ...items,
-      {
-        uid: new Date().getTime(),
-        section: "listing_item",
-      },
-    ]);
+    const uid = new Date().getTime().toString();
+
+    const newItem = {
+      uid,
+      section: "listing_item",
+      title: "",
+      content: "",
+      link: "",
+    };
+
+    const newItemsByUid = {
+      ...itemsByUid,
+      [uid]: newItem,
+    };
+
+    setItemsByUid(newItemsByUid);
+    setItemsOrder([...itemsOrder, uid]);
+
+    form.setFieldsValue({
+      itemsByUid: newItemsByUid,
+    });
+  };
+
+  const handleRemoveItem = (uid) => {
+    const { [uid]: removedItem, ...newItemsByUid } = itemsByUid;
+    const newItemsOrder = itemsOrder.filter((id) => id !== uid);
+
+    setItemsByUid(newItemsByUid);
+    setItemsOrder(newItemsOrder);
+
+    form.setFieldsValue({
+      itemsByUid: newItemsByUid,
+    });
   };
 
   useEffect(() => {
-    if (sectionData && !items.length) {
-      setItems([...sectionData.items]);
+    if (sectionData && sectionData.items && !itemsOrder.length) {
+      const map = {};
+      const order = [];
+
+      sectionData.items.forEach((item) => {
+        map[item.uid] = item;
+        order.push(item.uid);
+      });
+
+      setItemsByUid(map);
+      setItemsOrder(order);
+
+      form.setFieldsValue({
+        itemsByUid: map,
+      });
     }
   }, [sectionData]);
+
+  useEffect(() => {
+    const orderedItems = itemsOrder.map((uid) => itemsByUid[uid]);
+    form.setFieldValue("items", orderedItems);
+  }, [itemsOrder, itemsByUid]);
+
+  const items = itemsOrder.map((uid) => itemsByUid[uid]);
 
   return (
     <div className="list-editor">
       <Form.Item label="Tipo" name="type">
         <Select options={[{ value: "default", label: "Padrão" }]} />
       </Form.Item>
+
       <Divider />
+
+      <Form.Item name="items" noStyle>
+        <Input type="hidden" />
+      </Form.Item>
       <Row gutter={[12, 12]}>
-        {items?.map((item, itemIndex) => {
-          return (
-            <Col span={24}>
-              <Collapse
-                defaultActiveKey={item.uid}
-                destroyInactivePanel={false}
-                items={[
-                  {
-                    key: item.uid,
-                    label: item?.title,
-                    children: (
-                      <div>
-                        <Form.Item
-                          label="Título"
-                          name={["items", itemIndex, "title"]}
-                        >
-                          <Input
-                            onChange={(e) =>
-                              handleChangeItem(
-                                item.uid,
-                                "title",
-                                e.target.value
-                              )
-                            }
-                          />
-                        </Form.Item>
-                        <Form.Item
-                          label="Conteúdo"
-                          name={["items", itemIndex, "content"]}
-                        >
-                          <Input.TextArea rows={3} />
-                        </Form.Item>
-                        <Form.Item
-                          label="URL"
-                          name={["items", itemIndex, "link"]}
-                        >
-                          <Input />
-                        </Form.Item>
-                        <Form.Item
-                          label="Section"
-                          name={["items", itemIndex, "section"]}
-                          initialValue={item.section}
-                          style={{ display: "none" }}
-                        >
-                          <Input rows={3} />
-                        </Form.Item>
-                        <Form.Item
-                          label="UID"
-                          name={["items", itemIndex, "uid"]}
-                          initialValue={item.uid}
-                          style={{ display: "none" }}
-                        >
-                          <Input rows={3} />
-                        </Form.Item>
-                      </div>
-                    ),
-                  },
-                ]}
-              />
-            </Col>
-          );
-        })}
+        <SortableListItem
+          items={items}
+          setItemsOrder={(newOrder) => setItemsOrder(newOrder)}
+          onChangeItem={handleChangeItem}
+          onRemoveItem={handleRemoveItem}
+        />
         <Col span={24}>
           <Button onClick={handleAddItem}>Novo Item</Button>
         </Col>
