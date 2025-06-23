@@ -8,6 +8,12 @@ import './index.less';
 function Content({section, type, title, content, image, image_title, image_alt, image_max_width, actions}) {
   let layout = null;
   const imageStyle = {};
+
+  const imageSrc =
+    image.indexOf("base64") === -1
+      ? `/cluar/images/page_${section}/${image}`
+      : image;
+
   if (image_max_width > 0) {
     imageStyle["maxWidth"] = `${image_max_width}px`;
   }
@@ -27,13 +33,18 @@ function Content({section, type, title, content, image, image_title, image_alt, 
         <Row>
           <Col md={8}>
             <div className="image">
-              <img src={`/cluar/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
+              <img
+                src={imageSrc}
+                alt={image_alt}
+                title={image_title}
+                style={imageStyle}
+              />
             </div>
           </Col>
           <Col md={16}>
             <div className="text">
-              <h1>{ title }</h1>
-              <div dangerouslySetInnerHTML={{__html: content}}></div>
+              <h1>{title}</h1>
+              <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
           </Col>
         </Row>
@@ -45,14 +56,19 @@ function Content({section, type, title, content, image, image_title, image_alt, 
         <Row>
           <Col md={16}>
             <div className="text">
-              <h1>{ title }</h1>
+              <h1>{title}</h1>
               <div className="text__title-border"></div>
-              <div dangerouslySetInnerHTML={{__html: content}}></div>
+              <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
           </Col>
           <Col md={8}>
             <div className="image">
-              <img src={`/cluar/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
+              <img
+                src={imageSrc}
+                alt={image_alt}
+                title={image_title}
+                style={imageStyle}
+              />
             </div>
           </Col>
         </Row>
@@ -62,11 +78,16 @@ function Content({section, type, title, content, image, image_title, image_alt, 
     layout = (
       <div className="content__image-top">
         <div className="image">
-          <img src={`/cluar/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
+          <img
+            src={imageSrc}
+            alt={image_alt}
+            title={image_title}
+            style={imageStyle}
+          />
         </div>
         <div className="text">
-          <h1>{ title }</h1>
-          <div dangerouslySetInnerHTML={{__html: content}}></div>
+          <h1>{title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </div>
       </div>
     );
@@ -74,11 +95,16 @@ function Content({section, type, title, content, image, image_title, image_alt, 
     layout = (
       <div className="content__image-bottom">
         <div className="text">
-          <h1>{ title }</h1>
-          <div dangerouslySetInnerHTML={{__html: content}}></div>
+          <h1>{title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </div>
         <div className="image">
-          <img src={`/cluar/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
+          <img
+            src={imageSrc}
+            alt={image_alt}
+            title={image_title}
+            style={imageStyle}
+          />
         </div>
       </div>
     );
@@ -86,7 +112,12 @@ function Content({section, type, title, content, image, image_title, image_alt, 
     layout = (
       <div className="content__image">
         <div className="image">
-          <img src={`/cluar/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
+          <img
+            src={imageSrc}
+            alt={image_alt}
+            title={image_title}
+            style={imageStyle}
+          />
         </div>
       </div>
     );
@@ -94,11 +125,16 @@ function Content({section, type, title, content, image, image_title, image_alt, 
     layout = (
       <div className={`content__${type}`}>
         <div className="image">
-          <img src={`/cluar/images/${section}/${image}`} alt={ image_alt } title={ image_title } style={ imageStyle }/>
+          <img
+            src={imageSrc}
+            alt={image_alt}
+            title={image_title}
+            style={imageStyle}
+          />
         </div>
         <div className="text">
-          <h1>{ title }</h1>
-          <div dangerouslySetInnerHTML={{__html: content}}></div>
+          <h1>{title}</h1>
+          <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </div>
       </div>
     );

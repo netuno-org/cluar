@@ -69,6 +69,8 @@ if (lastPageVersion) {
         .set("content", structure.getString("content"))
         .set("type_id", newSectionType.getInt("id"))
         .set("page_version_id", newPageVersion)
+        .set("image_title", structure.getString("image_title"))
+        .set("image_alt", structure.getString("image_alt"))
         .set("sorter", structure.getInt("sorter", 0));
 
       if (structure.getString("image")?.includes("base64")) {
@@ -118,17 +120,26 @@ if (lastPageVersion) {
         .set("content", structure.getString("content"))
         .set("type_id", newSectionType.getInt("id"))
         .set("page_version_id", newPageVersion)
+        .set("image_title", structure.getString("image_title"))
+        .set("image_alt", structure.getString("image_alt"))
         .set("sorter", structure.getString("sorter"));
 
-      if (image) {
-        contentData.set("image", image);
-      }
+        if (structure.getString("image")?.includes("base64")) {
+          contentData.set("image", image);
+        } else if (structure.getString("image")) {
+          const imageFile = _storage
+            .database("page_content", "image", structure.getString("image"))
+            .file();
+          if (imageFile.exists()) {
+            contentData.set("image", imageFile);
+          }
+        }
 
-      const contentId = _db.insert("page_content", contentData);
+        const contentId = _db.insert("page_content", contentData);
 
-      if (image) {
-        structuresToPublishImages.push(contentId);
-      }
+        if (structure.getString("image")) {
+          structuresToPublishImages.push(contentId);
+        }
 
       for (const action of contentActions) {
         const dbAction = _db.get("action", action.getString("uid"));
