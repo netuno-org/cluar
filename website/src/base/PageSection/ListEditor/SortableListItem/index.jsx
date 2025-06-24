@@ -66,7 +66,7 @@ const SortableItem = ({ item, itemIndex, onChangeItem, onRemoveItem }) => {
                     <Input.TextArea rows={3} />
                   </Form.Item>
                   <Form.Item
-                    label="URL"
+                    label="Link"
                     name={["itemsByUid", itemIndex, "link"]}
                   >
                     <Input />

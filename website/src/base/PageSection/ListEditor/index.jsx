@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Form, Select, Row, Col, Input, Divider, Button } from "antd";
 
 import SortableListItem from "./SortableListItem";
+import ImageSectionEditor from "../ImageSectionEditor";
 
 const ListEditor = ({ sectionData, form }) => {
   const [itemsOrder, setItemsOrder] = useState([]);
@@ -91,6 +92,8 @@ const ListEditor = ({ sectionData, form }) => {
       <Form.Item label="Tipo" name="type">
         <Select options={[{ value: "default", label: "Padrão" }]} />
       </Form.Item>
+
+      <ImageSectionEditor form={form} sectionData={sectionData} />
 
       <Divider />
 

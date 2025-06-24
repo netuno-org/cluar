@@ -191,13 +191,20 @@ if (lastPageVersion) {
         }
       }
 
-      if (image) {
+      if (structure.getString("image")?.includes("base64")) {
         listingData.set("image", image);
+      } else if (structure.getString("image")) {
+        const imageFile = _storage
+          .database("page_listing", "image", structure.getString("image"))
+          .file();
+        if (imageFile.exists()) {
+          listingData.set("image", imageFile);
+        }
       }
 
       const listingId = _db.insert("page_listing", listingData);
 
-      if (image) {
+      if (structure.getString("image")) {
         structuresToPublishImages.push(listingId);
       }
 

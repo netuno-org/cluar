@@ -16,6 +16,11 @@ function Listing({
   items,
 }) {
   const children = [];
+  const imageSrc =
+    image.indexOf("base64") === -1
+      ? `/cluar/images/page_${section}/${image}`
+      : image;
+
   for (const item of items) {
     children.push(<Item key={item.uid} {...{ type, ...item }} />);
   }
