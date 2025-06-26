@@ -111,7 +111,7 @@ function Builder({ page }) {
       url: "/editor/page-version/save",
       method: "POST",
       data: {
-        structures: structure,
+        structures: structure.filter((item) => item.status !== "to_remove"),
         page: page.uid,
       },
       success: (res) => {

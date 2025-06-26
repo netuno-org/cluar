@@ -17,7 +17,7 @@ function Listing({
 }) {
   const children = [];
   const imageSrc =
-    image.indexOf("base64") === -1
+    image?.indexOf("base64") === -1
       ? `/cluar/images/page_${section}/${image}`
       : image;
 
@@ -38,6 +38,7 @@ function Listing({
       <Row className={`listing__${type}`} justify="start">
         <Col span={24}>
           <h1>{title}</h1>
+          <img src={imageSrc} />
           <div dangerouslySetInnerHTML={{ __html: content }}></div>
         </Col>
         <Col span={24}>{children}</Col>

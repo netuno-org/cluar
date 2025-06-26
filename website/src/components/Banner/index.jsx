@@ -26,7 +26,7 @@ function Banner({
         className={`banner__${type}`}
         style={{
           backgroundImage:
-            image.indexOf("base64") === -1
+            image?.indexOf("base64") === -1
               ? `url(/cluar/images/page_${section}/${image})`
               : `url(${image})`,
           backgroundPositionX: backgroundPositionX,

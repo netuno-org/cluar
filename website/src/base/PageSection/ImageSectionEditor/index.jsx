@@ -5,7 +5,16 @@ import { PlusOutlined } from "@ant-design/icons";
 
 import "./index.less";
 
-const ImageSectionEditor = ({ sectionData, form }) => {
+const ImageSectionEditor = ({
+  sectionData,
+  form,
+  imageName = "image",
+  imageTitleName = "image_title",
+  imageAltName = "image_alt",
+  onChangeImage,
+  onChangeImageTitle,
+  onChangeImageAlt,
+}) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState([]);
@@ -37,32 +46,28 @@ const ImageSectionEditor = ({ sectionData, form }) => {
       setFileList([...fileList]);
 
       if (form) {
-        form.setFieldValue("image", file.thumbUrl);
+        form.setFieldValue(imageName, file.thumbUrl);
+
+        if (onChangeImage) {
+          onChangeImage(file.thumbUrl);
+        }
       }
     } else {
       setFileList([]);
       if (form) {
-        form.setFieldValue("image", "");
+        form.setFieldValue(imageName, "");
+
+        if (onChangeImage) {
+          onChangeImage("");
+        }
       }
     }
   };
 
   const uploadButton = (
-    <button
-      style={{
-        border: 0,
-        background: "none",
-      }}
-      type="button"
-    >
+    <button className="upload-btn" type="button">
       <PlusOutlined />
-      <div
-        style={{
-          marginTop: 8,
-        }}
-      >
-        Upload
-      </div>
+      <p>Upload</p>
     </button>
   );
 
@@ -83,9 +88,9 @@ const ImageSectionEditor = ({ sectionData, form }) => {
 
   return (
     <div className="image-section-editor">
-      <Form.Item label="Imagem" name="image">
+      <Form.Item label="Imagem" name={imageName}>
         <Upload
-          listType="picture-card"
+          listType="picture"
           fileList={fileList}
           onPreview={handlePreview}
           onChange={handleChange}
@@ -108,11 +113,25 @@ const ImageSectionEditor = ({ sectionData, form }) => {
         )}
       </Form.Item>
 
-      <Form.Item label="Título da Image" name="image_title">
-        <Input />
+      <Form.Item label="Título da Image" name={imageTitleName}>
+        <Input
+          onChange={(e) => {
+            if (onChangeImageTitle) {
+              onChangeImageTitle(e.target.value);
+            }
+          }}
+        />
       </Form.Item>
 
-      <Form.Item label="Título Alt" name="image_alt">
+      <Form.Item
+        label="Título Alt"
+        name={imageAltName}
+        onChange={(e) => {
+          if (onChangeImageAlt) {
+            onChangeImageAlt(e.target.value);
+          }
+        }}
+      >
         <Input />
       </Form.Item>
     </div>

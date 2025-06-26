@@ -10,7 +10,7 @@ function Content({section, type, title, content, image, image_title, image_alt, 
   const imageStyle = {};
 
   const imageSrc =
-    image.indexOf("base64") === -1
+    image?.indexOf("base64") === -1
       ? `/cluar/images/page_${section}/${image}`
       : image;
 

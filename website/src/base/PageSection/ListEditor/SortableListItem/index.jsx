@@ -16,10 +16,17 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 import { HolderOutlined, CloseOutlined } from "@ant-design/icons";
+import ImageSectionEditor from "../../ImageSectionEditor";
 
 import "./index.less";
 
-const SortableItem = ({ item, itemIndex, onChangeItem, onRemoveItem }) => {
+const SortableItem = ({
+  item,
+  itemIndex,
+  onChangeItem,
+  onRemoveItem,
+  form,
+}) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: item.uid });
 
@@ -63,13 +70,38 @@ const SortableItem = ({ item, itemIndex, onChangeItem, onRemoveItem }) => {
                     label="Conteúdo"
                     name={["itemsByUid", itemIndex, "content"]}
                   >
-                    <Input.TextArea rows={3} />
+                    <Input.TextArea
+                      rows={3}
+                      onChange={(e) =>
+                        onChangeItem(item.uid, "content", e.target.value)
+                      }
+                    />
                   </Form.Item>
+                  <ImageSectionEditor
+                    sectionData={item}
+                    form={form}
+                    imageName={["itemsByUid", itemIndex, "image"]}
+                    imageTitleName={["itemsByUid", itemIndex, "image_title"]}
+                    imageAltName={["itemsByUid", itemIndex, "image_alt"]}
+                    onChangeImage={(val) =>
+                      onChangeItem(item.uid, "image", val)
+                    }
+                    onChangeImageAlt={(val) =>
+                      onChangeItem(item.uid, "image_alt", val)
+                    }
+                    onChangeImageTitle={(val) =>
+                      onChangeItem(item.uid, "image_title", val)
+                    }
+                  />
                   <Form.Item
                     label="Link"
                     name={["itemsByUid", itemIndex, "link"]}
                   >
-                    <Input />
+                    <Input
+                      onChange={(e) =>
+                        onChangeItem(item.uid, "link", e.target.value)
+                      }
+                    />
                   </Form.Item>
                   <Form.Item
                     label="Section"
@@ -111,6 +143,7 @@ const SortableListItem = ({
   setItemsOrder,
   onChangeItem,
   onRemoveItem,
+  form,
 }) => {
   return (
     <DndContext
@@ -137,6 +170,7 @@ const SortableListItem = ({
             itemIndex={item.uid}
             onChangeItem={onChangeItem}
             onRemoveItem={onRemoveItem}
+            form={form}
           />
         ))}
       </SortableContext>

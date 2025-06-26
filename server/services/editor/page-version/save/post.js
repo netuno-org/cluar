@@ -211,7 +211,10 @@ if (lastPageVersion) {
       for (const listingItem of listingItems) {
         let listingItemImage = null;
 
-        if (listingItem.getString("image") !== "") {
+        if (
+          listingItem.getString("image") !== "" &&
+          listingItem.getString("image")?.includes("base64")
+        ) {
           listingItemImage = listingItem.getFile("image");
         }
 
@@ -225,13 +228,24 @@ if (lastPageVersion) {
           .set("image_title", listingItem.getString("image_title"))
           .set("image_alt", listingItem.getString("image_alt"));
 
-        if (listingItemImage) {
+        if (listingItem.getString("image")?.includes("base64")) {
           listingItemData.set("image", listingItemImage);
+        } else if (listingItem.getString("image")) {
+          const imageFile = _storage
+            .database(
+              "page_listing_item",
+              "image",
+              listingItem.getString("image")
+            )
+            .file();
+          if (imageFile.exists()) {
+            listingItemData.set("image", imageFile);
+          }
         }
 
         const listingItemId = _db.insert("page_listing_item", listingItemData);
 
-        if (listingItemImage) {
+        if (listingItem.getString("image")) {
           imagesToPublish["listing_item"].push(listingItemId);
         }
       }

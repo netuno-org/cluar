@@ -106,6 +106,7 @@ const ListEditor = ({ sectionData, form }) => {
           setItemsOrder={(newOrder) => setItemsOrder(newOrder)}
           onChangeItem={handleChangeItem}
           onRemoveItem={handleRemoveItem}
+          form={form}
         />
         <Col span={24}>
           <Button onClick={handleAddItem}>Novo Item</Button>
