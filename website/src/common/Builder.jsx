@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Alert, Row, Col, Button, message } from "antd";
 
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 
 import _auth from "@netuno/auth-client";
 
@@ -18,7 +18,7 @@ import ContactForm from "../components/functionality/ContactForm";
 import ContactMap from "../components/functionality/ContactMap";
 import AdminBar from "../base/AdminBar";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import _service from "@netuno/service-client";
 

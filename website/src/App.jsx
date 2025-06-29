@@ -5,8 +5,8 @@ import {
   Routes,
   Route,
   Navigate,
-  useLocation
-} from "react-router-dom";
+  useLocation,
+} from "react-router";
 
 import { Provider } from 'react-redux';
 import { Store } from './redux/store';

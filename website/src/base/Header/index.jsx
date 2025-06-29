@@ -4,10 +4,7 @@ import { GlobalOutlined } from '@ant-design/icons';
 import Burger from '@animated-burgers/burger-slip';
 import '@animated-burgers/burger-slip/dist/styles.css';
 import classNames from 'classnames';
-import {
-  Route,
-  Link
-} from "react-router-dom";
+import { Route, Link } from "react-router";
 import Cluar from '../../common/Cluar';
 import Builder from '../../common/Builder';
 

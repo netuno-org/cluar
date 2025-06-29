@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import { Drawer, Form, Input, Button, Timeline } from "antd";
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 
 import _service from "@netuno/service-client";
 

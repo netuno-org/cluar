@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, Link } from "react-router-dom";
+import { Navigate, Link } from "react-router";
 import { Layout, Typography, Form, Input, Button, Checkbox, notification, Row, Col } from 'antd';
 import _auth from '@netuno/auth-client';
 import _service from '@netuno/service-client';

@@ -34,7 +34,7 @@ import _service from '@netuno/service-client';
 import _auth from '@netuno/auth-client';
 
 import "./index.less"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router";
 
 const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }) => {
   const [collapsed, setCollapsed] = useState(false);

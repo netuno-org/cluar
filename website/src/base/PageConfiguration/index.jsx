@@ -16,7 +16,7 @@ import {
 import { PlusOutlined, HolderOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../common/Cluar";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router";
 import SortableStructure from "./SortableStructure";
 
 import "./index.less";
