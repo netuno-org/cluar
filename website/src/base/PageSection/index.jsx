@@ -52,6 +52,8 @@ const PageSection = ({
       newSectionData.type = "default";
     } else if (section === "functionality") {
       newSectionData.type = "contact-form";
+    } else if (section === "slider") {
+      newSectionData.type = "default";
     }
 
     if (onNewSection) {
@@ -68,6 +70,7 @@ const PageSection = ({
 
   const newSection = (
     <Flex vertical gap={8}>
+      <Button onClick={() => handleNewSection("slider")}>Slider</Button>
       <Button onClick={() => handleNewSection("banner")}>Banner</Button>
       <Button onClick={() => handleNewSection("listing")}>Lista</Button>
       <Button onClick={() => handleNewSection("content")}>Conteúdo</Button>

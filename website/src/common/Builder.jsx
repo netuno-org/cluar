@@ -16,6 +16,7 @@ import Content from "../components/Content";
 import Listing from "../components/Listing";
 import ContactForm from "../components/functionality/ContactForm";
 import ContactMap from "../components/functionality/ContactMap";
+import Slider from "../components/Slider";
 import AdminBar from "../base/AdminBar";
 
 import { useNavigate } from "react-router";
@@ -198,6 +199,9 @@ function Builder({ page }) {
               break;
             case "listing":
               SectionComponent = <Listing {...item} />;
+              break;
+            case "slider":
+              SectionComponent = <Slider {...item} />;
               break;
             case "functionality":
               if (item.type === "contact-form") {

@@ -21,6 +21,7 @@ if (lastPageVersion) {
     listing: [],
     listing_item: [],
     functionality: [],
+    slider_item: [],
   };
 
   const draftStatus = _db.queryFirst(`
@@ -124,22 +125,22 @@ if (lastPageVersion) {
         .set("image_alt", structure.getString("image_alt"))
         .set("sorter", structure.getString("sorter"));
 
-        if (structure.getString("image")?.includes("base64")) {
-          contentData.set("image", image);
-        } else if (structure.getString("image")) {
-          const imageFile = _storage
-            .database("page_content", "image", structure.getString("image"))
-            .file();
-          if (imageFile.exists()) {
-            contentData.set("image", imageFile);
-          }
+      if (structure.getString("image")?.includes("base64")) {
+        contentData.set("image", image);
+      } else if (structure.getString("image")) {
+        const imageFile = _storage
+          .database("page_content", "image", structure.getString("image"))
+          .file();
+        if (imageFile.exists()) {
+          contentData.set("image", imageFile);
         }
+      }
 
-        const contentId = _db.insert("page_content", contentData);
+      const contentId = _db.insert("page_content", contentData);
 
-        if (structure.getString("image")) {
-          structuresToPublishImages.push(contentId);
-        }
+      if (structure.getString("image")) {
+        structuresToPublishImages.push(contentId);
+      }
 
       for (const action of contentActions) {
         const dbAction = _db.get("action", action.getString("uid"));
@@ -247,6 +248,83 @@ if (lastPageVersion) {
 
         if (listingItem.getString("image")) {
           imagesToPublish["listing_item"].push(listingItemId);
+        }
+      }
+    } else if (sectionType === "slider") {
+      const sliderItems = structure.getList("items", _val.list());
+      const sliderType = _db.queryFirst(`
+        SELECT
+          *
+        FROM
+          page_slider_type
+        WHERE code = '${structure.getString("type")}'
+      `);
+
+      const sliderData = _val
+        .map()
+        .set("page_version_id", newPageVersion)
+        .set("title", structure.getString("title"))
+        .set("sorter", structure.getInt("sorter", 0))
+        .set("type_id", sliderType.getInt("id"))
+        .set("content", structure.getString("content"));
+
+      if (structure.getString("type")) {
+        _log.info(sectionType, structure.getString("type"));
+        const dbSliderType = _db.queryFirst(
+          `
+            SELECT
+              *
+            FROM page_slider_type
+            WHERE code = ?
+          `,
+          structure.getString("type")
+        );
+
+        if (dbSliderType) {
+          sliderData.set("type_id", dbSliderType.getInt("id"));
+        }
+      }
+
+      const sliderId = _db.insert("page_slider", sliderData);
+
+      for (const sliderItem of sliderItems) {
+        let sliderItemImage = null;
+
+        if (
+          sliderItem.getString("image") !== "" &&
+          sliderItem.getString("image")?.includes("base64")
+        ) {
+          sliderItemImage = sliderItem.getFile("image");
+        }
+
+        const sliderItemData = _val
+          .map()
+          .set("page_slider_id", sliderId)
+          .set("title", sliderItem.getString("title"))
+          .set("content", sliderItem.getString("content"))
+          .set("sorter", sliderItem.getString("sorter"))
+          .set("image_title", sliderItem.getString("image_title"))
+          .set("image_alt", sliderItem.getString("image_alt"));
+
+        if (sliderItem.getString("image")?.includes("base64")) {
+          sliderItemData.set("image", sliderItemImage);
+        } else if (sliderItem.getString("image")) {
+          const imageFile = _storage
+            .database(
+              "page_slider_item",
+              "image",
+              sliderItem.getString("image")
+            )
+            .file();
+          if (imageFile.exists()) {
+            sliderItemData.set("image", imageFile);
+          }
+        }
+
+        const sliderItemId = _db.insert("page_slider_item", sliderItemData);
+
+        if (sliderItem.getString("image")) {
+          imagesToPublish["slider_item"].push(sliderItemId);
         }
       }
     } else if (sectionType === "functionality") {

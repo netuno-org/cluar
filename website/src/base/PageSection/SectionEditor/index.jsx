@@ -6,6 +6,7 @@ import BannerEditor from "../BannerEditor";
 import ListEditor from "../ListEditor";
 import FunctionalityEditor from "../FunctionalityEditor";
 import ContentEditor from "../ContentEditor";
+import SliderEditor from "../SliderEditor";
 import _service from "@netuno/service-client";
 import TesteEditor from "../../TesteEditor";
 
@@ -22,6 +23,8 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       return <ListEditor sectionData={sectionData} form={form} />;
     } else if (sectionData?.section === "functionality") {
       return <FunctionalityEditor sectionData={sectionData} />;
+    } else if (sectionData?.section === "slider") {
+      return <SliderEditor sectionData={sectionData} form={form} />;
     } else if (sectionData?.section === "content") {
       return <ContentEditor sectionData={sectionData} form={form} />;
     }

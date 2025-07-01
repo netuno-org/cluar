@@ -182,6 +182,71 @@ if (dbPageVersion) {
 
   /*
    *
+   *  SLIDERS
+   *
+   */
+  const dbSliders = _db.query(`
+            SELECT
+                slider.id,
+                slider.uid,
+                page_slider_type.code "type",
+                slider.title,
+                slider.image_alt,
+                slider.image_title,
+                slider.content,
+                slider.image,
+                slider.sorter
+            FROM page_slider slider
+                INNER JOIN page_slider_type ON slider.type_id = page_slider_type.id
+            WHERE slider.active = TRUE
+                AND page_slider_type.active = TRUE
+                AND slider.active = TRUE
+                AND slider.page_version_id = ${dbPageVersion.getInt("id")}
+            `);
+
+  for (const dbSlider of dbSliders) {
+    const items = _val.list();
+    const dbItems = _db.query(`
+                SELECT
+                    uid, title, content, image, image_alt, image_title, sorter
+                FROM page_slider_item
+                WHERE page_slider_id = ${dbSlider.getInt(
+                  "id"
+                )} AND active = TRUE
+                `);
+
+    for (const dbItem of dbItems) {
+      items.add(
+        _val
+          .map()
+          .set("uid", dbItem.getString("uid"))
+          .set("section", "slider_item")
+          .set("title", dbItem.getString("title"))
+          .set("content", dbItem.getString("content"))
+          .set("image", dbItem.getString("image"))
+          .set("image_alt", dbItem.getString("image_alt"))
+          .set("image_title", dbItem.getString("image_title"))
+          .set("sorter", dbItem.getInt("sorter"))
+      );
+    }
+    structure.add(
+      _val
+        .map()
+        .set("uid", dbSlider.getString("uid"))
+        .set("section", "slider")
+        .set("type", dbSlider.getString("type"))
+        .set("title", dbSlider.getString("title"))
+        .set("content", dbSlider.getString("content"))
+        .set("image", dbSlider.getString("image"))
+        .set("image_alt", dbSlider.getString("image_alt"))
+        .set("image_title", dbSlider.getString("image_title"))
+        .set("items", items)
+        .set("sorter", dbSlider.getInt("sorter"))
+    );
+  }
+
+  /*
+   *
    *  FUNCTIONALITY
    *
    */

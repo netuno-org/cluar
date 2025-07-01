@@ -30,6 +30,7 @@ import Template from "./pages/Template";
 
 import "@animated-burgers/burger-slip/dist/styles.css?inline";
 import "sal.js/dist/sal.css?inline";
+import "keen-slider/keen-slider.min.css";
 
 import _auth from "@netuno/auth-client";
 
