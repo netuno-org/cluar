@@ -30,7 +30,6 @@ cluar.page.publish = (dbPage) => {
    *
    */
 
-
   const dbContents = _db.query(`
             SELECT
                 content.id,
@@ -49,8 +48,8 @@ cluar.page.publish = (dbPage) => {
                 AND page_content_type.active = TRUE
                 AND content.active = TRUE
                 AND content.page_version_id = ${dbPage.getInt(
-    "page_version_id"
-  )}
+                  "page_version_id"
+                )}
             `);
 
   for (const dbContent of dbContents) {
@@ -148,8 +147,8 @@ cluar.page.publish = (dbPage) => {
                 AND page_listing_type.active = TRUE
                 AND listing.active = TRUE
                 AND listing.page_version_id = ${dbPage.getInt(
-    "page_version_id"
-  )}
+                  "page_version_id"
+                )}
             `);
   for (const dbListing of dbListings) {
     const items = _val.list();
@@ -158,8 +157,8 @@ cluar.page.publish = (dbPage) => {
                     uid, title, content, image, image_alt, image_title, sorter, link
                 FROM page_listing_item
                 WHERE page_listing_id = ${dbListing.getInt(
-      "id"
-    )} AND active = TRUE
+                  "id"
+                )} AND active = TRUE
                 `);
     for (const dbItem of dbItems) {
       items.add(
@@ -200,6 +199,70 @@ cluar.page.publish = (dbPage) => {
 
   /*
    *
+   *  SLIDERS
+   *
+   */
+  const dbSliders = _db.query(`
+            SELECT
+                slider.id,
+                slider.uid,
+                page_slider_type.code "type",
+                slider.title,
+                slider.image_alt,
+                slider.image_title,
+                slider.content,
+                slider.image,
+                slider.sorter
+            FROM page_slider slider
+                INNER JOIN page_slider_type ON slider.type_id = page_slider_type.id
+            WHERE slider.active = TRUE
+                AND page_slider_type.active = TRUE
+                AND slider.active = TRUE
+                AND slider.page_version_id = ${dbPage.getInt("page_version_id")}
+            `);
+  for (const dbSlider of dbSliders) {
+    const items = _val.list();
+    const dbItems = _db.query(`
+                SELECT
+                    uid, title, content, image, image_alt, image_title, sorter
+                FROM page_slider_item
+                WHERE page_slider_id = ${dbSlider.getInt(
+                  "id"
+                )} AND active = TRUE
+                `);
+
+    for (const dbItem of dbItems) {
+      items.add(
+        _val
+          .map()
+          .set("uid", dbItem.getString("uid"))
+          .set("section", "slider_item")
+          .set("title", dbItem.getString("title"))
+          .set("content", dbItem.getString("content"))
+          .set("image", dbItem.getString("image"))
+          .set("image_alt", dbItem.getString("image_alt"))
+          .set("image_title", dbItem.getString("image_title"))
+          .set("sorter", dbItem.getInt("sorter"))
+      );
+    }
+    structure.add(
+      _val
+        .map()
+        .set("uid", dbSlider.getString("uid"))
+        .set("section", "slider")
+        .set("type", dbSlider.getString("type"))
+        .set("title", dbSlider.getString("title"))
+        .set("content", dbSlider.getString("content"))
+        .set("image", dbSlider.getString("image"))
+        .set("image_alt", dbSlider.getString("image_alt"))
+        .set("image_title", dbSlider.getString("image_title"))
+        .set("items", items)
+        .set("sorter", dbSlider.getInt("sorter"))
+    );
+  }
+
+  /*
+   *
    *  FUNCTIONALITY
    *
    */
@@ -218,8 +281,8 @@ cluar.page.publish = (dbPage) => {
                 AND page_functionality_type.active = TRUE
                 AND functionality.active = TRUE
                 AND functionality.page_version_id = ${dbPage.getInt(
-    "page_version_id"
-  )}
+                  "page_version_id"
+                )}
             `);
   for (const dbFunctionality of dbFunctionalities) {
     structure.add(
@@ -238,37 +301,40 @@ cluar.page.publish = (dbPage) => {
     // }
   }
 
-  structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"))
+  structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"));
 
-  const folder = _app.folder(`${cluar.base()}/cluar/structures`)
+  const folder = _app.folder(`${cluar.base()}/cluar/structures`);
   if (!folder.exists()) {
-    folder.mkdir()
+    folder.mkdir();
   }
 
   //_log.debug("structure", structure);
 
-  const file = _app.file(`${cluar.base()}/cluar/structures/${dbPage.getString("uid")}.json`)
-  file.output().print(`${structure.toJSON(4)}`).close()
+  const file = _app.file(
+    `${cluar.base()}/cluar/structures/${dbPage.getString("uid")}.json`
+  );
+  file
+    .output()
+    .print(`${structure.toJSON(4)}`)
+    .close();
 
-  let currentLanguage = _db.get("language", dbPage.getInt("language_id"))
+  let currentLanguage = _db.get("language", dbPage.getInt("language_id"));
 
   if (currentLanguage) {
-    currentLanguage = currentLanguage.getString("code")
+    currentLanguage = currentLanguage.getString("code");
   } else {
-    currentLanguage = dbPage.getString("language")
+    currentLanguage = dbPage.getString("language");
   }
 
-  const htmlContent = _template.getOutput('cluar/builder',
-    {
-      structure,
-      configuration: cluar.base.configuration(),
-      dictionary: cluar.base.dictionary(),
-      languages: cluar.base.languages(),
-      currentLanguage,
-      pages: cluar.base.pages({}),
-      page: dbPage,
-    }
-  );
+  const htmlContent = _template.getOutput("cluar/builder", {
+    structure,
+    configuration: cluar.base.configuration(),
+    dictionary: cluar.base.dictionary(),
+    languages: cluar.base.languages(),
+    currentLanguage,
+    pages: cluar.base.pages({}),
+    page: dbPage,
+  });
 
   if (dbPage.getString("social_image") != "") {
     /**
@@ -279,12 +345,18 @@ cluar.page.publish = (dbPage) => {
 
   if (!_env.is("dev")) {
     const basePath = `/website/dist`;
-    const locale = _db.queryFirst(`SELECT * FROM language WHERE code = ?`, dbPage.getString("language")).getString("locale");
+    const locale = _db
+      .queryFirst(
+        `SELECT * FROM language WHERE code = ?`,
+        dbPage.getString("language")
+      )
+      .getString("locale");
     const fullPath = `${basePath}/${locale}` + dbPage.getString("link");
     const HTMLIndexFile = _app.file(`${basePath}/index.html`);
 
     if (HTMLIndexFile.exists()) {
-      const websiteConfig = _app.settings().getValues("cluar").getValues("website") || _val.map()
+      const websiteConfig =
+        _app.settings().getValues("cluar").getValues("website") || _val.map();
       const HTMLIndexDocument = _html.parse(HTMLIndexFile, "US-ASCII", "");
       const headElement = HTMLIndexDocument.select("head").first();
       const bodyElement = HTMLIndexDocument.select("body").first();
@@ -300,27 +372,57 @@ cluar.page.publish = (dbPage) => {
           headElement.appendElement("title").text(pageTitle);
         }
 
-        const pageKeywords = dbPage.getString("keywords").replaceAll(removeNewLineRegex, "");
+        const pageKeywords = dbPage
+          .getString("keywords")
+          .replaceAll(removeNewLineRegex, "");
         const metaKeywordsElement = headElement.selectFirst("[name=keywords]");
         if (metaKeywordsElement) {
           metaKeywordsElement.attr("content", pageKeywords);
         } else {
-          headElement.prependElement(`<meta name="keywords" content="${pageKeywords}" />`);
+          headElement.prependElement(
+            `<meta name="keywords" content="${pageKeywords}" />`
+          );
         }
 
-        const pageDescription = dbPage.getString("description").replaceAll(removeNewLineRegex, "");
-        const metaDescriptionElement = headElement.selectFirst("[name=description]");
+        const pageDescription = dbPage
+          .getString("description")
+          .replaceAll(removeNewLineRegex, "");
+        const metaDescriptionElement =
+          headElement.selectFirst("[name=description]");
         if (metaDescriptionElement) {
           metaDescriptionElement.attr("content", pageDescription);
         } else {
-          headElement.prependElement(`<meta name="description" content="${pageDescription}" />`);
+          headElement.prependElement(
+            `<meta name="description" content="${pageDescription}" />`
+          );
         }
 
-        headElement.prepend(`<meta property="og:title" content="${pageTitle}" />`);
-        headElement.prepend(`<meta property="og:description" content="${dbPage.getString("social_description", "")}" />`);
-        headElement.prepend(`<meta property="og:image" content="/cluar/images/page/${dbPage.getString("social_image", "")}"/>`);
-        headElement.prepend(`<meta property="og:site_name" content="${websiteConfig.getString("name", "")}" />`);
-        headElement.prepend(`<meta property="og:url" content="${websiteConfig.getString("url", "") + dbPage.getString("link")}" />`);
+        headElement.prepend(
+          `<meta property="og:title" content="${pageTitle}" />`
+        );
+        headElement.prepend(
+          `<meta property="og:description" content="${dbPage.getString(
+            "social_description",
+            ""
+          )}" />`
+        );
+        headElement.prepend(
+          `<meta property="og:image" content="/cluar/images/page/${dbPage.getString(
+            "social_image",
+            ""
+          )}"/>`
+        );
+        headElement.prepend(
+          `<meta property="og:site_name" content="${websiteConfig.getString(
+            "name",
+            ""
+          )}" />`
+        );
+        headElement.prepend(
+          `<meta property="og:url" content="${
+            websiteConfig.getString("url", "") + dbPage.getString("link")
+          }" />`
+        );
         bodyElement.prepend(htmlContent);
 
         const folder = _app.folder(fullPath);

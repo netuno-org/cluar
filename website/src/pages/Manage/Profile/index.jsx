@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { Typography, Form, Input, Button, Divider, notification, Row, Col } from 'antd';
 import { PasswordInput } from "antd-password-input-strength";

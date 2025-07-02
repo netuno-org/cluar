@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Alert, Row, Col, Button, message } from "antd";
 
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 
 import _auth from "@netuno/auth-client";
 
@@ -16,9 +16,10 @@ import Content from "../components/Content";
 import Listing from "../components/Listing";
 import ContactForm from "../components/functionality/ContactForm";
 import ContactMap from "../components/functionality/ContactMap";
+import Slider from "../components/Slider";
 import AdminBar from "../base/AdminBar";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 import _service from "@netuno/service-client";
 
@@ -288,6 +289,9 @@ function Builder({ page }) {
               break;
             case "listing":
               SectionComponent = <Listing {...item} />;
+              break;
+            case "slider":
+              SectionComponent = <Slider {...item} />;
               break;
             case "functionality":
               if (item.type === "contact-form") {
