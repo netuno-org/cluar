@@ -12,6 +12,7 @@ const AdminBar = ({
   extra,
   pageData,
   currentStructure = [],
+  editMode
 }) => {
   const [isPageConfigOpen, setIsPageConfigOpen] = useState(false);
   const [isPageVersionsOpen, setIsPageVersionsOpen] = useState(false);
@@ -66,6 +67,7 @@ const AdminBar = ({
             </Col>
             <Col>
               <Switch
+                checked={editMode}
                 onChange={onChangeEditMode}
                 checkedChildren="Editar"
                 unCheckedChildren="Ver"

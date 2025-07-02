@@ -43,6 +43,11 @@ if (lastPageVersion) {
   for (const structure of structures) {
     const status = structure.getString("status");
     const sectionType = structure.getString("section");
+
+    if (status === "to_remove") {
+      continue;
+    }
+
     const structuresToPublishImages = imagesToPublish[sectionType];
     let image = null;
 
@@ -314,10 +319,14 @@ if (lastPageVersion) {
     }
   }
 
-  const newPageVersionUID = _db.get("page_version", newPageVersion);
+  const dbNewPageVersion = _db.get("page_version", newPageVersion);
 
   _out.json(
-    _val.map().set("result", true).set("data", newPageVersionUID.get("uid"))
+    _val.map()
+      .set("result", true)
+      .set("data",
+        _val.map().set("page_version_uid", dbNewPageVersion.get("uid"))
+      )
   );
 } else {
   _header.status(409);

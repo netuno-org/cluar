@@ -6,8 +6,8 @@ import BannerEditor from "../BannerEditor";
 import ListEditor from "../ListEditor";
 import FunctionalityEditor from "../FunctionalityEditor";
 import ContentEditor from "../ContentEditor";
+import LexicalEditor from "../../LexicalEditor";
 import _service from "@netuno/service-client";
-import TesteEditor from "../../TesteEditor";
 
 const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const [form] = Form.useForm();
@@ -83,7 +83,8 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
     <Drawer
       open={open}
       onClose={onClose}
-      width={580}
+      destroyOnClose={true}
+      width={820}
       extra={
         <Button type="primary" onClick={handleConfirmChanges}>
           Aplicar
@@ -109,7 +110,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
 
         {isContentSection && showAIPrompt && (
           <Form.Item label="Instruções para IA">
-            <Space style={{ width: "100%" }} direction="vertical">
+            <Space style={{ width: '100%' }} direction="vertical">
               <Input.TextArea
                 rows={3}
                 value={aiPrompt}
@@ -120,7 +121,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                 type="primary"
                 onClick={handleAIGenerate}
                 loading={generating}
-                style={{ alignSelf: "flex-end" }}
+                style={{ alignSelf: 'flex-end' }}
               >
                 Gerar
               </Button>
@@ -128,9 +129,12 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
           </Form.Item>
         )}
 
-        <TesteEditor />
+        <LexicalEditor
+          initialHtml={sectionData?.content}
+          onChange={(html) => form.setFieldsValue({ content: html })}
+        />
 
-        <Form.Item name="content" label="Conteúdo">
+        <Form.Item name="content" label="Conteúdo" hidden={true}>
           <Input.TextArea rows={6} />
         </Form.Item>
 

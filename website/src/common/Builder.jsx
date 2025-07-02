@@ -26,10 +26,45 @@ function Builder({ page }) {
   const [error, setError] = useState(false);
   const [structure, setStructure] = useState([]);
   const [editMode, setEditMode] = useState(false);
+  const [showActionButtons, setShowActionButtons] = useState(false);
   const [hasDiff, setHasDiff] = useState(false);
+  const [canPublish, setCanPublish] = useState(false);
+  const [pageVersionExists, setPageVersionExists] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [publishing, setPublishing] = useState(false);
+  const [currentPageVersion, setCurrentPageVersion] = useState(page?.page_version_uid);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (hasDiff || canPublish) {
+      setShowActionButtons(true);
+    } else {
+      setShowActionButtons(false);
+    }
+  }, [hasDiff, canPublish]);
+
+  useEffect(() => {
+    setPageVersionExists(!hasDiff);
+  }, [hasDiff]);
+
+  useEffect(() => {
+    console.log("pageVersionExists", pageVersionExists);
+    console.log("currentPageVersion", currentPageVersion);
+  }, [pageVersionExists]);
+
+  useEffect(() => {
+    // Verifica se o currentPageVersion é diferente da publicada
+    if (currentPageVersion !== page?.page_version_uid && hasDiff == false) {
+      setHasDiff(false);
+      setCanPublish(true);
+      setEditMode(true);
+    } else {
+      setHasDiff(false);
+      setCanPublish(false);
+      setEditMode(false);
+    }
+  }, [currentPageVersion]);
 
   useEffect(() => {
     if (searchParams.get("version")) {
@@ -42,6 +77,8 @@ function Builder({ page }) {
         success: (res) => {
           if (res.json.result) {
             setStructure(res.json.structure);
+            setCurrentPageVersion(searchParams.get("version"));
+            setPageVersionExists(true);
           }
         },
         fail: (res) => {
@@ -55,6 +92,8 @@ function Builder({ page }) {
           setError(false);
           setStructure(data);
           setHasDiff(false);
+          setCurrentPageVersion(page?.page_version_uid);
+          setPageVersionExists(true);
         })
         .catch((error) => {
           setError(true);
@@ -88,6 +127,7 @@ function Builder({ page }) {
       setStructure([...newStructure]);
     }
     setHasDiff(true);
+    setCanPublish(true);
   };
 
   const handleChangeSection = (data, current) => {
@@ -102,6 +142,7 @@ function Builder({ page }) {
 
       setStructure([...newStructure]);
       setHasDiff(true);
+      setCanPublish(true);
     }
   };
 
@@ -116,7 +157,11 @@ function Builder({ page }) {
       },
       success: (res) => {
         if (res.json.result) {
+          const data = res.json['data'];
+          setCurrentPageVersion(data.page_version_uid);
+
           message.success("Página guardada com sucesso");
+          setHasDiff(false);
         }
         navigate(`?version=${res.json.data}`);
         setHasDiff(false);
@@ -130,15 +175,55 @@ function Builder({ page }) {
     });
   };
 
+  const handlePublishPage = () => {
+    setPublishing(true);
+
+    _service({
+      url: "/editor/page-version/save/publish",
+      method: "POST",
+      data: {
+        page: page.uid,
+        page_version: currentPageVersion
+      },
+      success: (res) => {
+        if (res.json.result) {
+          message.success("Página publicada com sucesso");
+        }
+        setPublishing(false);
+        setHasDiff(false);
+        setCanPublish(false);
+      },
+      fail: (error) => {
+        message.error("Falha ao publicar página");
+        console.log(error);
+        setPublishing(false);
+      },
+    });
+  };
+
+  /*const handleSetEditMode = (mode) => {
+    setEditMode(mode);
+    console.log("mode", mode);
+    setShowActionButtons(mode);
+
+    if (mode && (hasDiff || canPublish)) {
+      setShowActionButtons(true);
+    } else if (!mode) {
+      setShowActionButtons(false);
+    }
+  };*/
+
   const extraBarAdmin = (
     <Row gutter={12}>
       <Col>
-        <Button onClick={handleSavePage} loading={saving}>
+        <Button onClick={handleSavePage} loading={saving} disabled={!hasDiff}>
           Guardar
         </Button>
       </Col>
       <Col>
-        <Button type="primary">Publicar</Button>
+        <Button type="primary" onClick={handlePublishPage} loading={publishing} disabled={!canPublish}>
+          Publicar
+        </Button>
       </Col>
     </Row>
   );
@@ -168,12 +253,17 @@ function Builder({ page }) {
     );
   }
 
+  const handleSetEditMode = (mode) => {
+    setEditMode(mode);
+    setShowActionButtons(mode);
+  }
+
   return (
     <main>
       {_auth.isLogged() && (
         <AdminBar
-          onChangeEditMode={setEditMode}
-          extra={hasDiff && extraBarAdmin}
+          onChangeEditMode={handleSetEditMode}
+          extra={showActionButtons && extraBarAdmin}
           pageData={page}
           currentStructure={structure.filter(
             (item) => item.status !== "to_remove"

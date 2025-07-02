@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Editor from "@monaco-editor/react";
 import prettier from "prettier/standalone";
 import parserHtml from "prettier/parser-html";
@@ -20,12 +20,15 @@ const MonacoEditor = ({ value, onChange }) => {
     useEffect(() => {
         if (monacoEditorRef.current && value) {
             try {
-                const formatted = prettier.format(value, {
-                    parser: "html",
-                    plugins: [parserHtml],
-                });
-                console.log("HTML formatado:", formatted);
-                monacoEditorRef.current.setValue(formatted);
+                if (typeof value === 'string') {
+                    const formatted = prettier.format(value, {
+                        parser: "html",
+                        plugins: [parserHtml],
+                    });
+                    monacoEditorRef.current.setValue(formatted);
+                } else {
+                    console.error("Valor inválido para formatação HTML:", value);
+                }
             } catch (err) {
                 console.error("Erro ao formatar HTML:", err);
             }
@@ -37,7 +40,7 @@ const MonacoEditor = ({ value, onChange }) => {
             <Editor
                 height="300px"
                 defaultLanguage="html"
-                value={value || "<!-- Digite seu código HTML aqui -->"}
+                value={value || "<!-- Escreva seu código HTML aqui -->"}
                 onMount={handleEditorDidMount}
                 onChange={handleEditorChange}
             />
