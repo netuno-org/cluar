@@ -94,7 +94,25 @@ const ImageSectionEditor = ({
           fileList={fileList}
           onPreview={handlePreview}
           onChange={handleChange}
-          beforeUpload={() => false}
+          beforeUpload={(file) => {
+            const isImage =
+              file.type === "image/png" ||
+              file.type === "image/jpeg" ||
+              file.type === "image/jpg";
+
+            const isLimit1M = file.size / 1024 / 1024 < 1;
+
+            if (!isImage) {
+              return Upload.LIST_IGNORE;
+            }
+
+            if (!isLimit1M) {
+              return Upload.LIST_IGNORE;
+            }
+
+            return false;
+          }}
+          accept=".png,.jpg,.jpeg"
         >
           {fileList.length >= 1 ? null : uploadButton}
         </Upload>
