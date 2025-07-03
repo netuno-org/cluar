@@ -164,7 +164,7 @@ function Builder({ page }) {
           message.success("Página guardada com sucesso");
           setHasDiff(false);
         }
-        navigate(`?version=${res.json.data}`);
+        navigate(`?version=${res.json.data?.page_version_uid}`);
         setHasDiff(false);
         setSaving(false);
       },
