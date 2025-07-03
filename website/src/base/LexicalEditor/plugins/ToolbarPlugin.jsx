@@ -38,7 +38,7 @@ import { $isLinkNode, TOGGLE_LINK_COMMAND, $createLinkNode } from "@lexical/link
 import { $createListNode, INSERT_CHECK_LIST_COMMAND } from "@lexical/list";
 
 import FloatingEditor from "../components/FloatingEditor";
-import FloatingLinkEditor from "../components/FloatingLInkEditor";
+import FloatingLinkEditor from "../components/FloatingLinkEditor";
 import InsertImageModal from "../components/ImageModal";
 import InsertColumnsModal from "../components/ColumnsModal";
 

@@ -39,6 +39,7 @@ if (lastPageVersion) {
       .set("page_id", lastPageVersion.getInt("id"))
       .set("version", lastPageVersion.getInt("version") + 1)
       .set("status_id", draftStatus.getInt("id"))
+      .set("created_at", _db.timestamp())
   );
 
   for (const structure of structures) {

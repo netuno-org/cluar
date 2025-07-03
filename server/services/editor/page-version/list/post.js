@@ -23,7 +23,7 @@ const dbPage = _db.queryFirst(`
 if (dbPage) {
   const dbPageVersions = _db.query(`
     SELECT
-      pv.lastchange_time,
+      pv.created_at,
       pv.uid,
       pv.version,
       ps.code
@@ -32,7 +32,7 @@ if (dbPage) {
     INNER JOIN page_status ps ON ps.id = pv.status_id
     WHERE 1 = 1
       AND pv.page_id = ${dbPage.getInt("id")}
-    ORDER BY pv.lastchange_time DESC
+    ORDER BY pv.id DESC
     LIMIT ${page.size} OFFSET ${page.start}
   `);
 
@@ -41,7 +41,7 @@ if (dbPage) {
       count(1) AS total
     FROM
       page_version pv
-    WHERE pv.page_id = 34
+    WHERE pv.page_id = ${dbPage.getInt("id")}
   `);
 
   _out.json(

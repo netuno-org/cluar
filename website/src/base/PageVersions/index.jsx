@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { Drawer, Form, Input, Button, Timeline } from "antd";
+import { Drawer, Tag, Button, Timeline } from "antd";
 
 import { Link } from "react-router";
 
 import { useSearchParams } from "react-router";
+
+import dayjs from "dayjs";
 
 import _service from "@netuno/service-client";
 
@@ -54,12 +56,17 @@ const PageVersions = ({ pageData, open, onClose }) => {
         items={versions.map((version) => ({
           children: (
             <Link to={`?version=${version.uid}`}>
-              {version.version} - {version.lastchange_time}{" "}
+              {`${version.version} - ${dayjs(
+                version.created_at,
+                "YYYY-MM-DD HH:mm:ss"
+              ).format("DD/MM/YYYY [às] HH:mm")}`}{" "}
               {version.uid === searchParams.get("version") ||
-              (!searchParams.has("version") && version.code === "published")
-                ? "(atual)"
-                : null}{" "}
-              {version.code === "published" && "(publicada)"}
+              (!searchParams.has("version") && version.code === "published") ? (
+                <Tag color="orange">Atual</Tag>
+              ) : null}{" "}
+              {version.code === "published" && (
+                <Tag color="green">Publicada</Tag>
+              )}
             </Link>
           ),
           color: version.code === "draft" ? "gray" : "green",
