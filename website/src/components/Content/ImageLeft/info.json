@@ -1,0 +1,10 @@
+{
+  "en": {
+    "label": "Image on the left",
+    "description": "Adds an image to the left of the text."
+  },
+  "pt": {
+    "label": "Imagem à esquerda",
+    "description": "Adiciona uma imagem à esquerda do texto."
+  }
+}

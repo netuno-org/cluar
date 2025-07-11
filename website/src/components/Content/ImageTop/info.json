@@ -1,0 +1,10 @@
+{
+  "en": {
+    "label": "Image on the top",
+    "description": "Adds an image above the text."
+  },
+  "pt": {
+    "label": "Imagem no topo",
+    "description": "Adiciona uma imagem acima do texto."
+  }
+}

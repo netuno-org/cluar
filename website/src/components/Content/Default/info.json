@@ -1,0 +1,10 @@
+{
+  "en": {
+    "label": "Default",
+    "description": "For when no content type is chosen."
+  },
+  "pt": {
+    "label": "Padrão",
+    "description": "Para quando nenhum tipo de conteúdo for escolhido."
+  }
+}

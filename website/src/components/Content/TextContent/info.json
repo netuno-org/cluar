@@ -1,0 +1,10 @@
+{
+  "en": {
+    "label": "Text",
+    "description": "Add text."
+  },
+  "pt": {
+    "label": "Texto",
+    "description": "Adiciona um texto."
+  }
+}
