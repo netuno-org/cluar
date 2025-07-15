@@ -14,8 +14,7 @@ import PageSection from "../base/PageSection";
 import Banner from "../components/Banner";
 import Content from "../components/Content";
 import Listing from "../components/Listing";
-import ContactForm from "../components/functionality/ContactForm";
-import ContactMap from "../components/functionality/ContactMap";
+import Functionality from "../components/Functionality";
 import Slider from "../components/Slider";
 import AdminBar from "../base/AdminBar";
 
@@ -294,11 +293,7 @@ function Builder({ page }) {
               SectionComponent = <Slider {...item} />;
               break;
             case "functionality":
-              if (item.type === "contact-form") {
-                SectionComponent = <ContactForm {...item} />;
-              } else if (item.type === "contact-map") {
-                SectionComponent = <ContactMap {...item} />;
-              }
+              SectionComponent = <Functionality {...item} />;
               break;
             default:
               SectionComponent = null;
