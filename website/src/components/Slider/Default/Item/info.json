@@ -1,0 +1,10 @@
+{
+  "en": {
+    "label": "Default",
+    "description": "Adds a slider item."
+  },
+  "pt": {
+    "label": "Padrão",
+    "description": "Adiciona um item ao carrossel de imagens."
+  }
+}
