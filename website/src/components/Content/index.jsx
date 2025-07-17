@@ -24,14 +24,14 @@ const Content = ({ section, type, title, content, image, image_title, image_alt,
         imageStyle["maxWidth"] = `${image_max_width}px`;
     }
 
-    if (type === 'text') {
+    if (type === 'TextContent') {
         layout = (
             <TextContent
                 title={title}
                 content={content}
             />
         );
-    } else if (type === 'image-left') {
+    } else if (type === 'ImageLeft') {
         layout = (
             <ImageLeft
                 title={title}
@@ -42,7 +42,7 @@ const Content = ({ section, type, title, content, image, image_title, image_alt,
                 imageStyle={imageStyle}
             />
         );
-    } else if (type === 'image-right') {
+    } else if (type === 'ImageRight') {
         layout = (
             <ImageRight
                 title={title}
@@ -53,7 +53,7 @@ const Content = ({ section, type, title, content, image, image_title, image_alt,
                 imageStyle={imageStyle}
             />
         );
-    } else if (type === 'image-top') {
+    } else if (type === 'ImageTop') {
         layout = (
             <ImageTop
                 title={title}
@@ -64,7 +64,7 @@ const Content = ({ section, type, title, content, image, image_title, image_alt,
                 imageStyle={imageStyle}
             />
         );
-    } else if (type === 'image-bottom') {
+    } else if (type === 'ImageBottom') {
         layout = (
             <ImageBottom
                 title={title}
@@ -75,13 +75,13 @@ const Content = ({ section, type, title, content, image, image_title, image_alt,
                 imageStyle={imageStyle}
             />
         );
-    } else if (type === 'image') {
+    } else if (type === 'ImageContent') {
         layout = (
             <ImageContent
                 image_title={image_title}
                 image_alt={image_alt}
                 imageSrc={imageSrc}
-                imageStyle={imageStyle}
+                imageStyle={imageStyle} 
             />
         );
     } else {

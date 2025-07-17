@@ -21,15 +21,15 @@ _form.createIfNotExists(
 	.set("export_xls", true)
 	.set("export_xml", true)
 	.set("firebase", "")
-	.set("name", "page_listing_type")
-	.set("parent_uid", "f51ed428-b975-4ea7-9033-34276ae59053")
+	.set("name", "page_functionality_type")
+	.set("parent_uid", "228801a5-e190-4241-bc76-5d65ceb9ecf7")
 	.set("reorder", 0)
 	.set("report", false)
 	.set("show_id", true)
-	.set("uid", "4e7b1b9b-522f-4ea9-bbab-444625419a26")
+	.set("uid", "80e8f4dc-e626-4b3d-9b69-5a733789c41e")
 )
 _form.createComponentIfNotExists(
-	"4e7b1b9b-522f-4ea9-bbab-444625419a26",
+	"80e8f4dc-e626-4b3d-9b69-5a733789c41e",
 	_val.init()
 	.set("colspan", 0)
 	.set("description", "")
@@ -47,7 +47,7 @@ _form.createComponentIfNotExists(
 	.set("tdheight", 0)
 	.set("tdwidth", 0)
 	.set("type", "text")
-	.set("uid", "e8886e0f-45e6-489f-997a-effb6e2d4bb0")
+	.set("uid", "cf697bb6-cb98-4d5b-bf0b-cb470d4f1bb7")
 	.set("user_id", 0)
 	.set("whenedit", true)
 	.set("whenexport", true)
@@ -60,7 +60,7 @@ _form.createComponentIfNotExists(
 	.set("y", 1)
 )
 _form.createComponentIfNotExists(
-	"4e7b1b9b-522f-4ea9-bbab-444625419a26",
+	"80e8f4dc-e626-4b3d-9b69-5a733789c41e",
 	_val.init()
 	.set("colspan", 0)
 	.set("description", "")
@@ -78,7 +78,7 @@ _form.createComponentIfNotExists(
 	.set("tdheight", 0)
 	.set("tdwidth", 0)
 	.set("type", "text")
-	.set("uid", "3c8c57f7-2af5-475a-b56a-d9bfe02b4f16")
+	.set("uid", "95fef07e-fc3c-4215-a20f-9c40f83caebe")
 	.set("user_id", 0)
 	.set("whenedit", true)
 	.set("whenexport", true)

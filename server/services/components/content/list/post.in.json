@@ -1,0 +1,14 @@
+{
+  "summary": "List Content templates",
+  "description": "List content templates",
+  "tags": [
+    "Content"
+  ],
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "descriptio": "Language code to access info.json properties"
+    }
+  }
+}

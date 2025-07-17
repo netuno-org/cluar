@@ -41,7 +41,8 @@ cluar.page.publish = (dbPage) => {
                 content.image_alt,
                 content.image_title,
                 content.image_max_width,
-                content.sorter
+                content.sorter,
+                content.type
             FROM page_content content
                 INNER JOIN page_content_type ON content.type_id = page_content_type.id
             WHERE content.active = TRUE
@@ -67,6 +68,7 @@ cluar.page.publish = (dbPage) => {
         .set("image_max_width", dbContent.getString("image_max_width"))
         .set("sorter", dbContent.getInt("sorter"))
         .set("actions", cluar.actions("content", dbContent.getInt("id")))
+        .set("template", dbContent.getString("template"))
     );
     // if (settings.images === true) {
     //   cluar.publishImage("content", dbContent.getString("image"))
