@@ -158,13 +158,7 @@ if (lastPageVersion) {
       }
     } else if (sectionType === "listing") {
       const listingItems = structure.getList("items", _val.list());
-      const listingType = _db.queryFirst(`
-        SELECT
-          *
-        FROM
-          page_listing_type
-        WHERE code = '${structure.getString("type")}'
-      `);
+      
       const listingData = _val
         .map()
         .set("page_version_id", newPageVersion)
@@ -172,7 +166,7 @@ if (lastPageVersion) {
         .set("sorter", structure.getInt("sorter", 0))
         .set("image_title", structure.getString("image_title"))
         .set("image_alt", structure.getString("image_alt"))
-        .set("type_id", listingType.getInt("id"))
+        .set("type", structure.getString("type"))
         .set("content", structure.getString("content"));
 
       if (structure.getString("type")) {

@@ -7,7 +7,7 @@ function Listing(props) {
 
   let listLayout = null;
 
-  if (props.type === "default") {
+  if (props.type === "Default") {
     listLayout = (
       <Default
         {...props}

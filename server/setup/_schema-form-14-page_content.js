@@ -312,7 +312,7 @@ _form.createComponentIfNotExists(
 	_val.init()
 	.set("colspan", 0)
 	.set("description", "")
-	.set("displayname", "type")
+	.set("displayname", "Tipo")
 	.set("firebase", "")
 	.set("group_id", 0)
 	.set("height", 0)

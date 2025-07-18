@@ -3,10 +3,30 @@ import { Form, Select, Row, Col, Input, Divider, Button } from "antd";
 
 import SortableListItem from "./SortableListItem";
 import ImageSectionEditor from "../ImageSectionEditor";
+import _service from "@netuno/service-client";
+import Cluar from "../../../common/Cluar"
 
 const ListEditor = ({ sectionData, form }) => {
   const [itemsOrder, setItemsOrder] = useState([]);
   const [itemsByUid, setItemsByUid] = useState({});
+
+  const [typeOptions, setTypeOptions] = useState([]);
+
+  useEffect(() => {
+    _service({
+      url: "/components/listing/list",
+      method: "POST",
+      data: {
+        language: Cluar.currentLanguage().locale
+      },
+      success: (res) => {
+        setTypeOptions(res.json.types);
+      },
+      fail: (error) => {
+        console.log(error);
+      },
+    });
+  }, []);
 
   const handleChangeItem = (uid, property, value) => {
     const updatedItem = {
@@ -90,7 +110,11 @@ const ListEditor = ({ sectionData, form }) => {
   return (
     <div className="list-editor">
       <Form.Item label="Tipo" name="type">
-        <Select options={[{ value: "default", label: "Padrão" }]} />
+        <Select
+          options={typeOptions.map((item) => ({
+            label: item.info.label,
+            value: item.name,
+          }))} />
       </Form.Item>
 
       <ImageSectionEditor form={form} sectionData={sectionData} />

@@ -1,0 +1,14 @@
+{
+  "summary": "List Listing types",
+  "description": "List listing types",
+  "tags": [
+    "Listing"
+  ],
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "descriptio": "Language code to access info.json properties"
+    }
+  }
+}

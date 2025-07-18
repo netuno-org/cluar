@@ -68,7 +68,6 @@ cluar.page.publish = (dbPage) => {
         .set("image_max_width", dbContent.getString("image_max_width"))
         .set("sorter", dbContent.getInt("sorter"))
         .set("actions", cluar.actions("content", dbContent.getInt("id")))
-        .set("template", dbContent.getString("template"))
     );
     // if (settings.images === true) {
     //   cluar.publishImage("content", dbContent.getString("image"))
@@ -136,7 +135,7 @@ cluar.page.publish = (dbPage) => {
             SELECT
                 listing.id,
                 listing.uid,
-                page_listing_type.code "type",
+                listing.type,
                 listing.title,
                 listing.image_alt,
                 listing.image_title,
