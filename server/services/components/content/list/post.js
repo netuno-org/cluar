@@ -1,13 +1,13 @@
 const language = _req.getString("language");
 
-const templates = [];
-const templatesPath = _app.getPathBase() + "/website/src/components/Content";
+const types = [];
+const typesPath = _app.getPathBase() + "/website/src/components/Content";
 
-if (_app.isFolder(templatesPath)) {
-  const templatesFolder = _app.getFolder(templatesPath);
-  const templatesFolders = templatesFolder.list();
+if (_app.isFolder(typesPath)) {
+  const typesFolder = _app.getFolder(typesPath);
+  const typesFolders = typesFolder.list();
 
-  templatesFolders.forEach((templateFolder) => {
+  typesFolders.forEach((templateFolder) => {
     const templateInfoPath = `${templateFolder.getFullPath()}/info.json`;
 
     if (!_app.isFile(templateInfoPath)) {
@@ -26,7 +26,7 @@ if (_app.isFolder(templatesPath)) {
 
     reader.close();
 
-    templates.push({
+    types.push({
       name: templateFolder.getName(),
       info: _val.fromJSON(fileContent).getValues(language),
     });
@@ -34,5 +34,5 @@ if (_app.isFolder(templatesPath)) {
 }
 
 _out.json({
-  templates,
+  types,
 });

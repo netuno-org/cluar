@@ -6,7 +6,7 @@ import _service from "@netuno/service-client";
 import Cluar from "../../../common/Cluar"
 
 const ContentEditor = ({ sectionData, form }) => {
-  const [templateOptions, setTemplateOptions] = useState([]);
+  const [typeOptions, setTypeOptions] = useState([]);
 
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const ContentEditor = ({ sectionData, form }) => {
         language: Cluar.currentLanguage().locale
       },
       success: (res) => {
-        setTemplateOptions(res.json.templates);
+        setTypeOptions(res.json.types);
       },
       fail: (error) => {
         console.log(error);
@@ -29,7 +29,7 @@ const ContentEditor = ({ sectionData, form }) => {
     <div className="content-editor">
       <Form.Item label="Tipo" name="type">
         <Select
-          options={templateOptions.map((item) => ({
+          options={typeOptions.map((item) => ({
             label: item.info.label,
             value: item.name,
           }))}
