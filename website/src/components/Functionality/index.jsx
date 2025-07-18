@@ -6,13 +6,13 @@ import ContactMap from './ContactMap';
 const Functionality = ({ title, content, type }) => {
     let layout = null;
 
-    if (type === 'contact-form') {
+    if (type === 'ContactForm') {
         layout = (
             <ContactForm
                 title={title}
             />
         );
-    } else if (type === 'contact-map') {
+    } else if (type === 'ContactMap') {
         layout = (
             <ContactMap
                 title={title}

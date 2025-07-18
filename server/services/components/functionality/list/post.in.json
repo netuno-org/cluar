@@ -1,0 +1,14 @@
+{
+  "summary": "List Functionality types",
+  "description": "List functionality types",
+  "tags": [
+    "Functionality"
+  ],
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "descriptio": "Language code to access info.json properties"
+    }
+  }
+}

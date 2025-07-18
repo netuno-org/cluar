@@ -337,7 +337,7 @@ if (lastPageVersion) {
         const functionalityData = _val
           .map()
           .set("page_version_id", newPageVersion)
-          .set("type_id", dbFunctionalityType.getInt("id"))
+          .set("type", structure.getString("type"))
           .set("title", structure.getString("title"))
           .set("content", structure.getString("content"))
           .set("sorter", structure.getInt("sorter", 0));

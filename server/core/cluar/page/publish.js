@@ -271,7 +271,7 @@ cluar.page.publish = (dbPage) => {
             SELECT
                 functionality.id,
                 functionality.uid,
-                page_functionality_type.code "type",
+                functionality.type,
                 functionality.title,
                 functionality.content,
                 functionality.image,
