@@ -34,7 +34,6 @@ cluar.page.publish = (dbPage) => {
             SELECT
                 content.id,
                 content.uid,
-                page_content_type.code "type",
                 content.title,
                 content.content,
                 content.image,
@@ -44,13 +43,11 @@ cluar.page.publish = (dbPage) => {
                 content.sorter,
                 content.type
             FROM page_content content
-                INNER JOIN page_content_type ON content.type_id = page_content_type.id
             WHERE content.active = TRUE
-                AND page_content_type.active = TRUE
                 AND content.active = TRUE
                 AND content.page_version_id = ${dbPage.getInt(
-                  "page_version_id"
-                )}
+    "page_version_id"
+  )}
             `);
 
   for (const dbContent of dbContents) {
@@ -143,13 +140,11 @@ cluar.page.publish = (dbPage) => {
                 listing.image,
                 listing.sorter
             FROM page_listing listing
-                INNER JOIN page_listing_type ON listing.type_id = page_listing_type.id
             WHERE listing.active = TRUE
-                AND page_listing_type.active = TRUE
                 AND listing.active = TRUE
                 AND listing.page_version_id = ${dbPage.getInt(
-                  "page_version_id"
-                )}
+    "page_version_id"
+  )}
             `);
   for (const dbListing of dbListings) {
     const items = _val.list();
@@ -158,8 +153,8 @@ cluar.page.publish = (dbPage) => {
                     uid, title, content, image, image_alt, image_title, sorter, link
                 FROM page_listing_item
                 WHERE page_listing_id = ${dbListing.getInt(
-                  "id"
-                )} AND active = TRUE
+      "id"
+    )} AND active = TRUE
                 `);
     for (const dbItem of dbItems) {
       items.add(
@@ -207,7 +202,7 @@ cluar.page.publish = (dbPage) => {
             SELECT
                 slider.id,
                 slider.uid,
-                page_slider_type.code "type",
+                slider.type,
                 slider.title,
                 slider.image_alt,
                 slider.image_title,
@@ -215,9 +210,7 @@ cluar.page.publish = (dbPage) => {
                 slider.image,
                 slider.sorter
             FROM page_slider slider
-                INNER JOIN page_slider_type ON slider.type_id = page_slider_type.id
             WHERE slider.active = TRUE
-                AND page_slider_type.active = TRUE
                 AND slider.active = TRUE
                 AND slider.page_version_id = ${dbPage.getInt("page_version_id")}
             `);
@@ -228,8 +221,8 @@ cluar.page.publish = (dbPage) => {
                     uid, title, content, image, image_alt, image_title, sorter
                 FROM page_slider_item
                 WHERE page_slider_id = ${dbSlider.getInt(
-                  "id"
-                )} AND active = TRUE
+      "id"
+    )} AND active = TRUE
                 `);
 
     for (const dbItem of dbItems) {
@@ -277,13 +270,11 @@ cluar.page.publish = (dbPage) => {
                 functionality.image,
                 functionality.sorter
             FROM page_functionality functionality
-                INNER JOIN page_functionality_type ON functionality.type_id = page_functionality_type.id
             WHERE functionality.active = TRUE
-                AND page_functionality_type.active = TRUE
                 AND functionality.active = TRUE
                 AND functionality.page_version_id = ${dbPage.getInt(
-                  "page_version_id"
-                )}
+    "page_version_id"
+  )}
             `);
   for (const dbFunctionality of dbFunctionalities) {
     structure.add(
@@ -420,8 +411,7 @@ cluar.page.publish = (dbPage) => {
           )}" />`
         );
         headElement.prepend(
-          `<meta property="og:url" content="${
-            websiteConfig.getString("url", "") + dbPage.getString("link")
+          `<meta property="og:url" content="${websiteConfig.getString("url", "") + dbPage.getString("link")
           }" />`
         );
         bodyElement.prepend(htmlContent);

@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Form, Select, Row, Col, Input, Divider, Button } from "antd";
 
+
+import _service from "@netuno/service-client";
+import Cluar from "../../../common/Cluar"
+
 import SortableSliderItem from "./SortableSliderItem";
 import ImageSectionEditor from "../ImageSectionEditor";
 
@@ -87,10 +91,33 @@ const SliderEditor = ({ sectionData, form }) => {
 
   const items = itemsOrder.map((uid) => itemsByUid[uid]);
 
+  const [typeOptions, setTypeOptions] = useState([]);
+
+  useEffect(() => {
+    _service({
+      url: "/components/slider/list",
+      method: "POST",
+      data: {
+        language: Cluar.currentLanguage().locale
+      },
+      success: (res) => {
+        setTypeOptions(res.json.types);
+      },
+      fail: (error) => {
+        console.log(error);
+      },
+    });
+  }, []);
+
   return (
     <div className="slider-editor">
       <Form.Item label="Tipo" name="type">
-        <Select options={[{ value: "default", label: "Padrão" }]} />
+        <Select
+          options={typeOptions.map((item) => ({
+            label: item.info.label,
+            value: item.name,
+          }))}
+        />
       </Form.Item>
 
       {/* <ImageSectionEditor form={form} sectionData={sectionData} /> */}

@@ -1,0 +1,14 @@
+{
+  "summary": "Slider Types list",
+  "description": "Slider types list",
+  "tags": [
+    "Slider"
+  ],
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "descriptio": "Language code to access info.json properties"
+    }
+  }
+}

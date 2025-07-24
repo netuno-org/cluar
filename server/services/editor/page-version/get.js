@@ -16,7 +16,7 @@ if (dbPageVersion) {
     SELECT
       content.id,
       content.uid,
-      page_content_type.code "type",
+      content.type,
       content.title,
       content.content,
       content.image,
@@ -25,9 +25,7 @@ if (dbPageVersion) {
       content.image_max_width,
       content.sorter
     FROM page_content content
-      INNER JOIN page_content_type ON content.type_id = page_content_type.id
     WHERE content.active = TRUE
-      AND page_content_type.active = TRUE
       AND content.active = TRUE
       AND content.page_version_id = ${dbPageVersion.getInt("id")}
   `);
@@ -116,7 +114,7 @@ if (dbPageVersion) {
     SELECT
       listing.id,
       listing.uid,
-      page_listing_type.code "type",
+      listing.type,
       listing.title,
       listing.image_alt,
       listing.image_title,
@@ -124,9 +122,7 @@ if (dbPageVersion) {
       listing.image,
       listing.sorter
     FROM page_listing listing
-      INNER JOIN page_listing_type ON listing.type_id = page_listing_type.id
     WHERE listing.active = TRUE
-      AND page_listing_type.active = TRUE
       AND listing.active = TRUE
       AND listing.page_version_id = ${dbPageVersion.getInt("id")}
   `);
@@ -189,7 +185,7 @@ if (dbPageVersion) {
             SELECT
                 slider.id,
                 slider.uid,
-                page_slider_type.code "type",
+                slider.type,
                 slider.title,
                 slider.image_alt,
                 slider.image_title,
@@ -197,9 +193,7 @@ if (dbPageVersion) {
                 slider.image,
                 slider.sorter
             FROM page_slider slider
-                INNER JOIN page_slider_type ON slider.type_id = page_slider_type.id
             WHERE slider.active = TRUE
-                AND page_slider_type.active = TRUE
                 AND slider.active = TRUE
                 AND slider.page_version_id = ${dbPageVersion.getInt("id")}
             `);
@@ -211,8 +205,8 @@ if (dbPageVersion) {
                     uid, title, content, image, image_alt, image_title, sorter
                 FROM page_slider_item
                 WHERE page_slider_id = ${dbSlider.getInt(
-                  "id"
-                )} AND active = TRUE
+      "id"
+    )} AND active = TRUE
                 `);
 
     for (const dbItem of dbItems) {
@@ -254,15 +248,13 @@ if (dbPageVersion) {
     SELECT
       functionality.id,
       functionality.uid,
-      page_functionality_type.code "type",
+      functionality.type,
       functionality.title,
       functionality.content,
       functionality.image,
       functionality.sorter
     FROM page_functionality functionality
-      INNER JOIN page_functionality_type ON functionality.type_id = page_functionality_type.id
     WHERE functionality.active = TRUE
-      AND page_functionality_type.active = TRUE
       AND functionality.active = TRUE
       AND functionality.page_version_id = ${dbPageVersion.getInt("id")}
   `);

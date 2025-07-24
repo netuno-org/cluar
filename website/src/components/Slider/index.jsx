@@ -4,7 +4,7 @@ import Default from './Default';
 const Slider = (props) => {
   let layout = null;
 
-  if (props.type == 'default') {
+  if (props.type == 'Default') {
     layout = (
       <Default
         {...props}

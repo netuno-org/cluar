@@ -169,22 +169,22 @@ if (lastPageVersion) {
         .set("type", structure.getString("type"))
         .set("content", structure.getString("content"));
 
-      if (structure.getString("type")) {
-        _log.info(sectionType, structure.getString("type"));
-        const dbListingType = _db.queryFirst(
-          `
-            SELECT
-              *
-            FROM page_listing_type
-            WHERE code = ?
-          `,
-          structure.getString("type")
-        );
+      // if (structure.getString("type")) {
+      //   _log.info(sectionType, structure.getString("type"));
+      //   const dbListingType = _db.queryFirst(
+      //     `
+      //       SELECT
+      //         *
+      //       FROM page_listing_type
+      //       WHERE code = ?
+      //     `,
+      //     structure.getString("type")
+      //   );
 
-        if (dbListingType) {
-          listingData.set("type_id", dbListingType.getInt("id"));
-        }
-      }
+      //   if (dbListingType) {
+      //     listingData.set("type_id", dbListingType.getInt("id"));
+      //   }
+      // }
 
       if (structure.getString("image")?.includes("base64")) {
         listingData.set("image", image);
@@ -246,38 +246,31 @@ if (lastPageVersion) {
       }
     } else if (sectionType === "slider") {
       const sliderItems = structure.getList("items", _val.list());
-      const sliderType = _db.queryFirst(`
-        SELECT
-          *
-        FROM
-          page_slider_type
-        WHERE code = '${structure.getString("type")}'
-      `);
 
       const sliderData = _val
         .map()
         .set("page_version_id", newPageVersion)
         .set("title", structure.getString("title"))
         .set("sorter", structure.getInt("sorter", 0))
-        .set("type_id", sliderType.getInt("id"))
+        .set("type", structure.getString("type"))
         .set("content", structure.getString("content"));
 
-      if (structure.getString("type")) {
-        _log.info(sectionType, structure.getString("type"));
-        const dbSliderType = _db.queryFirst(
-          `
-            SELECT
-              *
-            FROM page_slider_type
-            WHERE code = ?
-          `,
-          structure.getString("type")
-        );
+      // if (structure.getString("type")) {
+      //   _log.info(sectionType, structure.getString("type"));
+      //   const dbSliderType = _db.queryFirst(
+      //     `
+      //       SELECT
+      //         *
+      //       FROM page_slider_type
+      //       WHERE code = ?
+      //     `,
+      //     structure.getString("type")
+      //   );
 
-        if (dbSliderType) {
-          sliderData.set("type_id", dbSliderType.getInt("id"));
-        }
-      }
+      //   if (dbSliderType) {
+      //     sliderData.set("type_id", dbSliderType.getInt("id"));
+      //   }
+      // }
 
       const sliderId = _db.insert("page_slider", sliderData);
 
