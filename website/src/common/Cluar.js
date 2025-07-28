@@ -94,6 +94,14 @@ export default class Cluar {
     return entry;
   }
 
+  static plainTitle(entry) {
+    let value = Cluar.dictionary(entry);
+    if (value) {
+      return (value).replace(/<\/?p[^>]*>/g, "");
+    }
+    return entry;
+  }
+
   static dictionaryNoParagraph(entry) {
     let value = Cluar.dictionary(entry);
     if (value) {

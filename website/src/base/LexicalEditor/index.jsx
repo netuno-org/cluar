@@ -23,6 +23,7 @@ import { GridItemNode, $createGridItemNode } from './nodes/GridItemNode';
 
 import "./index.less";
 import MonacoEditor from "../MonacoEditor";
+import ToolbarPluginSimple from "./plugins/ToolbarPluginSimple";
 
 const theme = {
     heading: {
@@ -73,7 +74,7 @@ function CustomOnChangePlugin({ onChange }) {
     return null;
 }
 
-const LexicalEditor = ({ initialHtml, onChange }) => {
+const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
     const [isHtmlMode, setIsHtmlMode] = useState(false);
     const [htmlEditorValue, setHtmlEditorValue] = useState('');
     const editorRef = useRef(null);
@@ -552,15 +553,24 @@ const LexicalEditor = ({ initialHtml, onChange }) => {
     return (
         <LexicalComposer initialConfig={initialConfig}>
             <div className="editor-container">
-                <ToolbarPlugin
-                    onToggleHtmlMode={handleToggleHtmlMode}
-                    isHtmlMode={isHtmlMode}
-                />
+                {mode == 'full' ? (
+                    <ToolbarPlugin
+                        onToggleHtmlMode={handleToggleHtmlMode}
+                        isHtmlMode={isHtmlMode}
+                    />
+                ) : (
+                    <ToolbarPluginSimple
+                        onToggleHtmlMode={handleToggleHtmlMode}
+                        isHtmlMode={isHtmlMode}
+                    />
+                )}
                 <div className="editor-inner">
                     {!isHtmlMode ? (
                         <RichTextPlugin
-                            contentEditable={<ContentEditable className="editor-input" />}
-                            placeholder={<div className="placeholder">Digite algum texto...</div>}
+                            contentEditable={<ContentEditable className={mode == 'full' ? "editor-input" : 'editor-input__simple'} />}
+                            placeholder={mode == 'full' ?
+                                (<div className="placeholder">Digite algum texto...</div>) :
+                                (<div className="placeholder">Digite o Título...</div>)}
                             ErrorBoundary={LexicalErrorBoundary}
                         />
                     ) : (

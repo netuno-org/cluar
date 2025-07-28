@@ -65,7 +65,7 @@ function ContactForm({ title }) {
       <section className="contact-form">
         <hr/>
         <Form labelCol={layout.labelCol} validateMessages={validateMessages} onFinish={handleFinish}>
-          <h2>{title}</h2>
+          <h2 dangerouslySetInnerHTML={{ __html: title }} />
           <Row {...layout.rowGutter}>
             <Col lg={12} md={12} sm={24} xs={24}>
               <Form.Item {...layout.labelCol} label={Cluar.plainDictionary('contact-form-name')} name={['contactForm', 'name']} rules={[{ required: true }]}>

@@ -40,9 +40,8 @@ function Banner({
                 data-sal="slide-down"
                 data-sal-duration="2000"
                 data-sal-easing="ease-out-cubic"
-              >
-                {title}
-              </h1>
+                dangerouslySetInnerHTML={{ __html: title }}
+              />
               <div
                 data-sal="fade"
                 data-sal-duration="2000"

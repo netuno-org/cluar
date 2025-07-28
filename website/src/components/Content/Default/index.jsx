@@ -1,4 +1,5 @@
 import React from 'react';
+import Cluar from '../../../common/Cluar';
 
 import './index.less';
 
@@ -14,7 +15,7 @@ const Default = ({ title, content, image_title, image_alt, imageSrc, imageStyle 
                 />
             </div>
             <div className="text">
-                <h1>{title}</h1>
+                <h1 dangerouslySetInnerHTML={{ __html: Cluar.plainTitle(title) }} />
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
         </div>

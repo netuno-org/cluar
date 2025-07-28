@@ -6,7 +6,7 @@ const ImageBottom = ({ title, content, image_title, image_alt, imageSrc, imageSt
     return (
         <div className="content-image-bottom">
             <div className="text">
-                <h1>{title}</h1>
+                <h1 dangerouslySetInnerHTML={{ __html: title }} />
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
             <div className="image">

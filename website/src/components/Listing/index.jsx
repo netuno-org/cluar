@@ -13,6 +13,12 @@ function Listing(props) {
         {...props}
       />
     );
+  } else {
+    listLayout = (
+      <Default
+        {...props}
+      />
+    );
   }
 
   return <section className="listing">{listLayout}</section>;

@@ -19,6 +19,12 @@ const Functionality = ({ title, content, type }) => {
                 content={content}
             />
         );
+    } else {
+        layout = (
+            <ContactForm
+                title={title}
+            />
+        );
     }
 
     return (

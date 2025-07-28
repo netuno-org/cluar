@@ -12,7 +12,7 @@ const MARKER_ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-1
   C20.1,15.8,20.2,15.8,20.2,15.7z`;
 const MARKER_SIZE = 50;
 
-function ContactMap({ title, content }){
+function ContactMap({ title, content }) {
   const [showPopup, setShowPopup] = useState(false);
   const latitude = Cluar.configurationNumber("map-latitude");
   const longitude = Cluar.configurationNumber("map-longitude");
@@ -22,23 +22,23 @@ function ContactMap({ title, content }){
   }
   return (
     <section className="map">
-      <h1>{title}</h1>
+      <h1 dangerouslySetInnerHTML={{ __html: title }} />
       <div className="map__title-border"></div>
       <Row>
         <Col xs={24} sm={24} md={24} lg={24} xl={12}>
           <div className="text">
-          <Row>
-            <Col>
-              <div dangerouslySetInnerHTML={{__html: content}}></div>
-            </Col>
-          </Row>
+            <Row>
+              <Col>
+                <div dangerouslySetInnerHTML={{ __html: content }}></div>
+              </Col>
+            </Row>
           </div>
           <div className="text">
-          <Row>
-            <Col>
-              <br />
-            </Col>
-          </Row>
+            <Row>
+              <Col>
+                <br />
+              </Col>
+            </Row>
             <Row>
               <Col><HomeOutlined /></Col>
               <Col>

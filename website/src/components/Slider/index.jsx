@@ -10,6 +10,12 @@ const Slider = (props) => {
         {...props}
       />
     );
+  } else {
+    layout = (
+      <Default
+        {...props}
+      />
+    );
   }
 
   return <section className="slider">{layout}</section>;

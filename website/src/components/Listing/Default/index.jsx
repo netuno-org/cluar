@@ -26,7 +26,7 @@ const Default = (
     return (
         <Row className={`listing__${type}`} justify="start">
             <Col span={24}>
-                <h1>{title}</h1>
+                <h1 dangerouslySetInnerHTML={{ __html: title }} />
                 <img src={imageSrc} />
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </Col>

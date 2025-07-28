@@ -44,7 +44,7 @@ import InsertColumnsModal from "../components/ColumnsModal";
 
 import { FONT_FAMILY_OPTIONS } from "./constants";
 
-export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
+export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
   const [editor] = useLexicalComposerContext();
   const toolbarRef = useRef(null);
   const [isSelected, setIsSelected] = useState(false);
@@ -53,15 +53,12 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
-  const [stylesDropdownVisible, setStylesDropdownVisible] = useState(false);
-  const [selectedFormat, setSelectedFormat] = useState("paragraph");
   const [fontFamilyDropdownVisible, setFontFamilyDropdownVisible] = useState(false);
   const [currentFontFamily, setCurrentFontFamily] = useState(FONT_FAMILY_OPTIONS[0][0]);
   const [currentFontSize, setCurrentFontSize] = useState("16");
   const [currentFontColor, setCurrentFontColor] = useState('#000000');
   const [currentBgColor, setCurrentBgColor] = useState('#ffffff');
   const [isLink, setIsLink] = useState(false);
-  const [currentTextAlign, setCurrentTextAlign] = useState("left");
 
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [isColumnsModalOpen, setIsColumnsModalOpen] = useState(false);
@@ -115,49 +112,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
     // Background Color
     const bgColor = getStyleValue('background-color');
     if (bgColor) setCurrentBgColor(bgColor);
-
-    const anchorNode = selection.anchor.getNode();
-    const element = anchorNode.getParent();
-
-    if (element) {
-      const textAlign = element.getStyle('text-align');
-      if (textAlign) {
-        setCurrentTextAlign(textAlign);
-      } else {
-        setCurrentTextAlign("left");
-      }
-
-      const elementType = element.getType();
-      console.log("element", element);
-      console.log("elementType", elementType);
-      switch (elementType) {
-        case 'heading': {
-          const tag = element.getTag();
-          if (['h1', 'h2', 'h3'].includes(tag)) {
-            setSelectedFormat(tag.toUpperCase());
-          }
-          break;
-        }
-        case 'paragraph':
-          setSelectedFormat('Normal');
-          break;
-        case 'list':
-        case 'listitem': {
-          const parentList = element.getParent();
-          if (parentList?.getType() === 'list') {
-            const listType = parentList.getListType();
-            if (listType === 'bullet') setSelectedFormat('Bullet List');
-            else if (listType === 'number') setSelectedFormat('Numbered List');
-          }
-          break;
-        }
-        case 'quote':
-          setSelectedFormat('quote');
-          break;
-        default:
-          setSelectedFormat('Normal');
-      }
-    }
 
     // Verifica se o nó ou seu pai é link
     const node = getSelectedNode(selection);
@@ -243,46 +197,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
     return formatLabels[key] || key;
   }, [formatLabels]);
 
-
-  const formatParagraph = useCallback(() => {
-    editor.update(() => {
-      const selection = $getSelection();
-      if ($isRangeSelection(selection)) {
-        $setBlocksType(selection, () => $createParagraphNode());
-      }
-    });
-    setStylesDropdownVisible(false);
-    setSelectedFormat('paragraph');
-  }, [editor]);
-
-  const formatHeading = useCallback((tag) => {
-    //console.log("formatHeading", tag);
-
-    editor.update(() => {
-      const selection = $getSelection();
-      if ($isRangeSelection(selection)) {
-        $setBlocksType(selection, () => $createHeadingNode(tag));
-      }
-    });
-    setStylesDropdownVisible(false);
-    setSelectedFormat(tag);
-  }, [editor]);
-
-  const formatList = useCallback((type) => {
-    //console.log("formatList", type);
-
-    editor.update(() => {
-      const selection = $getSelection();
-      if ($isRangeSelection(selection)) {
-        $setBlocksType(selection, () => {
-          return $createListNode(type);
-        });
-        setSelectedFormat(type);
-      }
-    });
-    setStylesDropdownVisible(false);
-  }, [editor]);
-
   const applyFontFamily = useCallback((fontFamily) => {
     //console.log("applyFontFamily", fontFamily);
 
@@ -343,16 +257,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
     }
   }, [editor, isLink]);
-
-  const formatQuote = useCallback(() => {
-    editor.update(() => {
-      const selection = $getSelection();
-      if ($isRangeSelection(selection)) {
-        $setBlocksType(selection, () => $createQuoteNode());
-      }
-    });
-    setStylesDropdownVisible(false);
-  }, [editor]);
 
   useEffect(() => {
     return mergeRegister(
@@ -453,107 +357,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
       >
         <RedoOutlined style={{ transform: 'rotate(-90deg)', fontSize: 15 }} />
       </button>
-      <div className="divider" />
 
-      <div className="dropdown-container">
-        <Dropdown
-          open={stylesDropdownVisible}
-          onOpenChange={setStylesDropdownVisible}
-          trigger={['click']}
-          menu={{
-            items: [
-              {
-                key: 'paragraph',
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon paragraph"></i>
-                    <span className="text">{formatLabels['paragraph']}</span>
-                  </div>
-                ),
-                onClick: () => formatParagraph()
-              },
-              {
-                key: 'h1',
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon h1"></i>
-                    <span className="text">{formatLabels['h1']}</span>
-                  </div>
-                ),
-                onClick: () => formatHeading("h1")
-              },
-              {
-                key: 'h2',
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon h2"></i>
-                    <span className="text">{formatLabels['h2']}</span>
-                  </div>
-                ),
-                onClick: () => formatHeading("h2")
-              },
-              {
-                key: 'h3',
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon h3"></i>
-                    <span className="text">{formatLabels['h3']}</span>
-                  </div>
-                ),
-                onClick: () => formatHeading("h3")
-              },
-              {
-                key: 'bullet',
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon bullet-list"></i>
-                    <span className="text">{formatLabels['bullet']}</span>
-                  </div>
-                ),
-                onClick: () => formatList("bullet")
-              },
-              {
-                key: 'number',
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon bullet-list"></i>
-                    <span className="text">{formatLabels['number']}</span>
-                  </div>
-                ),
-                onClick: () => formatList("number")
-              },
-              {
-                key: 'check',
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon bullet-list"></i>
-                    <span className="text">{formatLabels['check']}</span>
-                  </div>
-                ),
-                onClick: () => editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined)
-              },
-              {
-                key: 'quote',
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon bullet-list"></i>
-                    <span className="text">Quote</span>
-                  </div>
-                ),
-                onClick: () => formatQuote(editor, selectedFormat)
-              }
-            ]
-          }}
-        >
-          <button
-            className="toolbar-item dropdown-button"
-            title="Estilos"
-            type="button"
-          >
-            <span>{getFormatLabel(selectedFormat)}</span>
-          </button>
-        </Dropdown>
-      </div>
 
       <div className="divider" />
 
@@ -716,52 +520,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
       {isSelected &&
         createPortal(<FloatingEditor editor={editor} />, document.body)}
       <div className="divider" />
-      <Dropdown overlay={insertMenu} trigger={['click']}>
-        <button type="link" style={{
-          padding: 0,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px'
-        }}>
-          <PlusOutlined /> Inserir <DownOutlined />
-        </button>
-      </Dropdown>
-      <div className="divider" />
-
-      <div className="alignment-buttons-container" style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'nowrap' }}>
-        <button
-          onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left');
-          }}
-          className="toolbar-item spaced"
-          aria-label="Left Align"
-          type="button"
-        >
-          <AlignLeftOutlined />
-        </button>
-
-        <button
-          onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center');
-          }}
-          className="toolbar-item spaced"
-          aria-label="Center Align"
-          type="button"
-        >
-          <AlignCenterOutlined />
-        </button>
-
-        <button
-          onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right');
-          }}
-          className="toolbar-item spaced"
-          aria-label="Right Align"
-          type="button"
-        >
-          <AlignRightOutlined />
-        </button>
-      </div>
 
       <button
         onClick={onToggleHtmlMode}

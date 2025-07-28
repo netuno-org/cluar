@@ -95,7 +95,13 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       }
     >
       <Form layout="vertical" initialValues={sectionData} form={form}>
-        <Form.Item name="title" label="Título">
+        <LexicalEditor
+          initialHtml={sectionData?.title}
+          onChange={(html) => form.setFieldsValue({ title: html })}
+          mode="simple"
+        />
+
+        <Form.Item name="title" label="Título" hidden={true}>
           <Input />
         </Form.Item>
 

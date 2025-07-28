@@ -20,7 +20,7 @@ const ImageLeft = ({ title, content, image_title, image_alt, imageSrc, imageStyl
                 </Col>
                 <Col md={16}>
                     <div className="text">
-                        <h1>{title}</h1>
+                        <h1 dangerouslySetInnerHTML={{ __html: title }} />
                         <div dangerouslySetInnerHTML={{ __html: content }}></div>
                     </div>
                 </Col>
