@@ -33,7 +33,7 @@ const PageSection = ({
     const newSectionData = {
       uid: new Date().getTime(),
       section,
-      title: `<p dir="ltr"><span style="color: rgb(0, 0, 0); background-color: rgba(0, 0, 0, 0); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 40px;" data-lexical-text="true">${section}</span></p>`,
+      title: `<p dir="ltr"><span style="color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 1); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif; font-size: 40px;" data-lexical-text="true">${section}</span></p>`,
       image: "",
       actions: [],
       items: [],
