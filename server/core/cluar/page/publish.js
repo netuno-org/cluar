@@ -66,9 +66,6 @@ cluar.page.publish = (dbPage) => {
         .set("sorter", dbContent.getInt("sorter"))
         .set("actions", cluar.actions("content", dbContent.getInt("id")))
     );
-    // if (settings.images === true) {
-    //   cluar.publishImage("content", dbContent.getString("image"))
-    // }
   }
 
   /*
@@ -118,9 +115,9 @@ cluar.page.publish = (dbPage) => {
         )
         .set("actions", cluar.actions("banner", dbBanner.getInt("id")))
     );
-    // if (settings.images === true) {
-    //   cluar.publishImage("banner", dbBanner.getString("image"));
-    // }
+    if (settings.images === true) {
+      cluar.publishImage("banner", dbBanner.getString("image"));
+    }
   }
 
   /*
@@ -170,9 +167,6 @@ cluar.page.publish = (dbPage) => {
           .set("sorter", dbItem.getInt("sorter"))
           .set("link", dbItem.getString("link"))
       );
-      // if (settings.images === true) {
-      //   cluar.publishImage("listing_item", dbItem.getString("image"))
-      // }
     }
     structure.add(
       _val
@@ -188,9 +182,6 @@ cluar.page.publish = (dbPage) => {
         .set("items", items)
         .set("sorter", dbListing.getInt("sorter"))
     );
-    // if (settings.images === true) {
-    //   cluar.publishImage("listing", dbListing.getString("image"))
-    // }
   }
 
   /*
@@ -288,9 +279,6 @@ cluar.page.publish = (dbPage) => {
         .set("image", dbFunctionality.getString("image"))
         .set("sorter", dbFunctionality.getInt("sorter"))
     );
-    // if (settings.images === true) {
-    //   cluar.publishImage("functionality", dbFunctionality.getString("image"))
-    // }
   }
 
   structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"));

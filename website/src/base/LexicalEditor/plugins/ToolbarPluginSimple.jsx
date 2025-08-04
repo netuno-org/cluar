@@ -55,7 +55,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
   const [isUnderline, setIsUnderline] = useState(false);
   const [fontFamilyDropdownVisible, setFontFamilyDropdownVisible] = useState(false);
   const [currentFontFamily, setCurrentFontFamily] = useState(FONT_FAMILY_OPTIONS[0][0]);
-  const [currentFontSize, setCurrentFontSize] = useState("16");
+  const [currentFontSize, setCurrentFontSize] = useState("40");
   const [currentFontColor, setCurrentFontColor] = useState('#000000');
   const [currentBgColor, setCurrentBgColor] = useState('#ffffff');
   const [isLink, setIsLink] = useState(false);
@@ -103,7 +103,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
 
     // Font Size (sem 'px')
     const fontSize = getStyleValue('font-size');
-    setCurrentFontSize(fontSize ? fontSize.replace('px', '') : "16");
+    setCurrentFontSize(fontSize ? fontSize.replace('px', '') : "40");
 
     // Font Color
     const fontColor = getStyleValue('color');

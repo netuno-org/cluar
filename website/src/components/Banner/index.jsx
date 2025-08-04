@@ -40,7 +40,7 @@ function Banner({
                 data-sal="slide-down"
                 data-sal-duration="2000"
                 data-sal-easing="ease-out-cubic"
-                dangerouslySetInnerHTML={{ __html: title }}
+                dangerouslySetInnerHTML={{ __html: Cluar.plainTitle(title) }}
               />
               <div
                 data-sal="fade"
