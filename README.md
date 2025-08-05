@@ -71,7 +71,7 @@ Clone this project to `(Netuno Root directory)/apps/cluar/`.
                     "discord": false,
                     "facebook": false,
                     "github": false,
-                    "google": true
+                    "google": false
                 }}
             },
             "uglifyjs": false
