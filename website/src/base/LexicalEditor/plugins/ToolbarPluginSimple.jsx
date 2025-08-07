@@ -383,7 +383,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
             title="Fonte"
             type="button"
           >
-            <span style={{ fontFamily: currentFontFamily }}>{currentFontFamily}</span>
+            <span style={{ fontFamily: currentFontFamily }}>{FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily) ? FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily)[1] : currentFontFamily}</span>
           </button>
         </Dropdown>
       </div>

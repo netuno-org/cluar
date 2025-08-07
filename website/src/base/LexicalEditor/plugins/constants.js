@@ -1,4 +1,5 @@
 export const FONT_FAMILY_OPTIONS = [
+    ['inherit', 'Default'],
     ['Arial', 'Arial'],
     ['Courier New', 'Courier New'],
     ['Georgia', 'Georgia'],

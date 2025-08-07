@@ -13,7 +13,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "contact-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Contato - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -21,7 +21,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "contact-form-validate-message-email")
       .set("description", "Formul\u00E1rio de Contato - Mensagem Valida\u00E7\u00E3o - E-mail")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -29,7 +29,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "contact-form-fail")
       .set("description", "Formul\u00E1rio de Contato - Falhou")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -37,7 +37,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "contact-form-success")
       .set("description", "Formul\u00E1rio de Contato - Sucesso")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -45,7 +45,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "contact-form-name")
       .set("description", "Formul\u00E1rio de Contato - Nome")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -53,7 +53,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "contact-form-email")
       .set("description", "Formul\u00E1rio de Contato - E-mail")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -61,7 +61,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "contact-form-subject")
       .set("description", "Formul\u00E1rio de Contato - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -69,7 +69,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "contact-form-message")
       .set("description", "Formul\u00E1rio de Contato - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -77,7 +77,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "contact-form-send")
       .set("description", "Formul\u00E1rio de Contato - Enviar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -85,7 +85,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-user-blocked-message")
       .set("description", "Formul\u00E1rio de Login - Utilizador Bloqueado - Message")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -93,7 +93,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-mail-message")
       .set("description", "E-mail de Recupera\u00E7\u00E3o de Palavra-Passe - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -101,7 +101,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-mail-subject")
       .set("description", "E-mail de Recupera\u00E7\u00E3o de Palavra-Passe - Assunto")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -109,7 +109,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-user-blocked-description")
       .set("description", "Formul\u00E1rio de Login - Utilizador Bloqueado - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -117,7 +117,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-subject")
       .set("description", "Formul\u00E1rio de Login - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -125,7 +125,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-username")
       .set("description", "Formul\u00E1rio de Login - Utilizador")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -133,7 +133,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-password")
       .set("description", "Formul\u00E1rio de Login - Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -141,7 +141,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-wrong-credentials-message")
       .set("description", "Formul\u00E1rio de Login - Credenciais Incorretas - Message")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -149,7 +149,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-remember")
       .set("description", "Formul\u00E1rio de Login - Relembrar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -157,7 +157,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Login - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -165,7 +165,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-sign-in")
       .set("description", "Formul\u00E1rio de Login - Sign In")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -173,7 +173,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-prividers-title")
       .set("description", "Formul\u00E1rio de Login - Providers - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -181,7 +181,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-forgot-password")
       .set("description", "Formul\u00E1rio de Login - Esqueceu Paralavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -189,7 +189,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-register")
       .set("description", "Formul\u00E1rio de Login - Registar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -197,7 +197,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-division-title")
       .set("description", "Formul\u00E1rio de Login - Descri\u00E7\u00E3o da Divis\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -205,7 +205,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-wrong-credentials-description")
       .set("description", "Formul\u00E1rio de Login - Credenciais Incorretas - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -213,7 +213,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-invalid-username-message")
       .set("description", "Formul\u00E1rio de Login - Utilizador Inv\u00E1lido")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -221,7 +221,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "login-form-login-provider")
       .set("description", "Formul\u00E1rio de Login - Entrar com Providers")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -229,7 +229,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-confirm-password")
       .set("description", "Formul\u00E1rio de Registo - Confirmar Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -237,7 +237,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-providers-title")
       .set("description", "Formul\u00E1rio de Registo - Providers - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -245,7 +245,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-subject")
       .set("description", "Formul\u00E1rio de Registo - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -253,7 +253,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-register-provider")
       .set("description", "Formul\u00E1rio de Registo - Registar com Providers")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -261,7 +261,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-register")
       .set("description", "Formulario de Registo - Criar Conta")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -269,7 +269,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-name")
       .set("description", "Formul\u00E1rio de Registo - Nome")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -277,7 +277,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-username")
       .set("description", "Formul\u00E1rio de Registo - Utilizador")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -285,7 +285,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-password")
       .set("description", "Formul\u00E1rio de Registo - Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -293,7 +293,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-mail")
       .set("description", "Formul\u00E1rio de Registo - E-mail")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -301,7 +301,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Registo - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -309,7 +309,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-division-title")
       .set("description", "Formulario de Registo - Descri\u00E7\u00E3o da Divis\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -317,7 +317,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-sign-in")
       .set("description", "Formul\u00E1rio de Registo - Iniciar Sess\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -325,7 +325,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-mail-valid-message")
       .set("description", "Formul\u00E1rio de Registo - Valida\u00E7\u00E3o de E-mail - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -333,7 +333,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-name-valid-message")
       .set("description", "Formul\u00E1rio de Registo - Valida\u00E7\u00E3o de Nome - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -341,7 +341,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-username-valid-message")
       .set("description", "Formul\u00E1rio de Registo - Valida\u00E7\u00E3o de Utilizador - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -349,7 +349,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-password-valid-message")
       .set("description", "Formul\u00E1rio de Registo - Valida\u00E7\u00E3o de Palavra-passe - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -357,7 +357,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-passwords-not-equals-message")
       .set("description", "Formul\u00E1rio de Registo - Palavras-passes Diferentes - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -365,7 +365,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-success-description")
       .set("description", "Formul\u00E1rio de Registo - Sucesso - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -373,7 +373,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-success-message")
       .set("description", "Formul\u00E1rio de Registo - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -381,7 +381,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-existing-mail-message")
       .set("description", "Formul\u00E1rio de Registo - E-mail Existente - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -389,7 +389,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-existing-mail-description")
       .set("description", "Formul\u00E1rio de Registo - E-mail Existente - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -397,7 +397,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-existing-username-message")
       .set("description", "Formul\u00E1rio de Registo - Utilizador Existente - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -405,7 +405,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-existing-username-description")
       .set("description", "Formul\u00E1rio de Registo - Utilizador Existente - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -413,7 +413,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-failed-message")
       .set("description", "Formul\u00E1rio de Registo - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -421,7 +421,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "register-form-failed-description")
       .set("description", "Formul\u00E1rio de Registo - Falha - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -429,7 +429,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-name-validate-message")
       .set("description", "Formul\u00E1rio do Perfil - Valida\u00E7\u00E3o Nome - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -437,7 +437,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-title")
       .set("description", "Modal Recuperar Acesso - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -445,7 +445,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-mail-validate-message")
       .set("description", "Formul\u00E1rio do Perfil - Valida\u00E7\u00E3o do E-mail - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -453,7 +453,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-title")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -461,7 +461,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-failed-description")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Falha - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -469,7 +469,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-image-upload")
       .set("description", "Formul\u00E1rio do Perfil - Imagem - Carregar Outra")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -477,7 +477,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-validate-password-message")
       .set("description", "Formul\u00E1rio do Perfil - Valida\u00E7\u00E3o de Palavra-passe - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -485,7 +485,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-passwords-not-equals-message")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Palavras-passes Diferentes - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -493,7 +493,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-password-not-equals-message")
       .set("description", "Formul\u00E1rio do Perfil - Palavras-passes Diferentes - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -501,7 +501,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-page-general-info")
       .set("description", "P\u00E1gina de Perfil - Informa\u00E7\u00F5es Gerais")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -509,7 +509,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-success-message")
       .set("description", "Formul\u00E1rio do Perfil - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -517,7 +517,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-mail")
       .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - E-mail")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -525,7 +525,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-validate-message-required")
       .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -533,7 +533,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-mail-valid-message")
       .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Valida\u00E7\u00E3o de E-mail - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -541,7 +541,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-cancel")
       .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Cancelar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -549,7 +549,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-send")
       .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Enviar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -557,7 +557,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-success-message")
       .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -565,7 +565,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-success-description")
       .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Sucesso - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -573,7 +573,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-failed-message")
       .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Failed - Message")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -581,7 +581,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-modal-failed-description")
       .set("description", "Modal de Recupera\u00E7\u00E3o de Acesso - Failed - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -589,7 +589,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-success-description")
       .set("description", "Formul\u00E1rio do Perfil - Sucesso - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -597,7 +597,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-password")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -605,7 +605,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-user-exists-message")
       .set("description", "Formul\u00E1rio do Perfil - Utilizador Existente - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -613,7 +613,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-reset-password")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Redefinir Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -621,7 +621,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-user-exists-description")
       .set("description", "Formul\u00E1rio do Perfil - Utilizador Existente - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -629,7 +629,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -637,7 +637,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-failed-message")
       .set("description", "Formul\u00E1rio do Perfil - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -645,7 +645,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-password-valid-message")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Valida\u00E7\u00E3o de Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -653,7 +653,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-success-message")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -661,7 +661,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-failed-description")
       .set("description", "Formul\u00E1rio do Perfil - Falha - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -669,7 +669,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-success-description")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Sucesso - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -677,7 +677,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-failed-message")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -685,7 +685,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-page-previus")
       .set("description", "P\u00E1gina de Perfil - Voltar atr\u00E1s")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -693,7 +693,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-page-title")
       .set("description", "P\u00E1gina de Perfil - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -701,7 +701,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-image-scale")
       .set("description", "Formul\u00E1rio do Perfil - Imagem - Dimensionar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -709,7 +709,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-name")
       .set("description", "Formul\u00E1rio do Perfil - Nome")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -717,7 +717,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-username")
       .set("description", "Formul\u00E1rio do Perfil - Utilizador")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -725,7 +725,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-image-ratation")
       .set("description", "Formul\u00E1rio do Perfil - Imagem - Rodar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -733,7 +733,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-mail")
       .set("description", "Formul\u00E1rio do Perfil - E-mail")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -741,7 +741,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-password")
       .set("description", "Formul\u00E1rio do Perfil - Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -749,7 +749,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-image-background-color")
       .set("description", "Formul\u00E1rio do Perfil - Imagem - Cor de Fundo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -757,7 +757,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-confirm-password")
       .set("description", "Formul\u00E1rio do Perfil - Confirme Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -765,7 +765,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-update")
       .set("description", "Formul\u00E1rio do Perfil - Atualizar Perfil")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -773,7 +773,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-image-background-color-description")
       .set("description", "Formul\u00E1rio do Perfil - Imagem - Cor de Fundo - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -781,7 +781,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-validate-message-required")
       .set("description", "Formul\u00E1rio do Perfil - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -789,7 +789,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-image-undo")
       .set("description", "Formul\u00E1rio do Perfil - Imagem - Desfazer")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -797,7 +797,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "profile-form-image-config")
       .set("description", "Formul\u00E1rio do Perfil - Imagem - Configurar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -805,7 +805,15 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-options-manage")
       .set("description", "Menu Lateral - Op\u00E7\u00F5es - Gest\u00E3o")
   );
-  
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0f22278d-ed19-466f-b445-17150dbb9043")
+      .set("code", "side-menu-options-pages")
+      .set("description", "Menu Lateral - Op\u00E7\u00F5es - P\u00E1ginas")
+  );
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -813,7 +821,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-options-users")
       .set("description", "Menu Lateral - Op\u00E7\u00F5es - Utilizadores")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -821,7 +829,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-desactive-success-message")
       .set("description", "Tabela de Idioma - Desactivar - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -829,7 +837,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-options-languages")
       .set("description", "Menu Lateral - Op\u00E7\u00F5es - Idiomas")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -837,7 +845,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-options-configurations")
       .set("description", "Menu Lateral - Op\u00E7\u00F5es - Configura\u00E7\u00F5es")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -845,7 +853,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-options-dictionaries")
       .set("description", "Menu Lateral - Op\u00E7\u00F5es - Dicion\u00E1rios")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -853,7 +861,15 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "user-menu-edit-profile")
       .set("description", "Menu Utilizador - Editar Perfil")
   );
-  
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0dec40c8-a6d2-4f3f-96b4-d039a2c8f362")
+      .set("code", "user-menu-return-site")
+      .set("description", "Menu Utilizador - Voltar ao site")
+  );
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -861,7 +877,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "user-menu-sign-out")
       .set("description", "Menu Utilizador - Terminar Sess\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -869,7 +885,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-load-user-info-failed-message")
       .set("description", "Menu Lateral - Falha ao Carregar Utilizadror - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -877,7 +893,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-load-user-info-failed-description")
       .set("description", "Menu Lateral - Falha ao Carregar Utilizadror - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -885,7 +901,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-page-title")
       .set("description", "P\u00E1gina de Utilizadores - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -893,7 +909,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-page-new")
       .set("description", "P\u00E1gina de Utilizadores - Novo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -901,7 +917,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-active")
       .set("description", "Tabela de Utilizadores - Activo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -909,7 +925,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-name")
       .set("description", "Tabela de Utilizadores - Nome")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -917,7 +933,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-mail")
       .set("description", "Tabela de Utilizadores - E-mail")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -925,7 +941,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-group")
       .set("description", "Tabela de Utilizadores - Grupo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -933,7 +949,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-actions")
       .set("description", "Tabela de Utilizadores - A\u00E7\u00F5es")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -941,7 +957,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-actions-edit-title")
       .set("description", "Tabela de Utilizadores - A\u00E7\u00F5es - Editar - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -949,7 +965,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-user")
       .set("description", "Tabela de Utilizadores - Utilizador")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -957,7 +973,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-active-success-message")
       .set("description", "Tabela de Utilizadores - Active - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -965,7 +981,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-active-success-description")
       .set("description", "Tabela de Utilizadores - Active - Sucesso - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -973,7 +989,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-active-failed-message")
       .set("description", "Tabela de Utilizadores - Active - Failed - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -981,7 +997,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-active-failed-description")
       .set("description", "Tabela de Utilizadores - Active - Failed - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -989,7 +1005,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-load-failed-message")
       .set("description", "Tabela de Utilizadores - Falha no Carregamento - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -997,7 +1013,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-load-failed-description")
       .set("description", "Tabela de Utilizadores - Falha no Carregamento - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1005,7 +1021,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-desactive-success-message")
       .set("description", "Tabela de Utilizadores - Desactive - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1013,7 +1029,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-desactive-success-description")
       .set("description", "Tabela de Utilizadores - Desactive - Sucesso - Description")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1021,7 +1037,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-desactive-failed-description")
       .set("description", "Tabela de Utilizadores - Desactive - Falha - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1029,7 +1045,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-table-desactive-failed-message")
       .set("description", "Tabela de Utilizadores - Desactive - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1037,7 +1053,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-active")
       .set("description", "Formul\u00E1rio de Utilizadores - Activo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1045,7 +1061,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-name")
       .set("description", "Formul\u00E1rio de Utilizadores - Nome")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1053,7 +1069,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-username")
       .set("description", "Formul\u00E1rio de Utilizadores - Utilizador")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1061,7 +1077,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-password")
       .set("description", "Formul\u00E1rio de Utilizadores - Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1069,7 +1085,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-email")
       .set("description", "Formul\u00E1rio de Utilizadores - E-mail")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1077,7 +1093,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-cancel")
       .set("description", "Formul\u00E1rio de Utilizadores - Cancelar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1085,7 +1101,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-save")
       .set("description", "Formul\u00E1rio de Utilizadores - Guardar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1093,7 +1109,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-modal-title-new")
       .set("description", "Modal de Utilizadores - T\u00EDtulo - Novo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1101,7 +1117,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-modal-title-edit")
       .set("description", "Modal de Utilizadores - T\u00EDtulo - Editar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1109,7 +1125,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-group")
       .set("description", "Formul\u00E1rio de Utilizadores - Grupo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1117,7 +1133,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Utilizadores - Valida\u00E7\u00E3o Mensagem - Obrigat\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1125,7 +1141,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-load-groups-failed-message")
       .set("description", "Formul\u00E1rio de Utilizadores - Carregar Grupos - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1133,7 +1149,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-load-groups-failed-description")
       .set("description", "Formul\u00E1rio de Utilizadores - Carregar Grupos - Falha - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1141,7 +1157,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-save-success-description")
       .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Sucesso - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1149,7 +1165,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-save-success-message")
       .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1157,7 +1173,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-save-failed-message")
       .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1165,7 +1181,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-save-failed-description")
       .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Falha - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1173,7 +1189,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-edit-success-message")
       .set("description", "Formul\u00E1rio de Utilizadores - Editar - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1181,7 +1197,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-edit-success-description")
       .set("description", "Formul\u00E1rio de Utilizadores - Editar - Sucesso - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1189,7 +1205,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-edit-failed-message")
       .set("description", "Formul\u00E1rio de Utilizadores - Editar - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1197,7 +1213,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "users-form-edit-failed-description")
       .set("description", "Formul\u00E1rio de Utilizadores - Editar - Falha - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1205,7 +1221,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-active")
       .set("description", "Tabela de Idioma - Active")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1213,7 +1229,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-description")
       .set("description", "Tabela de Idioma - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1221,7 +1237,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-code")
       .set("description", "Tabela de Idioma - C\u00F3digo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1229,7 +1245,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-locale")
       .set("description", "Tabela de Idioma - Localiza\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1237,7 +1253,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-default")
       .set("description", "Tabela de Idioma - Padr\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1245,7 +1261,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-actions")
       .set("description", "Tabela de Idioma - A\u00E7\u00F5es")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1253,7 +1269,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-page-title")
       .set("description", "P\u00E1gina de Idioma - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1261,7 +1277,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-page-new")
       .set("description", "P\u00E1gina de Idioma - Novo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1269,7 +1285,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-load-failed-message")
       .set("description", "P\u00E1gina de Idioma - Falha no Carregamento - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1277,7 +1293,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-load-failed-description")
       .set("description", "P\u00E1gina de Idioma - Falha no Carregamento - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1285,7 +1301,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-active-failed-message")
       .set("description", "Tabela de Idioma - Activar - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1293,7 +1309,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-desactive-failed-message")
       .set("description", "Tabela de Idioma - Desactivar - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1301,7 +1317,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-default-success-message")
       .set("description", "Tabela de Idioma - Padr\u00E3o - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1309,7 +1325,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-active")
       .set("description", "Formul\u00E1rio de Idioma - Activo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1317,7 +1333,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-default-failed-message")
       .set("description", "Tabela de Idioma - Padr\u00E3o - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1325,7 +1341,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-table-active-success-message")
       .set("description", "Tabela de Idioma - Activar - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1333,7 +1349,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-default")
       .set("description", "Formul\u00E1rio de Idioma - Padr\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1341,7 +1357,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-description")
       .set("description", "Formul\u00E1rio de Idioma - Descri\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1349,7 +1365,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-code")
       .set("description", "Formul\u00E1rio de Idioma - C\u00F3digo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1357,7 +1373,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-locale")
       .set("description", "Formul\u00E1rio de Idioma - Localidade")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1365,7 +1381,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-save")
       .set("description", "Formul\u00E1rio de Idioma - Salvar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1373,7 +1389,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-cancel")
       .set("description", "Formul\u00E1rio de Idioma - Cancelar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1381,7 +1397,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Idioma - Valida\u00E7\u00E3o Mensagem - Obrigar\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1389,7 +1405,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-save-success-message")
       .set("description", "Formul\u00E1rio de Idioma - Guardar - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1397,7 +1413,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-save-failed-message")
       .set("description", "Formul\u00E1rio de Idioma - Guardar - falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1405,7 +1421,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-page-load-failed-message")
       .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - Falha no Carregamento - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1413,7 +1429,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-modal-new-title")
       .set("description", "Modal de Idioma - Novo - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1421,7 +1437,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-modal-edit-title")
       .set("description", "Modal de Idioma - Editar - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1429,7 +1445,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-edit-success-message")
       .set("description", "Formul\u00E1rio de Idioma - Editar - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1437,7 +1453,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "language-form-edit-failed-message")
       .set("description", "Formul\u00E1rio de Idioma - Editar - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1445,7 +1461,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-table-language")
       .set("description", "Tabela de Configura\u00E7\u00E3o - Idioma")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1453,7 +1469,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-table-parameter")
       .set("description", "Tabela de Configura\u00E7\u00E3o - Par\u00E2metro")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1461,7 +1477,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-table-value")
       .set("description", "Tabela de Configura\u00E7\u00E3o - Valor")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1469,7 +1485,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-table-actions")
       .set("description", "Tabela de Configura\u00E7\u00E3o - A\u00E7\u00F5es")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1477,7 +1493,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-page-title")
       .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1485,7 +1501,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-page-new")
       .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - Novo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1493,7 +1509,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-parameter_code")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Param\u00EAtro")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1501,7 +1517,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-language_code")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Idioma")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1509,7 +1525,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-value")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Valor")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1517,7 +1533,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-save")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Salvar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1525,7 +1541,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-cancel")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Cancelar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1533,7 +1549,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Valida\u00E7\u00E3o Mensagem - Obrigar\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1541,7 +1557,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-modal-edit-success-message")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Editar - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1549,7 +1565,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-edit-failed-message")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Editar - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1557,7 +1573,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-modal-new-title")
       .set("description", "Modal de Configura\u00E7\u00E3o - Novo - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1565,7 +1581,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-modal-edit-title")
       .set("description", "Modal de Configura\u00E7\u00E3o - Editar - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1573,7 +1589,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-new-success-message")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Novo - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1581,7 +1597,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "configuration-form-new-failed-message")
       .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Novo - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1589,7 +1605,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-table-language")
       .set("description", "Tabela de Dicion\u00E1rio - Idioma")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1597,7 +1613,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-table-entry")
       .set("description", "Tabela de Dicion\u00E1rio - Chave")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1605,7 +1621,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-table-value")
       .set("description", "Tabela de Dicion\u00E1rio - Valor")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1613,7 +1629,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-table-actions")
       .set("description", "Tabela de Dicion\u00E1rio - A\u00E7\u00F5es")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1621,7 +1637,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-page-title")
       .set("description", "P\u00E1gina de Dicion\u00E1rio - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1629,7 +1645,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-page-new")
       .set("description", "P\u00E1gina de Dicion\u00E1rio - Novo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1637,7 +1653,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-load-failed-message")
       .set("description", "P\u00E1gina de Dicion\u00E1rio - Falha no Carregamento - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1645,7 +1661,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-value")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Valor")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1653,7 +1669,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-save")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Salvar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1661,7 +1677,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-cancel")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Cancelar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1669,7 +1685,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Valida\u00E7\u00E3o Mensagem - Obrigar\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1677,7 +1693,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-new-success-message")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Novo - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1685,7 +1701,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-new-failed-message")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Novo - falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1693,7 +1709,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-edit-success-message")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Editar - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1701,7 +1717,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-edit-failed-message")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Editar - falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1709,7 +1725,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-modal-new-title")
       .set("description", "Modal de Dicion\u00E1rio - Novo - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1717,7 +1733,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-modal-edit-title")
       .set("description", "Modal de Dicion\u00E1rio - Editar - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1725,7 +1741,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-language")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Idioma")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1733,7 +1749,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "dictionary-form-entry")
       .set("description", "Formul\u00E1rio de Dicion\u00E1rio - Chave")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1741,7 +1757,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-page-title")
       .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1749,7 +1765,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-page-new")
       .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Novo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1757,7 +1773,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-options-organizations")
       .set("description", "Menu Lateral - Op\u00E7\u00F5es - Organiza\u00E7\u00F5es")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1765,7 +1781,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-active")
       .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - Active")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1773,7 +1789,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-actions")
       .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - A\u00E7\u00F5es")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1781,7 +1797,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-parent")
       .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - Pai")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1789,7 +1805,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-code")
       .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - C\u00F3digo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1797,7 +1813,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-name")
       .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - Nome")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1805,7 +1821,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-edit-success-message")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Edi\u00E7\u00E3o - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1813,7 +1829,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-edit-failed-message")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Edi\u00E7\u00E3o - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1821,7 +1837,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-save-success-message")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Registar - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1829,7 +1845,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-save-failed-message")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Registar - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1837,7 +1853,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-modal-new-title")
       .set("description", "Modal de Organiza\u00E7\u00F5es - Novo - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1845,7 +1861,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-modal-edit-title")
       .set("description", "Modal de Organiza\u00E7\u00F5es - Edi\u00E7\u00E3o - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1853,7 +1869,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-code")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - C\u00F3digo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1861,7 +1877,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-parent")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Pai")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1869,7 +1885,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-name")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Nome")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1877,7 +1893,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Valida\u00E7\u00E3o - Obrigat\u00F3rio")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1885,7 +1901,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-cancel")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Cancelar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1893,7 +1909,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-save")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Salvar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1901,7 +1917,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-active")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Activo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1909,7 +1925,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-desactive-success-message")
       .set("description", "Tabela de Organiza\u00E7\u00F5es - Desactive - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1917,7 +1933,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-active-success-message")
       .set("description", "Tabela de Organiza\u00E7\u00F5es - Active - Sucesso - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1925,7 +1941,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-active-failed-message")
       .set("description", "Tabela de Organiza\u00E7\u00F5es - Active - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1933,7 +1949,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-table-desactive-failed-message")
       .set("description", "Tabela de Organiza\u00E7\u00F5es - Desactive - Falha - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1941,7 +1957,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "side-menu-options-members")
       .set("description", "Menu Lateral - Op\u00E7\u00F5es - Membros")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1949,7 +1965,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-page-title")
       .set("description", "P\u00E1gina de Membros - T\u00EDtulo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1957,7 +1973,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-page-new")
       .set("description", "P\u00E1gina de Membros - Novo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1965,7 +1981,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-desactive-success-message")
       .set("description", "Tabela de Membros - Desactivo - Sucesso")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1973,7 +1989,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-active-success-message")
       .set("description", "Tabela de Membros - Activo - Sucesso")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1981,7 +1997,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-desactive-failed-message")
       .set("description", "Tabela de Membros - Desactivo - Falha")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1989,7 +2005,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-active-failed-message")
       .set("description", "Tabela de Membros - Activo - Falha")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -1997,7 +2013,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-load-failed")
       .set("description", "Tabela de Membros - Carregar - Falha")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2005,7 +2021,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-active")
       .set("description", "Tabela de Membros - Activo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2013,7 +2029,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-user")
       .set("description", "Tabela de Membros - Utilizador")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2021,7 +2037,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-organization")
       .set("description", "Tabela de Membros - Organiza\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2029,7 +2045,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-group")
       .set("description", "Tabela de Membros - Grupo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2037,7 +2053,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-table-actions")
       .set("description", "Tabela de Membros - A\u00E7\u00F5es")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2045,7 +2061,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-edit-failed-message")
       .set("description", "Formul\u00E1rio de Membros - Editar - Falha")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2053,7 +2069,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-save-success-message")
       .set("description", "Formul\u00E1rio de Membros - Registar - Sucesso")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2061,7 +2077,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-save-failed-message")
       .set("description", "Formul\u00E1rio de Membros - Registar - Falha")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2069,7 +2085,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-edit-success-message")
       .set("description", "Formul\u00E1rio de Membros - Editar - Sucesso")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2077,7 +2093,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-modal-new-title")
       .set("description", "Formul\u00E1rio de Membros - T\u00EDtulo - Novo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2085,7 +2101,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-modal-edit-title")
       .set("description", "Formul\u00E1rio de Membros - T\u00EDtulo - Editar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2093,7 +2109,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-cancel")
       .set("description", "Formul\u00E1rio de Membros - Cancelar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2101,7 +2117,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-save")
       .set("description", "Formul\u00E1rio de Membros - Guardar")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2109,7 +2125,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-active")
       .set("description", "Formul\u00E1rio de Membros - Activo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2117,7 +2133,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-user")
       .set("description", "Formul\u00E1rio de Membros - Utilizador")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2125,7 +2141,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-validate-message-required")
       .set("description", "Formul\u00E1rio de Membros - Obrigat\u00F3rio - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2133,7 +2149,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-organization")
       .set("description", "Formul\u00E1rio de Membros - Organiza\u00E7\u00E3o")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2141,7 +2157,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-group")
       .set("description", "Formul\u00E1rio de Membros - Grupo")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2149,7 +2165,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "recovery-form-confirm-password")
       .set("description", "Formul\u00E1rio de Recupera\u00E7\u00E3o de Acesso - Confirmar Palavra-passe")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2157,7 +2173,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-already-exists-validation-message")
       .set("description", "Formul\u00E1rio de Membros - Valida\u00E7\u00E3o - J\u00E1 existente - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
@@ -2165,7 +2181,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "organization-form-already-exists-message")
       .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Valida\u00E7\u00E3o - J\u00E1 existente - Mensagem")
   );
-  
+
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()

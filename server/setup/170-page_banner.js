@@ -17,12 +17,12 @@ _db.insertIfNotExists(
     .set("page_version_id", "9529dfcc-9a15-45ab-9f30-fee4bc75d154")
     .set("image", _storage.filesystem('server', 'default-banner-background.jpg').file())
     .set("image_title", "")
-    .set("title", '<p><span style="color: rgb(255, 255, 255); background-color: rgba(255, 255, 255, 0); font-size: 50px; font-family: Arial;">Prestes a Voar</span></p>')
+    .set("title", '<p><span style="color: rgb(255, 255, 255); background-color: rgba(255, 255, 255, 0); font-size: 50px; font-family: inherit;">Prestes a Voar</span></p>')
     .set("sorter", 10)
     .set("image_alt", "")
     .set("position_x", "")
     .set("position_y", "")
-    .set("content", '<p><span style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); font-size: 22px; font-family: Arial;">Aqui é onde você lança websites em uma outra dimensão.</span></p>')
+    .set("content", '<p><span style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); font-size: 22px; font-family: inherit;">Aqui é onde você lança websites em uma outra dimensão.</span></p>')
     .set("type_id", "d7ca6e7d-08a7-4ec0-8d16-9e3f09cd657c")
 );
 

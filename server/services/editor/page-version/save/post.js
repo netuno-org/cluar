@@ -114,7 +114,7 @@ if (lastPageVersion) {
     } else if (sectionType === "content") {
       _log.info(sectionType, structure.getString("type"));
       const contentActions = structure.getList("actions", _val.list());
-      
+
       const contentData = _val
         .map()
         .set("title", structure.getString("title"))
@@ -158,7 +158,7 @@ if (lastPageVersion) {
       }
     } else if (sectionType === "listing") {
       const listingItems = structure.getList("items", _val.list());
-      
+
       const listingData = _val
         .map()
         .set("page_version_id", newPageVersion)
@@ -316,37 +316,26 @@ if (lastPageVersion) {
       }
     } else if (sectionType === "functionality") {
       _log.info(sectionType, structure.getString("type"));
-      const dbFunctionalityType = _db.queryFirst(
-        `
-          SELECT
-            *
-          FROM page_functionality_type
-          WHERE code = ?
-        `,
-        structure.getString("type")
+
+      const functionalityData = _val
+        .map()
+        .set("page_version_id", newPageVersion)
+        .set("type", structure.getString("type"))
+        .set("title", structure.getString("title"))
+        .set("content", structure.getString("content"))
+        .set("sorter", structure.getInt("sorter", 0));
+
+      if (image) {
+        functionalityData.set("image", image);
+      }
+
+      const functionlityId = _db.insert(
+        "page_functionality",
+        functionalityData
       );
 
-      if (dbFunctionalityType) {
-        const functionalityData = _val
-          .map()
-          .set("page_version_id", newPageVersion)
-          .set("type", structure.getString("type"))
-          .set("title", structure.getString("title"))
-          .set("content", structure.getString("content"))
-          .set("sorter", structure.getInt("sorter", 0));
-
-        if (image) {
-          functionalityData.set("image", image);
-        }
-
-        const functionlityId = _db.insert(
-          "page_functionality",
-          functionalityData
-        );
-
-        if (image) {
-          structuresToPublishImages.push(functionlityId);
-        }
+      if (image) {
+        structuresToPublishImages.push(functionlityId);
       }
     }
 
@@ -375,7 +364,7 @@ if (lastPageVersion) {
     );
 
     for (const dbStructure of dbStructures) {
-      cluar.publishImage(`page_${key}`, dbStructure.getString("image"));
+      cluar.publishImage(`${key}`, dbStructure.getString("image"));
     }
   }
 

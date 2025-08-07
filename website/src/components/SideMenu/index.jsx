@@ -53,7 +53,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     },
     {
       key: 'return',
-      label: Cluar.plainDictionary('Voltar ao site'),
+      label: Cluar.plainDictionary('user-menu-return-site'),
       icon: <RollbackOutlined />,
       onClick: () => navigate("/pt/"),
     },

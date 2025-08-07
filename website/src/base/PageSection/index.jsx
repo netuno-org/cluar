@@ -33,7 +33,7 @@ const PageSection = ({
     const newSectionData = {
       uid: new Date().getTime(),
       section,
-      title: `<p><span style="color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 1); font-size: 40px; font-family: Arial;">${section}</span></p>`,
+      title: `<p><span style="color: rgb(0, 0, 0); background-color: rgba(255, 255, 255, 1); font-size: 40px; font-family: inherit;">${section}</span></p>`,
       image: "",
       actions: [],
       items: [],
