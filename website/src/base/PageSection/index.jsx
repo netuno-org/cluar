@@ -45,15 +45,15 @@ const PageSection = ({
     };
 
     if (section === "banner") {
-      newSectionData.type = "default";
+      newSectionData.type = "Default";
     } else if (section === "content") {
-      newSectionData.type = "text";
+      newSectionData.type = "Default";
     } else if (section === "listing") {
-      newSectionData.type = "default";
+      newSectionData.type = "Default";
     } else if (section === "functionality") {
-      newSectionData.type = "contact-form";
+      newSectionData.type = "ContactForm";
     } else if (section === "slider") {
-      newSectionData.type = "default";
+      newSectionData.type = "Default";
     }
 
     if (onNewSection) {
