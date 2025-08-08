@@ -60,7 +60,7 @@ if (dbPageVersion) {
     SELECT
       banner.id,
       banner.uid,
-      page_banner_type.code "type",
+      banner.type,
       banner.title,
       banner.content,
       banner.image,
@@ -70,9 +70,7 @@ if (dbPageVersion) {
       banner.position_y,
       banner.sorter
     FROM page_banner banner
-      INNER JOIN page_banner_type ON banner.type_id = page_banner_type.id
     WHERE banner.active = TRUE
-      AND page_banner_type.active = TRUE
       AND banner.active = TRUE
       AND banner.page_version_id = ${dbPageVersion.getInt("id")}
   `);

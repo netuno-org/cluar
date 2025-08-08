@@ -1,0 +1,14 @@
+{
+  "summary": "Banner Types list",
+  "description": "Banner types list",
+  "tags": [
+    "Banner"
+  ],
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "descriptio": "Language code to access info.json properties"
+    }
+  }
+}

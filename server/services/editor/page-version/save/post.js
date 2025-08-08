@@ -63,18 +63,11 @@ if (lastPageVersion) {
     if (sectionType === "banner") {
       _log.info(sectionType, structure.getString("type"));
       const bannerActions = structure.getList("actions", _val.list());
-      const newSectionType = _db.queryFirst(`
-        SELECT
-          *
-        FROM
-          page_banner_type
-        WHERE code = '${structure.getString("type")}'
-      `);
       const bannerData = _val
         .map()
         .set("title", structure.getString("title"))
         .set("content", structure.getString("content"))
-        .set("type_id", newSectionType.getInt("id"))
+        .set("type", structure.getString("type"))
         .set("page_version_id", newPageVersion)
         .set("image_title", structure.getString("image_title"))
         .set("image_alt", structure.getString("image_alt"))
