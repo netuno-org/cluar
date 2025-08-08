@@ -23,7 +23,7 @@ _db.insertIfNotExists(
     .set("position_x", "")
     .set("position_y", "")
     .set("content", '<p><span style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); font-size: 22px; font-family: inherit;">Aqui é onde você lança websites em uma outra dimensão.</span></p>')
-    .set("type_id", "d7ca6e7d-08a7-4ec0-8d16-9e3f09cd657c")
+    .set("type", "Default")
 );
 
 _db.insertIfNotExists(
@@ -40,5 +40,5 @@ _db.insertIfNotExists(
     .set("position_x", "")
     .set("position_y", "")
     .set("content", '<p><span style="color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0); font-size: 22px; font-family: Arial;">Here is where you launch websites into another dimension.</span></p>')
-    .set("type_id", "d7ca6e7d-08a7-4ec0-8d16-9e3f09cd657c")
+    .set("type", "Default")
 );
