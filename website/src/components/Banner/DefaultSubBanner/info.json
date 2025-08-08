@@ -1,0 +1,10 @@
+{
+  "en": {
+    "label": "Default Sub Banner",
+    "description": "Adds a default sub banner."
+  },
+  "pt": {
+    "label": "Padrão com Destaque",
+    "description": "Adiciona um sub banner padrão."
+  }
+}

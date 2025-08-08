@@ -1,4 +1,4 @@
-@import "../../styles/variables.less";
+@import "../../../styles/variables.less";
 
 .banner {
   position: relative;
@@ -13,57 +13,6 @@
       }
     }
 
-    &__sub-banner {
-        display: none;
-        position: absolute;
-        bottom: 32px;
-        left: 0;
-        background-color: @banner-sub-banner-bg;
-        padding: 15px 0;
-        width: 100% !important;
-        text-align: center;
-        font-weight: bold;
-        font-size: 1.3em;
-        letter-spacing: .025em;
-        box-shadow: @banner-sub-banner-box-shadow;
-        color: @banner-sub-banner-color;
-        @media only screen and (max-width: @header-mobile-width) {
-            font-size: 1.2em;
-            bottom: 0
-        }
-    }
-
-    &__default-sub-banner {
-        padding-top: calc(1.8em + 30px) !important;
-        padding-bottom: calc(1.8em + 30px) !important;
-        .banner__sub-banner {
-            display: block;
-        }
-        > div > div > div {
-            p {
-                margin-bottom: 0;
-                &:nth-last-child(1) {
-                    margin-bottom: 1em;
-                }
-            }
-        }
-        @media only screen and (max-width: @header-mobile-width) {
-            > div > div > div {
-                margin: auto;
-            }
-        }
-    }
-
-    &__default, &__default-sub-banner {
-        min-height: 600px;
-        height: calc(100vh - @header-size);
-        @media only screen and (max-width: @header-mobile-width) {
-            height: calc(100vh - @header-size-mobile);
-        }
-        .banner__darken-bg {
-            display: none;
-        }
-    }
     &__secondary {
         position: relative;
         height: calc(40vh - @header-size);
