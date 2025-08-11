@@ -15,16 +15,7 @@ if (_app.isFolder(templatesPath)) {
     }
 
     const file = _app.file(templateInfoPath);
-    const reader = file.bufferedReader();
-
-    let fileContent = "";
-    let line = reader.readLine();
-    while (line) {
-      fileContent += line;
-      line = reader.readLine();
-    }
-
-    reader.close();
+    const fileContent = file.input().readAllAndClose();
 
     templates.push({
       name: templateFolder.getName(),
