@@ -883,7 +883,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "ec8c39fd-8f93-4bf9-9f28-5a886dcba63c")
       .set("code", "side-menu-load-user-info-failed-message")
-      .set("description", "Menu Lateral - Falha ao Carregar Utilizadror - Mensagem")
+      .set("description", "Menu Lateral - Falha ao Carregar Utilizador - Mensagem")
   );
 
   _db.insertIfNotExists(
@@ -891,7 +891,63 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "44d841f5-560d-4bb9-a778-bc5574e7e5c0")
       .set("code", "side-menu-load-user-info-failed-description")
-      .set("description", "Menu Lateral - Falha ao Carregar Utilizadror - Descri\u00E7\u00E3o")
+      .set("description", "Menu Lateral - Falha ao Carregar Utilizador - Descri\u00E7\u00E3o")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9491cf29-ee04-44cc-8c44-4ff441eb693e")
+      .set("code", "pages-page-title")
+      .set("description", "P\u00E1gina de Páginas - T\u00EDtulo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "b8f6858c-bf9c-489a-9090-b821e7dfabfb")
+      .set("code", "page-table-language")
+      .set("description", "Tabela de Páginas - Idioma")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ce2e63ea-5206-48ed-b227-25d083232ddc")
+      .set("code", "page-table-title")
+      .set("description", "Tabela de Páginas - T\u00EDtulo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "68408f29-df1a-4a45-be50-c4061f9f2dc9")
+      .set("code", "page-table-template")
+      .set("description", "Tabela de Páginas - Template")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2541dbd4-5e53-4e73-b0ca-8acccf08b36e")
+      .set("code", "page-table-link")
+      .set("description", "Tabela de Páginas - Link")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ec00ab62-b6d3-496a-aeaf-19aeb17b69d4")
+      .set("code", "page-table-menu")
+      .set("description", "Tabela de Páginas - Menu")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "b6e05fd7-a46d-4ec0-9911-7ce8a4ae9f7f")
+      .set("code", "page-table-actions")
+      .set("description", "Tabela de Páginas - A\u00E7\u00F5es")
   );
 
   _db.insertIfNotExists(
@@ -1044,6 +1100,110 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f9aac546-1091-4eda-a930-ca49915cb3a2")
       .set("code", "users-table-desactive-failed-message")
       .set("description", "Tabela de Utilizadores - Desactive - Falha - Mensagem")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "6da8cd84-90c8-4374-a522-c973d500d858")
+      .set("code", "page-modal-new-title")
+      .set("description", "Modal de P\u00E1ginas - T\u00EDtulo - Novo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d3ad183d-2e55-4ddd-b72e-077ffb498126")
+      .set("code", "page-modal-edit-title")
+      .set("description", "Modal de P\u00E1ginas - T\u00EDtulo - Editar")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d0b85761-3b88-4856-a1e1-1422f5dd5728")
+      .set("code", "page-form-language")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Idioma")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d3a70c44-9e95-4660-a358-370c4fb7f668")
+      .set("code", "page-form-title")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - T\u00EDtulo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "b691ea29-895e-4f8e-b476-4e1b9e225540")
+      .set("code", "page-form-description")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Descri\u00E7\u00E3o")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "a4fa03bc-2405-49b9-bfc5-b11933983a8a")
+      .set("code", "page-form-keywords")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Palavras-Chave")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "3bbd772e-873c-489e-b550-a109a086ea33")
+      .set("code", "page-form-link")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Link")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ab115471-0dd6-430e-8f2a-751ea677189a")
+      .set("code", "page-form-parent")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - P\u00E1gina Parente")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "64b8c108-a097-42fb-bf1e-9c0c5028e1c2")
+      .set("code", "page-form-menu")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Mostrar no Menu")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "91239b01-a66a-4f1a-8fb6-8ad098298955")
+      .set("code", "page-form-navigable")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Naveg\u00E1vel")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "336a6ff0-e830-4f65-9c43-6588bb489293")
+      .set("code", "page-form-menu-title")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - T\u00EDtulo no Menu")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "fdcb9837-ab95-4106-8868-b6721a410a07")
+      .set("code", "page-form-cancel")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Cancelar")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "f4d0b147-7740-446b-ada3-cf41c8c4ad8f")
+      .set("code", "page-form-save")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Guardar")
   );
 
   _db.insertIfNotExists(

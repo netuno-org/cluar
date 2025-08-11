@@ -2394,6 +2394,240 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary",
     _val.init()
+      .set("uid", "c71c0fe7-6122-4cbe-aed9-a245dc9c4708")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "6da8cd84-90c8-4374-a522-c973d500d858")
+      .set("value", "<p>Nova P\u00E1gina</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "b67e211e-def2-4a5b-8795-119eb418d304")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "6da8cd84-90c8-4374-a522-c973d500d858")
+      .set("value", "<p>New Page</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "55b0869d-8050-4006-90c1-afb3856f6be0")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "d3ad183d-2e55-4ddd-b72e-077ffb498126")
+      .set("value", "<p>Editar P\u00E1gina</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "1dab74e5-20e2-416d-a84b-b2a6b1b8b5bf")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "d3ad183d-2e55-4ddd-b72e-077ffb498126")
+      .set("value", "<p>Edit Page</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "db5d5c42-41e2-4e27-b949-acfe9db82f96")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "d0b85761-3b88-4856-a1e1-1422f5dd5728")
+      .set("value", "<p>Idioma</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "1dab74e5-20e2-416d-a84b-b2a6b1b8b5bf")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "d0b85761-3b88-4856-a1e1-1422f5dd5728")
+      .set("value", "<p>Language</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "fe3b6d0d-4ba1-4903-a372-ca6abb682d39")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "d3a70c44-9e95-4660-a358-370c4fb7f668")
+      .set("value", "<p>T\u00EDtulo</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "b8293dd1-b326-489e-90f2-42dcfd9ef861")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "d3a70c44-9e95-4660-a358-370c4fb7f668")
+      .set("value", "<p>Title</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "e7b310eb-4d59-4a53-a220-90b5c6421cef")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "b691ea29-895e-4f8e-b476-4e1b9e225540")
+      .set("value", "<p>Descri\u00E7\u00E3o</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "86d8f2dc-de07-4767-93f1-0679d2fbf12f")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "b691ea29-895e-4f8e-b476-4e1b9e225540")
+      .set("value", "<p>Description</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "903d6e85-1bfa-44d8-81cc-b9a1847c0868")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "a4fa03bc-2405-49b9-bfc5-b11933983a8a")
+      .set("value", "<p>Palavras-Chave</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "330a2ac0-2341-4174-ac41-01c0362a62a7")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "a4fa03bc-2405-49b9-bfc5-b11933983a8a")
+      .set("value", "<p>Keywords</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "fe094737-92c5-4dba-89d2-e63c63def3b1")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "3bbd772e-873c-489e-b550-a109a086ea33")
+      .set("value", "<p>Liga\u00E7\u00E3o</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "642dc62b-0938-4640-9988-103bd5302c65")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "3bbd772e-873c-489e-b550-a109a086ea33")
+      .set("value", "<p>Link</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "7f02dc1b-c7d3-4c68-b974-79d9f71d4a96")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "ab115471-0dd6-430e-8f2a-751ea677189a")
+      .set("value", "<p>P\u00E1gina Parente</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "409c4dfe-9742-45c5-b0c5-e16ad0742c1a")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "ab115471-0dd6-430e-8f2a-751ea677189a")
+      .set("value", "<p>Parent Page</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "1fd28f04-5dac-4fa4-bef1-c5bacd4f0f2c")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "64b8c108-a097-42fb-bf1e-9c0c5028e1c2")
+      .set("value", "<p>Mostrar no Menu</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "3062110a-ebc1-402b-9797-749ce4063b65")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "64b8c108-a097-42fb-bf1e-9c0c5028e1c2")
+      .set("value", "<p>Show in Menu</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "d51e84e5-d864-4db1-8dfa-01223d6c08c8")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "91239b01-a66a-4f1a-8fb6-8ad098298955")
+      .set("value", "<p>Naveg\u00E1vel</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "f0b18e52-6347-43b0-a14d-40127229e21c")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "91239b01-a66a-4f1a-8fb6-8ad098298955")
+      .set("value", "<p>Navigable</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "715ac35f-a808-43bc-a40c-524665b30103")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "336a6ff0-e830-4f65-9c43-6588bb489293")
+      .set("value", "<p>T\u00EDtulo no Menu</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "54455a7a-d232-4a38-b367-1e490cad9cae")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "336a6ff0-e830-4f65-9c43-6588bb489293")
+      .set("value", "<p>Menu Title</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "28f4ddb6-7ee5-47ae-aebf-201c01066db2")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "fdcb9837-ab95-4106-8868-b6721a410a07")
+      .set("value", "<p>Cancelar</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "1655ef99-9cd1-43b9-be75-683e92858f4b")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "fdcb9837-ab95-4106-8868-b6721a410a07")
+      .set("value", "<p>Cancel</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "90f15d56-b64c-4afd-b79c-13a9437b2d7d")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "f4d0b147-7740-446b-ada3-cf41c8c4ad8f")
+      .set("value", "<p>Guardar</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "388a90c5-5787-4ab9-93a9-7c51ed66e174")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "f4d0b147-7740-446b-ada3-cf41c8c4ad8f")
+      .set("value", "<p>Save</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
       .set("uid", "be0cd827-637e-4ca3-939a-6c63ce87c1c6")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "62cdf9d3-f760-4df4-b27f-132a86f2894f")
@@ -2731,6 +2965,132 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "0c5189d7-4671-48ab-a250-f4c9e8522772")
       .set("value", "<p>Users</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "8b814dee-d20b-41d7-94bc-683cb8b0c312")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "9491cf29-ee04-44cc-8c44-4ff441eb693e")
+      .set("value", "<p>P\u00E1ginas</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "035096fd-cc66-4794-9007-9187c45d9502")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "9491cf29-ee04-44cc-8c44-4ff441eb693e")
+      .set("value", "<p>Pages</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "539131b3-0458-4a7c-afa9-1b4cbc5a8143")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "b8f6858c-bf9c-489a-9090-b821e7dfabfb")
+      .set("value", "<p>Idioma</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "357d176e-8684-4487-b0c7-3f75e51b9ee2")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "b8f6858c-bf9c-489a-9090-b821e7dfabfb")
+      .set("value", "<p>Language</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "076cfd9e-3689-4acb-91f0-67a270570789")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "ce2e63ea-5206-48ed-b227-25d083232ddc")
+      .set("value", "<p>T\u00EDtulo</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "ded2536a-e16a-4b3a-b0af-0cc326035869")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "ce2e63ea-5206-48ed-b227-25d083232ddc")
+      .set("value", "<p>Title</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "a07a803e-7d1a-4dd9-9f23-81a9f09f9dd4")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "68408f29-df1a-4a45-be50-c4061f9f2dc9")
+      .set("value", "<p>Template</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "8899dcf8-f2d1-4a18-a522-0717cb2fc0ea")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "68408f29-df1a-4a45-be50-c4061f9f2dc9")
+      .set("value", "<p>Template</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "cfafc94e-c098-4fd6-920e-1e84be701c47")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "2541dbd4-5e53-4e73-b0ca-8acccf08b36e")
+      .set("value", "<p>Liga\u00E7\u00E3o</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "554dacfc-083e-4755-8055-74caf8c841a6")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "2541dbd4-5e53-4e73-b0ca-8acccf08b36e")
+      .set("value", "<p>Link</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "8cf08796-3e53-4fce-a58e-cce8a3860815")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "ec00ab62-b6d3-496a-aeaf-19aeb17b69d4")
+      .set("value", "<p>Mostrar no Menu</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "f5680e58-9216-4dc3-8019-0d4883082794")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "ec00ab62-b6d3-496a-aeaf-19aeb17b69d4")
+      .set("value", "<p>Show in Menu</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "2699cbe1-1a56-4fe6-9242-51e7bb74cd90")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "b6e05fd7-a46d-4ec0-9911-7ce8a4ae9f7f")
+      .set("value", "<p>A\u00E7\u00F5es</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "ad72fe56-cc87-407b-ab08-5c0f673738be")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "b6e05fd7-a46d-4ec0-9911-7ce8a4ae9f7f")
+      .set("value", "<p>Actions</p>")
   );
 
   _db.insertIfNotExists(
