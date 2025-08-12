@@ -289,16 +289,16 @@ const PageConfiguration = ({
         onClose={onClose}
         width={520}
         destroyOnClose
-        title={isNewPage ? "Nova Página" : "Configurações da Página"}
+        title={isNewPage ? Cluar.plainDictionary("page-drawer-new-title") : Cluar.plainDictionary("page-drawer-config-title")}
         extra={
           <Button type="primary" onClick={handleSave} loading={loading}>
-            {isNewPage ? "Adicionar" : "Guardar"}
+            {isNewPage ? Cluar.plainDictionary("page-form-add") : Cluar.plainDictionary("page-form-save")}
           </Button>
         }
       >
         <Form layout="vertical" initialValues={pageData || {}} form={form}>
           <Form.Item
-            label="Título"
+            label={Cluar.plainDictionary("page-form-title")}
             name="title"
             rules={[
               {
@@ -310,7 +310,7 @@ const PageConfiguration = ({
             <Input />
           </Form.Item>
           <Form.Item
-            label="Template"
+            label={Cluar.plainDictionary("page-table-template")}
             name="template"
             rules={[
               {
@@ -326,13 +326,13 @@ const PageConfiguration = ({
               }))}
             />
           </Form.Item>
-          <Form.Item label="Descrição" name="description">
+          <Form.Item label={Cluar.plainDictionary("page-form-description")}>
             <Input.TextArea rows={3} />
           </Form.Item>
-          <Form.Item label="Palavras-chave" name="keywords">
+          <Form.Item label={Cluar.plainDictionary("page-form-keywords")} name="keywords">
             <Input.TextArea rows={2} />
           </Form.Item>
-          <Form.Item label="Imagem para partilha do link" name="social_image">
+          <Form.Item label={Cluar.plainDictionary("page-form-social-image")} name="social_image">
             <Upload
               className="page-upload"
               listType="picture-card"
@@ -360,13 +360,13 @@ const PageConfiguration = ({
             )}
           </Form.Item>
           <Form.Item
-            label="Descrição para Redes Sociais"
+            label={Cluar.plainDictionary("page-form-social-description")}
             name="social_description"
           >
             <Input.TextArea rows={3} />
           </Form.Item>
           <Form.Item
-            label="Link"
+            label={Cluar.plainDictionary("page-form-link")}
             name="link"
             rules={[
               { required: true, message: "Por favor, insira o link da página" },
@@ -381,7 +381,7 @@ const PageConfiguration = ({
           </Form.Item>
 
           <Form.Item
-            label="Página Parente"
+            label={Cluar.plainDictionary("page-form-parent")}
             name="parent_uid"
             tooltip="Selecione a página parente desta página"
           >
@@ -396,18 +396,18 @@ const PageConfiguration = ({
           </Form.Item>
 
           <Form.Item
-            label="Mostrar no Menu"
+            label={Cluar.plainDictionary("page-form-menu")}
             name="menu"
             valuePropName="checked"
             initialValue={false}
           >
             <Switch />
           </Form.Item>
-          <Form.Item label="Título no Menu" name="menu_title">
+          <Form.Item label={Cluar.plainDictionary("page-form-menu-title")} name="menu_title">
             <Input />
           </Form.Item>
           <Form.Item
-            label="Navegável"
+            label={Cluar.plainDictionary("page-form-navigable")}
             name="navigable"
             valuePropName="checked"
             initialValue={true}
@@ -415,7 +415,7 @@ const PageConfiguration = ({
             <Switch />
           </Form.Item>
           {!isNewPage && (
-            <Form.Item label="Estrutura">
+            <Form.Item label={Cluar.plainDictionary("page-form-structure")}>
               <SortableStructure
                 structure={structure}
                 setStructure={setStructure}

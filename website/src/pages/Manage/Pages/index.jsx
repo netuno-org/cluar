@@ -14,7 +14,7 @@ const Pages = () => {
     const pageTableRef = useRef();
 
     return (
-        <div className="users-page">
+        <div className="pages-page">
             <PageModal
                 ref={pageModalRef}
                 onReloadTable={() => pageTableRef.current.onReloadTable()}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Row, Col, Switch, Divider, Button } from "antd";
 import { HistoryOutlined } from "@ant-design/icons";
+import Cluar from "../../common/Cluar"
 import PageConfiguration from "../PageConfiguration";
 import PageVersions from "../PageVersions";
 
@@ -34,7 +35,7 @@ const AdminBar = ({
           <Row align="middle" gutter={12}>
             <Col>
               <Button type="text" onClick={navigateToReservedArea}>
-                Configurações do Site
+                {Cluar.plainDictionary("admin-bar-site-config")}
               </Button>
             </Col>
           </Row>
@@ -43,7 +44,7 @@ const AdminBar = ({
           <Row align="middle" gutter={6}>
             <Col>
               <Button type="text" onClick={() => openPageConfig(true)}>
-                Nova Página
+                {Cluar.plainDictionary("page-drawer-new-title")}
               </Button>
             </Col>
             <Col>
@@ -51,7 +52,7 @@ const AdminBar = ({
             </Col>
             <Col>
               <Button type="text" onClick={() => openPageConfig(false)}>
-                Configurações da Página
+                {Cluar.plainDictionary("page-drawer-config-title")}
               </Button>
             </Col>
             <Col>
@@ -69,8 +70,8 @@ const AdminBar = ({
               <Switch
                 checked={editMode}
                 onChange={onChangeEditMode}
-                checkedChildren="Editar"
-                unCheckedChildren="Ver"
+                checkedChildren={Cluar.plainDictionary("admin-bar-switch-edit")}
+                unCheckedChildren={Cluar.plainDictionary("admin-bar-switch-see")}
               />
             </Col>
             {extra && (

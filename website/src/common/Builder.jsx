@@ -217,12 +217,12 @@ function Builder({ page }) {
     <Row gutter={12}>
       <Col>
         <Button onClick={handleSavePage} loading={saving} disabled={!hasDiff}>
-          Guardar
+          {Cluar.plainDictionary("extra-bar-admin-save")}
         </Button>
       </Col>
       <Col>
         <Button type="primary" onClick={handlePublishPage} loading={publishing} disabled={!canPublish}>
-          Publicar
+          {Cluar.plainDictionary("extra-bar-admin-publish")}
         </Button>
       </Col>
     </Row>

@@ -825,6 +825,14 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "2c8aad71-b519-4a93-9383-59132a9ddc6b")
+      .set("code", "side-menu-options-actions")
+      .set("description", "Menu Lateral - Op\u00E7\u00F5es - A\u00E7\u00F5es")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "c0e85d7c-adc6-486c-8de1-53c988eb8696")
       .set("code", "language-table-desactive-success-message")
       .set("description", "Tabela de Idioma - Desactivar - Sucesso - Mensagem")
@@ -1105,6 +1113,14 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "c13e2474-11a5-4ebd-bd53-654bfb1e4dcf")
+      .set("code", "actions-page-title")
+      .set("description", "P\u00E1gina de A\u00E7\u00F5es - T\u00EDtulo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "6da8cd84-90c8-4374-a522-c973d500d858")
       .set("code", "page-modal-new-title")
       .set("description", "Modal de P\u00E1ginas - T\u00EDtulo - Novo")
@@ -1204,6 +1220,94 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f4d0b147-7740-446b-ada3-cf41c8c4ad8f")
       .set("code", "page-form-save")
       .set("description", "Formul\u00E1rio de P\u00E1ginas - Guardar")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0a47fa40-6986-4854-99ff-e48dfeb02c69")
+      .set("code", "page-form-add")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Adicionar")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "7afc0a65-ee82-49f2-9c14-55149c465866")
+      .set("code", "page-form-social-description")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Descri\u00E7\u00E3o para Redes Sociais")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "1d960d8c-69b8-4ac2-a90c-7c183b80b811")
+      .set("code", "page-form-social-image")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Imagem para partilha do link")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "886c3471-f06e-44db-bc64-b4b8d18f85fc")
+      .set("code", "page-form-structure")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Estrutura")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "6f444452-4700-4553-afe6-70ab9f18bf6e")
+      .set("code", "page-drawer-new-title")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Nova P\u00E1gina")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2eeee514-1c90-40a5-98f7-57d571ce0d4c")
+      .set("code", "page-drawer-config-title")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Configura\u00E7\u00F5es da P\u00E1gina")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "cc169dff-7182-4043-82db-8296a7a00652")
+      .set("code", "admin-bar-site-config")
+      .set("description", "Barra de Administrador - Configura\u00E7\u00F5es do Site")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "7e2ed56d-0811-424c-bc65-b56d65a79cdb")
+      .set("code", "admin-bar-switch-see")
+      .set("description", "Barra de Administrador - Switch - Ver")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "54bdc22a-e6be-418c-b7ef-278ddb49ec00")
+      .set("code", "admin-bar-switch-edit")
+      .set("description", "Barra de Administrador - Switch - Editar")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "0cf0bed4-5b1d-49f5-a5fa-4ef503ef3c1d")
+      .set("code", "extra-bar-admin-save")
+      .set("description", "Barra Extra de Administrador - Bot\u00E3o - Guardar")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "cd2f6e68-a499-4ecc-9ccc-2ea504671fcc")
+      .set("code", "extra-bar-admin-publish")
+      .set("description", "Barra Extra de Administrador - Bot\u00E3o - Publicar")
   );
 
   _db.insertIfNotExists(
