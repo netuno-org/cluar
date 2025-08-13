@@ -907,7 +907,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "9491cf29-ee04-44cc-8c44-4ff441eb693e")
       .set("code", "pages-page-title")
-      .set("description", "P\u00E1gina de Páginas - T\u00EDtulo")
+      .set("description", "P\u00E1gina de P\u00E1ginas - T\u00EDtulo")
   );
 
   _db.insertIfNotExists(
@@ -915,7 +915,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "b8f6858c-bf9c-489a-9090-b821e7dfabfb")
       .set("code", "page-table-language")
-      .set("description", "Tabela de Páginas - Idioma")
+      .set("description", "Tabela de P\u00E1ginas - Idioma")
   );
 
   _db.insertIfNotExists(
@@ -923,7 +923,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "ce2e63ea-5206-48ed-b227-25d083232ddc")
       .set("code", "page-table-title")
-      .set("description", "Tabela de Páginas - T\u00EDtulo")
+      .set("description", "Tabela de P\u00E1ginas - T\u00EDtulo")
   );
 
   _db.insertIfNotExists(
@@ -931,7 +931,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "68408f29-df1a-4a45-be50-c4061f9f2dc9")
       .set("code", "page-table-template")
-      .set("description", "Tabela de Páginas - Template")
+      .set("description", "Tabela de P\u00E1ginas - Template")
   );
 
   _db.insertIfNotExists(
@@ -939,7 +939,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "2541dbd4-5e53-4e73-b0ca-8acccf08b36e")
       .set("code", "page-table-link")
-      .set("description", "Tabela de Páginas - Link")
+      .set("description", "Tabela de P\u00E1ginas - Liga\u00E7\u00E3o")
   );
 
   _db.insertIfNotExists(
@@ -947,7 +947,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "ec00ab62-b6d3-496a-aeaf-19aeb17b69d4")
       .set("code", "page-table-menu")
-      .set("description", "Tabela de Páginas - Menu")
+      .set("description", "Tabela de P\u00E1ginas - Menu")
   );
 
   _db.insertIfNotExists(
@@ -955,7 +955,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "b6e05fd7-a46d-4ec0-9911-7ce8a4ae9f7f")
       .set("code", "page-table-actions")
-      .set("description", "Tabela de Páginas - A\u00E7\u00F5es")
+      .set("description", "Tabela de P\u00E1ginas - A\u00E7\u00F5es")
   );
 
   _db.insertIfNotExists(
@@ -1113,6 +1113,62 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "7ca07cf4-1c8b-4fc3-8a72-6522cff0bbe3")
+      .set("code", "actions-table-active")
+      .set("description", "Tabela de A\u00E7\u00F5es - Activo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "766f75f0-73a1-4841-ac00-2db1154e720d")
+      .set("code", "actions-table-language")
+      .set("description", "Tabela de A\u00E7\u00F5es - Idioma")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "50a0860d-44c7-4eb9-a19c-735687b5f283")
+      .set("code", "actions-table-title")
+      .set("description", "Tabela de A\u00E7\u00F5es - T\u00EDtulo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "08c8347e-b139-449c-aa5a-ee0005e362ff")
+      .set("code", "actions-table-content")
+      .set("description", "Tabela de A\u00E7\u00F5es - Conte\u00FAdo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "384a3701-c54d-4185-a94d-6881e72b084e")
+      .set("code", "actions-table-indication")
+      .set("description", "Tabela de A\u00E7\u00F5es - Indica\u00E7\u00E3o")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "db388310-d856-44f4-984b-838caae3f6e0")
+      .set("code", "actions-table-link")
+      .set("description", "Tabela de A\u00E7\u00F5es - Liga\u00E7\u00E3o")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c2b9fa69-5635-4008-878a-b3cca3dffc97")
+      .set("code", "actions-table-actions")
+      .set("description", "Tabela de A\u00E7\u00F5es - A\u00E7\u00F5es")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "c13e2474-11a5-4ebd-bd53-654bfb1e4dcf")
       .set("code", "actions-page-title")
       .set("description", "P\u00E1gina de A\u00E7\u00F5es - T\u00EDtulo")
@@ -1171,7 +1227,7 @@ if (_val.global().getBoolean('cluar:setup')) {
     _val.init()
       .set("uid", "3bbd772e-873c-489e-b550-a109a086ea33")
       .set("code", "page-form-link")
-      .set("description", "Formul\u00E1rio de P\u00E1ginas - Link")
+      .set("description", "Formul\u00E1rio de P\u00E1ginas - Liga\u00E7\u00E3o")
   );
 
   _db.insertIfNotExists(
