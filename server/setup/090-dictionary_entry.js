@@ -1177,6 +1177,94 @@ if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "dictionary_entry",
     _val.init()
+      .set("uid", "ee32cf09-a300-4bc8-9660-306f78e81677")
+      .set("code", "action-modal-new-title")
+      .set("description", "Modal de A\u00E7\u00F5es - T\u00EDtulo - Novo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "86aebfec-736a-4f8f-80d0-ff5751a84766")
+      .set("code", "action-modal-edit-title")
+      .set("description", "Modal de A\u00E7\u00F5es - T\u00EDtulo - Editar")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "4e13260e-6d31-417e-a24b-d0b6bb50d8ac")
+      .set("code", "action-form-language")
+      .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Idioma")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "d5a0ce33-749a-4e3d-9b88-0c40d825e3a3")
+      .set("code", "action-form-title")
+      .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - T\u00EDtulo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "c2fe7e0d-b8d6-422b-a14f-088507827383")
+      .set("code", "action-form-content")
+      .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Conte\u00FAdo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "db520b1f-5b76-4d9c-a7b8-6330bececa0d")
+      .set("code", "action-form-indication")
+      .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Indica\u00E7\u00E3o")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "9bdb44bd-fc9d-433f-88c3-ee0bae2db7d3")
+      .set("code", "action-form-link")
+      .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Liga\u00E7\u00E3o")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "1e817d05-5c5b-482b-b10a-a5e65b9dff17")
+      .set("code", "action-form-active")
+      .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Activo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "3ebcc6ec-ade0-411d-af37-f6fd7ab1faf7")
+      .set("code", "action-form-image")
+      .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Imagem")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "2001be2a-7155-404f-a845-8e6c460759f8")
+      .set("code", "action-form-cancel")
+      .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Cancelar")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "397e44cb-ebae-4669-9ece-86b3a69dfae3")
+      .set("code", "action-form-save")
+      .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Guardar")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
       .set("uid", "6da8cd84-90c8-4374-a522-c973d500d858")
       .set("code", "page-modal-new-title")
       .set("description", "Modal de P\u00E1ginas - T\u00EDtulo - Novo")
