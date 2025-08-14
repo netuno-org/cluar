@@ -11,7 +11,8 @@ import {
   ApartmentOutlined,
   TeamOutlined,
   FileOutlined,
-  RollbackOutlined
+  RollbackOutlined,
+  LinkOutlined
 } from '@ant-design/icons';
 import {
   Col,
@@ -73,6 +74,12 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           label: Cluar.plainDictionary('side-menu-options-users'),
           icon: <UserOutlined />,
           onClick: () => navigate("/reserved-area/users")
+        },
+        {
+          key: 'actions',
+          label: Cluar.plainDictionary('side-menu-options-actions'),
+          icon: <LinkOutlined />,
+          onClick: () => navigate("/reserved-area/actions")
         },
         {
           key: 'languages',

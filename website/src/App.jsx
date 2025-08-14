@@ -35,6 +35,7 @@ import "keen-slider/keen-slider.min.css";
 import _auth from "@netuno/auth-client";
 
 import "./styles/App.less";
+import Actions from './pages/Manage/Actions';
 
 const { Content } = Layout;
 
@@ -110,6 +111,7 @@ function App() {
                 <Route path="profile" element={<Profile />} />
                 <Route path="pages" element={<Pages />} />
                 <Route path="users" element={<Users />} />
+                <Route path="actions" element={<Actions />} />
                 <Route path="languages" element={<Languages />} />
                 <Route path="configuration" element={<Configuration />} />
                 <Route path="dictionary" element={<Dictionary />} />
