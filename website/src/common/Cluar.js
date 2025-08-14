@@ -57,7 +57,12 @@ export default class Cluar {
   }
 
   static pages() {
+    console.log("data: ", data)
     return data.pages;
+  }
+
+  static actions() {
+    return data.actions;
   }
 
   static configuration(parameter) {

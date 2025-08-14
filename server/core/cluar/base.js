@@ -1,6 +1,6 @@
 const cluar = { page: {}, custom: {} }
 
-cluar.base = ()=> {
+cluar.base = () => {
   if (_env.is("dev")) {
     return "website/public"
   } else {
@@ -102,7 +102,7 @@ cluar.base.dictionary = () => {
   *
   */
 
-cluar.base.pages = ({publish = false}) => {
+cluar.base.pages = ({ publish = false }) => {
   if (_config.has("cluar:base:pages")) {
     return _config.getValues("cluar:base:pages");
   }
@@ -220,4 +220,44 @@ cluar.base.languages = () => {
   _config.set("cluar:base:languages", languages)
 
   return languages;
+}
+
+/*
+  *
+  *  ACTIONS
+  *
+  */
+
+cluar.base.actions = () => {
+  if (_config.has("cluar:base:actions")) {
+    return _config.getValues("cluar:base:actions");
+  }
+  const dbActions = _db.query(`
+    SELECT
+            action.uid,
+            action.title,
+            action.content,
+            action.indication,
+            action.link,
+            language.code "language"
+        FROM language
+        INNER JOIN action ON language.id = action.language_id
+        WHERE language.active = TRUE
+  `);
+  const actions = _val.list()
+  for (const dbAction of dbActions) {
+    actions.add(
+      _val.map()
+        .set("uid", dbAction.getString("uid"))
+        .set("title", dbAction.getString("title"))
+        .set("content", dbAction.getString("content"))
+        .set("indication", dbAction.getString("indication"))
+        .set("link", dbAction.getString("link"))
+        .set("language_code", dbAction.getString("language"))
+    )
+  }
+  //_log.debug("actions", actions);
+  _config.set("cluar:base:actions", actions)
+
+  return actions;
 }

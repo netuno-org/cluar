@@ -311,6 +311,7 @@ cluar.page.publish = (dbPage) => {
     languages: cluar.base.languages(),
     currentLanguage,
     pages: cluar.base.pages({}),
+    actions: cluar.base.actions(),
     page: dbPage,
   });
 

@@ -47,6 +47,14 @@ cluar.build = (settings)=> {
 
   const pages = cluar.base.pages({publish: true})
   data.set("pages", pages)
+
+  /*
+   *
+   *  ACTIONS
+   *
+   */
+
+  data.set("actions", cluar.base.actions())
   
   cluar.custom.build(settings, data)
   
