@@ -99,6 +99,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           data: {
             ...data,
             uid: pageData.uid,
+            language_code: pageData.language_code,  
           },
           success: (response) => {
             setLoading({ ...loading, saving: false });
