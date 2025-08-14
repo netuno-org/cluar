@@ -1,0 +1,11 @@
+{
+    "type":"object",
+    "properties":{
+        "actions":{
+            "_schema":"response/actions"
+        },
+        "result":{
+            "type":"boolean"
+        }
+    }
+}

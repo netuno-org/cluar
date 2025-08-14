@@ -1,0 +1,34 @@
+{
+    "_schema":"tags/actions",
+    "summary":"Register a new action",
+    "description":"Register a new action",
+    "type":"object",
+    "properties":{
+        "title":{
+            "type":"string"
+        },
+        "content":{
+            "type":"string"
+        },
+        "indication":{
+            "type":"string"
+        },
+        "link":{
+            "type":"string"
+        },
+        "active":{
+            "type":"boolean"
+        },
+        "language_code":{
+            "type":"string"
+        }
+    },
+    "required":[
+        "title",
+        "content",
+        "indication",
+        "link",
+        "active",
+        "language_code"
+    ]
+}

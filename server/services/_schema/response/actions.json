@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string"
+        },
+        "content": {
+            "type": "string"
+        },
+        "indication": {
+            "type": "string"
+        },
+        "link": {
+            "type": "string"
+        },
+        "active": {
+            "type": "boolean"
+        },
+        "language_code": {
+            "type": "string"
+        }
+    }
+}
