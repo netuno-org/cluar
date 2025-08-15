@@ -26,7 +26,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
     const [total, setTotal] = useState(0);
     const [loading, setLoading] = useState(false);
     const actionModalRef = useRef();
-    const [actionEditeData, setPageEditeData] = useState(null);
+    const [actionEditeData, setActionEditeData] = useState(null);
     const [activeLoading, setActiveLoading] = useState({
         key: "",
         isLoading: false
@@ -45,50 +45,50 @@ const ActionsTable = forwardRef(({ }, ref) => {
         setLanguages(languagesList);
     }
 
-    // const onActive = ({ uid, active }) => {
-    //     setActiveLoading({
-    //         key: uid,
-    //         isLoading: true
-    //     });
-    //     _service({
-    //         url: "page/active",
-    //         method: "PUT",
-    //         data: {
-    //             uid,
-    //             active: !active
-    //         },
-    //         success: (response) => {
-    //             setActiveLoading({
-    //                 key: uid,
-    //                 isLoading: false
-    //             });
-    //             setData((prev) => {
-    //                 return prev.map((item) => {
-    //                     if (item.uid === uid) {
-    //                         return ({
-    //                             ...item,
-    //                             active: !active
-    //                         })
-    //                     }
-    //                     return item;
-    //                 })
-    //             });
-    //             notification.success({
-    //                 message: active ? Cluar.plainDictionary('actions-table-desactive-success-message') : Cluar.plainDictionary('actions-table-active-success-message')
-    //             })
-    //         },
-    //         fail: (error) => {
-    //             setActiveLoading({
-    //                 key: uid,
-    //                 isLoading: false
-    //             });
-    //             console.log(error);
-    //             notification.error({
-    //                 message: active ? Cluar.plainDictionary('actions-table-desactive-failed-message') : Cluar.plainDictionary('actions-table-active-failed-message')
-    //             });
-    //         }
-    //     })
-    // }
+    const onActive = ({ uid, active }) => {
+        setActiveLoading({
+            key: uid,
+            isLoading: true
+        });
+        _service({
+            url: "actions/active",
+            method: "PUT",
+            data: {
+                uid,
+                active: !active
+            },
+            success: (response) => {
+                setActiveLoading({
+                    key: uid,
+                    isLoading: false
+                });
+                setData((prev) => {
+                    return prev.map((item) => {
+                        if (item.uid === uid) {
+                            return ({
+                                ...item,
+                                active: !active
+                            })
+                        }
+                        return item;
+                    })
+                });
+                notification.success({
+                    message: active ? Cluar.plainDictionary('actions-table-desactive-success-message') : Cluar.plainDictionary('actions-table-active-success-message')
+                })
+            },
+            fail: (error) => {
+                setActiveLoading({
+                    key: uid,
+                    isLoading: false
+                });
+                console.log(error);
+                notification.error({
+                    message: active ? Cluar.plainDictionary('actions-table-desactive-failed-message') : Cluar.plainDictionary('actions-table-active-failed-message')
+                });
+            }
+        })
+    }
 
     const getTextFilterProps = (key) => {
         return ({
@@ -115,63 +115,15 @@ const ActionsTable = forwardRef(({ }, ref) => {
         });
     };
 
-    const onLoadPages = () => {
+    const onLoadActions = () => {
         setLoading(true);
         const actionsData = Cluar.actions() || {};
-        console.log("Cluar.actions()", actionsData);
 
-        // let allPages = [];
-        // Object.keys(actionsData).forEach(langKey => {
-        //     if (Array.isArray(actionsData[langKey])) {
-        //         // Adiciona o campo language_code a cada página com o valor de langKey
-        //         const pagesWithLanguageCode = actionsData[langKey].map(page => ({
-        //             ...page,
-        //             language_code: langKey
-        //         }));
-        //         allPages = [...allPages, ...pagesWithLanguageCode];
-        //     }
-        // });
+        const startIndex = (pagination.page - 1) * pagination.size;
+        const paginatedActions = actionsData.slice(startIndex, startIndex + pagination.size);
 
-        // let filteredPages = [...allPages];
-
-        // console.log("filters", filters);
-        // if (filters.language_code && filters.language_code.length > 0) {
-        //     filteredPages = filteredPages.filter(page =>
-        //         filters.language_code.includes(page.language_code)
-        //     );
-        // }
-
-        // if (filters.title) {
-        //     filteredPages = filteredPages.filter(page =>
-        //         page.title && page.title.toLowerCase().includes(filters.title.toLowerCase())
-        //     );
-        // }
-
-        // if (filters.link) {
-        //     filteredPages = filteredPages.filter(page =>
-        //         page.link && page.link.toLowerCase().includes(filters.link.toLowerCase())
-        //     );
-        // }
-
-        // if (filters.menu && filters.menu !== undefined) {
-        //     filteredPages = filteredPages.filter(page => {
-        //         if (Array.isArray(filters.menu) && filters.menu.length > 0) {
-        //             return page.menu === filters.menu[0];
-        //         }
-
-        //         return page.menu === filters.menu;
-        //     });
-        // }
-
-        // console.log("filteredPages", filteredPages);
-
-        // const startIndex = (pagination.page - 1) * pagination.size;
-        // const paginatedPages = filteredPages.slice(startIndex, startIndex + pagination.size);
-
-        // setData(paginatedPages);
-        setData(actionsData);
-        // console.log("PaginatedPages ", paginatedPages)
-        // setTotal(filteredPages.length);
+        setData(paginatedActions);
+        
         setTotal(actionsData.length);
         setLoading(false);
     }
@@ -179,7 +131,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
     const onReloadTable = () => {
         setFilters({});
         setPagination({ page: 1, size: 10 });
-        onLoadPages();
+        onLoadActions();
     }
 
     const columns = [
@@ -280,7 +232,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
                     title="Editar"
                     icon={<EditOutlined />}
                     onClick={() => {
-                        setPageEditeData(record);
+                        setActionEditeData(record);
                         actionModalRef.current.openModal();
                     }}
                 />
@@ -296,12 +248,11 @@ const ActionsTable = forwardRef(({ }, ref) => {
 
     useEffect(() => {
         onLoadLanguages();
-        onLoadPages();
-        console.log("DATAAA", data)
+        onLoadActions();
     }, []);
 
     useEffect(() => {
-        onLoadPages();
+        onLoadActions();
     }, [pagination, filters]);
 
     return (

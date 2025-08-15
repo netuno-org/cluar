@@ -26,8 +26,6 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     pages: false
   });
   const [languages, setLanguages] = useState([]);
-  const [pages, setPages] = useState([]);
-  const [templateOptions, setTemplateOptions] = useState([]);
   const editeMode = actionData ? true : false;
   const [formRef] = Form.useForm();
 
@@ -54,35 +52,6 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
       },
     });
   };
-
-  // const onLoadPages = (languageCode) => {
-  //   if (!languageCode) return;
-
-  //   setLoading({ ...loading, pages: true });
-  //   _service({
-  //     url: "page/list",
-  //     method: "POST",
-  //     data: {
-  //       filters: {
-  //         language_code: languageCode,
-  //       },
-  //     },
-  //     success: (response) => {
-  //       setLoading({ ...loading, pages: false });
-  //       const { items } = response.json.page;
-  //       setPages(
-  //         items.filter((page) => !pageData || page.uid !== pageData.uid)
-  //       );
-  //     },
-  //     fail: (error) => {
-  //       setLoading({ ...loading, pages: false });
-  //       console.error(error);
-  //       notification.error({
-  //         message: "Falha ao carregar páginas.",
-  //       });
-  //     },
-  //   });
-  // };
 
   const onFinish = (values) => {
     const data = {
@@ -159,25 +128,10 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     }
   };
 
-  console.log("actionsData", actionData)
-
   useImperativeHandle(ref, () => {
     return {
       openModal: onOpenModal,
     };
-  }, []);
-
-  useEffect(() => {
-    _service({
-      url: "/page/template/list",
-      method: "POST",
-      success: (res) => {
-        setTemplateOptions(res.json.templates);
-      },
-      fail: (error) => {
-        console.log(error);
-      },
-    });
   }, []);
 
   useEffect(() => {
@@ -192,10 +146,6 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
       }
     }
   }, [isModalOpen]);
-
-  // const handleLanguageChange = (value) => {
-  //   onLoadPages(value.value);
-  // };
 
   return (
     <Modal
@@ -247,7 +197,6 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
                   value: language.code,
                 }))}
                 loading={loading.languages}
-              //   onChange={handleLanguageChange}
               />
             </Form.Item>
           </Col>
