@@ -9,11 +9,11 @@ const link = _req.getString("link");
 const active = _req.getBoolean("active");
 // const image = _req.getFile("image");
 
-const dbLanguage = _db.queryFirst(`
+const dbActions = _db.queryFirst(`
     SELECT id, code, description FROM language WHERE code = ?
 `, languageCode);
 
-if (!dbLanguage) {
+if (!dbActions) {
     _header.status(404);
     _out.json(
         _val.map()
@@ -31,7 +31,7 @@ const data = _val.map()
     .set('indication', indication)
     .set('link', link)
     .set('active', active)
-    .set("language_id", dbLanguage.getInt("id"))
+    .set("language_id", dbActions.getInt("id"))
     // .set("image", image)
 const dbAction = insertAndReturn('action', data);
 
