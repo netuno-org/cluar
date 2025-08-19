@@ -123,7 +123,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
         const paginatedActions = actionsData.slice(startIndex, startIndex + pagination.size);
 
         setData(paginatedActions);
-        
+
         setTotal(actionsData.length);
         setLoading(false);
     }
@@ -192,6 +192,23 @@ const ActionsTable = forwardRef(({ }, ref) => {
             onHeaderCell: () => ({
                 "data-column-key": "title",
             }),
+        },
+        {
+            title: 'Imagem',
+            dataIndex: 'image',
+            key: 'image',
+            render: (val, record) => {
+                if (!val) {
+                    return <div style={{ textAlign: 'center' }}>-</div>;
+                }
+                return (
+                    <img
+                        src={`${_service.config().prefix}actions/image?uid=${record.uid}`}
+                        alt="Action"
+                        style={{ width: 50, height: 50, objectFit: 'cover', display: 'block', margin: '0 auto' }}
+                    />
+                );
+            },
         },
         {
             title: Cluar.plainDictionary("actions-table-content"),

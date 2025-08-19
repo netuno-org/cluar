@@ -240,6 +240,7 @@ cluar.base.actions = () => {
             action.indication,
             action.link,
             action.active,
+            action.image,
             language.code "language"
         FROM language
         INNER JOIN action ON language.id = action.language_id
@@ -255,6 +256,7 @@ cluar.base.actions = () => {
         .set("indication", dbAction.getString("indication"))
         .set("link", dbAction.getString("link"))
         .set("active", dbAction.getBoolean("active"))
+        .set("image", dbAction.getString("image"))
         .set("language_code", dbAction.getString("language"))
     )
   }
