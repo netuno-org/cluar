@@ -20,7 +20,10 @@
             "type": "string"
         },
         "active": {
-            "type": "boolean"
+            "type": "string"
+        },
+        "image": {
+            "type": "string"
         },
         "language_code": {
             "type": "string"

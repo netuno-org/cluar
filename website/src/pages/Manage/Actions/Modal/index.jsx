@@ -7,8 +7,10 @@ import {
   Row,
   Select,
   Switch,
-  notification
+  notification,
+  Upload
 } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 import {
   forwardRef,
   useEffect,
@@ -17,6 +19,15 @@ import {
 } from "react";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
+import "./index.less";
+
+const getBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
 const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,6 +39,55 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
   const [languages, setLanguages] = useState([]);
   const editeMode = actionData ? true : false;
   const [formRef] = Form.useForm();
+
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState("");
+  const [fileList, setFileList] = useState([]);
+
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewOpen(true);
+  };
+
+  const handleChange = async ({ fileList }) => {
+    if (fileList.length > 0) {
+      let file = fileList[0];
+      if (!file.thumbUrl && file.originFileObj) {
+        file.thumbUrl = await getBase64(file.originFileObj);
+      }
+      setFileList([...fileList]);
+      if (formRef) {
+        formRef.setFieldValue("image", file.thumbUrl);
+      }
+    } else {
+      setFileList([]);
+      if (formRef) {
+        formRef.setFieldValue("image", "");
+      }
+    }
+  };
+
+  const uploadButton = (
+    <button
+      style={{
+        border: 0,
+        background: "none",
+      }}
+      type="button"
+    >
+      <PlusOutlined />
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </button>
+  );
 
   const onOpenModal = () => {
     setIsModalOpen(true);
@@ -54,78 +114,56 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
   };
 
   const onFinish = (values) => {
-    const data = {
-      ...values,
-      language_code: values.language_code?.value,
-    };
+    const formData = new FormData();
+    Object.keys(values).forEach((key) => {
+      if (values[key] !== undefined && values[key] !== null) {
+        if (key === 'image' && fileList.length > 0) {
+          formData.append(key, fileList[0].originFileObj)
+        } else if (key === 'language_code' && values.language_code?.value) {
+          formData.append(key, values.language_code.value);
+        } else if (typeof values[key] === "boolean") {
+          formData.append(key, values[key] ? "true" : "false");
+        } else {
+          formData.append(key, values[key]);
+        }
+      }
+    })
 
     if (editeMode) {
-      setLoading({ ...loading, saving: true });
-      _service({
-        url: "actions",
-        method: "PUT",
-        data: {
-          ...data,
-          uid: actionData.uid,
-          language_code: actionData.language_code,  
-        },
-        success: (response) => {
-          setLoading({ ...loading, saving: false });
-          setIsModalOpen(false);
-          onReloadTable();
-          notification.success({
-            message: Cluar.plainDictionary("page-form-edit-success-message"),
-          });
-        },
-        fail: (error) => {
-          setLoading({ ...loading, saving: false });
-          console.log(error);
-
-          if (error?.json?.error_code) {
-            notification.error({
-              message: Cluar.plainDictionary("page-form-edit-failed-message"),
-              description: Cluar.plainDictionary(error.json.error_code),
-            });
-            return;
-          }
-          notification.error({
-            message: Cluar.plainDictionary("page-form-edit-failed-message"),
-          });
-        },
-      });
-    } else {
-      setLoading({ ...loading, saving: true });
-      _service({
-        url: "actions",
-        method: "POST",
-        data: {
-          ...data,
-        },
-        success: (response) => {
-          setLoading({ ...loading, saving: false });
-          setIsModalOpen(false);
-          onReloadTable();
-          notification.success({
-            message: Cluar.plainDictionary("page-form-save-success-message"),
-          });
-        },
-        fail: (error) => {
-          setLoading({ ...loading, saving: false });
-          console.log(error);
-
-          if (error?.json?.error_code) {
-            notification.error({
-              message: Cluar.plainDictionary("page-form-save-failed-message"),
-              description: Cluar.plainDictionary(error.json.error_code),
-            });
-            return;
-          }
-          notification.error({
-            message: Cluar.plainDictionary("page-form-save-failed-message"),
-          });
-        },
-      });
+      formData.append('uid', actionData.uid);
+      formData.append('language_code', actionData.language_code);
     }
+
+    setLoading({ ...loading, saving: true });
+
+    _service({
+      url: "actions",
+      method: editeMode ? "PUT" : "POST",
+      data: formData,
+      success: (response) => {
+        setLoading({ ...loading, saving: false });
+        setIsModalOpen(false);
+        onReloadTable();
+        notification.success({
+          message: editeMode ? Cluar.plainDictionary("page-form-edit-success-message") : Cluar.plainDictionary("page-form-save-success-message"),
+        });
+      },
+      fail: (error) => {
+        setLoading({ ...loading, saving: false });
+        console.log(error);
+
+        if (error?.json?.error_code) {
+          notification.error({
+            message: editeMode ? Cluar.plainDictionary("page-form-edit-failed-message") : Cluar.plainDictionary("page-form-save-failed-message"),
+            description: Cluar.plainDictionary(error.json.error_code),
+          });
+          return;
+        }
+        notification.error({
+          message: editeMode ? Cluar.plainDictionary("page-form-edit-failed-message") : Cluar.plainDictionary("page-form-save-failed-message"),
+        });
+      },
+    });
   };
 
   useImperativeHandle(ref, () => {
@@ -272,7 +310,31 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
               name="image"
               label={Cluar.plainDictionary("action-form-image")}
             >
-              <Input />
+              <Upload
+                className="actions-upload"
+                listType="picture-card"
+                fileList={fileList}
+                action={""}
+                onPreview={handlePreview}
+                onChange={handleChange}
+                beforeUpload={() => false}
+                style={{ width: '100%' }}
+              >
+                {fileList.length >= 1 ? null : uploadButton}
+              </Upload>
+              {previewImage && (
+                <Image
+                  wrapperStyle={{
+                    display: "none",
+                  }}
+                  preview={{
+                    visible: previewOpen,
+                    onVisibleChange: (visible) => setPreviewOpen(visible),
+                    afterOpenChange: (visible) => !visible && setPreviewImage(""),
+                  }}
+                  src={previewImage}
+                />
+              )}
             </Form.Item>
           </Col>
         </Row>

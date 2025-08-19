@@ -7,7 +7,7 @@ const content = _req.getString("content");
 const indication = _req.getString("indication");
 const link = _req.getString("link");
 const active = _req.getBoolean("active");
-// const image = _req.getFile("image");
+const image = _req.getFile("image");
 
 const dbActions = _db.queryFirst(`
     SELECT id, code, description FROM language WHERE code = ?
@@ -32,7 +32,7 @@ const data = _val.map()
     .set('link', link)
     .set('active', active)
     .set("language_id", dbActions.getInt("id"))
-    // .set("image", image)
+    .set("image", image)
 const dbAction = insertAndReturn('action', data);
 
 _log.info("dbAction:", dbAction);
