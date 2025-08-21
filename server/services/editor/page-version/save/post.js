@@ -62,7 +62,7 @@ if (lastPageVersion) {
 
     if (sectionType === "banner") {
       _log.info(sectionType, structure.getString("type"));
-      const bannerActions = structure.getList("actions", _val.list());
+      const bannerActions = structure.getList("action_uids", _val.list());
       const bannerData = _val
         .map()
         .set("title", structure.getString("title"))
@@ -89,9 +89,9 @@ if (lastPageVersion) {
       if (structure.getString("image")) {
         structuresToPublishImages.push(bannerId);
       }
-
+      let actionSorter = 10;
       for (const action of bannerActions) {
-        const dbAction = _db.get("action", action.getString("uid"));
+        const dbAction = _db.get("action", action); //alterar para obter objeto action.getString("uid");
 
         if (dbAction) {
           _db.insert(
@@ -100,8 +100,9 @@ if (lastPageVersion) {
               .map()
               .set("page_banner_id", bannerId)
               .set("action_id", dbAction.getInt("id"))
-              .set("sorter", action.getInt("sorter", 0))
+              .set("sorter", actionSorter)
           );
+          actionSorter += 10;
         }
       }
     } else if (sectionType === "content") {

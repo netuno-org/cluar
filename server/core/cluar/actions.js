@@ -4,7 +4,8 @@ cluar.actions = (section, id) => {
             action.title,
             action.content,
             action.indication,
-            action.link
+            action.link,
+            action.uid
         FROM action
             INNER JOIN page_${section}_action ON page_${section}_action.action_id = action.id
         WHERE
@@ -22,6 +23,7 @@ cluar.actions = (section, id) => {
         .set("indication", dbAction.getString("indication"))
         .set("link", dbAction.getString("link"))
         .set("sorter", dbAction.getInt("sorter"))
+        .set("uid", dbAction.getString("uid"))
     )
   }
   return actions

@@ -3,6 +3,7 @@ import { Row, Col } from "antd";
 
 import Actions from "../../Actions";
 import Cluar from "../../../common/Cluar";
+import config from "./config.json"
 
 import "./index.less";
 
@@ -50,9 +51,11 @@ function Default({
               ></div>
             </div>
           </Col>
-          <Col lg={6} sm={24}>
-            <Actions {...{ section, type, actions }} />
-          </Col>
+          {config.action && (
+            <Col lg={6} sm={24}>
+              <Actions {...{ section, type, actions }} />
+            </Col>
+          )}
         </Row>
         <div className="banner__darken-bg"></div>
       </div>
