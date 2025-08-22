@@ -1,1 +1,39 @@
-.content-text {}
+@import "../../../styles/variables.less";
+
+.content-text {
+    >ul.actions {
+        width: 300px;
+
+        @media only screen and (max-width: 800px) {
+            width: 100%;
+        }
+    }
+
+    .actions__item {
+        background-color: @primary-color;
+        text-align: center;
+        border-color: @primary-color;
+
+        h4 {
+            color: #ffffff;
+        }
+
+        a {
+            color: @secondary-color;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: @secondary-color;
+            color: #000000;
+
+            h4 {
+                color: #000000;
+            }
+
+            a {
+                color: @primary-color;
+            }
+        }
+    }
+}

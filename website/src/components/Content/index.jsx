@@ -1,5 +1,5 @@
 import React from 'react';
-import Actions from '../Actions';
+import Cluar from '../../common/Cluar';
 
 import './index.less';
 
@@ -11,86 +11,81 @@ import ImageBottom from './ImageBottom';
 import ImageContent from './ImageContent';
 import Default from './Default';
 
-const Content = ({ section, type, title, content, image, image_title, image_alt, image_max_width, actions }) => {
+const Content = (props) => {
     let layout = null;
+    const actionsData = Cluar.actions() || [];
+    const actions = (props.action_uids || []).map(uid =>
+        actionsData.find(item => item.uid === uid)
+    ).filter(Boolean);
+
     const imageStyle = {};
 
     const imageSrc =
-        image?.indexOf("base64") === -1
-            ? `/cluar/images/page_${section}/${image}`
-            : image;
+        props.image?.indexOf("base64") === -1
+            ? `/cluar/images/page_${props.section}/${props.image}`
+            : props.image;
 
-    if (image_max_width > 0) {
-        imageStyle["maxWidth"] = `${image_max_width}px`;
+    if (props.image_max_width > 0) {
+        imageStyle["maxWidth"] = `${props.image_max_width}px`;
     }
 
-    if (type === 'TextContent') {
+    if (props.type === 'TextContent') {
         layout = (
             <TextContent
-                title={title}
-                content={content}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
             />
         );
-    } else if (type === 'ImageLeft') {
+    } else if (props.type === 'ImageLeft') {
         layout = (
             <ImageLeft
-                title={title}
-                content={content}
-                image_title={image_title}
-                image_alt={image_alt}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
         );
-    } else if (type === 'ImageRight') {
+    } else if (props.type === 'ImageRight') {
         layout = (
             <ImageRight
-                title={title}
-                content={content}
-                image_title={image_title}
-                image_alt={image_alt}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
         );
-    } else if (type === 'ImageTop') {
+    } else if (props.type === 'ImageTop') {
         layout = (
             <ImageTop
-                title={title}
-                content={content}
-                image_title={image_title}
-                image_alt={image_alt}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
         );
-    } else if (type === 'ImageBottom') {
+    } else if (props.type === 'ImageBottom') {
         layout = (
             <ImageBottom
-                title={title}
-                content={content}
-                image_title={image_title}
-                image_alt={image_alt}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
         );
-    } else if (type === 'ImageContent') {
+    } else if (props.type === 'ImageContent') {
         layout = (
             <ImageContent
-                image_title={image_title}
-                image_alt={image_alt}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
                 imageSrc={imageSrc}
-                imageStyle={imageStyle} 
+                imageStyle={imageStyle}
             />
         );
     } else {
         layout = (
             <Default
-                title={title}
-                content={content}
-                image_title={image_title}
-                image_alt={image_alt}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
@@ -100,7 +95,6 @@ const Content = ({ section, type, title, content, image, image_title, image_alt,
     return (
         <section className="content">
             {layout}
-            <Actions {... { section, type, actions }} />
         </section>
     );
 };

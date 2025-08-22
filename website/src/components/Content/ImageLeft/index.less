@@ -1,3 +1,5 @@
+@import "../../../styles/variables.less";
+
 .content-image-left {
     .image {
         width: 100%;
@@ -11,16 +13,53 @@
     }
 
     .text {
-        > h1 {
+        >h1 {
             font-size: 2em;
             font-weight: normal;
             letter-spacing: .01em;
         }
-        
-        > div {
+
+        >div {
             font-size: 1.2em;
-            > ul {
+
+            >ul {
                 margin-left: 40px !important;
+            }
+        }
+    }
+
+    >ul.actions {
+        width: 300px;
+
+        @media only screen and (max-width: 800px) {
+            width: 100%;
+        }
+    }
+
+    .actions__item {
+        background-color: @primary-color;
+        text-align: center;
+        border-color: @primary-color;
+
+        h4 {
+            color: #ffffff;
+        }
+
+        a {
+            color: @secondary-color;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: @secondary-color;
+            color: #000000;
+
+            h4 {
+                color: #000000;
+            }
+
+            a {
+                color: @primary-color;
             }
         }
     }

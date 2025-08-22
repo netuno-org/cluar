@@ -91,7 +91,7 @@ if (lastPageVersion) {
       }
       let actionSorter = 10;
       for (const action of bannerActions) {
-        const dbAction = _db.get("action", action); //alterar para obter objeto action.getString("uid");
+        const dbAction = _db.get("action", action); 
 
         if (dbAction) {
           _db.insert(
@@ -107,7 +107,7 @@ if (lastPageVersion) {
       }
     } else if (sectionType === "content") {
       _log.info(sectionType, structure.getString("type"));
-      const contentActions = structure.getList("actions", _val.list());
+      const contentActions = structure.getList("action_uids", _val.list());
 
       const contentData = _val
         .map()
@@ -136,8 +136,9 @@ if (lastPageVersion) {
         structuresToPublishImages.push(contentId);
       }
 
+      let actionSorter = 10;
       for (const action of contentActions) {
-        const dbAction = _db.get("action", action.getString("uid"));
+        const dbAction = _db.get("action", action);
 
         if (dbAction) {
           _db.insert(
@@ -146,8 +147,9 @@ if (lastPageVersion) {
               .map()
               .set("page_content_id", contentId)
               .set("action_id", dbAction.getInt("id"))
-              .set("sorter", action.getInt("sorter"))
+              .set("sorter", actionSorter)
           );
+          actionSorter += 10;
         }
       }
     } else if (sectionType === "listing") {

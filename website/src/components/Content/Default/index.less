@@ -1,3 +1,5 @@
+@import "../../../styles/variables.less";
+
 .content-default {
     .image {
         width: 100%;
@@ -22,6 +24,42 @@
 
             >ul {
                 margin-left: 40px !important;
+            }
+        }
+    }
+
+    >ul.actions {
+        width: 300px;
+
+        @media only screen and (max-width: 800px) {
+            width: 100%;
+        }
+    }
+
+    .actions__item {
+        background-color: @primary-color;
+        text-align: center;
+        border-color: @primary-color;
+
+        h4 {
+            color: #ffffff;
+        }
+
+        a {
+            color: @secondary-color;
+        }
+
+        &:hover {
+            cursor: pointer;
+            background-color: @secondary-color;
+            color: #000000;
+
+            h4 {
+                color: #000000;
+            }
+
+            a {
+                color: @primary-color;
             }
         }
     }

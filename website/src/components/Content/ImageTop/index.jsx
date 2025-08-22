@@ -1,8 +1,12 @@
 import React from 'react';
 
+import Cluar from '../../../common/Cluar';
+import Actions from '../../Actions';
+import config from './config.json';
+
 import './index.less';
 
-const ImageTop = ({ title, content, image_title, image_alt, imageSrc, imageStyle }) => {
+const ImageTop = ({ section, type, title, content, image_title, image_alt, imageSrc, imageStyle, actions }) => {
     return (
         <div className="content-image-top">
             <div className="image">
@@ -14,9 +18,14 @@ const ImageTop = ({ title, content, image_title, image_alt, imageSrc, imageStyle
                 />
             </div>
             <div className="text">
-                <h1 dangerouslySetInnerHTML={{ __html: title }} />
+                <h1 dangerouslySetInnerHTML={{ __html: Cluar.plainTitle(title) }} />
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
+            {config.action && (
+                <div>
+                    <Actions {... { section, type, actions }} />
+                </div>
+            )}
         </div>
     );
 };

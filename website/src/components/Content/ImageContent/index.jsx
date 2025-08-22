@@ -1,8 +1,10 @@
 import React from 'react';
+import Actions from '../../Actions';
+import config from './config.json';
 
 import './index.less';
 
-const ImageContent = ({ image_title, image_alt, imageSrc, imageStyle }) => {
+const ImageContent = ({ section, type, image_title, image_alt, imageSrc, imageStyle, actions }) => {
     return (
         <div className="content-image">
             <div className="image">
@@ -13,6 +15,11 @@ const ImageContent = ({ image_title, image_alt, imageSrc, imageStyle }) => {
                     style={imageStyle}
                 />
             </div>
+            {config.action && (
+                <div>
+                    <Actions {... { section, type, actions }} />
+                </div>
+            )}
         </div>
     );
 }
