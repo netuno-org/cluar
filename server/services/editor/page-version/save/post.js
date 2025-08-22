@@ -91,7 +91,7 @@ if (lastPageVersion) {
       }
       let actionSorter = 10;
       for (const action of bannerActions) {
-        const dbAction = _db.get("action", action); 
+        const dbAction = _db.get("action", action);
 
         if (dbAction) {
           _db.insert(
@@ -312,7 +312,7 @@ if (lastPageVersion) {
       }
     } else if (sectionType === "functionality") {
       _log.info(sectionType, structure.getString("type"));
-
+      const functionalityActions = structure.getList("action_uids", _val.list());
       const functionalityData = _val
         .map()
         .set("page_version_id", newPageVersion)
@@ -332,6 +332,23 @@ if (lastPageVersion) {
 
       if (image) {
         structuresToPublishImages.push(functionlityId);
+      }
+
+      let actionSorter = 10;
+      for (const action of functionalityActions) {
+        const dbAction = _db.get("action", action);
+
+        if (dbAction) {
+          _db.insert(
+            "page_functionality_action",
+            _val
+              .map()
+              .set("page_functionality_id", functionlityId)
+              .set("action_id", dbAction.getInt("id"))
+              .set("sorter", actionSorter)
+          );
+          actionSorter += 10;
+        }
       }
     }
 

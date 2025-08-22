@@ -4,6 +4,8 @@ import { PhoneOutlined, HomeOutlined, MailOutlined } from '@ant-design/icons';
 // import Map, {Marker, Popup, NavigationControl} from 'react-map-gl';
 
 import Cluar from '../../../common/Cluar';
+import config from "./config.json"
+import Actions from "../../Actions";
 
 import './index.less';
 
@@ -12,7 +14,7 @@ const MARKER_ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-1
   C20.1,15.8,20.2,15.8,20.2,15.7z`;
 const MARKER_SIZE = 50;
 
-function ContactMap({ title, content }) {
+function ContactMap({ section, type, title, content, actions }) {
   const [showPopup, setShowPopup] = useState(false);
   const latitude = Cluar.configurationNumber("map-latitude");
   const longitude = Cluar.configurationNumber("map-longitude");
@@ -104,6 +106,11 @@ function ContactMap({ title, content }) {
             </Map>
           </div> */}
         </Col>
+        {config.action && (
+          <Col lg={6} sm={24}>
+            <Actions {...{ section, type, actions }} />
+          </Col>
+        )}
       </Row>
     </section>
   );

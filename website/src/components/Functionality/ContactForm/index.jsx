@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { Row, Col, Form, Input, Button, notification } from 'antd';
 import _service from '@netuno/service-client';
 import Cluar from '../../../common/Cluar';
+import config from "./config.json"
+import Actions from "../../Actions";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import './index.less';
 
 const { TextArea } = Input;
 
-function ContactForm({ title }) {
+function ContactForm({ section, type, title, actions }) {
   const [isHuman, setIsHuman] = useState(false)
   const [recaptchaValue, setRecaptchaValue] = useState("")
 
@@ -18,20 +20,20 @@ function ContactForm({ title }) {
       email: Cluar.plainDictionary('contact-form-validate-message-email')
     }
   };
-  
+
   const layout = {
     rowGutter: { gutter: [25, 0] },
-    labelCol: {span: 'hide'}
+    labelCol: { span: 'hide' }
   };
 
-  const [ loading, setLoading ] = useState(false);
-  const handleFinish = (values)=> {
+  const [loading, setLoading] = useState(false);
+  const handleFinish = (values) => {
     values.contactForm.locale = window.localStorage.getItem('locale');
     setLoading(true);
     const fail = () => {
       setLoading(false);
       notification.error({
-        message: title ,
+        message: title,
         description: Cluar.plainDictionary('contact-form-fail'),
         top: 100
       });
@@ -47,7 +49,7 @@ function ContactForm({ title }) {
         if (response.json && response.json.result === true) {
           setLoading(false);
           notification.success({
-            message: title ,
+            message: title,
             description: Cluar.plainDictionary('contact-form-success'),
             top: 100
           });
@@ -62,37 +64,37 @@ function ContactForm({ title }) {
     });
   };
   return (
-      <section className="contact-form">
-        <hr/>
-        <Form labelCol={layout.labelCol} validateMessages={validateMessages} onFinish={handleFinish}>
-          <h2 dangerouslySetInnerHTML={{ __html: title }} />
-          <Row {...layout.rowGutter}>
-            <Col lg={12} md={12} sm={24} xs={24}>
-              <Form.Item {...layout.labelCol} label={Cluar.plainDictionary('contact-form-name')} name={['contactForm', 'name']} rules={[{ required: true }]}>
-                <Input placeholder={Cluar.plainDictionary('contact-form-name')} />
-              </Form.Item>
-            </Col>
-            <Col lg={12} md={12} sm={24} xs={24}>
-              <Form.Item {...layout.labelCol} label={Cluar.plainDictionary('contact-form-email')} name={['contactForm', 'email']} rules={[{ required: true, type: 'email' }]}>
-                <Input placeholder={Cluar.plainDictionary('contact-form-email')} />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row {...layout.rowGutter}>
-            <Col span={24}>
-              <Form.Item {...layout.labelCol} label={Cluar.plainDictionary('contact-form-subject')} name={['contactForm', 'subject']} rules={[{ required: true }]}>
-                <Input placeholder={Cluar.plainDictionary('contact-form-subject')} />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row {...layout.rowGutter}>
-            <Col span={24}>
-              <Form.Item {...layout.labelCol} label={Cluar.plainDictionary('contact-form-message')} name={['contactForm', 'message']} rules={[{ required: true }]} >
-                <TextArea autoSize={{ minRows: 3 }} placeholder={Cluar.plainDictionary('contact-form-message')} />
-              </Form.Item>
-            </Col>
-          </Row>
-          {/* {process.env.REACT_APP_RECAPTCHA_SITE_KEY && (
+    <section className="contact-form">
+      <hr />
+      <Form labelCol={layout.labelCol} validateMessages={validateMessages} onFinish={handleFinish}>
+        <h2 dangerouslySetInnerHTML={{ __html: title }} />
+        <Row {...layout.rowGutter}>
+          <Col lg={12} md={12} sm={24} xs={24}>
+            <Form.Item {...layout.labelCol} label={Cluar.plainDictionary('contact-form-name')} name={['contactForm', 'name']} rules={[{ required: true }]}>
+              <Input placeholder={Cluar.plainDictionary('contact-form-name')} />
+            </Form.Item>
+          </Col>
+          <Col lg={12} md={12} sm={24} xs={24}>
+            <Form.Item {...layout.labelCol} label={Cluar.plainDictionary('contact-form-email')} name={['contactForm', 'email']} rules={[{ required: true, type: 'email' }]}>
+              <Input placeholder={Cluar.plainDictionary('contact-form-email')} />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row {...layout.rowGutter}>
+          <Col span={24}>
+            <Form.Item {...layout.labelCol} label={Cluar.plainDictionary('contact-form-subject')} name={['contactForm', 'subject']} rules={[{ required: true }]}>
+              <Input placeholder={Cluar.plainDictionary('contact-form-subject')} />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row {...layout.rowGutter}>
+          <Col span={24}>
+            <Form.Item {...layout.labelCol} label={Cluar.plainDictionary('contact-form-message')} name={['contactForm', 'message']} rules={[{ required: true }]} >
+              <TextArea autoSize={{ minRows: 3 }} placeholder={Cluar.plainDictionary('contact-form-message')} />
+            </Form.Item>
+          </Col>
+        </Row>
+        {/* {process.env.REACT_APP_RECAPTCHA_SITE_KEY && (
             <Row {...layout.rowGutter}>
               <Col>
                 <ReCAPTCHA
@@ -111,15 +113,22 @@ function ContactForm({ title }) {
               </Col>
             </Row>
           )} */}
+        <Row {...layout.rowGutter}>
+          <Col span={24}>
+            <Form.Item wrapperCol={24}>
+              {/* <Button disabled={!isHuman && process.env.REACT_APP_RECAPTCHA_SITE_KEY} htmlType="submit" type="primary" block {...{loading}}>{Cluar.plainDictionary('contact-form-send')}</Button> */}
+            </Form.Item>
+          </Col>
+        </Row>
+        {config.action && (
           <Row {...layout.rowGutter}>
-            <Col span={24}>
-              <Form.Item wrapperCol={24}>
-                {/* <Button disabled={!isHuman && process.env.REACT_APP_RECAPTCHA_SITE_KEY} htmlType="submit" type="primary" block {...{loading}}>{Cluar.plainDictionary('contact-form-send')}</Button> */}
-              </Form.Item>
+            <Col lg={6} sm={24}>
+              <Actions {...{ section, type, actions }} />
             </Col>
           </Row>
-        </Form>
-      </section>
+        )}
+      </Form>
+    </section>
   );
 }
 

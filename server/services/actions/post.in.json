@@ -17,7 +17,7 @@
             "type":"string"
         },
         "active":{
-            "type":"boolean"
+            "type":"string"
         },
         "language_code":{
             "type":"string"

@@ -1,28 +1,37 @@
 import React from 'react'
+import Cluar from "../../common/Cluar";
 
 import ContactForm from './ContactForm';
 import ContactMap from './ContactMap';
 
-const Functionality = ({ title, content, type }) => {
+const Functionality = (props) => {
     let layout = null;
+    const actionsData = Cluar.actions() || [];
+    console.log("propsFunctionality", props)
 
-    if (type === 'ContactForm') {
+    const actions = (props.action_uids || []).map(uid =>
+        actionsData.find(item => item.uid === uid)
+    ).filter(Boolean);
+
+    if (props.type === 'ContactForm') {
         layout = (
             <ContactForm
-                title={title}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
             />
         );
-    } else if (type === 'ContactMap') {
+    } else if (props.type === 'ContactMap') {
         layout = (
             <ContactMap
-                title={title}
-                content={content}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
             />
         );
     } else {
         layout = (
             <ContactForm
-                title={title}
+                {...props}
+                actions={actions.length > 0 ? actions : props.actions}
             />
         );
     }

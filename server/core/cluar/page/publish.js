@@ -276,6 +276,7 @@ cluar.page.publish = (dbPage) => {
         .set("content", dbFunctionality.getString("content"))
         .set("image", dbFunctionality.getString("image"))
         .set("sorter", dbFunctionality.getInt("sorter"))
+        .set("actions", cluar.actions("functionality", dbFunctionality.getInt("id")))
     );
   }
 

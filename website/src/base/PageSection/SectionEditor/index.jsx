@@ -22,7 +22,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
     } else if (sectionData?.section === "listing") {
       return <ListEditor sectionData={sectionData} form={form} />;
     } else if (sectionData?.section === "functionality") {
-      return <FunctionalityEditor sectionData={sectionData} />;
+      return <FunctionalityEditor sectionData={sectionData} form={form} />;
     } else if (sectionData?.section === "slider") {
       return <SliderEditor sectionData={sectionData} form={form} />;
     } else if (sectionData?.section === "content") {
