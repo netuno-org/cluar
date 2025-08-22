@@ -2,6 +2,8 @@ import React from 'react';
 import { Row, Col } from "antd";
 
 import Item from './Item';
+import config from "./config.json"
+import Actions from "../../Actions";
 
 const Default = (
     { section,
@@ -11,7 +13,8 @@ const Default = (
         image_alt,
         title,
         content,
-        items }) => {
+        items,
+        actions }) => {
     const children = [];
 
     for (const item of items) {
@@ -31,6 +34,13 @@ const Default = (
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </Col>
             <Col span={24}>{children}</Col>
+            {config.action && (
+                <Row>
+                    <Col>
+                        <Actions {...{ section, type, actions }} />
+                    </Col>
+                </Row>
+            )}
         </Row>
     );
 }

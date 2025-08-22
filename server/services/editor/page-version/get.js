@@ -167,6 +167,7 @@ if (dbPageVersion) {
         .set("image_title", dbListing.getString("image_title"))
         .set("items", items)
         .set("sorter", dbListing.getInt("sorter"))
+        .set("actions", cluar.actions("listing", dbListing.getInt("id")))
     );
 
     // if (settings.images === true) {

@@ -155,6 +155,7 @@ if (lastPageVersion) {
     } else if (sectionType === "listing") {
       const listingItems = structure.getList("items", _val.list());
 
+      const listingActions = structure.getList("action_uids", _val.list());
       const listingData = _val
         .map()
         .set("page_version_id", newPageVersion)
@@ -197,6 +198,22 @@ if (lastPageVersion) {
 
       if (structure.getString("image")) {
         structuresToPublishImages.push(listingId);
+      }
+
+      let actionSorter = 10;
+      for (const action of listingActions) {
+        const dbAction = _db.get("action", action);
+        if (dbAction) {
+          _db.insert(
+            "page_listing_action",
+            _val
+              .map()
+              .set("page_listing_id", listingId)
+              .set("action_id", dbAction.getInt("id"))
+              .set("sorter", actionSorter)
+          );
+          actionSorter += 10;
+        }
       }
 
       for (const listingItem of listingItems) {

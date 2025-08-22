@@ -35,7 +35,7 @@ const FunctionalityEditor = ({ sectionData, form }) => {
         console.log(error);
       },
     });
-  }, [selectedType]);
+  }, []);
 
   return (
     <div className="functionality-editor">
