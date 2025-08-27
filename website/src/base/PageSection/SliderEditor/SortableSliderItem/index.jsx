@@ -1,4 +1,4 @@
-import { Col, Form, Input, Collapse, Button, Flex } from "antd";
+import { Col, Form, Input, Collapse, Button, Flex, Select } from "antd";
 
 import {
   DndContext,
@@ -26,6 +26,8 @@ const SortableItem = ({
   onChangeItem,
   onRemoveItem,
   form,
+  actionsData,
+  showActions,
 }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: item.uid });
@@ -82,6 +84,22 @@ const SortableItem = ({
                       }
                     />
                   </Form.Item>
+                  {showActions && (
+                    <Form.Item label="Actions" name={["itemsByUid", itemIndex, "action_uids"]}>
+                      <Select
+                        options={actionsData.map((action) => ({
+                          label: action.title,
+                          value: action.uid,
+                        }))}
+                        onChange={(val) =>
+                          onChangeItem(item.uid, "action_uids", val)
+                        }
+                        placeholder="Adicionar"
+                        mode="multiple"
+                        allowClear
+                      />
+                    </Form.Item>
+                  )}
                   <ImageSectionEditor
                     sectionData={item}
                     form={form}
@@ -139,6 +157,8 @@ const SortableSliderItem = ({
   onChangeItem,
   onRemoveItem,
   form,
+  actionsData,
+  showActions,
 }) => {
   return (
     <DndContext
@@ -166,6 +186,8 @@ const SortableSliderItem = ({
             onChangeItem={onChangeItem}
             onRemoveItem={onRemoveItem}
             form={form}
+            actionsData={actionsData}
+            showActions={showActions}
           />
         ))}
       </SortableContext>

@@ -15,6 +15,7 @@ function Default({
   content,
   items,
   uid,
+  actions
 }) {
   const [sliderRef] = useKeenSlider(
     {
@@ -56,6 +57,7 @@ function Default({
 
   for (const item of items) {
     children.push(<Item {...{ type, ...item }} />);
+    console.log("item ", item)
   }
 
   return (

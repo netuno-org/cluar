@@ -326,6 +326,27 @@ if (lastPageVersion) {
         if (sliderItem.getString("image")) {
           imagesToPublish["slider_item"].push(sliderItemId);
         }
+
+        const sliderItemActions = sliderItem.getList("action_uids", _val.list());
+
+        let actionSorter = 10;
+
+        for (const action of sliderItemActions) {
+          const dbAction = _db.get("action", action);
+          _log.info("dbAction ", dbAction)
+          if (dbAction) {
+            _log.info("entrou no if ")
+            _db.insert(
+              "page_slider_item_action",
+              _val
+                .map()
+                .set("page_slider_item_id", sliderItemId)
+                .set("action_id", dbAction.getInt("id"))
+                .set("sorter", actionSorter)
+            );
+            actionSorter += 10;
+          }
+        }
       }
     } else if (sectionType === "functionality") {
       _log.info(sectionType, structure.getString("type"));

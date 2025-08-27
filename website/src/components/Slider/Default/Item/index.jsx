@@ -1,6 +1,9 @@
 import React from "react";
 
 import "./index.less";
+import config from "../config.json"
+import Actions from "../../../Actions";
+import Cluar from "../../../../common/Cluar";
 
 function Item({
   section,
@@ -11,11 +14,17 @@ function Item({
   title,
   content,
   link,
+  action_uids
 }) {
   const imageSrc =
     image?.indexOf("base64") === -1
       ? `/cluar/images/page_${section}/${image}`
       : image;
+
+  const actionsData = Cluar.actions() || [];
+  const actions = (action_uids || []).map(uid =>
+    actionsData.find(item => item.uid === uid)
+  ).filter(Boolean);
 
   return (
     <div
@@ -25,6 +34,11 @@ function Item({
       }}
     >
       <h2>{title}</h2>
+      {config.action && (
+        <div>
+          <Actions {...{ section, type, actions }} />
+        </div>
+      )}
     </div>
   );
 }

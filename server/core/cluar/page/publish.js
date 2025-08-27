@@ -208,7 +208,7 @@ cluar.page.publish = (dbPage) => {
     const items = _val.list();
     const dbItems = _db.query(`
                 SELECT
-                    uid, title, content, image, image_alt, image_title, sorter
+                    uid, title, content, image, image_alt, image_title, sorter, id
                 FROM page_slider_item
                 WHERE page_slider_id = ${dbSlider.getInt(
       "id"
@@ -216,6 +216,15 @@ cluar.page.publish = (dbPage) => {
                 `);
 
     for (const dbItem of dbItems) {
+      const actions = cluar.actions("slider_item", dbItem.getInt("id"));
+      const actionsList = _val.list();
+
+      for (const action of actions) {
+        actionsList.add(
+          action.getString("uid")
+        )
+      }
+
       items.add(
         _val
           .map()
@@ -227,6 +236,7 @@ cluar.page.publish = (dbPage) => {
           .set("image_alt", dbItem.getString("image_alt"))
           .set("image_title", dbItem.getString("image_title"))
           .set("sorter", dbItem.getInt("sorter"))
+          .set("action_uids", actionsList)
       );
     }
     structure.add(

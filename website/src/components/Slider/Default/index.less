@@ -2,5 +2,34 @@
   &__Default {
     min-height: 88vh;
     width: 100%;
+
+    .actions {
+      position: relative;
+      display: inline-block;
+      padding-left: 0;
+      text-align: center;
+
+      .actions__item {
+        h4 {
+          font-size: 1.0em;
+          margin-bottom: 0.1em;
+        }
+
+        p {
+          font-size: 1.1em;
+          margin-bottom: 0.1em;
+        }
+
+        a {
+          font-size: 1em
+        }
+
+        &:hover {
+          h4 {
+            color: #000000;
+          }
+        }
+      }
+    }
   }
 }

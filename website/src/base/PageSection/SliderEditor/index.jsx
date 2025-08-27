@@ -92,6 +92,12 @@ const SliderEditor = ({ sectionData, form }) => {
   const items = itemsOrder.map((uid) => itemsByUid[uid]);
 
   const [typeOptions, setTypeOptions] = useState([]);
+  const [config, setConfig] = useState([]);
+
+  const [showActions, setShowActions] = useState(false);
+  const [selectedType, setSelectedType] = useState(null);
+
+  const actionsData = Cluar.actions() || [];
 
   useEffect(() => {
     _service({
@@ -102,6 +108,13 @@ const SliderEditor = ({ sectionData, form }) => {
       },
       success: (res) => {
         setTypeOptions(res.json.types);
+        setConfig(res.json.config);
+
+        const initialType = form.getFieldValue("type");
+        setSelectedType(initialType);
+
+        const typeConfig = res.json.config.find(c => c.name === initialType);
+        setShowActions(typeConfig?.action || false);
       },
       fail: (error) => {
         console.log(error);
@@ -117,6 +130,12 @@ const SliderEditor = ({ sectionData, form }) => {
             label: item.info.label,
             value: item.name,
           }))}
+          onChange={(value) => {
+            setSelectedType(value);
+
+            const typeConfig = config.find(c => c.name === value);
+            setShowActions(typeConfig?.action || false);
+          }}
         />
       </Form.Item>
 
@@ -134,6 +153,8 @@ const SliderEditor = ({ sectionData, form }) => {
           onChangeItem={handleChangeItem}
           onRemoveItem={handleRemoveItem}
           form={form}
+          actionsData={actionsData}
+          showActions={showActions}
         />
         <Col span={24}>
           <Button onClick={handleAddItem}>Novo Item</Button>
