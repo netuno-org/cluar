@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Cluar from '../../common/Cluar';
 
 import './index.less';
@@ -12,11 +12,23 @@ import ImageContent from './ImageContent';
 import Default from './Default';
 
 const Content = (props) => {
-    let layout = null;
+    const [renderedActions, setRenderedActions] = useState(props.actions);
+    const [isFirstRender, setIsFirstRender] = useState(true);
+
     const actionsData = Cluar.actions() || [];
-    const actions = (props.action_uids || []).map(uid =>
-        actionsData.find(item => item.uid === uid)
-    ).filter(Boolean);
+    const actions = (props.action_uids || [])
+        .map(uid => actionsData.find(item => item.uid === uid))
+        .filter(Boolean);
+
+    useEffect(() => {
+        if (!isFirstRender) {
+            setRenderedActions(actions);
+        } else {
+            setIsFirstRender(false);
+        }
+    }, [props.action_uids]);
+
+    let layout = null;
 
     const imageStyle = {};
 
@@ -33,14 +45,14 @@ const Content = (props) => {
         layout = (
             <TextContent
                 {...props}
-                actions={actions.length > 0 ? actions : props.actions}
+                actions={renderedActions}
             />
         );
     } else if (props.type === 'ImageLeft') {
         layout = (
             <ImageLeft
                 {...props}
-                actions={actions.length > 0 ? actions : props.actions}
+                actions={renderedActions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
@@ -49,7 +61,7 @@ const Content = (props) => {
         layout = (
             <ImageRight
                 {...props}
-                actions={actions.length > 0 ? actions : props.actions}
+                actions={renderedActions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
@@ -58,7 +70,7 @@ const Content = (props) => {
         layout = (
             <ImageTop
                 {...props}
-                actions={actions.length > 0 ? actions : props.actions}
+                actions={renderedActions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
@@ -67,7 +79,7 @@ const Content = (props) => {
         layout = (
             <ImageBottom
                 {...props}
-                actions={actions.length > 0 ? actions : props.actions}
+                actions={renderedActions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
@@ -76,7 +88,7 @@ const Content = (props) => {
         layout = (
             <ImageContent
                 {...props}
-                actions={actions.length > 0 ? actions : props.actions}
+                actions={renderedActions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />
@@ -85,7 +97,7 @@ const Content = (props) => {
         layout = (
             <Default
                 {...props}
-                actions={actions.length > 0 ? actions : props.actions}
+                actions={renderedActions}
                 imageSrc={imageSrc}
                 imageStyle={imageStyle}
             />

@@ -94,7 +94,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         </Button>
       }
     >
-      <Form layout="vertical" initialValues={sectionData} form={form}>
+      <Form layout="vertical" initialValues={{...sectionData, action_uids: sectionData?.actions?.map((item) => item.uid).sort((a, b) => a.sorter - b.sorter)}} form={form}>
         <LexicalEditor
           initialHtml={sectionData?.title}
           onChange={(html) => form.setFieldsValue({ title: html })}

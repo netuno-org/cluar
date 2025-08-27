@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Select } from "antd";
 import _service from "@netuno/service-client";
 import Cluar from "../../../common/Cluar"
@@ -51,7 +51,6 @@ const BannerEditor = ({ sectionData, form }) => {
           onChange={(value) => {
             setSelectedType(value);
 
-            //verifica se o tipo selecionado tem action: true
             const typeConfig = config.find(c => c.name === value);
             setShowActions(typeConfig?.action || false);
           }}
