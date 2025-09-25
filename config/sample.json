@@ -80,11 +80,21 @@
         }
     ],
     "db": {"default": {
-        "password": "",
-        "engine": "h2",
-        "port": "",
-        "host": "",
+        "password": "Your-DB-SeCr3t-Her3",
+        "engine": "pg",
+        "port": "5432",
+        "host": "localhost",
         "name": "cluar",
-        "username": ""
-    }}
+        "username": "cluar"
+    }},
+    "auth": {
+        "jwt": {
+            "enabled": true,
+            "secret": "ThisSecretMustContains32Chars!!!",
+            "expires": {
+                "access": 1440,
+                "refresh": 1440
+            }
+        }
+    }
 }
