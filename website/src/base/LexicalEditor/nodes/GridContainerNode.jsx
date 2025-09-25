@@ -83,10 +83,6 @@ export class GridContainerNode extends ElementNode {
         return true;
     }
 
-    canBeEmpty() {
-        return false;
-    }
-
     exportJSON() {
         return {
             ...super.exportJSON(),
