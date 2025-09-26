@@ -40,7 +40,7 @@ find the `"db": { "default": ... }`, then locate and replace the database settin
 
 5. Inside of the `"settings": { "cluar": ... }` adjust the Website URL and the Services API URL and others as you need.
 
-## Website with PNPM :art:
+## Website with PNPM and Bun :art:
 
 Inside the website folder:
 
@@ -70,6 +70,8 @@ To restart the website installation removes theses:
 Now you can start the website with the classic command:
 
 ```pnpm run dev```
+
+> By default, the website runs with Bun.
 
 ## Running :rocket:
 
