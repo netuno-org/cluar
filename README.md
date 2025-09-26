@@ -62,10 +62,12 @@ pnpm approve-builds
 
 > Choose all by pressing the key `a` and then the `[ENTER]` key to finish.
 
-To restart the website installation removes theses:
+To restart the website installation, remove this folder and these files:
 
-- `rm -rf node_modules`
-- `rm -f pnpm-*`
+```
+rm -rf node_modules
+rm -f pnpm-*
+```
 
 Now you can start the website with the classic command:
 
