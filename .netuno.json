@@ -18,16 +18,36 @@
                         },
                         "services": {
                             "api": "http://localhost:9000/services/"
-                        }
+                        },
+                        "auth": {"providers": {
+                            "discord": false,
+                            "facebook": false,
+                            "github": false,
+                            "google": false
+                        }}
                     },
                     "uglifyjs": false
+                },
+                "recaptcha": {
+                    "url": "https://www.google.com/recaptcha/api/siteverify",
+                    "secret_key": ""
                 }
             },
             "cors": [{
                 "origins": [ "*" ],
                 "enabled": true
             }],
-            "smtp": {},
+            "smtp": {
+                "default": {
+                    "enabled": true,
+                    "host": "smtp.gmail.com",
+                    "port": 465,
+                    "ssl": true,
+                    "from": "email@gmail.com",
+                    "username": "username",
+                    "password": "s3cr37"
+                }
+            },
             "name": "cluar",
             "setup": {
                 "schema": {
@@ -45,29 +65,43 @@
                 "listener_secret": ""
             },
             "locale": "en_GB",
-            "remote": {},
+            "remote": {
+                "recaptcha": {
+                    "json": true
+                }
+            },
             "commands": [
                 {
                     "path": "ui",
-                    "command": "npm run watch",
-                    "install": "npm install --force",
-                    "enabled": true
+                    "command": "pnpm run watch",
+                    "install": "pnpm install",
+                    "enabled": false
                 },
                 {
                     "path": "website",
-                    "command": "npm run dev",
-                    "install": "npm install --force",
-                    "enabled": true
+                    "command": "pnpm run dev",
+                    "install": "pnpm install",
+                    "enabled": false
                 }
             ],
             "db": {"default": {
-                "password": "",
-                "engine": "h2",
-                "port": "",
-                "host": "",
+                "password": "Your-DB-SeCr3t-Her3",
+                "engine": "pg",
+                "port": "5432",
+                "host": "localhost",
                 "name": "cluar",
-                "username": ""
-            }}
+                "username": "cluar"
+            }},
+            "auth": {
+                "jwt": {
+                    "enabled": true,
+                    "secret": "ThisSecretMustContains32Chars!!!",
+                    "expires": {
+                        "access": 1440,
+                        "refresh": 1440
+                    }
+                }
+            }
         },
         "production": {
             "cron": {"jobs": []},
@@ -84,16 +118,36 @@
                         },
                         "services": {
                             "api": "http://localhost:9000/services/"
-                        }
+                        },
+                        "auth": {"providers": {
+                            "discord": false,
+                            "facebook": false,
+                            "github": false,
+                            "google": false
+                        }}
                     },
                     "uglifyjs": false
+                },
+                "recaptcha": {
+                    "url": "https://www.google.com/recaptcha/api/siteverify",
+                    "secret_key": ""
                 }
             },
             "cors": [{
                 "origins": [ "*" ],
                 "enabled": true
             }],
-            "smtp": {},
+            "smtp": {
+                "default": {
+                    "enabled": true,
+                    "host": "smtp.gmail.com",
+                    "port": 465,
+                    "ssl": true,
+                    "from": "email@gmail.com",
+                    "username": "username",
+                    "password": "s3cr37"
+                }
+            },
             "name": "cluar",
             "setup": {
                 "schema": {
@@ -111,29 +165,43 @@
                 "listener_secret": ""
             },
             "locale": "en_GB",
-            "remote": {},
+            "remote": {
+                "recaptcha": {
+                    "json": true
+                }
+            },
             "commands": [
                 {
                     "path": "ui",
-                    "command": "npm run watch",
-                    "install": "npm install --force",
+                    "command": "pnpm run watch",
+                    "install": "pnpm install",
                     "enabled": false
                 },
                 {
                     "path": "website",
-                    "command": "npm run dev",
-                    "install": "npm install --force",
+                    "command": "pnpm run dev",
+                    "install": "pnpm install",
                     "enabled": false
                 }
             ],
             "db": {"default": {
-                "password": "",
-                "engine": "h2",
-                "port": "",
-                "host": "",
+                "password": "Your-DB-SeCr3t-Her3",
+                "engine": "pg",
+                "port": "5432",
+                "host": "localhost",
                 "name": "cluar",
-                "username": ""
-            }}
+                "username": "cluar"
+            }},
+            "auth": {
+                "jwt": {
+                    "enabled": true,
+                    "secret": "ThisSecretMustContains32Chars!!!",
+                    "expires": {
+                        "access": 1440,
+                        "refresh": 1440
+                    }
+                }
+            }
         }
     }
 }
