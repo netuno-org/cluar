@@ -68,15 +68,15 @@
     "commands": [
         {
             "path": "ui",
-            "command": "npm run watch",
-            "install": "npm install --force",
-            "enabled": true
+            "command": "pnpm run watch",
+            "install": "pnpm install",
+            "enabled": false
         },
         {
             "path": "website",
-            "command": "npm start",
-            "install": "npm install --force",
-            "enabled": true
+            "command": "pnpm run dev",
+            "install": "pnpm install",
+            "enabled": false
         }
     ],
     "db": {"default": {
