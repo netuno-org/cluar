@@ -30,7 +30,7 @@
     display: flex;
   }
 
-  > *:not(.menu-burger-open) {
+  >*:not(.menu-burger-open) {
     z-index: 3;
   }
 
@@ -40,8 +40,8 @@
 
   .logo {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: start;
     width: @logo-width;
     height: auto;
 
@@ -49,6 +49,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
       img {
         width: auto;
         height: 32px;
@@ -58,6 +59,7 @@
     @media only screen and (max-width: @header-mobile-width) {
       width: auto;
       max-width: 400px;
+
       a {
         img {
           max-width: 124px;
@@ -153,6 +155,7 @@
     @media only screen and (min-width: @header-mobile-width) {
       display: none;
     }
+
     @media only screen and (max-width: @header-mobile-width) {
       top: calc(@header-size-mobile / 4);
     }

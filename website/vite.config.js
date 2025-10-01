@@ -4,7 +4,8 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   server: {
     port: 3000,
-    strictPort: true
+    strictPort: true,
+    allowedHosts: ["dev.netuno.org"]
   },
   plugins: [
     react()
