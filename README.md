@@ -13,7 +13,7 @@ Install these requirements:
 
 Then clone this project inside of:
 
-- :open_file_folder: `[Netuno Root directory]/apps/cluar`
+- :open_file_folder: `[Netuno Root directory]/apps` the folder `cluar` must be created.
 
 ## Documentation
 
