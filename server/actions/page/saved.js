@@ -24,6 +24,7 @@ if (!lastPageVersion) {
             .set("page_id", data.getInt("id"))
             .set("version", 1)
             .set("status_id", data.getInt("status_id"))
+            .set("created_at", _db.timestamp())
     );
 }
 
