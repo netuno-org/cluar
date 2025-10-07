@@ -221,7 +221,7 @@ function Builder({ page }) {
         </Button>
       </Col>
       <Col>
-        <Button type="primary" onClick={handlePublishPage} loading={publishing} disabled={!canPublish}>
+        <Button type="primary" onClick={handlePublishPage} loading={publishing} disabled={!canPublish || hasDiff}>
           {Cluar.plainDictionary("extra-bar-admin-publish")}
         </Button>
       </Col>
