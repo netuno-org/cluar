@@ -21,13 +21,11 @@ if (noPass) {
   }
   email = dbProviderUser.getString('email')
   const urlAvatar = dbProviderUser.getString('avatar')
-  if (urlAvatar != '') {
-    _log.info("AVATAR URL:"+ urlAvatar)
+  if (urlAvatar !== '') {
     const responseAvatar = _remote.init().asBinary().get(urlAvatar)
     if (responseAvatar.ok()) {
       avatar = responseAvatar.file()
       avatar.rename("avatar.png")
-      _log.info("AVATAR")
     }
   }
 }

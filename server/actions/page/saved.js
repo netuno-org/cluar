@@ -1,6 +1,5 @@
 // _core : cluar/main
 
-//_log.debug("_dataItem.getRecord()", _dataItem.getRecord());
 const data = _dataItem.getRecord();
 const lastPageVersion = _db.queryFirst(`
     SELECT
@@ -13,7 +12,6 @@ const lastPageVersion = _db.queryFirst(`
     ORDER BY pv.version DESC
 `);
 
-//_log.debug("lastPageVersion", lastPageVersion);
 if (!lastPageVersion) {
     _log.error("Version not found");
 

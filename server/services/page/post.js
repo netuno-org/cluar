@@ -69,8 +69,6 @@ const data = _val.map()
 
 const dbPage = insertAndReturn('page', data);
 
-_log.info("dbPage:", dbPage);
-
 _out.json(
     _val.map()
         .set('result', true)

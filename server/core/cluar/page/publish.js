@@ -1,5 +1,4 @@
 cluar.page.publish = (dbPage) => {
-  //_log.debug("publish", dbPage);
   const dbPageStatus = _db.queryFirst(`
     SELECT * FROM page_status WHERE page_status.code = 'published'
   `);
@@ -297,8 +296,6 @@ cluar.page.publish = (dbPage) => {
   if (!folder.exists()) {
     folder.mkdir();
   }
-
-  //_log.debug("structure", structure);
 
   const file = _app.file(
     `${cluar.base()}/cluar/structures/${dbPage.getString("uid")}.json`

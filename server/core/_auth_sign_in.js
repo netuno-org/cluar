@@ -38,14 +38,12 @@ if (!isAuthorized) {
   _exec.stop()
 }
 
-  // _log.info(_req.getString('myparameter'))
-  
-  const data = _val.map()
-        .set("uid", dbPeople.getString("uid"))
-        .set("name", dbPeople.getString("name"))
-        .set("email", dbPeople.getString("email"))
-        .set("username", _user.get(_user.id()).getString("user"))
-        .set("avatar", dbPeople.getString("avatar") != '')
-        .set("group", _group.code())
-  
-  _auth.signInExtraData(data)
+const data = _val.map()
+    .set("uid", dbPeople.getString("uid"))
+    .set("name", dbPeople.getString("name"))
+    .set("email", dbPeople.getString("email"))
+    .set("username", _user.get(_user.id()).getString("user"))
+    .set("avatar", dbPeople.getString("avatar") != '')
+    .set("group", _group.code())
+
+_auth.signInExtraData(data)

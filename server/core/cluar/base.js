@@ -13,8 +13,6 @@ cluar.base.configuration = () => {
     return _config.getValues("cluar:base:configuration");
   }
 
-  //_log.debug("BASE CLUAR CORE");
-
   const configuration = _val.map()
   const dbConfigurationWithLanguages = _db.query(`
         SELECT
@@ -178,8 +176,6 @@ cluar.base.pages = ({ publish = false }) => {
     }
   }
 
-  //_log.debug("pages", pages);
-
   _config.set("cluar:base:pages", pages)
 
   return pages;
@@ -260,7 +256,6 @@ cluar.base.actions = () => {
         .set("language_code", dbAction.getString("language"))
     )
   }
-  //_log.debug("actions", actions);
   _config.set("cluar:base:actions", actions)
 
   return actions;

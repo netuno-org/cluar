@@ -24,7 +24,6 @@ if (!dbActions) {
     _exec.stop();
 }
 
-
 const data = _val.map()
     .set('title', title)
     .set('content', content)
@@ -33,9 +32,8 @@ const data = _val.map()
     .set('active', active)
     .set("language_id", dbActions.getInt("id"))
     .set("image", image)
-const dbAction = insertAndReturn('action', data);
 
-_log.info("dbAction:", dbAction);
+insertAndReturn('action', data);
 
 _out.json(
     _val.map()

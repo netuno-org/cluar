@@ -61,7 +61,6 @@ if (lastPageVersion) {
     }
 
     if (sectionType === "banner") {
-      _log.info(sectionType, structure.getString("type"));
       const bannerActions = structure.getList("action_uids", _val.list());
       const bannerData = _val
         .map()
@@ -106,7 +105,6 @@ if (lastPageVersion) {
         }
       }
     } else if (sectionType === "content") {
-      _log.info(sectionType, structure.getString("type"));
       const contentActions = structure.getList("action_uids", _val.list());
 
       const contentData = _val
@@ -167,7 +165,6 @@ if (lastPageVersion) {
         .set("content", structure.getString("content"));
 
       // if (structure.getString("type")) {
-      //   _log.info(sectionType, structure.getString("type"));
       //   const dbListingType = _db.queryFirst(
       //     `
       //       SELECT
@@ -269,7 +266,6 @@ if (lastPageVersion) {
         .set("content", structure.getString("content"));
 
       // if (structure.getString("type")) {
-      //   _log.info(sectionType, structure.getString("type"));
       //   const dbSliderType = _db.queryFirst(
       //     `
       //       SELECT
@@ -333,9 +329,7 @@ if (lastPageVersion) {
 
         for (const action of sliderItemActions) {
           const dbAction = _db.get("action", action);
-          _log.info("dbAction ", dbAction)
           if (dbAction) {
-            _log.info("entrou no if ")
             _db.insert(
               "page_slider_item_action",
               _val
@@ -349,7 +343,6 @@ if (lastPageVersion) {
         }
       }
     } else if (sectionType === "functionality") {
-      _log.info(sectionType, structure.getString("type"));
       const functionalityActions = structure.getList("action_uids", _val.list());
       const functionalityData = _val
         .map()

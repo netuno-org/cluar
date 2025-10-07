@@ -13,14 +13,9 @@ if (!userPrompt) {
     _exec.stop();
 }
 
-_log.debug("TEST AI STARTED");
-
 const openai = new OpenAI();
 
 const result = openai.processHtml(currentHtml, userPrompt);
-
-_log.debug("result", result);
-
 
 if (result.getBoolean("success")) {
     _out.json(

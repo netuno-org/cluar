@@ -59,7 +59,7 @@ class OpenAI {
             }
 
             const responseData = response.json();
-            _log.debug("Resposta da OpenAI:", responseData);
+            _log.debug("OpenAI Response:", responseData);
 
             const content = responseData.getList("choices").get(0).get("message").getString("content");
             let htmlResult = content;
@@ -76,10 +76,10 @@ class OpenAI {
                 .set("success", true)
                 .set("html", htmlResult);
         } catch (error) {
-            _log.error("Erro ao processar HTML:", error);
+            _log.error("HTML processing failed:", error);
             return _val.map()
                 .set("success", false)
-                .set("error", "Erro ao processar HTML")
+                .set("error", "HTML processing failed.")
                 .set("details", error.toString());
         }
     }
