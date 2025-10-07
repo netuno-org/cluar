@@ -13,8 +13,6 @@ const lastPageVersion = _db.queryFirst(`
 `);
 
 if (!lastPageVersion) {
-    _log.error("Version not found");
-
     _db.insert(
         "page_version",
         _val
