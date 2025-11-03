@@ -9,8 +9,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-if (_db.query(`SELECT * FROM page`).size() == 0) {
-  _val.global().set('cluar:setup', true);
+if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
     "page",
     _val.init()
