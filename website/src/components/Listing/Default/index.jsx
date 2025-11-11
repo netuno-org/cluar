@@ -18,7 +18,7 @@ const Default = (
     const children = [];
 
     for (const item of items) {
-        children.push(<Item kItemey={item.uid} {...{ type, ...item }} />);
+        children.push(<Item key={item.uid} {...{ type, ...item }} />);
     }
 
     const imageSrc =
