@@ -61,14 +61,14 @@ const PageConfiguration = ({
     if (fileList.length > 0) {
       let file = fileList[0];
 
-      if (!file.thumbUrl && file.originFileObj) {
+      if (!file.url && !file.thumbUrl && file.originFileObj) {
         file.thumbUrl = await getBase64(file.originFileObj);
       }
 
       setFileList([...fileList]);
 
       if (form) {
-        form.setFieldValue("social_image", file.thumbUrl);
+        form.setFieldValue("social_image", file.thumbUrl || file.url);
       }
     } else {
       setFileList([]);
@@ -101,7 +101,22 @@ const PageConfiguration = ({
     if (open) {
       form.resetFields();
       if (pageData) {
-        form.setFieldsValue(pageData);
+        const imageUrl = pageData.social_image ? `/cluar/images/page/${pageData.social_image}` : pageData.social_image;
+        form.setFieldsValue({
+          ...pageData,
+          social_image: imageUrl
+        });
+
+        setFileList([
+          {
+            uid: "-1",
+            name: pageData.social_image,
+            status: "done",
+            url: imageUrl,
+          },
+        ]);
+      } else {
+        setFileList([]);
       }
 
       // Carrega as páginas do mesmo idioma para o Select
@@ -338,26 +353,13 @@ const PageConfiguration = ({
               listType="picture-card"
               fileList={fileList}
               action={""}
-              onPreview={handlePreview}
               onChange={handleChange}
               beforeUpload={() => false}
               style={{ width: "100%" }}
             >
               {fileList.length >= 1 ? null : uploadButton}
             </Upload>
-            {previewImage && (
-              <Image
-                wrapperStyle={{
-                  display: "none",
-                }}
-                preview={{
-                  visible: previewOpen,
-                  onVisibleChange: (visible) => setPreviewOpen(visible),
-                  afterOpenChange: (visible) => !visible && setPreviewImage(""),
-                }}
-                src={previewImage}
-              />
-            )}
+
           </Form.Item>
           <Form.Item
             label={Cluar.plainDictionary("page-form-social-description")}
