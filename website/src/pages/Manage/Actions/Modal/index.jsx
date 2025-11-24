@@ -40,27 +40,17 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
   const editeMode = actionData ? true : false;
   const [formRef] = Form.useForm();
 
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState([]);
-
-  const handlePreview = async (file) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj);
-    }
-    setPreviewImage(file.url || file.preview);
-    setPreviewOpen(true);
-  };
 
   const handleChange = async ({ fileList }) => {
     if (fileList.length > 0) {
       let file = fileList[0];
-      if (!file.thumbUrl && file.originFileObj) {
+      if (!file.url && !file.thumbUrl && file.originFileObj) {
         file.thumbUrl = await getBase64(file.originFileObj);
       }
       setFileList([...fileList]);
       if (formRef) {
-        formRef.setFieldValue("image", file.thumbUrl);
+        formRef.setFieldValue("image", file.thumbUrl || file.url);
       }
     } else {
       setFileList([]);
@@ -117,8 +107,12 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     const formData = new FormData();
     Object.keys(values).forEach((key) => {
       if (values[key] !== undefined && values[key] !== null) {
-        if (key === 'image' && fileList.length > 0) {
-          formData.append(key, fileList[0].originFileObj)
+        if (key === 'image') {
+          if (fileList.length > 0 && fileList[0].originFileObj) {
+            formData.append(key, fileList[0].originFileObj);
+          } else {
+            formData.append(key, "");
+          }
         } else if (key === 'language_code' && values.language_code?.value) {
           formData.append(key, values.language_code.value);
         } else if (typeof values[key] === "boolean") {
@@ -177,10 +171,30 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
       onLoadLanguages();
 
       if (editeMode) {
+        const imageUrl = actionData.image
+          ? `${_service.config().prefix}actions/image?uid=${actionData.uid}`
+          : null;
+
         formRef.setFieldsValue({
           ...actionData,
           language_code: actionData.language_code,
+          image: imageUrl || ""
         });
+
+        if (imageUrl) {
+          setFileList([
+            {
+              uid: "-1",
+              name: actionData.image,
+              status: "done",
+              url: imageUrl,
+            },
+          ]);
+        } else {
+          setFileList([]);
+        }
+      } else {
+        setFileList([]);
       }
     }
   }, [isModalOpen]);
@@ -315,26 +329,15 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
                 listType="picture-card"
                 fileList={fileList}
                 action={""}
-                onPreview={handlePreview}
                 onChange={handleChange}
+                onRemove={() => {
+                  formRef.setFieldValue("image", "");
+                }}
                 beforeUpload={() => false}
                 style={{ width: '100%' }}
               >
                 {fileList.length >= 1 ? null : uploadButton}
               </Upload>
-              {previewImage && (
-                <Image
-                  wrapperStyle={{
-                    display: "none",
-                  }}
-                  preview={{
-                    visible: previewOpen,
-                    onVisibleChange: (visible) => setPreviewOpen(visible),
-                    afterOpenChange: (visible) => !visible && setPreviewImage(""),
-                  }}
-                  src={previewImage}
-                />
-              )}
             </Form.Item>
           </Col>
         </Row>

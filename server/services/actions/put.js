@@ -31,8 +31,13 @@ const data = _val.map()
     .set('indication', indication)
     .set('link', link)
     .set('active', active)
-    .set("language_id", dbLanguage.getInt("id"))
-    .set("image", image);
+    .set("language_id", dbLanguage.getInt("id"));
+
+if (image != null) {
+    data.set("image", image);
+} else {
+    data.set("image", "");
+}
 
 _db.update(
     'action',
