@@ -81,7 +81,7 @@ export default class Cluar {
     if (value && value.match(/^-?\d+\.?\d*$/)) {
       return parseFloat(value);
     } else {
-    return 0;
+      return 0;
     }
   }
 
@@ -103,6 +103,14 @@ export default class Cluar {
     let value = Cluar.dictionary(entry);
     if (value) {
       return (value).replace(/<\/?p[^>]*>/g, "");
+    }
+    return entry;
+  }
+
+  static plainHTML(entry) {
+    let value = Cluar.dictionary(entry);
+    if (value) {
+      return (value).replace(/<[^>]*>/g, "");
     }
     return entry;
   }

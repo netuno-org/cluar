@@ -17,6 +17,8 @@ import { CSS } from "@dnd-kit/utilities";
 
 import { PlusOutlined, HolderOutlined } from "@ant-design/icons";
 
+import Cluar from "../../../common/Cluar";
+
 const SortableItem = ({ item }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: item.uid });
@@ -39,7 +41,7 @@ const SortableItem = ({ item }) => {
       <Flex>
         <HolderOutlined style={{ marginRight: 8 }} />{" "}
         <Flex gap={12}>
-          {item.title} <Tag color="orange">{item.section}</Tag>
+          {Cluar.plainHTML(item.title)} <Tag color="orange">{item.section}</Tag>
         </Flex>
       </Flex>
     </List.Item>
