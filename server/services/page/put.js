@@ -72,18 +72,23 @@ const data = _val
   .set("menu_title", menuTitle)
   .set("navigable", navigable)
   .set("parent_id", parentPage ? parentPage.getInt("id") : 0)
-  .set("social_image", social_image)
   .set("social_description", social_description)
   .set("template", template)
   .set("language_id", dbLanguage.getInt("id"));
 
+if (social_image != null) {
+  data.set("social_image", social_image)
+} else {
+  data.set("social_image", "")
+}
+
 _db.update(
-    'page',
-    dbPage.getInt("id"),
-    data
+  'page',
+  dbPage.getInt("id"),
+  data
 )
 
 _out.json(
-    _val.map()
-        .set('result', true)
+  _val.map()
+    .set('result', true)
 )

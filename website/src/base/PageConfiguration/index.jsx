@@ -101,20 +101,24 @@ const PageConfiguration = ({
     if (open) {
       form.resetFields();
       if (pageData) {
-        const imageUrl = pageData.social_image ? `/cluar/images/page/${pageData.social_image}` : pageData.social_image;
+        const imageUrl = pageData.social_image ? `/cluar/images/page/${pageData.social_image}` : null;
         form.setFieldsValue({
           ...pageData,
-          social_image: imageUrl
+          social_image: imageUrl || ""
         });
 
-        setFileList([
-          {
-            uid: "-1",
-            name: pageData.social_image,
-            status: "done",
-            url: imageUrl,
-          },
-        ]);
+        if (imageUrl) {
+          setFileList([
+            {
+              uid: "-1",
+              name: pageData.social_image,
+              status: "done",
+              url: imageUrl,
+            },
+          ]);
+        } else {
+          setFileList([]);
+        }
       } else {
         setFileList([]);
       }
@@ -147,8 +151,12 @@ const PageConfiguration = ({
       const formData = new FormData();
       Object.keys(values).forEach((key) => {
         if (values[key]) {
-          if (key === "social_image" && fileList.length > 0) {
-            formData.append(key, fileList[0].originFileObj);
+          if (key === "social_image") {
+            if (fileList.length > 0 && fileList[0].originFileObj) {
+              formData.append(key, fileList[0].originFileObj);
+            } else {
+              formData.append(key, "");
+            }
           } else {
             formData.append(key, values[key]);
           }
@@ -354,6 +362,9 @@ const PageConfiguration = ({
               fileList={fileList}
               action={""}
               onChange={handleChange}
+              onRemove={() => {
+                form.setFieldValue("social_image", "")
+              }}
               beforeUpload={() => false}
               style={{ width: "100%" }}
             >
