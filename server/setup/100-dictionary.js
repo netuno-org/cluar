@@ -1767,7 +1767,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "72a1c1b7-66fc-4167-a1f5-56f72e7b3430")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "9bc40e20-c585-4da5-bd86-a77e37133df5")
-      .set("value", "Save<p></p>")
+      .set("value", "Save")
   );
 
   _db.insertIfNotExists(
@@ -1776,7 +1776,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "341c711f-20b0-4282-8013-6d1b9fd16288")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "9bc40e20-c585-4da5-bd86-a77e37133df5")
-      .set("value", "Guardar<p></p>")
+      .set("value", "Guardar")
   );
 
   _db.insertIfNotExists(
@@ -1821,7 +1821,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ada46465-a66e-4230-91da-e987c688f596")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "8916ad4b-8610-4e6a-9479-548ed028d255")
-      .set("value", "Cancel<p></p>")
+      .set("value", "Cancel")
   );
 
   _db.insertIfNotExists(
@@ -1848,7 +1848,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "900ab65e-b3b6-44bd-8ba4-e3fa6a09bb2a")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "f759c970-119f-4915-a10b-a754cd20a353")
-      .set("value", "Idioma<p></p>")
+      .set("value", "Idioma")
   );
 
   _db.insertIfNotExists(
@@ -1911,7 +1911,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ed4253a8-f8f2-4e11-8bc5-cdbf91573167")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "eac3f61f-2672-4aa2-bf44-657a66bb1050")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -1920,7 +1920,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "aef31209-4fdf-40ea-b8d4-1249d68f119e")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "eac3f61f-2672-4aa2-bf44-657a66bb1050")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -1929,7 +1929,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "133f362b-9d1e-4433-90e2-887d2e3d7192")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "2980c79d-89f6-4a31-aabe-765788b53047")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -1938,7 +1938,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "8df0529d-668b-428a-9af6-ac12e10c5b29")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "2980c79d-89f6-4a31-aabe-765788b53047")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -1947,7 +1947,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "0e4b4142-8728-44f7-96ee-366890e18a75")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "cac15cb8-b9f0-47a2-adce-7c5cd6596878")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -1956,7 +1956,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "b27b1aac-c43f-43a8-b9c1-b0f2d1f7fbb8")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "cac15cb8-b9f0-47a2-adce-7c5cd6596878")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -1965,7 +1965,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "fb1d07df-b3c6-485c-87a7-9bc9f5847104")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "70c03cc5-523d-483d-82e3-db9e35a6e5b2")
-      .set("value", "Utilizador registado com sucesso.<p></p>")
+      .set("value", "Utilizador registado com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -1974,7 +1974,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "d7734dad-342f-4c11-aa46-5dacf6f24070")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "70c03cc5-523d-483d-82e3-db9e35a6e5b2")
-      .set("value", "User successfully registered.<p></p>")
+      .set("value", "User successfully registered.")
   );
 
   _db.insertIfNotExists(
@@ -1983,7 +1983,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "4d3624f3-c7a5-4da3-b110-97aa3f921c7b")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "2c6c6417-bb02-4533-89c1-edb779bc014b")
-      .set("value", "Falha ao registar utilizador.<p></p>")
+      .set("value", "Falha ao registar utilizador.")
   );
 
   _db.insertIfNotExists(
@@ -1992,7 +1992,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f2bfbacc-fbe3-4051-96d0-5f61548b5610")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "2c6c6417-bb02-4533-89c1-edb779bc014b")
-      .set("value", "Failed to register user.<p></p>")
+      .set("value", "Failed to register user.")
   );
 
   _db.insertIfNotExists(
@@ -2001,7 +2001,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "9c2a976c-6ae6-493c-83c4-b9eb55c09dc2")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "650ba746-8ac2-4486-b4c4-73ba611b10c4")
-      .set("value", "Falha ao carregar grupos.<p></p>")
+      .set("value", "Falha ao carregar grupos.")
   );
 
   _db.insertIfNotExists(
@@ -2010,7 +2010,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "81969b22-7271-4a76-a147-8dbdab5982b3")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "650ba746-8ac2-4486-b4c4-73ba611b10c4")
-      .set("value", "Failed to load groups.<p></p>")
+      .set("value", "Failed to load groups.")
   );
 
   _db.insertIfNotExists(
@@ -2019,7 +2019,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "1ac9b41e-fdfc-492b-8dc2-e57deece88a6")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "6c0e9206-20eb-4fc9-b4e9-30f5dd022383")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -2028,7 +2028,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "695e6487-16f8-42cc-a2ac-99cd352ca1fc")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "6c0e9206-20eb-4fc9-b4e9-30f5dd022383")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -2037,7 +2037,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "30a7927e-0c71-44e2-909d-946dafd3e85c")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "ea4cddb1-aee0-42b9-bd7d-47eb7c6cec80")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -2046,7 +2046,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "0dea49f4-477d-4b19-96e6-bd3354e8a3b7")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "ea4cddb1-aee0-42b9-bd7d-47eb7c6cec80")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -2055,7 +2055,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "4b6acb20-e675-41d7-9b60-872bd33e9b62")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "69367e06-9a65-4908-849b-9cdcd1e42a2a")
-      .set("value", "Utilizador atulizado com sucesso.<p></p>")
+      .set("value", "Utilizador atulizado com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -2064,7 +2064,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "0443229b-0d7f-42bd-a923-59a5e4490764")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "69367e06-9a65-4908-849b-9cdcd1e42a2a")
-      .set("value", "User successfully edited<p></p>")
+      .set("value", "User successfully edited")
   );
 
   _db.insertIfNotExists(
@@ -2073,7 +2073,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "9cb97b4d-df14-41ef-b872-26cd2a086640")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "f212f926-3c99-4fe7-91fc-bb4acf5d0d95")
-      .set("value", "Falha ao editar utilizador.<p></p>")
+      .set("value", "Falha ao editar utilizador.")
   );
 
   _db.insertIfNotExists(
@@ -2082,7 +2082,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "e80a86b8-1078-41f2-bb50-40901914efbc")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "f212f926-3c99-4fe7-91fc-bb4acf5d0d95")
-      .set("value", "Failed to edit user<p></p>")
+      .set("value", "Failed to edit user")
   );
 
   _db.insertIfNotExists(
@@ -2091,7 +2091,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a7805a10-7985-4764-a9a0-19fa89c06a06")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "742718d1-b1ef-4061-8020-7e6f93517546")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -2100,7 +2100,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "2f5d9c8a-7ec9-49fa-a271-8d6bcbb7c336")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "742718d1-b1ef-4061-8020-7e6f93517546")
-      .set("value", "<p></p>")
+      .set("value", "")
   );
 
   _db.insertIfNotExists(
@@ -2109,7 +2109,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "51ac8980-9dbd-4c3e-bd64-f313b0861dfd")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "c0e85d7c-adc6-486c-8de1-53c988eb8696")
-      .set("value", "Idioma desactivado com sucesso.<p></p>")
+      .set("value", "Idioma desactivado com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -2118,7 +2118,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "3d1b28e5-699d-42da-9f56-985ad6e5cb03")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "1089597b-1e53-473a-9b6f-019aa20c577c")
-      .set("value", "Active<p></p>")
+      .set("value", "Active")
   );
 
   _db.insertIfNotExists(
@@ -2127,7 +2127,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "9649681f-aedc-44ab-b718-f41883b37e79")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "1089597b-1e53-473a-9b6f-019aa20c577c")
-      .set("value", "Activo<p></p>")
+      .set("value", "Activo")
   );
 
   _db.insertIfNotExists(
@@ -2136,7 +2136,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "bae4e50a-6522-4dce-8b77-85eef57f5781")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "19999ff0-ea70-45dc-9f08-45c4ace29641")
-      .set("value", "Descri\u00E7\u00E3o<p></p>")
+      .set("value", "Descri\u00E7\u00E3o")
   );
 
   _db.insertIfNotExists(
@@ -2145,7 +2145,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "0f707e5d-167c-4823-89c9-a2b4853ae27d")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "24ec84ca-6c16-4d2a-9de8-d84fa9bf0734")
-      .set("value", "Code<p></p>")
+      .set("value", "Code")
   );
 
   _db.insertIfNotExists(
@@ -2154,7 +2154,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a11d00f9-c2c0-4b01-bc51-67ba3fe96345")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "24ec84ca-6c16-4d2a-9de8-d84fa9bf0734")
-      .set("value", "C\u00F3digo<p></p>")
+      .set("value", "C\u00F3digo")
   );
 
   _db.insertIfNotExists(
@@ -2163,7 +2163,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f8238d34-aac1-4bd1-90d8-f2cac489830d")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "af965b06-e729-4228-ab7e-cecd43abda9d")
-      .set("value", "Locale<p></p>")
+      .set("value", "Locale")
   );
 
   _db.insertIfNotExists(
@@ -2172,7 +2172,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a8385925-e2f6-482b-a407-bffbed0c0861")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "af965b06-e729-4228-ab7e-cecd43abda9d")
-      .set("value", "Localiza\u00E7\u00E3o<p></p>")
+      .set("value", "Localiza\u00E7\u00E3o")
   );
 
   _db.insertIfNotExists(
@@ -2181,7 +2181,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "54119ce0-ae84-4e58-b514-e6b8a08cb2ac")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "99924c2c-d3c8-428a-bb90-5692fb81e67a")
-      .set("value", "Default<p></p>")
+      .set("value", "Default")
   );
 
   _db.insertIfNotExists(
@@ -2190,7 +2190,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "16648ba7-1f88-4f5a-be97-693314403f0d")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "99924c2c-d3c8-428a-bb90-5692fb81e67a")
-      .set("value", "Padr\u00E3o<p></p>")
+      .set("value", "Padr\u00E3o")
   );
 
   _db.insertIfNotExists(
@@ -2199,7 +2199,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "fa82831a-c5dc-46c9-a192-0cc815334543")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "0d7d2f4d-2cdc-49f6-9b7c-62bbb5008ed1")
-      .set("value", "Actions<p></p>")
+      .set("value", "Actions")
   );
 
   _db.insertIfNotExists(
@@ -2208,7 +2208,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "fffdfb15-832c-4efd-9b5f-03b9f3244a20")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "9441c47c-ef63-472d-8b6c-d723141ec762")
-      .set("value", "Languages<p></p>")
+      .set("value", "Languages")
   );
 
   _db.insertIfNotExists(
@@ -2217,7 +2217,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "fdc48496-8052-49bc-b133-4ff82a5bd36d")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "9441c47c-ef63-472d-8b6c-d723141ec762")
-      .set("value", "Idiomas<p></p>")
+      .set("value", "Idiomas")
   );
 
   _db.insertIfNotExists(
@@ -2226,7 +2226,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "5b752268-92d9-495a-99b7-663ac66e09dd")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "58eae766-a1e9-4976-b5d0-830707eddcab")
-      .set("value", "New<p></p>")
+      .set("value", "New")
   );
 
   _db.insertIfNotExists(
@@ -2235,7 +2235,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "00ed7982-fcfe-477a-810e-8101b524891c")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "58eae766-a1e9-4976-b5d0-830707eddcab")
-      .set("value", "Novo<p></p>")
+      .set("value", "Novo")
   );
 
   _db.insertIfNotExists(
@@ -2253,7 +2253,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "1c711a21-f353-4929-af19-a53ecfa62616")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "b7032ed4-515e-4794-91ef-233002dc7dc4")
-      .set("value", "Failed to active language.<p></p>")
+      .set("value", "Failed to active language.")
   );
 
   _db.insertIfNotExists(
@@ -2262,7 +2262,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "3c7919c5-f369-480a-bff2-1c98a1b4f037")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "b7032ed4-515e-4794-91ef-233002dc7dc4")
-      .set("value", "Falha ao activar idioma.<p></p>")
+      .set("value", "Falha ao activar idioma.")
   );
 
   _db.insertIfNotExists(
@@ -2271,7 +2271,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "d45d922d-dc95-4aee-a181-5210aba44b92")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "0e16b5e4-777f-4c53-a55e-157d5ec99fd8")
-      .set("value", "Failed to desactive language.<p></p>")
+      .set("value", "Failed to desactive language.")
   );
 
   _db.insertIfNotExists(
@@ -2280,7 +2280,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a5ed6e82-e28b-4e54-b41d-1c9d6827cddf")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "e5295fc7-4f85-4e61-8516-524f6245722a")
-      .set("value", "Active<p></p>")
+      .set("value", "Active")
   );
 
   _db.insertIfNotExists(
@@ -2289,7 +2289,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "9afd876d-0df3-4b26-8a2e-fdc159aaff78")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "e5295fc7-4f85-4e61-8516-524f6245722a")
-      .set("value", "Activo<p></p>")
+      .set("value", "Activo")
   );
 
   _db.insertIfNotExists(
@@ -2298,7 +2298,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "cd27ebb0-1dd8-48df-9079-9619aaa4f835")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "a8487bbe-cdc8-4fc7-bcb0-41848b46bc8c")
-      .set("value", "Failed to set language as default.<p></p>")
+      .set("value", "Failed to set language as default.")
   );
 
   _db.insertIfNotExists(
@@ -2307,7 +2307,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "1a86e7b7-f241-480d-8941-029ec364b1a1")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "a8487bbe-cdc8-4fc7-bcb0-41848b46bc8c")
-      .set("value", "Falha ao definir idioma como padr\u00E3o.<p></p>")
+      .set("value", "Falha ao definir idioma como padr\u00E3o.")
   );
 
   _db.insertIfNotExists(
@@ -2316,7 +2316,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "2e61b724-242a-4a91-b082-e1746c474793")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "135dd3e4-331f-48f1-821b-1ca4a21a3257")
-      .set("value", "Idioma activado com sucesso.<p></p>")
+      .set("value", "Idioma activado com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -2325,7 +2325,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "e2ef27d1-e538-48b8-9277-6d5b39fe707a")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "71ba2954-01b1-4850-a22e-75ffc4675110")
-      .set("value", "Default<p></p>")
+      .set("value", "Default")
   );
 
   _db.insertIfNotExists(
@@ -2334,7 +2334,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "9226998e-4872-42c4-8b8b-be6bf884e7c3")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "71ba2954-01b1-4850-a22e-75ffc4675110")
-      .set("value", "Padr\u00E3o<p></p>")
+      .set("value", "Padr\u00E3o")
   );
 
   _db.insertIfNotExists(
@@ -2343,7 +2343,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "541d44d7-fa55-409d-bc12-0dac9da31650")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "43a7dd91-e95f-46ae-b293-f6946529797f")
-      .set("value", "Description<p></p>")
+      .set("value", "Description")
   );
 
   _db.insertIfNotExists(
@@ -2352,7 +2352,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "5e8a95e5-9f34-4fc2-9ba3-f6ee2a541388")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "43a7dd91-e95f-46ae-b293-f6946529797f")
-      .set("value", "Descri\u00E7\u00E3o<p></p>")
+      .set("value", "Descri\u00E7\u00E3o")
   );
 
   _db.insertIfNotExists(
@@ -2361,7 +2361,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f54146e0-9bf8-48d9-84cb-a757628a8d0f")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "1b5370e7-35f4-4203-848f-596235a790cb")
-      .set("value", "C\u00F3digo<p></p>")
+      .set("value", "C\u00F3digo")
   );
 
   _db.insertIfNotExists(
@@ -2370,7 +2370,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "23a684da-72a0-462a-9417-8a6c52fd46c1")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "7c646556-7fa2-439f-a200-5e3686f0e085")
-      .set("value", "Locale<p></p>")
+      .set("value", "Locale")
   );
 
   _db.insertIfNotExists(
@@ -2379,7 +2379,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "b9e92331-a194-452d-aabe-2a52ec0a485d")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "7c646556-7fa2-439f-a200-5e3686f0e085")
-      .set("value", "Localidade<p></p>")
+      .set("value", "Localidade")
   );
 
   _db.insertIfNotExists(
@@ -4008,7 +4008,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a2727615-8070-48be-a0ca-3ceaa066286d")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "8916ad4b-8610-4e6a-9479-548ed028d255")
-      .set("value", "Cancelar<p></p>")
+      .set("value", "Cancelar")
   );
 
   _db.insertIfNotExists(
@@ -4017,7 +4017,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "80738eb2-76b2-4c5b-978f-d7ed9a4ab953")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "8a3f27bb-e54f-414b-8c51-f5dbf5fbe2e3")
-      .set("value", "${label} is mandatory.<p></p>")
+      .set("value", "${label} is mandatory.")
   );
 
   _db.insertIfNotExists(
@@ -4026,7 +4026,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "5e16dd29-6192-48a2-8037-2b3d089b3894")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "8a3f27bb-e54f-414b-8c51-f5dbf5fbe2e3")
-      .set("value", "${label} \u00E9 obrigat\u00E1rio.<p></p>")
+      .set("value", "${label} \u00E9 obrigat\u00E1rio.")
   );
 
   _db.insertIfNotExists(
@@ -4035,7 +4035,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ce47205a-f99d-48d5-83cb-f33232a367da")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "47d34694-353e-46cb-89ab-9bb9fd4326ed")
-      .set("value", "Language successfully saved.<p></p>")
+      .set("value", "Language successfully saved.")
   );
 
   _db.insertIfNotExists(
@@ -4044,7 +4044,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "41ab693e-0c41-47c3-8a2b-c94639951d50")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "47d34694-353e-46cb-89ab-9bb9fd4326ed")
-      .set("value", "Idioma salvo com sucesso.<p></p>")
+      .set("value", "Idioma salvo com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -4053,7 +4053,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "dd868a58-84f7-4992-a592-f789cacd5c50")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "aac3fdcc-7140-4f67-86fe-19135da4013c")
-      .set("value", "Failed to save language.<p></p>")
+      .set("value", "Failed to save language.")
   );
 
   _db.insertIfNotExists(
@@ -4062,7 +4062,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a2f61651-f78e-4ec5-b91b-1b987ad012d2")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "aac3fdcc-7140-4f67-86fe-19135da4013c")
-      .set("value", "Falha ao guardar idioma.<p></p>")
+      .set("value", "Falha ao guardar idioma.")
   );
 
   _db.insertIfNotExists(
@@ -4071,7 +4071,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "94b64624-a2ef-404c-b848-b4f37ef286d2")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "7bbfce83-2661-4360-b294-453953b91abd")
-      .set("value", "New Language<p></p>")
+      .set("value", "New Language")
   );
 
   _db.insertIfNotExists(
@@ -4080,7 +4080,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "274d6147-05bb-43cc-a21f-c27ce5c9351a")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "7bbfce83-2661-4360-b294-453953b91abd")
-      .set("value", "Novo Idioma<p></p>")
+      .set("value", "Novo Idioma")
   );
 
   _db.insertIfNotExists(
@@ -4089,7 +4089,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "206d36d1-aa1b-4aed-9360-8536c1fe0869")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "3de00b94-0c1a-4742-8e78-b35ad7b23b45")
-      .set("value", "Edit Language<p></p>")
+      .set("value", "Edit Language")
   );
 
   _db.insertIfNotExists(
@@ -4098,7 +4098,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "3d2392a6-d522-416f-930c-3e718966289a")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "19999ff0-ea70-45dc-9f08-45c4ace29641")
-      .set("value", "Description<p></p>")
+      .set("value", "Description")
   );
 
   _db.insertIfNotExists(
@@ -4107,7 +4107,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "8c29824f-87e2-4da2-9eb1-efcde3fa9b48")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "0d7d2f4d-2cdc-49f6-9b7c-62bbb5008ed1")
-      .set("value", "A\u00E7\u00F5es<p></p>")
+      .set("value", "A\u00E7\u00F5es")
   );
 
   _db.insertIfNotExists(
@@ -4116,7 +4116,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "40cfb69c-fe64-4886-9554-561a085e9499")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "4999cd5c-e2c3-41ee-bd39-cfb26bf0932e")
-      .set("value", "Falha ao carregar idiomas.<p></p>")
+      .set("value", "Falha ao carregar idiomas.")
   );
 
   _db.insertIfNotExists(
@@ -4125,7 +4125,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "7fd2509f-3d43-450b-84f3-7d82cae58e11")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "0e16b5e4-777f-4c53-a55e-157d5ec99fd8")
-      .set("value", "Falha ao desactivar idioma.<p></p>")
+      .set("value", "Falha ao desactivar idioma.")
   );
 
   _db.insertIfNotExists(
@@ -4134,7 +4134,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "109da6ce-51e8-4c08-ac7c-d37506e1bdfd")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "135dd3e4-331f-48f1-821b-1ca4a21a3257")
-      .set("value", "Language successfully actived.<p></p>")
+      .set("value", "Language successfully actived.")
   );
 
   _db.insertIfNotExists(
@@ -4143,7 +4143,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "5f93d44e-71c8-4570-909c-e0df1c2561be")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "1b5370e7-35f4-4203-848f-596235a790cb")
-      .set("value", "Code<p></p>")
+      .set("value", "Code")
   );
 
   _db.insertIfNotExists(
@@ -4152,7 +4152,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "7f1cfc42-8a5a-4aa8-a10e-24ac63fc359c")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "3de00b94-0c1a-4742-8e78-b35ad7b23b45")
-      .set("value", "Editar Idioma<p></p>")
+      .set("value", "Editar Idioma")
   );
 
   _db.insertIfNotExists(
@@ -4197,7 +4197,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "65fda492-7c61-4ab1-9caf-8c5b131b312f")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "c0e85d7c-adc6-486c-8de1-53c988eb8696")
-      .set("value", "Language successfully desactived.<p></p>")
+      .set("value", "Language successfully desactived.")
   );
 
   _db.insertIfNotExists(
@@ -4206,7 +4206,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ee7d16f2-e079-495a-930d-d68b36e87d32")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "f98114e4-46b5-43ec-a056-88b6a373043f")
-      .set("value", "Language successfully update.<p></p>")
+      .set("value", "Language successfully update.")
   );
 
   _db.insertIfNotExists(
@@ -4215,7 +4215,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "922e5fb1-e290-42e5-b0c7-e3e5680af869")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "f98114e4-46b5-43ec-a056-88b6a373043f")
-      .set("value", "Idioma atualizado com sucesso.<p></p>")
+      .set("value", "Idioma atualizado com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -4224,7 +4224,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f801239a-e6f9-47b1-af6d-60535eb58f80")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "5fd54121-3338-4a7e-947f-54a9eddac87e")
-      .set("value", "Idioma<p></p>")
+      .set("value", "Idioma")
   );
 
   _db.insertIfNotExists(
@@ -4233,7 +4233,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "9bc0b4a6-70e2-485a-9faa-b02886c4b94b")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "5fd54121-3338-4a7e-947f-54a9eddac87e")
-      .set("value", "Language<p></p>")
+      .set("value", "Language")
   );
 
   _db.insertIfNotExists(
@@ -4242,7 +4242,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "6a1393ae-8f1a-4514-b30a-35a6c1e23ec5")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "423445fd-e1da-49f7-bd8a-4fe1e6075d1f")
-      .set("value", "Par\u00E2metro<p></p>")
+      .set("value", "Par\u00E2metro")
   );
 
   _db.insertIfNotExists(
@@ -4251,7 +4251,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "e540433f-868b-4c0e-8262-ddb57c861743")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "423445fd-e1da-49f7-bd8a-4fe1e6075d1f")
-      .set("value", "Parameter<p></p>")
+      .set("value", "Parameter")
   );
 
   _db.insertIfNotExists(
@@ -4260,7 +4260,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "56cd2306-5789-45a6-8079-e974e5e580fe")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "5493a821-70b1-4e3f-b656-5b59f1778853")
-      .set("value", "Valor<p></p>")
+      .set("value", "Valor")
   );
 
   _db.insertIfNotExists(
@@ -4269,7 +4269,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "4e333ce3-8fff-4f1d-b172-5ad7e361c021")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "5493a821-70b1-4e3f-b656-5b59f1778853")
-      .set("value", "Value<p></p>")
+      .set("value", "Value")
   );
 
   _db.insertIfNotExists(
@@ -4278,7 +4278,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "b723a33c-9bbf-4e7e-b167-cbc0fe975cdc")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "830edd57-0318-40f2-b016-87e755e9e29b")
-      .set("value", "A\u00E7\u00F5es<p></p>")
+      .set("value", "A\u00E7\u00F5es")
   );
 
   _db.insertIfNotExists(
@@ -4287,7 +4287,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "82e1aa4a-0a59-47c0-8728-e6e9534fbfa4")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "830edd57-0318-40f2-b016-87e755e9e29b")
-      .set("value", "Actions<p></p>")
+      .set("value", "Actions")
   );
 
   _db.insertIfNotExists(
@@ -4296,7 +4296,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "497fba7d-d62f-414f-bd38-ea2ecc4eb0ef")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "53acceb0-1a0b-4554-949a-3d59dc121f5d")
-      .set("value", "Configura\u00E7\u00F5es<p></p>")
+      .set("value", "Configura\u00E7\u00F5es")
   );
 
   _db.insertIfNotExists(
@@ -4305,7 +4305,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "1c8ac3af-8c7d-42ff-ac99-8ddba9ea2265")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "53acceb0-1a0b-4554-949a-3d59dc121f5d")
-      .set("value", "Configurations<p></p>")
+      .set("value", "Configurations")
   );
 
   _db.insertIfNotExists(
@@ -4314,7 +4314,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "875f6b78-33a5-401a-902f-4fbb15e7fb00")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "a73528a8-5c4c-46d5-bff6-55df42332125")
-      .set("value", "Novo<p></p>")
+      .set("value", "Novo")
   );
 
   _db.insertIfNotExists(
@@ -4323,7 +4323,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "454244a4-dbf5-45f4-a836-9f686052d585")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "a73528a8-5c4c-46d5-bff6-55df42332125")
-      .set("value", "New<p></p>")
+      .set("value", "New")
   );
 
   _db.insertIfNotExists(
@@ -4332,7 +4332,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "130556cb-2ed5-441e-b7e9-07a131eff629")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "c28388dc-a19a-4430-ae23-d6db2258ad4d")
-      .set("value", "Falha ao carregar configura\u00E7\u00F5es.<p></p>")
+      .set("value", "Falha ao carregar configura\u00E7\u00F5es.")
   );
 
   _db.insertIfNotExists(
@@ -4341,7 +4341,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "49e558af-a209-45d9-a8e2-29cf8ca524df")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "c28388dc-a19a-4430-ae23-d6db2258ad4d")
-      .set("value", "Failed to load configurations.<p></p>")
+      .set("value", "Failed to load configurations.")
   );
 
   _db.insertIfNotExists(
@@ -4350,7 +4350,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "c99621d3-ac01-4e57-8533-682c4d2dedd2")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "5d436742-18bf-4ee9-8d40-0c727b5e1e49")
-      .set("value", "Editar Configura\u00E7\u00E3o<p></p>")
+      .set("value", "Editar Configura\u00E7\u00E3o")
   );
 
   _db.insertIfNotExists(
@@ -4359,7 +4359,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a522596b-8472-4b9b-8d3e-b8aa0e63213c")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "5d436742-18bf-4ee9-8d40-0c727b5e1e49")
-      .set("value", "Edit Configuration<p></p>")
+      .set("value", "Edit Configuration")
   );
 
   _db.insertIfNotExists(
@@ -4368,7 +4368,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "492d2356-d636-430f-94a9-5612d10cf8bc")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "46092aaf-4897-4cf2-911d-fb06ff2af921")
-      .set("value", "Par\u00E2metro<p></p>")
+      .set("value", "Par\u00E2metro")
   );
 
   _db.insertIfNotExists(
@@ -4377,7 +4377,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f00e1469-818f-4e58-9b40-61e80a185d82")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "46092aaf-4897-4cf2-911d-fb06ff2af921")
-      .set("value", "Parameter<p></p>")
+      .set("value", "Parameter")
   );
 
   _db.insertIfNotExists(
@@ -4386,7 +4386,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "c434e0cf-8dfe-4a5b-8909-7a125a0553be")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "90a1a0ca-4590-43ce-8c92-dfac9b63e683")
-      .set("value", "Idioma<p></p>")
+      .set("value", "Idioma")
   );
 
   _db.insertIfNotExists(
@@ -4395,7 +4395,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a1a00f79-b89d-47dd-a381-6a588d30a454")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "90a1a0ca-4590-43ce-8c92-dfac9b63e683")
-      .set("value", "language<p></p>")
+      .set("value", "language")
   );
 
   _db.insertIfNotExists(
@@ -4404,7 +4404,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "4c274d49-eba5-4dd2-a479-673490fe4a93")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "593020a1-626f-4530-986a-7bb14a61b15d")
-      .set("value", "Valor<p></p>")
+      .set("value", "Valor")
   );
 
   _db.insertIfNotExists(
@@ -4413,7 +4413,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "27118733-c7a2-43e3-aab0-885cfccc6106")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "593020a1-626f-4530-986a-7bb14a61b15d")
-      .set("value", "Value<p></p>")
+      .set("value", "Value")
   );
 
   _db.insertIfNotExists(
@@ -4422,7 +4422,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "5b1f3b39-541e-44d1-91eb-293b7be8b9e3")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "448ddc3e-62fa-42a2-b6ce-f01aabf4ef77")
-      .set("value", "Guardar<p></p>")
+      .set("value", "Guardar")
   );
 
   _db.insertIfNotExists(
@@ -4431,7 +4431,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "c21d7c19-0cb2-4f6b-a51e-6a8e9dede142")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "448ddc3e-62fa-42a2-b6ce-f01aabf4ef77")
-      .set("value", "Save<p></p>")
+      .set("value", "Save")
   );
 
   _db.insertIfNotExists(
@@ -4440,7 +4440,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f6fd4091-9e86-4246-908d-56c068f2ee30")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "a4083d2d-4899-419a-9341-42fee39cc765")
-      .set("value", "Cancelar<p></p>")
+      .set("value", "Cancelar")
   );
 
   _db.insertIfNotExists(
@@ -4449,7 +4449,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a3699d44-e516-490c-a903-b2da31a82eb0")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "a4083d2d-4899-419a-9341-42fee39cc765")
-      .set("value", "Cancel<p></p>")
+      .set("value", "Cancel")
   );
 
   _db.insertIfNotExists(
@@ -4458,7 +4458,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "3688e2a0-e6f3-43c7-8c2c-2624654a6c2f")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "77605255-4ac8-4400-9371-1a5e59404bee")
-      .set("value", "${label} \u00E9 obrigat\u00E1rio.<p></p>")
+      .set("value", "${label} \u00E9 obrigat\u00E1rio.")
   );
 
   _db.insertIfNotExists(
@@ -4467,7 +4467,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ef8092ea-9b8e-4208-8951-dd1c91a3b92e")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "77605255-4ac8-4400-9371-1a5e59404bee")
-      .set("value", "${label} is mandatory.<p></p>")
+      .set("value", "${label} is mandatory.")
   );
 
   _db.insertIfNotExists(
@@ -4476,7 +4476,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "d77c0c1f-b10c-4a18-8d57-24d573117f6f")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "cf9d6a57-b31c-4673-8dbe-1eaa8ba22011")
-      .set("value", "Configura\u00E7\u00E3o registada com sucesso.<p></p>")
+      .set("value", "Configura\u00E7\u00E3o registada com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -4485,7 +4485,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "222493f7-8d44-46a2-9a26-74e19de6238b")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "cf9d6a57-b31c-4673-8dbe-1eaa8ba22011")
-      .set("value", "Configuration successfully registered.<p></p>")
+      .set("value", "Configuration successfully registered.")
   );
 
   _db.insertIfNotExists(
@@ -4494,7 +4494,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "6adc7066-1c7a-4576-8936-007c142dc03f")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "175a2b74-7e9b-45e6-a95c-bbfc039895e5")
-      .set("value", "Falha ao registar configura\u00E7\u00E3o.<p></p>")
+      .set("value", "Falha ao registar configura\u00E7\u00E3o.")
   );
 
   _db.insertIfNotExists(
@@ -4503,7 +4503,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "99a9bb9d-9e15-42e1-b222-3018427e3581")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "175a2b74-7e9b-45e6-a95c-bbfc039895e5")
-      .set("value", "Failed to register configuration.<p></p>")
+      .set("value", "Failed to register configuration.")
   );
 
   _db.insertIfNotExists(
@@ -4512,7 +4512,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "1a485143-adb6-4e15-8a7e-199e60ec29a4")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "87b56caa-b055-435e-9cf1-6d3bfc605719")
-      .set("value", "Nova Configura\u00E7\u00E3o<p></p>")
+      .set("value", "Nova Configura\u00E7\u00E3o")
   );
 
   _db.insertIfNotExists(
@@ -4521,7 +4521,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "b79e759d-4e63-448f-9bab-b77bd3dc8759")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "87b56caa-b055-435e-9cf1-6d3bfc605719")
-      .set("value", "New Configuration<p></p>")
+      .set("value", "New Configuration")
   );
 
   _db.insertIfNotExists(
@@ -4530,7 +4530,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "5246d166-67f9-4f59-b30d-b0e4792c5c1c")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "eddfa972-32c8-445f-bb7d-1d555fe5b4ff")
-      .set("value", "Configura\u00E7\u00E3o editada com sucesso.<p></p>")
+      .set("value", "Configura\u00E7\u00E3o editada com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -4539,7 +4539,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "9a69baad-46bc-495c-bcbd-fd866b866e4c")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "eddfa972-32c8-445f-bb7d-1d555fe5b4ff")
-      .set("value", "Configuration successfully edited.<p></p>")
+      .set("value", "Configuration successfully edited.")
   );
 
   _db.insertIfNotExists(
@@ -4548,7 +4548,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "3f5def91-e03f-4f11-bdef-1f655db25b77")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "68c68489-6603-4c30-8d7b-85422b6c4dd0")
-      .set("value", "Falha ao editar configura\u00E7\u00E3o.<p></p>")
+      .set("value", "Falha ao editar configura\u00E7\u00E3o.")
   );
 
   _db.insertIfNotExists(
@@ -4557,7 +4557,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "e62589e6-0284-4859-a0ca-5786cef35167")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "68c68489-6603-4c30-8d7b-85422b6c4dd0")
-      .set("value", "Failed to edit configuration.<p></p>")
+      .set("value", "Failed to edit configuration.")
   );
 
   _db.insertIfNotExists(
@@ -4566,7 +4566,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f74dcd6d-f61f-4376-a98c-536a381e2ab3")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "402a690a-d0d6-4d1d-bb52-dd97af58349a")
-      .set("value", "Idioma<p></p>")
+      .set("value", "Idioma")
   );
 
   _db.insertIfNotExists(
@@ -4575,7 +4575,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "31cecf4e-3427-4030-b7fb-b6993c9886ef")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "402a690a-d0d6-4d1d-bb52-dd97af58349a")
-      .set("value", "Language<p></p>")
+      .set("value", "Language")
   );
 
   _db.insertIfNotExists(
@@ -4584,7 +4584,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "e7566d3a-a178-447f-8715-3ec85a0533ad")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "a1b52138-3b67-439f-9228-5062189903d5")
-      .set("value", "Chave<p></p>")
+      .set("value", "Chave")
   );
 
   _db.insertIfNotExists(
@@ -4593,7 +4593,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "aba453a9-a316-476c-8f75-b56ac4137756")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "9cbda42e-28b7-44a5-893c-d819b6f5a89c")
-      .set("value", "Valor<p></p>")
+      .set("value", "Valor")
   );
 
   _db.insertIfNotExists(
@@ -4602,7 +4602,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "29786a46-ea09-494d-aa0a-e464c90c2b4b")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "9cbda42e-28b7-44a5-893c-d819b6f5a89c")
-      .set("value", "Value<p></p>")
+      .set("value", "Value")
   );
 
   _db.insertIfNotExists(
@@ -4611,7 +4611,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "8b71df48-7f11-4f44-bb8e-6d088cdffd3c")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "b35a25a5-3efe-4dd2-b337-c958b1be2c24")
-      .set("value", "A\u00E7\u00F5es<p></p>")
+      .set("value", "A\u00E7\u00F5es")
   );
 
   _db.insertIfNotExists(
@@ -4629,7 +4629,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a98adfdd-cd70-477b-b928-7e635c7dfbe6")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "b35a25a5-3efe-4dd2-b337-c958b1be2c24")
-      .set("value", "Actions<p></p>")
+      .set("value", "Actions")
   );
 
   _db.insertIfNotExists(
@@ -4638,7 +4638,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "9caed70b-2aa6-47a2-812c-c376e636d0dd")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "40fbbeed-393e-4ee9-9178-12b3eac13af8")
-      .set("value", "Dicion\u00E1rios<p></p>")
+      .set("value", "Dicion\u00E1rios")
   );
 
   _db.insertIfNotExists(
@@ -4647,7 +4647,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "81b6ba7f-25cd-4d0a-9210-b362975be672")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "40fbbeed-393e-4ee9-9178-12b3eac13af8")
-      .set("value", "Dictionaries<p></p>")
+      .set("value", "Dictionaries")
   );
 
   _db.insertIfNotExists(
@@ -4656,7 +4656,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "f9f61140-b7ce-40c1-b360-4ee667f56b52")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "aa18e013-5806-4704-8e0e-73a9444e26fc")
-      .set("value", "Novo<p></p>")
+      .set("value", "Novo")
   );
 
   _db.insertIfNotExists(
@@ -4665,7 +4665,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "0bdc723c-a6de-490f-8f6f-6226ef86cc6d")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "aa18e013-5806-4704-8e0e-73a9444e26fc")
-      .set("value", "New<p></p>")
+      .set("value", "New")
   );
 
   _db.insertIfNotExists(
@@ -4674,7 +4674,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "8f07f6aa-9d57-4889-a22f-ede410430e73")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "c9a40e9a-bdb8-454c-b5f9-81c182fedf64")
-      .set("value", "Falha ao carregar dicion\u00E1rios.<p></p>")
+      .set("value", "Falha ao carregar dicion\u00E1rios.")
   );
 
   _db.insertIfNotExists(
@@ -4683,7 +4683,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "4e204a5b-107c-4830-ba22-93eb27cc6c4d")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "c9a40e9a-bdb8-454c-b5f9-81c182fedf64")
-      .set("value", "Failed to load dictionaries.<p></p>")
+      .set("value", "Failed to load dictionaries.")
   );
 
   _db.insertIfNotExists(
@@ -4692,7 +4692,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "372fae03-3781-4a46-b96d-e146f509a779")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "a1b52138-3b67-439f-9228-5062189903d5")
-      .set("value", "Entry<p></p>")
+      .set("value", "Entry")
   );
 
   _db.insertIfNotExists(
@@ -4701,7 +4701,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ad82a3ec-9f3e-481a-a139-f093e53b2ebb")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "f759c970-119f-4915-a10b-a754cd20a353")
-      .set("value", "Language<p></p>")
+      .set("value", "Language")
   );
 
   _db.insertIfNotExists(
@@ -4710,7 +4710,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "ec1dc1e8-c9fb-4443-b089-92b45e76be1f")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "3877cb25-ea48-4cd2-a865-37c647f9cbf6")
-      .set("value", "Chave<p></p>")
+      .set("value", "Chave")
   );
 
   _db.insertIfNotExists(
@@ -4719,7 +4719,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "e6d452ec-f3c2-4cf9-b4d5-a1494d452d20")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "3877cb25-ea48-4cd2-a865-37c647f9cbf6")
-      .set("value", "Entry<p></p>")
+      .set("value", "Entry")
   );
 
   _db.insertIfNotExists(
@@ -4728,7 +4728,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "50b3a339-bed0-49ee-8385-7138e532ce30")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "28b78dd0-58a9-44a1-aa61-fbc128974156")
-      .set("value", "Valor<p></p>")
+      .set("value", "Valor")
   );
 
   _db.insertIfNotExists(
@@ -4737,7 +4737,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "92e695e7-50c0-4cb4-8a1e-e938d7097c7a")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "28b78dd0-58a9-44a1-aa61-fbc128974156")
-      .set("value", "Value<p></p>")
+      .set("value", "Value")
   );
 
   _db.insertIfNotExists(
@@ -4746,7 +4746,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "2868127a-309f-4b2c-a118-46d42bb914b1")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "a910f0ba-a452-4646-8aca-03ea2f4cffe3")
-      .set("value", "Guardar<p></p>")
+      .set("value", "Guardar")
   );
 
   _db.insertIfNotExists(
@@ -4755,7 +4755,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "8300a756-254b-4fd0-8f20-26d1ae8a2677")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "a910f0ba-a452-4646-8aca-03ea2f4cffe3")
-      .set("value", "Save<p></p>")
+      .set("value", "Save")
   );
 
   _db.insertIfNotExists(
@@ -4764,7 +4764,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "c8cae2ea-6c4f-4295-91c9-7b679ee61e08")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "4d337149-f744-4301-8a42-4025c4f7528a")
-      .set("value", "Cancelar<p></p>")
+      .set("value", "Cancelar")
   );
 
   _db.insertIfNotExists(
@@ -4773,7 +4773,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a387ccbc-51d3-448b-923f-7fafe78880f5")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "4d337149-f744-4301-8a42-4025c4f7528a")
-      .set("value", "Cancel<p></p>")
+      .set("value", "Cancel")
   );
 
   _db.insertIfNotExists(
@@ -4782,7 +4782,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "68116a67-e9e8-4b7c-9e86-1cf74e286135")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "8d717a42-63a7-47f4-b0e6-364c5f1b1c7a")
-      .set("value", "${label} \u00E9 obrigat\u00F3rio.<p></p>")
+      .set("value", "${label} \u00E9 obrigat\u00F3rio.")
   );
 
   _db.insertIfNotExists(
@@ -4791,7 +4791,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "8c1d40ea-2d87-4f12-8688-2a5fa77c2737")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "8d717a42-63a7-47f4-b0e6-364c5f1b1c7a")
-      .set("value", "${label} is mandatory.<p></p>")
+      .set("value", "${label} is mandatory.")
   );
 
   _db.insertIfNotExists(
@@ -4800,7 +4800,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "55043e76-3dd7-438a-8e77-a4d4bca82a4c")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "391d9bc8-312b-46b3-8700-4f169560da23")
-      .set("value", "Dicion\u00E1rio registado com sucesso.<p></p>")
+      .set("value", "Dicion\u00E1rio registado com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -4809,7 +4809,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "272b3ddb-92b8-46e6-a9d3-c279ce7601e7")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "391d9bc8-312b-46b3-8700-4f169560da23")
-      .set("value", "Dictionary successfully registered.<p></p>")
+      .set("value", "Dictionary successfully registered.")
   );
 
   _db.insertIfNotExists(
@@ -4818,7 +4818,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "c95208d3-1d96-40cc-8265-35afa178286a")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "c98a1856-eda5-47fd-aeae-3d6b0feaab56")
-      .set("value", "Failed to register dictionary.<p></p>")
+      .set("value", "Failed to register dictionary.")
   );
 
   _db.insertIfNotExists(
@@ -4827,7 +4827,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "5aab376f-7bf3-4fff-8c29-50cd008464be")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "0496ed82-7447-42f8-b3f7-69cc39020553")
-      .set("value", "Dicion\u00E1rio editado com sucesso.<p></p>")
+      .set("value", "Dicion\u00E1rio editado com sucesso.")
   );
 
   _db.insertIfNotExists(
@@ -4836,7 +4836,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "d0f32443-f8a9-4217-9f7f-1a4c6330bdd2")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "0496ed82-7447-42f8-b3f7-69cc39020553")
-      .set("value", "Dictionary successfully edited.<p></p>")
+      .set("value", "Dictionary successfully edited.")
   );
 
   _db.insertIfNotExists(
@@ -4845,7 +4845,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "65fe4ec4-7c29-4184-80f9-52b2913ddd91")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "33834852-597e-421a-bdf6-c17619c41622")
-      .set("value", "Falha ao editar dicion\u00E1rio.<p></p>")
+      .set("value", "Falha ao editar dicion\u00E1rio.")
   );
 
   _db.insertIfNotExists(
@@ -4854,7 +4854,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "a5eb54e9-99ea-48c6-ab62-f1c7fcc91f18")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "33834852-597e-421a-bdf6-c17619c41622")
-      .set("value", "Failed to edit dictionary.<p></p>")
+      .set("value", "Failed to edit dictionary.")
   );
 
   _db.insertIfNotExists(
@@ -4863,7 +4863,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "8e371294-721b-4674-b1e4-66bdcd63635f")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "3a5820d8-b9f9-4a58-8577-345e7a0973f2")
-      .set("value", "Novo Dicion\u00E1rio<p></p>")
+      .set("value", "Novo Dicion\u00E1rio")
   );
 
   _db.insertIfNotExists(
@@ -4872,7 +4872,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "104222ca-0a7e-4437-a304-74df96121a85")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "3a5820d8-b9f9-4a58-8577-345e7a0973f2")
-      .set("value", "New Dictionary<p></p>")
+      .set("value", "New Dictionary")
   );
 
   _db.insertIfNotExists(
@@ -4881,7 +4881,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "7acfbbec-76e2-4a16-92a3-6bd95e1e76f9")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "4eb1851b-58ca-44d4-ae75-d205ba3b424b")
-      .set("value", "Editar Dicion\u00E1rio<p></p>")
+      .set("value", "Editar Dicion\u00E1rio")
   );
 
   _db.insertIfNotExists(
@@ -4890,7 +4890,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "8d008105-636c-4d02-8d42-e00ee9970e70")
       .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
       .set("entry_id", "4eb1851b-58ca-44d4-ae75-d205ba3b424b")
-      .set("value", "Edit Dictionary<p></p>")
+      .set("value", "Edit Dictionary")
   );
 
   _db.insertIfNotExists(
@@ -5043,7 +5043,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("uid", "d58c2d52-f6e7-4811-a93f-3b3935f74b34")
       .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
       .set("entry_id", "c98a1856-eda5-47fd-aeae-3d6b0feaab56")
-      .set("value", "Falha ao registar dicion\u00E1rio.<p></p>")
+      .set("value", "Falha ao registar dicion\u00E1rio.")
   );
 
   _db.insertIfNotExists(

@@ -9,7 +9,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "re
 import DictionaryModal from "../Modal";
 import Cluar from "../../../../common/Cluar";
 
-const DictionaryTable = forwardRef(({}, ref) => {
+const DictionaryTable = forwardRef(({ }, ref) => {
     const [data, setData] = useState([]);
     const [total, setTotal] = useState(0);
     const [filters, setFilters] = useState({});
@@ -83,7 +83,7 @@ const DictionaryTable = forwardRef(({}, ref) => {
         return {
             onReloadTable
         }
-    },[]);
+    }, []);
 
     useEffect(() => {
         onLoadDictionaries();
@@ -125,6 +125,7 @@ const DictionaryTable = forwardRef(({}, ref) => {
             onHeaderCell: () => ({
                 "data-column-key": "value",
             }),
+            render: val => Cluar.plainHTML(val),
         },
         {
             title: Cluar.plainDictionary('dictionary-table-actions'),
@@ -141,7 +142,7 @@ const DictionaryTable = forwardRef(({}, ref) => {
                     onClick={() => {
                         setDictionaryData(record);
                         dictionaryModalRef.current.onOpenModal();
-                     }}
+                    }}
                 />
             )
         }
