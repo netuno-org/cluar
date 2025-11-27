@@ -67,9 +67,17 @@
     }
 }
 
+html[data-theme="dark"] .editor-container {
+    background-color: #424242;
+}
+
 .editor-inner {
     background: #fff;
     position: relative;
+}
+
+html[data-theme="dark"] .editor-inner {
+    background-color: #141414;
 }
 
 .editor-input {
@@ -163,7 +171,7 @@
 .toolbar button {
     border: 0;
     display: flex;
-    background: #ffffff;
+    background: #ffffff !important;
     border-radius: 6px;
     padding: 8px 10px;
     cursor: pointer;
@@ -231,6 +239,10 @@
         min-height: 26px;
         font-size: 12px;
     }
+}
+
+html[data-theme="dark"] .toolbar button {
+    background: #000 !important;
 }
 
 .toolbar .divider {
@@ -306,6 +318,12 @@
     }
 }
 
+html[data-theme="dark"] .toolbar .font-size-container,
+html[data-theme="dark"] .toolbar .font-color-container,
+html[data-theme="dark"] .toolbar .bg-color-container {
+    background-color: #000;
+}
+
 .toolbar .font-size-input {
     width: 50px;
     text-align: center;
@@ -348,6 +366,11 @@
     }
 }
 
+html[data-theme="dark"] .toolbar .alignment-buttons-container {
+    background: #000;
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
 .toolbar {
     display: flex;
     margin-bottom: 1px;
@@ -357,6 +380,10 @@
     border-top-right-radius: 4px;
     vertical-align: middle;
     overflow-x: auto;
+}
+
+html[data-theme="dark"] .toolbar {
+    background: #000;
 }
 
 .toolbar button {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Row, Col, Switch, Divider, Button } from "antd";
+import { Row, Col, Switch, Divider, Button, Flex, theme } from "antd";
 import { HistoryOutlined } from "@ant-design/icons";
 import Cluar from "../../common/Cluar"
 import PageConfiguration from "../PageConfiguration";
@@ -28,8 +28,10 @@ const AdminBar = ({
     window.location.href = "/reserved-area/";
   };
 
+  const { token } = theme.useToken();
+
   return (
-    <div className="admin-bar">
+    <Flex className="admin-bar" style={{ background: token.colorBgFlex }}>
       <Row className="admin-bar__row" justify="space-between">
         <Col>
           <Row align="middle" gutter={12}>
@@ -94,7 +96,7 @@ const AdminBar = ({
         onClose={() => setIsPageVersionsOpen(false)}
         pageData={pageData}
       />
-    </div>
+    </Flex>
   );
 };
 

@@ -36,6 +36,7 @@ import _auth from '@netuno/auth-client';
 
 import "./index.less"
 import { Link, useNavigate } from "react-router";
+import ThemeSwitch from '../ThemeSwitch';
 
 const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -254,6 +255,9 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
             width={240}
             items={items}
           />
+        </div>
+        <div className='theme-switch-wrapper'>
+          <ThemeSwitch />
         </div>
       </Layout.Sider>
     );

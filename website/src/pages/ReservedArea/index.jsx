@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Navigate, Outlet, useNavigate } from "react-router";
 
 import { Typography, Spin, Layout } from 'antd';
@@ -9,6 +9,7 @@ import _auth from '@netuno/auth-client';
 
 import './index.less';
 import SideMenu from '../../components/SideMenu';
+import ThemeSwitch from '../../components/ThemeSwitch';
 
 const { Title } = Typography;
 
@@ -30,9 +31,9 @@ function ReservedArea() {
     } else {
       content = (
         <Layout hasSider className='content-main'>
-          <SideMenu/>
+          <SideMenu />
           <Layout className='content-main__layout-content'>
-            <Outlet/>
+            <Outlet />
           </Layout>
         </Layout>
       );

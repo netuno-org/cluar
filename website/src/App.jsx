@@ -1,5 +1,5 @@
-import React from 'react';
-import { ConfigProvider, Layout } from 'antd';
+import React, { Children, useEffect } from 'react';
+import { ConfigProvider, Layout, theme } from 'antd';
 import {
   BrowserRouter,
   Routes,
@@ -8,7 +8,7 @@ import {
   useLocation,
 } from "react-router";
 
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { Store } from './redux/store';
 
 //import Analytics from './common/Analytics';
@@ -27,6 +27,7 @@ import Dictionary from "./pages/Manage/Dictionary";
 import Recovery from "./pages/Recovery";
 import Organization from "./pages/Manage/Organization";
 import Template from "./pages/Template";
+import { setTheme } from './redux/actions/theme';
 
 import "@animated-burgers/burger-slip/dist/styles.css?inline";
 import "sal.js/dist/sal.css?inline";
@@ -38,6 +39,49 @@ import "./styles/App.less";
 import Actions from './pages/Manage/Actions';
 
 const { Content } = Layout;
+
+const ThemedConfigProvider = ({ children }) => {
+  const dispatch = useDispatch();
+  const themeMode = useSelector((state) => state.theme?.mode || 'light');
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved && saved !== themeMode) {
+      dispatch(setTheme(saved));
+    }
+  }, [dispatch, themeMode]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", themeMode);
+  }, [themeMode]);
+
+  const antdAlgorithm = themeMode === "dark"
+    ? theme.darkAlgorithm
+    : theme.defaultAlgorithm;
+
+  return (
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#FF6E1A",
+          fontSize: 16,
+          borderRadius: 7,
+          colorBgLayout: themeMode === 'light' ? '#fff' : '#000',
+          colorBgFlex: themeMode === "light" ? "#f7f7f7" : "#000",
+        },
+        components: {
+          Layout: {
+            headerBg: themeMode === "light" ? "#fff" : "#141414",
+            footerBg: themeMode === "light" ? "#E6E6E6" : "#141414",
+          }
+        },
+        algorithm: antdAlgorithm,
+      }}
+    >
+      {children}
+    </ConfigProvider>
+  )
+}
 
 function App() {
   let urlLang = null;
@@ -128,21 +172,13 @@ function App() {
   };
 
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "#FF6E1A",
-          fontSize: 16,
-          borderRadius: 7,
-        },
-      }}
-    >
-      <Provider store={Store}>
+    <Provider store={Store}>
+      <ThemedConfigProvider>
         <BrowserRouter>
           <AppContent />
         </BrowserRouter>
-      </Provider>
-    </ConfigProvider>
+      </ThemedConfigProvider>
+    </Provider>
   );
 }
 
