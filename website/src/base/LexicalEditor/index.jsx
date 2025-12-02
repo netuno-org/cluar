@@ -230,14 +230,27 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
             const styles = [];
 
             const computedStyle = window.getComputedStyle(domNode);
-            const color = domNode.style.color || computedStyle.color;
+            let color = domNode.style.color || computedStyle.color;
+
             const backgroundColor = domNode.style.backgroundColor || computedStyle.backgroundColor;
             const fontFamilyRaw = domNode.style.fontFamily || computedStyle.fontFamily || '';
             const fontFamily = fontFamilyRaw.replace(/^['"]+|['"]+$/g, '');
             const fontSize = domNode.style.fontSize || computedStyle.fontSize;
             const textAlign = domNode.style.textAlign || computedStyle.textAlign;
 
+            if (color) {
+                const normalized = color.toLowerCase().replace(/\s+/g, '');
+                if (
+                    normalized === 'rgb(0,0,0)' ||
+                    normalized === 'black' ||
+                    normalized === '#000' ||
+                    normalized === '#000000'
+                ) {
+                    color = null; // Não aplique cor padrão
+                }
+            }
             if (color) styles.push(`color: ${color}`);
+
             if (backgroundColor) styles.push(`background-color: ${backgroundColor}`);
             if (fontFamily) styles.push(`font-family: ${fontFamily}`);
             if (fontSize) styles.push(`font-size: ${fontSize}`);
@@ -416,13 +429,48 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
         }
     };
 
+    // Remove cores "default" do HTML antes de converter para Lexical
+    function cleanHtmlDefaultColors(html) {
+        return html.replace(/(<[^>]+style\s*=\s*["'])([^"']*)["']/gi, (match, prefix, styleAttr) => {
+            // Remove regras de cor que sejam "padrão"
+            const cleanedStyle = styleAttr
+                .split(';')
+                .filter(rule => {
+                    const trimmed = rule.trim();
+                    if (!trimmed.startsWith('color:')) return true;
+
+                    // Normaliza a cor para comparação
+                    const colorValue = trimmed.substring(6).trim().toLowerCase();
+                    return !(
+                        colorValue === 'black' ||
+                        colorValue === '#000' ||
+                        colorValue === '#000000' ||
+                        colorValue === 'rgb(0, 0, 0)' ||
+                        colorValue === 'rgb(0,0,0)'
+                    );
+                })
+                .join(';')
+                .trim();
+
+            if (cleanedStyle) {
+                return `${prefix}${cleanedStyle}"`;
+            } else {
+                // Se não sobrou estilo, remove o atributo style inteiro
+                return match.replace(/\s+style\s*=\s*["'][^"']*["']/, '');
+            }
+        });
+    }
+
     // Nova função para aplicar HTML ao editor Lexical
     const applyHtmlToLexical = (html) => {
         if (!editorRef.current || !html) return;
 
         const editor = editorRef.current;
         const parser = new DOMParser();
-        const dom = parser.parseFromString(html, 'text/html');
+
+        // 👇 LIMPA as cores padrão ANTES de parsear o HTML
+        const cleanedHtml = cleanHtmlDefaultColors(html);
+        const dom = parser.parseFromString(cleanedHtml, 'text/html');
 
         editor.update(() => {
             const root = $getRoot();
@@ -443,8 +491,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
                 const classList = node.classList;
 
                 if (tag === 'DIV' && classList.contains('section') && classList.contains('group')) {
-                    //console.log("[applyHtmlToLexical] Detectado Grid Container no nível raiz:", node);
-
                     // Extrair informações das colunas
                     const columns = [];
                     Array.from(node.childNodes).forEach(child => {
@@ -452,7 +498,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
                             const childTag = child.nodeName.toUpperCase();
                             const childClassList = child.classList;
 
-                            // Detectar grid items
                             if (childTag === 'DIV' && childClassList.contains('col')) {
                                 let columnSpan = 'span_1_of_1';
                                 for (let className of childClassList) {
@@ -472,33 +517,26 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
                     for (let i = 0; i < itemsCount; i++) {
                         const columnClass = Array.isArray(columns) ? columns[i] : undefined;
                         const itemNode = $createGridItemNode(columnClass);
-                        container.append(
-                            itemNode.append($createParagraphNode()),
-                        );
+                        container.append(itemNode.append($createParagraphNode()));
                     }
 
-                    // Inserir o container no root
                     root.append(container);
 
-                    // Preencher com o conteúdo dos grid items
                     const gridItems = container.getChildren();
                     let itemIndex = 0;
                     Array.from(node.childNodes).forEach(child => {
-                        if (child.nodeType === Node.ELEMENT_NODE &&
+                        if (
+                            child.nodeType === Node.ELEMENT_NODE &&
                             child.nodeName.toUpperCase() === 'DIV' &&
                             child.classList.contains('col') &&
-                            itemIndex < gridItems.length) {
-
+                            itemIndex < gridItems.length
+                        ) {
                             const gridItem = gridItems[itemIndex];
                             gridItem.clear();
-
                             processGridItemContent(child, gridItem);
-
-                            // Se o item ficou vazio, adicionar parágrafo
                             if (gridItem.getChildrenSize() === 0) {
                                 gridItem.append($createParagraphNode());
                             }
-
                             itemIndex++;
                         }
                     });
@@ -508,7 +546,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
 
                 if (tag === 'P') {
                     lexicalNode = $createParagraphNode();
-
                     if (node.innerHTML === '<br>' || node.innerHTML === '<br/>' || node.innerHTML === '<br />') {
                         root.append(lexicalNode);
                         return;

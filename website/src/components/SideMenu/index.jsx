@@ -243,7 +243,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
                 </Link>
               </Row>
               <Row className='side-menu__user-info__content__user' justify={'center'}>
-                <Typography.Text color='#FFF' ellipsis >{loggedUserInfo.name}</Typography.Text>
+                <Typography.Text type='secondary' ellipsis >{loggedUserInfo.name}</Typography.Text>
               </Row>
             </Col>
           </Row>

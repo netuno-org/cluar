@@ -9,7 +9,6 @@ import _auth from '@netuno/auth-client';
 
 import './index.less';
 import SideMenu from '../../components/SideMenu';
-import ThemeSwitch from '../../components/ThemeSwitch';
 
 const { Title } = Typography;
 

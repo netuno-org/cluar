@@ -56,8 +56,10 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
   const [fontFamilyDropdownVisible, setFontFamilyDropdownVisible] = useState(false);
   const [currentFontFamily, setCurrentFontFamily] = useState(FONT_FAMILY_OPTIONS[0][0]);
   const [currentFontSize, setCurrentFontSize] = useState("40");
-  const [currentFontColor, setCurrentFontColor] = useState('#000000');
-  const [currentBgColor, setCurrentBgColor] = useState('#ffffff');
+
+  const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
+  const [currentFontColor, setCurrentFontColor] = useState(isDarkMode ? '#ffffff' : "#000000");
+  const [currentBgColor, setCurrentBgColor] = useState('');
   const [isLink, setIsLink] = useState(false);
 
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
@@ -107,8 +109,9 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
 
     // Font Color
     const fontColor = getStyleValue('color');
-    setCurrentFontColor(fontColor || "#000000");
-
+    if (fontColor) {
+      setCurrentFontColor(fontColor);
+    }
     // Background Color
     const bgColor = getStyleValue('background-color');
     if (bgColor) setCurrentBgColor(bgColor);
