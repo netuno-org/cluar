@@ -20,16 +20,16 @@ _form.createIfNotExists(
 	.set("export_xls", true)
 	.set("export_xml", true)
 	.set("firebase", "")
-	.set("name", "page_listing_action")
-	.set("parent_uid", "f51ed428-b975-4ea7-9033-34276ae59053")
+	.set("name", "page_slider_item_action")
+	.set("parent_uid", "03392c6c-e598-4423-a4e7-f0466197fac0")
 	.set("reorder", 0)
 	.set("report", false)
 	.set("show_id", true)
 	.set("title", "A\u00E7\u00E3o")
-	.set("uid", "78db6c3b-f817-4fdf-a807-6af84cd16266")
+	.set("uid", "f8fd8613-16c4-4e84-aa8d-8097e93ef333")
 )
 _form.createComponentIfNotExists(
-	"78db6c3b-f817-4fdf-a807-6af84cd16266",
+	"f8fd8613-16c4-4e84-aa8d-8097e93ef333",
 	_val.map()
 	.set("colspan", 0)
 	.set("description", "")
@@ -46,7 +46,7 @@ _form.createComponentIfNotExists(
 	.set("tdwidth", 0)
 	.set("title", "A\u00E7\u00E3o")
 	.set("type", "select")
-	.set("uid", "c4dd65b8-84a5-44ed-9eda-253e02c07ce2")
+	.set("uid", "7d13c9a3-305d-4102-b93e-27a5f9a8d976")
 	.set("unique", false)
 	.set("user_id", 0)
 	.set("whenedit", true)
@@ -60,7 +60,7 @@ _form.createComponentIfNotExists(
 	.set("y", 2)
 )
 _form.createComponentIfNotExists(
-	"78db6c3b-f817-4fdf-a807-6af84cd16266",
+	"f8fd8613-16c4-4e84-aa8d-8097e93ef333",
 	_val.map()
 	.set("colspan", 0)
 	.set("description", "")
@@ -70,14 +70,14 @@ _form.createComponentIfNotExists(
 	.set("mandatory", true)
 	.set("max", 0)
 	.set("min", 0)
-	.set("name", "page_listing_id")
-	.set("properties", "{\"COLUMN_SEPARATOR\":{\"default\":\" - \",\"type\":\"LINK_SEPARATOR\",\"value\":\" - \"},\"LINK\":{\"default\":\"\",\"type\":\"LINK\",\"value\":\"page_listing:type,title,language_id\"},\"MAX_COLUMN_LENGTH\":{\"default\":\"0\",\"type\":\"INTEGER\",\"value\":\"0\"},\"ONLY_ACTIVES\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"},\"SERVICE\":{\"default\":\"com/Select.netuno\",\"type\":\"STRING\",\"value\":\"com/Select.netuno\"}}")
+	.set("name", "page_slider_item_id")
+	.set("properties", "{\"COLUMN_SEPARATOR\":{\"default\":\" - \",\"type\":\"LINK_SEPARATOR\",\"value\":\" - \"},\"LINK\":{\"default\":\"\",\"type\":\"LINK\",\"value\":\"page_slider_item:title\"},\"MAX_COLUMN_LENGTH\":{\"default\":\"0\",\"type\":\"INTEGER\",\"value\":\"0\"},\"ONLY_ACTIVES\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"},\"SERVICE\":{\"default\":\"com/Select.netuno\",\"type\":\"STRING\",\"value\":\"com/Select.netuno\"}}")
 	.set("rowspan", 0)
 	.set("tdheight", 0)
 	.set("tdwidth", 0)
-	.set("title", "Listagem")
+	.set("title", "Slider")
 	.set("type", "select")
-	.set("uid", "d835eb9f-5217-4497-85d5-2d3a0b4f7758")
+	.set("uid", "2b9e010f-8c13-4323-8558-9bd743685abd")
 	.set("unique", false)
 	.set("user_id", 0)
 	.set("whenedit", true)
@@ -91,7 +91,7 @@ _form.createComponentIfNotExists(
 	.set("y", 1)
 )
 _form.createComponentIfNotExists(
-	"78db6c3b-f817-4fdf-a807-6af84cd16266",
+	"f8fd8613-16c4-4e84-aa8d-8097e93ef333",
 	_val.map()
 	.set("colspan", 0)
 	.set("description", "")
@@ -108,7 +108,7 @@ _form.createComponentIfNotExists(
 	.set("tdwidth", 0)
 	.set("title", "Ordem")
 	.set("type", "textnum")
-	.set("uid", "07016583-11f3-45ac-af7c-3ef7e04f3ab4")
+	.set("uid", "63253c3f-4b22-4caf-8171-db1c82401d0b")
 	.set("unique", false)
 	.set("user_id", 0)
 	.set("whenedit", true)
