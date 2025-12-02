@@ -6,6 +6,7 @@ const structures = _req.get("structures");
 const lastPageVersion = _db.queryFirst(`
   SELECT
     p.id,
+    p.language_id,
     pv.version
   FROM
     page_version pv
@@ -13,6 +14,8 @@ const lastPageVersion = _db.queryFirst(`
   WHERE p.uid = '${page}'
   ORDER BY pv.version DESC
 `);
+
+const languageId = lastPageVersion.getInt("language_id");
 
 if (lastPageVersion) {
   const imagesToPublish = {
@@ -37,6 +40,7 @@ if (lastPageVersion) {
     _val
       .map()
       .set("page_id", lastPageVersion.getInt("id"))
+      .set("language_id", languageId)
       .set("version", lastPageVersion.getInt("version") + 1)
       .set("status_id", draftStatus.getInt("id"))
       .set("created_at", _db.timestamp())
@@ -70,6 +74,7 @@ if (lastPageVersion) {
         .set("page_version_id", newPageVersion)
         .set("image_title", structure.getString("image_title"))
         .set("image_alt", structure.getString("image_alt"))
+        .set("language_id", languageId)
         .set("sorter", structure.getInt("sorter", 0));
 
       if (structure.getString("image")?.includes("base64")) {
@@ -115,6 +120,7 @@ if (lastPageVersion) {
         .set("page_version_id", newPageVersion)
         .set("image_title", structure.getString("image_title"))
         .set("image_alt", structure.getString("image_alt"))
+        .set("language_id", languageId)
         .set("sorter", structure.getString("sorter"));
 
       if (structure.getString("image")?.includes("base64")) {
@@ -162,6 +168,7 @@ if (lastPageVersion) {
         .set("image_title", structure.getString("image_title"))
         .set("image_alt", structure.getString("image_alt"))
         .set("type", structure.getString("type"))
+        .set("language_id", languageId)
         .set("content", structure.getString("content"));
 
       // if (structure.getString("type")) {
@@ -263,6 +270,7 @@ if (lastPageVersion) {
         .set("title", structure.getString("title"))
         .set("sorter", structure.getInt("sorter", 0))
         .set("type", structure.getString("type"))
+        .set("language_id", languageId)
         .set("content", structure.getString("content"));
 
       // if (structure.getString("type")) {
