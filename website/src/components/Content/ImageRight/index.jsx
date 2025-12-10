@@ -14,7 +14,7 @@ const ImageRight = ({ section, type, title, content, image_title, image_alt, ima
             <Row>
                 <Col md={16}>
                     <div className="text">
-                        <h1 dangerouslySetInnerHTML={{ __html: Cluar.plainTitle(title) }} />
+                        <h1 dangerouslySetInnerHTML={{ __html: title }} />
                         <div className="text__title-border"></div>
                         <div dangerouslySetInnerHTML={{ __html: content }}></div>
                     </div>

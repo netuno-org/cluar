@@ -10,7 +10,7 @@ const TextContent = ({ section, type, title, content, actions }) => {
     return (
         <div className="content-text">
             <div className="text">
-                <h1 dangerouslySetInnerHTML={{ __html: Cluar.plainTitle(title) }} />
+                <h1 dangerouslySetInnerHTML={{ __html: title }} />
                 {title ? <div className="text__title-border"></div> : null}
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>

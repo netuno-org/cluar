@@ -61,6 +61,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
   const [currentFontColor, setCurrentFontColor] = useState(isDarkMode ? '#ffffff' : "#000000");
   const [currentBgColor, setCurrentBgColor] = useState('');
   const [isLink, setIsLink] = useState(false);
+  const [currentTextAlign, setCurrentTextAlign] = useState("left");
 
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [isColumnsModalOpen, setIsColumnsModalOpen] = useState(false);
@@ -115,6 +116,18 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
     // Background Color
     const bgColor = getStyleValue('background-color');
     if (bgColor) setCurrentBgColor(bgColor);
+
+    const anchorNode = selection.anchor.getNode();
+    const element = anchorNode.getParent();
+
+    if (element) {
+      const textAlign = element.getStyle('text-align');
+      if (textAlign) {
+        setCurrentTextAlign(textAlign);
+      } else {
+        setCurrentTextAlign("left");
+      }
+    }
 
     // Verifica se o nó ou seu pai é link
     const node = getSelectedNode(selection);
@@ -524,7 +537,42 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
         createPortal(<FloatingEditor editor={editor} />, document.body)}
       <div className="divider" />
 
-      <button
+      <div className="alignment-buttons-container" style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'nowrap' }}>
+        <button
+          onClick={() => {
+            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left');
+          }}
+          className="toolbar-item spaced"
+          aria-label="Left Align"
+          type="button"
+        >
+          <AlignLeftOutlined />
+        </button>
+
+        <button
+          onClick={() => {
+            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center');
+          }}
+          className="toolbar-item spaced"
+          aria-label="Center Align"
+          type="button"
+        >
+          <AlignCenterOutlined />
+        </button>
+
+        <button
+          onClick={() => {
+            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right');
+          }}
+          className="toolbar-item spaced"
+          aria-label="Right Align"
+          type="button"
+        >
+          <AlignRightOutlined />
+        </button>
+      </div>
+
+      {/* <button
         onClick={onToggleHtmlMode}
         className={`toolbar-item ${isHtmlMode ? "active" : ""}`}
         title="Modo HTML"
@@ -540,7 +588,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
         }}
       >
         HTML
-      </button>
+      </button> */}
 
       <InsertImageModal
         visible={isImageModalOpen}

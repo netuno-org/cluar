@@ -18,7 +18,7 @@ const ImageTop = ({ section, type, title, content, image_title, image_alt, image
                 />
             </div>
             <div className="text">
-                <h1 dangerouslySetInnerHTML={{ __html: Cluar.plainTitle(title) }} />
+                <h1 dangerouslySetInnerHTML={{ __html: title }} />
                 <div dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
             {config.action && (

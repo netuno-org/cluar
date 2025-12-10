@@ -24,7 +24,7 @@ const ImageLeft = ({ section, type, title, content, image_title, image_alt, imag
                 </Col>
                 <Col md={16}>
                     <div className="text">
-                        <h1 dangerouslySetInnerHTML={{ __html: Cluar.plainTitle(title) }} />
+                        <h1 dangerouslySetInnerHTML={{ __html: title }} />
                         <div dangerouslySetInnerHTML={{ __html: content }}></div>
                     </div>
                 </Col>
