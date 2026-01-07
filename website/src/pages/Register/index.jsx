@@ -52,7 +52,7 @@ export default function Register(props) {
             window.scrollTo(0, 0);
         }
         window.scrollTo(0, 0);
-        if (altcha && altcha.current) {
+        if (Cluar.authAltcha() && altcha && altcha.current) {
             function altchaVerified(ev) {
                 if (ev.detail.state === "verified") {
                     setAltchaPayload(ev.detail.payload);
@@ -78,7 +78,7 @@ export default function Register(props) {
                 username,
                 password,
                 email,
-                altcha: altchaPayload
+                ...(Cluar.authAltcha() && { altcha: altchaPayload })
             },
             success: (response) => {
                 if (response.json.result) {
@@ -215,15 +215,17 @@ export default function Register(props) {
                                 >
                                     <Input.Password disabled={submitting} maxLength={25} />
                                 </Form.Item>
-                                <Form.Item>
-                                    <altcha-widget
-                                        ref={altcha}
-                                        challengeurl={_service.url('/_altcha')}
-                                        delay={1}
-                                        hidelogo={true}
-                                        hidefooter={true}
-                                    ></altcha-widget>
-                                </Form.Item>
+                                {Cluar.authAltcha() &&
+                                    <Form.Item>
+                                        <altcha-widget
+                                            ref={altcha}
+                                            challengeurl={_service.url('/_altcha')}
+                                            delay={1}
+                                            hidelogo={true}
+                                            hidefooter={true}
+                                        ></altcha-widget>
+                                    </Form.Item>
+                                }
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit" loading={submitting} className='btn-register'>
                                         {Cluar.plainDictionary('register-form-register')}
