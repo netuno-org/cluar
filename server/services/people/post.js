@@ -4,6 +4,7 @@ let email = _req.getString("email")
 const password = _req.getString("password")
 const code = _req.getString("code")
 const provider = _req.getString("provider")
+const altchaPayload = _req.getString("altcha");
 
 const noPass = code != '' && provider != '' && password == '' && email == ''
 
@@ -11,7 +12,7 @@ let avatar = ''
 
 if (noPass) {
   const dbProviderUser = _user.providerDataByUid(code)
-  if (dbProviderUser == null || dbProviderUser.getString('provider_code') != provider) {
+  if (dbProviderUser == null || dbProviderUser.getString('provider_code') !== provider) {
     _header.status(409)
     _out.json(
       _val.map()
@@ -27,6 +28,13 @@ if (noPass) {
       avatar = responseAvatar.file()
       avatar.rename("avatar.png")
     }
+  } else if (!_altcha.verifySolution(altchaPayload)) {
+    _header.status(409)
+    _out.json(
+      _val.map()
+        .set("error", `invalid-altcha-payload`)
+    )
+    _exec.stop()
   }
 }
 
@@ -45,13 +53,13 @@ if (userEmailExists || usernameExists) {
 const dbGroup = _group.firstByCode("people")
 
 const userData = _val.map()
-      .set("name", name)
-      .set("user", username)
-      .set("pass", password)
-      .set("no_pass", noPass)
-      .set("mail", email)
-      .set("active", true)
-      .set("group_id", dbGroup.getInt("id"))
+  .set("name", name)
+  .set("user", username)
+  .set("pass", password)
+  .set("no_pass", noPass)
+  .set("mail", email)
+  .set("active", true)
+  .set("group_id", dbGroup.getInt("id"))
 
 const user_id = _user.create(userData)
 
