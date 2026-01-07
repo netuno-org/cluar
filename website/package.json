@@ -27,6 +27,7 @@
     "@monaco-editor/react": "^4.7.0",
     "@netuno/auth-client": "^1.1.2",
     "@netuno/service-client": "^1.2.1",
+    "altcha": "^2.3.0",
     "antd": "^6.1.4",
     "antd-password-input-strength": "^2.0.1",
     "classnames": "^2.5.1",
