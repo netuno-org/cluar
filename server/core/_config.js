@@ -27,16 +27,17 @@ if (_app.configReloaded()) {
         .set(
             "auth",
             _val.map()
+                .set("altcha", _auth.altchaEnabled())
                 .set(
                     "providers",
                     _val.map()
-                        .set("facebook", _auth.isProviderEnabled("facebook"))
-                        .set("google", _auth.isProviderEnabled("google"))
-                        .set("github", _auth.isProviderEnabled("github"))
-                        .set("discord", _auth.isProviderEnabled("discord"))
+                        .set("facebook", _auth.providerEnabled("facebook"))
+                        .set("google", _auth.providerEnabled("google"))
+                        .set("github", _auth.providerEnabled("github"))
+                        .set("discord", _auth.providerEnabled("discord"))
                 )
         )
-    let websitePath =""
+    let websitePath = ""
     if (_env.is("dev")) {
         websitePath = "website/public"
     } else {
