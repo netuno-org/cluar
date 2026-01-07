@@ -27,6 +27,11 @@ export default class Cluar {
     return config?.auth.providers;
   }
 
+  static authAltcha() {
+    const { config } = window.cluar;
+    return !!config.auth.altcha;
+  }
+
   static custom() {
     return custom;
   }
