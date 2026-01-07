@@ -56,7 +56,7 @@ function Login({ loggedUserInfoAction }) {
       window.scrollTo(0, 0);
     }
     window.scrollTo(0, 0);
-    if (altcha && altcha.current) {
+    if (Cluar.authAltcha() && altcha && altcha.current) {
       function altchaVerified(ev) {
         if (ev.detail.state === "verified") {
           setAltchaPayload(ev.detail.payload);
@@ -84,7 +84,9 @@ function Login({ loggedUserInfoAction }) {
       password,
       data: (data) => {
         // data.myparameter = 'myvalue';
-        data.altcha = altchaPayload;
+        if (Cluar.authAltcha()) {
+          data.altcha = altchaPayload;
+        }
         return data;
       },
       success: (data) => {
@@ -180,15 +182,17 @@ function Login({ loggedUserInfoAction }) {
                     <Checkbox>{Cluar.plainDictionary('login-form-remember')}</Checkbox>
                   </Form.Item>
 
-                  <Form.Item>
-                    <altcha-widget
-                      ref={altcha}
-                      challengeurl={_service.url('/_altcha')}
-                      delay={1}
-                      hidelogo={true}
-                      hidefooter={true}
-                    ></altcha-widget>
-                  </Form.Item>
+                  {Cluar.authAltcha() &&
+                    <Form.Item>
+                      <altcha-widget
+                        ref={altcha}
+                        challengeurl={_service.url('/_altcha')}
+                        delay={1}
+                        hidelogo={true}
+                        hidefooter={true}
+                      ></altcha-widget>
+                    </Form.Item>
+                  }
 
                   <Form.Item>
                     <Button loading={submitting} type="primary" className="login-btn" htmlType="submit">
