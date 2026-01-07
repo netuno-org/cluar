@@ -28,7 +28,7 @@ if (noPass) {
       avatar = responseAvatar.file()
       avatar.rename("avatar.png")
     }
-  } else if (!_altcha.verifySolution(altchaPayload)) {
+  } else if (_auth.altchaEnabled() && !_altcha.verifySolution(altchaPayload)) {
     _header.status(409)
     _out.json(
       _val.map()
