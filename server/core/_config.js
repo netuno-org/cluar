@@ -35,7 +35,7 @@ if (_app.isFolder(websiteBuildPath)) {
             .set(
                 "auth",
                 _val.map()
-                    .set("altchax", _auth.altchaEnabled())
+                    .set("altcha", _auth.altchaEnabled())
                     .set(
                         "providers",
                         _val.map()
