@@ -21,27 +21,33 @@ if (_url.download.isDownloadable()) {
     }
 }
 
-if (_app.configReloaded()) {
-    const websiteConfig = _val.map()
-        .set("api", _app.settings.getValues("api", _val.map()))
-        .set(
-            "auth",
-            _val.map()
-                .set("altcha", _auth.altchaEnabled())
-                .set(
-                    "providers",
-                    _val.map()
-                        .set("facebook", _auth.providerEnabled("facebook"))
-                        .set("google", _auth.providerEnabled("google"))
-                        .set("github", _auth.providerEnabled("github"))
-                        .set("discord", _auth.providerEnabled("discord"))
-                )
-        )
-    let websitePath = ""
-    if (_env.is("dev")) {
-        websitePath = "website/public"
-    } else {
-        websitePath = "website/dist"
+let websiteBuildPath = ""
+if (_env.is("dev")) {
+    websiteBuildPath = "website/public"
+} else {
+    websiteBuildPath = "website/dist"
+}
+if (_app.isFolder(websiteBuildPath)) {
+    const websiteConfigFile = _app.file(`${websiteBuildPath}/reauthkit.js`)
+    if (_app.configReloaded() || !websiteConfigFile.exists()) {
+        const websiteConfig = _val.map()
+            .set("api", _app.settings.getValues("api", _val.map()))
+            .set(
+                "auth",
+                _val.map()
+                    .set("altchax", _auth.altchaEnabled())
+                    .set(
+                        "providers",
+                        _val.map()
+                            .set("facebook", _auth.providerEnabled("facebook"))
+                            .set("google", _auth.providerEnabled("google"))
+                            .set("microsoft", _auth.providerEnabled("microsoft"))
+                            .set("github", _auth.providerEnabled("github"))
+                            .set("discord", _auth.providerEnabled("discord"))
+                    )
+            )
+        websiteConfigFile.output().printAndClose(`window.reauthkit = { config: ${websiteConfig.toJSON(4)} };`)
     }
-    _app.file(`${websitePath}/reauthkit.js`).output().printAndClose(`window.reauthkit = { config: ${websiteConfig.toJSON(4)} };`)
+} else {
+    _log.fatal(`Cannot create the website config, because the ${websiteBuildPath} folder does not exist.`)
 }
