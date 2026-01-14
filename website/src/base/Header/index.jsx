@@ -153,7 +153,7 @@ function BaseHeader() {
             to={`/${Cluar.currentLanguage().locale}/`}
             onClick={() => handleMenuClick("/")}
           >
-            <img alt="logo" src="/images/logo.png" />
+            <img alt="logo" src={Cluar.configuration("logo") !== "logo" ? `${Cluar.configuration("logo")}` : "/images/logo.png"} />
           </Link>
         </div>
         <div

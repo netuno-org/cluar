@@ -33,12 +33,26 @@ const query = _db.form('configuration')
     'configuration_parameter',
     where.get('parameter')
 )
-.link(
-    'language',
-    where.get('language')
+.leftJoin(
+    _db.manyToOne(
+        'language', 
+        'language_id',  
+    )
+)
+.join(
+    _db.manyToOne(
+        'configuration_parameter', 
+        'parameter_id',  
+    ).join(
+        _db.manyToOne(
+            'configuration_parameter_type',
+            'configuration_parameter_type_id',
+        )
+    )
 )
 .get('configuration.id', 'configuration_id')
 .get('configuration."value"')
+.get('configuration.value_img')
 .get('configuration.uid', 'configuration_uid')
 .get('configuration.active', 'configuration_active')
 .get('language.id', 'language_id')
@@ -47,6 +61,8 @@ const query = _db.form('configuration')
 .get('configuration_parameter.id', 'parameter_id')
 .get('configuration_parameter.code', 'parameter_code')
 .get('configuration_parameter.description', 'parameter_description')
+.get("configuration_parameter_type.code", "type_code")
+.get("configuration_parameter_type.name", "type_name")
 .group(
     'configuration.id',
     'language.id',
@@ -63,9 +79,14 @@ for (const dbItem of dbPage.getList('items')) {
             .set('uid', dbItem.getString('configuration_uid'))
             .set('active', dbItem.getBoolean('configuration_active'))
             .set('value', dbItem.getString('value'))
+            .set('value_img', dbItem.getString('value_img'))
             .set('parameter', _val.map()
                 .set('description', dbItem.getString('parameter_description'))
                 .set('code', dbItem.getString('parameter_code'))
+            )
+            .set('parameter_type', _val.map()
+                .set("code", dbItem.getString('type_code'))
+                .set("name", dbItem.getString('type_name'))
             )
             .set('language', _val.map()
                 .set('description', dbItem.getString('language_description'))

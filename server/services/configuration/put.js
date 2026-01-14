@@ -1,3 +1,5 @@
+// _core : cluar/main
+
 const uid = _req.getString("uid");
 const value = _req.getString("value");
 const parameterCode = _req.getString("parameter_code");
@@ -38,21 +40,26 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 
-if (!dbLanguage) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `language not found with code: ${languageCode}`)
-            .set('error_code', `language-not-found`)
-    );
-    _exec.stop();
-}
+// if (!dbLanguage) {
+//    _header.status(404);
+//    _out.json(
+//        _val.map()
+//            .set('result', false)
+//            .set('error', `language not found with code: ${languageCode}`)
+//            .set('error_code', `language-not-found`)
+//    );
+//   _exec.stop();
+//}
 
 const data = _val.map()
-    .set('value', value)
     .set('parameter_id', dbParameter.getInt("id"))
-    .set('language_id', dbLanguage.getInt("id"))
+    .set('language_id', dbLanguage?.getInt("id"))
+
+if (value?.includes("base64")) {
+    data.set("value_img", _req.getFile("value"))
+} else {
+    data.set('value', value)
+}
 
 _db.update(
     'configuration', 
@@ -60,6 +67,17 @@ _db.update(
     data
 );
 
+if (value?.includes("base64")) {
+    const dbNewConfiguration = _db.get("configuration", dbConfiguration.getInt("id"))
+    const fileName = dbNewConfiguration.getString("value_img")
+
+    _db.update(
+        'configuration', 
+        dbConfiguration.getInt("id"),
+        _val.map().set(`value`, `/cluar/images/configuration/${fileName}`)
+    );
+}
+    
 _out.json(
     _val.map()
         .set("result", true)

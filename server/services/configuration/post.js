@@ -1,4 +1,5 @@
 //_core: db/insertAndReturn
+// _core : cluar/main
 
 const value = _req.getString("value");
 const parameterCode = _req.getString("parameter_code");
@@ -24,23 +25,39 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 
-if (!dbLanguage) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `language not found with code: ${languageCode}`)
-            .set('error_code', `language-not-found`)
-    );
-    _exec.stop();
-}
+// if (!dbLanguage) {
+//    _header.status(404);
+//    _out.json(
+//        _val.map()
+//            .set('result', false)
+//            .set('error', `language not found with code: ${languageCode}`)
+//            .set('error_code', `language-not-found`)
+//    );
+//    _exec.stop();
+//}
 
 const data = _val.map()
-    .set('value', value)
     .set('parameter_id', dbParameter.getInt("id"))
-    .set('language_id', dbLanguage.getInt("id"))
+    .set('language_id', dbLanguage?.getInt("id"))
+
+if (value?.includes("base64")) {
+    data.set("value_img", _req.getFile("value"))
+} else {
+    data.set('value', value)
+}
 
 const registedConfig = insertAndReturn('configuration', data);
+
+if (value?.includes("base64")) {
+    const dbNewConfiguration = _db.get("configuration", registedConfig.getInt("id"))
+    const fileName = dbNewConfiguration.getString("value_img")
+
+    _db.update(
+        'configuration', 
+        registedConfig.getInt("id"),
+        _val.map().set(`value`, `/cluar/images/configuration/${fileName}`)
+    );
+}
 
 _header.status(201);
 _out.json(
@@ -55,8 +72,8 @@ _out.json(
                     .set('code', dbParameter.getString("code"))
                 )
                 .set('language', _val.map()
-                    .set('description', dbLanguage.getString("description"))
-                    .set('code', dbLanguage.getString("code"))
+                    .set('description', dbLanguage?.getString("description"))
+                    .set('code', dbLanguage?.getString("code"))
                 )
             )
 )

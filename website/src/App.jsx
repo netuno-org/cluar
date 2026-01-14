@@ -63,11 +63,11 @@ const ThemedConfigProvider = ({ children }) => {
     <ConfigProvider
       theme={{
         token: {
-          colorPrimary: "#FF6E1A",
-          fontSize: 16,
+          colorPrimary: Cluar.configuration("primary-color") || "#FF6E1A",
+          fontSize: Cluar.configuration("text-font-base") !== "text-font-base" ? Number(Cluar.configuration("text-font-base")) : 16,
           borderRadius: 7,
-          colorBgLayout: themeMode === 'light' ? '#fff' : '#000',
-          colorBgFlex: themeMode === "light" ? "#f7f7f7" : "#000",
+          colorBgLayout: themeMode === 'light' ? Cluar.configuration("background-color-light") || '#fff' : Cluar.configuration("background-color-dark") || '#000',
+          colorBgFlex: themeMode === "light" ? Cluar.configuration("background-color-light") || '#fff' : Cluar.configuration("background-color-dark") || '#000',
         },
         components: {
           Layout: {

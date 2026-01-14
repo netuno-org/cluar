@@ -1,7 +1,8 @@
 import { 
     Button,
     notification,
-    Table
+    Table,
+    Image
  } from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
@@ -119,12 +120,32 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             render:(val) => val.description
         },
         {
+            title: Cluar.plainDictionary('configuration-table-parameter-type'),
+            dataIndex: 'parameter_type',
+            key: 'parameter_type_name',
+            onHeaderCell: () => ({
+                "data-column-key": "parameter_type_name",
+            }),
+            render:(val) => val.name
+        },
+        {
             title: Cluar.plainDictionary('configuration-table-value'),
             dataIndex: 'value',
             key: 'value',
             onHeaderCell: () => ({
                 "data-column-key": "value",
             }),
+        },
+        {
+            title: Cluar.plainDictionary('configuration-table-value-img'),
+            dataIndex: 'value_img',
+            key: 'value_img',
+            onHeaderCell: () => ({
+                "data-column-key": "value_img",
+            }),
+            render: (val) => val ? (
+                <Image src={`/cluar/images/configuration/${val}`} width="120px" />
+            ) : null
         },
         {
             title: Cluar.plainDictionary('configuration-table-actions'),

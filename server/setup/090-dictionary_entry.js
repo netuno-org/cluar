@@ -2597,4 +2597,20 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("code", "members-form-validation-hierarchy-breakdown")
       .set("description", "Formul\u00E1rio de Membros - Valida\u00E7\u00E3o - Quebra de Hierarquia")
   );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ce58038a-80b2-42b3-b90c-d4387790ce0e")
+      .set("code", "configuration-table-parameter-type")
+      .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - Coluna de tipo")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary_entry",
+    _val.init()
+      .set("uid", "ef709b5f-e9b8-4bdd-809c-7dad02bec511")
+      .set("code", "configuration-table-value-img")
+      .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - Coluna de imagem")
+  );
 }

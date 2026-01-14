@@ -6,7 +6,10 @@ import {
     Modal,
     notification,
     Row,
-    Select
+    Select,
+    ColorPicker,
+    Switch,
+    Upload
 } from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import _service from "@netuno/service-client";
@@ -25,11 +28,26 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     const editeMode = configurationData ? true : false;
     const [formRef] = Form.useForm();
     const [languages, setLanguages] = useState([]);
+    const [fileList, setFileList] = useState([]);
     const [parameters, setParameters] = useState([]);
+    const [hexValue, setHexValue] = useState('');
     const [loading, setLoading] = useState({
         save: false,
         language: false,
         parameter: false
+    });
+    const selectedParameterCode = Form.useWatch('parameter_code', formRef);
+
+    const handleChangeColor = (color) => {
+        const newHex = color.toHexString();
+        setHexValue(newHex);
+    };
+
+    const getBase64 = (file) => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
     });
 
     const onLoadLanguages = () => {
@@ -75,12 +93,30 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
         setIsModalOpen(true);
     }
 
-    const onFinish = (values) => {
+    const onFinish = async (values) => {
+        const code = selectedParameterCode?.value || selectedParameterCode;
+        const parameter = parameters.find(item => item.code === code);
+        const type = parameter?.type;
+
         const data = {
             ...values,
-            parameter_code:values.parameter_code.value,
-            language_code:values.language_code.value
+            parameter_code: values?.parameter_code.value,
+            language_code: values?.language_code?.value
         };
+
+        if (type === "color") {
+            data.value = hexValue
+        } else if (type === "boolean") {
+            data.value = values?.value?.toString()
+        } else if (type === "image") {
+            const file = values.value?.file?.originFileObj || values.value?.file;
+            if (file) {
+                data.value = await getBase64(file);
+            } else if (typeof values.value === 'string') {
+                data.value = values.value;
+            }
+        }
+
         if (editeMode) {
             setLoading({ ...loading, save: true });
             _service({
@@ -133,6 +169,43 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
         }
     }
 
+    const InputValue = () => {
+        const code = selectedParameterCode?.value || selectedParameterCode;
+        const parameter = parameters.find(item => item.code === code);
+        const type = parameter?.type;
+
+        if (type === "color") {
+            return <ColorPicker showText onChange={handleChangeColor} />;
+        } else if (type === "boolean") {
+            return <Switch defaultChecked={configurationData?.value === "true"} />;
+        } else if (type === "image") {
+            return (
+                <Upload 
+                    listType="picture-card"
+                    maxCount={1}
+                    fileList={fileList}
+                    beforeUpload={() => false}
+                    accept=".png,.jpg,.jpeg"
+                    onChange={({ fileList: newFileList }) => setFileList(newFileList)}
+                    onPreview={async (file) => {
+                        let src = file.url;
+                        if (!src) {
+                            src = await getBase64(file.originFileObj);
+                        }
+                        const image = new Image();
+                        image.src = src;
+                        const imgWindow = window.open(src);
+                        imgWindow?.document.write(image.outerHTML);
+                    }}
+                >
+                    {fileList.length < 1 && <div>+ Upload</div>}
+                </Upload>
+            );
+        } else {
+            return <Input />;
+        }
+    };
+
     useImperativeHandle(ref, () => {
         return {
             onOpenModal
@@ -141,17 +214,40 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
 
     useEffect(() => {
         if (editeMode && isModalOpen) {
+            const configurationDataFormatted = { ...configurationData };
+    
+            if (configurationData.parameter_type?.code === "boolean") {
+                configurationDataFormatted.value = configurationData?.value === "true";
+            }
+
+            console.log("dataconfig", configurationData)
+    
+            if (configurationData.parameter_type?.code === "image" && configurationData.value_img) {
+                const imageUrl = `/cluar/images/configuration/${configurationData.value_img}`;
+                setFileList([
+                    {
+                        uid: '-1',
+                        name: configurationData.value_img,
+                        status: 'done',
+                        url: imageUrl,
+                    },
+                ]);
+                configurationDataFormatted.value = imageUrl;
+            } else {
+                setFileList([]);
+            }
+    
             formRef.setFieldsValue({
-                ...configurationData,
+                ...configurationDataFormatted,
                 parameter_code: {
                     value: configurationData.parameter.code,
                     label: configurationData.parameter.description
                 },
                 language_code: {
-                    value: configurationData.language.code,
-                    label: configurationData.language.description
+                    value: configurationData.language?.code,
+                    label: configurationData.language?.description
                 }
-            })
+            });
         }
     }, [isModalOpen]);
 
@@ -214,7 +310,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                         <Form.Item
                             label={Cluar.plainDictionary('configuration-form-language_code')}
                             name={"language_code"}
-                            rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
+                            // rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
                         >
                             <Select
                                 loading={loading.language}
@@ -232,7 +328,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                             name={"value"}
                             rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
                         >
-                            <Input />
+                            {InputValue()}
                         </Form.Item>
                     </Col>
                 </Row>

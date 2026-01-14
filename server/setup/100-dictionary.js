@@ -5846,4 +5846,40 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("entry_id", "c8baa7ee-9475-4c80-9c84-d60b26522ffe")
       .set("value", "<p>Editar Membro</p>")
   );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "f0cda7f3-0319-424c-b75e-b05ce2ea2f30")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "ce58038a-80b2-42b3-b90c-d4387790ce0e")
+      .set("value", "<p>Tipo</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "79306620-cba0-469f-90bb-8c3dbee73b4f")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "ce58038a-80b2-42b3-b90c-d4387790ce0e")
+      .set("value", "<p>Type</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "1856910f-bb79-4ddd-9537-9c80a6095f31")
+      .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+      .set("entry_id", "ef709b5f-e9b8-4bdd-809c-7dad02bec511")
+      .set("value", "<p>Imagem</p>")
+  );
+
+  _db.insertIfNotExists(
+    "dictionary",
+    _val.init()
+      .set("uid", "d33c5c20-a80d-4fe1-8697-5808d8ebbebe")
+      .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+      .set("entry_id", "ef709b5f-e9b8-4bdd-809c-7dad02bec511")
+      .set("value", "<p>Image</p>")
+  );
 }

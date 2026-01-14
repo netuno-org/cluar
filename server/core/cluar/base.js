@@ -18,6 +18,7 @@ cluar.base.configuration = () => {
         SELECT
             language.code "language",
             configuration_parameter.code "code",
+            configuration.value_img,
             configuration.${_db.escape('value')}
         FROM language
             INNER JOIN configuration ON language.id = configuration.language_id
@@ -31,12 +32,35 @@ cluar.base.configuration = () => {
     if (!configuration.has(dbParameter.getString("language"))) {
       configuration.set(dbParameter.getString("language"), _val.map())
     }
-    configuration.getValues(dbParameter.getString("language"))
+
+    const imageName = dbParameter.getString("value_img")
+
+    if (imageName) {
+      const folder = _app.folder(`${cluar.base()}/cluar/images/configuration`)
+      if (!folder.exists()) {
+        folder.mkdirs()
+      }
+      const websiteFile = _app.file(`${folder.path()}/${imageName}`)
+      const databaseFile = _storage.database(`configuration`, "value_img", imageName).file()
+      if (!websiteFile.exists()
+          || databaseFile.available() != websiteFile.available()
+          || databaseFile.lastModified() > websiteFile.lastModified()) {
+        _storage.database(`configuration`, "value_img", imageName)
+          .file()
+          .copy(`${folder.path()}/${imageName}`, true)
+      }
+
+      configuration.getValues(dbParameter.getString("language"))
+      .set(dbParameter.getString("code"), `/cluar/images/configuration/${imageName}`)
+    } else {
+      configuration.getValues(dbParameter.getString("language"))
       .set(dbParameter.getString("code"), dbParameter.getString("value"))
+    }  
   }
   const dbConfigurationWithoutLanguages = _db.query(`
         SELECT
             configuration_parameter.code "code",
+            configuration.value_img,
             configuration.${_db.escape('value')}
         FROM configuration
             INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
@@ -49,8 +73,30 @@ cluar.base.configuration = () => {
     if (!configuration.has("GENERIC")) {
       configuration.set("GENERIC", _val.map())
     }
-    configuration.getValues("GENERIC")
+
+    const imageName = dbParameter.getString("value_img")
+
+    if (imageName) {
+      const folder = _app.folder(`${cluar.base()}/cluar/images/configuration`)
+      if (!folder.exists()) {
+        folder.mkdirs()
+      }
+      const websiteFile = _app.file(`${folder.path()}/${imageName}`)
+      const databaseFile = _storage.database(`configuration`, "value_img", imageName).file()
+      if (!websiteFile.exists()
+          || databaseFile.available() != websiteFile.available()
+          || databaseFile.lastModified() > websiteFile.lastModified()) {
+        _storage.database(`configuration`, "value_img", imageName)
+          .file()
+          .copy(`${folder.path()}/${imageName}`, true)
+      }
+
+      configuration.getValues("GENERIC")
+      .set(dbParameter.getString("code"), `/cluar/images/configuration/${imageName}`)
+    } else {
+      configuration.getValues("GENERIC")
       .set(dbParameter.getString("code"), dbParameter.getString("value"))
+    } 
   }
   _config.set("cluar:base:configuration", configuration)
   return configuration;

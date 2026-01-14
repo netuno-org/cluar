@@ -20,7 +20,6 @@
     "required":[
         "uid",
         "value",
-        "parameter_code",
-        "language_code"
+        "parameter_code"
     ]
 }
