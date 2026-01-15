@@ -12,7 +12,7 @@ function Item({ section, type, image, image_title, image_alt, title, content, li
   return (
     <Col className={`listing__item__${type}`} xs={12} lg={12}>
       <a href={link} alt={title}>
-        <span>{title}</span>
+        <span dangerouslySetInnerHTML={{ __html: title }} />
         <img src={imageSrc} alt={image_alt} title={image_title} />
         <div
           className="listing__item__bgimage"

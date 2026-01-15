@@ -16,6 +16,8 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 import { HolderOutlined, CloseOutlined } from "@ant-design/icons";
+import LexicalEditor from "../../../LexicalEditor";
+import Cluar from "../../../../common/Cluar";
 import ImageSectionEditor from "../../ImageSectionEditor";
 
 import "./index.less";
@@ -44,7 +46,7 @@ const SortableItem = ({
           items={[
             {
               key: itemIndex,
-              label: item?.title,
+              label: Cluar.plainHTML(item?.title),
               extra: (
                 <HolderOutlined
                   ref={setNodeRef}
@@ -56,22 +58,33 @@ const SortableItem = ({
               ),
               children: (
                 <div>
-                  <Form.Item
-                    label="Título"
-                    name={["itemsByUid", itemIndex, "title"]}
-                  >
+                  <Form.Item label="Título" style={{ marginBottom: 8 }}>
+                    <LexicalEditor
+                      key={`${item.uid}-title`}
+                      initialHtml={item?.title}
+                      onChange={(html) => onChangeItem(item.uid, "title", html)}
+                      mode="simple"
+                    />
+                  </Form.Item>
+
+                  <Form.Item name={["itemsByUid", itemIndex, "title"]} hidden>
                     <Input
                       onChange={(e) =>
                         onChangeItem(item.uid, "title", e.target.value)
                       }
                     />
                   </Form.Item>
-                  <Form.Item
-                    label="Conteúdo"
-                    name={["itemsByUid", itemIndex, "content"]}
-                  >
-                    <Input.TextArea
-                      rows={3}
+
+                  <Form.Item label="Conteúdo" style={{ marginBottom: 8 }}>
+                    <LexicalEditor
+                      key={`${item.uid}-content`}
+                      initialHtml={item?.content}
+                      onChange={(html) => onChangeItem(item.uid, "content", html)}
+                    />
+                  </Form.Item>
+
+                  <Form.Item name={["itemsByUid", itemIndex, "content"]} hidden>
+                    <Input
                       onChange={(e) =>
                         onChangeItem(item.uid, "content", e.target.value)
                       }
