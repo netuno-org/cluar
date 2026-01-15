@@ -33,7 +33,13 @@ function Item({
         backgroundImage: `url(${imageSrc})`,
       }}
     >
-      <h2>{title}</h2>
+      <h1 dangerouslySetInnerHTML={{ __html: title }} />
+      <div
+        data-sal="fade"
+        data-sal-duration="2000"
+        data-sal-easing="ease-out-cubic"
+        dangerouslySetInnerHTML={{ __html: content }}
+      ></div>
       {config.action && (
         <div>
           <Actions {...{ section, type, actions }} />
