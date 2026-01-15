@@ -88,10 +88,14 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
         nodes: editorNodes
     };
 
+    const isFirstRender = useRef(true);
+
     useEffect(() => {
-        if (initialHtml && editorRef.current) {
+        if (initialHtml && editorRef.current && isFirstRender.current) {
             applyHtmlToLexical(initialHtml);
             setHtmlEditorValue(initialHtml);
+
+            isFirstRender.current = false;
         }
     }, [initialHtml]);
 
