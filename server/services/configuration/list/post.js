@@ -67,7 +67,8 @@ const query = _db.form('configuration')
     'configuration.id',
     'language.id',
     'configuration_parameter.id',
-    'configuration_parameter_type.code'
+    'configuration_parameter_type.code',
+    'configuration_parameter_type.name'
 )
 .order('configuration.id', 'desc')
 
