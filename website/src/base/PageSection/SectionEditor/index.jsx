@@ -94,14 +94,16 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         </Button>
       }
     >
-      <Form layout="vertical" initialValues={{...sectionData, action_uids: sectionData?.actions?.map((item) => item.uid).sort((a, b) => a.sorter - b.sorter)}} form={form}>
-        <LexicalEditor
-          initialHtml={sectionData?.title}
-          onChange={(html) => form.setFieldsValue({ title: html })}
-          mode="simple"
-        />
+      <Form layout="vertical" initialValues={{ ...sectionData, action_uids: sectionData?.actions?.map((item) => item.uid).sort((a, b) => a.sorter - b.sorter) }} form={form}>
+        <Form.Item label="Título" style={{ marginBottom: 8 }}>
+          <LexicalEditor
+            initialHtml={sectionData?.title}
+            onChange={(html) => form.setFieldsValue({ title: html })}
+            mode="simple"
+          />
+        </Form.Item>
 
-        <Form.Item name="title" label="Título" hidden={true}>
+        <Form.Item name="title" hidden>
           <Input />
         </Form.Item>
 
@@ -138,12 +140,14 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
           </Form.Item>
         )}
 
-        <LexicalEditor
-          initialHtml={sectionData?.content}
-          onChange={(html) => form.setFieldsValue({ content: html })}
-        />
+        <Form.Item label="Conteúdo" style={{ marginBottom: 8 }}>
+          <LexicalEditor
+            initialHtml={sectionData?.content}
+            onChange={(html) => form.setFieldsValue({ content: html })}
+          />
+        </Form.Item>
 
-        <Form.Item name="content" label="Conteúdo" hidden={true}>
+        <Form.Item name="content" hidden>
           <Input.TextArea rows={6} />
         </Form.Item>
 
