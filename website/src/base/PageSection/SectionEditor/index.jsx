@@ -17,10 +17,14 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const [aiPrompt, setAIPrompt] = useState("");
   const [generating, setGenerating] = useState(false);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTitleModalOpen, setIsTitleModalOpen] = useState(false);
+  const [titleValue, setTitleValue] = useState(sectionData?.title || "");
+
+  const [isContentModalOpen, setIsContentModalOpen] = useState(false);
   const [contentValue, setContentValue] = useState(sectionData?.content || "");
 
   useEffect(() => {
+    setTitleValue(sectionData?.title || "");
     setContentValue(sectionData?.content || "");
   }, [sectionData]);
 
@@ -89,9 +93,15 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
     });
   };
 
-  const handleSaveModal = () => {
+  const handleSaveTitleModal = () => {
+    form.setFieldsValue({ title: titleValue });
+    setIsTitleModalOpen(false);
+    message.success("Título atualizado!");
+  };
+
+  const handleSaveContentModal = () => {
     form.setFieldsValue({ content: contentValue });
-    setIsModalOpen(false);
+    setIsContentModalOpen(false);
     message.success("Conteúdo atualizado!");
   };
 
@@ -111,12 +121,26 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         }
       >
         <Form layout="vertical" initialValues={{ ...sectionData, action_uids: sectionData?.actions?.map((item) => item.uid).sort((a, b) => a.sorter - b.sorter) }} form={form}>
-          <Form.Item label="Título" style={{ marginBottom: 8 }}>
-            <LexicalEditor
-              initialHtml={sectionData?.title}
-              onChange={(html) => form.setFieldsValue({ title: html })}
-              mode="simple"
-            />
+          <Form.Item label="Título">
+            <Card
+              size="small"
+              actions={[
+                <div style={{ textAlign: 'left', paddingLeft: '12px' }}>
+                  <Button
+                    type="primary"
+                    icon={<EditOutlined />}
+                    onClick={() => setIsTitleModalOpen(true)}
+                  >
+                    Editar Título
+                  </Button>
+                </div>
+              ]}
+            >
+              <div
+              >
+                {Cluar.plainHTML(titleValue).slice(0, 97) + "..."}
+              </div>
+            </Card>
           </Form.Item>
 
           <Form.Item name="title" hidden>
@@ -131,7 +155,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                   <Button
                     type="primary"
                     icon={<EditOutlined />}
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={() => setIsContentModalOpen(true)}
                   >
                     Editar Conteúdo
                   </Button>
@@ -157,10 +181,29 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       </Drawer>
 
       <Modal
+        title="Editar Título"
+        open={isTitleModalOpen}
+        onOk={handleSaveTitleModal}
+        onCancel={() => setIsTitleModalOpen(false)}
+        width={1000}
+        okText="Salvar"
+        cancelText="Cancelar"
+        centered
+        destroyOnClose
+      >
+        <div>
+          <LexicalEditor
+            initialHtml={titleValue}
+            onChange={(html) => setTitleValue(html)}
+          />
+        </div>
+      </Modal>
+
+      <Modal
         title="Editar Conteúdo"
-        open={isModalOpen}
-        onOk={handleSaveModal}
-        onCancel={() => setIsModalOpen(false)}
+        open={isContentModalOpen}
+        onOk={handleSaveContentModal}
+        onCancel={() => setIsContentModalOpen(false)}
         width={1000}
         okText="Salvar"
         cancelText="Cancelar"
