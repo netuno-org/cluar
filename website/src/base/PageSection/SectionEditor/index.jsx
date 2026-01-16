@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Drawer, Form, Input, Button, Space, message, InputNumber } from "antd";
-import { RobotOutlined } from "@ant-design/icons";
+import { Drawer, Form, Input, Button, Space, message, InputNumber, Modal, Card } from "antd";
+import { RobotOutlined, EditOutlined } from "@ant-design/icons";
 import BannerEditor from "../BannerEditor";
 import ListEditor from "../ListEditor";
 import FunctionalityEditor from "../FunctionalityEditor";
@@ -9,12 +9,20 @@ import ContentEditor from "../ContentEditor";
 import LexicalEditor from "../../LexicalEditor";
 import SliderEditor from "../SliderEditor";
 import _service from "@netuno/service-client";
+import Cluar from "../../../common/Cluar";
 
 const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const [form] = Form.useForm();
   const [showAIPrompt, setShowAIPrompt] = useState(false);
   const [aiPrompt, setAIPrompt] = useState("");
   const [generating, setGenerating] = useState(false);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [contentValue, setContentValue] = useState(sectionData?.content || "");
+
+  useEffect(() => {
+    setContentValue(sectionData?.content || "");
+  }, [sectionData]);
 
   const MoreEditor = () => {
     if (sectionData?.section === "banner") {
@@ -58,11 +66,12 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       url: "/test",
       method: "POST",
       data: {
-        html: form.getFieldValue("content") || "",
+        html: contentValue || "",
         prompt: aiPrompt,
       },
       success: (res) => {
         if (res.json.result) {
+          setContentValue(res.json.html);
           form.setFieldsValue({ content: res.json.html });
           message.success("Conteúdo gerado com sucesso");
           setAIPrompt("");
@@ -80,83 +89,130 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
     });
   };
 
+  const handleSaveModal = () => {
+    form.setFieldsValue({ content: contentValue });
+    setIsModalOpen(false);
+    message.success("Conteúdo atualizado!");
+  };
+
   const isContentSection = sectionData?.section === "content";
 
   return (
-    <Drawer
-      open={open}
-      onClose={onClose}
-      destroyOnClose={true}
-      width={820}
-      extra={
-        <Button type="primary" onClick={handleConfirmChanges}>
-          Aplicar
-        </Button>
-      }
-    >
-      <Form layout="vertical" initialValues={{ ...sectionData, action_uids: sectionData?.actions?.map((item) => item.uid).sort((a, b) => a.sorter - b.sorter) }} form={form}>
-        <Form.Item label="Título" style={{ marginBottom: 8 }}>
-          <LexicalEditor
-            initialHtml={sectionData?.title}
-            onChange={(html) => form.setFieldsValue({ title: html })}
-            mode="simple"
-          />
-        </Form.Item>
+    <>
+      <Drawer
+        open={open}
+        onClose={onClose}
+        destroyOnClose={true}
+        width={820}
+        extra={
+          <Button type="primary" onClick={handleConfirmChanges}>
+            Aplicar
+          </Button>
+        }
+      >
+        <Form layout="vertical" initialValues={{ ...sectionData, action_uids: sectionData?.actions?.map((item) => item.uid).sort((a, b) => a.sorter - b.sorter) }} form={form}>
+          <Form.Item label="Título" style={{ marginBottom: 8 }}>
+            <LexicalEditor
+              initialHtml={sectionData?.title}
+              onChange={(html) => form.setFieldsValue({ title: html })}
+              mode="simple"
+            />
+          </Form.Item>
 
-        <Form.Item name="title" hidden>
-          <Input />
-        </Form.Item>
+          <Form.Item name="title" hidden>
+            <Input />
+          </Form.Item>
+
+          <Form.Item label="Conteúdo">
+            <Card
+              size="small"
+              actions={[
+                <div style={{ textAlign: 'left', paddingLeft: '12px' }}>
+                  <Button
+                    type="primary"
+                    icon={<EditOutlined />}
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Editar Conteúdo
+                  </Button>
+                </div>
+              ]}
+            >
+              <div
+              >
+                {Cluar.plainHTML(contentValue).slice(0, 97) + "..."}
+              </div>
+            </Card>
+          </Form.Item>
+
+          <Form.Item name="content" hidden>
+            <Input.TextArea rows={6} />
+          </Form.Item>
+
+          <Form.Item name="sorter" label="Ordem">
+            <InputNumber style={{ width: "100%" }} />
+          </Form.Item>
+          <MoreEditor />
+        </Form>
+      </Drawer>
+
+      <Modal
+        title="Editar Conteúdo"
+        open={isModalOpen}
+        onOk={handleSaveModal}
+        onCancel={() => setIsModalOpen(false)}
+        width={1000}
+        okText="Salvar"
+        cancelText="Cancelar"
+        centered
+        destroyOnClose
+      >
+        <div>
+          <LexicalEditor
+            initialHtml={contentValue}
+            onChange={(html) => setContentValue(html)}
+          />
+        </div>
+
 
         {isContentSection && (
-          <div style={{ marginBottom: 16 }}>
+          <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 16 }}>
             <Button
               type="primary"
               icon={<RobotOutlined />}
               onClick={() => setShowAIPrompt(!showAIPrompt)}
+              style={{ marginBottom: 16 }}
             >
               {showAIPrompt ? "Esconder AI" : "Assistente AI"}
             </Button>
           </div>
         )}
 
-        {isContentSection && showAIPrompt && (
-          <Form.Item label="Instruções para IA">
-            <Space style={{ width: '100%' }} direction="vertical">
-              <Input.TextArea
-                rows={3}
-                value={aiPrompt}
-                onChange={(e) => setAIPrompt(e.target.value)}
-                placeholder="Descreva o que você deseja que a IA gere ou modifique no conteúdo..."
-              />
-              <Button
-                type="primary"
-                onClick={handleAIGenerate}
-                loading={generating}
-                style={{ alignSelf: 'flex-end' }}
-              >
-                Gerar
-              </Button>
-            </Space>
-          </Form.Item>
+        {showAIPrompt && (
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <label style={{ marginBottom: 8, display: 'block', fontWeight: 500 }}>
+              Instruções para a IA:
+            </label>
+            <Input.TextArea
+              rows={3}
+              value={aiPrompt}
+              onChange={(e) => setAIPrompt(e.target.value)}
+              placeholder="Descreva o que você deseja que a IA gere ou modifique no conteúdo..."
+              style={{ marginBottom: 12 }}
+            />
+            <Button
+              type="primary"
+              onClick={handleAIGenerate}
+              loading={generating}
+              style={{ alignSelf: 'flex-start' }}
+            >
+              Gerar
+            </Button>
+          </div>
         )}
 
-        <Form.Item label="Conteúdo" style={{ marginBottom: 8 }}>
-          <LexicalEditor
-            initialHtml={sectionData?.content}
-            onChange={(html) => form.setFieldsValue({ content: html })}
-          />
-        </Form.Item>
-
-        <Form.Item name="content" hidden>
-          <Input.TextArea rows={6} />
-        </Form.Item>
-
-        <Form.Item name="sorter" label="Ordem">
-          <InputNumber style={{ width: "100%" }} />
-        </Form.Item>
-        <MoreEditor />
-      </Form>
-    </Drawer>
+      </Modal>
+    </>
   );
 };
 
