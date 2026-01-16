@@ -1,5 +1,5 @@
 cluar.dataItemSavedWithImage = ()=> {
-  const section = _dataItem.getTable()
+  const section = _dataItem.getFormName()
 
   const folder = _app.folder(`${cluar.base()}/cluar/images/${section}`)
   
