@@ -38,14 +38,33 @@ const SortableItem = ({
     transition,
   };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTitleModalOpen, setIsTitleModalOpen] = useState(false);
+  const [titleValue, setTitleValue] = useState(item?.title || "");
+
+  const [isContentModalOpen, setIsContentModalOpen] = useState(false);
   const [contentValue, setContentValue] = useState(item?.content || "");
 
   useEffect(() => {
+    setTitleValue(item?.title || "");
     setContentValue(item?.content || "");
   }, [item]);
 
-  const handleSaveModal = () => {
+  const handleSaveTitleModal = () => {
+    form.setFieldsValue({
+      itemsByUid: {
+        [itemIndex]: {
+          title: titleValue
+        }
+      }
+    });
+
+    onChangeItem(item.uid, "title", titleValue);
+
+    setIsTitleModalOpen(false);
+    message.success("Título do item atualizado!");
+  };
+
+  const handleSaveContentModal = () => {
     form.setFieldsValue({
       itemsByUid: {
         [itemIndex]: {
@@ -55,7 +74,7 @@ const SortableItem = ({
     });
 
     onChangeItem(item.uid, "content", contentValue);
-    setIsModalOpen(false);
+    setIsContentModalOpen(false);
     message.success("Conteúdo do item atualizado!");
   };
 
@@ -81,13 +100,25 @@ const SortableItem = ({
                 ),
                 children: (
                   <div>
-                    <Form.Item label="Título" style={{ marginBottom: 8 }}>
-                      <LexicalEditor
-                        key={`${item.uid}-title`}
-                        initialHtml={item?.title}
-                        onChange={(html) => onChangeItem(item.uid, "title", html)}
-                        mode="simple"
-                      />
+                    <Form.Item label="Título">
+                      <Card
+                        size="small"
+                        actions={[
+                          <div style={{ textAlign: 'left', paddingLeft: '12px' }}>
+                            <Button
+                              type="primary"
+                              icon={<EditOutlined />}
+                              onClick={() => setIsTitleModalOpen(true)}
+                            >
+                              Editar Título
+                            </Button>
+                          </div>
+                        ]}
+                      >
+                        <div>
+                          {Cluar.plainHTML(titleValue).slice(0, 97) + "..."}
+                        </div>
+                      </Card>
                     </Form.Item>
 
                     <Form.Item name={["itemsByUid", itemIndex, "title"]} hidden>
@@ -106,7 +137,7 @@ const SortableItem = ({
                             <Button
                               type="primary"
                               icon={<EditOutlined />}
-                              onClick={() => setIsModalOpen(true)}
+                              onClick={() => setIsContentModalOpen(true)}
                             >
                               Editar Conteúdo
                             </Button>
@@ -186,10 +217,30 @@ const SortableItem = ({
       </Col>
 
       <Modal
+        title="Editar Título"
+        open={isTitleModalOpen}
+        onOk={handleSaveTitleModal}
+        onCancel={() => setIsTitleModalOpen(false)}
+        width={1000}
+        okText="Salvar"
+        cancelText="Cancelar"
+        centered
+        destroyOnClose
+      >
+        <div>
+          <LexicalEditor
+            initialHtml={titleValue}
+            onChange={(html) => setTitleValue(html)}
+            mode="simple"
+          />
+        </div>
+      </Modal>
+
+      <Modal
         title="Editar Conteúdo"
-        open={isModalOpen}
-        onOk={handleSaveModal}
-        onCancel={() => setIsModalOpen(false)}
+        open={isContentModalOpen}
+        onOk={handleSaveContentModal}
+        onCancel={() => setIsContentModalOpen(false)}
         width={1000}
         okText="Salvar"
         cancelText="Cancelar"
