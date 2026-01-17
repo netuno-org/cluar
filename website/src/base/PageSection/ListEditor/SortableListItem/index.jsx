@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Col, Form, Input, Collapse, Button, Flex, Modal, Card, message } from "antd";
+import { useSelector } from "react-redux";
+import { Col, Form, Input, Collapse, Button, Flex, Modal, Card, message, Space, Switch } from "antd";
 
 import {
   DndContext,
@@ -38,11 +39,16 @@ const SortableItem = ({
     transition,
   };
 
+  const themeMode = useSelector((state) => state.theme?.mode || "light");
+
   const [isTitleModalOpen, setIsTitleModalOpen] = useState(false);
   const [titleValue, setTitleValue] = useState(item?.title || "");
 
   const [isContentModalOpen, setIsContentModalOpen] = useState(false);
   const [contentValue, setContentValue] = useState(item?.content || "");
+
+  const [titleInvert, setTitleInvert] = useState(item?.title_invert_background || false);
+  const [contentInvert, setContentInvert] = useState(item?.content_invert_background || false);
 
   useEffect(() => {
     setTitleValue(item?.title || "");
@@ -59,6 +65,7 @@ const SortableItem = ({
     });
 
     onChangeItem(item.uid, "title", titleValue);
+    onChangeItem(item.uid, "title_invert_background", titleInvert);
 
     setIsTitleModalOpen(false);
     message.success("Título do item atualizado!");
@@ -74,6 +81,8 @@ const SortableItem = ({
     });
 
     onChangeItem(item.uid, "content", contentValue);
+    onChangeItem(item.uid, "content_invert_background", contentInvert);
+
     setIsContentModalOpen(false);
     message.success("Conteúdo do item atualizado!");
   };
@@ -217,7 +226,19 @@ const SortableItem = ({
       </Col>
 
       <Modal
-        title="Editar Título"
+        title={
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 30 }}>
+            <span>Editar Título</span>
+            <Space>
+              <span style={{ fontSize: '12px', fontWeight: 'normal' }}>Inverter cor de fundo:</span>
+              <Switch
+                checked={titleInvert}
+                onChange={(checked) => setTitleInvert(checked)}
+                size="small"
+              />
+            </Space>
+          </div>
+        }
         open={isTitleModalOpen}
         onOk={handleSaveTitleModal}
         onCancel={() => setIsTitleModalOpen(false)}
@@ -227,7 +248,13 @@ const SortableItem = ({
         centered
         destroyOnClose
       >
-        <div>
+        <div style={{
+          backgroundColor: titleInvert
+            ? (themeMode === "dark" ? "#ffffff" : "#141414")
+            : "transparent",
+          borderRadius: '4px',
+          transition: 'all 0.3s'
+        }}>
           <LexicalEditor
             initialHtml={titleValue}
             onChange={(html) => setTitleValue(html)}
@@ -237,7 +264,19 @@ const SortableItem = ({
       </Modal>
 
       <Modal
-        title="Editar Conteúdo"
+        title={
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 30 }}>
+            <span>Editar Conteúdo</span>
+            <Space>
+              <span style={{ fontSize: '12px', fontWeight: 'normal' }}>Inverter cor de fundo:</span>
+              <Switch
+                checked={contentInvert}
+                onChange={(checked) => setContentInvert(checked)}
+                size="small"
+              />
+            </Space>
+          </div>
+        }
         open={isContentModalOpen}
         onOk={handleSaveContentModal}
         onCancel={() => setIsContentModalOpen(false)}
@@ -247,7 +286,13 @@ const SortableItem = ({
         centered
         destroyOnClose
       >
-        <div>
+        <div style={{
+          backgroundColor: contentInvert
+            ? (themeMode === "dark" ? "#ffffff" : "#141414")
+            : "transparent",
+          borderRadius: '4px',
+          transition: 'all 0.3s'
+        }}>
           <LexicalEditor
             initialHtml={contentValue}
             onChange={(html) => setContentValue(html)}

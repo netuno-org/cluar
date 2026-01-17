@@ -75,6 +75,8 @@ if (lastPageVersion) {
         .set("image_title", structure.getString("image_title"))
         .set("image_alt", structure.getString("image_alt"))
         .set("language_id", languageId)
+        .set("title_invert_background", structure.getBoolean("title_invert_background"))
+        .set("content_invert_background", structure.getBoolean("content_invert_background"))
         .set("sorter", structure.getInt("sorter", 0));
 
       if (structure.getString("image")?.includes("base64")) {
@@ -121,6 +123,8 @@ if (lastPageVersion) {
         .set("image_title", structure.getString("image_title"))
         .set("image_alt", structure.getString("image_alt"))
         .set("language_id", languageId)
+        .set("title_invert_background", structure.getBoolean("title_invert_background"))
+        .set("content_invert_background", structure.getBoolean("content_invert_background"))
         .set("sorter", structure.getString("sorter"));
 
       if (structure.getString("image")?.includes("base64")) {
@@ -169,6 +173,8 @@ if (lastPageVersion) {
         .set("image_alt", structure.getString("image_alt"))
         .set("type", structure.getString("type"))
         .set("language_id", languageId)
+        .set("title_invert_background", structure.getBoolean("title_invert_background"))
+        .set("content_invert_background", structure.getBoolean("content_invert_background"))
         .set("content", structure.getString("content"));
 
       // if (structure.getString("type")) {
@@ -238,6 +244,8 @@ if (lastPageVersion) {
           .set("link", listingItem.getString("link"))
           .set("sorter", listingItem.getString("sorter"))
           .set("image_title", listingItem.getString("image_title"))
+          .set("title_invert_background", listingItem.getBoolean("title_invert_background"))
+          .set("content_invert_background", listingItem.getBoolean("content_invert_background"))
           .set("image_alt", listingItem.getString("image_alt"));
 
         if (listingItem.getString("image")?.includes("base64")) {
@@ -271,6 +279,8 @@ if (lastPageVersion) {
         .set("sorter", structure.getInt("sorter", 0))
         .set("type", structure.getString("type"))
         .set("language_id", languageId)
+        .set("title_invert_background", structure.getBoolean("title_invert_background"))
+        .set("content_invert_background", structure.getBoolean("content_invert_background"))
         .set("content", structure.getString("content"));
 
       // if (structure.getString("type")) {
@@ -308,6 +318,8 @@ if (lastPageVersion) {
           .set("content", sliderItem.getString("content"))
           .set("sorter", sliderItem.getString("sorter"))
           .set("image_title", sliderItem.getString("image_title"))
+          .set("title_invert_background", sliderItem.getBoolean("title_invert_background"))
+          .set("content_invert_background", sliderItem.getBoolean("content_invert_background"))
           .set("image_alt", sliderItem.getString("image_alt"));
 
         if (sliderItem.getString("image")?.includes("base64")) {
@@ -358,6 +370,8 @@ if (lastPageVersion) {
         .set("type", structure.getString("type"))
         .set("title", structure.getString("title"))
         .set("content", structure.getString("content"))
+        .set("title_invert_background", structure.getBoolean("title_invert_background"))
+        .set("content_invert_background", structure.getBoolean("content_invert_background"))
         .set("sorter", structure.getInt("sorter", 0));
 
       if (image) {

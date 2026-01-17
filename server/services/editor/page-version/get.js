@@ -23,6 +23,8 @@ if (dbPageVersion) {
       content.image_alt,
       content.image_title,
       content.image_max_width,
+      content.title_invert_background,
+      content.content_invert_background,
       content.sorter
     FROM page_content content
     WHERE content.active = TRUE
@@ -45,6 +47,8 @@ if (dbPageVersion) {
         .set("image_max_width", dbContent.getString("image_max_width"))
         .set("sorter", dbContent.getInt("sorter"))
         .set("actions", cluar.actions("content", dbContent.getInt("id")))
+        .set("title_invert_background", dbContent.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbContent.getBoolean("content_invert_background"))
     );
     // if (settings.images === true) {
     //   cluar.publishImage("content", dbContent.getString("image"));
@@ -68,6 +72,8 @@ if (dbPageVersion) {
       banner.image_title,
       banner.position_x,
       banner.position_y,
+      banner.title_invert_background,
+      banner.content_invert_background,
       banner.sorter
     FROM page_banner banner
     WHERE banner.active = TRUE
@@ -87,6 +93,8 @@ if (dbPageVersion) {
         .set("image", dbBanner.getString("image"))
         .set("image_alt", dbBanner.getString("image_alt"))
         .set("image_title", dbBanner.getString("image_title"))
+        .set("title_invert_background", dbBanner.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbBanner.getBoolean("content_invert_background"))
         .set("sorter", dbBanner.getInt("sorter"))
         .set(
           "position",
@@ -118,6 +126,8 @@ if (dbPageVersion) {
       listing.image_title,
       listing.content,
       listing.image,
+      listing.title_invert_background,
+      listing.content_invert_background,
       listing.sorter
     FROM page_listing listing
     WHERE listing.active = TRUE
@@ -129,7 +139,7 @@ if (dbPageVersion) {
     const items = _val.list();
     const dbItems = _db.query(`
       SELECT
-          uid, title, content, image, image_alt, image_title, sorter, link
+          uid, title, content, image, image_alt, image_title, sorter, link, title_invert_background, content_invert_background
       FROM page_listing_item
       WHERE page_listing_id = ${dbListing.getInt("id")} AND active = TRUE
       `);
@@ -145,6 +155,8 @@ if (dbPageVersion) {
           .set("image", dbItem.getString("image"))
           .set("image_alt", dbItem.getString("image_alt"))
           .set("image_title", dbItem.getString("image_title"))
+          .set("title_invert_background", dbItem.getBoolean("title_invert_background"))
+          .set("content_invert_background", dbItem.getBoolean("content_invert_background"))
           .set("sorter", dbItem.getInt("sorter"))
           .set("link", dbItem.getString("link"))
       );
@@ -167,6 +179,8 @@ if (dbPageVersion) {
         .set("image_title", dbListing.getString("image_title"))
         .set("items", items)
         .set("sorter", dbListing.getInt("sorter"))
+        .set("title_invert_background", dbListing.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbListing.getBoolean("content_invert_background"))
         .set("actions", cluar.actions("listing", dbListing.getInt("id")))
     );
 
@@ -190,6 +204,8 @@ if (dbPageVersion) {
                 slider.image_title,
                 slider.content,
                 slider.image,
+                slider.title_invert_background,
+                slider.content_invert_background,
                 slider.sorter
             FROM page_slider slider
             WHERE slider.active = TRUE
@@ -201,7 +217,7 @@ if (dbPageVersion) {
     const items = _val.list();
     const dbItems = _db.query(`
                 SELECT
-                    uid, title, content, image, image_alt, image_title, sorter, id
+                    uid, title, content, image, image_alt, image_title, sorter, id, title_invert_background, content_invert_background
                 FROM page_slider_item
                 WHERE page_slider_id = ${dbSlider.getInt(
       "id"
@@ -228,6 +244,8 @@ if (dbPageVersion) {
           .set("image", dbItem.getString("image"))
           .set("image_alt", dbItem.getString("image_alt"))
           .set("image_title", dbItem.getString("image_title"))
+          .set("title_invert_background", dbItem.getBoolean("title_invert_background"))
+          .set("content_invert_background", dbItem.getBoolean("content_invert_background"))
           .set("sorter", dbItem.getInt("sorter"))
           .set("action_uids", actionsList)
       );
@@ -244,6 +262,8 @@ if (dbPageVersion) {
         .set("image_alt", dbSlider.getString("image_alt"))
         .set("image_title", dbSlider.getString("image_title"))
         .set("items", items)
+        .set("title_invert_background", dbSlider.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbSlider.getBoolean("content_invert_background"))
         .set("sorter", dbSlider.getInt("sorter"))
     );
   }
@@ -261,6 +281,8 @@ if (dbPageVersion) {
       functionality.title,
       functionality.content,
       functionality.image,
+      functionality.title_invert_background,
+      functionality.content_invert_background,
       functionality.sorter
     FROM page_functionality functionality
     WHERE functionality.active = TRUE
@@ -279,6 +301,8 @@ if (dbPageVersion) {
         .set("content", dbFunctionality.getString("content"))
         .set("image", dbFunctionality.getString("image"))
         .set("sorter", dbFunctionality.getInt("sorter"))
+        .set("title_invert_background", dbFunctionality.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbFunctionality.getBoolean("content_invert_background"))
         .set("actions", cluar.actions("functionality", dbFunctionality.getInt("id")))
     );
 

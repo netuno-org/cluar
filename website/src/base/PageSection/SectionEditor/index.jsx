@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-import { Drawer, Form, Input, Button, Space, message, InputNumber, Modal, Card } from "antd";
+import { Drawer, Form, Input, Button, Space, message, InputNumber, Modal, Card, Switch } from "antd";
 import { RobotOutlined, EditOutlined } from "@ant-design/icons";
 import BannerEditor from "../BannerEditor";
 import ListEditor from "../ListEditor";
@@ -17,11 +18,16 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const [aiPrompt, setAIPrompt] = useState("");
   const [generating, setGenerating] = useState(false);
 
+  const themeMode = useSelector((state) => state.theme?.mode || "light");
+
   const [isTitleModalOpen, setIsTitleModalOpen] = useState(false);
   const [titleValue, setTitleValue] = useState(sectionData?.title || "");
 
   const [isContentModalOpen, setIsContentModalOpen] = useState(false);
   const [contentValue, setContentValue] = useState(sectionData?.content || "");
+
+  const [titleInvert, setTitleInvert] = useState(sectionData?.title_invert_background || false);
+  const [contentInvert, setContentInvert] = useState(sectionData?.content_invert_background || false);
 
   useEffect(() => {
     setTitleValue(sectionData?.title || "");
@@ -47,6 +53,8 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       let confirmData = {
         ...sectionData,
         ...form.getFieldsValue(),
+        title_invert_background: titleInvert,
+        content_invert_background: contentInvert,
         status: sectionData.status === "to_create" ? "to_create" : "to_update",
       };
 
@@ -181,7 +189,19 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       </Drawer>
 
       <Modal
-        title="Editar Título"
+        title={
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 30 }}>
+            <span>Editar Título</span>
+            <Space>
+              <span style={{ fontSize: '12px', fontWeight: 'normal' }}>Inverter cor de fundo:</span>
+              <Switch
+                checked={titleInvert}
+                onChange={(checked) => setTitleInvert(checked)}
+                size="small"
+              />
+            </Space>
+          </div>
+        }
         open={isTitleModalOpen}
         onOk={handleSaveTitleModal}
         onCancel={() => setIsTitleModalOpen(false)}
@@ -191,7 +211,13 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         centered
         destroyOnClose
       >
-        <div>
+        <div style={{
+          backgroundColor: titleInvert
+            ? (themeMode === "dark" ? "#ffffff" : "#141414")
+            : "transparent",
+          borderRadius: '4px',
+          transition: 'all 0.3s'
+        }}>
           <LexicalEditor
             initialHtml={titleValue}
             onChange={(html) => setTitleValue(html)}
@@ -200,7 +226,19 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       </Modal>
 
       <Modal
-        title="Editar Conteúdo"
+        title={
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 30 }}>
+            <span>Editar Conteúdo</span>
+            <Space>
+              <span style={{ fontSize: '12px', fontWeight: 'normal' }}>Inverter cor de fundo:</span>
+              <Switch
+                checked={contentInvert}
+                onChange={(checked) => setContentInvert(checked)}
+                size="small"
+              />
+            </Space>
+          </div>
+        }
         open={isContentModalOpen}
         onOk={handleSaveContentModal}
         onCancel={() => setIsContentModalOpen(false)}
@@ -210,7 +248,13 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         centered
         destroyOnClose
       >
-        <div>
+        <div style={{
+          backgroundColor: contentInvert
+            ? (themeMode === "dark" ? "#ffffff" : "#141414")
+            : "transparent",
+          borderRadius: '4px',
+          transition: 'all 0.3s'
+        }}>
           <LexicalEditor
             initialHtml={contentValue}
             onChange={(html) => setContentValue(html)}

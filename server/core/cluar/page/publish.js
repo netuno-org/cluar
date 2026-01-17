@@ -40,7 +40,9 @@ cluar.page.publish = (dbPage) => {
                 content.image_title,
                 content.image_max_width,
                 content.sorter,
-                content.type
+                content.type,
+                content.title_invert_background,
+                content.content_invert_background
             FROM page_content content
             WHERE content.active = TRUE
                 AND content.active = TRUE
@@ -64,6 +66,8 @@ cluar.page.publish = (dbPage) => {
         .set("image_max_width", dbContent.getString("image_max_width"))
         .set("sorter", dbContent.getInt("sorter"))
         .set("actions", cluar.actions("content", dbContent.getInt("id")))
+        .set("title_invert_background", dbContent.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbContent.getBoolean("content_invert_background"))
     );
   }
 
@@ -84,7 +88,9 @@ cluar.page.publish = (dbPage) => {
                 banner.image_title,
                 banner.position_x,
                 banner.position_y,
-                banner.sorter
+                banner.sorter,
+                banner.title_invert_background,
+                banner.content_invert_background
             FROM page_banner banner
             WHERE banner.active = TRUE
                 AND banner.active = TRUE
@@ -111,6 +117,8 @@ cluar.page.publish = (dbPage) => {
             .set("y", dbBanner.getString("position_y"))
         )
         .set("actions", cluar.actions("banner", dbBanner.getInt("id")))
+        .set("title_invert_background", dbBanner.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbBanner.getBoolean("content_invert_background"))
     );
     if (settings.images === true) {
       cluar.publishImage("banner", dbBanner.getString("image"));
@@ -132,7 +140,9 @@ cluar.page.publish = (dbPage) => {
                 listing.image_title,
                 listing.content,
                 listing.image,
-                listing.sorter
+                listing.sorter,
+                listing.title_invert_background,
+                listing.content_invert_background
             FROM page_listing listing
             WHERE listing.active = TRUE
                 AND listing.active = TRUE
@@ -144,7 +154,7 @@ cluar.page.publish = (dbPage) => {
     const items = _val.list();
     const dbItems = _db.query(`
                 SELECT
-                    uid, title, content, image, image_alt, image_title, sorter, link
+                    uid, title, content, image, image_alt, image_title, sorter, link, title_invert_background, content_invert_background
                 FROM page_listing_item
                 WHERE page_listing_id = ${dbListing.getInt(
       "id"
@@ -163,6 +173,8 @@ cluar.page.publish = (dbPage) => {
           .set("image_title", dbItem.getString("image_title"))
           .set("sorter", dbItem.getInt("sorter"))
           .set("link", dbItem.getString("link"))
+          .set("title_invert_background", dbItem.getBoolean("title_invert_background"))
+          .set("content_invert_background", dbItem.getBoolean("content_invert_background"))
       );
     }
     structure.add(
@@ -179,6 +191,8 @@ cluar.page.publish = (dbPage) => {
         .set("items", items)
         .set("sorter", dbListing.getInt("sorter"))
         .set("actions", cluar.actions("listing", dbListing.getInt("id")))
+        .set("title_invert_background", dbListing.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbListing.getBoolean("content_invert_background"))
     );
   }
 
@@ -197,7 +211,9 @@ cluar.page.publish = (dbPage) => {
                 slider.image_title,
                 slider.content,
                 slider.image,
-                slider.sorter
+                slider.sorter,
+                slider.title_invert_background,
+                slider.content_invert_background
             FROM page_slider slider
             WHERE slider.active = TRUE
                 AND slider.active = TRUE
@@ -207,7 +223,7 @@ cluar.page.publish = (dbPage) => {
     const items = _val.list();
     const dbItems = _db.query(`
                 SELECT
-                    uid, title, content, image, image_alt, image_title, sorter, id
+                    uid, title, content, image, image_alt, image_title, sorter, id, title_invert_background, content_invert_background
                 FROM page_slider_item
                 WHERE page_slider_id = ${dbSlider.getInt(
       "id"
@@ -235,6 +251,8 @@ cluar.page.publish = (dbPage) => {
           .set("image_alt", dbItem.getString("image_alt"))
           .set("image_title", dbItem.getString("image_title"))
           .set("sorter", dbItem.getInt("sorter"))
+          .set("title_invert_background", dbItem.getBoolean("title_invert_background"))
+          .set("content_invert_background", dbItem.getBoolean("content_invert_background"))
           .set("action_uids", actionsList)
       );
     }
@@ -251,6 +269,8 @@ cluar.page.publish = (dbPage) => {
         .set("image_title", dbSlider.getString("image_title"))
         .set("items", items)
         .set("sorter", dbSlider.getInt("sorter"))
+        .set("title_invert_background", dbSlider.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbSlider.getBoolean("content_invert_background"))
     );
   }
 
@@ -267,7 +287,9 @@ cluar.page.publish = (dbPage) => {
                 functionality.title,
                 functionality.content,
                 functionality.image,
-                functionality.sorter
+                functionality.sorter,
+                functionality.title_invert_background,
+                functionality.content_invert_background
             FROM page_functionality functionality
             WHERE functionality.active = TRUE
                 AND functionality.active = TRUE
@@ -287,6 +309,8 @@ cluar.page.publish = (dbPage) => {
         .set("image", dbFunctionality.getString("image"))
         .set("sorter", dbFunctionality.getInt("sorter"))
         .set("actions", cluar.actions("functionality", dbFunctionality.getInt("id")))
+        .set("title_invert_background", dbFunctionality.getBoolean("title_invert_background"))
+        .set("content_invert_background", dbFunctionality.getBoolean("content_invert_background"))
     );
   }
 
