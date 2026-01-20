@@ -53,6 +53,8 @@ const SortableItem = ({
   useEffect(() => {
     setTitleValue(item?.title || "");
     setContentValue(item?.content || "");
+    setTitleInvert(item?.title_invert_background || false);
+    setContentInvert(item?.content_invert_background || false);
   }, [item]);
 
   const handleSaveTitleModal = () => {
@@ -65,7 +67,6 @@ const SortableItem = ({
     });
 
     onChangeItem(item.uid, "title", titleValue);
-    onChangeItem(item.uid, "title_invert_background", titleInvert);
 
     setIsTitleModalOpen(false);
     message.success("Título do item atualizado!");
@@ -81,7 +82,6 @@ const SortableItem = ({
     });
 
     onChangeItem(item.uid, "content", contentValue);
-    onChangeItem(item.uid, "content_invert_background", contentInvert);
 
     setIsContentModalOpen(false);
     message.success("Conteúdo do item atualizado!");
