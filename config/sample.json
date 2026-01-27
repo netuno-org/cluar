@@ -68,14 +68,14 @@
     "commands": [
         {
             "path": "ui",
-            "command": "pnpm run watch",
-            "install": "pnpm install",
+            "command": "bun run watch",
+            "install": "bun install",
             "enabled": false
         },
         {
             "path": "website",
-            "command": "pnpm run dev",
-            "install": "pnpm install",
+            "command": "bun run dev",
+            "install": "bun install",
             "enabled": false
         }
     ],
