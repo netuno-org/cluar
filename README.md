@@ -47,24 +47,24 @@ Inside the website folder:
 cd website
 ```
 
-Execute the PNPM install command:
+Execute the Bun install command:
 
 ```
 bun install
 ```
 
-If a **Warning box** appears, then execute:
+It needs to execute untrusted scripts of the ESBUILD, then execute:
 
 ```
-pnpm approve-builds
+bun pm trust --all
 ```
 
-> Choose all by pressing the key `a` and then the `[ENTER]` key to finish.
-
-To restart the website installation, remove this folder and these files:
+If needed, to restart the website installation, remove this folder and these files:
 
 ```
 rm -rf node_modules
+bun install
+bun pm trust --all
 ```
 
 Now you can start the website with the classic command:
