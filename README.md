@@ -24,20 +24,22 @@ After the installation and the configuration, see here the developer documentati
 
 > The following process is oriented to Linux development environments.
 
-1. Copy the app sample configuration file by running (in the app root directory):
+1. Rename the app name by renaming the folder name as you want, only using lowercase letters, numbers, and underscores.
 
-- `cp config/sample.json config/_development.json` (for a development environment)
-- `cp config/sample.json config/_production.json` (for a production environment)
-- Make all the adjustments accordingly of your environment.
-  
-2. You'll need to configure a PostgreSQL database type connection for this app to work properly, [learn how to do it here](https://doc.netuno.org/pt/docs/academy/server/database/psql/).
+2. Copy the app sample configuration file by running (in the app root directory):
+  - `cp config/sample.json config/_development.json` (for a development environment)
+  - `cp config/sample.json config/_production.json` (for a production environment)
+  - Change the `name` property in the JSON root to your chosen app name.
+  - Make all the adjustments according to your environment.
 
-3. Edit your configuration file created in the first step and
-find the `"db": { "default": ... }`, then locate and replace the database settings as the password.
+3. You'll need to configure a PostgreSQL database type connection for this app to work properly, [learn how to do it here](https://doc.netuno.org/pt/docs/academy/server/database/psql/).
 
-4. Change the authentication JWT secret finding the `"auth": { "jwt": { "secret": ... } }`, ensure that this secret must have 32 characteres length.
+4. Edit your configuration file created in the first step and
+find the `"db": { "default": ... }`, then locate and replace the database settings with the password.
 
-5. Inside of the `"settings": { "cluar": ... }` adjust the Website URL and the Services API URL and others as you need.
+5. Change the authentication JWT secret, finding the `"auth": { "jwt": { "secret": ... } }`, ensure that this secret must have a 32-character length.
+
+6. Inside of the `"settings": { "cluar": ... }` adjust the Website URL, the Services API URL, and others as you need.
 
 ## Website with Bun :art:
 
