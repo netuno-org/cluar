@@ -14,6 +14,12 @@ Then clone this project inside of:
 
 - :open_file_folder: `[Netuno Root directory]/apps` the folder `cluar` must be created.
 
+With the clone command:
+
+```
+git clone https://github.com/netuno-org/cluar.git
+```
+
 ## Documentation
 
 After the installation and the configuration, see here the developer documentation:
