@@ -9,7 +9,6 @@ A ready to use solution for content management and multilingual websites using [
 Install these requirements:
 1. [Netuno](https://doc.netuno.org/docs/get-started/installation)
 2. [Bun](https://bun.sh/docs/installation)
-3. [PNPM](https://pnpm.io/installation)
 
 Then clone this project inside of:
 
@@ -40,7 +39,7 @@ find the `"db": { "default": ... }`, then locate and replace the database settin
 
 5. Inside of the `"settings": { "cluar": ... }` adjust the Website URL and the Services API URL and others as you need.
 
-## Website with PNPM and Bun :art:
+## Website with Bun :art:
 
 Inside the website folder:
 
@@ -51,7 +50,7 @@ cd website
 Execute the PNPM install command:
 
 ```
-pnpm install
+bun install
 ```
 
 If a **Warning box** appears, then execute:
@@ -66,12 +65,11 @@ To restart the website installation, remove this folder and these files:
 
 ```
 rm -rf node_modules
-rm -f pnpm-*
 ```
 
 Now you can start the website with the classic command:
 
-```pnpm run dev```
+```bun run dev```
 
 > By default, the website runs with Bun.
 
@@ -95,7 +93,7 @@ To start the website:
 
 ```
 cd website
-pnpm run dev
+bun run dev
 ```
 
 By default, the website is available in:
