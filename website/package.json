@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "bunx --bun vite build",
+    "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "bunx --bun vite preview"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@animated-burgers/burger-slip": "^1.1.2",
