@@ -185,22 +185,24 @@ function BaseHeader() {
             items={menu}
           />
         </div>
-        <div className="menu-burger-button">
-          <Burger
-            isOpen={burgerMenu}
-            onClick={() => {
-              setBurgerMenu(!burgerMenu);
-            }}
+        <div className='burger-language'>
+          <Menu
+            theme="light"
+            className="menu-languages"
+            mode={"horizontal"}
+            defaultSelectedKeys={[activeMenu]}
+            selectedKeys={[activeMenu]}
+            items={[menuLanguages]}
           />
+          <div className="menu-burger-button">
+            <Burger
+              isOpen={burgerMenu}
+              onClick={() => {
+                setBurgerMenu(!burgerMenu);
+              }}
+            />
+          </div>
         </div>
-        <Menu
-          theme="light"
-          className="menu-languages"
-          mode={"horizontal"}
-          defaultSelectedKeys={[activeMenu]}
-          selectedKeys={[activeMenu]}
-          items={[menuLanguages]}
-        />
       </div>
     </Header>
   );

@@ -20,13 +20,22 @@
   }
 
   &--logged {
-    top: 40px;
+    margin: auto;
+
+    @media (max-width: @header-mobile-width) {
+      padding: 0 !important;
+    }
+
   }
 
   &__wrapper {
     width: 100%;
     max-width: @site-max-width;
     display: flex;
+
+    @media (max-width: @header-mobile-width) {
+      justify-content: space-between;
+    }
   }
 
   >*:not(.menu-burger-open) {
@@ -68,6 +77,11 @@
     }
   }
 
+  .burger-language {
+    display: flex;
+    align-items: center;
+  }
+
   .menu-languages {
     line-height: @header-line-height !important;
     background-color: transparent;
@@ -82,7 +96,6 @@
     }
 
     li {
-      margin-bottom: 20px !important;
       display: inline;
 
       &:hover {
@@ -136,32 +149,20 @@
     }
 
     &-languages {
-      margin-left: 0 !important;
-
       @media screen and (max-width: @header-mobile-width) {
-        margin-right: 32px;
-        margin-left: auto !important;
+        position: static;
+        transform: none;
       }
     }
   }
 
   .menu-burger-button {
-    position: absolute;
     width: auto;
     height: auto;
-    top: calc(@header-size / 4);
-    right: calc(@header-size / 4);
+    z-index: 9999;
 
     @media only screen and (min-width: @header-mobile-width) {
       display: none;
-    }
-
-    @media only screen and (max-width: @header-mobile-width) {
-      top: calc(@header-size-mobile / 4);
-    }
-
-    .burger {
-      height: calc(@header-size-mobile / 2);
     }
   }
 
@@ -207,6 +208,10 @@
 .burger .burger-lines:after,
 .burger .burger-lines:before {
   background-color: @header-menu-color !important;
+  left: 0 !important;
+  max-width: 2.5em !important;
+  width: 100% !important;
+
 }
 
 .burger.burger-slip.open .burger-lines {
