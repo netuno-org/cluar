@@ -359,7 +359,8 @@ cluar.page.publish = (dbPage) => {
     const basePath = `/website/dist`;
     const locale = _db
       .queryFirst(
-        `SELECT * FROM language WHERE code = ?`,
+        `SELECT * FROM language WHERE id = ? OR code = ?`,
+        dbPage.getInt("language_id"),
         dbPage.getString("language")
       )
       .getString("locale");
