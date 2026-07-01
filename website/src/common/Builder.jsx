@@ -152,7 +152,10 @@ function Builder({ page }) {
       url: "/editor/page-version/save",
       method: "POST",
       data: {
-        structures: structure.filter((item) => item.status !== "to_remove"),
+        structures: structure.filter((item) => item.status !== "to_remove")?.map(item => ({
+          ...item,
+          action_uids: !!item.action_uids ? item.action_uids : item.actions?.map(action => action?.uid)
+        })),
         page: page.uid,
       },
       success: (res) => {
