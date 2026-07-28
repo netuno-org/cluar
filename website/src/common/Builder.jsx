@@ -22,11 +22,24 @@ import { useNavigate } from "react-router";
 
 import _service from "@netuno/service-client";
 
+const EDIT_MODE_STORAGE_KEY = "builder-edit-mode";
+
+const loadPersistedEditMode = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return window.sessionStorage.getItem(EDIT_MODE_STORAGE_KEY) === "1";
+};
+
+
 function Builder({ page }) {
   const [error, setError] = useState(false);
   const [structure, setStructure] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const [showActionButtons, setShowActionButtons] = useState(false);
+  const [editMode, setEditMode] = useState(loadPersistedEditMode);
+  const [showActionButtons, setShowActionButtons] = useState(
+    loadPersistedEditMode,
+  );
   const [hasDiff, setHasDiff] = useState(false);
   const [canPublish, setCanPublish] = useState(false);
   const [pageVersionExists, setPageVersionExists] = useState(false);
@@ -35,6 +48,110 @@ function Builder({ page }) {
   const [currentPageVersion, setCurrentPageVersion] = useState(page?.page_version_uid);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleLinkNavigation = (event) => {
+      if (!hasDiff || event.defaultPrevented) {
+        return;
+      }
+
+      if (
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const link = event.target.closest("a[href]");
+      if (!link) {
+        return;
+      }
+
+      if (link.target === "_blank" || link.hasAttribute("download")) {
+        return;
+      }
+
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#") || href.startsWith("javascript:")) {
+        return;
+      }
+
+      const nextUrl = new URL(link.href, window.location.href);
+      const currentUrl = new URL(window.location.href);
+      const willChangePage =
+        nextUrl.pathname !== currentUrl.pathname ||
+        nextUrl.search !== currentUrl.search;
+
+      if (!willChangePage) {
+        return;
+      }
+
+      const confirmLeave = window.confirm(
+        "Existem alterações não guardadas. Se sair agora, elas serão perdidas. Deseja continuar?",
+      );
+      if (!confirmLeave) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    };
+
+    document.addEventListener("click", handleLinkNavigation, true);
+
+    return () => {
+      document.removeEventListener("click", handleLinkNavigation, true);
+    };
+  }, [hasDiff]);
+
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      if (!hasDiff) {
+        return;
+      }
+
+      event.preventDefault();
+      event.returnValue = "";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [hasDiff]);
+
+  useEffect(() => {
+    if (hasDiff || canPublish) {
+      setShowActionButtons(true);
+    } else {
+      setShowActionButtons(false);
+    }
+  }, [hasDiff, canPublish]);
+
+  useEffect(() => {
+    setPageVersionExists(!hasDiff);
+  }, [hasDiff]);
+
+  useEffect(() => {
+    if (currentPageVersion !== page?.page_version_uid && hasDiff == false) {
+      setHasDiff(false);
+      setCanPublish(true);
+    } else {
+      setHasDiff(false);
+      setCanPublish(false);
+    }
+  }, [currentPageVersion]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    window.sessionStorage.setItem(EDIT_MODE_STORAGE_KEY, editMode ? "1" : "0");
+  }, [editMode]);
+
 
   useEffect(() => {
     if (hasDiff || canPublish) {
@@ -53,11 +170,9 @@ function Builder({ page }) {
     if (currentPageVersion !== page?.page_version_uid && hasDiff == false) {
       setHasDiff(false);
       setCanPublish(true);
-      setEditMode(true);
     } else {
       setHasDiff(false);
       setCanPublish(false);
-      setEditMode(false);
     }
   }, [currentPageVersion]);
 
@@ -199,17 +314,17 @@ function Builder({ page }) {
     });
   };
 
-    /*const handleSetEditMode = (mode) => {
-    setEditMode(mode);
-    console.log("mode", mode);
-    setShowActionButtons(mode);
+  /*const handleSetEditMode = (mode) => {
+  setEditMode(mode);
+  console.log("mode", mode);
+  setShowActionButtons(mode);
 
-    if (mode && (hasDiff || canPublish)) {
-      setShowActionButtons(true);
-    } else if (!mode) {
-      setShowActionButtons(false);
-    }
-  };*/
+  if (mode && (hasDiff || canPublish)) {
+    setShowActionButtons(true);
+  } else if (!mode) {
+    setShowActionButtons(false);
+  }
+};*/
 
   const extraBarAdmin = (
     <Row gutter={12}>
@@ -261,8 +376,9 @@ function Builder({ page }) {
       {_auth.isLogged() && (
         <AdminBar
           onChangeEditMode={handleSetEditMode}
-          extra={showActionButtons && extraBarAdmin}
+          extra={editMode && extraBarAdmin}
           pageData={page}
+          editMode={editMode}
           currentStructure={structure.filter(
             (item) => item.status !== "to_remove"
           )}

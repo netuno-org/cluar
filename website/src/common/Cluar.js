@@ -1,7 +1,7 @@
-
-import _service from '@netuno/service-client';
-import ReactGA from 'react-ga';
-import CluarCustom from './CluarCustom';
+import _service from "@netuno/service-client";
+import ReactGA from "react-ga";
+import CluarCustom from "./CluarCustom";
+import _auth from "@netuno/auth-client";
 
 let data = null;
 let currentLanguage = null;
@@ -14,9 +14,12 @@ export default class Cluar {
     currentLanguage = Cluar.defaultLanguage();
     custom = new CluarCustom(data);
     _service.config({
-      prefix: data.config.services.api
+      prefix: data.config.services.api,
     });
-    if (data.config.analytics && data.config.analytics !== '') {
+    _auth.config({
+      storage: "local",
+    });
+    if (data.config.analytics && data.config.analytics !== "") {
       ReactGA.initialize(data.config.analytics);
       gaEnabled = true;
     }
@@ -53,8 +56,10 @@ export default class Cluar {
   }
 
   static changeLanguage(codeOrLocale) {
-    currentLanguage = data.languages.find((e) => e.code === codeOrLocale || e.locale === codeOrLocale);
-    window.localStorage.setItem('locale', currentLanguage.locale);
+    currentLanguage = data.languages.find(
+      (e) => e.code === codeOrLocale || e.locale === codeOrLocale,
+    );
+    window.localStorage.setItem("locale", currentLanguage.locale);
   }
 
   static languages() {
@@ -70,9 +75,13 @@ export default class Cluar {
   }
 
   static configuration(parameter) {
-    let value = data.configuration[Cluar.currentLanguage().code] ? data.configuration[Cluar.currentLanguage().code][parameter] : null;
+    let value = data.configuration[Cluar.currentLanguage().code]
+      ? data.configuration[Cluar.currentLanguage().code][parameter]
+      : null;
     if (!value) {
-      value = data.configuration['GENERIC'] ? data.configuration['GENERIC'][parameter] : null;
+      value = data.configuration["GENERIC"]
+        ? data.configuration["GENERIC"][parameter]
+        : null;
     }
     if (value) {
       return value;
@@ -91,14 +100,14 @@ export default class Cluar {
 
   static configurationMultilines(parameter) {
     let value = Cluar.configuration(parameter);
-    value = value.replace(/(?:\r\n|\r|\n)/g, '<br>');
+    value = value.replace(/(?:\r\n|\r|\n)/g, "<br>");
     return value;
   }
 
   static plainDictionary(entry) {
     let value = Cluar.dictionary(entry);
     if (value) {
-      return (value).replace(/<\/?((p)|(br))[^>]*>/g, "");
+      return value.replace(/<\/?((p)|(br))[^>]*>/g, "");
     }
     return entry;
   }
@@ -106,7 +115,7 @@ export default class Cluar {
   static plainTitle(entry) {
     let value = Cluar.dictionary(entry);
     if (value) {
-      return (value).replace(/<\/?p[^>]*>/g, "");
+      return value.replace(/<\/?p[^>]*>/g, "");
     }
     return entry;
   }
@@ -114,7 +123,7 @@ export default class Cluar {
   static plainHTML(entry) {
     let value = Cluar.dictionary(entry);
     if (value) {
-      return (value).replace(/<[^>]*>/g, "");
+      return value.replace(/<[^>]*>/g, "");
     }
     return entry;
   }
@@ -122,13 +131,15 @@ export default class Cluar {
   static dictionaryNoParagraph(entry) {
     let value = Cluar.dictionary(entry);
     if (value) {
-      return (value).replace(/<\/?p[^>]*>/g, "");
+      return value.replace(/<\/?p[^>]*>/g, "");
     }
     return entry;
   }
 
   static dictionary(entry) {
-    let value = data.dictionary[Cluar.currentLanguage().code] ? data.dictionary[Cluar.currentLanguage().code][entry] : null;
+    let value = data.dictionary[Cluar.currentLanguage().code]
+      ? data.dictionary[Cluar.currentLanguage().code][entry]
+      : null;
     if (value) {
       return value;
     }
@@ -136,18 +147,33 @@ export default class Cluar {
   }
 
   static banner(type) {
-    const i = data.banners.find((e) => e.type === type && e.language === Cluar.currentLanguage().code);
+    const i = data.banners.find(
+      (e) => e.type === type && e.language === Cluar.currentLanguage().code,
+    );
     if (i) {
       return i;
     }
-    return { type, language: Cluar.currentLanguage().code, title: type, content: type, image: null };
+    return {
+      type,
+      language: Cluar.currentLanguage().code,
+      title: type,
+      content: type,
+      image: null,
+    };
   }
 
   static content(type) {
-    const i = data.contents.find((e) => e.type === type && e.language === Cluar.currentLanguage().code);
+    const i = data.contents.find(
+      (e) => e.type === type && e.language === Cluar.currentLanguage().code,
+    );
     if (i) {
       return i;
     }
-    return { type, language: Cluar.currentLanguage().code, title: type, content: type };
+    return {
+      type,
+      language: Cluar.currentLanguage().code,
+      title: type,
+      content: type,
+    };
   }
 }
