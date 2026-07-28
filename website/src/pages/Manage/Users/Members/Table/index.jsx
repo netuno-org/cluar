@@ -48,7 +48,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
                 setGroups(groups);
             },
             fail: (error) => {
-                console.log(error);
+                console.error(error);
             }
         })
     }
@@ -90,7 +90,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
                     key: uid,
                     isLoading: false
                 });
-                console.log(error);
+                console.error(error);
                 notification.error({
                     message: active ? Cluar.plainDictionary('members-table-desactive-failed-message') : Cluar.plainDictionary('members-table-active-failed-message')
                 });

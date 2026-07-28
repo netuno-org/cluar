@@ -99,7 +99,7 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
   };
 
   function onFinishFailed(errorInfo) {
-    console.log('Failed:', errorInfo);
+    console.error('Failed: ', errorInfo);
   }
 
   return (

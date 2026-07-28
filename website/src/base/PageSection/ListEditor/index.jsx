@@ -36,7 +36,7 @@ const ListEditor = ({ sectionData, form }) => {
         setShowActions(typeConfig?.action || false);
       },
       fail: (error) => {
-        console.log(error);
+        console.error(error);
       },
     });
   }, []);

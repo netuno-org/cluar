@@ -49,11 +49,6 @@ function Builder({ page }) {
   }, [hasDiff]);
 
   useEffect(() => {
-    console.log("pageVersionExists", pageVersionExists);
-    console.log("currentPageVersion", currentPageVersion);
-  }, [pageVersionExists]);
-
-  useEffect(() => {
     // Verifica se o currentPageVersion é diferente da publicada
     if (currentPageVersion !== page?.page_version_uid && hasDiff == false) {
       setHasDiff(false);
@@ -82,7 +77,7 @@ function Builder({ page }) {
           }
         },
         fail: (res) => {
-          console.log(res);
+          console.error(res);
         },
       });
     } else {
@@ -172,7 +167,7 @@ function Builder({ page }) {
       },
       fail: (error) => {
         message.error("Falha ao guardar página");
-        console.log(error);
+        console.error(error);
         setSaving(false);
       },
     });
@@ -198,13 +193,13 @@ function Builder({ page }) {
       },
       fail: (error) => {
         message.error("Falha ao publicar página");
-        console.log(error);
+        console.error(error);
         setPublishing(false);
       },
     });
   };
 
-  /*const handleSetEditMode = (mode) => {
+    /*const handleSetEditMode = (mode) => {
     setEditMode(mode);
     console.log("mode", mode);
     setShowActionButtons(mode);

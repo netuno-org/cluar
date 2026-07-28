@@ -61,7 +61,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
             },
             fail: (error) => {
                 setLoading({ ...loading, organization: false });
-                console.log(error);
+                console.error(error);
             }
         })
     }
@@ -79,7 +79,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
             },
             fail: (error) => {
                 setLoading({ ...loading, group: false });
-                console.log(error);
+                console.error(error);
             }
         })
     }

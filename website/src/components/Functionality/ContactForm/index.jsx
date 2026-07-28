@@ -58,7 +58,7 @@ function ContactForm({ section, type, title, actions }) {
         }
       },
       fail: (e) => {
-        console.log("ContactForm failed:", e);
+        console.error("ContactForm failed:", e);
         fail();
       }
     });

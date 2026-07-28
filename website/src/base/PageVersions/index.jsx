@@ -59,7 +59,7 @@ const PageVersions = ({ pageData, open, onClose }) => {
           }
         },
         fail: (error) => {
-          console.log(error);
+          console.error(error);
         },
       });
     }

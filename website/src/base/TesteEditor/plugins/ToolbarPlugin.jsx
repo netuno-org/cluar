@@ -48,8 +48,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
   // Função para formatar parágrafo (Normal)
   const formatParagraph = useCallback(() => {
-    console.log("formatParagraph");
-
     editor.update(() => {
       const selection = $getSelection();
       if ($isRangeSelection(selection)) {
@@ -61,8 +59,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor]);
 
   const formatHeading = useCallback((tag) => {
-    //console.log("formatHeading", tag);
-
     editor.update(() => {
       const selection = $getSelection();
       if ($isRangeSelection(selection)) {
@@ -74,15 +70,11 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor]);
 
   const formatList = useCallback((type) => {
-    console.log("formatList", type);
-
     editor.update(() => {
       const selection = $getSelection();
       if ($isRangeSelection(selection)) {
         $setBlocksType(selection, () => {
           const list = $createListNode(type);
-          //const listItem = $createListItemNode();
-          //list.append(listItem);
           return list;
         });
         setSelectedFormat(type);
@@ -93,7 +85,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
   const updateToolbar = useCallback(() => {
     const selection = $getSelection();
-    console.log("selection: ", selection);
 
     if ($isRangeSelection(selection)) {
       setIsBold(selection.hasFormat("bold"));
@@ -105,7 +96,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
       if (element) {
         const elementType = element.getType();
-        console.log("elementType: ", elementType);
 
         if (elementType === 'heading') {
           const tag = element.getTag();
@@ -169,8 +159,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor, updateToolbar]);
 
   const formatQuote = useCallback(() => {
-    console.log("formatQuote");
-
     editor.update(() => {
       const selection = $getSelection();
       if ($isRangeSelection(selection)) {
@@ -178,7 +166,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
       }
     });
     setStylesDropdownVisible(false);
-    //setSelectedFormat('quote');
   }, [editor]);
 
   return (

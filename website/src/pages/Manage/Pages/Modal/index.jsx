@@ -111,7 +111,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           },
           fail: (error) => {
             setLoading({ ...loading, saving: false });
-            console.log(error);
+            console.error(error);
 
             if (error?.json?.error_code) {
               notification.error({
@@ -143,7 +143,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           },
           fail: (error) => {
             setLoading({ ...loading, saving: false });
-            console.log(error);
+            console.error(error);
 
             if (error?.json?.error_code) {
               notification.error({
@@ -174,7 +174,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           setTemplateOptions(res.json.templates);
         },
         fail: (error) => {
-          console.log(error);
+          console.error(error);
         },
       });
     }, []);

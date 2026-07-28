@@ -132,7 +132,6 @@ export default function FloatingLinkEditor({ editor }) {
                             window.open(linkNode.getURL(), '_blank');
                             return true;
                         } else if (payload.detail === 1) {
-                            //console.log("linkNode", linkNode);
                             updateLinkEditor('click', linkNode);
                         }
                     }

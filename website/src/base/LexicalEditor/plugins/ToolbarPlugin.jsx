@@ -86,7 +86,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
   const updateToolbar = useCallback(() => {
     const selection = $getSelection();
-    console.log("selection: ", selection);
 
     if (!$isRangeSelection(selection)) {
       setIsSelected(false);
@@ -131,8 +130,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
       }
 
       const elementType = element.getType();
-      console.log("element", element);
-      console.log("elementType", elementType);
       switch (elementType) {
         case 'heading': {
           const tag = element.getTag();
@@ -259,7 +256,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor]);
 
   const formatHeading = useCallback((tag) => {
-    //console.log("formatHeading", tag);
 
     editor.update(() => {
       const selection = $getSelection();
@@ -272,7 +268,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor]);
 
   const formatList = useCallback((type) => {
-    //console.log("formatList", type);
 
     editor.update(() => {
       const selection = $getSelection();
@@ -287,7 +282,6 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor]);
 
   const applyFontFamily = useCallback((fontFamily) => {
-    //console.log("applyFontFamily", fontFamily);
 
     editor.update(() => {
       const selection = $getSelection();
@@ -306,14 +300,11 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor]);
 
   const applyFontSize = useCallback((fontSize) => {
-    console.log("applyFontSize", fontSize);
     editor.update(() => {
       const selection = $getSelection();
       if ($isRangeSelection(selection)) {
         const fontSizeWithUnit = fontSize.toString().includes('px') ? fontSize : `${fontSize}px`;
         $patchStyleText(selection, { "font-size": fontSizeWithUnit });
-
-        //console.log('Applied font size:', fontSizeWithUnit);
       }
     });
     setCurrentFontSize(fontSize);

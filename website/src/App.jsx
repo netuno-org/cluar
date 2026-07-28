@@ -123,7 +123,6 @@ function App() {
         {subroutes}
       </Route>
     );
-    console.log("Cluar.pages()", Cluar.pages());
   }
 
   const AppContent = () => {

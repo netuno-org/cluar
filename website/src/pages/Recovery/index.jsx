@@ -74,7 +74,7 @@ export default function Recovery(props) {
     }
 
     function onFinishFailed(errorInfo) {
-        console.log('Failed:', errorInfo);
+        console.error('Failed:', errorInfo);
     }
 
     if (ready) {

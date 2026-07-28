@@ -30,15 +30,12 @@ export default function ImagesPlugin({ captionsEnabled }) {
     useEffect(() => {
         if (!editor.hasNodes([ImageNode])) {
             throw new Error('ImagesPlugin: ImageNode not registered on editor');
-        } else {
-            console.log("ImagesPlugin: ImageNode registered on editor");
         }
 
         return mergeRegister(
             editor.registerCommand(
                 INSERT_IMAGE_COMMAND,
                 (payload) => {
-                    console.log("INSERT_IMAGE_COMMAND", "OLÁ");
                     const imageNode = $createImageNode(payload);
                     $insertNodes([imageNode]);
 

@@ -40,7 +40,6 @@ const ActionsTable = forwardRef(({ }, ref) => {
 
     const onLoadLanguages = () => {
         const languagesList = Cluar.languages() || [];
-        console.log("languagesList", languagesList);
 
         setLanguages(languagesList);
     }
@@ -82,7 +81,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
                     key: uid,
                     isLoading: false
                 });
-                console.log(error);
+                console.error(error);
                 notification.error({
                     message: active ? Cluar.plainDictionary('actions-table-desactive-failed-message') : Cluar.plainDictionary('actions-table-active-failed-message')
                 });

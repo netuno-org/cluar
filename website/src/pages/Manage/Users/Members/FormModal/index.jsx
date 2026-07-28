@@ -62,7 +62,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
             },
             fail: (error) => {
                 setLoading({ ...loading, organization: false });
-                console.log(error);
+                console.error(error);
             }
         })
     }
@@ -80,7 +80,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
             },
             fail: (error) => {
                 setLoading({ ...loading, group: false });
-                console.log(error);
+                console.error(error);
             }
         })
     }
@@ -127,7 +127,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
                 },
                 fail: (error) => {
                     setLoading({ ...loading, saving: false });
-                    console.log(error);
+                    console.error(error);
 
                     if (error?.json?.error_code === "person-already-member") {
                         notification.error({
@@ -159,7 +159,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
                 },
                 fail: (error) => {
                     setLoading({ ...loading, saving: false });
-                    console.log(error);
+                    console.error(error);
 
                     if (error?.json?.error_code === "person-already-member") {
                         notification.error({

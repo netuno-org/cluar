@@ -42,7 +42,7 @@ const DictionaryTable = forwardRef(({ }, ref) => {
             },
             fail: (error) => {
                 setLoading({ ...loading, dictionary: false });
-                console.log(error);
+                console.error(error);
                 notification.error({
                     message: Cluar.plainDictionary('dictionary-load-failed-message')
                 });

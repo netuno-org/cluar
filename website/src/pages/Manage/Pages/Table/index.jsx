@@ -40,7 +40,6 @@ const PageTable = forwardRef(({ }, ref) => {
 
     const onLoadLanguages = () => {
         const languagesList = Cluar.languages() || [];
-        console.log("languagesList", languagesList);
         
         setLanguages(languagesList);
     }
@@ -82,7 +81,7 @@ const PageTable = forwardRef(({ }, ref) => {
                     key: uid,
                     isLoading: false
                 });
-                console.log(error);
+                console.error(error);
                 notification.error({
                     message: active ? Cluar.plainDictionary('page-table-desactive-failed-message') : Cluar.plainDictionary('page-table-active-failed-message')
                 });
@@ -118,7 +117,6 @@ const PageTable = forwardRef(({ }, ref) => {
     const onLoadPages = () => {
         setLoading(true);
         const pagesData = Cluar.pages() || {};
-        console.log("Cluar.pages()", pagesData);
         
         let allPages = [];
         Object.keys(pagesData).forEach(langKey => {
@@ -134,7 +132,6 @@ const PageTable = forwardRef(({ }, ref) => {
         
         let filteredPages = [...allPages];
         
-        console.log("filters", filters);
         if (filters.language_code && filters.language_code.length > 0) {
             filteredPages = filteredPages.filter(page => 
                 filters.language_code.includes(page.language_code)
@@ -162,8 +159,6 @@ const PageTable = forwardRef(({ }, ref) => {
                 return page.menu === filters.menu;
             });
         }
-
-        console.log("filteredPages", filteredPages);
     
         const startIndex = (pagination.page - 1) * pagination.size;
         const paginatedPages = filteredPages.slice(startIndex, startIndex + pagination.size);

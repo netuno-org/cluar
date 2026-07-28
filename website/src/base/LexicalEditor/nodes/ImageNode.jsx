@@ -194,17 +194,6 @@ function $createImageNode({
     caption,
     key,
 }) {
-    /*console.log("[ImageNode] Creating with props:", {
-        altText,
-        src,
-        width,
-        height,
-        maxWidth,
-        showCaption,
-        caption,
-        captionsEnabled,
-        key,
-    });*/
     return $applyNodeReplacement(
         new ImageNode(
             src,

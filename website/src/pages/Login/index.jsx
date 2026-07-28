@@ -90,7 +90,6 @@ function Login({ loggedUserInfoAction }) {
         return data;
       },
       success: (data) => {
-        console.log(data)
         loggedUserInfoAction(data.json.extra);
         setSubmitting(false);
       },
@@ -114,7 +113,7 @@ function Login({ loggedUserInfoAction }) {
   }
 
   function onFinishFailed(errorInfo) {
-    console.log('Failed:', errorInfo);
+    console.error('Failed:', errorInfo);
   }
 
   let initialValues = { remember: true };

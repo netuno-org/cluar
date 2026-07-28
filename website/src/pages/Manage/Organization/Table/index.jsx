@@ -74,7 +74,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
                     key: uid,
                     isLoading: false
                 });
-                console.log(error);
+                console.error(error);
                 notification.error({
                     message: active ? Cluar.plainDictionary('language-table-desactive-failed-message') : Cluar.plainDictionary('language-table-active-failed-message')
                 });

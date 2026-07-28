@@ -15,7 +15,7 @@ import { AutoLinkNode, LinkNode, $createLinkNode } from "@lexical/link";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import GridLayoutPlugin from "./plugins/GridLayoutPlugin";
 import ImagesPlugin from './plugins/ImagesPlugin';
-import ToolbarPlugin from './plugins/ToolbarPlugin';
+import ToolbarPlugin from "./plugins/ToolbarPlugin";
 
 import { ImageNode, $createImageNode } from './nodes/ImageNode';
 import { GridContainerNode, $createGridContainerNode } from './nodes/GridContainerNode';
@@ -174,23 +174,13 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
 
     const processGridItemContent = (htmlNode, lexicalParent) => {
         Array.from(htmlNode.childNodes).forEach(child => {
-            console.log(`childrenGRID`, child);
-
             if (child.nodeType === Node.TEXT_NODE && child.textContent.trim()) {
                 const paragraphNode = $createParagraphNode();
                 const textNode = $createTextNode(child.textContent);
                 paragraphNode.append(textNode);
                 lexicalParent.append(paragraphNode);
             } else if (child.nodeType === Node.ELEMENT_NODE) {
-                //console.log("DEBUG2 - Element node:", child.nodeName);
-
                 if (child.nodeName.toUpperCase() === 'P') {
-                    // Verificar se é um parágrafo vazio (apenas <br>)
-                    if (child.childNodes.length === 1 &&
-                        child.firstChild.nodeName?.toUpperCase() === 'BR') {
-                        console.log("DEBUG2 <P> - BR");
-                    }
-
                     const paragraphNode = $createParagraphNode();
                     Array.from(child.childNodes).forEach(grandChild => {
                         if (grandChild.nodeType === Node.TEXT_NODE && grandChild.textContent.trim()) {
@@ -203,11 +193,9 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
 
                     lexicalParent.append(paragraphNode);
                 } else if (child.nodeName.toUpperCase() === 'BR') {
-                    //console.log("DEBUG2 <BR> - Line break");
                     const emptyParagraph = $createParagraphNode();
                     lexicalParent.append(emptyParagraph);
                 } else {
-                    //console.log("DEBUG - Other element:", child.nodeName);
                     // Outros elementos (img, span decorators, etc.) - processar normalmente
                     processNodeWithChildren(child, lexicalParent);
                 }
@@ -262,8 +250,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
 
             // GRID CONTAINER - Detectar div com classes "section group"
             if (tagName === 'DIV' && classList.contains('section') && classList.contains('group')) {
-                //console.log("[processNodeWithChildren] Detectado Grid Container:", domNode);
-
                 const gridContainerNode = $createGridContainerNode();
 
                 // Processar filhos que devem ser grid items
@@ -288,12 +274,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
                         break;
                     }
                 }
-
-                /*console.log("[processNodeWithChildren] Detectado Grid Item:", {
-                    domNode,
-                    columnSpan,
-                    hasGridItemAttr: domNode.hasAttribute('data-lexical-grid-item')
-                });*/
 
                 const gridItemNode = $createGridItemNode(columnSpan);
 
@@ -353,10 +333,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
                 const maxWidthMatch = domNode.style.maxWidth?.match(/\d+/);
                 const maxWidth = maxWidthMatch ? parseInt(maxWidthMatch[0]) : 500;
 
-                /*console.log("[processNodeWithChildren] Detectada imagem:", {
-                    src, altText, width, height, maxWidth
-                });*/
-
                 const imageNode = $createImageNode({
                     src,
                     altText,
@@ -373,7 +349,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
 
             // Listas
             if (tagName === 'UL' || tagName === 'OL') {
-                console.log("Tagname", tagName);
                 const listType = tagName === 'UL' ? 'bullet' : 'number';
                 const listNode = $createListNode(listType);
 

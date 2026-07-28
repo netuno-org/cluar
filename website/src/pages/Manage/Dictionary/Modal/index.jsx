@@ -76,7 +76,6 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     }
 
     const onFinish = (values) => {
-        console.log(values)
         const data = {
             ...values,
             language_code:values.language_code.value,

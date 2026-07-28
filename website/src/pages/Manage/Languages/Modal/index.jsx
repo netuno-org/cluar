@@ -56,7 +56,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                 },
                 fail: (error) => {
                     setLoading(false);
-                    console.log(error);
+                    console.error(error);
                     notification.error({
                         message: Cluar.plainDictionary('language-form-edit-failed-message')
                     });
@@ -80,7 +80,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
                 },
                 fail: (error) => {
                     setLoading(false);
-                    console.log(error);
+                    console.error(error);
                     notification.error({
                         message: Cluar.plainDictionary('language-form-save-failed-message')
                     });

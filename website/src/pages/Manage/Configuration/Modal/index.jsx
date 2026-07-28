@@ -219,8 +219,6 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
             if (configurationData.parameter_type?.code === "boolean") {
                 configurationDataFormatted.value = configurationData?.value === "true";
             }
-
-            console.log("dataconfig", configurationData)
     
             if (configurationData.parameter_type?.code === "image" && configurationData.value_img) {
                 const imageUrl = `/cluar/images/configuration/${configurationData.value_img}`;

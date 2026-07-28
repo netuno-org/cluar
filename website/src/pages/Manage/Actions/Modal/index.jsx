@@ -144,7 +144,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
       },
       fail: (error) => {
         setLoading({ ...loading, saving: false });
-        console.log(error);
+        console.error(error);
 
         if (error?.json?.error_code) {
           notification.error({

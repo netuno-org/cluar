@@ -47,7 +47,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
             },
             fail: (error) => {
                 setLoading({ ...loading, organization: false });
-                console.log(error);
+                console.error(error);
             }
         })
     }
@@ -77,7 +77,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                 },
                 fail: (error) => {
                     setLoading({ ...loading, saving: false });
-                    console.log(error);
+                    console.error(error);
 
                     if (error?.json?.error_code === "code-alread-in-use") {
                         notification.error({
@@ -115,7 +115,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
                 },
                 fail: (error) => {
                     setLoading({ ...loading, saving: false });
-                    console.log(error);
+                    console.error(error);
 
                     if (error?.json?.error_code === "code-alread-in-use") {
                         notification.error({

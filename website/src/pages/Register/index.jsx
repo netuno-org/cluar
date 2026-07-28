@@ -115,7 +115,7 @@ export default function Register(props) {
     }
 
     function onFinishFailed(errorInfo) {
-        console.log('Failed:', errorInfo);
+        console.error('Failed:', errorInfo);
     }
 
     if (_auth.isLogged()) {

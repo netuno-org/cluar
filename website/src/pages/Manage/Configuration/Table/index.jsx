@@ -43,7 +43,7 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             },
             fail: (error) => {
                 setLoading({...loading, configuration:false});
-                console.log(error);
+                console.error(error);
                 notification.error({
                     message: Cluar.plainDictionary('configuration-page-load-failed-message')
                 })

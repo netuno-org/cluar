@@ -21,7 +21,6 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
 
   const onInsert = (payload) => {
     const result = activeEditor.dispatchCommand(INSERT_IMAGE_COMMAND, payload);
-    //console.log('onInsert result', result);
     onClose();
     form.resetFields();
   };

@@ -37,7 +37,6 @@ const UserTable = forwardRef(({ }, ref) => {
     });
 
     const onActive = ({ uid, active }) => {
-        console.log({ uid, active })
         setLoadingActive({
             isLoading: true,
             key: uid
@@ -74,7 +73,7 @@ const UserTable = forwardRef(({ }, ref) => {
                     isLoading: false,
                     key: uid
                 });
-                console.log(error);
+                console.error(error);
                 notification.error({
                     message: active ? Cluar.plainDictionary('users-table-desactive-failed-message') : Cluar.plainDictionary('users-table-active-failed-message')
                 });

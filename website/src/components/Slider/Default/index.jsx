@@ -57,7 +57,6 @@ function Default({
 
   for (const item of items) {
     children.push(<Item {...{ type, ...item }} />);
-    console.log("item ", item)
   }
 
   return (

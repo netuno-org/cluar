@@ -206,12 +206,6 @@ const PageConfiguration = ({
 
           const errorCode = error?.json?.error_code;
           if (errorCode) {
-            console.log("errorCode", errorCode);
-            console.log(
-              "Cluar.plainDictionary(errorCode)",
-              Cluar.plainDictionary(errorCode)
-            );
-
             notification.error({
               message: Cluar.plainDictionary(errorCode),
             });
@@ -242,12 +236,10 @@ const PageConfiguration = ({
             notification.success({
               message: "Nova ordem de estruturas salva com sucesso.",
             });
-            console.log("ddd", res.json);
             window.location = `?version=${res.json.data}`;
           }
         },
         fail: (error) => {
-          console.log("ror", error);
           notification.error({
             message: "Falha ao salvar nova ordem de estruturas.",
           });
@@ -285,7 +277,7 @@ const PageConfiguration = ({
         setTemplateOptions(res.json.templates);
       },
       fail: (error) => {
-        console.log(error);
+        console.error(error);
       },
     });
   }, []);

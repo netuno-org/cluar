@@ -46,8 +46,7 @@ export default function ColumnsModal({ visible, onClose, activeEditor }) {
   }, []);
 
   const onInsert = (payload) => {
-    const result = activeEditor.dispatchCommand(INSERT_LAYOUT_COMMAND, payload);
-    console.log('onInsert columns result', result);
+    activeEditor.dispatchCommand(INSERT_LAYOUT_COMMAND, payload);
     onClose();
     form.resetFields();
   };
@@ -56,7 +55,7 @@ export default function ColumnsModal({ visible, onClose, activeEditor }) {
     try {
       const values = await form.validateFields();
       const selectedLayout = columnLayouts.find(layout => layout.key === values.layout);
-      
+
       if (selectedLayout) {
         onInsert(selectedLayout.columns);
       }
@@ -116,8 +115,8 @@ export default function ColumnsModal({ visible, onClose, activeEditor }) {
             <Row gutter={[16, 16]}>
               {columnLayouts.map((layout) => (
                 <Col span={12} key={layout.key}>
-                  <Card 
-                    size="small" 
+                  <Card
+                    size="small"
                     style={{ cursor: 'pointer' }}
                     bodyStyle={{ padding: '12px' }}
                   >
