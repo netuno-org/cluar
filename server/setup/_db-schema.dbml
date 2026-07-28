@@ -1,0 +1,284 @@
+Table action {
+  id int [pk, increment]
+  content text [note: 'Conteúdo']
+  image text [note: 'Imagem']
+  indication varchar(250) [note: 'Indicação']
+  language_id int [not null, ref: > language.id, note: 'Idioma']
+  link varchar(250) [note: 'Ligação']
+  title varchar(250) [note: 'Título']
+  Note: 'Ação'
+}
+
+Table configuration {
+  id int [pk, increment]
+  language_id int [ref: > language.id, note: 'Idioma']
+  parameter_id int [not null, ref: > configuration_parameter.id, note: 'Parâmetro']
+  value text [note: 'Valor']
+  value_img text [note: 'Imagem']
+  Note: 'Configuração'
+}
+
+Table configuration_parameter {
+  id int [pk, increment]
+  code varchar(250) [not null, unique, note: 'Código']
+  configuration_parameter_type_id int [ref: > configuration_parameter_type.id, note: 'Tipo']
+  description varchar(250) [not null, unique, note: 'Descrição']
+  Note: 'Parâmetro'
+}
+
+Table configuration_parameter_type {
+  id int [pk, increment]
+  code varchar(250) [unique, note: 'Código']
+  name varchar(250) [note: 'Nome']
+  Note: 'Tipo'
+}
+
+Table contact {
+  id int [pk, increment]
+  email varchar(250) [not null, note: 'Email']
+  file text [note: 'File']
+  message text [not null, note: 'Mensagem']
+  moment timestamp [note: 'Momento']
+  name varchar(250) [not null, note: 'Nome']
+  subject varchar(250) [not null, note: 'Título']
+  Note: 'Contacto'
+}
+
+Table dictionary {
+  id int [pk, increment]
+  entry_id int [not null, ref: > dictionary_entry.id, note: 'Chave']
+  language_id int [not null, ref: > language.id, note: 'Idioma']
+  value text [note: 'Valor']
+  Note: 'Dicionário'
+}
+
+Table dictionary_entry {
+  id int [pk, increment]
+  code varchar(250) [not null, unique, note: 'Código']
+  description varchar(250) [not null, unique, note: 'Descrição']
+  Note: 'Entrada'
+}
+
+Table language {
+  id int [pk, increment]
+  code varchar(250) [not null, unique, note: 'Código']
+  default boolean [note: 'Padrão']
+  description varchar(250) [not null, unique, note: 'Descrição']
+  locale varchar(250) [not null, unique, note: 'Localização']
+  Note: 'Idioma'
+}
+
+Table organization {
+  id int [pk, increment]
+  code varchar(250) [unique, note: 'Código']
+  name varchar(250) [note: 'Nome']
+  parent_id int [ref: > organization.id, note: 'Pai']
+  Note: 'Organização'
+}
+
+Table organization_people {
+  id int [pk, increment]
+  organization_id int [ref: > organization.id, note: 'Organização']
+  people_id int [ref: > people.id, note: 'Pessoa']
+  user_group_id int [ref: > user_group.id, note: 'Group']
+  Note: 'Membros'
+}
+
+Table page {
+  id int [pk, increment]
+  description text [note: 'Descrição ']
+  keywords text [note: 'Palavras-Chave']
+  language_id int [not null, ref: > language.id, note: 'Idioma']
+  link varchar(250) [not null, note: 'Ligação']
+  menu boolean [note: 'Menu']
+  menu_title varchar(250) [note: 'Menu Título']
+  navigable boolean [note: 'Navegável']
+  parent_id int [ref: > page.id, note: 'Pai']
+  social_description text [note: 'Descrição para as Redes Sociais']
+  social_image text [note: 'Imagem para as Redes Sociais']
+  sorter int [note: 'Ordem']
+  status_id int [not null, ref: > page_status.id, note: 'Estado']
+  template varchar(250) [note: 'Template']
+  title varchar(250) [not null, note: 'Título']
+  Note: 'Página'
+}
+
+Table page_banner {
+  id int [pk, increment]
+  content text [note: 'Conteúdo']
+  content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  image text [note: 'Imagem']
+  image_alt text [note: 'Imagem Alt']
+  image_title varchar(250) [note: 'Imagem Título']
+  page_version_id int [ref: > page_version.id, note: 'Página']
+  position_x varchar(250) [note: 'Posição X']
+  position_y varchar(250) [note: 'Posição Y']
+  sorter int [note: 'Ordem']
+  title text [note: 'Título']
+  title_invert_background boolean [note: 'Inverter Cor de Fundo do Título ']
+  type varchar(250) [note: 'Tipo']
+  Note: 'Estandarte'
+}
+
+Table page_banner_action {
+  id int [pk, increment]
+  action_id int [not null, ref: > action.id, note: 'Ação']
+  page_banner_id int [not null, ref: > page_banner.id, note: 'Estandarte']
+  sorter int [note: 'Ordem']
+  Note: 'Ação'
+}
+
+Table page_content {
+  id int [pk, increment]
+  content text [note: 'Conteúdo']
+  content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  image text [note: 'Imagem']
+  image_alt text [note: 'Imagem Alt']
+  image_max_width int [note: 'Largura Máxima da Imagem']
+  image_title varchar(250) [note: 'Imagem Título']
+  page_version_id int [ref: > page_version.id, note: 'Página']
+  sorter int [note: 'Ordem']
+  title text [note: 'Título']
+  title_invert_background boolean [note: 'Inverter Cor de Fundo do Título ']
+  type varchar(250) [note: 'Tipo']
+  Note: 'Conteúdo'
+}
+
+Table page_content_action {
+  id int [pk, increment]
+  action_id int [not null, ref: > action.id, note: 'Ação']
+  page_content_id int [not null, ref: > page_content.id, note: 'Conteúdo']
+  sorter int [note: 'Ordem']
+  Note: 'Ação'
+}
+
+Table page_functionality {
+  id int [pk, increment]
+  content text [note: 'Conteúdo']
+  content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  image text [note: 'Imagem']
+  page_version_id int [ref: > page_version.id, note: 'Página']
+  sorter int [note: 'Ordem']
+  title text [note: 'Título']
+  title_invert_background boolean [note: 'Inverter Cor de Fundo do Título']
+  type varchar(250) [note: 'Tipo']
+  Note: 'Funcionalidade'
+}
+
+Table page_functionality_action {
+  id int [pk, increment]
+  action_id int [not null, ref: > action.id, note: 'Ação']
+  page_functionality_id int [not null, ref: > page_functionality.id, note: 'Funcionalidade']
+  sorter int [note: 'Ordem']
+  Note: 'Ação'
+}
+
+Table page_listing {
+  id int [pk, increment]
+  content text [note: 'Conteúdo']
+  content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  image text [note: 'Imagem']
+  image_alt text [note: 'Imagem Alt']
+  image_title varchar(250) [note: 'Imagem Título']
+  page_version_id int [ref: > page_version.id, note: 'Página']
+  sorter int [note: 'Ordem']
+  title text [note: 'Título']
+  title_invert_background boolean [note: 'Inverter Cor de Fundo do Título']
+  type varchar(250) [note: 'Tipo']
+  Note: 'Listagem'
+}
+
+Table page_listing_action {
+  id int [pk, increment]
+  action_id int [not null, ref: > action.id, note: 'Ação']
+  page_listing_id int [not null, ref: > page_listing.id, note: 'Listagem']
+  sorter int [note: 'Ordem']
+  Note: 'Ação'
+}
+
+Table page_listing_item {
+  id int [pk, increment]
+  content text [note: 'Conteúdo']
+  content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  image text [note: 'Imagem']
+  image_alt text [note: 'Imagem Alt']
+  image_title varchar(250) [note: 'Imagem Título']
+  link varchar(250) [note: 'URL']
+  page_listing_id int [not null, ref: > page_listing.id, note: 'Listagem']
+  sorter int [note: 'Ordem']
+  title text [note: 'Título']
+  title_invert_background boolean [note: 'Inverter Cor de Fundo do Título']
+  Note: 'Item'
+}
+
+Table page_slider {
+  id int [pk, increment]
+  content text [note: 'Conteúdo']
+  content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  image text [note: 'Imagem']
+  image_alt text [note: 'Imagem Alt']
+  image_title varchar(250) [note: 'Imagem Título']
+  page_version_id int [ref: > page_version.id, note: 'Página']
+  sorter int [note: 'Ordem']
+  title text [note: 'Título']
+  title_invert_background boolean [note: 'Inverter Cor de Fundo do Título']
+  type varchar(250) [note: 'Tipo']
+  Note: 'Slider'
+}
+
+Table page_slider_item {
+  id int [pk, increment]
+  content text [note: 'Conteúdo']
+  content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  image text [note: 'Imagem']
+  image_alt text [note: 'Imagem Alt']
+  image_title varchar(250) [note: 'Imagem Título']
+  page_slider_id int [ref: > page_slider.id, note: 'Slider']
+  sorter int [note: 'Ordem']
+  title text [note: 'Título']
+  title_invert_background boolean [note: 'Inverter Cor de Fundo do Título']
+  Note: 'Item'
+}
+
+Table page_slider_item_action {
+  id int [pk, increment]
+  action_id int [not null, ref: > action.id, note: 'Ação']
+  page_slider_item_id int [not null, ref: > page_slider_item.id, note: 'Slider']
+  sorter int [note: 'Ordem']
+  Note: 'Ação'
+}
+
+Table page_status {
+  id int [pk, increment]
+  code varchar(250) [not null, unique, note: 'Código']
+  description varchar(250) [not null, unique, note: 'Descrição']
+  Note: 'Estado'
+}
+
+Table page_version {
+  id int [pk, increment]
+  created_at timestamp [note: 'Data de Criação']
+  page_id int [ref: > page.id, note: 'Página']
+  status_id int [ref: > page_status.id, note: 'Status']
+  version int [note: 'Versão']
+  Note: 'Versão'
+}
+
+Table people {
+  id int [pk, increment]
+  avatar text [note: 'Avatar']
+  email varchar(250) [note: 'Email']
+  name varchar(250) [not null, note: 'Nome']
+  people_user_id int [not null, note: 'Utilizador']
+  recovery_key varchar(250) [note: 'Chave de Recuperação']
+  recovery_limit timestamp [note: 'Limite de Recuperação']
+  Note: 'Pessoa'
+}
+
+Table user_group {
+  id int [pk, increment]
+  code varchar(250) [note: 'Código']
+  name varchar(250) [note: 'Nome']
+  Note: 'Grupo'
+}
+
