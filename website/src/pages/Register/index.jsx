@@ -11,7 +11,7 @@ import {
 
 import Cluar from '../../common/Cluar';
 
-import 'altcha';
+import "altcha/i18n";
 
 import './index.less';
 
@@ -215,17 +215,18 @@ export default function Register(props) {
                                 >
                                     <Input.Password disabled={submitting} maxLength={25} />
                                 </Form.Item>
-                                {Cluar.authAltcha() &&
-                                    <Form.Item>
+                                {Cluar.authAltcha() && (
+                                    <Form.Item className="login-page__altcha">
                                         <altcha-widget
                                             ref={altcha}
-                                            challengeurl={_service.url('/_altcha')}
+                                            language="pt"
+                                            challenge={_service.url("/_altcha")}
                                             delay={1}
                                             hidelogo={true}
                                             hidefooter={true}
                                         ></altcha-widget>
                                     </Form.Item>
-                                }
+                                )}
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit" loading={submitting} className='btn-register'>
                                         {Cluar.plainDictionary('register-form-register')}

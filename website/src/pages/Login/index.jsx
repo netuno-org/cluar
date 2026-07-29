@@ -14,7 +14,7 @@ import {
   FaFacebook, FaGoogle, FaDiscord, FaGithub
 } from "react-icons/fa";
 
-import 'altcha';
+import "altcha/i18n";
 
 import './index.less';
 
@@ -181,17 +181,18 @@ function Login({ loggedUserInfoAction }) {
                     <Checkbox>{Cluar.plainDictionary('login-form-remember')}</Checkbox>
                   </Form.Item>
 
-                  {Cluar.authAltcha() &&
-                    <Form.Item>
+                  {Cluar.authAltcha() && (
+                    <Form.Item className="login-page__altcha">
                       <altcha-widget
                         ref={altcha}
-                        challengeurl={_service.url('/_altcha')}
+                        language="pt"
+                        challenge={_service.url("/_altcha")}
                         delay={1}
                         hidelogo={true}
                         hidefooter={true}
                       ></altcha-widget>
                     </Form.Item>
-                  }
+                  )}
 
                   <Form.Item>
                     <Button loading={submitting} type="primary" className="login-btn" htmlType="submit">
