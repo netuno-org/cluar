@@ -120,6 +120,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   ];
 
   function onLogout() {
+    window.sessionStorage.setItem("builder-edit-mode", "0");
     _auth.logout();
     navigate('/login');
   }
@@ -162,6 +163,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           message: Cluar.plainDictionary('side-menu-load-user-info-failed-message'),
           description: Cluar.plainDictionary('side-menu-load-user-info-failed-description'),
         });
+        window.sessionStorage.setItem("builder-edit-mode", "0");
         _auth.logout();
       }
     });
