@@ -1,8 +1,29 @@
 @import "../../../styles/variables.less";
 
 .map {
-    max-width: 80%;
-    margin: 50px auto;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    @media (max-width: @header-desktop-width) {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    @media only screen and (max-width: @header-mobile-width) {
+        padding: 40px 24px;
+    }
+
+    &__wrapper {
+        width: 100%;
+        max-width: @site-max-width;
+        margin: 0 auto;
+    }
 
     >h1 {
         font-size: 2em;
@@ -10,13 +31,11 @@
         letter-spacing: .01em;
     }
 
-    &__d {
+    .map__title-border {
         height: 4px;
         width: 8vw;
         margin-top: -1em;
         margin-bottom: 1em;
-        background: rgb(255, 255, 255);
-        background: linear-gradient(90deg, @primary-color 0%, @secondary-color 100%);
     }
 
     &__container {

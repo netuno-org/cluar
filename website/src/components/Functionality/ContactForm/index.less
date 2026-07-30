@@ -1,17 +1,36 @@
 @import "../../../styles/variables.less";
 
 .contact-form {
-    //margin: 50px 50px;
-    margin: -25px 50px 50px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
 
-    @media only screen and (max-width: 800px) {
-        margin: 20px auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 0;
+    padding-bottom: 50px;
+
+    @media (max-width: @header-desktop-width) {
+        padding-left: 60px;
+        padding-right: 60px;
     }
 
-    >hr {
-        border: 1px solid #f0f0f0;
-        margin-bottom: 50px;
+    @media only screen and (max-width: @header-mobile-width) {
+        padding: 20px 24px 40px;
     }
+
+    &__wrapper {
+        width: 100%;
+        max-width: @site-max-width;
+        margin: 0 auto;
+
+        >hr {
+            border: 1px solid #f0f0f0 !important;
+            margin-bottom: 50px;
+        }
+
+    }
+
 
     .ant-form {
         margin: 0 auto;
@@ -24,7 +43,6 @@
         .ant-col-hide {
             display: none;
         }
-
     }
 
     >ul.actions {

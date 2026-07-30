@@ -14,12 +14,21 @@
       background-size: cover;
       min-height: 600px;
       height: calc(100vh - @header-size);
-      padding-top: @header-size !important;
+      padding-top: @header-size;
+      padding-bottom: 0;
+
+      padding-left: 50px;
+      padding-right: 50px;
+
+      @media (max-width: @header-desktop-width) {
+        padding-left: 60px;
+        padding-right: 60px;
+      }
 
       @media only screen and (max-width: @header-mobile-width) {
         height: auto !important;
         min-height: calc(100vh - @header-size-mobile);
-        padding-top: @header-size-mobile !important;
+        padding: @header-size-mobile 24px 100px 24px;
       }
 
       h2 {
@@ -30,15 +39,8 @@
     &__wrapper {
       width: 100%;
       max-width: @site-max-width;
+      margin: 0 auto;
       z-index: 2;
-
-      @media (max-width: @header-desktop-width) {
-        padding: 0 60px;
-      }
-
-      @media only screen and (max-width: @header-mobile-width) {
-        padding: calc(@header-size-mobile + 48px) 24px 48px;
-      }
 
       >h1 {
         margin-bottom: 0;

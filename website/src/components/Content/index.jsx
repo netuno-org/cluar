@@ -106,7 +106,9 @@ const Content = (props) => {
 
     return (
         <section className="content">
-            {layout}
+            <div className="content__wrapper">
+                {layout}
+            </div>
         </section>
     );
 };

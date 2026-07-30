@@ -24,41 +24,44 @@ function ContactMap({ section, type, title, content, actions }) {
   }
   return (
     <section className="map">
-      <h1 dangerouslySetInnerHTML={{ __html: title }} />
-      <div className="map__title-border"></div>
-      <Row>
-        <Col xs={24} sm={24} md={24} lg={24} xl={12}>
-          <div className="text">
-            <Row>
-              <Col>
-                <div dangerouslySetInnerHTML={{ __html: content }}></div>
-              </Col>
-            </Row>
-          </div>
-          <div className="text">
-            <Row>
-              <Col>
-                <br />
-              </Col>
-            </Row>
-            <Row>
-              <Col><HomeOutlined /></Col>
-              <Col>
-                <p></p>
-              </Col>
-            </Row>
-            <Row>
-              <Col><PhoneOutlined /></Col>
-              <Col><p></p></Col>
-            </Row>
-            <Row>
-              <Col><MailOutlined /></Col>
-              <Col><p></p></Col>
-            </Row>
-          </div>
-        </Col>
-        <Col xs={24} sm={24} md={24} lg={24} xl={12}>
-          {/* <div className="map__container">
+      <div className="map__wrapper">
+
+
+        <h1 dangerouslySetInnerHTML={{ __html: title }} />
+        <div className="map__title-border"></div>
+        <Row>
+          <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+            <div className="text">
+              <Row>
+                <Col>
+                  <div dangerouslySetInnerHTML={{ __html: content }}></div>
+                </Col>
+              </Row>
+            </div>
+            <div className="text">
+              <Row>
+                <Col>
+                  <br />
+                </Col>
+              </Row>
+              <Row>
+                <Col><HomeOutlined /></Col>
+                <Col>
+                  <p></p>
+                </Col>
+              </Row>
+              <Row>
+                <Col><PhoneOutlined /></Col>
+                <Col><p></p></Col>
+              </Row>
+              <Row>
+                <Col><MailOutlined /></Col>
+                <Col><p></p></Col>
+              </Row>
+            </div>
+          </Col>
+          <Col xs={24} sm={24} md={24} lg={24} xl={12}>
+            {/* <div className="map__container">
             <Map
               initialViewState={{
                   latitude,
@@ -105,13 +108,14 @@ function ContactMap({ section, type, title, content, actions }) {
               )}
             </Map>
           </div> */}
-        </Col>
-        {config.action && (
-          <Col lg={6} sm={24}>
-            <Actions {...{ section, type, actions }} />
           </Col>
-        )}
-      </Row>
+          {config.action && (
+            <Col lg={6} sm={24}>
+              <Actions {...{ section, type, actions }} />
+            </Col>
+          )}
+        </Row>
+      </div>
     </section>
   );
 }

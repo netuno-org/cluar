@@ -2,23 +2,42 @@
 
 .content {
     width: 100%;
-    max-width: calc(@site-max-width + 120px);
-    margin: 50px auto;
-    padding: 0 60px;
-    display: flex;
-    @media only screen and (max-width: 800px) {
-        padding: 0 20px;
-        margin: 20px auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+
+    padding-left: 50px;
+    padding-right: 50px;
+
+    @media (max-width: @header-desktop-width) {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    @media only screen and (max-width: @header-mobile-width) {
+        padding: calc(@header-size-mobile + 48px) 24px 48px;
         flex-wrap: wrap;
     }
 
-    > div {
+    &__wrapper {
+        width: 100%;
+        max-width: @site-max-width;
+        margin: 0 auto;
+        display: flex;
+
+        @media only screen and (max-width: @header-mobile-width) {
+            flex-wrap: wrap;
+        }
+    }
+
+    >div {
         width: 100%;
     }
-    
-    > ul.actions {
+
+    >ul.actions {
         width: 300px;
-        @media only screen and (max-width: 800px) {
+
+        @media only screen and (max-width: @header-mobile-width) {
             width: 100%;
         }
     }
@@ -26,6 +45,7 @@
     .image {
         width: 100%;
         height: auto;
+
         img {
             display: block;
             margin-left: auto;
@@ -34,54 +54,51 @@
     }
 
     .text {
-        > h1 {
+        >h1 {
             font-size: 2em;
             font-weight: normal;
             letter-spacing: .01em;
         }
-        
-        > div {
+
+        >div {
             font-size: 1.2em;
-            > ul {
+
+            >ul {
                 margin-left: 40px !important;
             }
         }
     }
 
-    &__text {
+    &__text {}
 
-    }
+    &__image-left {}
 
-    &__image-left {
+    &__image-right {}
 
-    }
-    &__image-right {
+    &__image-top {}
 
-    }
-    &__image-top {
-
-    }
-    &__image-bottom {
-
-    }
+    &__image-bottom {}
 
     &__text-service {
-        > h1 {
+        >h1 {
             font-size: 2em;
             font-weight: normal;
             letter-spacing: .01em;
         }
+
         &__title-border {
             height: 4px;
             width: 8vw;
             margin-top: -1em;
             margin-bottom: 1em;
-            background: rgb(255,255,255);
+            background: rgb(255, 255, 255);
         }
+
         .ant-btn {
             height: 50px;
             min-width: 190px;
-            > span {
+
+            >span {
                 text-transform: uppercase;
                 letter-spacing: .05em;
                 font-size: 1.2em;
@@ -94,19 +111,24 @@
         background-color: @primary-color;
         text-align: center;
         border-color: @primary-color;
+
         h4 {
             color: #ffffff;
         }
+
         a {
             color: @secondary-color;
         }
+
         &:hover {
             cursor: pointer;
             background-color: @secondary-color;
             color: #000000;
+
             h4 {
                 color: #000000;
             }
+
             a {
                 color: @primary-color;
             }

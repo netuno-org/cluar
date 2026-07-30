@@ -4,15 +4,20 @@
   z-index: 1;
   width: 100%;
   position: relative;
-   padding: 24px 0;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2),
     0 1px 1px 0 rgba(0, 0, 0, .14),
     0 2px 1px -1px rgba(0, 0, 0, .12);
   color: @footer-color !important;
 
+  padding-top: @header-size;
+  padding-bottom: 24px;
+
+  padding-left: 50px;
+  padding-right: 50px;
+
   @media (max-width: @header-desktop-width) {
-    padding-left: 60px !important;
-    padding-right: 60px !important;
+    padding-left: 60px;
+    padding-right: 60px;
   }
 
   @media (max-width: @header-mobile-width) {
@@ -20,9 +25,7 @@
     padding-right: 24px !important;
     text-align: center;
 
-    >div:last-child {
-      padding: 0 20px;
-    }
+    
   }
 
   &__wrapper {

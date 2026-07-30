@@ -3,21 +3,52 @@
 .banner {
   position: relative;
 
+  &__default-sub-banner {
+    position: relative;
+    min-height: 600px;
+    height: calc(100vh - @header-size);
+    padding: @header-size 60px 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #777;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+    padding-top: @header-size;
+    padding-bottom: 0;
+
+    padding-left: 50px;
+    padding-right: 50px;
+
+    @media (max-width: @header-desktop-width) {
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+
+    .banner__sub-banner {
+      display: block;
+    }
+
+    .banner__darken-bg {
+      display: none;
+    }
+
+    @media only screen and (max-width: @header-mobile-width) {
+      height: auto !important;
+      min-height: calc(100vh - @header-size-mobile);
+      padding: @header-size-mobile 24px 100px 24px;
+    }
+  }
+
   &__wrapper {
     width: 100%;
     max-width: @site-max-width;
     margin: 0 auto;
     z-index: 2;
 
-    @media (max-width: @header-desktop-width) {
-      padding: 0 60px;
-    }
-
-    @media only screen and (max-width: @header-mobile-width) {
-      padding: calc(@header-size-mobile + 48px) 24px 48px;
-    }
-
-    > h1 {
+    >h1 {
       margin-bottom: 0;
       font-weight: 200;
       font-size: 3.5em;
@@ -31,7 +62,7 @@
       }
     }
 
-    > div {
+    >div {
       margin-bottom: 32px;
 
       p {
@@ -57,13 +88,16 @@
             font-size: 1em;
             margin-bottom: 0.1em;
           }
+
           p {
             font-size: 1.1em;
             margin-bottom: 0.1em;
           }
+
           a {
             font-size: 1em;
           }
+
           &:hover h4 {
             color: #000;
           }
@@ -93,34 +127,7 @@
     }
   }
 
-  &__default-sub-banner {
-    position: relative;
-    min-height: 600px;
-    height: calc(100vh - @header-size);
-    padding-top: @header-size !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #777;
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
 
-    .banner__sub-banner {
-      display: block;
-    }
-
-    .banner__darken-bg {
-      display: none;
-    }
-
-    @media only screen and (max-width: @header-mobile-width) {
-      height: auto !important;
-      min-height: calc(100vh - @header-size-mobile);
-      padding-top: @header-size-mobile !important;
-      padding-bottom: 100px;
-    }
-  }
 
   &__darken-bg {
     width: 100%;
