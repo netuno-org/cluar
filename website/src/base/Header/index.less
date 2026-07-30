@@ -1,7 +1,6 @@
 @import "../../styles/variables.less";
 
 .ant-layout-header {
-  padding: 0 calc((100% - @header-desktop-width) / 2);
   position: fixed;
   display: flex;
   justify-content: center;
@@ -13,8 +12,12 @@
   line-height: @header-size !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 
+  @media (max-width: @header-desktop-width) {
+    padding: 0 60px !important;
+  }
+
   @media (max-width: @header-mobile-width) {
-    padding: 0 20px !important;
+    padding: 0 24px !important;
     height: @header-size-mobile !important;
     line-height: @header-size-mobile !important;
   }
@@ -24,7 +27,7 @@
     margin: auto;
 
     @media (max-width: @header-mobile-width) {
-      padding: 0 !important;
+      padding: 0 24px !important;
     }
 
   }
@@ -71,8 +74,8 @@
 
       a {
         img {
-          max-width: 124px;
-          height: auto;
+          max-width: auto;
+          height: 32px;
         }
       }
     }
@@ -90,7 +93,10 @@
     border-bottom: none;
     display: flex;
     flex-direction: row-reverse;
-    width: 150px !important;
+    width: auto !important;
+    padding: 0 12px !important;
+
+
 
     .ant-menu-submenu-title:hover {
       color: @header-menu-color-hover !important;
@@ -120,10 +126,12 @@
       border-bottom: none;
       border-right: none;
       justify-content: flex-end;
+      gap: 4px;
 
       li {
         border: 0 !important;
         background-color: transparent !important;
+        padding: 0 12px !important;
 
         &:after {
           content: unset;
@@ -162,13 +170,13 @@
     height: auto;
     z-index: 9999;
 
-    @media only screen and (min-width: @header-mobile-width) {
+    @media only screen and (min-width: calc(@header-mobile-width + 1px)) {
       display: none;
     }
   }
 
   .menu-burger {
-    @media only screen and (min-width: @header-mobile-width) {
+    @media only screen and (min-width: calc(@header-mobile-width + 1px)) {
       display: none;
     }
   }
@@ -210,7 +218,7 @@
 .burger .burger-lines:before {
   background-color: @header-menu-color !important;
   left: 0 !important;
-  max-width: 2.5em !important;
+  max-width: 3em !important;
   width: 100% !important;
 
 }
