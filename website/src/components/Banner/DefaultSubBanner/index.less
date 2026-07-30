@@ -3,14 +3,12 @@
 .banner {
   position: relative;
 
-  // Wrapper que limita a largura do conteúdo e centraliza
   &__wrapper {
     width: 100%;
     max-width: @site-max-width;
     margin: 0 auto;
-    z-index: 2;                     // fica acima do darken‑bg
+    z-index: 2;
 
-    // Padding responsivo idêntico ao do slider
     @media (max-width: @header-desktop-width) {
       padding: 0 60px;
     }
@@ -74,7 +72,6 @@
     }
   }
 
-  // Barra inferior (sub‑banner)
   &__sub-banner {
     position: absolute;
     bottom: 32px;
@@ -96,7 +93,6 @@
     }
   }
 
-  // Container principal do DefaultSubBanner
   &__default-sub-banner {
     position: relative;
     min-height: 600px;
@@ -110,12 +106,10 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
 
-    // Exibe a barra sub‑banner somente neste tipo
     .banner__sub-banner {
       display: block;
     }
 
-    // Darken‑bg desabilitado (comportamento original)
     .banner__darken-bg {
       display: none;
     }
@@ -124,11 +118,10 @@
       height: auto !important;
       min-height: calc(100vh - @header-size-mobile);
       padding-top: @header-size-mobile !important;
-      padding-bottom: 100px; // espaço extra para a barra inferior
+      padding-bottom: 100px;
     }
   }
 
-  // Overlay escuro (usado em outros banners, aqui fica oculto)
   &__darken-bg {
     width: 100%;
     height: 100%;
