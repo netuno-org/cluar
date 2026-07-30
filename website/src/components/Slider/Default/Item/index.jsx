@@ -33,18 +33,21 @@ function Item({
         backgroundImage: `url(${imageSrc})`,
       }}
     >
-      <h1 dangerouslySetInnerHTML={{ __html: title }} />
-      <div
-        data-sal="fade"
-        data-sal-duration="2000"
-        data-sal-easing="ease-out-cubic"
-        dangerouslySetInnerHTML={{ __html: content }}
-      ></div>
-      {config.action && (
-        <div>
-          <Actions {...{ section, type, actions }} />
-        </div>
-      )}
+      <div className="slider__item__wrapper">
+        <h1 dangerouslySetInnerHTML={{ __html: title }} 
+        />
+        <div
+          data-sal="fade"
+          data-sal-duration="2000"
+          data-sal-easing="ease-out-cubic"
+          dangerouslySetInnerHTML={{ __html: content }}
+        ></div>
+        {config.action && (
+          <div className="slider__actions">
+            <Actions {...{ section, type, actions }} />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
