@@ -81,6 +81,38 @@ Now you can start the website with the classic command:
 
 > By default, the website runs with Bun.
 
+## Troubleshooting :hammer_and_wrench:
+
+### GLIBC version error when running `bun run dev`
+
+If you get an error like this when starting the website:
+
+```
+Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.
+...
+[cause]: Error: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by .../node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node)
+code: 'ERR_DLOPEN_FAILED'
+```
+
+This is **not** actually the npm optional dependencies bug mentioned in the message. It's a **GLIBC version mismatch**: Rollup's native binary was built requiring `GLIBC_2.32` or newer, while older Linux distributions (e.g. Ubuntu 20.04, which ships with glibc 2.31) don't have it available.
+
+To fix it, force Rollup to use its WASM build instead of the native one, by adding an `overrides` field at the root of the website's `package.json`:
+
+```json
+"overrides": {
+  "rollup": "npm:@rollup/wasm-node"
+}
+```
+
+Then reinstall the dependencies:
+
+```
+rm -rf node_modules bun.lock bun.lockb
+bun install
+bun pm trust --all
+bun run dev
+```
+
 ## Running :rocket:
 
 In the Netuno root directory run
