@@ -64,7 +64,7 @@ const AdminBar = ({
             </Col>
             <Col>
               <Button type="text" onClick={() => setIsClonePage(true)}>
-                Clonar página
+                {Cluar.plainDictionary("admin-bar-clone-page")}
               </Button>
             </Col>
             <Col>

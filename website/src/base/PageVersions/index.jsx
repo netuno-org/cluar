@@ -10,6 +10,7 @@ import { useSearchParams } from "react-router";
 import dayjs from "dayjs";
 
 import _service from "@netuno/service-client";
+import Cluar from "../../common/Cluar";
 
 const PageVersions = ({ pageData, open, onClose }) => {
   const [versions, setVersions] = useState([]);
@@ -74,7 +75,7 @@ const PageVersions = ({ pageData, open, onClose }) => {
         setVersions([]);
       }}
       width={520}
-      title="Versões da Página"
+      title={Cluar.plainDictionary("page-versions-drawer-title")}
     >
       <Timeline
         items={versions.map((version) => ({
@@ -86,19 +87,19 @@ const PageVersions = ({ pageData, open, onClose }) => {
                   "YYYY-MM-DD HH:mm:ss"
                 ).format("DD/MM/YYYY [às] HH:mm")}`}{" "}
                 {version.uid === searchParams.get("version") ||
-                (!searchParams.has("version") &&
-                  version.code === "published") ? (
-                  <Tag color="orange">Atual</Tag>
+                  (!searchParams.has("version") &&
+                    version.code === "published") ? (
+                  <Tag color="orange">{Cluar.plainDictionary("page-versions-tag-current")}</Tag>
                 ) : null}{" "}
                 {version.code === "published" && (
-                  <Tag color="green">Publicada</Tag>
+                  <Tag color="green">{Cluar.plainDictionary("page-versions-tag-published")}</Tag>
                 )}
               </Link>
               <Popconfirm
-                description="Deseja remover esta versão?"
+                description={Cluar.plainDictionary("page-versions-popconfirm-delete-description")}
                 onConfirm={() => onDeleteVersion(version.uid)}
-                okText="Sim"
-                cancelText="Não"
+                okText={Cluar.plainDictionary("page-versions-popconfirm-ok")}
+                cancelText={Cluar.plainDictionary("page-versions-popconfirm-cancel")}
               >
                 <Button
                   disabled={
@@ -117,7 +118,9 @@ const PageVersions = ({ pageData, open, onClose }) => {
         }))}
       />
       {totalVersions > versions.length && versions.length > 0 && (
-        <Button onClick={() => setPage(page + 1)}>Carregar Mais</Button>
+        <Button onClick={() => setPage(page + 1)}>
+          {Cluar.plainDictionary("page-versions-load-more-button")}
+        </Button>
       )}
     </Drawer>
   );

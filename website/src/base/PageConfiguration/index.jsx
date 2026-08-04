@@ -92,7 +92,7 @@ const PageConfiguration = ({
           marginTop: 8,
         }}
       >
-        Upload
+        {Cluar.plainDictionary("page-form-upload")}
       </div>
     </button>
   );
@@ -186,8 +186,8 @@ const PageConfiguration = ({
           setLoading(false);
           notification.success({
             message: isNewPage
-              ? "Página criada com sucesso"
-              : "Página atualizada com sucesso",
+              ? Cluar.plainDictionary("page-configuration-notification-create-success")
+              : Cluar.plainDictionary("page-configuration-notification-update-success"),
           });
 
           if (onClose) {
@@ -216,8 +216,8 @@ const PageConfiguration = ({
           } else {
             notification.error({
               message: isNewPage
-                ? "Falha ao criar página"
-                : "Falha ao atualizar página",
+                ? Cluar.plainDictionary("page-configuration-notification-create-fail")
+                : Cluar.plainDictionary("page-configuration-notification-update-fail"),
             });
           }
         },
@@ -238,14 +238,14 @@ const PageConfiguration = ({
         success: (res) => {
           if (res.json.result) {
             notification.success({
-              message: "Nova ordem de estruturas salva com sucesso.",
+              message: Cluar.plainDictionary("page-configuration-notification-structure-order-success"),
             });
             window.location = `?version=${res.json.data}`;
           }
         },
         fail: (error) => {
           notification.error({
-            message: "Falha ao salvar nova ordem de estruturas.",
+            message: Cluar.plainDictionary("page-configuration-notification-structure-order-fail"),
           });
         },
       });
@@ -322,7 +322,7 @@ const PageConfiguration = ({
             rules={[
               {
                 required: true,
-                message: "Por favor, insira o título da página",
+                message: Cluar.plainDictionary("page-configuration-validation-title"),
               },
             ]}
           >
@@ -334,7 +334,7 @@ const PageConfiguration = ({
             rules={[
               {
                 required: true,
-                message: "Por favor, selecione um template",
+                message: Cluar.plainDictionary("page-configuration-validation-template"),
               },
             ]}
           >
@@ -378,11 +378,11 @@ const PageConfiguration = ({
             label={Cluar.plainDictionary("page-form-link")}
             name="link"
             rules={[
-              { required: true, message: "Por favor, insira o link da página" },
+              { required: true, message: Cluar.plainDictionary("page-configuration-validation-link") },
             ]}
             tooltip={
               isRootLink
-                ? "O link da página inicial não pode ser alterado."
+                ? Cluar.plainDictionary("page-configuration-tooltip-link-root")
                 : ""
             }
           >
@@ -392,11 +392,11 @@ const PageConfiguration = ({
           <Form.Item
             label={Cluar.plainDictionary("page-form-parent")}
             name="parent_uid"
-            tooltip="Selecione a página parente desta página"
+            tooltip={Cluar.plainDictionary("page-configuration-tooltip-parent")}
           >
             <Select
               allowClear
-              placeholder="Selecione uma página pai"
+              placeholder={Cluar.plainDictionary("page-configuration-placeholder-parent")}
               options={pagesOptions}
               optionFilterProp="label"
               showSearch
