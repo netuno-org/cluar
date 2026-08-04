@@ -57,7 +57,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       key: 'return',
       label: Cluar.plainDictionary('user-menu-return-site'),
       icon: <RollbackOutlined />,
-      onClick: () => navigate("/pt/"),
+      onClick: () => navigate(`/${Cluar.currentLanguage().locale}/`),
     },
     {
       key: '1',
