@@ -7,6 +7,7 @@ import PageConfiguration from "../PageConfiguration";
 import PageVersions from "../PageVersions";
 
 import "./index.less";
+import ClonePage from "../ClonePage";
 
 const AdminBar = ({
   onChangeEditMode,
@@ -18,6 +19,7 @@ const AdminBar = ({
   const [isPageConfigOpen, setIsPageConfigOpen] = useState(false);
   const [isPageVersionsOpen, setIsPageVersionsOpen] = useState(false);
   const [isNewPage, setIsNewPage] = useState(false);
+  const [isClonePage, setIsClonePage] = useState(false);
 
   const openPageConfig = (isNew = false) => {
     setIsNewPage(isNew);
@@ -61,6 +63,14 @@ const AdminBar = ({
               <Divider type="vertical" />
             </Col>
             <Col>
+              <Button type="text" onClick={() => setIsClonePage(true)}>
+                Clonar página
+              </Button>
+            </Col>
+            <Col>
+              <Divider type="vertical" />
+            </Col>
+            <Col>
               <Button type="text" onClick={() => setIsPageVersionsOpen(true)}>
                 <HistoryOutlined style={{ fontSize: 18 }} />
               </Button>
@@ -94,6 +104,11 @@ const AdminBar = ({
       <PageVersions
         open={isPageVersionsOpen}
         onClose={() => setIsPageVersionsOpen(false)}
+        pageData={pageData}
+      />
+      <ClonePage
+        open={isClonePage}
+        onClose={() => setIsClonePage(false)}
         pageData={pageData}
       />
     </Flex>
