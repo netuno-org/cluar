@@ -161,7 +161,7 @@ function App() {
                 <Route path="organization" element={<Organization />} />
               </Route>
               {routes}
-              <Route element={<NotFound />} />
+              <Route path='*' element={<NotFound />} />
             </Routes>
           </Content>
           <BaseCookies />

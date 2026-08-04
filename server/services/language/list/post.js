@@ -18,7 +18,7 @@ if (filters) {
 const query = _db.form('language')
 .get("uid")
 .get("active")
-.get('"default"')
+.get('default')
 .get("code")
 .get("description")
 .get("locale")

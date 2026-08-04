@@ -7,9 +7,9 @@ import Cluar from '../../common/Cluar';
 import './index.less';
 
 function BaseCookies() {
-  const [acceptedCookies, setAcceptedCookies] = useState(sessionStorage.getItem('cookies-accepted'));
+  const [acceptedCookies, setAcceptedCookies] = useState(localStorage.getItem('cookies-accepted'));
   const onClick = () => {
-    sessionStorage.setItem('cookies-accepted', '1');
+    localStorage.setItem('cookies-accepted', '1');
     setAcceptedCookies('1');
   };
   if (acceptedCookies === '1') {
