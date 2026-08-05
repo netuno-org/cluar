@@ -403,25 +403,20 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [applyFontSize]);
 
 
-  const handleInsertMenuClick = ({ key }) => {
-    switch (key) {
-      case '1':
-        setIsImageModalOpen(true);
-        break;
-      case '2':
-        setIsColumnsModalOpen(true);
-        break;
-      default:
-        break;
-    }
-  };
-
-  const insertMenu = (
-    <Menu onClick={handleInsertMenuClick}>
-      <Menu.Item key="1" icon={<FileImageOutlined />}>Imagem</Menu.Item>
-      <Menu.Item key="2" icon={<AppstoreOutlined />}>Colunas</Menu.Item>
-    </Menu>
-  );
+  const insertMenuItems = [
+    {
+      key: '1',
+      icon: <FileImageOutlined />,
+      label: 'Imagem',
+      onClick: () => setIsImageModalOpen(true),
+    },
+    {
+      key: '2',
+      icon: <AppstoreOutlined />,
+      label: 'Colunas',
+      onClick: () => setIsColumnsModalOpen(true),
+    },
+  ];
 
   return (
     <div className="toolbar" ref={toolbarRef}>
@@ -710,7 +705,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
       {isSelected &&
         createPortal(<FloatingEditor editor={editor} />, document.body)}
       <div className="divider" />
-      <Dropdown overlay={insertMenu} trigger={['click']}>
+      <Dropdown menu={{ items: insertMenuItems }} trigger={['click']}>
         <button type="link" style={{
           padding: 0,
           display: 'flex',
