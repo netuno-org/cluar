@@ -147,21 +147,54 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
                 method: "POST",
                 data,
                 success: (response) => {
-                    setLoading((prev) => ({ ...prev, saving: false }));
                     notification.success({ message: Cluar.plainDictionary("page-clone-notification-clone-success") });
 
                     if (onClose) onClose();
-                    if (onSuccess) onSuccess(response);
+                    setLoading((prev) => ({ ...prev, saving: true }));
 
-                    const { link, language_code } = response.json;
+                    _service({
+                        url: "/admin/cluar/sync",
+                        method: "GET",
+                        success: () => {
+                            setLoading((prev) => ({ ...prev, saving: false }));
 
-                    if (link && language_code) {
-                        const path = link.startsWith("/") ? link : `/${link}`;
+                            // Só redireciona depois que a sincronização terminar
+                            if (onSuccess) onSuccess(response);
 
-                        window.location.href = `/${language_code}${path}`;
-                    } else {
-                        window.location.reload();
-                    }
+                            const { link, language_code } = response.json;
+
+                            if (link && language_code) {
+                                const cleanLink = link.replace(/^\/+|\/+$/g, '');
+                                const targetUrl = cleanLink === ""
+                                    ? `/${language_code}`
+                                    : `/${language_code}/${cleanLink}`;
+
+                                window.location.href = targetUrl;
+                            } else {
+                                window.location.reload();
+                            }
+                        },
+                        fail: (syncError) => {
+                            setLoading((prev) => ({ ...prev, saving: false }));
+                            console.error("Página clonada, mas falha ao sincronizar:", syncError);
+                            notification.warning({
+                                message: "Página clonada, mas foi necessário atualizar o cache manualmente.",
+                            });
+
+                            // Mesmo se a sincronização falhar, redireciona o usuário
+                            const { link, language_code } = response.json;
+                            if (link && language_code) {
+                                const cleanLink = link.replace(/^\/+|\/+$/g, '');
+                                const targetUrl = cleanLink === ""
+                                    ? `/${language_code}/`
+                                    : `/${language_code}/${cleanLink}`;
+
+                                window.location.href = targetUrl;
+                            } else {
+                                window.location.reload();
+                            }
+                        }
+                    });
                 },
                 fail: (error) => {
                     setLoading((prev) => ({ ...prev, saving: false }));
