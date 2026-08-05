@@ -1284,14 +1284,6 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
-    .set("uid", "d0b85761-3b88-4856-a1e1-1422f5dd5728")
-    .set("code", "page-form-language")
-    .set("description", "Formul\u00E1rio de P\u00E1ginas - Idioma")
-);
-
-_db.insertIfNotExists(
-  "dictionary_entry",
-  _val.map()
     .set("uid", "d3a70c44-9e95-4660-a358-370c4fb7f668")
     .set("code", "page-form-title")
     .set("description", "Formul\u00E1rio de P\u00E1ginas - T\u00EDtulo")
