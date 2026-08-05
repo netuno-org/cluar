@@ -221,6 +221,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
           <LexicalEditor
             initialHtml={titleValue}
             onChange={(html) => setTitleValue(html)}
+            stripRootParagraph={true}
           />
         </div>
       </Modal>

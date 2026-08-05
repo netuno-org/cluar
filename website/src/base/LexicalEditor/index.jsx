@@ -74,7 +74,20 @@ function CustomOnChangePlugin({ onChange }) {
     return null;
 }
 
-const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
+const cleanHeadingsAndAttrs = (html) => {
+    // Remove <p> imediatamente dentro de qualquer <h1>...<h6>
+    let cleaned = html.replace(
+        /(<h[1-6][^>]*>)\s*<p[^>]*>(.*?)<\/p>\s*(<\/h[1-6]>)/gi,
+        '$1$2$3'
+    );
+
+    // Remove atributos data-sal (ou qualquer data-*)
+    cleaned = cleaned.replace(/\s*data-sal[^=]*="[^"]*"/g, '');
+
+    return cleaned;
+};
+
+const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagraph = false }) => {
     const [isHtmlMode, setIsHtmlMode] = useState(false);
     const [htmlEditorValue, setHtmlEditorValue] = useState('');
     const editorRef = useRef(null);
@@ -149,10 +162,29 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
 
     const handleHtmlChange = (html) => {
         if (!isHtmlMode) {
-            setHtmlEditorValue(html);
+            let sanitizedHtml = cleanHeadingsAndAttrs(html);
 
+            if (stripRootParagraph) {
+                // Remove <p> externo único (com ou sem atributos)
+                let match = sanitizedHtml.match(/^<p\b[^>]*>(.*?)<\/p>$/i);
+                if (match) {
+                    sanitizedHtml = match[1];
+                }
+
+                // Remove headings (h1-h6) mantendo apenas seu conteúdo interno
+                sanitizedHtml = sanitizedHtml.replace(
+                    /<h[1-6][^>]*>(.*?)<\/h[1-6]>/gi,
+                    '$1'
+                );
+
+                // Limpeza extra de atributos do Lexical
+                sanitizedHtml = sanitizedHtml.replace(/\s*data-lexical-text="true"/g, '');
+                sanitizedHtml = sanitizedHtml.replace(/\s*dir="auto"/g, '');
+            }
+
+            setHtmlEditorValue(sanitizedHtml);
             if (onChange) {
-                onChange(html);
+                onChange(sanitizedHtml);
             }
         }
     };
@@ -455,15 +487,28 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
             const root = $getRoot();
             root.clear();
 
-            const bodyChildren = dom.body.children;
+            const bodyNodes = dom.body.childNodes; // childNodes inclui texto e elementos
 
-            if (bodyChildren.length === 0) {
-                console.warn("Não tem conteúdo");
+            if (bodyNodes.length === 0) {
                 root.append($createParagraphNode());
                 return;
             }
 
-            Array.from(bodyChildren).forEach((node) => {
+            Array.from(bodyNodes).forEach((node) => {
+                // 1. Trata nós de texto (ex.: "Slider" puro)
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const text = node.textContent;
+                    if (text.trim()) {
+                        const paragraph = $createParagraphNode();
+                        paragraph.append($createTextNode(text));
+                        root.append(paragraph);
+                    }
+                    return;
+                }
+
+                // 2. Ignora outros nós que não sejam elementos
+                if (node.nodeType !== Node.ELEMENT_NODE) return;
+
                 let lexicalNode;
 
                 const tag = node.nodeName.toUpperCase();
@@ -531,6 +576,24 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full" }) => {
                     }
                 } else if (tag.startsWith('H') && tag.length === 2 && !isNaN(tag[1])) {
                     lexicalNode = $createHeadingNode(tag.toLowerCase());
+                    // Processa filhos SEM criar parágrafos – o texto vai direto para o heading
+                    Array.from(node.childNodes).forEach(child => {
+                        if (child.nodeType === Node.TEXT_NODE) {
+                            lexicalNode.append($createTextNode(child.textContent));
+                        } else if (child.nodeType === Node.ELEMENT_NODE) {
+                            const childTag = child.nodeName.toUpperCase();
+                            if (childTag === 'P') {
+                                // Ignora o <p> e insere seu conteúdo diretamente no heading
+                                Array.from(child.childNodes).forEach(grandChild => {
+                                    processNodeWithChildren(grandChild, lexicalNode);
+                                });
+                            } else {
+                                processNodeWithChildren(child, lexicalNode);
+                            }
+                        }
+                    });
+                    root.append(lexicalNode);
+                    return;  // <-- importante para não cair no processamento genérico
                 } else if (tag === 'BLOCKQUOTE') {
                     lexicalNode = $createQuoteNode();
                 } else if (tag === 'UL' || tag === 'OL') {

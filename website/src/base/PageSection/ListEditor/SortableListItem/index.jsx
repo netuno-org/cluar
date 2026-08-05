@@ -259,6 +259,7 @@ const SortableItem = ({
             initialHtml={titleValue}
             onChange={(html) => setTitleValue(html)}
             mode="simple"
+            stripRootParagraph
           />
         </div>
       </Modal>
