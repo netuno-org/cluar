@@ -187,8 +187,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
         }
     };
 
-    // ─── Toggle INTERNO do Lexical (visualizar código gerado pelo editor) ───
-    // Continua funcionando normalmente. Não é o modo HTML Puro externo.
     const handleToggleHtmlMode = () => {
         if (isHtmlMode) {
             applyHtmlToLexical(htmlEditorValue);
