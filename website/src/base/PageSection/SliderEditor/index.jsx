@@ -13,19 +13,19 @@ const SliderEditor = ({ sectionData, form }) => {
   const [itemsByUid, setItemsByUid] = useState({});
 
   const handleChangeItem = (uid, property, value) => {
-    const updatedItem = {
-      ...itemsByUid[uid],
-      [property]: value,
-    };
-
-    const newItemsByUid = {
-      ...itemsByUid,
-      [uid]: updatedItem,
-    };
-
-    setItemsByUid(newItemsByUid);
-    form.setFieldsValue({
-      itemsByUid: newItemsByUid,
+    setItemsByUid(prev => {
+      const updatedItem = {
+        ...prev[uid],
+        [property]: value,
+      };
+      const newItemsByUid = {
+        ...prev,
+        [uid]: updatedItem,
+      };
+      form.setFieldsValue({
+        itemsByUid: newItemsByUid,
+      });
+      return newItemsByUid;
     });
   };
 
@@ -37,6 +37,8 @@ const SliderEditor = ({ sectionData, form }) => {
       section: "slider_item",
       title: "",
       content: "",
+      html_content: "",
+      edit_mode: "visual",
       link: "",
     };
 

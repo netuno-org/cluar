@@ -13,6 +13,8 @@ function Item({
   image_alt,
   title,
   content,
+  html_content,
+  edit_mode,
   link,
   action_uids
 }) {
@@ -20,6 +22,10 @@ function Item({
     image?.indexOf("base64") === -1
       ? `/cluar/images/page_${section}/${image}`
       : image;
+
+  const resolvedContent = edit_mode === 'html'
+    ? (html_content || content)
+    : content;
 
   const actionsData = Cluar.actions() || [];
   const actions = (action_uids || []).map(uid =>
@@ -34,13 +40,13 @@ function Item({
       }}
     >
       <div className="slider__item__wrapper">
-        <h1 dangerouslySetInnerHTML={{ __html: title }} 
+        <h1 dangerouslySetInnerHTML={{ __html: title }}
         />
         <div
           data-sal="fade"
           data-sal-duration="2000"
           data-sal-easing="ease-out-cubic"
-          dangerouslySetInnerHTML={{ __html: content }}
+          dangerouslySetInnerHTML={{ __html: resolvedContent }}
         ></div>
         {config.action && (
           <div className="slider__actions">

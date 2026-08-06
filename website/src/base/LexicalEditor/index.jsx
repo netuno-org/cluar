@@ -83,7 +83,6 @@ const cleanHeadingsAndAttrs = (html) => {
 
     // Remove atributos data-sal (ou qualquer data-*)
     cleaned = cleaned.replace(/\s*data-sal[^=]*="[^"]*"/g, '');
-
     return cleaned;
 };
 
@@ -107,7 +106,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
         if (initialHtml && editorRef.current && isFirstRender.current) {
             applyHtmlToLexical(initialHtml);
             setHtmlEditorValue(initialHtml);
-
             isFirstRender.current = false;
         }
     }, [initialHtml]);
@@ -189,6 +187,8 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
         }
     };
 
+    // ─── Toggle INTERNO do Lexical (visualizar código gerado pelo editor) ───
+    // Continua funcionando normalmente. Não é o modo HTML Puro externo.
     const handleToggleHtmlMode = () => {
         if (isHtmlMode) {
             applyHtmlToLexical(htmlEditorValue);
@@ -198,7 +198,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
 
     const handleMonacoEditorChange = (value) => {
         setHtmlEditorValue(value);
-
         if (onChange) {
             onChange(value);
         }
@@ -222,7 +221,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                             processNodeWithChildren(grandChild, paragraphNode);
                         }
                     });
-
                     lexicalParent.append(paragraphNode);
                 } else if (child.nodeName.toUpperCase() === 'BR') {
                     const emptyParagraph = $createParagraphNode();
@@ -255,7 +253,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
 
             const computedStyle = window.getComputedStyle(domNode);
             let color = domNode.style.color || computedStyle.color;
-
             const backgroundColor = domNode.style.backgroundColor || computedStyle.backgroundColor;
             const fontFamilyRaw = domNode.style.fontFamily || computedStyle.fontFamily || '';
             const fontFamily = fontFamilyRaw.replace(/^['"]+|['"]+$/g, '');
@@ -274,7 +271,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                 }
             }
             if (color) styles.push(`color: ${color}`);
-
             if (backgroundColor) styles.push(`background-color: ${backgroundColor}`);
             if (fontFamily) styles.push(`font-family: ${fontFamily}`);
             if (fontSize) styles.push(`font-size: ${fontSize}`);
@@ -283,14 +279,12 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
             // GRID CONTAINER - Detectar div com classes "section group"
             if (tagName === 'DIV' && classList.contains('section') && classList.contains('group')) {
                 const gridContainerNode = $createGridContainerNode();
-
                 // Processar filhos que devem ser grid items
                 Array.from(domNode.childNodes).forEach(child => {
                     if (child.nodeType === Node.ELEMENT_NODE) {
                         processNodeWithChildren(child, gridContainerNode);
                     }
                 });
-
                 lexicalParent.append(gridContainerNode);
                 return;
             }
@@ -299,16 +293,13 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
             if (tagName === 'DIV' && classList.contains('col')) {
                 // Encontrar a classe span_X_of_Y
                 let columnSpan = 'span_1_of_1';
-
                 for (let className of classList) {
                     if (className.startsWith('span_') && className.includes('_of_')) {
                         columnSpan = className;
                         break;
                     }
                 }
-
                 const gridItemNode = $createGridItemNode(columnSpan);
-
                 // Processar conteúdo do grid item
                 Array.from(domNode.childNodes).forEach(child => {
                     if (child.nodeType === Node.TEXT_NODE && child.textContent.trim()) {
@@ -318,7 +309,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                         gridItemNode.append(paragraphNode);
                     } else if (child.nodeType === Node.ELEMENT_NODE) {
                         const childTag = child.nodeName.toUpperCase();
-
                         if (childTag === 'P' && (child.innerHTML === '<br>' || child.innerHTML === '<br/>' || child.innerHTML === '<br />')) {
                             const emptyParagraph = $createParagraphNode();
                             gridItemNode.append(emptyParagraph);
@@ -327,7 +317,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                         }
                     }
                 });
-
                 lexicalParent.append(gridItemNode);
                 return;
             }
@@ -347,11 +336,9 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
             if (tagName === 'A' && domNode.hasAttribute('href')) {
                 const href = domNode.getAttribute('href');
                 const linkNode = $createLinkNode(href);
-
                 Array.from(domNode.childNodes).forEach(child => {
                     processNodeWithChildren(child, linkNode);
                 });
-
                 lexicalParent.append(linkNode);
                 return;
             }
@@ -364,38 +351,26 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                 const height = domNode.style.height || 'inherit';
                 const maxWidthMatch = domNode.style.maxWidth?.match(/\d+/);
                 const maxWidth = maxWidthMatch ? parseInt(maxWidthMatch[0]) : 500;
-
                 const imageNode = $createImageNode({
-                    src,
-                    altText,
-                    width,
-                    height,
-                    maxWidth,
-                    showCaption: false,
-                    captionsEnabled: true
+                    src, altText, width, height, maxWidth,
+                    showCaption: false, captionsEnabled: true
                 });
-
                 lexicalParent.append(imageNode);
                 return;
             }
 
-            // Listas
             if (tagName === 'UL' || tagName === 'OL') {
                 const listType = tagName === 'UL' ? 'bullet' : 'number';
                 const listNode = $createListNode(listType);
-
                 Array.from(domNode.childNodes).forEach(child => {
                     if (child.nodeType === Node.ELEMENT_NODE && child.nodeName.toUpperCase() === 'LI') {
                         const listItemNode = $createListItemNode();
-
                         Array.from(child.childNodes).forEach(grandChild => {
                             processNodeWithChildren(grandChild, listItemNode);
                         });
-
                         listNode.append(listItemNode);
                     }
                 });
-
                 if (lexicalParent.getType && lexicalParent.getType() === 'paragraph') {
                     const grandParent = lexicalParent.getParent();
                     if (grandParent) {
@@ -421,14 +396,12 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
             ) {
                 const text = domNode.firstChild.textContent;
                 const textNode = $createTextNode(text);
-
                 if (isBold) textNode.toggleFormat('bold');
                 if (isItalic) textNode.toggleFormat('italic');
                 if (isUnderline) textNode.toggleFormat('underline');
                 if (styles.length > 0) {
                     textNode.setStyle(styles.join('; '));
                 }
-
                 lexicalParent.append(textNode);
                 return;
             }
@@ -449,7 +422,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                 .filter(rule => {
                     const trimmed = rule.trim();
                     if (!trimmed.startsWith('color:')) return true;
-
                     // Normaliza a cor para comparação
                     const colorValue = trimmed.substring(6).trim().toLowerCase();
                     return !(
@@ -478,7 +450,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
 
         const editor = editorRef.current;
         const parser = new DOMParser();
-
         // 👇 LIMPA as cores padrão ANTES de parsear o HTML
         const cleanedHtml = cleanHtmlDefaultColors(html);
         const dom = parser.parseFromString(cleanedHtml, 'text/html');
@@ -510,7 +481,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                 if (node.nodeType !== Node.ELEMENT_NODE) return;
 
                 let lexicalNode;
-
                 const tag = node.nodeName.toUpperCase();
                 const classList = node.classList;
 
@@ -521,7 +491,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                         if (child.nodeType === Node.ELEMENT_NODE) {
                             const childTag = child.nodeName.toUpperCase();
                             const childClassList = child.classList;
-
                             if (childTag === 'DIV' && childClassList.contains('col')) {
                                 let columnSpan = 'span_1_of_1';
                                 for (let className of childClassList) {
@@ -537,13 +506,11 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
 
                     const container = $createGridContainerNode();
                     const itemsCount = columns.length;
-
                     for (let i = 0; i < itemsCount; i++) {
                         const columnClass = Array.isArray(columns) ? columns[i] : undefined;
                         const itemNode = $createGridItemNode(columnClass);
                         container.append(itemNode.append($createParagraphNode()));
                     }
-
                     root.append(container);
 
                     const gridItems = container.getChildren();
@@ -564,7 +531,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                             itemIndex++;
                         }
                     });
-
                     return;
                 }
 
@@ -593,13 +559,12 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                         }
                     });
                     root.append(lexicalNode);
-                    return;  // <-- importante para não cair no processamento genérico
+                    return;
                 } else if (tag === 'BLOCKQUOTE') {
                     lexicalNode = $createQuoteNode();
                 } else if (tag === 'UL' || tag === 'OL') {
                     const listType = tag === 'UL' ? 'bullet' : 'number';
                     lexicalNode = $createListNode(listType);
-
                     Array.from(node.childNodes).forEach(child => {
                         if (child.nodeType === Node.ELEMENT_NODE && child.nodeName.toUpperCase() === 'LI') {
                             const listItemNode = $createListItemNode();
@@ -609,7 +574,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
                             lexicalNode.append(listItemNode);
                         }
                     });
-
                     root.append(lexicalNode);
                     return;
                 } else {
@@ -618,7 +582,6 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
 
                 const computedStyle = window.getComputedStyle(node);
                 const textAlign = node.style.textAlign || computedStyle.textAlign;
-
                 if (textAlign && textAlign !== 'start' && textAlign !== 'left') {
                     lexicalNode.setFormat(textAlign);
                 }

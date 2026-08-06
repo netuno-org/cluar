@@ -42,19 +42,22 @@ const ListEditor = ({ sectionData, form }) => {
   }, []);
 
   const handleChangeItem = (uid, property, value) => {
-    const updatedItem = {
-      ...itemsByUid[uid],
-      [property]: value,
-    };
+    setItemsByUid(prev => {
+      const updatedItem = {
+        ...prev[uid],
+        [property]: value,
+      };
 
-    const newItemsByUid = {
-      ...itemsByUid,
-      [uid]: updatedItem,
-    };
+      const newItemsByUid = {
+        ...prev,
+        [uid]: updatedItem,
+      };
 
-    setItemsByUid(newItemsByUid);
-    form.setFieldsValue({
-      itemsByUid: newItemsByUid,
+      form.setFieldsValue({
+        itemsByUid: newItemsByUid,
+      });
+
+      return newItemsByUid;
     });
   };
 
@@ -66,6 +69,8 @@ const ListEditor = ({ sectionData, form }) => {
       section: "listing_item",
       title: "",
       content: "",
+      html_content: "",
+      edit_mode: "visual",
       link: "",
     };
 

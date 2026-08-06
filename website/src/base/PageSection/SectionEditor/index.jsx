@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { Drawer, Form, Input, Button, Space, message, InputNumber, Modal, Card, Switch } from "antd";
+import {
+  Drawer, Form, Input, Button, Space, message, InputNumber,
+  Modal, Card, Switch, Radio
+} from "antd";
 import { RobotOutlined, EditOutlined } from "@ant-design/icons";
 import BannerEditor from "../BannerEditor";
 import ListEditor from "../ListEditor";
 import FunctionalityEditor from "../FunctionalityEditor";
 import ContentEditor from "../ContentEditor";
 import LexicalEditor from "../../LexicalEditor";
+import MonacoEditor from "../../MonacoEditor";
 import SliderEditor from "../SliderEditor";
 import _service from "@netuno/service-client";
 import Cluar from "../../../common/Cluar";
@@ -26,13 +30,32 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const [isContentModalOpen, setIsContentModalOpen] = useState(false);
   const [contentValue, setContentValue] = useState(sectionData?.content || "");
 
+  // Modo HTML Puro externo 
+  const [contentEditMode, setContentEditMode] = useState(
+    sectionData?.edit_mode || "visual"
+  );
+  // html_content só vem preenchido se o usuário já usou o modo HTML puro antes
+  const [htmlContentValue, setHtmlContentValue] = useState(
+    sectionData?.html_content || ""
+  );
+
   const [titleInvert, setTitleInvert] = useState(sectionData?.title_invert_background || false);
   const [contentInvert, setContentInvert] = useState(sectionData?.content_invert_background || false);
 
   useEffect(() => {
     setTitleValue(sectionData?.title || "");
     setContentValue(sectionData?.content || "");
+    setContentEditMode(sectionData?.edit_mode || "visual");
+    setHtmlContentValue(sectionData?.html_content || "");
   }, [sectionData]);
+
+  // ao alternar para HTML Puro, inicializa com o conteúdo visual se vazio 
+  const handleContentEditModeChange = (newMode) => {
+    setContentEditMode(newMode);
+    if (newMode === "html" && !htmlContentValue && contentValue) {
+      setHtmlContentValue(contentValue);
+    }
+  };
 
   const MoreEditor = () => {
     if (sectionData?.section === "banner") {
@@ -50,11 +73,21 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
 
   const handleConfirmChanges = () => {
     if (onConfirmChanges) {
+      // Garante que os valores mais recentes estão no form
+      form.setFieldsValue({
+        title: titleValue,
+        content: contentValue,
+        html_content: htmlContentValue,
+        edit_mode: contentEditMode,
+      });
+
       let confirmData = {
         ...sectionData,
         ...form.getFieldsValue(),
         title_invert_background: titleInvert,
         content_invert_background: contentInvert,
+        html_content: htmlContentValue,
+        edit_mode: contentEditMode,
         status: sectionData.status === "to_create" ? "to_create" : "to_update",
       };
 
@@ -74,17 +107,23 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
 
     setGenerating(true);
 
+    const activeContent = contentEditMode === "html" ? htmlContentValue : contentValue;
+
     _service({
       url: "/test",
       method: "POST",
       data: {
-        html: contentValue || "",
+        html: activeContent || "",
         prompt: aiPrompt,
       },
       success: (res) => {
         if (res.json.result) {
-          setContentValue(res.json.html);
-          form.setFieldsValue({ content: res.json.html });
+          // Atualiza o conteúdo do modo ativo
+          if (contentEditMode === "html") {
+            setHtmlContentValue(res.json.html);
+          } else {
+            setContentValue(res.json.html);
+          }
           message.success("Conteúdo gerado com sucesso");
           setAIPrompt("");
           setShowAIPrompt(false);
@@ -108,12 +147,19 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   };
 
   const handleSaveContentModal = () => {
-    form.setFieldsValue({ content: contentValue });
+    form.setFieldsValue({
+      content: contentValue,
+      html_content: htmlContentValue,
+      edit_mode: contentEditMode,
+    });
     setIsContentModalOpen(false);
     message.success("Conteúdo atualizado!");
   };
 
   const isContentSection = sectionData?.section === "content";
+
+  // Preview usa o conteúdo do modo ativo
+  const activeContentPreview = contentEditMode === "html" ? htmlContentValue : contentValue;
 
   return (
     <>
@@ -128,12 +174,21 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
           </Button>
         }
       >
-        <Form layout="vertical" initialValues={{ ...sectionData, action_uids: sectionData?.actions?.map((item) => item.uid).sort((a, b) => a.sorter - b.sorter) }} form={form}>
+        <Form
+          layout="vertical"
+          initialValues={{
+            ...sectionData,
+            action_uids: sectionData?.actions
+              ?.map((item) => item.uid)
+              .sort((a, b) => a.sorter - b.sorter),
+          }}
+          form={form}
+        >
           <Form.Item label="Título">
             <Card
               size="small"
               actions={[
-                <div style={{ textAlign: 'left', paddingLeft: '12px' }}>
+                <div style={{ textAlign: "left", paddingLeft: "12px" }}>
                   <Button
                     type="primary"
                     icon={<EditOutlined />}
@@ -141,11 +196,10 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                   >
                     Editar Título
                   </Button>
-                </div>
+                </div>,
               ]}
             >
-              <div
-              >
+              <div>
                 {Cluar.plainHTML(titleValue).slice(0, 97) + "..."}
               </div>
             </Card>
@@ -159,7 +213,15 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
             <Card
               size="small"
               actions={[
-                <div style={{ textAlign: 'left', paddingLeft: '12px' }}>
+                <div
+                  style={{
+                    textAlign: "left",
+                    paddingLeft: "12px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 12,
+                  }}
+                >
                   <Button
                     type="primary"
                     icon={<EditOutlined />}
@@ -167,18 +229,28 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                   >
                     Editar Conteúdo
                   </Button>
-                </div>
+                  {/* Indicador do modo ativo  */}
+                  <span style={{ fontSize: 12, color: "#888" }}>
+                    Modo: {contentEditMode === "html" ? "HTML Puro" : "Visual"}
+                  </span>
+                </div>,
               ]}
             >
-              <div
-              >
-                {Cluar.plainHTML(contentValue).slice(0, 97) + "..."}
+              <div>
+                {Cluar.plainHTML(activeContentPreview).slice(0, 97) + "..."}
               </div>
             </Card>
           </Form.Item>
 
           <Form.Item name="content" hidden>
             <Input.TextArea rows={6} />
+          </Form.Item>
+          {/* campos hidden para persistência */}
+          <Form.Item name="html_content" hidden>
+            <Input.TextArea rows={6} />
+          </Form.Item>
+          <Form.Item name="edit_mode" hidden>
+            <Input />
           </Form.Item>
 
           <Form.Item name="sorter" label="Ordem">
@@ -188,12 +260,22 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         </Form>
       </Drawer>
 
+      {/* Modal Título */}
       <Modal
         title={
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 30 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingRight: 30,
+            }}
+          >
             <span>Editar Título</span>
             <Space>
-              <span style={{ fontSize: '12px', fontWeight: 'normal' }}>Inverter cor de fundo:</span>
+              <span style={{ fontSize: "12px", fontWeight: "normal" }}>
+                Inverter cor de fundo:
+              </span>
               <Switch
                 checked={titleInvert}
                 onChange={(checked) => setTitleInvert(checked)}
@@ -211,13 +293,17 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         centered
         destroyOnClose
       >
-        <div style={{
-          backgroundColor: titleInvert
-            ? (themeMode === "dark" ? "#ffffff" : "#141414")
-            : "transparent",
-          borderRadius: '4px',
-          transition: 'all 0.3s'
-        }}>
+        <div
+          style={{
+            backgroundColor: titleInvert
+              ? themeMode === "dark"
+                ? "#ffffff"
+                : "#141414"
+              : "transparent",
+            borderRadius: "4px",
+            transition: "all 0.3s",
+          }}
+        >
           <LexicalEditor
             initialHtml={titleValue}
             onChange={(html) => setTitleValue(html)}
@@ -228,10 +314,29 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
 
       <Modal
         title={
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 30 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingRight: 30,
+            }}
+          >
             <span>Editar Conteúdo</span>
             <Space>
-              <span style={{ fontSize: '12px', fontWeight: 'normal' }}>Inverter cor de fundo:</span>
+              <Radio.Group
+                value={contentEditMode}
+                onChange={(e) => handleContentEditModeChange(e.target.value)}
+                optionType="button"
+                buttonStyle="solid"
+                size="small"
+              >
+                <Radio.Button value="visual">Visual</Radio.Button>
+                <Radio.Button value="html">HTML Puro</Radio.Button>
+              </Radio.Group>
+              <span style={{ fontSize: "12px", fontWeight: "normal" }}>
+                Inverter cor de fundo:
+              </span>
               <Switch
                 checked={contentInvert}
                 onChange={(checked) => setContentInvert(checked)}
@@ -249,22 +354,34 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         centered
         destroyOnClose
       >
-        <div style={{
-          backgroundColor: contentInvert
-            ? (themeMode === "dark" ? "#ffffff" : "#141414")
-            : "transparent",
-          borderRadius: '4px',
-          transition: 'all 0.3s'
-        }}>
-          <LexicalEditor
-            initialHtml={contentValue}
-            onChange={(html) => setContentValue(html)}
-          />
+        <div
+          style={{
+            backgroundColor: contentInvert
+              ? themeMode === "dark"
+                ? "#ffffff"
+                : "#141414"
+              : "transparent",
+            borderRadius: "4px",
+            transition: "all 0.3s",
+          }}
+        >
+          {contentEditMode === "visual" ? (
+            <LexicalEditor
+              key="content-visual"
+              initialHtml={contentValue}
+              onChange={(html) => setContentValue(html)}
+            />
+          ) : (
+            <MonacoEditor
+              key="content-html"
+              value={htmlContentValue}
+              onChange={(value) => setHtmlContentValue(value)}
+            />
+          )}
         </div>
 
-
         {isContentSection && (
-          <div style={{ borderTop: '1px solid #f0f0f0', paddingTop: 16 }}>
+          <div style={{ borderTop: "1px solid #f0f0f0", paddingTop: 16 }}>
             <Button
               type="primary"
               icon={<RobotOutlined />}
@@ -277,8 +394,14 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         )}
 
         {showAIPrompt && (
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <label style={{ marginBottom: 8, display: 'block', fontWeight: 500 }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <label
+              style={{
+                marginBottom: 8,
+                display: "block",
+                fontWeight: 500,
+              }}
+            >
               Instruções para a IA:
             </label>
             <Input.TextArea
@@ -292,13 +415,12 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               type="primary"
               onClick={handleAIGenerate}
               loading={generating}
-              style={{ alignSelf: 'flex-start' }}
+              style={{ alignSelf: "flex-start" }}
             >
               Gerar
             </Button>
           </div>
         )}
-
       </Modal>
     </>
   );

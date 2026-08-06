@@ -12,8 +12,10 @@ function Secondary({
   image_alt,
   title,
   content,
+  html_content,
+  edit_mode,
   position,
-  actions,
+  actions
 }) {
   const backgroundPositionX = position.x !== "" ? position.x : "50%";
   const backgroundPositionY = position.y !== "" ? position.y : "50%";
@@ -22,6 +24,9 @@ function Secondary({
       ? `/cluar/images/page_${section}/${image}`
       : image;
 
+  const resolvedContent = edit_mode === 'html'
+    ? (html_content || content)
+    : content;
 
   return (
     <section className="banner">
@@ -44,7 +49,7 @@ function Secondary({
             data-sal="fade"
             data-sal-duration="2000"
             data-sal-easing="ease-out-cubic"
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: resolvedContent }}
           />
           {config.action && (
             <div className="banner__actions">

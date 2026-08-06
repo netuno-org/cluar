@@ -8,7 +8,12 @@ import config from './config.json';
 import './index.less';
 
 
-const ImageRight = ({ section, type, title, content, image_title, image_alt, imageSrc, imageStyle, actions }) => {
+const ImageRight = ({ section, type, title, content, image_title, image_alt, imageSrc, imageStyle, actions, html_content, edit_mode }) => {
+
+    const resolvedContent = edit_mode === 'html'
+        ? (html_content || content)
+        : content;
+
     return (
         <div className="content-image-right">
             <Row>
@@ -16,7 +21,7 @@ const ImageRight = ({ section, type, title, content, image_title, image_alt, ima
                     <div className="text">
                         <h1 dangerouslySetInnerHTML={{ __html: title }} />
                         <div className="text__title-border"></div>
-                        <div dangerouslySetInnerHTML={{ __html: content }}></div>
+                        <div dangerouslySetInnerHTML={{ __html: resolvedContent }} />
                     </div>
                 </Col>
                 <Col md={8}>

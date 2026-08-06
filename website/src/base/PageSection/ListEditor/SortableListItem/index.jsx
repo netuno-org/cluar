@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Col, Form, Input, Collapse, Button, Flex, Modal, Card, message, Space, Switch } from "antd";
+import { Col, Form, Input, Collapse, Button, Flex, Modal, Card, message, Space, Switch, Radio } from "antd";
 
 import {
   DndContext,
@@ -19,6 +19,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 import { HolderOutlined, CloseOutlined, EditOutlined } from "@ant-design/icons";
 import LexicalEditor from "../../../LexicalEditor";
+import MonacoEditor from "../../../MonacoEditor";
 import Cluar from "../../../../common/Cluar";
 import ImageSectionEditor from "../../ImageSectionEditor";
 
@@ -47,27 +48,40 @@ const SortableItem = ({
   const [isContentModalOpen, setIsContentModalOpen] = useState(false);
   const [contentValue, setContentValue] = useState(item?.content || "");
 
+  // Modo HTML Puro
+  const [contentEditMode, setContentEditMode] = useState(
+    item?.edit_mode || "visual"
+  );
+  const [htmlContentValue, setHtmlContentValue] = useState(
+    item?.html_content || ""
+  );
+
   const [titleInvert, setTitleInvert] = useState(item?.title_invert_background || false);
   const [contentInvert, setContentInvert] = useState(item?.content_invert_background || false);
 
   useEffect(() => {
     setTitleValue(item?.title || "");
     setContentValue(item?.content || "");
+    setContentEditMode(item?.edit_mode || "visual");
+    setHtmlContentValue(item?.html_content || "");
     setTitleInvert(item?.title_invert_background || false);
     setContentInvert(item?.content_invert_background || false);
   }, [item]);
 
+  const handleContentEditModeChange = (newMode) => {
+    setContentEditMode(newMode);
+    if (newMode === "html" && !htmlContentValue && contentValue) {
+      setHtmlContentValue(contentValue);
+    }
+  };
+
   const handleSaveTitleModal = () => {
     form.setFieldsValue({
       itemsByUid: {
-        [itemIndex]: {
-          title: titleValue
-        }
-      }
+        [itemIndex]: { title: titleValue },
+      },
     });
-
     onChangeItem(item.uid, "title", titleValue);
-
     setIsTitleModalOpen(false);
     message.success("Título do item atualizado!");
   };
@@ -76,16 +90,20 @@ const SortableItem = ({
     form.setFieldsValue({
       itemsByUid: {
         [itemIndex]: {
-          content: contentValue
-        }
-      }
+          content: contentValue,
+          html_content: htmlContentValue,
+          edit_mode: contentEditMode,
+        },
+      },
     });
-
     onChangeItem(item.uid, "content", contentValue);
-
+    onChangeItem(item.uid, "html_content", htmlContentValue);
+    onChangeItem(item.uid, "edit_mode", contentEditMode);
     setIsContentModalOpen(false);
     message.success("Conteúdo do item atualizado!");
   };
+
+  const activeContentPreview = contentEditMode === "html" ? htmlContentValue : contentValue;
 
   return (
     <>
@@ -113,7 +131,7 @@ const SortableItem = ({
                       <Card
                         size="small"
                         actions={[
-                          <div style={{ textAlign: 'left', paddingLeft: '12px' }}>
+                          <div style={{ textAlign: "left", paddingLeft: "12px" }}>
                             <Button
                               type="primary"
                               icon={<EditOutlined />}
@@ -121,7 +139,7 @@ const SortableItem = ({
                             >
                               Editar Título
                             </Button>
-                          </div>
+                          </div>,
                         ]}
                       >
                         <div>
@@ -142,7 +160,15 @@ const SortableItem = ({
                       <Card
                         size="small"
                         actions={[
-                          <div style={{ textAlign: 'left', paddingLeft: '12px' }}>
+                          <div
+                            style={{
+                              textAlign: "left",
+                              paddingLeft: "12px",
+                              display: "flex",
+                              alignItems: "center",
+                              gap: 12,
+                            }}
+                          >
                             <Button
                               type="primary"
                               icon={<EditOutlined />}
@@ -150,11 +176,14 @@ const SortableItem = ({
                             >
                               Editar Conteúdo
                             </Button>
-                          </div>
+                            <span style={{ fontSize: 12, color: "#888" }}>
+                              Modo: {contentEditMode === "html" ? "HTML Puro" : "Visual"}
+                            </span>
+                          </div>,
                         ]}
                       >
                         <div>
-                          {Cluar.plainHTML(contentValue).slice(0, 97) + "..."}
+                          {Cluar.plainHTML(activeContentPreview).slice(0, 97) + "..."}
                         </div>
                       </Card>
                     </Form.Item>
@@ -166,21 +195,23 @@ const SortableItem = ({
                         }
                       />
                     </Form.Item>
+                    {/* campos hidden */}
+                    <Form.Item name={["itemsByUid", itemIndex, "html_content"]} hidden>
+                      <Input />
+                    </Form.Item>
+                    <Form.Item name={["itemsByUid", itemIndex, "edit_mode"]} hidden>
+                      <Input />
+                    </Form.Item>
+
                     <ImageSectionEditor
                       sectionData={item}
                       form={form}
                       imageName={["itemsByUid", itemIndex, "image"]}
                       imageTitleName={["itemsByUid", itemIndex, "image_title"]}
                       imageAltName={["itemsByUid", itemIndex, "image_alt"]}
-                      onChangeImage={(val) =>
-                        onChangeItem(item.uid, "image", val)
-                      }
-                      onChangeImageAlt={(val) =>
-                        onChangeItem(item.uid, "image_alt", val)
-                      }
-                      onChangeImageTitle={(val) =>
-                        onChangeItem(item.uid, "image_title", val)
-                      }
+                      onChangeImage={(val) => onChangeItem(item.uid, "image", val)}
+                      onChangeImageAlt={(val) => onChangeItem(item.uid, "image_alt", val)}
+                      onChangeImageTitle={(val) => onChangeItem(item.uid, "image_title", val)}
                     />
                     <Form.Item
                       label="Link"
@@ -227,10 +258,19 @@ const SortableItem = ({
 
       <Modal
         title={
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 30 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingRight: 30,
+            }}
+          >
             <span>Editar Título</span>
             <Space>
-              <span style={{ fontSize: '12px', fontWeight: 'normal' }}>Inverter cor de fundo:</span>
+              <span style={{ fontSize: "12px", fontWeight: "normal" }}>
+                Inverter cor de fundo:
+              </span>
               <Switch
                 checked={titleInvert}
                 onChange={(checked) => setTitleInvert(checked)}
@@ -248,13 +288,15 @@ const SortableItem = ({
         centered
         destroyOnClose
       >
-        <div style={{
-          backgroundColor: titleInvert
-            ? (themeMode === "dark" ? "#ffffff" : "#141414")
-            : "transparent",
-          borderRadius: '4px',
-          transition: 'all 0.3s'
-        }}>
+        <div
+          style={{
+            backgroundColor: titleInvert
+              ? themeMode === "dark" ? "#ffffff" : "#141414"
+              : "transparent",
+            borderRadius: "4px",
+            transition: "all 0.3s",
+          }}
+        >
           <LexicalEditor
             initialHtml={titleValue}
             onChange={(html) => setTitleValue(html)}
@@ -266,10 +308,29 @@ const SortableItem = ({
 
       <Modal
         title={
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingRight: 30 }}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              paddingRight: 30,
+            }}
+          >
             <span>Editar Conteúdo</span>
             <Space>
-              <span style={{ fontSize: '12px', fontWeight: 'normal' }}>Inverter cor de fundo:</span>
+              <Radio.Group
+                value={contentEditMode}
+                onChange={(e) => handleContentEditModeChange(e.target.value)}
+                optionType="button"
+                buttonStyle="solid"
+                size="small"
+              >
+                <Radio.Button value="visual">Visual</Radio.Button>
+                <Radio.Button value="html">HTML Puro</Radio.Button>
+              </Radio.Group>
+              <span style={{ fontSize: "12px", fontWeight: "normal" }}>
+                Inverter cor de fundo:
+              </span>
               <Switch
                 checked={contentInvert}
                 onChange={(checked) => setContentInvert(checked)}
@@ -287,17 +348,28 @@ const SortableItem = ({
         centered
         destroyOnClose
       >
-        <div style={{
-          backgroundColor: contentInvert
-            ? (themeMode === "dark" ? "#ffffff" : "#141414")
-            : "transparent",
-          borderRadius: '4px',
-          transition: 'all 0.3s'
-        }}>
-          <LexicalEditor
-            initialHtml={contentValue}
-            onChange={(html) => setContentValue(html)}
-          />
+        <div
+          style={{
+            backgroundColor: contentInvert
+              ? themeMode === "dark" ? "#ffffff" : "#141414"
+              : "transparent",
+            borderRadius: "4px",
+            transition: "all 0.3s",
+          }}
+        >
+          {contentEditMode === "visual" ? (
+            <LexicalEditor
+              key="content-visual"
+              initialHtml={contentValue}
+              onChange={(html) => setContentValue(html)}
+            />
+          ) : (
+            <MonacoEditor
+              key="content-html"
+              value={htmlContentValue}
+              onChange={(value) => setHtmlContentValue(value)}
+            />
+          )}
         </div>
       </Modal>
     </>
