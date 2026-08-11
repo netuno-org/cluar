@@ -109,7 +109,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
             open={isModalOpen}
             onCancel={() => setIsModalOpen(false)}
             onClose={() => setIsModalOpen(false)}
-            destroyOnClose
+            destroyOnHidden
             maskClosable={false}
             afterClose={() => formRef.resetFields()}
             centered

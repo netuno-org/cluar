@@ -12,7 +12,11 @@ const FunctionalityEditor = ({ sectionData, form }) => {
   const [showActions, setShowActions] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
 
-  const actionsData = Cluar.actions() || [];
+  const currentLangCode = Cluar.currentLanguage()?.code;
+  const allActions = Cluar.actions() || [];
+  const actionsData = allActions.filter(
+    (action) => action.language_code === currentLangCode
+  );
 
   useEffect(() => {
     _service({
@@ -39,7 +43,7 @@ const FunctionalityEditor = ({ sectionData, form }) => {
 
   return (
     <div className="functionality-editor">
-      <Form.Item label="Tipo" name="type">
+      <Form.Item label={Cluar.plainDictionary("functionality-editor-field-type")} name="type">
         <Select
           options={typeOptions.map((item) => ({
             label: item.info.label,
@@ -55,13 +59,13 @@ const FunctionalityEditor = ({ sectionData, form }) => {
       </Form.Item>
 
       {showActions && (
-        <Form.Item label="Actions" name="action_uids">
+        <Form.Item label={Cluar.plainDictionary("functionality-editor-field-actions")} name="action_uids">
           <Select
             options={actionsData.map((action) => ({
               label: action.title,
               value: action.uid,
             }))}
-            placeholder="Adicionar"
+            placeholder={Cluar.plainDictionary("functionality-editor-placeholder-add")}
             mode="multiple"
             allowClear
           />

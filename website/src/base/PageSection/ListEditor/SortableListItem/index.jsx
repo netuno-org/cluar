@@ -83,7 +83,7 @@ const SortableItem = ({
     });
     onChangeItem(item.uid, "title", titleValue);
     setIsTitleModalOpen(false);
-    message.success("Título do item atualizado!");
+    message.success(Cluar.plainDictionary("sortable-list-item-notification-title-success"));
   };
 
   const handleSaveContentModal = () => {
@@ -100,7 +100,7 @@ const SortableItem = ({
     onChangeItem(item.uid, "html_content", htmlContentValue);
     onChangeItem(item.uid, "edit_mode", contentEditMode);
     setIsContentModalOpen(false);
-    message.success("Conteúdo do item atualizado!");
+    message.success(Cluar.plainDictionary("sortable-list-item-notification-content-success"));
   };
 
   const activeContentPreview = contentEditMode === "html" ? htmlContentValue : contentValue;
@@ -127,7 +127,7 @@ const SortableItem = ({
                 ),
                 children: (
                   <div>
-                    <Form.Item label="Título">
+                    <Form.Item label={Cluar.plainDictionary("sortable-list-item-field-title")}>
                       <Card
                         size="small"
                         actions={[
@@ -137,7 +137,7 @@ const SortableItem = ({
                               icon={<EditOutlined />}
                               onClick={() => setIsTitleModalOpen(true)}
                             >
-                              Editar Título
+                              {Cluar.plainDictionary("sortable-list-item-button-edit-title")}
                             </Button>
                           </div>,
                         ]}
@@ -156,7 +156,7 @@ const SortableItem = ({
                       />
                     </Form.Item>
 
-                    <Form.Item label="Conteúdo">
+                    <Form.Item label={Cluar.plainDictionary("sortable-list-item-field-content")}>
                       <Card
                         size="small"
                         actions={[
@@ -174,10 +174,10 @@ const SortableItem = ({
                               icon={<EditOutlined />}
                               onClick={() => setIsContentModalOpen(true)}
                             >
-                              Editar Conteúdo
+                              {Cluar.plainDictionary("sortable-list-item-button-edit-content")}
                             </Button>
                             <span style={{ fontSize: 12, color: "#888" }}>
-                              Modo: {contentEditMode === "html" ? "HTML Puro" : "Visual"}
+                              {Cluar.plainDictionary("sortable-list-item-mode-label")} {contentEditMode === "html" ? Cluar.plainDictionary("sortable-list-item-mode-code") : Cluar.plainDictionary("sortable-list-item-mode-visual")}
                             </span>
                           </div>,
                         ]}
@@ -214,7 +214,7 @@ const SortableItem = ({
                       onChangeImageTitle={(val) => onChangeItem(item.uid, "image_title", val)}
                     />
                     <Form.Item
-                      label="Link"
+                      label={Cluar.plainDictionary("sortable-list-item-field-link")}
                       name={["itemsByUid", itemIndex, "link"]}
                     >
                       <Input
@@ -224,7 +224,7 @@ const SortableItem = ({
                       />
                     </Form.Item>
                     <Form.Item
-                      label="Section"
+                      label={Cluar.plainDictionary("sortable-list-item-field-section")}
                       name={["itemsByUid", itemIndex, "section"]}
                       initialValue={item.section}
                       style={{ display: "none" }}
@@ -232,7 +232,7 @@ const SortableItem = ({
                       <Input rows={3} />
                     </Form.Item>
                     <Form.Item
-                      label="UID"
+                      label={Cluar.plainDictionary("sortable-list-item-field-uid")}
                       name={["itemsByUid", itemIndex, "uid"]}
                       initialValue={item.uid}
                       style={{ display: "none" }}
@@ -266,10 +266,10 @@ const SortableItem = ({
               paddingRight: 30,
             }}
           >
-            <span>Editar Título</span>
+            <span>{Cluar.plainDictionary("sortable-list-item-modal-title-edit-title")}</span>
             <Space>
               <span style={{ fontSize: "12px", fontWeight: "normal" }}>
-                Inverter cor de fundo:
+                {Cluar.plainDictionary("sortable-list-item-invert-background")}
               </span>
               <Switch
                 checked={titleInvert}
@@ -283,10 +283,10 @@ const SortableItem = ({
         onOk={handleSaveTitleModal}
         onCancel={() => setIsTitleModalOpen(false)}
         width={1000}
-        okText="Salvar"
-        cancelText="Cancelar"
+        okText={Cluar.plainDictionary("sortable-list-item-modal-save")}
+        cancelText={Cluar.plainDictionary("sortable-list-item-modal-cancel")}
         centered
-        destroyOnClose
+        destroyOnHidden
       >
         <div
           style={{
@@ -316,20 +316,21 @@ const SortableItem = ({
               paddingRight: 30,
             }}
           >
-            <span>Editar Conteúdo</span>
+            <span>{Cluar.plainDictionary("sortable-list-item-modal-title-edit-content")}</span>
             <Space>
               <Radio.Group
+                className="editor-mode-toggle"
                 value={contentEditMode}
                 onChange={(e) => handleContentEditModeChange(e.target.value)}
                 optionType="button"
                 buttonStyle="solid"
                 size="small"
               >
-                <Radio.Button value="visual">Visual</Radio.Button>
-                <Radio.Button value="html">HTML Puro</Radio.Button>
+                <Radio.Button value="visual">{Cluar.plainDictionary("sortable-list-item-mode-visual")}</Radio.Button>
+                <Radio.Button value="html">{Cluar.plainDictionary("sortable-list-item-mode-code")}</Radio.Button>
               </Radio.Group>
               <span style={{ fontSize: "12px", fontWeight: "normal" }}>
-                Inverter cor de fundo:
+                {Cluar.plainDictionary("sortable-list-item-invert-background")}
               </span>
               <Switch
                 checked={contentInvert}
@@ -343,10 +344,10 @@ const SortableItem = ({
         onOk={handleSaveContentModal}
         onCancel={() => setIsContentModalOpen(false)}
         width={1000}
-        okText="Salvar"
-        cancelText="Cancelar"
+        okText={Cluar.plainDictionary("sortable-list-item-modal-save")}
+        cancelText={Cluar.plainDictionary("sortable-list-item-modal-cancel")}
         centered
-        destroyOnClose
+        destroyOnHidden
       >
         <div
           style={{

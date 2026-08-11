@@ -261,7 +261,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
             maskClosable={false}
             onCancel={() => { setIsModalOpen(false) }}
             onClose={() => { setIsModalOpen(false) }}
-            destroyOnClose
+            destroyOnHidden
             afterClose={() => formRef.resetFields()}
             centered
             footer={[

@@ -9,7 +9,7 @@ const MonacoEditor = ({ value, onChange }) => {
     const handleEditorDidMount = (editor, monaco) => {
         editorRef.current = editor;
 
-        // ▲ Formatação sob demanda: Shift+Alt+F ou botão de contexto
+        // Formatação sob demanda: Shift+Alt+F ou botão de contexto
         editor.addAction({
             id: "format-html",
             label: "Formatar HTML",

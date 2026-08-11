@@ -185,7 +185,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
             <Modal
                 title={userData ? Cluar.plainDictionary('users-modal-title-edit') : Cluar.plainDictionary('users-modal-title-new')}
                 maskClosable={false}
-                destroyOnClose={true}
+                destroyOnHidden={true}
                 centered
                 open={isModalOpen}
                 onOk={() => { }}

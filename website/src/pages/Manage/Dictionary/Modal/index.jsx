@@ -166,7 +166,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
             open={isModalOpen}
             onCancel={() => setIsModalOpen(false)}
             onClose={() => { setIsModalOpen(false) }}
-            destroyOnClose
+            destroyOnHidden
             centered
 
             afterClose={() => formRef.resetFields()}

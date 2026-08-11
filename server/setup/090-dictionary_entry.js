@@ -2556,9 +2556,25 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
+    .set("uid", "c3eda478-ea94-4376-a2b4-9e9a1681f309")
+    .set("code", "sortable-slider-item-notification-title-success")
+    .set("description", "Editor - Item Arrast\u00E1vel - Notifica\u00E7\u00E3o - Sucesso ao salvar t\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
     .set("uid", "2885a2e0-ac23-4002-a625-dbbdfc3fe281")
     .set("code", "members-form-group")
     .set("description", "Formul\u00E1rio de Membros - Grupo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "d715bffd-9f6d-40a4-83cd-e89cd6d8c443")
+    .set("code", "sortable-slider-item-notification-content-success")
+    .set("description", "Editor - Item Arrast\u00E1vel - Notifica\u00E7\u00E3o - Sucesso ao salvar conte\u00FAdo")
 );
 
 _db.insertIfNotExists(
@@ -2919,5 +2935,773 @@ _db.insertIfNotExists(
     .set("uid", "7c419a17-3613-4a49-b9e8-b148b3d865ba")
     .set("code", "admin-bar-clone-page")
     .set("description", "Barra de Administrador - Bot\u00E3o - Clonar P\u00E1gina")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "0be83435-5509-451e-bc85-0d206644dd03")
+    .set("code", "sortable-slider-item-field-title")
+    .set("description", "Editor - Item Arrast\u00E1vel - Campo - T\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "f15c9f9c-0ceb-4763-a625-297b718220e2")
+    .set("code", "sortable-slider-item-button-edit-title")
+    .set("description", "Editor - Item Arrast\u00E1vel - Bot\u00E3o - Editar T\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "5a6c6375-db31-4ab5-8778-57a7565ed9f8")
+    .set("code", "sortable-slider-item-field-content")
+    .set("description", "Editor - Item Arrast\u00E1vel - Campo - Conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "8ff7825c-17c9-4c9b-bc82-80f2e09a3d76")
+    .set("code", "sortable-slider-item-button-edit-content")
+    .set("description", "Editor - Item Arrast\u00E1vel - Bot\u00E3o - Editar Conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "8c44376f-41fa-498c-b005-ecf9cc9dccd8")
+    .set("code", "sortable-slider-item-mode-label")
+    .set("description", "Editor - Item Arrast\u00E1vel - R\u00F3tulo - Modo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "d212180b-5dff-4cf7-930e-e0851a1d0243")
+    .set("code", "sortable-slider-item-mode-code")
+    .set("description", "Editor - Item Arrast\u00E1vel - Modo - C\u00F3digo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ec0cf3ff-5a9a-47c5-a823-e4e9cf920516")
+    .set("code", "sortable-slider-item-mode-visual")
+    .set("description", "Editor - Item Arrast\u00E1vel - Modo - Visual")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9937fde1-d920-4be3-acd2-aa7ed303f195")
+    .set("code", "sortable-slider-item-field-actions")
+    .set("description", "Editor - Item Arrast\u00E1vel - Campo - A\u00E7\u00F5es")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "15b2f6fc-0d44-4e44-816b-a974278697e7")
+    .set("code", "sortable-slider-item-placeholder-add")
+    .set("description", "Editor - Item Arrast\u00E1vel - Placeholder - Adicionar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "30073674-6f4f-4e86-983c-19968ba8d897")
+    .set("code", "sortable-slider-item-field-section")
+    .set("description", "Editor - Item Arrast\u00E1vel - Campo - Sec\u00E7\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ef25042f-5581-433d-ad80-e256e49866e6")
+    .set("code", "sortable-slider-item-field-uid")
+    .set("description", "Editor - Item Arrast\u00E1vel - Campo - UID")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "631c447f-3bb2-4105-b53b-944e62c45265")
+    .set("code", "sortable-slider-item-modal-title-edit-title")
+    .set("description", "Editor - Item Arrast\u00E1vel - Modal - T\u00EDtulo Editar T\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3d0cba3c-251b-4cf8-b217-0c3e519ba6de")
+    .set("code", "sortable-slider-item-invert-background")
+    .set("description", "Editor - Item Arrast\u00E1vel - Switch - Inverter cor de fundo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "82ea9ef9-ae13-4568-aa1a-7027f5b5d0ab")
+    .set("code", "sortable-slider-item-modal-save")
+    .set("description", "Editor - Item Arrast\u00E1vel - Modal - Bot\u00E3o Salvar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "8ffef4a3-13eb-4f85-82fa-0237edcee5a5")
+    .set("code", "sortable-slider-item-modal-cancel")
+    .set("description", "Editor - Item Arrast\u00E1vel - Modal - Bot\u00E3o Cancelar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "d1165825-9e43-4e84-9737-b7b653e8b9b9")
+    .set("code", "sortable-slider-item-modal-title-edit-content")
+    .set("description", "Editor - Item Arrast\u00E1vel - Modal - T\u00EDtulo Editar Conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ed7afe2f-0653-4e40-a8b7-7db5b04353ce")
+    .set("code", "sortable-list-item-notification-title-success")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Notifica\u00E7\u00E3o - Sucesso ao salvar t\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2e9b6509-7673-4bfc-8901-2fdfb77ea52a")
+    .set("code", "sortable-list-item-notification-content-success")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Notifica\u00E7\u00E3o - Sucesso ao salvar conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "69382728-f979-4ca8-9a87-d717e91651a0")
+    .set("code", "sortable-list-item-field-title")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Campo - T\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "cb149679-2687-444d-b488-336c5b792d92")
+    .set("code", "sortable-list-item-button-edit-title")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Bot\u00E3o - Editar T\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "decd32da-cc5e-43d9-8b66-e4a99bbeea5d")
+    .set("code", "sortable-list-item-field-content")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Campo - Conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "bca0b770-fe78-47bd-a6c3-f964a6ace87b")
+    .set("code", "sortable-list-item-button-edit-content")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Bot\u00E3o - Editar Conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "f9b93032-c51d-46d2-8a72-e750dd8798e9")
+    .set("code", "sortable-list-item-mode-label")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - R\u00F3tulo - Modo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9408eeac-7937-4e34-a3ef-7676a052686a")
+    .set("code", "sortable-list-item-mode-code")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Modo - C\u00F3digo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "40ad7016-c391-4ba4-a88c-5d6967f6b7da")
+    .set("code", "sortable-list-item-mode-visual")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Modo - Visual")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "b4551819-e49b-4b08-9872-4eb2208ccb45")
+    .set("code", "sortable-list-item-field-link")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Campo - Link")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "83370f99-cc7b-47c7-a97c-89f01bb8a2ca")
+    .set("code", "sortable-list-item-field-section")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Campo - Sec\u00E7\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "03194670-fe7f-40af-b681-bf4005c55408")
+    .set("code", "sortable-list-item-field-uid")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Campo - UID")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3e86948e-6593-42ce-8d23-9fdd86486a6d")
+    .set("code", "sortable-list-item-modal-title-edit-title")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Modal - T\u00EDtulo Editar T\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2afda6cd-0933-430b-bace-3c8377a6bccf")
+    .set("code", "sortable-list-item-invert-background")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Switch - Inverter cor de fundo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "c53d0566-2dac-4a91-81f9-0e3357aa7215")
+    .set("code", "sortable-list-item-modal-save")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Modal - Bot\u00E3o Salvar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "4bdb581c-72b9-467c-ae8d-1f74bb3efe53")
+    .set("code", "sortable-list-item-modal-cancel")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Modal - Bot\u00E3o Cancelar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9e538b95-b606-49fd-b02e-53b0fd06d8ba")
+    .set("code", "sortable-list-item-modal-title-edit-content")
+    .set("description", "Editor - Item Arrast\u00E1vel (Lista) - Modal - T\u00EDtulo Editar Conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "c98a0478-598c-44cb-9584-1adc92e997c5")
+    .set("code", "section-editor-button-apply")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Bot\u00E3o - Aplicar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "01410110-e13f-4374-999f-b04e14d7c9f9")
+    .set("code", "section-editor-field-title")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Campo - T\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2592ef5a-a5df-454c-bd6b-37603220b3c9")
+    .set("code", "section-editor-button-edit-title")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Bot\u00E3o - Editar T\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "d116160f-5ec3-425c-88b3-5dbbaccce686")
+    .set("code", "section-editor-field-content")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Campo - Conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "b7854501-0fa9-4223-9527-1f2d84bf18a9")
+    .set("code", "section-editor-button-edit-content")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Bot\u00E3o - Editar Conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "486563c7-060d-404e-981d-8d3601a731f6")
+    .set("code", "section-editor-mode-label")
+    .set("description", "Editor de Sec\u00E7\u00E3o - R\u00F3tulo - Modo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2ebc3e80-53ee-43bc-928a-6746ca7cc62b")
+    .set("code", "section-editor-mode-code")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Modo - C\u00F3digo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "49b2c790-0c37-4df2-a584-252946ab05af")
+    .set("code", "section-editor-mode-visual")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Modo - Visual")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "8023f14a-50f4-4cbc-bda4-93fcc66f3701")
+    .set("code", "section-editor-field-order")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Campo - Ordem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "1b5b9708-374a-43af-ad7a-41caca2cc60c")
+    .set("code", "section-editor-modal-title-edit-title")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Modal - T\u00EDtulo Editar T\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "92ed9a26-5cb3-44a7-8a35-f4aeba98acc6")
+    .set("code", "section-editor-invert-background")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Switch - Inverter cor de fundo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "18662fb9-0b9f-4943-915c-14e699b5926d")
+    .set("code", "section-editor-modal-save")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Modal - Bot\u00E3o Salvar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "1890de29-de66-4907-b400-a1d1e8f812f2")
+    .set("code", "section-editor-modal-cancel")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Modal - Bot\u00E3o Cancelar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "c269210e-ae3e-491d-82ec-4991f242d218")
+    .set("code", "section-editor-modal-title-edit-content")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Modal - T\u00EDtulo Editar Conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "b904f7b6-50a4-41eb-bffa-ff82b7dd81f2")
+    .set("code", "section-editor-button-hide-ai")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Bot\u00E3o - Esconder AI")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "686f5856-e1de-4338-8828-06408fc05029")
+    .set("code", "section-editor-button-ai-assistant")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Bot\u00E3o - Assistente AI")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "8e23191a-0e20-4d31-bca7-aaf5cce4ef11")
+    .set("code", "section-editor-label-ai-instructions")
+    .set("description", "Editor de Sec\u00E7\u00E3o - R\u00F3tulo - Instru\u00E7\u00F5es para a IA")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "371cffcd-43ad-41a9-bf33-10e2ab1b6857")
+    .set("code", "section-editor-placeholder-ai-instructions")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Placeholder - Instru\u00E7\u00F5es para a IA")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9be3f53c-1680-465f-a6fb-a23c0280d029")
+    .set("code", "section-editor-button-generate")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Bot\u00E3o - Gerar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "0e589ae2-4e65-4c9e-a4dc-af2621c7c943")
+    .set("code", "section-editor-notification-ai-prompt-required")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Notifica\u00E7\u00E3o - Prompt da IA obrigat\u00F3rio")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9323af39-dc68-491e-9afb-1fa55960f3af")
+    .set("code", "section-editor-notification-ai-generate-success")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Notifica\u00E7\u00E3o - Sucesso ao gerar conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "05e9d57a-2204-43ec-a863-915197475c89")
+    .set("code", "section-editor-notification-ai-generate-fail")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Notifica\u00E7\u00E3o - Falha ao gerar conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "e8b1903e-2413-4507-b562-6e0536e475fe")
+    .set("code", "section-editor-notification-title-success")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Notifica\u00E7\u00E3o - Sucesso ao atualizar t\u00EDtulo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "877e8671-d29e-4243-b811-e1c046b888cc")
+    .set("code", "section-editor-notification-content-success")
+    .set("description", "Editor de Sec\u00E7\u00E3o - Notifica\u00E7\u00E3o - Sucesso ao atualizar conte\u00FAdo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "e378f2b9-d47c-49d2-bab7-d0694b74d85a")
+    .set("code", "banner-editor-field-type")
+    .set("description", "Editor - Banner - Campo - Tipo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ce1a6579-02fd-4e95-a6b2-aaeb8d6e7349")
+    .set("code", "banner-editor-field-actions")
+    .set("description", "Editor - Banner - Campo - A\u00E7\u00F5es")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "7b2f180b-8f49-40c3-8281-97b09a454964")
+    .set("code", "banner-editor-placeholder-add")
+    .set("description", "Editor - Banner - Placeholder - Adicionar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "391c7163-e211-40fe-b00a-371c908864af")
+    .set("code", "content-editor-field-type")
+    .set("description", "Editor - Conte\u00FAdo - Campo - Tipo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "04605f78-8156-455f-b8cd-322375eee3f9")
+    .set("code", "content-editor-field-actions")
+    .set("description", "Editor - Conte\u00FAdo - Campo - A\u00E7\u00F5es")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "e57d8787-1dbd-4e8b-a37f-a9a3678304f7")
+    .set("code", "content-editor-placeholder-add")
+    .set("description", "Editor - Conte\u00FAdo - Placeholder - Adicionar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "8e3e9510-23b3-41c3-835c-fa74c6bd557f")
+    .set("code", "functionality-editor-field-type")
+    .set("description", "Editor - Funcionalidade - Campo - Tipo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "64f6917a-c43f-4e19-9363-10651cea660b")
+    .set("code", "functionality-editor-field-actions")
+    .set("description", "Editor - Funcionalidade - Campo - A\u00E7\u00F5es")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "98b09410-1273-4052-aaa6-af45e677e29b")
+    .set("code", "functionality-editor-placeholder-add")
+    .set("description", "Editor - Funcionalidade - Placeholder - Adicionar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "972adaa1-0148-4cf9-9431-6d0388f91521")
+    .set("code", "list-editor-field-type")
+    .set("description", "Editor - Lista - Campo - Tipo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "79d38918-deaa-4ff0-a2ac-3cc065d877d9")
+    .set("code", "list-editor-field-actions")
+    .set("description", "Editor - Lista - Campo - A\u00E7\u00F5es")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "61c0fe81-221d-4ecc-8ffb-9e56250799e2")
+    .set("code", "list-editor-placeholder-add")
+    .set("description", "Editor - Lista - Placeholder - Adicionar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2fb6efe2-274c-4bb3-b2fa-aa1eb750b9f7")
+    .set("code", "list-editor-button-new-item")
+    .set("description", "Editor - Lista - Bot\u00E3o - Novo Item")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "38743674-f161-4944-8164-659953fe63ba")
+    .set("code", "action-modal-notification-load-languages-fail")
+    .set("description", "A\u00E7\u00F5es - Modal - Notifica\u00E7\u00E3o - Falha ao carregar idiomas")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "f0471bc4-43dd-4004-a2d7-4f13a8f68313")
+    .set("code", "action-form-upload")
+    .set("description", "A\u00E7\u00F5es - Formul\u00E1rio - Bot\u00E3o Upload")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "c00204a7-d66d-4204-80eb-dce6499981b4")
+    .set("code", "action-form-parameter")
+    .set("description", "A\u00E7\u00F5es - Formul\u00E1rio - Campo Par\u00E2metro")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "bf182a71-e369-4c4f-9d72-acde25c99bf6")
+    .set("code", "action-form-validate-message-required")
+    .set("description", "A\u00E7\u00F5es - Formul\u00E1rio - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "5c11dacc-bf78-4d8c-84e2-ac05194e800f")
+    .set("code", "action-form-parameter-placeholder")
+    .set("description", "A\u00E7\u00F5es - Formul\u00E1rio - Placeholder - Selecionar Par\u00E2metro")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "7475ef60-1e71-4c96-a86a-4efd329125bc")
+    .set("code", "action-parameter-select-notification-load-fail")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Falha ao carregar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "972f62c3-c175-4fd5-8662-03216889be23")
+    .set("code", "action-parameter-select-notification-fill-required")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Preencher obrigat\u00F3rios")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "7b5ee832-b6ca-4551-84d7-26ffbb20dc6c")
+    .set("code", "action-parameter-select-notification-create-fail")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Falha ao criar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3f04f2c0-fa89-467f-a542-b47de235e27d")
+    .set("code", "action-parameter-select-notification-update-success")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Sucesso ao atualizar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "28c24161-7e6a-4034-9e10-4c250804021b")
+    .set("code", "action-parameter-select-notification-update-fail")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Falha ao atualizar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9bd988ea-1d6e-42a8-99b9-e2c91398f2dd")
+    .set("code", "action-parameter-select-notification-delete-success")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Sucesso ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "8bb8f068-b8d9-4467-9da6-fde81d9612dc")
+    .set("code", "action-parameter-select-notification-delete-fail")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Falha ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "0a2a374f-063b-489b-a5ae-d7f50f5063f8")
+    .set("code", "action-parameter-select-empty")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Lista Vazia")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "4c60a59e-81a4-4f47-bf18-f8f65e912842")
+    .set("code", "action-parameter-select-placeholder-code")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Placeholder - C\u00F3digo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "df705371-3e9f-4c34-a8d2-a3d2e4f693f0")
+    .set("code", "action-parameter-select-placeholder-description")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Placeholder - Descri\u00E7\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "85f58045-3d05-487d-bbf4-1dc891d98439")
+    .set("code", "action-parameter-select-popconfirm-delete-title")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Popconfirm - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "11a3a5da-f909-48a3-8765-417a780d09eb")
+    .set("code", "action-parameter-select-button-save")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Bot\u00E3o - Salvar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9f7c832c-8370-4987-a907-b9d25ae377b0")
+    .set("code", "action-parameter-select-button-cancel")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Bot\u00E3o - Cancelar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2b35861d-f9b0-4132-8d28-fa6900e02a2a")
+    .set("code", "action-parameter-select-button-create")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Bot\u00E3o - Criar par\u00E2metro")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "731a9b91-305b-47db-b5bf-a59b8cce981b")
+    .set("code", "action-parameter-select-button-new")
+    .set("description", "A\u00E7\u00F5es - Par\u00E2metro Select - Bot\u00E3o - Novo par\u00E2metro")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "7a36a5c7-a781-4443-8567-43af5814c000")
+    .set("code", "actions-table-notification-load-fail")
+    .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao carregar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ea20fbf7-e7ac-4d3d-95e2-c3aedce1213f")
+    .set("code", "actions-table-filter-active")
+    .set("description", "A\u00E7\u00F5es - Tabela - Filtro - Activo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "305f9680-c815-4d48-ba5b-7e264dacc7ad")
+    .set("code", "actions-table-filter-inactive")
+    .set("description", "A\u00E7\u00F5es - Tabela - Filtro - Inactivo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9c22b8c6-d55c-40cc-ad61-2c7b59752171")
+    .set("code", "actions-table-parameter")
+    .set("description", "A\u00E7\u00F5es - Tabela - Coluna - Par\u00E2metro")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "fc57bd9b-e8a2-41b1-85f6-c2991871a620")
+    .set("code", "actions-table-image")
+    .set("description", "A\u00E7\u00F5es - Tabela - Coluna - Imagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "73a763c9-3d50-4fe9-b10a-02e6627b1776")
+    .set("code", "actions-table-button-edit")
+    .set("description", "A\u00E7\u00F5es - Tabela - Bot\u00E3o - Editar")
 );
 

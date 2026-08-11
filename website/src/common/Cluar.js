@@ -71,7 +71,7 @@ export default class Cluar {
   }
 
   static actions() {
-    return data.actions;
+    return data?.actions;
   }
 
   static configuration(parameter) {

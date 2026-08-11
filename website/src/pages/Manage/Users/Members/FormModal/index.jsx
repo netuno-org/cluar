@@ -226,7 +226,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
             open={isModalOpen}
             onCancel={() => setIsModalOpen(false)}
             onClose={() => setIsModalOpen(false)}
-            destroyOnClose
+            destroyOnHidden
             maskClosable={false}
             afterClose={() => formRef.resetFields()}
             centered

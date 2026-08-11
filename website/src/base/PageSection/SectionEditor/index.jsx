@@ -16,6 +16,8 @@ import SliderEditor from "../SliderEditor";
 import _service from "@netuno/service-client";
 import Cluar from "../../../common/Cluar";
 
+import "./index.less";
+
 const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const [form] = Form.useForm();
   const [showAIPrompt, setShowAIPrompt] = useState(false);
@@ -101,7 +103,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
 
   const handleAIGenerate = () => {
     if (!aiPrompt.trim()) {
-      message.warning("Por favor, insira instruções para a IA");
+      message.warning(Cluar.plainDictionary("section-editor-notification-ai-prompt-required"));
       return;
     }
 
@@ -124,17 +126,17 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
           } else {
             setContentValue(res.json.html);
           }
-          message.success("Conteúdo gerado com sucesso");
+          message.success(Cluar.plainDictionary("section-editor-notification-ai-generate-success"));
           setAIPrompt("");
           setShowAIPrompt(false);
         } else {
-          message.error(res.json.error || "Falha ao gerar conteúdo");
+          message.error(res.json.error || Cluar.plainDictionary("section-editor-notification-ai-generate-fail"));
         }
         setGenerating(false);
       },
       fail: (error) => {
         console.error("Erro ao gerar conteúdo:", error);
-        message.error("Falha ao gerar conteúdo");
+        message.error(Cluar.plainDictionary("section-editor-notification-ai-generate-fail"));
         setGenerating(false);
       },
     });
@@ -143,7 +145,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const handleSaveTitleModal = () => {
     form.setFieldsValue({ title: titleValue });
     setIsTitleModalOpen(false);
-    message.success("Título atualizado!");
+    message.success(Cluar.plainDictionary("section-editor-notification-title-success"));
   };
 
   const handleSaveContentModal = () => {
@@ -153,7 +155,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       edit_mode: contentEditMode,
     });
     setIsContentModalOpen(false);
-    message.success("Conteúdo atualizado!");
+    message.success(Cluar.plainDictionary("section-editor-notification-content-success"));
   };
 
   const isContentSection = sectionData?.section === "content";
@@ -166,11 +168,11 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       <Drawer
         open={open}
         onClose={onClose}
-        destroyOnClose={true}
-        width={820}
+        destroyOnHidden={true}
+        size="large"
         extra={
           <Button type="primary" onClick={handleConfirmChanges}>
-            Aplicar
+            {Cluar.plainDictionary("section-editor-button-apply")}
           </Button>
         }
       >
@@ -184,7 +186,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
           }}
           form={form}
         >
-          <Form.Item label="Título">
+          <Form.Item label={Cluar.plainDictionary("section-editor-field-title")}>
             <Card
               size="small"
               actions={[
@@ -194,7 +196,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                     icon={<EditOutlined />}
                     onClick={() => setIsTitleModalOpen(true)}
                   >
-                    Editar Título
+                    {Cluar.plainDictionary("section-editor-button-edit-title")}
                   </Button>
                 </div>,
               ]}
@@ -209,7 +211,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
             <Input />
           </Form.Item>
 
-          <Form.Item label="Conteúdo">
+          <Form.Item label={Cluar.plainDictionary("section-editor-field-content")}>
             <Card
               size="small"
               actions={[
@@ -227,11 +229,11 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                     icon={<EditOutlined />}
                     onClick={() => setIsContentModalOpen(true)}
                   >
-                    Editar Conteúdo
+                    {Cluar.plainDictionary("section-editor-button-edit-content")}
                   </Button>
                   {/* Indicador do modo ativo  */}
                   <span style={{ fontSize: 12, color: "#888" }}>
-                    Modo: {contentEditMode === "html" ? "HTML Puro" : "Visual"}
+                    {Cluar.plainDictionary("section-editor-mode-label")} {contentEditMode === "html" ? Cluar.plainDictionary("section-editor-mode-code") : Cluar.plainDictionary("section-editor-mode-visual")}
                   </span>
                 </div>,
               ]}
@@ -253,7 +255,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
             <Input />
           </Form.Item>
 
-          <Form.Item name="sorter" label="Ordem">
+          <Form.Item name="sorter" label={Cluar.plainDictionary("section-editor-field-order")}>
             <InputNumber style={{ width: "100%" }} />
           </Form.Item>
           <MoreEditor />
@@ -271,10 +273,10 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               paddingRight: 30,
             }}
           >
-            <span>Editar Título</span>
+            <span>{Cluar.plainDictionary("section-editor-modal-title-edit-title")}</span>
             <Space>
               <span style={{ fontSize: "12px", fontWeight: "normal" }}>
-                Inverter cor de fundo:
+                {Cluar.plainDictionary("section-editor-invert-background")}
               </span>
               <Switch
                 checked={titleInvert}
@@ -288,10 +290,10 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         onOk={handleSaveTitleModal}
         onCancel={() => setIsTitleModalOpen(false)}
         width={1000}
-        okText="Salvar"
-        cancelText="Cancelar"
+        okText={Cluar.plainDictionary("section-editor-modal-save")}
+        cancelText={Cluar.plainDictionary("section-editor-modal-cancel")}
         centered
-        destroyOnClose
+        destroyOnHidden
       >
         <div
           style={{
@@ -322,20 +324,21 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               paddingRight: 30,
             }}
           >
-            <span>Editar Conteúdo</span>
+            <span>{Cluar.plainDictionary("section-editor-modal-title-edit-content")}</span>
             <Space>
               <Radio.Group
+                className="editor-mode-toggle"
                 value={contentEditMode}
                 onChange={(e) => handleContentEditModeChange(e.target.value)}
                 optionType="button"
                 buttonStyle="solid"
                 size="small"
               >
-                <Radio.Button value="visual">Visual</Radio.Button>
-                <Radio.Button value="html">HTML Puro</Radio.Button>
+                <Radio.Button value="visual">{Cluar.plainDictionary("section-editor-mode-visual")}</Radio.Button>
+                <Radio.Button value="html">{Cluar.plainDictionary("section-editor-mode-code")}</Radio.Button>
               </Radio.Group>
               <span style={{ fontSize: "12px", fontWeight: "normal" }}>
-                Inverter cor de fundo:
+                {Cluar.plainDictionary("section-editor-invert-background")}
               </span>
               <Switch
                 checked={contentInvert}
@@ -349,10 +352,10 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         onOk={handleSaveContentModal}
         onCancel={() => setIsContentModalOpen(false)}
         width={1000}
-        okText="Salvar"
-        cancelText="Cancelar"
+        okText={Cluar.plainDictionary("section-editor-modal-save")}
+        cancelText={Cluar.plainDictionary("section-editor-modal-cancel")}
         centered
-        destroyOnClose
+        destroyOnHidden
       >
         <div
           style={{
@@ -388,7 +391,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               onClick={() => setShowAIPrompt(!showAIPrompt)}
               style={{ marginBottom: 16 }}
             >
-              {showAIPrompt ? "Esconder AI" : "Assistente AI"}
+              {showAIPrompt ? Cluar.plainDictionary("section-editor-button-hide-ai") : Cluar.plainDictionary("section-editor-button-ai-assistant")}
             </Button>
           </div>
         )}
@@ -402,13 +405,13 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                 fontWeight: 500,
               }}
             >
-              Instruções para a IA:
+              {Cluar.plainDictionary("section-editor-label-ai-instructions")}
             </label>
             <Input.TextArea
               rows={3}
               value={aiPrompt}
               onChange={(e) => setAIPrompt(e.target.value)}
-              placeholder="Descreva o que você deseja que a IA gere ou modifique no conteúdo..."
+              placeholder={Cluar.plainDictionary("section-editor-placeholder-ai-instructions")}
               style={{ marginBottom: 12 }}
             />
             <Button
@@ -417,7 +420,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               loading={generating}
               style={{ alignSelf: "flex-start" }}
             >
-              Gerar
+              {Cluar.plainDictionary("section-editor-button-generate")}
             </Button>
           </div>
         )}

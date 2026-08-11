@@ -218,7 +218,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
             open={open}
             onClose={onClose}
             width={520}
-            destroyOnClose
+            destroyOnHidden
             title={Cluar.plainDictionary("page-drawer-clone-title")}
             extra={
                 <Button type="primary" onClick={handleSave} loading={loading.saving}>

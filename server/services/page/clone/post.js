@@ -133,6 +133,43 @@ if (dbContent) {
             .set("content_invert_background", content.getBoolean("content_invert_background"))
             .set("sorter", content.getString("sorter"))
             .insert();
+
+        // ******** Actions ********
+
+        // buscar as actions vinculadas àquele componente
+        const dbContentAction = _db.form('page_content_action')
+            .where(
+                _db.where("page_content_id").equals(content.getInt("id"))
+            )
+            .all();
+
+        if (dbContentAction) {
+            for (const action of dbContentAction) {
+                const dbAction = _db.form('action')
+                    .where(
+                        _db.where("id").equals(action.getInt("action_id"))
+                    )
+                    .first();
+
+                if (dbAction) {
+                    // buscar o parâmetro daquela action na tabela de parametros
+                    const dbActionSameParameter = _db.form("action")
+                        .where(
+                            _db.where("parameter_id").equals(dbAction.getInt("parameter_id"))
+                                .and(_db.where("language_id").equals(languageId))
+                        )
+                        .first()
+
+                    if (dbActionSameParameter) {
+                        const actionData = _db.form("page_content_action")
+                            .set("action_id", dbActionSameParameter.getInt("id"))
+                            .set("page_content_id", contentData.getInt("id"))
+                            .set("sorter", action.getInt("sorter"))
+                            .insert();
+                    }
+                }
+            }
+        }
     }
 
 }
@@ -159,6 +196,43 @@ if (dbBanner) {
             .set("content_invert_background", banner.getBoolean("content_invert_background"))
             .set("sorter", banner.getInt("sorter"))
             .insert();
+
+        // ******** Actions ********
+
+        // buscar as actions vinculadas àquele componente
+        const dbBannerAction = _db.form('page_banner_action')
+            .where(
+                _db.where("page_banner_id").equals(banner.getInt("id"))
+            )
+            .all();
+
+        if (dbBannerAction) {
+            for (const action of dbBannerAction) {
+                const dbAction = _db.form('action')
+                    .where(
+                        _db.where("id").equals(action.getInt("action_id"))
+                    )
+                    .first();
+
+                if (dbAction) {
+                    // buscar o parâmetro daquela action na tabela de parametros
+                    const dbActionSameParameter = _db.form("action")
+                        .where(
+                            _db.where("parameter_id").equals(dbAction.getInt("parameter_id"))
+                                .and(_db.where("language_id").equals(languageId))
+                        )
+                        .first()
+
+                    if (dbActionSameParameter) {
+                        const actionData = _db.form("page_banner_action")
+                            .set("action_id", dbActionSameParameter.getInt("id"))
+                            .set("page_banner_id", bannerData.getInt("id"))
+                            .set("sorter", action.getInt("sorter"))
+                            .insert();
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -182,6 +256,41 @@ if (dbFunctionality) {
             .set("content_invert_background", functionality.getBoolean("content_invert_background"))
             .set("sorter", functionality.getInt("sorter"))
             .insert();
+
+        // ******** Actions ********
+
+        const dbFunctionalityAction = _db.form('page_functionality_action')
+            .where(
+                _db.where("page_functionality_id").equals(functionality.getInt("id"))
+            )
+            .all();
+
+        if (dbFunctionalityAction) {
+            for (const action of dbFunctionalityAction) {
+                const dbAction = _db.form('action')
+                    .where(
+                        _db.where("id").equals(action.getInt("action_id"))
+                    )
+                    .first();
+
+                if (dbAction) {
+                    const dbActionSameParameter = _db.form("action")
+                        .where(
+                            _db.where("parameter_id").equals(dbAction.getInt("parameter_id"))
+                                .and(_db.where("language_id").equals(languageId))
+                        )
+                        .first()
+
+                    if (dbActionSameParameter) {
+                        const actionData = _db.form("page_functionality_action")
+                            .set("action_id", dbActionSameParameter.getInt("id"))
+                            .set("page_functionality_id", functionalityData.getInt("id"))
+                            .set("sorter", action.getInt("sorter"))
+                            .insert();
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -207,6 +316,41 @@ if (dbListing) {
             .set("html_content", listing.getString("html_content"))
             .set("edit_mode", listing.getString("edit_mode") || "visual")
             .insert();
+
+        // ******** Actions ********
+
+        const dbListingAction = _db.form('page_listing_action')
+            .where(
+                _db.where("page_listing_id").equals(listing.getInt("id"))
+            )
+            .all();
+
+        if (dbListingAction) {
+            for (const action of dbListingAction) {
+                const dbAction = _db.form('action')
+                    .where(
+                        _db.where("id").equals(action.getInt("action_id"))
+                    )
+                    .first();
+
+                if (dbAction) {
+                    const dbActionSameParameter = _db.form("action")
+                        .where(
+                            _db.where("parameter_id").equals(dbAction.getInt("parameter_id"))
+                                .and(_db.where("language_id").equals(languageId))
+                        )
+                        .first()
+
+                    if (dbActionSameParameter) {
+                        const actionData = _db.form("page_listing_action")
+                            .set("action_id", dbActionSameParameter.getInt("id"))
+                            .set("page_listing_id", listingData.getInt("id"))
+                            .set("sorter", action.getInt("sorter"))
+                            .insert();
+                    }
+                }
+            }
+        }
 
         const dbListingItems = _db.form("page_listing_item")
             .where(
@@ -280,6 +424,41 @@ if (dbSlider) {
                     .set("content_invert_background", sliderItem.getBoolean("content_invert_background"))
                     .set("image_alt", sliderItem.getString("image_alt"))
                     .insert();
+
+                // ******** Actions ********
+
+                const dbSliderItemAction = _db.form('page_slider_item_action')
+                    .where(
+                        _db.where("page_slider_item_id").equals(sliderItem.getInt("id"))
+                    )
+                    .all();
+
+                if (dbSliderItemAction) {
+                    for (const action of dbSliderItemAction) {
+                        const dbAction = _db.form('action')
+                            .where(
+                                _db.where("id").equals(action.getInt("action_id"))
+                            )
+                            .first();
+
+                        if (dbAction) {
+                            const dbActionSameParameter = _db.form("action")
+                                .where(
+                                    _db.where("parameter_id").equals(dbAction.getInt("parameter_id"))
+                                        .and(_db.where("language_id").equals(languageId))
+                                )
+                                .first()
+
+                            if (dbActionSameParameter) {
+                                const actionData = _db.form("page_slider_item_action")
+                                    .set("action_id", dbActionSameParameter.getInt("id"))
+                                    .set("page_slider_item_id", sliderItemData.getInt("id"))
+                                    .set("sorter", action.getInt("sorter"))
+                                    .insert();
+                            }
+                        }
+                    }
+                }
             }
         }
     }

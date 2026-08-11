@@ -5,8 +5,16 @@ Table action {
   indication varchar(250) [note: 'Indicação']
   language_id int [not null, ref: > language.id, note: 'Idioma']
   link varchar(250) [note: 'Ligação']
+  parameter_id int [not null, ref: > action_parameter.id, note: 'Parâmetro']
   title varchar(250) [note: 'Título']
   Note: 'Ação'
+}
+
+Table action_parameter {
+  id int [pk, increment]
+  code varchar(250) [not null, unique, note: 'Código']
+  description varchar(250) [not null, note: 'Descrição']
+  Note: 'Parâmetro'
 }
 
 Table configuration {
