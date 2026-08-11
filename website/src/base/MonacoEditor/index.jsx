@@ -2,6 +2,7 @@ import { useRef } from "react";
 import Editor from "@monaco-editor/react";
 import prettier from "prettier/standalone";
 import parserHtml from "prettier/parser-html";
+import Cluar from "../../common/Cluar";
 
 const MonacoEditor = ({ value, onChange }) => {
     const editorRef = useRef(null);
@@ -9,10 +10,9 @@ const MonacoEditor = ({ value, onChange }) => {
     const handleEditorDidMount = (editor, monaco) => {
         editorRef.current = editor;
 
-        // Formatação sob demanda: Shift+Alt+F ou botão de contexto
         editor.addAction({
             id: "format-html",
-            label: "Formatar HTML",
+            label: Cluar.plainDictionary("monaco-editor-action-format-html"),
             keybindings: [
                 monaco.KeyMod.Shift | monaco.KeyMod.Alt | monaco.KeyCode.KeyF,
             ],
@@ -25,7 +25,6 @@ const MonacoEditor = ({ value, onChange }) => {
                             plugins: [parserHtml],
                         });
                         editor.setValue(formatted);
-                        // Reposiciona o cursor no início
                         editor.setPosition({ lineNumber: 1, column: 1 });
                     }
                 } catch (err) {
@@ -43,21 +42,42 @@ const MonacoEditor = ({ value, onChange }) => {
 
     return (
         <div className="monaco-editor-container">
-            <Editor
-                height="300px"
-                defaultLanguage="html"
-                value={value || ""}
-                onMount={handleEditorDidMount}
-                onChange={handleEditorChange}
-                options={{
-                    minimap: { enabled: false },
-                    wordWrap: "on",
-                    scrollBeyondLastLine: false,
-                    formatOnPaste: false,
-                    autoIndent: "none",
-                    tabSize: 2,
-                }}
-            />
+            <div className="monaco-editor-header">
+                <span className="monaco-editor-header__title">
+                    <span className="monaco-editor-header__dot" />
+                    HTML
+                </span>
+                <span className="monaco-editor-header__shortcut">
+                    {Cluar.plainDictionary("monaco-editor-shortcut-format")}
+                </span>
+            </div>
+            <div className="monaco-editor-wrapper">
+                <Editor
+                    height="400px"
+                    defaultLanguage="html"
+                    value={value || ""}
+                    onMount={handleEditorDidMount}
+                    onChange={handleEditorChange}
+                    options={{
+                        minimap: { enabled: false },
+                        wordWrap: "on",
+                        scrollBeyondLastLine: false,
+                        formatOnPaste: false,
+                        autoIndent: "none",
+                        tabSize: 2,
+                        padding: { top: 12, bottom: 12 },
+                        lineNumbers: "on",
+                        renderLineHighlight: "gutter",
+                        fontFamily: "'Fira Code', 'Cascadia Code', 'JetBrains Mono', Consolas, monospace",
+                        fontSize: 13,
+                        fontLigatures: true,
+                        smoothScrolling: true,
+                        cursorBlinking: "smooth",
+                        cursorSmoothCaretAnimation: "on",
+                        bracketPairColorization: { enabled: true },
+                    }}
+                />
+            </div>
         </div>
     );
 };

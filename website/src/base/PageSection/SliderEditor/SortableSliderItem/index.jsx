@@ -340,14 +340,18 @@ const SortableItem = ({
                 <Radio.Button value="visual">{Cluar.plainDictionary("sortable-slider-item-mode-visual")}</Radio.Button>
                 <Radio.Button value="html">{Cluar.plainDictionary("sortable-slider-item-mode-code")}</Radio.Button>
               </Radio.Group>
-              <span style={{ fontSize: "12px", fontWeight: "normal" }}>
-                {Cluar.plainDictionary("sortable-slider-item-invert-background")}
-              </span>
-              <Switch
-                checked={contentInvert}
-                onChange={(checked) => setContentInvert(checked)}
-                size="small"
-              />
+              {contentEditMode === "visual" && (
+                <>
+                  <span style={{ fontSize: "12px", fontWeight: "normal" }}>
+                    {Cluar.plainDictionary("sortable-list-item-invert-background")}
+                  </span>
+                  <Switch
+                    checked={contentInvert}
+                    onChange={(checked) => setContentInvert(checked)}
+                    size="small"
+                  />
+                </>
+              )}
             </Space>
           </div>
         }
@@ -368,6 +372,7 @@ const SortableItem = ({
               : "transparent",
             borderRadius: "4px",
             transition: "all 0.3s",
+            paddingTop: contentEditMode === "html" ? 12 : 0,
           }}
         >
           {contentEditMode === "visual" ? (

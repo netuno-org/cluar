@@ -647,3 +647,65 @@ html[data-theme="dark"] .editor-text-underline {
     border-left-style: solid;
     padding-left: 16px;
 }
+
+/* ─── Monaco Editor — Modo HTML Puro ─── */
+.monaco-editor-container {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    /* Cabeçalho do editor */
+    .monaco-editor-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        background: #1e1e1e;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+
+        .monaco-editor-header__title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            .monaco-editor-header__dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: #4caf50;
+            }
+        }
+
+        .monaco-editor-header__shortcut {
+            opacity: 0.6;
+            font-family: monospace;
+        }
+    }
+
+    /* Wrapper do Monaco */
+    .monaco-editor-wrapper {
+        background: #1e1e1e;
+    }
+}
+
+/* Dark mode do sistema — ajuste fino */
+@media (prefers-color-scheme: light) {
+    .monaco-editor-container {
+        border-color: rgba(0, 0, 0, 0.12);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+        .monaco-editor-header {
+            background: #f5f5f5;
+            border-bottom-color: rgba(0, 0, 0, 0.06);
+            color: rgba(0, 0, 0, 0.45);
+        }
+
+        .monaco-editor-wrapper {
+            background: #ffffff;
+        }
+    }
+}

@@ -8289,3 +8289,39 @@ _db.insertIfNotExists(
     .set("value", "Editar")
 );
 
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "d543da0f-611d-409d-b8f5-6dd52260a705")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "e14b27fa-6b66-419f-9332-56f637c87e5c")
+    .set("value", "Format HTML")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "d5dc231b-47ce-4e45-98dc-a192532a9a12")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "e14b27fa-6b66-419f-9332-56f637c87e5c")
+    .set("value", "Formatar HTML")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "ae8ad4e5-8a47-4a38-bb0e-57f4d4b76ed2")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "ea375cf4-e4b0-4d20-b1b8-1ec8d03b099f")
+    .set("value", "Shift+Alt+F to format")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "3f15fb76-8614-4bbb-86c9-8c8900da282c")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "ea375cf4-e4b0-4d20-b1b8-1ec8d03b099f")
+    .set("value", "Shift+Alt+F para formatar")
+);
+

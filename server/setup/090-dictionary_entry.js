@@ -3705,3 +3705,19 @@ _db.insertIfNotExists(
     .set("description", "A\u00E7\u00F5es - Tabela - Bot\u00E3o - Editar")
 );
 
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "e14b27fa-6b66-419f-9332-56f637c87e5c")
+    .set("code", "monaco-editor-action-format-html")
+    .set("description", "Editor - Monaco - A\u00E7\u00E3o - Formatar HTML")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ea375cf4-e4b0-4d20-b1b8-1ec8d03b099f")
+    .set("code", "monaco-editor-shortcut-format")
+    .set("description", "Editor - Monaco - Atalho - Formatar")
+);
+

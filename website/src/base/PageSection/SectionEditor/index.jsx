@@ -338,14 +338,18 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                 <Radio.Button value="visual">{Cluar.plainDictionary("section-editor-mode-visual")}</Radio.Button>
                 <Radio.Button value="html">{Cluar.plainDictionary("section-editor-mode-code")}</Radio.Button>
               </Radio.Group>
-              <span style={{ fontSize: "12px", fontWeight: "normal" }}>
-                {Cluar.plainDictionary("section-editor-invert-background")}
-              </span>
-              <Switch
-                checked={contentInvert}
-                onChange={(checked) => setContentInvert(checked)}
-                size="small"
-              />
+              {contentEditMode === "visual" && (
+                <>
+                  <span style={{ fontSize: "12px", fontWeight: "normal" }}>
+                    {Cluar.plainDictionary("sortable-list-item-invert-background")}
+                  </span>
+                  <Switch
+                    checked={contentInvert}
+                    onChange={(checked) => setContentInvert(checked)}
+                    size="small"
+                  />
+                </>
+              )}
             </Space>
           </div>
         }
@@ -368,6 +372,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               : "transparent",
             borderRadius: "4px",
             transition: "all 0.3s",
+            paddingTop: contentEditMode === "html" ? 12 : 0,
           }}
         >
           {contentEditMode === "visual" ? (
