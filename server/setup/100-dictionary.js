@@ -5931,16 +5931,6 @@ _db.insertIfNotExists(
     .set("entry_id", "350ab06f-d9c0-4870-ad92-816700442733")
     .set("value", "<p>Failed to register member.</p>")
 );
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
-    .set("uid", "ad8d880b-b431-4d4b-8d79-0399149a7e3b")
-    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
-    .set("entry_id", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
-    .set("value", "Language")
-);
-
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
@@ -5948,15 +5938,6 @@ _db.insertIfNotExists(
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "d365088c-7315-4f1a-8fca-ce5b208ac10f")
     .set("value", "<p>Membro editado com sucesso.</p>")
-);
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
-    .set("uid", "d5720fa6-3355-4b71-943c-d5c184ca280a")
-    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
-    .set("entry_id", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
-    .set("value", "Idioma")
 );
 
 _db.insertIfNotExists(
