@@ -294,6 +294,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         cancelText={Cluar.plainDictionary("section-editor-modal-cancel")}
         centered
         destroyOnHidden
+        maskClosable={false}
       >
         <div
           style={{
@@ -356,6 +357,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         cancelText={Cluar.plainDictionary("section-editor-modal-cancel")}
         centered
         destroyOnHidden
+        maskClosable={false}
       >
         <div
           style={{

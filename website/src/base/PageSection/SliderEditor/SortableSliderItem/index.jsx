@@ -297,6 +297,7 @@ const SortableItem = ({
         cancelText={Cluar.plainDictionary("sortable-slider-item-modal-cancel")}
         centered
         destroyOnHidden
+        maskClosable={false}
       >
         <div
           style={{
@@ -358,6 +359,7 @@ const SortableItem = ({
         cancelText={Cluar.plainDictionary("sortable-slider-item-modal-cancel")}
         centered
         destroyOnHidden
+        maskClosable={false}
       >
         <div
           style={{
