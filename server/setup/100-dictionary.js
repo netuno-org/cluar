@@ -8325,3 +8325,75 @@ _db.insertIfNotExists(
     .set("value", "Shift+Alt+F para formatar")
 );
 
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "b22b1c5e-b4b7-4adb-a989-50eba44d729a")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "1b863bd9-19ab-41af-9d67-c06e9a27d086")
+    .set("value", "Action deactivated successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "c30d62f9-d614-401e-a58f-081c75dc9319")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "1b863bd9-19ab-41af-9d67-c06e9a27d086")
+    .set("value", "A\u00E7\u00E3o desativada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "555370db-7461-4a77-bbfa-7b47d5f42022")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "9fa6b840-2d6d-4319-80a9-85c19ec64791")
+    .set("value", "Action activated successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "9ca891c3-a613-4b66-88a1-5d00f4c5b6e8")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "9fa6b840-2d6d-4319-80a9-85c19ec64791")
+    .set("value", "A\u00E7\u00E3o ativada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "5a974fba-4b68-4370-99a5-fd17de86dbd1")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "61b7dfc8-2620-4682-a508-071ec3bce975")
+    .set("value", "Failed to deactivate action.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "63861861-44ca-4cb0-a122-d747110eb6a8")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "61b7dfc8-2620-4682-a508-071ec3bce975")
+    .set("value", "Falha ao desativar a a\u00E7\u00E3o.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "54589619-398f-4644-87bf-8d2a8549c0b3")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "40d6de60-9860-46be-b3f0-696d3699f67d")
+    .set("value", "Failed to activate action.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "d479fc03-56c0-4e2d-8a95-9ba8603cfd82")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "40d6de60-9860-46be-b3f0-696d3699f67d")
+    .set("value", "Falha ao ativar a a\u00E7\u00E3o.")
+);
+

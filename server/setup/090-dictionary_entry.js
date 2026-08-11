@@ -3721,3 +3721,35 @@ _db.insertIfNotExists(
     .set("description", "Editor - Monaco - Atalho - Formatar")
 );
 
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "1b863bd9-19ab-41af-9d67-c06e9a27d086")
+    .set("code", "actions-table-desactive-success-message")
+    .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Sucesso ao desativar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9fa6b840-2d6d-4319-80a9-85c19ec64791")
+    .set("code", "actions-table-active-success-message")
+    .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Sucesso ao ativar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "61b7dfc8-2620-4682-a508-071ec3bce975")
+    .set("code", "actions-table-desactive-failed-message")
+    .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao desativar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "40d6de60-9860-46be-b3f0-696d3699f67d")
+    .set("code", "actions-table-active-failed-message")
+    .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao ativar")
+);
+
