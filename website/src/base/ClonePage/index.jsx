@@ -150,56 +150,24 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
                     notification.success({ message: Cluar.plainDictionary("page-clone-notification-clone-success") });
 
                     if (onClose) onClose();
-                    setLoading((prev) => ({ ...prev, saving: true }));
+                    setLoading((prev) => ({ ...prev, saving: false }));
 
-                    _service({
-                        url: "/admin/cluar/sync",
-                        method: "GET",
-                        success: () => {
-                            setLoading((prev) => ({ ...prev, saving: false }));
+                    if (onSuccess) onSuccess(response);
 
-                            // Só redireciona depois que a sincronização terminar
-                            if (onSuccess) onSuccess(response);
-
-                            const { link, language_code } = response.json;
-
-                            if (link && language_code) {
-                                const cleanLink = link.replace(/^\/+|\/+$/g, '');
-                                const targetUrl = cleanLink === ""
-                                    ? `/${language_code}`
-                                    : `/${language_code}/${cleanLink}`;
-
-                                window.location.href = targetUrl;
-                            } else {
-                                window.location.reload();
-                            }
-                        },
-                        fail: (syncError) => {
-                            setLoading((prev) => ({ ...prev, saving: false }));
-                            console.error("Página clonada, mas falha ao sincronizar:", syncError);
-                            notification.warning({
-                                message: "Página clonada, mas foi necessário atualizar o cache manualmente.",
-                            });
-
-                            // Mesmo se a sincronização falhar, redireciona o usuário
-                            const { link, language_code } = response.json;
-                            if (link && language_code) {
-                                const cleanLink = link.replace(/^\/+|\/+$/g, '');
-                                const targetUrl = cleanLink === ""
-                                    ? `/${language_code}/`
-                                    : `/${language_code}/${cleanLink}`;
-
-                                window.location.href = targetUrl;
-                            } else {
-                                window.location.reload();
-                            }
-                        }
-                    });
+                    const { link, language_code } = response.json;
+                    if (link && language_code) {
+                        const cleanLink = link.replace(/^\/+|\/+$/g, '');
+                        const targetUrl = cleanLink === ""
+                            ? `/${language_code}`
+                            : `/${language_code}/${cleanLink}`;
+                        window.location.href = targetUrl;
+                    } else {
+                        window.location.reload();
+                    }
                 },
                 fail: (error) => {
                     setLoading((prev) => ({ ...prev, saving: false }));
                     console.error(error);
-
                     const errorCode = error?.json?.error_code;
                     notification.error({
                         message: errorCode

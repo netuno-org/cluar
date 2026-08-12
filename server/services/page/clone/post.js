@@ -1,6 +1,4 @@
 // _core: cluar/main
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
-import response from "#core/utils/response.js";
 
 const sourcePageVersionUid = _req.getString("page_version_uid");
 const languageCode = _req.getString("language_code");
@@ -8,30 +6,41 @@ const title = _req.getString("title");
 const link = _req.getString("link");
 const published = _req.getBoolean("published");
 
-/* ---------- VALIDAÇÕES DOS DADOS RECEBIDOS ---------- */
 if (!sourcePageVersionUid) {
-    response.error({ status: 400, error: 'source_page_version_uid is required' });
+    _header.status(400);
+    _out.json({ result: false, error: 'source_page_version_uid is required' });
+    _exec.stop();
 }
 
 if (!languageCode) {
-    response.error({ status: 400, error: 'language_code is required' })
+    _header.status(400);
+    _out.json({ result: false, error: 'language_code is required' });
+    _exec.stop();
 }
 
 if (!title) {
-    response.error({ status: 400, error: 'title is required' })
+    _header.status(400);
+    _out.json({ result: false, error: 'title is required' });
+    _exec.stop();
 }
 
 if (!link) {
-    response.error({ status: 400, error: 'link is required' })
+    _header.status(400);
+    _out.json({ result: false, error: 'link is required' });
+    _exec.stop();
 }
 
 if (published !== true && published !== false) {
-    response.error({ status: 400, error: 'published is required' })
+    _header.status(400);
+    _out.json({ result: false, error: 'published is required' });
+    _exec.stop();
 }
 
 const dbPageVersion = _db.get("page_version", sourcePageVersionUid);
 if (!dbPageVersion) {
-    response.error({ status: 400, error: 'page version not found' })
+    _header.status(400);
+    _out.json({ result: false, error: 'page version not found' });
+    _exec.stop();
 }
 
 const draftStatus = _db.queryFirst(`SELECT * FROM page_status WHERE code = 'draft'`);
@@ -49,7 +58,9 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-    response.error({ status: 404, error: `language not found with code: ${languageCode}` })
+    _header.status(404);
+    _out.json({ result: false, error: `language not found with code: ${languageCode}` });
+    _exec.stop();
 }
 
 const languageId = dbLanguage.getInt("id");
@@ -61,12 +72,16 @@ const linkExists = _db.queryFirst(`
 `, link, languageId);
 
 if (linkExists) {
-    response.error({ status: 409, error: `page link already exists: ${link}` })
+    _header.status(409);
+    _out.json({ result: false, error: `page link already exists: ${link}` });
+    _exec.stop();
 }
 
 const dbSourcePageId = dbPageVersion.getInt("page_id");
 if (!dbSourcePageId) {
-    response.error({ status: 404, error: "source page not found." })
+    _header.status(404);
+    _out.json({ result: false, error: "source page not found." });
+    _exec.stop();
 }
 
 const dbSourcePage = _db.form("page")
@@ -98,17 +113,9 @@ const newPageVersion = _db.insert(
         .set("page_id", newPage.getInt("id"))
         .set("language_id", languageId)
         .set("version", 2)
-        .set("status_id", statusId)
+        .set("status_id", draftStatus.getInt("id"))
         .set("created_at", _db.timestamp())
 );
-
-if (statusId === publishedStatus.getInt("id")) {
-    // v1 vira rascunho
-    _db.form("page_version")
-        .where(_db.where("page_id").equals(newPage.getInt("id")).and(_db.where("version").equals(1)))
-        .set("status_id", draftStatus.getInt("id"))
-        .update();
-}
 
 const dbContent = _db.form("page_content")
     .where(
@@ -136,7 +143,6 @@ if (dbContent) {
 
         // ******** Actions ********
 
-        // buscar as actions vinculadas àquele componente
         const dbContentAction = _db.form('page_content_action')
             .where(
                 _db.where("page_content_id").equals(content.getInt("id"))
@@ -152,7 +158,6 @@ if (dbContent) {
                     .first();
 
                 if (dbAction) {
-                    // buscar o parâmetro daquela action na tabela de parametros
                     const dbActionSameParameter = _db.form("action")
                         .where(
                             _db.where("parameter_id").equals(dbAction.getInt("parameter_id"))
@@ -199,7 +204,6 @@ if (dbBanner) {
 
         // ******** Actions ********
 
-        // buscar as actions vinculadas àquele componente
         const dbBannerAction = _db.form('page_banner_action')
             .where(
                 _db.where("page_banner_id").equals(banner.getInt("id"))
@@ -215,7 +219,6 @@ if (dbBanner) {
                     .first();
 
                 if (dbAction) {
-                    // buscar o parâmetro daquela action na tabela de parametros
                     const dbActionSameParameter = _db.form("action")
                         .where(
                             _db.where("parameter_id").equals(dbAction.getInt("parameter_id"))
@@ -379,7 +382,6 @@ if (dbListing) {
     }
 }
 
-/* page_slider - revisar */
 const dbSlider = _db.form("page_slider")
     .where(
         _db.where("page_version_id").equals(dbPageVersion.getInt("id"))
@@ -464,9 +466,26 @@ if (dbSlider) {
     }
 }
 
+if (statusId === publishedStatus.getInt("id")) {
+    _db.update(
+        "page_version",
+        newPageVersion,
+        _val.map().set("status_id", publishedStatus.getInt("id"))
+    );
+
+    // v1 vira rascunho
+    _db.form("page_version")
+        .where(_db.where("page_id").equals(newPage.getInt("id")).and(_db.where("version").equals(1)))
+        .set("status_id", draftStatus.getInt("id"))
+        .update();
+
+    cluar.page.publish(newPage);
+}
+
 _out.json(
     _val.map()
         .set('result', true)
+        .set('uid', newPage.getString("uid"))
         .set('link', link)
         .set('language_code', languageCode)
 );
