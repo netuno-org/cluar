@@ -14,7 +14,12 @@ const MARKER_ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-1
   C20.1,15.8,20.2,15.8,20.2,15.7z`;
 const MARKER_SIZE = 50;
 
-function ContactMap({ section, type, title, content, actions }) {
+function ContactMap({ section, type, title, content, actions, html_content, edit_mode }) {
+
+  const resolvedContent = edit_mode === 'html'
+    ? (html_content || content)
+    : content;
+
   const [showPopup, setShowPopup] = useState(false);
   const latitude = Cluar.configurationNumber("map-latitude");
   const longitude = Cluar.configurationNumber("map-longitude");
@@ -34,7 +39,7 @@ function ContactMap({ section, type, title, content, actions }) {
             <div className="text">
               <Row>
                 <Col>
-                  <div dangerouslySetInnerHTML={{ __html: content }}></div>
+                  <div dangerouslySetInnerHTML={{ __html: resolvedContent }} />
                 </Col>
               </Row>
             </div>

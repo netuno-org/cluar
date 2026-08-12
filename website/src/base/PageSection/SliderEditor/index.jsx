@@ -13,19 +13,19 @@ const SliderEditor = ({ sectionData, form }) => {
   const [itemsByUid, setItemsByUid] = useState({});
 
   const handleChangeItem = (uid, property, value) => {
-    const updatedItem = {
-      ...itemsByUid[uid],
-      [property]: value,
-    };
-
-    const newItemsByUid = {
-      ...itemsByUid,
-      [uid]: updatedItem,
-    };
-
-    setItemsByUid(newItemsByUid);
-    form.setFieldsValue({
-      itemsByUid: newItemsByUid,
+    setItemsByUid(prev => {
+      const updatedItem = {
+        ...prev[uid],
+        [property]: value,
+      };
+      const newItemsByUid = {
+        ...prev,
+        [uid]: updatedItem,
+      };
+      form.setFieldsValue({
+        itemsByUid: newItemsByUid,
+      });
+      return newItemsByUid;
     });
   };
 
@@ -37,6 +37,8 @@ const SliderEditor = ({ sectionData, form }) => {
       section: "slider_item",
       title: "",
       content: "",
+      html_content: "",
+      edit_mode: "visual",
       link: "",
     };
 
@@ -97,7 +99,11 @@ const SliderEditor = ({ sectionData, form }) => {
   const [showActions, setShowActions] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
 
-  const actionsData = Cluar.actions() || [];
+  const currentLangCode = Cluar.currentLanguage()?.code;
+  const allActions = Cluar.actions() || [];
+  const actionsData = allActions.filter(
+    (action) => action.language_code === currentLangCode
+  );
 
   useEffect(() => {
     _service({
@@ -124,7 +130,7 @@ const SliderEditor = ({ sectionData, form }) => {
 
   return (
     <div className="slider-editor">
-      <Form.Item label="Tipo" name="type">
+      <Form.Item label={Cluar.plainDictionary("slider-editor-field-type")} name="type">
         <Select
           options={typeOptions.map((item) => ({
             label: item.info.label,
@@ -157,7 +163,9 @@ const SliderEditor = ({ sectionData, form }) => {
           showActions={showActions}
         />
         <Col span={24}>
-          <Button onClick={handleAddItem}>Novo Item</Button>
+          <Button onClick={handleAddItem}>
+            {Cluar.plainDictionary("slider-editor-button-new-item")}
+          </Button>
         </Col>
       </Row>
     </div>

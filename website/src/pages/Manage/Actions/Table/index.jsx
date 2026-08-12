@@ -116,15 +116,25 @@ const ActionsTable = forwardRef(({ }, ref) => {
 
     const onLoadActions = () => {
         setLoading(true);
-        const actionsData = Cluar.actions() || {};
+        _service({
+            url: "actions/list",
+            method: "POST",
+            success: (response) => {
+                setLoading(false);
+                const actionsData = response.json.data || [];
 
-        const startIndex = (pagination.page - 1) * pagination.size;
-        const paginatedActions = actionsData.slice(startIndex, startIndex + pagination.size);
+                const startIndex = (pagination.page - 1) * pagination.size;
+                const paginatedActions = actionsData.slice(startIndex, startIndex + pagination.size);
 
-        setData(paginatedActions);
-
-        setTotal(actionsData.length);
-        setLoading(false);
+                setData(paginatedActions);
+                setTotal(actionsData.length);
+            },
+            fail: (error) => {
+                setLoading(false);
+                console.error(error);
+                notification.error({ message: Cluar.plainDictionary("actions-table-notification-load-fail") });
+            }
+        });
     }
 
     const onReloadTable = () => {
@@ -155,11 +165,11 @@ const ActionsTable = forwardRef(({ }, ref) => {
             filtered: filters.active,
             filters: [
                 {
-                    text: "Activo",
+                    text: Cluar.plainDictionary("actions-table-filter-active"),
                     value: true
                 },
                 {
-                    text: "Inactivo",
+                    text: Cluar.plainDictionary("actions-table-filter-inactive"),
                     value: false
                 }
             ]
@@ -184,6 +194,20 @@ const ActionsTable = forwardRef(({ }, ref) => {
             })),
         },
         {
+            title: Cluar.plainDictionary("actions-table-parameter"),
+            dataIndex: "parameter_code",
+            key: "parameter_code",
+            onHeaderCell: () => ({
+                "data-column-key": "parameter_code",
+            }),
+            render: (val, record) => {
+                if (!val) return "-";
+                return record.parameter_description
+                    ? `${val} — ${record.parameter_description}`
+                    : val;
+            }
+        },
+        {
             title: Cluar.plainDictionary("actions-table-title"),
             dataIndex: "title",
             key: "title",
@@ -193,7 +217,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
             }),
         },
         {
-            title: 'Imagem',
+            title: Cluar.plainDictionary("actions-table-image"),
             dataIndex: 'image',
             key: 'image',
             render: (val, record) => {
@@ -203,7 +227,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
                 return (
                     <img
                         src={`${_service.config().prefix}actions/image?uid=${record.uid}`}
-                        alt="Action"
+                        alt={Cluar.plainDictionary("actions-table-image")}
                         style={{ width: 50, height: 50, objectFit: 'cover', display: 'block', margin: '0 auto' }}
                     />
                 );
@@ -245,7 +269,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
             render: (val, record) => (
                 <Button
                     type="text"
-                    title="Editar"
+                    title={Cluar.plainDictionary("actions-table-button-edit")}
                     icon={<EditOutlined />}
                     onClick={() => {
                         setActionEditeData(record);

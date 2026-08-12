@@ -20,6 +20,7 @@ import {
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 import "./index.less";
+import ActionParameterSelect from "./ActionParameterSelect";
 
 const getBase64 = (file) =>
   new Promise((resolve, reject) => {
@@ -74,7 +75,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           marginTop: 8,
         }}
       >
-        Upload
+        {Cluar.plainDictionary("action-form-upload")}
       </div>
     </button>
   );
@@ -97,7 +98,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
         setLoading({ ...loading, languages: false });
         console.error(error);
         notification.error({
-          message: "Falha ao carregar idiomas.",
+          message: Cluar.plainDictionary("action-modal-notification-load-languages-fail"),
         });
       },
     });
@@ -209,7 +210,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       onClose={() => setIsModalOpen(false)}
-      destroyOnClose
+      destroyOnHidden
       maskClosable={false}
       afterClose={() => formRef.resetFields()}
       centered
@@ -229,6 +230,20 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     >
       <Form layout="vertical" form={formRef} onFinish={onFinish}>
         <Row justify={"space-between"} align={"middle"} gutter={[10, 0]}>
+          <Col span={24}>
+            <Form.Item
+              name="parameter_uid"
+              label={Cluar.plainDictionary("action-form-parameter")}
+              rules={[
+                {
+                  required: true,
+                  message: Cluar.plainDictionary("action-form-validate-message-required"),
+                },
+              ]}
+            >
+              <ActionParameterSelect />
+            </Form.Item>
+          </Col>
           <Col span={24}>
             <Form.Item
               name="language_code"
@@ -272,6 +287,14 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
             <Form.Item
               name="content"
               label={Cluar.plainDictionary("action-form-content")}
+              rules={[
+                {
+                  required: true,
+                  message: Cluar.plainDictionary(
+                    "action-form-validate-message-required"
+                  ),
+                },
+              ]}
             >
               <Input.TextArea rows={3} />
             </Form.Item>

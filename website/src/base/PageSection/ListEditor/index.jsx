@@ -16,7 +16,11 @@ const ListEditor = ({ sectionData, form }) => {
   const [showActions, setShowActions] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
 
-  const actionsData = Cluar.actions() || [];
+  const currentLangCode = Cluar.currentLanguage()?.code;
+  const allActions = Cluar.actions() || [];
+  const actionsData = allActions.filter(
+    (action) => action.language_code === currentLangCode
+  );
 
   useEffect(() => {
     _service({
@@ -42,19 +46,22 @@ const ListEditor = ({ sectionData, form }) => {
   }, []);
 
   const handleChangeItem = (uid, property, value) => {
-    const updatedItem = {
-      ...itemsByUid[uid],
-      [property]: value,
-    };
+    setItemsByUid(prev => {
+      const updatedItem = {
+        ...prev[uid],
+        [property]: value,
+      };
 
-    const newItemsByUid = {
-      ...itemsByUid,
-      [uid]: updatedItem,
-    };
+      const newItemsByUid = {
+        ...prev,
+        [uid]: updatedItem,
+      };
 
-    setItemsByUid(newItemsByUid);
-    form.setFieldsValue({
-      itemsByUid: newItemsByUid,
+      form.setFieldsValue({
+        itemsByUid: newItemsByUid,
+      });
+
+      return newItemsByUid;
     });
   };
 
@@ -66,6 +73,8 @@ const ListEditor = ({ sectionData, form }) => {
       section: "listing_item",
       title: "",
       content: "",
+      html_content: "",
+      edit_mode: "visual",
       link: "",
     };
 
@@ -122,7 +131,7 @@ const ListEditor = ({ sectionData, form }) => {
 
   return (
     <div className="list-editor">
-      <Form.Item label="Tipo" name="type">
+      <Form.Item label={Cluar.plainDictionary("list-editor-field-type")} name="type">
         <Select
           options={typeOptions.map((item) => ({
             label: item.info.label,
@@ -140,13 +149,13 @@ const ListEditor = ({ sectionData, form }) => {
       <ImageSectionEditor form={form} sectionData={sectionData} />
 
       {showActions && (
-        <Form.Item label="Actions" name="action_uids">
+        <Form.Item label={Cluar.plainDictionary("list-editor-field-actions")} name="action_uids">
           <Select
             options={actionsData.map((action) => ({
               label: action.title,
               value: action.uid,
             }))}
-            placeholder="Adicionar"
+            placeholder={Cluar.plainDictionary("list-editor-placeholder-add")}
             mode="multiple"
             allowClear
           />
@@ -167,7 +176,9 @@ const ListEditor = ({ sectionData, form }) => {
           form={form}
         />
         <Col span={24}>
-          <Button onClick={handleAddItem}>Novo Item</Button>
+          <Button onClick={handleAddItem}>
+            {Cluar.plainDictionary("list-editor-button-new-item")}
+          </Button>
         </Col>
       </Row>
     </div>

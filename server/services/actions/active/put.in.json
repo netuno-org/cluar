@@ -8,7 +8,7 @@
             "type":"uuid"
         },
         "active":{
-            "type":"string"
+            "type":"boolean"
         }
     },
     "required":[

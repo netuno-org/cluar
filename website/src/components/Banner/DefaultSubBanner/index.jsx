@@ -12,6 +12,8 @@ function DefaultSubBanner({
   image_alt,
   title,
   content,
+  html_content,
+  edit_mode,
   position,
   actions,
 }) {
@@ -21,6 +23,10 @@ function DefaultSubBanner({
     image?.indexOf("base64") === -1
       ? `/cluar/images/page_${section}/${image}`
       : image;
+
+  const resolvedContent = edit_mode === 'html'
+    ? (html_content || content)
+    : content;
 
   return (
     <section className="banner">
@@ -43,7 +49,7 @@ function DefaultSubBanner({
             data-sal="fade"
             data-sal-duration="2000"
             data-sal-easing="ease-out-cubic"
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: resolvedContent }}
           />
           {config.action && (
             <div className="banner__actions">

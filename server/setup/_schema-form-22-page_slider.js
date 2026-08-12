@@ -22,17 +22,17 @@ _form.sync(
 		.set("export_xls", true)
 		.set("export_xml", true)
 		.set("firebase", "")
-		.set("name", "page_listing")
+		.set("name", "page_slider")
 		.set("parent_uid", "e6c40643-e58a-40aa-b430-7a003ec65246")
 		.set("reorder", 0)
 		.set("report", false)
 		.set("report_behaviour", 0)
 		.set("show_id", true)
-		.set("title", "Listagem")
-		.set("uid", "f51ed428-b975-4ea7-9033-34276ae59053")
+		.set("title", "Slider")
+		.set("uid", "12919622-37d7-4bf2-be3c-ee4cf878af99")
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -49,21 +49,21 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "Conte\u00FAdo")
 		.set("type", "texthtml")
-		.set("uid", "c89b50fc-6ed3-4773-9a34-817a545024bd")
+		.set("uid", "205fdd02-fb5f-45a8-b6f9-0e518d4ac864")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
 		.set("whenexport", true)
-		.set("whenfilter", false)
+		.set("whenfilter", true)
 		.set("whennew", true)
-		.set("whenresult", false)
+		.set("whenresult", true)
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 6)
+		.set("y", 1)
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -80,7 +80,7 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "Inverter Cor de Fundo do Conte\u00FAdo")
 		.set("type", "checkbox")
-		.set("uid", "654c2100-c144-454b-aba0-93c318fcaa85")
+		.set("uid", "63cc70a4-ca06-405e-9dac-303d3336193c")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
@@ -91,10 +91,72 @@ _form.syncField(
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 13)
+		.set("y", 11)
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
+	_val.map()
+		.set("colspan", 0)
+		.set("description", "")
+		.set("firebase", "")
+		.set("group_id", 0)
+		.set("height", 0)
+		.set("mandatory", false)
+		.set("max", 0)
+		.set("min", 0)
+		.set("name", "edit_mode")
+		.set("properties", "{\"MASK\":{\"default\":\"\",\"type\":\"STRING\",\"value\":\"\"},\"MASK_REVERSE\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"},\"MASK_SELECTONFOCUS\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"}}")
+		.set("rowspan", 0)
+		.set("tdheight", 0)
+		.set("tdwidth", 0)
+		.set("title", "Modo de Edi\u00E7\u00E3o")
+		.set("type", "text")
+		.set("uid", "062e343b-6114-47e2-aa53-d4efc042e8c0")
+		.set("unique", false)
+		.set("user_id", 0)
+		.set("whenedit", true)
+		.set("whenexport", true)
+		.set("whenfilter", true)
+		.set("whennew", true)
+		.set("whenresult", true)
+		.set("whenview", true)
+		.set("width", 0)
+		.set("x", 1)
+		.set("y", 17)
+);
+_form.syncField(
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
+	_val.map()
+		.set("colspan", 0)
+		.set("description", "")
+		.set("firebase", "")
+		.set("group_id", 0)
+		.set("height", 0)
+		.set("mandatory", false)
+		.set("max", 0)
+		.set("min", 0)
+		.set("name", "html_content")
+		.set("properties", "{}")
+		.set("rowspan", 0)
+		.set("tdheight", 0)
+		.set("tdwidth", 0)
+		.set("title", "Conte\u00FAdo HTML")
+		.set("type", "texthtml")
+		.set("uid", "77cd3891-1e17-4448-9d92-1c888a9328e3")
+		.set("unique", false)
+		.set("user_id", 0)
+		.set("whenedit", true)
+		.set("whenexport", true)
+		.set("whenfilter", true)
+		.set("whennew", true)
+		.set("whenresult", true)
+		.set("whenview", true)
+		.set("width", 0)
+		.set("x", 1)
+		.set("y", 16)
+);
+_form.syncField(
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -111,21 +173,21 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "Imagem")
 		.set("type", "image")
-		.set("uid", "6e90624e-0340-4f53-98d2-fbffa41869de")
+		.set("uid", "16147453-2d8e-40e6-830a-0392806f2c10")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
 		.set("whenexport", true)
-		.set("whenfilter", false)
+		.set("whenfilter", true)
 		.set("whennew", true)
-		.set("whenresult", false)
+		.set("whenresult", true)
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 7)
+		.set("y", 2)
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -142,21 +204,21 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "Imagem Alt")
 		.set("type", "textarea")
-		.set("uid", "d41bd5cb-191e-46b7-905e-832652184ed9")
+		.set("uid", "cd9d078c-1d7a-4f3f-a683-26b8d6033132")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
 		.set("whenexport", true)
-		.set("whenfilter", false)
+		.set("whenfilter", true)
 		.set("whennew", true)
-		.set("whenresult", false)
+		.set("whenresult", true)
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 9)
+		.set("y", 3)
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -173,21 +235,21 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "Imagem T\u00EDtulo")
 		.set("type", "text")
-		.set("uid", "05edd530-b8e2-4157-b894-2cfaabda40b9")
+		.set("uid", "40a0e429-fd5f-44c7-b13d-42b6398f3f53")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
 		.set("whenexport", true)
-		.set("whenfilter", false)
+		.set("whenfilter", true)
 		.set("whennew", true)
-		.set("whenresult", false)
+		.set("whenresult", true)
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 8)
+		.set("y", 4)
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -204,7 +266,7 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "P\u00E1gina")
 		.set("type", "select")
-		.set("uid", "790dbb0f-76a8-4e84-b2e0-13710fefb066")
+		.set("uid", "20e278f7-5bfa-4137-a898-6f151046f4ec")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
@@ -215,10 +277,10 @@ _form.syncField(
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 3)
+		.set("y", 6)
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -235,7 +297,7 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "Ordem")
 		.set("type", "integer")
-		.set("uid", "1dde25cd-331a-434d-b2f1-a6d49b7090ac")
+		.set("uid", "50533d54-f6e0-40b8-9de9-45362a872d8e")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
@@ -246,10 +308,10 @@ _form.syncField(
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 10)
+		.set("y", 7)
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -266,7 +328,7 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "T\u00EDtulo")
 		.set("type", "texthtml")
-		.set("uid", "d52e78e0-851b-4664-a623-09ecb12dd5fc")
+		.set("uid", "fbd1d465-e7f6-4491-94e0-12cef76a3dfa")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
@@ -277,10 +339,10 @@ _form.syncField(
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 4)
+		.set("y", 8)
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -297,7 +359,7 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "Inverter Cor de Fundo do T\u00EDtulo")
 		.set("type", "checkbox")
-		.set("uid", "31b20e08-dfde-4247-ac3d-45653be20bcb")
+		.set("uid", "6fb588a7-627a-42b9-a1c8-6a9c7a8ba35e")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
@@ -308,10 +370,10 @@ _form.syncField(
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 12)
+		.set("y", 10)
 );
 _form.syncField(
-	"f51ed428-b975-4ea7-9033-34276ae59053",
+	"12919622-37d7-4bf2-be3c-ee4cf878af99",
 	_val.map()
 		.set("colspan", 0)
 		.set("description", "")
@@ -328,7 +390,7 @@ _form.syncField(
 		.set("tdwidth", 0)
 		.set("title", "Tipo")
 		.set("type", "text")
-		.set("uid", "38418464-035e-4f93-992f-cee23ca249e5")
+		.set("uid", "6a10cf9a-190d-4412-9208-7add12e33488")
 		.set("unique", false)
 		.set("user_id", 0)
 		.set("whenedit", true)
@@ -339,5 +401,5 @@ _form.syncField(
 		.set("whenview", true)
 		.set("width", 0)
 		.set("x", 1)
-		.set("y", 11)
+		.set("y", 9)
 );

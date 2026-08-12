@@ -166,7 +166,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
             open={isModalOpen}
             onCancel={() => setIsModalOpen(false)}
             onClose={() => setIsModalOpen(false)}
-            destroyOnClose
+            destroyOnHidden
             maskClosable={false}
             afterClose={() => formRef.resetFields()}
             centered

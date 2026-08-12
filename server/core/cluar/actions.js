@@ -6,9 +6,11 @@ cluar.actions = (section, id) => {
             action.indication,
             action.link,
             action.uid,
-            action.image
+            action.image,
+            language.code as language_code
         FROM action
             INNER JOIN page_${section}_action ON page_${section}_action.action_id = action.id
+            INNER JOIN language ON action.language_id = language.id
         WHERE
             action.active = true
             AND page_${section}_action.active = TRUE
@@ -26,6 +28,7 @@ cluar.actions = (section, id) => {
         .set("sorter", dbAction.getInt("sorter"))
         .set("uid", dbAction.getString("uid"))
         .set("image", dbAction.getString("image"))
+        .set("language_code", dbAction.getString("language_code"))
     )
   }
   return actions

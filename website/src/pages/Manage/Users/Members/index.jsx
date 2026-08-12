@@ -30,7 +30,7 @@ const MembersModal = forwardRef(({userData}, ref) => {
         <Modal
             title={"Organizações do Utilizador"}
             maskClosable={false}
-            destroyOnClose={true}
+            destroyOnHidden={true}
             centered
             open={isModalOpen}
             width={1000}

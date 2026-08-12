@@ -77,7 +77,9 @@ if (lastPageVersion) {
         .set("language_id", languageId)
         .set("title_invert_background", structure.getBoolean("title_invert_background"))
         .set("content_invert_background", structure.getBoolean("content_invert_background"))
-        .set("sorter", structure.getInt("sorter", 0));
+        .set("sorter", structure.getInt("sorter", 0))
+        .set("html_content", structure.getString("html_content"))
+        .set("edit_mode", structure.getString("edit_mode") || "visual");
 
       if (structure.getString("image")?.includes("base64")) {
         bannerData.set("image", image);
@@ -125,7 +127,9 @@ if (lastPageVersion) {
         .set("language_id", languageId)
         .set("title_invert_background", structure.getBoolean("title_invert_background"))
         .set("content_invert_background", structure.getBoolean("content_invert_background"))
-        .set("sorter", structure.getString("sorter"));
+        .set("sorter", structure.getString("sorter"))
+        .set("html_content", structure.getString("html_content"))
+        .set("edit_mode", structure.getString("edit_mode") || "visual");
 
       if (structure.getString("image")?.includes("base64")) {
         contentData.set("image", image);
@@ -175,7 +179,9 @@ if (lastPageVersion) {
         .set("language_id", languageId)
         .set("title_invert_background", structure.getBoolean("title_invert_background"))
         .set("content_invert_background", structure.getBoolean("content_invert_background"))
-        .set("content", structure.getString("content"));
+        .set("content", structure.getString("content"))
+        .set("html_content", structure.getString("html_content"))
+        .set("edit_mode", structure.getString("edit_mode") || "visual");
 
       // if (structure.getString("type")) {
       //   const dbListingType = _db.queryFirst(
@@ -246,7 +252,9 @@ if (lastPageVersion) {
           .set("image_title", listingItem.getString("image_title"))
           .set("title_invert_background", listingItem.getBoolean("title_invert_background"))
           .set("content_invert_background", listingItem.getBoolean("content_invert_background"))
-          .set("image_alt", listingItem.getString("image_alt"));
+          .set("image_alt", listingItem.getString("image_alt"))
+          .set("html_content", listingItem.getString("html_content"))
+          .set("edit_mode", listingItem.getString("edit_mode") || "visual");
 
         if (listingItem.getString("image")?.includes("base64")) {
           listingItemData.set("image", listingItemImage);
@@ -281,7 +289,9 @@ if (lastPageVersion) {
         .set("language_id", languageId)
         .set("title_invert_background", structure.getBoolean("title_invert_background"))
         .set("content_invert_background", structure.getBoolean("content_invert_background"))
-        .set("content", structure.getString("content"));
+        .set("content", structure.getString("content"))
+        .set("html_content", structure.getString("html_content"))
+        .set("edit_mode", structure.getString("edit_mode") || "visual");
 
       // if (structure.getString("type")) {
       //   const dbSliderType = _db.queryFirst(
@@ -320,7 +330,9 @@ if (lastPageVersion) {
           .set("image_title", sliderItem.getString("image_title"))
           .set("title_invert_background", sliderItem.getBoolean("title_invert_background"))
           .set("content_invert_background", sliderItem.getBoolean("content_invert_background"))
-          .set("image_alt", sliderItem.getString("image_alt"));
+          .set("image_alt", sliderItem.getString("image_alt"))
+          .set("html_content", sliderItem.getString("html_content"))
+          .set("edit_mode", sliderItem.getString("edit_mode") || "visual");
 
         if (sliderItem.getString("image")?.includes("base64")) {
           sliderItemData.set("image", sliderItemImage);
@@ -372,7 +384,9 @@ if (lastPageVersion) {
         .set("content", structure.getString("content"))
         .set("title_invert_background", structure.getBoolean("title_invert_background"))
         .set("content_invert_background", structure.getBoolean("content_invert_background"))
-        .set("sorter", structure.getInt("sorter", 0));
+        .set("sorter", structure.getInt("sorter", 0))
+        .set("html_content", structure.getString("html_content"))
+        .set("edit_mode", structure.getString("edit_mode") || "visual");
 
       if (image) {
         functionalityData.set("image", image);

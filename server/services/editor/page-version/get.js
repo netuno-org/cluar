@@ -19,6 +19,8 @@ if (dbPageVersion) {
       content.type,
       content.title,
       content.content,
+      content.html_content,
+      content.edit_mode,
       content.image,
       content.image_alt,
       content.image_title,
@@ -41,6 +43,8 @@ if (dbPageVersion) {
         .set("type", dbContent.getString("type"))
         .set("title", dbContent.getString("title"))
         .set("content", dbContent.getString("content"))
+        .set("html_content", dbContent.getString("html_content"))
+        .set("edit_mode", dbContent.getString("edit_mode"))
         .set("image", dbContent.getString("image"))
         .set("image_alt", dbContent.getString("image_alt"))
         .set("image_title", dbContent.getString("image_title"))
@@ -67,6 +71,8 @@ if (dbPageVersion) {
       banner.type,
       banner.title,
       banner.content,
+      banner.html_content,
+      banner.edit_mode,
       banner.image,
       banner.image_alt,
       banner.image_title,
@@ -90,6 +96,8 @@ if (dbPageVersion) {
         .set("type", dbBanner.getString("type"))
         .set("title", dbBanner.getString("title"))
         .set("content", dbBanner.getString("content"))
+        .set("html_content", dbBanner.getString("html_content"))
+        .set("edit_mode", dbBanner.getString("edit_mode"))
         .set("image", dbBanner.getString("image"))
         .set("image_alt", dbBanner.getString("image_alt"))
         .set("image_title", dbBanner.getString("image_title"))
@@ -125,6 +133,8 @@ if (dbPageVersion) {
       listing.image_alt,
       listing.image_title,
       listing.content,
+      listing.html_content,
+      listing.edit_mode, 
       listing.image,
       listing.title_invert_background,
       listing.content_invert_background,
@@ -139,7 +149,7 @@ if (dbPageVersion) {
     const items = _val.list();
     const dbItems = _db.query(`
       SELECT
-          uid, title, content, image, image_alt, image_title, sorter, link, title_invert_background, content_invert_background
+          uid, title, content, html_content, edit_mode, image, image_alt, image_title, sorter, link, title_invert_background, content_invert_background
       FROM page_listing_item
       WHERE page_listing_id = ${dbListing.getInt("id")} AND active = TRUE
       `);
@@ -152,6 +162,8 @@ if (dbPageVersion) {
           .set("section", "listing_item")
           .set("title", dbItem.getString("title"))
           .set("content", dbItem.getString("content"))
+          .set("html_content", dbItem.getString("html_content"))
+          .set("edit_mode", dbItem.getString("edit_mode"))
           .set("image", dbItem.getString("image"))
           .set("image_alt", dbItem.getString("image_alt"))
           .set("image_title", dbItem.getString("image_title"))
@@ -174,6 +186,8 @@ if (dbPageVersion) {
         .set("type", dbListing.getString("type"))
         .set("title", dbListing.getString("title"))
         .set("content", dbListing.getString("content"))
+        .set("html_content", dbListing.getString("html_content"))
+        .set("edit_mode", dbListing.getString("edit_mode"))
         .set("image", dbListing.getString("image"))
         .set("image_alt", dbListing.getString("image_alt"))
         .set("image_title", dbListing.getString("image_title"))
@@ -203,6 +217,8 @@ if (dbPageVersion) {
                 slider.image_alt,
                 slider.image_title,
                 slider.content,
+                slider.html_content,
+                slider.edit_mode,
                 slider.image,
                 slider.title_invert_background,
                 slider.content_invert_background,
@@ -217,7 +233,7 @@ if (dbPageVersion) {
     const items = _val.list();
     const dbItems = _db.query(`
                 SELECT
-                    uid, title, content, image, image_alt, image_title, sorter, id, title_invert_background, content_invert_background
+                    uid, title, content, html_content, edit_mode, image, image_alt, image_title, sorter, id, title_invert_background, content_invert_background
                 FROM page_slider_item
                 WHERE page_slider_id = ${dbSlider.getInt(
       "id"
@@ -241,6 +257,8 @@ if (dbPageVersion) {
           .set("section", "slider_item")
           .set("title", dbItem.getString("title"))
           .set("content", dbItem.getString("content"))
+          .set("html_content", dbItem.getString("html_content"))
+          .set("edit_mode", dbItem.getString("edit_mode"))
           .set("image", dbItem.getString("image"))
           .set("image_alt", dbItem.getString("image_alt"))
           .set("image_title", dbItem.getString("image_title"))
@@ -258,6 +276,8 @@ if (dbPageVersion) {
         .set("type", dbSlider.getString("type"))
         .set("title", dbSlider.getString("title"))
         .set("content", dbSlider.getString("content"))
+        .set("html_content", dbSlider.getString("html_content"))
+        .set("edit_mode", dbSlider.getString("edit_mode"))
         .set("image", dbSlider.getString("image"))
         .set("image_alt", dbSlider.getString("image_alt"))
         .set("image_title", dbSlider.getString("image_title"))
@@ -280,6 +300,8 @@ if (dbPageVersion) {
       functionality.type,
       functionality.title,
       functionality.content,
+      functionality.html_content,
+      functionality.edit_mode,
       functionality.image,
       functionality.title_invert_background,
       functionality.content_invert_background,
@@ -299,6 +321,8 @@ if (dbPageVersion) {
         .set("type", dbFunctionality.getString("type"))
         .set("title", dbFunctionality.getString("title"))
         .set("content", dbFunctionality.getString("content"))
+        .set("html_content", dbFunctionality.getString("html_content"))
+        .set("edit_mode", dbFunctionality.getString("edit_mode"))
         .set("image", dbFunctionality.getString("image"))
         .set("sorter", dbFunctionality.getInt("sorter"))
         .set("title_invert_background", dbFunctionality.getBoolean("title_invert_background"))

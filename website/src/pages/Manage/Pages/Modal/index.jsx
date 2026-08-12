@@ -216,7 +216,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
         open={isModalOpen}
         onCancel={() => setIsModalOpen(false)}
         onClose={() => setIsModalOpen(false)}
-        destroyOnClose
+        destroyOnHidden
         maskClosable={false}
         afterClose={() => formRef.resetFields()}
         centered

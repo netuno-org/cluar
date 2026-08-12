@@ -307,7 +307,7 @@ const PageConfiguration = ({
         open={open}
         onClose={onClose}
         width={520}
-        destroyOnClose
+        destroyOnHidden
         title={isNewPage ? Cluar.plainDictionary("page-drawer-new-title") : Cluar.plainDictionary("page-drawer-config-title")}
         extra={
           <Button type="primary" onClick={handleSave} loading={loading}>

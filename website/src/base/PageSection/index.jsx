@@ -33,7 +33,7 @@ const PageSection = ({
     const newSectionData = {
       uid: new Date().getTime(),
       section,
-      title: `<p><span style="background-color: rgba(255, 255, 255, ,0); font-size: 40px; font-family: inherit;">${section}</span></p>`,
+      title: `<span style="font-size: 40px; font-family: inherit;">${section}</span>`,
       image: "",
       actions: [],
       items: [],
@@ -103,9 +103,8 @@ const PageSection = ({
             onConfirmChanges={onConfirmChanges}
           />
           <div
-            className={`page-section__new ${
-              newSectionVisible && "page-section__new--visible"
-            }`}
+            className={`page-section__new ${newSectionVisible && "page-section__new--visible"
+              }`}
           >
             {sortArrowsVisible && (
               <Button

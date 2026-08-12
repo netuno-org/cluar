@@ -5,8 +5,16 @@ Table action {
   indication varchar(250) [note: 'Indicação']
   language_id int [not null, ref: > language.id, note: 'Idioma']
   link varchar(250) [note: 'Ligação']
+  parameter_id int [not null, ref: > action_parameter.id, note: 'Parâmetro']
   title varchar(250) [note: 'Título']
   Note: 'Ação'
+}
+
+Table action_parameter {
+  id int [pk, increment]
+  code varchar(250) [not null, unique, note: 'Código']
+  description varchar(250) [not null, note: 'Descrição']
+  Note: 'Parâmetro'
 }
 
 Table configuration {
@@ -107,6 +115,8 @@ Table page_banner {
   id int [pk, increment]
   content text [note: 'Conteúdo']
   content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  edit_mode varchar(250) [note: 'Modo de Edição']
+  html_content text [note: 'Conteúdo HTML']
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_title varchar(250) [note: 'Imagem Título']
@@ -132,6 +142,8 @@ Table page_content {
   id int [pk, increment]
   content text [note: 'Conteúdo']
   content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  edit_mode varchar(250) [note: 'Modo de Edição']
+  html_content text [note: 'Conteúdo HTML']
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_max_width int [note: 'Largura Máxima da Imagem']
@@ -156,6 +168,8 @@ Table page_functionality {
   id int [pk, increment]
   content text [note: 'Conteúdo']
   content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  edit_mode varchar(250) [note: 'Modo de Edição']
+  html_content text [note: 'Conteúdo HTML']
   image text [note: 'Imagem']
   page_version_id int [ref: > page_version.id, note: 'Página']
   sorter int [note: 'Ordem']
@@ -177,6 +191,8 @@ Table page_listing {
   id int [pk, increment]
   content text [note: 'Conteúdo']
   content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  edit_mode varchar(250) [note: 'Modo de Edição']
+  html_content text [note: 'Conteúdo HTML']
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_title varchar(250) [note: 'Imagem Título']
@@ -200,6 +216,8 @@ Table page_listing_item {
   id int [pk, increment]
   content text [note: 'Conteúdo']
   content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  edit_mode varchar(250) [note: 'Modo de Edição']
+  html_content text [note: 'Conteúdo HTML']
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_title varchar(250) [note: 'Imagem Título']
@@ -215,6 +233,8 @@ Table page_slider {
   id int [pk, increment]
   content text [note: 'Conteúdo']
   content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  edit_mode varchar(250) [note: 'Modo de Edição']
+  html_content text [note: 'Conteúdo HTML']
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_title varchar(250) [note: 'Imagem Título']
@@ -230,6 +250,8 @@ Table page_slider_item {
   id int [pk, increment]
   content text [note: 'Conteúdo']
   content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
+  edit_mode varchar(250) [note: 'Modo de Edição']
+  html_content text [note: 'Conteúdo HTML']
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_title varchar(250) [note: 'Imagem Título']
