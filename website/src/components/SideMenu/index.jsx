@@ -125,19 +125,21 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     navigate('/login');
   }
 
-  const menu = (
-    <Menu>
-      {/* <Menu.Item key="1">
-        <Link to="/reserved-area/profile">
-          <EditOutlined />&nbsp;&nbsp;&nbsp;{Cluar.plainDictionary('user-menu-edit-profile')}
-        </Link></Menu.Item> */}
-      {/* <Menu.Item key="2">
-        <Button type="link" onClick={onLogout} danger style={{ padding: "0px" }}>
-          <LogoutOutlined /> {Cluar.plainDictionary('user-menu-sign-out')}
-        </Button>
-      </Menu.Item> */}
-    </Menu>
-  );
+  const userMenuItems = [
+    // {
+    //   key: 'profile',
+    //   icon: <EditOutlined />,
+    //   label: Cluar.plainDictionary('user-menu-edit-profile'),
+    //   onClick: () => navigate("/reserved-area/profile"),
+    // },
+    // {
+    //   key: 'logout',
+    //   icon: <LogoutOutlined />,
+    //   danger: true,
+    //   label: Cluar.plainDictionary('user-menu-sign-out'),
+    //   onClick: () => onLogout(),
+    // }
+  ];
 
   useEffect(() => {
     setLoading(true);
@@ -238,11 +240,16 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           <Row className='side-menu__user-info' justify={'center'}>
             <Col className='side-menu__user-info__content' span={24}>
               <Row className='side-menu__user-info__content__logo' justify={'center'}>
-                <Link>
-                  <Dropdown placement='bottom' overlay={menu} trigger={['hover']} arrow={{ pointAtCenter: true, }}>
-                    {avatarImageURL && <img src={avatarImageURL} alt="logo" />}
-                  </Dropdown>
-                </Link>
+                <Dropdown
+                  placement='bottom'
+                  menu={{ items: userMenuItems }}
+                  trigger={['hover']}
+                  arrow={{ pointAtCenter: true }}
+                >
+                  <span style={{ display: 'inline-block', cursor: 'pointer' }}>
+                    {avatarImageURL ? <img src={avatarImageURL} alt="logo" /> : null}
+                  </span>
+                </Dropdown>
               </Row>
               <Row className='side-menu__user-info__content__user' justify={'center'}>
                 <Typography.Text type='secondary' ellipsis >{loggedUserInfo.name}</Typography.Text>
