@@ -1,3 +1,5 @@
+// _core : cluar/main
+
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
 const page = _db.pagination(1, 10);
@@ -29,48 +31,48 @@ if (filters) {
 }
 
 const query = _db.form('configuration')
-.link(
-    'configuration_parameter',
-    where.get('parameter')
-)
-.leftJoin(
-    _db.manyToOne(
-        'language', 
-        'language_id',  
+    .link(
+        'configuration_parameter',
+        where.get('parameter')
     )
-)
-.join(
-    _db.manyToOne(
-        'configuration_parameter', 
-        'parameter_id',  
-    ).join(
+    .leftJoin(
         _db.manyToOne(
-            'configuration_parameter_type',
-            'configuration_parameter_type_id',
+            'language',
+            'language_id',
         )
     )
-)
-.get('configuration.id', 'configuration_id')
-.get('configuration.value')
-.get('configuration.value_img')
-.get('configuration.uid', 'configuration_uid')
-.get('configuration.active', 'configuration_active')
-.get('language.id', 'language_id')
-.get('language.description', 'language_description')
-.get('language.code', 'languge_code')
-.get('configuration_parameter.id', 'parameter_id')
-.get('configuration_parameter.code', 'parameter_code')
-.get('configuration_parameter.description', 'parameter_description')
-.get("configuration_parameter_type.code", "type_code")
-.get("configuration_parameter_type.name", "type_name")
-.group(
-    'configuration.id',
-    'language.id',
-    'configuration_parameter.id',
-    'configuration_parameter_type.code',
-    'configuration_parameter_type.name'
-)
-.order('configuration.id', 'desc')
+    .join(
+        _db.manyToOne(
+            'configuration_parameter',
+            'parameter_id',
+        ).join(
+            _db.manyToOne(
+                'configuration_parameter_type',
+                'configuration_parameter_type_id',
+            )
+        )
+    )
+    .get('configuration.id', 'configuration_id')
+    .get('configuration.value')
+    .get('configuration.value_img')
+    .get('configuration.uid', 'configuration_uid')
+    .get('configuration.active', 'configuration_active')
+    .get('language.id', 'language_id')
+    .get('language.description', 'language_description')
+    .get('language.code', 'languge_code')
+    .get('configuration_parameter.id', 'parameter_id')
+    .get('configuration_parameter.code', 'parameter_code')
+    .get('configuration_parameter.description', 'parameter_description')
+    .get("configuration_parameter_type.code", "type_code")
+    .get("configuration_parameter_type.name", "type_name")
+    .group(
+        'configuration.id',
+        'language.id',
+        'configuration_parameter.id',
+        'configuration_parameter_type.code',
+        'configuration_parameter_type.name'
+    )
+    .order('configuration.id', 'desc')
 
 const dbPage = query.page(page);
 const items = _val.list();
@@ -82,6 +84,9 @@ for (const dbItem of dbPage.getList('items')) {
             .set('active', dbItem.getBoolean('configuration_active'))
             .set('value', dbItem.getString('value'))
             .set('value_img', dbItem.getString('value_img'))
+            .set('image_url', cluar.base.configurationImageUrl(
+                dbItem.getString('parameter_code'), dbItem.getString('value_img')
+            ))
             .set('parameter', _val.map()
                 .set('description', dbItem.getString('parameter_description'))
                 .set('code', dbItem.getString('parameter_code'))
@@ -102,4 +107,3 @@ _out.json(
     _val.map()
         .set('page', dbPage)
 )
-

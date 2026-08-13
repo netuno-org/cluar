@@ -29,7 +29,15 @@ cluar.build = (settings)=> {
    *
    */
   
-  data.set("configuration", cluar.base.configuration())
+  const configuration = cluar.base.configuration()
+  data.set("configuration", configuration)
+
+  /*
+   *  Título (index.html) + root.css (cores). Ambos ficheiros "de raiz",
+   *  nunca tocam em páginas já publicadas - ver comentário completo em
+   *  cluar.base.applyConfigurationToIndexHtml.
+   */
+  cluar.base.applyConfigurationToIndexHtml(configuration)
   
   /*
    *
@@ -43,9 +51,14 @@ cluar.build = (settings)=> {
    *
    *  PAGES
    *
+   *  publishAll republica (clona o index.html atual para) TODAS as
+   *  páginas já publicadas - é uma operação O(número de páginas), por
+   *  isso só corre quando pedido explicitamente (settings.publishAll),
+   *  nunca como efeito colateral automático de gravar uma configuração,
+   *  conteúdo, etc. Ver server/services/admin/cluar/sync.js.
    */
 
-  const pages = cluar.base.pages({publish: true})
+  const pages = cluar.base.pages({publish: settings.publishAll === true})
   data.set("pages", pages)
 
   /*

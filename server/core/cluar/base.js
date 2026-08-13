@@ -8,6 +8,54 @@ cluar.base = () => {
   }
 }
 
+/*
+ * Parâmetros de configuração do tipo "image" que devem ser sempre
+ * gravados na MESMA pasta e com o MESMO nome de ficheiro em disco,
+ * independentemente do nome que o Netuno atribuiu ao upload
+ * (configuration.value_img).
+ *
+ * Isto é essencial para imagens referenciadas fora do React/JS
+ * (ex: favicon em <link rel="icon">, manifest.json), porque essas
+ * referências são estáticas e não podem mudar a cada upload -
+ * só o conteúdo do ficheiro é substituído.
+ *
+ * Por omissão (parâmetro não listado aqui), mantém-se o comportamento
+ * já existente: pasta "cluar/images/configuration" + nome gerado pelo
+ * Netuno no upload (ex: o "logo").
+ */
+cluar.base.FIXED_IMAGE_LOCATION = {
+  "favicon": { folder: "images", fileName: "favicon.png" },
+}
+
+cluar.base.configurationImageLocation = (parameterCode, uploadedFileName) => {
+  const fixed = cluar.base.FIXED_IMAGE_LOCATION[parameterCode]
+  if (fixed) {
+    return { folder: fixed.folder, fileName: fixed.fileName }
+  }
+  return { folder: "cluar/images/configuration", fileName: uploadedFileName }
+}
+
+/*
+ * URL público para mostrar a imagem de um parâmetro de configuração
+ * (usado no admin - tabela e modal de Configurações). Único sítio que
+ * sabe traduzir parameterCode + value_img para o caminho final, para
+ * o React nunca ter de reconstruir o caminho à mão (foi essa
+ * reconstrução manual, desatualizada em relação ao FIXED_IMAGE_LOCATION,
+ * que causava a imagem "corrompida" no admin para o favicon).
+ *
+ * A query ?v= evita que o browser mostre uma versão em cache antiga
+ * quando a imagem é substituída num caminho fixo (ex: favicon).
+ */
+cluar.base.configurationImageUrl = (parameterCode, uploadedFileName) => {
+  if (!uploadedFileName) {
+    return null
+  }
+  const location = cluar.base.configurationImageLocation(parameterCode, uploadedFileName)
+  const file = _app.file(`${cluar.base()}/${location.folder}/${location.fileName}`)
+  const version = file.exists() ? file.lastModified() : 0
+  return `/${location.folder}/${location.fileName}?v=${version}`
+}
+
 cluar.base.configuration = () => {
   if (_config.has("cluar:base:configuration")) {
     return _config.getValues("cluar:base:configuration");
@@ -33,29 +81,30 @@ cluar.base.configuration = () => {
       configuration.set(dbParameter.getString("language"), _val.map())
     }
 
-    const imageName = dbParameter.getString("value_img")
+    const uploadedFileName = dbParameter.getString("value_img")
 
-    if (imageName) {
-      const folder = _app.folder(`${cluar.base()}/cluar/images/configuration`)
+    if (uploadedFileName) {
+      const location = cluar.base.configurationImageLocation(
+        dbParameter.getString("code"), uploadedFileName
+      )
+      const folder = _app.folder(`${cluar.base()}/${location.folder}`)
       if (!folder.exists()) {
         folder.mkdirs()
       }
-      const websiteFile = _app.file(`${folder.path()}/${imageName}`)
-      const databaseFile = _storage.database(`configuration`, "value_img", imageName).file()
+      const websiteFile = _app.file(`${folder.path()}/${location.fileName}`)
+      const databaseFile = _storage.database(`configuration`, "value_img", uploadedFileName).file()
       if (!websiteFile.exists()
-          || databaseFile.available() != websiteFile.available()
-          || databaseFile.lastModified() > websiteFile.lastModified()) {
-        _storage.database(`configuration`, "value_img", imageName)
-          .file()
-          .copy(`${folder.path()}/${imageName}`, true)
+        || databaseFile.available() != websiteFile.available()
+        || databaseFile.lastModified() > websiteFile.lastModified()) {
+        databaseFile.copy(`${folder.path()}/${location.fileName}`, true)
       }
 
       configuration.getValues(dbParameter.getString("language"))
-      .set(dbParameter.getString("code"), `/cluar/images/configuration/${imageName}`)
+        .set(dbParameter.getString("code"), `/${location.folder}/${location.fileName}`)
     } else {
       configuration.getValues(dbParameter.getString("language"))
-      .set(dbParameter.getString("code"), dbParameter.getString("value"))
-    }  
+        .set(dbParameter.getString("code"), dbParameter.getString("value"))
+    }
   }
   const dbConfigurationWithoutLanguages = _db.query(`
         SELECT
@@ -74,32 +123,155 @@ cluar.base.configuration = () => {
       configuration.set("GENERIC", _val.map())
     }
 
-    const imageName = dbParameter.getString("value_img")
+    const uploadedFileName = dbParameter.getString("value_img")
 
-    if (imageName) {
-      const folder = _app.folder(`${cluar.base()}/cluar/images/configuration`)
+    if (uploadedFileName) {
+      const location = cluar.base.configurationImageLocation(
+        dbParameter.getString("code"), uploadedFileName
+      )
+      const folder = _app.folder(`${cluar.base()}/${location.folder}`)
       if (!folder.exists()) {
         folder.mkdirs()
       }
-      const websiteFile = _app.file(`${folder.path()}/${imageName}`)
-      const databaseFile = _storage.database(`configuration`, "value_img", imageName).file()
+      const websiteFile = _app.file(`${folder.path()}/${location.fileName}`)
+      const databaseFile = _storage.database(`configuration`, "value_img", uploadedFileName).file()
       if (!websiteFile.exists()
-          || databaseFile.available() != websiteFile.available()
-          || databaseFile.lastModified() > websiteFile.lastModified()) {
-        _storage.database(`configuration`, "value_img", imageName)
-          .file()
-          .copy(`${folder.path()}/${imageName}`, true)
+        || databaseFile.available() != websiteFile.available()
+        || databaseFile.lastModified() > websiteFile.lastModified()) {
+        databaseFile.copy(`${folder.path()}/${location.fileName}`, true)
       }
 
       configuration.getValues("GENERIC")
-      .set(dbParameter.getString("code"), `/cluar/images/configuration/${imageName}`)
+        .set(dbParameter.getString("code"), `/${location.folder}/${location.fileName}`)
     } else {
       configuration.getValues("GENERIC")
-      .set(dbParameter.getString("code"), dbParameter.getString("value"))
-    } 
+        .set(dbParameter.getString("code"), dbParameter.getString("value"))
+    }
   }
   _config.set("cluar:base:configuration", configuration)
   return configuration;
+}
+
+/*
+ *
+ *  ÍCONE (favicon) + TÍTULO + ROOT.CSS (cores do arranque, antes do React montar)
+ *
+ *  Esta função só toca em ficheiros "de raiz" (website/index.html e
+ *  website/dist/index.html) e no root.css - nunca em páginas já
+ *  publicadas. Por isso o custo é sempre o mesmo, independentemente de
+ *  o website ter 1 ou 1000 páginas publicadas.
+ *
+ *  - Favicon: só troca a imagem (ver cluar.base.configurationImageLocation).
+ *  - Título: é texto dentro do <title>, obriga a reescrever esse nó nos
+ *    2 ficheiros raiz (não há como isto ser um recurso partilhado).
+ *  - Cores: em vez de embutidas por página, ficam num único root.css
+ *    partilhado por TODAS as páginas (<link id="cluar-configuration"
+ *    href="/root.css">, já presente no index.html). Uma gravação de
+ *    configuração só reescreve este ficheiro - nunca republica páginas.
+ *
+ *  Propagação às páginas já publicadas:
+ *  - Cores -> automática e imediata, porque todas apontam para o mesmo
+ *    root.css (é só um ficheiro estático a ser sobrescrito).
+ *  - Título -> só afeta o <title> do "molde" (website/dist/index.html);
+ *    cada página já publicada mantém sempre o seu próprio título, que
+ *    nunca vem daqui (ver dbPage.getString("title") em page/publish.js).
+ *  - Favicon -> automática e imediata, mesma razão que as cores.
+ *  Ou seja: NENHUM destes 3 precisa de republicar páginas. Só é preciso
+ *  publicar/republicar manualmente (botão de sincronização) se algo
+ *  MAIS além destes 3 tiver mudado (ex: menu de navegação).
+ */
+cluar.base.applyConfigurationToIndexHtml = (configuration) => {
+  const generic = configuration.getValues("GENERIC") || _val.map()
+
+  const title = generic.getString("title")
+  const primaryColor = generic.getString("primary-color")
+  const backgroundColorLight = generic.getString("background-color-light")
+  const backgroundColorDark = generic.getString("background-color-dark")
+
+  let cssOverrides = ":root {"
+  if (primaryColor) {
+    cssOverrides += `--cluar-loading-color: ${primaryColor};`
+  }
+  if (backgroundColorLight) {
+    cssOverrides += `--cluar-bg-light: ${backgroundColorLight};`
+  }
+  if (backgroundColorDark) {
+    cssOverrides += `--cluar-bg-dark: ${backgroundColorDark};`
+  }
+  cssOverrides += "}\n"
+
+  const faviconLocation = cluar.base.FIXED_IMAGE_LOCATION["favicon"]
+
+  /*
+   * website/index.html (fonte) usa as imagens/root.css de website/public/...
+   * website/dist/index.html (compilado) usa as de website/dist/...
+   * são as mesmas duas bases que cluar.base() já alterna consoante o
+   * ambiente - aqui percorremos as duas sempre, independentemente do
+   * ambiente atual, para nenhuma delas ficar desatualizada.
+   */
+  const targets = [
+    { indexHtml: "website/index.html", base: "website/public" },
+    { indexHtml: "website/dist/index.html", base: "website/dist" },
+  ]
+
+  for (const target of targets) {
+    const baseFolder = _app.folder(target.base)
+    if (!baseFolder.exists()) {
+      continue
+    }
+
+    /*
+     * root.css - ficheiro único e barato de reescrever, independente
+     * de haver 1 ou 1000 páginas publicadas.
+     */
+    const rootCssFile = _app.file(`${target.base}/root.css`)
+    rootCssFile.output().print(cssOverrides).close()
+
+    const indexHtmlFile = _app.file(target.indexHtml)
+    if (!indexHtmlFile.exists()) {
+      continue
+    }
+
+    const document = _html.parse(indexHtmlFile, "UTF-8", "")
+    const headElement = document.select("head").first()
+    if (!headElement) {
+      continue
+    }
+
+    if (title) {
+      const titleElement = headElement.selectFirst("title")
+      if (titleElement) {
+        titleElement.text(title)
+      } else {
+        headElement.appendElement("title").text(title)
+      }
+    }
+
+    /*
+     * Cache-busting do favicon: o browser guarda em cache de forma muito
+     * agressiva um ícone servido sempre no mesmo URL. Ao acrescentar
+     * ?v=<data de modificação do ficheiro> ao href, o URL muda sempre
+     * que a imagem é substituída, obrigando o browser a pedir de novo.
+     * (root.css NÃO tem este tratamento de propósito - CSS é bem menos
+     * agressivamente cacheado pelos browsers do que favicons, e não vale
+     * o custo de reescrever 2 ficheiros a mais por causa disso; se algum
+     * dia for preciso forçar, isso fica para a sincronização manual.)
+     */
+    const faviconFile = _app.file(
+      `${target.base}/${faviconLocation.folder}/${faviconLocation.fileName}`
+    )
+    if (faviconFile.exists()) {
+      const iconElement = headElement.selectFirst("link[rel=icon]")
+      if (iconElement) {
+        iconElement.attr(
+          "href",
+          `/${faviconLocation.folder}/${faviconLocation.fileName}?v=${faviconFile.lastModified()}`
+        )
+      }
+    }
+
+    indexHtmlFile.output().print(document.outerHtml()).close()
+  }
 }
 
 /*

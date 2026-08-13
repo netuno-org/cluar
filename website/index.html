@@ -1,18 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <link rel="icon" href="/images/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#000000" />
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <link rel="apple-touch-icon" href="/images/favicon-192.png" />
-  <link rel="manifest" href="/manifest.json" />
+ <head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <link rel="manifest" href="/manifest.json">
   <title>Cluar CMS</title>
-
   <script>
     (function () {
       var savedTheme = localStorage.getItem('theme') || 'light';
@@ -24,19 +20,29 @@
         savedTheme === 'light' ? '#ffffff' : '#000000';
     })();
   </script>
-
-
   <style>
+    :root {
+      /*
+       * Valores por omissão (fallback). São substituídos pelo bloco
+       * <link id="cluar-configuration"> (root.css) logo abaixo, gerado a partir
+       * das Configurações (título, cor primária/loading e cores de fundo).
+       * Ver server/core/cluar/base.js -> cluar.base.applyConfigurationToIndexHtml
+       */
+      --cluar-loading-color: #1178FF;
+      --cluar-bg-light: #ffffff;
+      --cluar-bg-dark: #000000;
+    }
+
     body {
       background-color: var(--body-bg, #ffffff);
     }
 
     html[data-theme="light"] body {
-      --body-bg: #ffffff;
+      --body-bg: var(--cluar-bg-light);
     }
 
     html[data-theme="dark"] body {
-      --body-bg: #000000;
+      --body-bg: var(--cluar-bg-dark);
     }
 
     .base-loading__container {
@@ -59,7 +65,7 @@
       position: absolute;
       left: 8px;
       width: 16px;
-      background: #1178FF;
+      background: var(--cluar-loading-color);
       animation: base-loading 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
     }
 
@@ -91,15 +97,22 @@
       }
     }
   </style>
-</head>
-
-<body>
+  <!--
+    root.css é reescrito automaticamente pelo servidor (cluar.build) com
+    as cores das Configurações. É sempre o MESMO ficheiro/URL para todas
+    as páginas - por isso uma gravação de configuração nunca precisa de
+    tocar em cada página já publicada, só substitui este ficheiro.
+    Ver cluar.base.applyConfigurationToIndexHtml.
+  -->
+  <link id="cluar-configuration" rel="stylesheet" href="/root.css">
+ </head>
+ <body>
   <div class="base-loading__container">
-    <div class="base-loading">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+   <div class="base-loading">
+    <div></div>
+    <div></div>
+    <div></div>
+   </div>
   </div>
   <div id="root" style="display: none;"></div>
   <script>
@@ -111,8 +124,7 @@
       }, false);
     })();
   </script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet">
   <script type="module" src="/src/main.jsx"></script>
-</body>
-
+ </body>
 </html>

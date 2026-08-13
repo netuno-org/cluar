@@ -51,11 +51,12 @@ const registedConfig = insertAndReturn('configuration', data);
 if (value?.includes("base64")) {
     const dbNewConfiguration = _db.get("configuration", registedConfig.getInt("id"))
     const fileName = dbNewConfiguration.getString("value_img")
+    const location = cluar.base.configurationImageLocation(parameterCode, fileName)
 
     _db.update(
-        'configuration', 
+        'configuration',
         registedConfig.getInt("id"),
-        _val.map().set(`value`, `/cluar/images/configuration/${fileName}`)
+        _val.map().set(`value`, `/${location.folder}/${location.fileName}`)
     );
 }
 
@@ -63,7 +64,7 @@ _header.status(201);
 _out.json(
     _val.map()
         .set("result", true)
-        .set('configuration', 
+        .set('configuration',
             _val.map()
                 .set('uid', registedConfig.getString("uid"))
                 .set('value', registedConfig.getString("value"))
@@ -75,5 +76,5 @@ _out.json(
                     .set('description', dbLanguage?.getString("description"))
                     .set('code', dbLanguage?.getString("code"))
                 )
-            )
+        )
 )

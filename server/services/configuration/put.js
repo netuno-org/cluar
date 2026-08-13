@@ -70,11 +70,12 @@ _db.update(
 if (value?.includes("base64")) {
     const dbNewConfiguration = _db.get("configuration", dbConfiguration.getInt("id"))
     const fileName = dbNewConfiguration.getString("value_img")
+    const location = cluar.base.configurationImageLocation(parameterCode, fileName)
 
     _db.update(
         'configuration', 
         dbConfiguration.getInt("id"),
-        _val.map().set(`value`, `/cluar/images/configuration/${fileName}`)
+        _val.map().set(`value`, `/${location.folder}/${location.fileName}`)
     );
 }
     
