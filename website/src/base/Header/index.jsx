@@ -70,6 +70,7 @@ function BaseHeader() {
 
       return children.map((p) => {
         const key = p.link;
+        const label = p.menu_title || p.title;
 
         subMenuKeys.push(key);
 
@@ -79,18 +80,18 @@ function BaseHeader() {
             label: p.navigable ? (
               p.link.indexOf("//") >= 0 ? (
                 <a href={`${p.link}`} target="_blank">
-                  {p.title}
+                  {label}
                 </a>
               ) : (
                 <Link
                   to={`/${Cluar.currentLanguage().locale}${p.link}`}
                   onClick={() => handleMenuClick(key)}
                 >
-                  {p.title}
+                  {label}
                 </Link>
               )
             ) : (
-              <a>{p.title}</a>
+              <a>{label}</a>
             ),
             children: buildChildren(p),
           };
@@ -100,6 +101,7 @@ function BaseHeader() {
     const buildMenu = (page) => {
       if (page.menu && language.code === Cluar.currentLanguage().code) {
         const key = `${page.link}`;
+        const label = page.menu_title || page.title;
 
         subMenuKeys.push(key);
 
@@ -108,18 +110,18 @@ function BaseHeader() {
             label: page.navigable ? (
               page.link.indexOf("//") >= 0 ? (
                 <a href={`${page.link}`} target="_blank">
-                  {page.title}
+                  {label}
                 </a>
               ) : (
                 <Link
                   to={`/${Cluar.currentLanguage().locale}${page.link}`}
                   onClick={() => handleMenuClick(key)}
                 >
-                  {page.title}
+                  {label}
                 </Link>
               )
             ) : (
-              <a>{page.title}</a>
+              <a>{label}</a>
             ),
             key,
             children: buildChildren(page),

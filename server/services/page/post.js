@@ -14,6 +14,17 @@ const social_image = _req.getFile("social_image");
 const social_description = _req.getString("social_description");
 const template = _req.getString("template");
 
+if (menu === true && !menuTitle) {
+    _header.status(400);
+    _out.json(
+        _val.map()
+            .set('result', false)
+            .set('error', 'menu_title is required when menu is enabled')
+            .set('error_code', 'page-menu-title-required')
+    );
+    _exec.stop();
+}
+
 const dbLanguage = _db.queryFirst(`
     SELECT id, code, description FROM language WHERE code = ?
 `, languageCode);

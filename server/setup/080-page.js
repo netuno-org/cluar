@@ -1,5 +1,3 @@
-
-
 // -----------------------------------------------------------
 // 
 // PAGE
@@ -25,7 +23,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("social_image", "")
       .set("navigable", true)
       .set("menu", true)
-      .set("menu_title", "")
+      .set("menu_title", "In\u00EDcio")
       .set("sorter", 10)
       .set("template", "Default")
   );
@@ -45,9 +43,8 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("social_image", "")
       .set("navigable", true)
       .set("menu", true)
-      .set("menu_title", "")
+      .set("menu_title", "Home")
       .set("sorter", 10)
       .set("template", "Default")
   );
 }
-

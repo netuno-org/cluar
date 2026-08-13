@@ -49,6 +49,8 @@ const PageConfiguration = ({
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState([]);
 
+  const menuEnabled = Form.useWatch("menu", form);
+
   const handlePreview = async (file) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
@@ -412,7 +414,12 @@ const PageConfiguration = ({
           >
             <Switch />
           </Form.Item>
-          <Form.Item label={Cluar.plainDictionary("page-form-menu-title")} name="menu_title">
+          <Form.Item label={Cluar.plainDictionary("page-form-menu-title")} name="menu_title" dependencies={["menu"]} rules={[
+            {
+              required: !!menuEnabled,
+              message: Cluar.plainDictionary("page-configuration-validation-menu-title"),
+            },
+          ]}>
             <Input />
           </Form.Item>
           <Form.Item

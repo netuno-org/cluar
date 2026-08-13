@@ -33,6 +33,18 @@ if (!dbPage) {
   _exec.stop();
 }
 
+if (menu === true && !menuTitle) {
+  _header.status(400);
+  _out.json(
+    _val
+      .map()
+      .set("result", false)
+      .set("error", "menu_title is required when menu is enabled")
+      .set("error_code", "page-menu-title-required")
+  );
+  _exec.stop();
+}
+
 const linkExists = _db.queryFirst(
   `
     SELECT * FROM page 
