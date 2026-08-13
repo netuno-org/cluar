@@ -13,6 +13,7 @@ const navigable = _req.getBoolean("navigable");
 const social_image = _req.getFile("social_image");
 const social_description = _req.getString("social_description");
 const template = _req.getString("template");
+const sorterInput = _req.getString("sorter");
 
 if (menu === true && !menuTitle) {
     _header.status(400);
@@ -62,6 +63,18 @@ let parentPage = null;
 if (parentUid != null) {
     parentPage = _db.get("page", parentUid);
 }
+const parentId = parentPage ? parentPage.getInt("id") : 0;
+
+let sorter = sorterInput ? parseInt(sorterInput, 10) : NaN;
+if (isNaN(sorter)) {
+    const dbMaxSorter = _db.queryFirst(`
+        SELECT MAX(sorter) as max_sorter FROM page
+        WHERE language_id = ?
+            AND parent_id = ?
+    `, dbLanguage.getInt("id"), parentId);
+
+    sorter = (dbMaxSorter?.getInt("max_sorter") || 0) + 10;
+}
 
 const data = _val.map()
     .set('title', title)
@@ -73,7 +86,8 @@ const data = _val.map()
     .set('navigable', navigable)
     .set("language_id", dbLanguage.getInt("id"))
     .set("status_id", dbPageStatusPublished.getInt("id"))
-    .set("parent_id", parentPage ? parentPage.getInt("id") : 0)
+    .set("parent_id", parentId)
+    .set("sorter", sorter)
     .set("social_image", social_image)
     .set("social_description", social_description)
     .set("template", template);

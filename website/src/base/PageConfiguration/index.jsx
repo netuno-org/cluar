@@ -4,6 +4,7 @@ import {
   Drawer,
   Form,
   Input,
+  InputNumber,
   Button,
   Switch,
   notification,
@@ -152,7 +153,9 @@ const PageConfiguration = ({
       const method = isNewPage ? "POST" : "PUT";
       const formData = new FormData();
       Object.keys(values).forEach((key) => {
-        if (values[key]) {
+        const value = values[key];
+        const hasValue = value !== undefined && value !== null && value !== "";
+        if (hasValue) {
           if (key === "social_image") {
             if (fileList.length > 0 && fileList[0].originFileObj) {
               formData.append(key, fileList[0].originFileObj);
@@ -160,11 +163,11 @@ const PageConfiguration = ({
               formData.append(key, "");
             }
           } else if (key === "link") {
-            const cleanLink = (values[key] || "").replace(/^\/+|\/+$/g, '');
+            const cleanLink = (value || "").replace(/^\/+|\/+$/g, '');
             const normalizedLink = cleanLink === "" ? "/" : `/${cleanLink}`;
             formData.append(key, normalizedLink);
           } else {
-            formData.append(key, values[key]);
+            formData.append(key, value);
           }
         }
       });
@@ -421,6 +424,13 @@ const PageConfiguration = ({
             },
           ]}>
             <Input />
+          </Form.Item>
+          <Form.Item
+            label={Cluar.plainDictionary("page-form-sorter")}
+            name="sorter"
+            tooltip={Cluar.plainDictionary("page-configuration-tooltip-sorter")}
+          >
+            <InputNumber style={{ width: "100%" }} min={0} step={10} placeholder={Cluar.plainDictionary("page-form-sorter-placeholder")} />
           </Form.Item>
           <Form.Item
             label={Cluar.plainDictionary("page-form-navigable")}

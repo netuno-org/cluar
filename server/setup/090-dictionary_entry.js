@@ -436,6 +436,14 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
+    .set("uid", "da546fe2-c962-4ad3-80c8-ae1003ebd5a9")
+    .set("code", "page-form-sorter")
+    .set("description", "P\u00E1ginas - Formul\u00E1rio - Campo - Ordem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
     .set("uid", "ac2923d0-7278-4665-887e-ac10690805fd")
     .set("code", "recovery-modal-title")
     .set("description", "Modal Recuperar Acesso - T\u00EDtulo")
@@ -3760,3 +3768,20 @@ _db.insertIfNotExists(
     .set("code", "slider-editor-button-new-item")
     .set("description", "Editor - Slider - Bot\u00E3o - Novo Item")
 );
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "d16a7ed9-6bd3-4715-b62f-83770879da22")
+    .set("code", "page-form-sorter-placeholder")
+    .set("description", "P\u00E1ginas - Formul\u00E1rio - Placeholder - Ordem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "a95cab94-e4d3-4582-a739-1ca71254b0ae")
+    .set("code", "page-configuration-tooltip-sorter")
+    .set("description", "P\u00E1ginas - Configura\u00E7\u00E3o - Dica - Ordem Autom\u00E1tica")
+);
+

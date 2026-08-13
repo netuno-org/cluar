@@ -8414,3 +8414,57 @@ _db.insertIfNotExists(
     .set("entry_id", "7d9f1aab-fd72-47e6-a535-1da237d8b9a3")
     .set("value", "Novo Item")
 );
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "a8ee8d03-84a0-4649-91a5-57905fdb0c66")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "da546fe2-c962-4ad3-80c8-ae1003ebd5a9")
+    .set("value", "Order")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "6d0c56f4-35f3-44d0-aad4-949f722e42cf")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "da546fe2-c962-4ad3-80c8-ae1003ebd5a9")
+    .set("value", "Ordem")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "a4ff0256-06f6-41f7-a2c5-1c54a8c56228")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "d16a7ed9-6bd3-4715-b62f-83770879da22")
+    .set("value", "Automatic (last position)")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "c76ff170-273b-4d86-8646-02d1347026d5")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "d16a7ed9-6bd3-4715-b62f-83770879da22")
+    .set("value", "Autom\u00E1tico (\u00FAltima posi\u00E7\u00E3o)")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "6c88bfeb-e532-4e78-9952-d47854b9dc66")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "a95cab94-e4d3-4582-a739-1ca71254b0ae")
+    .set("value", "Leave blank for the page to always appear after the last one at the same menu level.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "eea6f850-fbac-42cc-a50e-aa3d648aa2e9")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "a95cab94-e4d3-4582-a739-1ca71254b0ae")
+    .set("value", "Deixa em branco para a p\u00E1gina entrar sempre a seguir \u00E0 \u00FAltima do mesmo n\u00EDvel de menu.")
+);

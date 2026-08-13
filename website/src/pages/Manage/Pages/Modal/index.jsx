@@ -3,6 +3,7 @@ import {
   Col,
   Form,
   Input,
+  InputNumber,
   Modal,
   Row,
   Select,
@@ -381,6 +382,20 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
               ]}
             >
               <Input />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item
+              name="sorter"
+              label={Cluar.plainDictionary("page-form-sorter")}
+              tooltip={Cluar.plainDictionary("page-configuration-tooltip-sorter")}
+            >
+              <InputNumber
+                style={{ width: "100%" }}
+                min={0}
+                step={10}
+                placeholder={Cluar.plainDictionary("page-form-sorter-placeholder")}
+              />
             </Form.Item>
           </Col>
         </Row>

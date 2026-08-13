@@ -90,17 +90,25 @@ const dbSourcePage = _db.form("page")
     )
     .first();
 
+const dbMaxSorter = _db.queryFirst(`
+    SELECT MAX(sorter) as max_sorter FROM page
+    WHERE language_id = ?
+        AND parent_id = 0
+`, languageId);
+const sorter = (dbMaxSorter?.getInt("max_sorter") || 0) + 10;
+
 const newPage = _db.form("page")
     .set('title', title)
     .set('description', dbSourcePage.getString('description'))
     .set('keywords', dbSourcePage.getString('keywords'))
     .set('link', link)
     .set('menu', dbSourcePage.getBoolean('menu'))
-    .set('menu_title', dbSourcePage.getString('menu_title'))
+    .set('menu_title', title)
     .set('navigable', dbSourcePage.getBoolean('navigable'))
     .set("language_id", languageId)
     .set("status_id", publishedStatus.getInt("id"))
     .set("parent_id", "")
+    .set("sorter", sorter)
     .set("social_image", "")
     .set("social_description", dbSourcePage.getString('social_description'))
     .set("template", dbSourcePage.getString('template'))
