@@ -66,5 +66,8 @@
   "trustedDependencies": [
     "esbuild",
     "less"
-  ]
+  ],
+  "overrides": {
+    "rollup": "npm:@rollup/wasm-node"
+  }
 }

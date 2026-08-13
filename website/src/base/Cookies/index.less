@@ -1,31 +1,73 @@
 .cookies {
-    position: absolute;
-    height: 100px;
-    background-color: #777777;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10000;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 20px;
+
     &__popup {
-        position: fixed;
-        z-index: 10000;
         width: 100%;
         height: auto;
-        bottom: 0;
         background-color: #fff;
         box-shadow: 0 -1px 10px 0 rgba(172, 171, 171, 0.3);
+
         &__content {
+            margin: 0 auto;
+            padding: 1rem 4.7rem 1rem 3rem;
             color: rgba(0, 0, 0, 0.85);
-            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+
+            @media only screen and (max-width: 1200px) {
+                padding: 1rem 5.3rem 1rem 3.7rem;
+            }
+
+            @media (min-width: 800px) and (max-width: 1026px) {
+                padding: 1rem 1.5rem 1rem 1.5rem;
+            }
+
             @media only screen and (max-width: 800px) {
                 padding: 20px 20px;
             }
-            display: flex;
-            justify-content: space-between;
+
             p {
                 margin-bottom: 0;
+                flex: 1;
+                line-height: 1.6;
+
+                a {
+                    color: #1890ff;
+                    text-decoration: none;
+
+                    &:hover {
+                        color: #40a9ff;
+                        text-decoration: none;
+                    }
+                }
             }
+
             @media only screen and (max-width: 768px) {
-                display: block;
+                flex-direction: column;
+                align-items: flex-start;
+
                 p {
                     margin-bottom: 1em;
+                    width: 100%;
                 }
+            }
+
+            .ant-btn {
+                flex-shrink: 0;
+                min-width: 120px;
+                height: 40px;
+                font-weight: 500;
+                color: #fff;
+                border-radius: 20px;
             }
         }
     }
