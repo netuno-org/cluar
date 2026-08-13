@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import {_val, _db} from "@netuno/server-types";
+import { _val, _db } from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary_entry",
@@ -3745,3 +3745,10 @@ _db.insertIfNotExists(
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao ativar")
 );
 
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
+    .set("code", "page-form-language")
+    .set("description", "P\u00E1ginas - Formul\u00E1rio - Campo - Idioma")
+);

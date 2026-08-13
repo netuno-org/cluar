@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import {_val, _db} from "@netuno/server-types";
+import { _val, _db } from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary",
@@ -8378,3 +8378,20 @@ _db.insertIfNotExists(
     .set("value", "Falha ao ativar a a\u00E7\u00E3o.")
 );
 
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "ad8d880b-b431-4d4b-8d79-0399149a7e3b")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
+    .set("value", "Language")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "d5720fa6-3355-4b71-943c-d5c184ca280a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
+    .set("value", "Idioma")
+);
