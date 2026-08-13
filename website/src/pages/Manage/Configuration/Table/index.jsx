@@ -1,19 +1,19 @@
-import { 
+import {
     Button,
     notification,
     Table,
     Image
- } from "antd";
+} from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import { EditOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import ConfigurationModal from "../Modal";
 import Cluar from "../../../../common/Cluar";
 
-const ConfigurationTable = forwardRef(({}, ref) => {
+const ConfigurationTable = forwardRef(({ }, ref) => {
     const [loading, setLoading] = useState({
-        configuration:false,
-        language:false
+        configuration: false,
+        language: false
     });
     const [data, setData] = useState(false);
     const [total, setTotal] = useState(false);
@@ -22,27 +22,27 @@ const ConfigurationTable = forwardRef(({}, ref) => {
     const configurationModalRef = useRef();
     const [configurationData, setConfigurationData] = useState(null);
     const [pagination, setPagination] = useState({
-        size:10,
-        page:1
+        size: 10,
+        page: 1
     });
 
     const onLoadConfigurations = () => {
-        setLoading({...loading, configuration:true});
+        setLoading({ ...loading, configuration: true });
         _service({
-            url:"configuration/list",
-            method:"POST",
-            data:{
+            url: "configuration/list",
+            method: "POST",
+            data: {
                 filters,
                 pagination
             },
             success: (response) => {
-                setLoading({...loading, configuration:false});
+                setLoading({ ...loading, configuration: false });
                 const { totalElements, items } = response.json.page;
                 setData(items);
                 setTotal(totalElements);
             },
             fail: (error) => {
-                setLoading({...loading, configuration:false});
+                setLoading({ ...loading, configuration: false });
                 console.error(error);
                 notification.error({
                     message: Cluar.plainDictionary('configuration-page-load-failed-message')
@@ -52,30 +52,30 @@ const ConfigurationTable = forwardRef(({}, ref) => {
     }
 
     const onLoadLanguages = () => {
-            setLoading({ ...loading, language: true });
-            _service({
-                url: "language/list",
-                method: "POST",
-                success: (response) => {
-                    setLoading({ ...loading, language: false });
-                    const { items } = response.json.page;
-                    setLanguages(items);
-                },
-                fail: (error) => {
-                    setLoading({ ...loading, language: false });
-                    console.error(error);
-                    notification.error({
-                        message: "Falha ao carregar idiomas."
-                    })
-                }
-            })
-        }
+        setLoading({ ...loading, language: true });
+        _service({
+            url: "language/list",
+            method: "POST",
+            success: (response) => {
+                setLoading({ ...loading, language: false });
+                const { items } = response.json.page;
+                setLanguages(items);
+            },
+            fail: (error) => {
+                setLoading({ ...loading, language: false });
+                console.error(error);
+                notification.error({
+                    message: "Falha ao carregar idiomas."
+                })
+            }
+        })
+    }
 
     const onReloadTable = () => {
         setFilters({});
         setPagination({
-            size:10,
-            page:1
+            size: 10,
+            page: 1
         });
         onLoadConfigurations();
     }
@@ -84,16 +84,16 @@ const ConfigurationTable = forwardRef(({}, ref) => {
         return {
             onReloadTable
         }
-    },[]);
+    }, []);
 
     useEffect(() => {
         onLoadConfigurations();
         onLoadLanguages();
-    },[]);
+    }, []);
 
     useEffect(() => {
         onLoadConfigurations();
-    },[pagination, filters]);
+    }, [pagination, filters]);
 
     const columns = [
         {
@@ -103,7 +103,7 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             onHeaderCell: () => ({
                 "data-column-key": "language",
             }),
-            render:(val) => val.description,
+            render: (val) => val.description,
             filtered: filters.language_codes,
             filters: languages.map((language) => ({
                 text: language.description,
@@ -117,7 +117,7 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             onHeaderCell: () => ({
                 "data-column-key": "parameter",
             }),
-            render:(val) => val.description
+            render: (val) => val.description
         },
         {
             title: Cluar.plainDictionary('configuration-table-parameter-type'),
@@ -126,7 +126,7 @@ const ConfigurationTable = forwardRef(({}, ref) => {
             onHeaderCell: () => ({
                 "data-column-key": "parameter_type_name",
             }),
-            render:(val) => val.name
+            render: (val) => val.name
         },
         {
             title: Cluar.plainDictionary('configuration-table-value'),
@@ -138,13 +138,13 @@ const ConfigurationTable = forwardRef(({}, ref) => {
         },
         {
             title: Cluar.plainDictionary('configuration-table-value-img'),
-            dataIndex: 'value_img',
-            key: 'value_img',
+            dataIndex: 'image_url',
+            key: 'image_url',
             onHeaderCell: () => ({
-                "data-column-key": "value_img",
+                "data-column-key": "image_url",
             }),
             render: (val) => val ? (
-                <Image src={`/cluar/images/configuration/${val}`} width="120px" />
+                <Image src={val} width="120px" />
             ) : null
         },
         {
@@ -161,13 +161,13 @@ const ConfigurationTable = forwardRef(({}, ref) => {
                         setConfigurationData(record);
                         configurationModalRef.current.onOpenModal();
                     }}
-                    icon={<EditOutlined/>}
+                    icon={<EditOutlined />}
                 />
             )
         }
-    ]; 
+    ];
 
-    return(
+    return (
         <div>
             <ConfigurationModal
                 ref={configurationModalRef}
@@ -180,10 +180,10 @@ const ConfigurationTable = forwardRef(({}, ref) => {
                 scroll={{ x: 600 }}
                 loading={loading.configuration}
                 pagination={{
-                    onChange: (current) => {setPagination({page:current, size:pagination.size})},
-                    total:total,
-                    position:["bottomRight", "topRight"],
-                    pageSize:pagination.size
+                    onChange: (current) => { setPagination({ page: current, size: pagination.size }) },
+                    total: total,
+                    position: ["bottomRight", "topRight"],
+                    pageSize: pagination.size
                 }}
                 onChange={(pagination, currentFilters, currentSorter, { action }) => {
                     if (action === "filter") {

@@ -180,7 +180,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
             return <Switch defaultChecked={configurationData?.value === "true"} />;
         } else if (type === "image") {
             return (
-                <Upload 
+                <Upload
                     listType="picture-card"
                     maxCount={1}
                     fileList={fileList}
@@ -215,13 +215,13 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     useEffect(() => {
         if (editeMode && isModalOpen) {
             const configurationDataFormatted = { ...configurationData };
-    
+
             if (configurationData.parameter_type?.code === "boolean") {
                 configurationDataFormatted.value = configurationData?.value === "true";
             }
-    
+
             if (configurationData.parameter_type?.code === "image" && configurationData.value_img) {
-                const imageUrl = `/cluar/images/configuration/${configurationData.value_img}`;
+                const imageUrl = configurationData.image_url;
                 setFileList([
                     {
                         uid: '-1',
@@ -234,7 +234,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
             } else {
                 setFileList([]);
             }
-    
+
             formRef.setFieldsValue({
                 ...configurationDataFormatted,
                 parameter_code: {
@@ -304,11 +304,11 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                             />
                         </Form.Item>
                     </Col>
-                    <Col  span={24}>
+                    <Col span={24}>
                         <Form.Item
                             label={Cluar.plainDictionary('configuration-form-language_code')}
                             name={"language_code"}
-                            // rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
+                        // rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
                         >
                             <Select
                                 loading={loading.language}
