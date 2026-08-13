@@ -40,6 +40,8 @@ src/config/config.json
 
 /public/cluarData.js
 
+/public/root.css
+
 /public/reauthkit.js
 
 /public/sitemap.xml
