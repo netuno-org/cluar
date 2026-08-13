@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import { _val, _db } from "@netuno/server-types";
+import {_val, _db} from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary",
@@ -5975,6 +5975,16 @@ _db.insertIfNotExists(
     .set("entry_id", "0be83435-5509-451e-bc85-0d206644dd03")
     .set("value", "Title")
 );
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "ad8d880b-b431-4d4b-8d79-0399149a7e3b")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
+    .set("value", "Language")
+);
+
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
@@ -6000,6 +6010,15 @@ _db.insertIfNotExists(
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "f15c9f9c-0ceb-4763-a625-297b718220e2")
     .set("value", "Edit Title")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "d5720fa6-3355-4b71-943c-d5c184ca280a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
+    .set("value", "Idioma")
 );
 
 _db.insertIfNotExists(
@@ -8381,17 +8400,17 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
-    .set("uid", "ad8d880b-b431-4d4b-8d79-0399149a7e3b")
+    .set("uid", "8bf9ad0b-629f-41d1-8135-3bf126515910")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
-    .set("entry_id", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
-    .set("value", "Language")
+    .set("entry_id", "7d9f1aab-fd72-47e6-a535-1da237d8b9a3")
+    .set("value", "New Item")
 );
 
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
-    .set("uid", "d5720fa6-3355-4b71-943c-d5c184ca280a")
+    .set("uid", "0011a9d6-bbd6-4250-880c-bb4f397cf96a")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
-    .set("entry_id", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
-    .set("value", "Idioma")
+    .set("entry_id", "7d9f1aab-fd72-47e6-a535-1da237d8b9a3")
+    .set("value", "Novo Item")
 );

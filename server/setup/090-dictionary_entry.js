@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import { _val, _db } from "@netuno/server-types";
+import {_val, _db} from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary_entry",
@@ -2692,6 +2692,14 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
+    .set("uid", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
+    .set("code", "page-form-language")
+    .set("description", "P\u00E1ginas - Formul\u00E1rio - Campo - Idioma")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
     .set("uid", "4cd59f4a-782c-4f9a-b7de-8b27142b3d66")
     .set("code", "page-form-language-tooltip")
     .set("description", "P\u00E1ginas - Formul\u00E1rio - Campo - Idioma - Dica")
@@ -3748,7 +3756,7 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
-    .set("uid", "0146a4db-6a99-4893-b71f-ad4cd1e0a029")
-    .set("code", "page-form-language")
-    .set("description", "P\u00E1ginas - Formul\u00E1rio - Campo - Idioma")
+    .set("uid", "7d9f1aab-fd72-47e6-a535-1da237d8b9a3")
+    .set("code", "slider-editor-button-new-item")
+    .set("description", "Editor - Slider - Bot\u00E3o - Novo Item")
 );
