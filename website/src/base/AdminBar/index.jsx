@@ -27,7 +27,7 @@ const AdminBar = ({
   };
 
   const navigateToReservedArea = () => {
-    window.location.href = "/reserved-area/";
+    window.location.href = "/reserved-area/pages";
   };
 
   const { token } = theme.useToken();

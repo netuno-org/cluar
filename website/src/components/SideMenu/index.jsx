@@ -9,7 +9,6 @@ import {
   GlobalOutlined,
   FontSizeOutlined,
   ApartmentOutlined,
-  TeamOutlined,
   FileOutlined,
   RollbackOutlined,
   LinkOutlined
@@ -22,8 +21,7 @@ import {
   Typography,
   notification,
   Dropdown,
-  Skeleton,
-  Button
+  Skeleton
 } from 'antd';
 import Cluar from '../../common/Cluar'
 
@@ -35,18 +33,88 @@ import _service from '@netuno/service-client';
 import _auth from '@netuno/auth-client';
 
 import "./index.less"
-import { Link, useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import ThemeSwitch from '../ThemeSwitch';
+
+/*
+ * Fonte única de "quem pode aceder a quê" dentro da área de gestão -
+ * usada tanto para filtrar os itens do menu como para o guarda de
+ * navegação (protectedRoutes, mais abaixo). Mantém alinhado com
+ * CONTENT_MANAGEMENT_PATHS / SITE_ADMIN_PATHS / ACCESS_MANAGEMENT_PATHS
+ * em server/core/_service_config.js - se um dia mudares lá quem pode
+ * fazer o quê, muda aqui também.
+ */
+
+const MENU_PERMISSIONS = {
+  pages: ["admin", "editor"],
+  users: ["admin"],
+  actions: ["admin", "editor"],
+  languages: ["admin"],
+  configuration: ["admin"],
+  dictionary: ["admin", "editor"],
+  organization: ["admin"],
+};
 
 const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [sideMenuMobileMode, setSideMenuMobileMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const [avatarImageURL, setAvatarImageURL] = useState('/images/profile-default.png');
-  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const items = [
+  const normalizeGroupCode = (group) => {
+    if (!group) {
+      return "";
+    }
+
+    const code =
+      typeof group === "string"
+        ? group
+        : group.code || group.value || group.name || "";
+
+    return String(code).trim().toLowerCase();
+  };
+
+  const groupAliases = {
+    admin: ["administrator", "admin"],
+    editor: ["editor"],
+    author: ["author"],
+    contributor: ["contributor"],
+    subscriber: ["subscriber"],
+  };
+
+  const hasPermissions = (groupsAllowed) => {
+    if (!groupsAllowed.length) {
+      return true;
+    }
+
+    const normalizedGroups = loggedUserInfo?.groups
+      ?.map(normalizeGroupCode)
+      .filter(Boolean);
+
+    if (!normalizedGroups?.length) {
+      return false;
+    }
+
+    return groupsAllowed.some((requestedGroup) => {
+      const normalizedRequested = String(requestedGroup).trim().toLowerCase();
+      const allowedAliases = groupAliases[normalizedRequested] || [
+        normalizedRequested,
+      ];
+
+      return allowedAliases.some((alias) => normalizedGroups.includes(alias));
+    });
+  };
+
+  const buildMenuItems = (menuItemsData) =>
+    menuItemsData?.filter(Boolean).map((item) => ({
+      ...item,
+      children: item.children ? item.children.filter(Boolean) : undefined,
+    }));
+
+
+  const items = buildMenuItems([
     {
       key: 'profile',
       label: Cluar.plainDictionary('user-menu-edit-profile'),
@@ -59,7 +127,10 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       icon: <RollbackOutlined />,
       onClick: () => navigate(`/${Cluar.currentLanguage().locale}/`),
     },
-    {
+    hasPermissions([
+      "admin",
+      "editor"
+    ]) && {
       key: '1',
       label: Cluar.plainDictionary('side-menu-options-manage'),
       type: 'group',
@@ -70,7 +141,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           icon: <FileOutlined />,
           onClick: () => navigate("/reserved-area/pages")
         },
-        {
+        hasPermissions(MENU_PERMISSIONS.users) && {
           key: 'users',
           label: Cluar.plainDictionary('side-menu-options-users'),
           icon: <UserOutlined />,
@@ -82,13 +153,13 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           icon: <LinkOutlined />,
           onClick: () => navigate("/reserved-area/actions")
         },
-        {
+        hasPermissions(MENU_PERMISSIONS.languages) && {
           key: 'languages',
           label: Cluar.plainDictionary('side-menu-options-languages'),
           icon: <GlobalOutlined />,
           onClick: () => navigate("/reserved-area/languages")
         },
-        {
+        hasPermissions(MENU_PERMISSIONS.configuration) && {
           key: 'configuration',
           label: Cluar.plainDictionary('side-menu-options-configurations'),
           icon: <SettingOutlined />,
@@ -102,7 +173,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           onClick: () => navigate("/reserved-area/dictionary")
 
         },
-        {
+        hasPermissions(MENU_PERMISSIONS.organization) && {
           key: 'organization',
           label: Cluar.plainDictionary('side-menu-options-organizations'),
           icon: <ApartmentOutlined />,
@@ -117,7 +188,80 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       danger: true,
       onClick: () => onLogout(),
     },
+  ])
+
+  const protectedRoutes = [
+    {
+      prefix: "/reserved-area/pages",
+      groupsAllowed: MENU_PERMISSIONS.pages,
+    },
+    { prefix: "/reserved-area/users", groupsAllowed: MENU_PERMISSIONS.users },
+    {
+      prefix: "/reserved-area/actions",
+      groupsAllowed: MENU_PERMISSIONS.actions,
+    },
+    {
+      prefix: "/reserved-area/languages",
+      groupsAllowed: MENU_PERMISSIONS.languages,
+    },
+    {
+      prefix: "/reserved-area/configuration",
+      groupsAllowed: MENU_PERMISSIONS.configuration,
+    },
+    {
+      prefix: "/reserved-area/dictionary",
+      groupsAllowed: MENU_PERMISSIONS.dictionary,
+    },
+    { prefix: "/reserved-area/organization", groupsAllowed: MENU_PERMISSIONS.organization },
   ];
+
+  const getFirstAllowedRoute = () => {
+    const route = protectedRoutes.find((routeData) =>
+      hasPermissions(routeData.groupsAllowed),
+    );
+
+    return route?.prefix || "/reserved-area/profile";
+  };
+
+  useEffect(() => {
+    if (loggedUserInfo?.groups && !loading) {
+      const route = protectedRoutes.find((routeData) =>
+        location.pathname.startsWith(routeData.prefix),
+      );
+
+      if (route && !hasPermissions(route.groupsAllowed)) {
+        navigate(getFirstAllowedRoute());
+      }
+    }
+  }, [location.pathname, loggedUserInfo, loading, navigate]);
+
+  const selectedKey = (() => {
+    if (location.pathname.startsWith("/reserved-area/pages")) {
+      return "pages";
+    }
+    if (location.pathname.startsWith("/reserved-area/users")) {
+      return "users";
+    }
+    if (location.pathname.startsWith("/reserved-area/actions")) {
+      return "actions";
+    }
+    if (location.pathname.startsWith("/reserved-area/languages")) {
+      return "languages";
+    }
+    if (location.pathname.startsWith("/reserved-area/configuration")) {
+      return "configuration";
+    }
+    if (location.pathname.startsWith("/reserved-area/dictionary")) {
+      return "dictionary";
+    }
+    if (location.pathname.startsWith("/reserved-area/organization")) {
+      return "organization";
+    }
+    if (location.pathname.startsWith("/reserved-area/profile")) {
+      return "profile";
+    }
+    return '1';
+  })();
 
   function onLogout() {
     window.sessionStorage.setItem("builder-edit-mode", "0");
@@ -208,8 +352,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           </Row>
           <hr className='side-menu__divider' />
           <Menu
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+            selectedKeys={[selectedKey]}
+            defaultOpenKeys={['1']}
             mode="inline"
             width={240}
             items={items}
@@ -258,8 +402,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           </Row>
           <hr className='side-menu__divider' />
           <Menu
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+            selectedKeys={[selectedKey]}
+            defaultOpenKeys={['1']}
             mode="inline"
             width={240}
             items={items}

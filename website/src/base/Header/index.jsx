@@ -15,7 +15,7 @@ import "./index.less";
 const { Header } = Layout;
 const { SubMenu } = Menu;
 
-function BaseHeader() {
+function BaseHeader({ canEdit }) {
   const [burgerMenu, setBurgerMenu] = useState(false);
   const [activeMenu, setActiveMenu] = useState("main");
 
@@ -147,7 +147,7 @@ function BaseHeader() {
     <Header
       className={`${classNames({
         "header-burger-open": burgerMenu,
-      })} ${_auth.isLogged() && "ant-layout-header--logged"}`}
+      })} ${canEdit && "ant-layout-header--logged"}`}
     >
       <div className="ant-layout-header__wrapper">
         <div className="logo">

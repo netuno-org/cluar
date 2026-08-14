@@ -33,7 +33,7 @@ const loadPersistedEditMode = () => {
 };
 
 
-function Builder({ page }) {
+function Builder({ page, canEdit }) {
   const [error, setError] = useState(false);
   const [structure, setStructure] = useState([]);
   const [editMode, setEditMode] = useState(loadPersistedEditMode);
@@ -48,6 +48,14 @@ function Builder({ page }) {
   const [currentPageVersion, setCurrentPageVersion] = useState(page?.page_version_uid);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!canEdit && (editMode || showActionButtons)) {
+      setEditMode(false);
+      setShowActionButtons(false);
+      window.sessionStorage.setItem(EDIT_MODE_STORAGE_KEY, "0");
+    }
+  }, [canEdit]);
 
   useEffect(() => {
     const handleLinkNavigation = (event) => {
@@ -373,7 +381,7 @@ function Builder({ page }) {
 
   return (
     <main>
-      {_auth.isLogged() && (
+      {canEdit && (
         <AdminBar
           onChangeEditMode={handleSetEditMode}
           extra={editMode && extraBarAdmin}
