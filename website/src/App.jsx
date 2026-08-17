@@ -10,6 +10,8 @@ import {
 
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { Store } from './redux/store';
+import _service from '@netuno/service-client';
+import { loggedUserInfoAction } from './redux/actions';
 
 //import Analytics from './common/Analytics';
 import Cluar from "./common/Cluar";
@@ -128,6 +130,25 @@ function App() {
   const AppContent = () => {
     const location = useLocation();
     const isReservedArea = location.pathname.startsWith("/reserved-area");
+    const dispatch = useDispatch();
+    const loggedUserInfoReload = useSelector(
+      (state) => state.loggedUserInfoState?.loggedUserInfoReload
+    );
+
+    useEffect(() => {
+      _service({
+        method: 'GET',
+        url: 'people',
+        success: (response) => {
+          if (response.json.result) {
+            dispatch(loggedUserInfoAction(response.json.data));
+          }
+        },
+        fail: (e) => {
+          console.error('Dados do Utilizador', e);
+        },
+      });
+    }, [loggedUserInfoReload]);
 
     return (
       <div className="page">

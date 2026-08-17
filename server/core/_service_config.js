@@ -28,6 +28,7 @@ const PUBLIC_PATHS = [
     'recovery/post',
     'recovery/put',
     'people/avatar/get',
+    'people/get',
     '_altcha',
     '_auth',
 ]
@@ -101,7 +102,6 @@ const ACCESS_MANAGEMENT_PATHS = [
     'people/post',
     'people/put',
     'people/delete',
-    'people/get',
     'user/post',
     'user/put',
     'user/active/put',
