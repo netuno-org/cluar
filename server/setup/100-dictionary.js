@@ -8468,3 +8468,22 @@ _db.insertIfNotExists(
     .set("entry_id", "a95cab94-e4d3-4582-a739-1ca71254b0ae")
     .set("value", "Deixa em branco para a p\u00E1gina entrar sempre a seguir \u00E0 \u00FAltima do mesmo n\u00EDvel de menu.")
 );
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "88f68a7f-a8f8-4e42-bf1a-8a5e77f2bbe6")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "cd9ca6b4-b7de-411c-a35d-6b2ebb9370d3")
+    .set("value", "Synchronize")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "4671e45e-b368-432d-8ea4-4009146ed588")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "cd9ca6b4-b7de-411c-a35d-6b2ebb9370d3")
+    .set("value", "Sincronizar")
+);
+

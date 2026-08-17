@@ -1292,6 +1292,14 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
+    .set("uid", "cd9ca6b4-b7de-411c-a35d-6b2ebb9370d3")
+    .set("code", "pages-page-sync")
+    .set("description", "P\u00E1ginas - Bot\u00E3o - Sincronizar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
     .set("uid", "d3a70c44-9e95-4660-a358-370c4fb7f668")
     .set("code", "page-form-title")
     .set("description", "Formul\u00E1rio de P\u00E1ginas - T\u00EDtulo")
