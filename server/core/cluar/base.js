@@ -23,12 +23,12 @@ cluar.base = () => {
  * já existente: pasta "cluar/images/configuration" + nome gerado pelo
  * Netuno no upload (ex: o "logo").
  */
-cluar.base.FIXED_IMAGE_LOCATION = {
+cluar.FIXED_IMAGE_LOCATION = {
   "favicon": { folder: "images", fileName: "favicon.png" },
 }
 
-cluar.base.configurationImageLocation = (parameterCode, uploadedFileName) => {
-  const fixed = cluar.base.FIXED_IMAGE_LOCATION[parameterCode]
+cluar.configurationImageLocation = (parameterCode, uploadedFileName) => {
+  const fixed = cluar.FIXED_IMAGE_LOCATION[parameterCode]
   if (fixed) {
     return { folder: fixed.folder, fileName: fixed.fileName }
   }
@@ -46,17 +46,17 @@ cluar.base.configurationImageLocation = (parameterCode, uploadedFileName) => {
  * A query ?v= evita que o browser mostre uma versão em cache antiga
  * quando a imagem é substituída num caminho fixo (ex: favicon).
  */
-cluar.base.configurationImageUrl = (parameterCode, uploadedFileName) => {
+cluar.configurationImageUrl = (parameterCode, uploadedFileName) => {
   if (!uploadedFileName) {
     return null
   }
-  const location = cluar.base.configurationImageLocation(parameterCode, uploadedFileName)
+  const location = cluar.configurationImageLocation(parameterCode, uploadedFileName)
   const file = _app.file(`${cluar.base()}/${location.folder}/${location.fileName}`)
   const version = file.exists() ? file.lastModified() : 0
   return `/${location.folder}/${location.fileName}?v=${version}`
 }
 
-cluar.base.configuration = () => {
+cluar.configuration = () => {
   if (_config.has("cluar:base:configuration")) {
     return _config.getValues("cluar:base:configuration");
   }
@@ -84,7 +84,7 @@ cluar.base.configuration = () => {
     const uploadedFileName = dbParameter.getString("value_img")
 
     if (uploadedFileName) {
-      const location = cluar.base.configurationImageLocation(
+      const location = cluar.configurationImageLocation(
         dbParameter.getString("code"), uploadedFileName
       )
       const folder = _app.folder(`${cluar.base()}/${location.folder}`)
@@ -126,7 +126,7 @@ cluar.base.configuration = () => {
     const uploadedFileName = dbParameter.getString("value_img")
 
     if (uploadedFileName) {
-      const location = cluar.base.configurationImageLocation(
+      const location = cluar.configurationImageLocation(
         dbParameter.getString("code"), uploadedFileName
       )
       const folder = _app.folder(`${cluar.base()}/${location.folder}`)
@@ -161,7 +161,7 @@ cluar.base.configuration = () => {
  *  publicadas. Por isso o custo é sempre o mesmo, independentemente de
  *  o website ter 1 ou 1000 páginas publicadas.
  *
- *  - Favicon: só troca a imagem (ver cluar.base.configurationImageLocation).
+ *  - Favicon: só troca a imagem (ver configurationImageLocation).
  *  - Título: é texto dentro do <title>, obriga a reescrever esse nó nos
  *    2 ficheiros raiz (não há como isto ser um recurso partilhado).
  *  - Cores: em vez de embutidas por página, ficam num único root.css
@@ -180,7 +180,7 @@ cluar.base.configuration = () => {
  *  publicar/republicar manualmente (botão de sincronização) se algo
  *  MAIS além destes 3 tiver mudado (ex: menu de navegação).
  */
-cluar.base.applyConfigurationToIndexHtml = (configuration) => {
+cluar.applyConfigurationToIndexHtml = (configuration) => {
   const generic = configuration.getValues("GENERIC") || _val.map()
 
   const title = generic.getString("title")
@@ -200,7 +200,7 @@ cluar.base.applyConfigurationToIndexHtml = (configuration) => {
   }
   cssOverrides += "}\n"
 
-  const faviconLocation = cluar.base.FIXED_IMAGE_LOCATION["favicon"]
+  const faviconLocation = cluar.FIXED_IMAGE_LOCATION["favicon"]
 
   /*
    * website/index.html (fonte) usa as imagens/root.css de website/public/...
@@ -280,7 +280,7 @@ cluar.base.applyConfigurationToIndexHtml = (configuration) => {
   *
   */
 
-cluar.base.dictionary = () => {
+cluar.dictionary = () => {
   if (_config.has("cluar:base:dictionary")) {
     return _config.getValues("cluar:base:dictionary");
   }
@@ -318,7 +318,7 @@ cluar.base.dictionary = () => {
   *
   */
 
-cluar.base.pages = ({ publish = false }) => {
+cluar.pages = ({ publishFn = null }) => {
   if (_config.has("cluar:base:pages")) {
     return _config.getValues("cluar:base:pages");
   }
@@ -389,8 +389,8 @@ cluar.base.pages = ({ publish = false }) => {
           .set("template", dbPage.getString("template"))
       );
 
-    if (publish) {
-      cluar.page.publish(dbPage);
+    if (publishFn) {
+      publishFn(dbPage);
     }
   }
 
@@ -405,7 +405,7 @@ cluar.base.pages = ({ publish = false }) => {
   *
   */
 
-cluar.base.languages = () => {
+cluar.languages = () => {
   if (_config.has("cluar:base:languages")) {
     return _config.getValues("cluar:base:languages");
   }
@@ -442,7 +442,7 @@ cluar.base.languages = () => {
   *
   */
 
-cluar.base.actions = () => {
+cluar.actions = () => {
   if (_config.has("cluar:base:actions")) {
     return _config.getValues("cluar:base:actions");
   }
@@ -478,3 +478,5 @@ cluar.base.actions = () => {
 
   return actions;
 }
+
+export default cluar;

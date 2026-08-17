@@ -1,4 +1,4 @@
-// _core: db/insertAndReturn
+import insertAndReturn from "#core/db/insertAndReturn.js"
 
 const description = _req.getString("description");
 const code = _req.getString("code");

@@ -1,5 +1,7 @@
-cluar.custom.build = (settings, data)=> {
+const build = (settings, data)=> {
   if (settings.images === true) {
     // TODO...
   }
 }
+
+export default build;

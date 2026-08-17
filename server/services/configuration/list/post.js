@@ -1,4 +1,4 @@
-// _core : cluar/main
+import cluar from "#core/cluar/main.js"
 
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
@@ -84,7 +84,7 @@ for (const dbItem of dbPage.getList('items')) {
             .set('active', dbItem.getBoolean('configuration_active'))
             .set('value', dbItem.getString('value'))
             .set('value_img', dbItem.getString('value_img'))
-            .set('image_url', cluar.base.configurationImageUrl(
+            .set('image_url', cluar.configurationImageUrl(
                 dbItem.getString('parameter_code'), dbItem.getString('value_img')
             ))
             .set('parameter', _val.map()

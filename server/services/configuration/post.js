@@ -1,5 +1,5 @@
-//_core: db/insertAndReturn
-// _core : cluar/main
+import insertAndReturn from "#core/db/insertAndReturn.js"
+import cluar from "#core/cluar/main.js"
 
 const value = _req.getString("value");
 const parameterCode = _req.getString("parameter_code");
@@ -51,7 +51,7 @@ const registedConfig = insertAndReturn('configuration', data);
 if (value?.includes("base64")) {
     const dbNewConfiguration = _db.get("configuration", registedConfig.getInt("id"))
     const fileName = dbNewConfiguration.getString("value_img")
-    const location = cluar.base.configurationImageLocation(parameterCode, fileName)
+    const location = cluar.configurationImageLocation(parameterCode, fileName)
 
     _db.update(
         'configuration',
