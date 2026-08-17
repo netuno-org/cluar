@@ -14,6 +14,7 @@ import {
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
+import ConfigurationParameterSelect from "./ConfigurationParemeterSelect";
 
 const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref) => {
     const configColumn = {
@@ -291,17 +292,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                             name={"parameter_code"}
                             rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
                         >
-                            <Select
-                                loading={loading.parameter}
-                                labelInValue
-                                showSearch
-                                optionFilterProp="label"
-                                listHeight={170}
-                                options={parameters.map((parameter) => ({
-                                    label: parameter.description,
-                                    value: parameter.code
-                                }))}
-                            />
+                            <ConfigurationParameterSelect />
                         </Form.Item>
                     </Col>
                     <Col span={24}>
