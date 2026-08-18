@@ -15,6 +15,7 @@ if (!dbConfiguration) {
 
 const dbParameter = _db.get("configuration_parameter", dbConfiguration.getInt("parameter_id"));
 const dbLanguage = _db.get("language", dbConfiguration.getInt("language_id"));
+const dbParameterType = _db.get("configuration_parameter_type", dbParameter.getInt("configuration_parameter_type_id"));
 
 _out.json(
     _val.map()
@@ -25,6 +26,7 @@ _out.json(
             .set('parameter', _val.map()
                 .set('description', dbParameter.getString("description"))
                 .set('code', dbParameter.getString("code"))
+                .set('type_code', dbParameterType.getString("code"))
             )
             .set('language', _val.map()
                 .set('description', dbLanguage.getString("description"))

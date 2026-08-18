@@ -15,16 +15,22 @@ import {
     CheckOutlined,
     CloseOutlined,
 } from "@ant-design/icons";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../../common/Cluar";
 import "./index.less";
 
-const emptyDraft = { code: "", description: "" };
+const emptyDraft = { code: "", description: "", type_code: "" };
 
-const ConfigurationParameterSelect = ({ value, onChange }) => {
-    const [parameters, setParameters] = useState([]);
-    const [loading, setLoading] = useState(false);
+const ConfigurationParameterSelect = ({
+    value,
+    onChange,
+    parameters,
+    loading,
+    onParametersChange,
+    typeOptions = [],
+    typeLoading = false,
+}) => {
     const [open, setOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
 
@@ -49,27 +55,6 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
         }, 0);
     };
 
-    useEffect(() => {
-        loadParameters();
-    }, []);
-
-    const loadParameters = () => {
-        setLoading(true);
-        _service({
-            url: "configuration/parameter/list",
-            method: "POST",
-            success: (response) => {
-                setLoading(false);
-                setParameters(response.json.data);
-            },
-            fail: (error) => {
-                setLoading(false);
-                console.error(error);
-                notification.error({ message: Cluar.plainDictionary("configuration-parameter-select-notification-load-fail") });
-            },
-        });
-    };
-
     const filteredParameters = parameters.filter((parameter) => {
         if (!searchValue) return true;
         const term = searchValue.toLowerCase();
@@ -85,7 +70,7 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
 
     const startCreate = (prefillCode = "") => {
         setEditingUid(null);
-        setCreateDraft({ code: prefillCode, description: "" });
+        setCreateDraft({ ...emptyDraft, code: prefillCode });
         setCreating(true);
     };
 
@@ -95,7 +80,7 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
     };
 
     const saveCreate = () => {
-        if (!createDraft.code || !createDraft.description) {
+        if (!createDraft.code || !createDraft.description || !createDraft.type_code) {
             notification.warning({ message: Cluar.plainDictionary("configuration-parameter-select-notification-fill-required") });
             return;
         }
@@ -105,8 +90,8 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
             data: createDraft,
             success: (response) => {
                 const newParameter = response.json.parameter;
-                setParameters((prev) => [...prev, newParameter]);
-                onChange?.(newParameter.uid);
+                onParametersChange((prev) => [...prev, newParameter]);
+                onChange?.(newParameter.code);
                 cancelCreate();
                 setSearchValue("");
                 setOpen(false);
@@ -121,7 +106,11 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
     const startEdit = (parameter) => {
         setCreating(false);
         setEditingUid(parameter.uid);
-        setEditDraft({ code: parameter.code, description: parameter.description });
+        setEditDraft({
+            code: parameter.code,
+            description: parameter.description,
+            type_code: parameter.type_code,
+        });
     };
 
     const cancelEdit = () => {
@@ -130,7 +119,7 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
     };
 
     const saveEdit = (uid) => {
-        if (!editDraft.code || !editDraft.description) {
+        if (!editDraft.code || !editDraft.description || !editDraft.type_code) {
             notification.warning({ message: Cluar.plainDictionary("configuration-parameter-select-notification-fill-required") });
             return;
         }
@@ -139,7 +128,7 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
             method: "PUT",
             data: { uid, ...editDraft },
             success: () => {
-                setParameters((prev) =>
+                onParametersChange((prev) =>
                     prev.map((p) => (p.uid === uid ? { ...p, ...editDraft } : p))
                 );
                 cancelEdit();
@@ -154,14 +143,14 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
         });
     };
 
-    const deleteParameter = (uid) => {
+    const deleteParameter = (parameter) => {
         _service({
             url: "configuration/parameter",
             method: "DELETE",
-            data: { uid },
+            data: { uid: parameter.uid },
             success: () => {
-                setParameters((prev) => prev.filter((p) => p.uid !== uid));
-                if (value === uid) onChange?.(undefined);
+                onParametersChange((prev) => prev.filter((p) => p.uid !== parameter.uid));
+                if (value === parameter.code) onChange?.(undefined);
                 notification.success({ message: Cluar.plainDictionary("configuration-parameter-select-notification-delete-success") });
             },
             fail: (error) => {
@@ -188,16 +177,17 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
             searchValue={searchValue}
             onSearch={setSearchValue}
             filterOption={false}
+            loading={loading}
             placeholder={Cluar.plainDictionary("configuration-form-parameter-placeholder")}
             options={filteredParameters.length > 0
                 ? filteredParameters.map((p) => ({
-                    value: p.uid,
-                    label: `${p.code} — ${p.description}`,
+                    value: p.code,
+                    label: `${p.code} | ${p.description}`,
                 }))
                 : [{ value: "__empty__", label: "empty", disabled: true }] // Opção fantasma
             }
-            onChange={(uid) => {
-                onChange?.(uid);
+            onChange={(code) => {
+                onChange?.(code);
                 setSearchValue("");
                 setOpen(false);
             }}
@@ -232,11 +222,13 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
                                         }
                                         placeholder={Cluar.plainDictionary("configuration-parameter-select-placeholder-description")}
                                     />
-                                    <Input
+                                    <Select
                                         size="small"
-                                        value={editDraft.select}
-                                        onChange={(e) =>
-                                            setEditDraft({ ...editDraft, select: e.target.value })
+                                        value={editDraft.type_code || undefined}
+                                        options={typeOptions}
+                                        loading={typeLoading}
+                                        onChange={(type_code) =>
+                                            setEditDraft({ ...editDraft, type_code })
                                         }
                                         placeholder={Cluar.plainDictionary("configuration-parameter-select-placeholder-select")}
                                     />
@@ -257,17 +249,17 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
                                 </div>
                             ) : (
                                 <div
-                                    className={`configuration-parameter-select-row ${value === parameter.uid ? "selected" : ""
+                                    className={`configuration-parameter-select-row ${value === parameter.code ? "selected" : ""
                                         }`}
                                     key={parameter.uid}
                                     onClick={() => {
-                                        onChange?.(parameter.uid);
+                                        onChange?.(parameter.code);
                                         setSearchValue("");
                                         setOpen(false);
                                     }}
                                 >
                                     <span className="configuration-parameter-select-label">
-                                        <strong>{parameter.code}</strong> — {parameter.description}
+                                        <strong>{parameter.code}</strong> | {parameter.description}
                                     </span>
                                     <Space size={4} className="configuration-parameter-select-actions">
                                         <Button
@@ -283,7 +275,7 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
                                             title={Cluar.plainDictionary("configuration-parameter-select-popconfirm-delete-title")}
                                             onConfirm={(e) => {
                                                 e?.stopPropagation?.();
-                                                deleteParameter(parameter.uid);
+                                                deleteParameter(parameter);
                                             }}
                                             onCancel={(e) => e?.stopPropagation?.()}
                                         >
@@ -321,11 +313,13 @@ const ConfigurationParameterSelect = ({ value, onChange }) => {
                                 }
                                 placeholder={Cluar.plainDictionary("configuration-parameter-select-placeholder-description")}
                             />
-                            <Input
+                            <Select
                                 size="small"
-                                value={editDraft.select}
-                                onChange={(e) =>
-                                    setEditDraft({ ...editDraft, select: e.target.value })
+                                value={createDraft.type_code || undefined}
+                                options={typeOptions}
+                                loading={typeLoading}
+                                onChange={(type_code) =>
+                                    setCreateDraft({ ...createDraft, type_code })
                                 }
                                 placeholder={Cluar.plainDictionary("configuration-parameter-select-placeholder-select-type")}
                             />

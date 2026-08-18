@@ -3793,3 +3793,139 @@ _db.insertIfNotExists(
     .set("description", "P\u00E1ginas - Configura\u00E7\u00E3o - Dica - Ordem Autom\u00E1tica")
 );
 
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "636ff747-27a7-46e4-b630-5d94b2cc1b56")
+    .set("code", "configuration-form-parameter-placeholder")
+    .set("description", "Configura\u00E7\u00E3o - Formul\u00E1rio - Placeholder - Selecionar Par\u00E2metro")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "09efc30d-3f10-4678-ac71-066017b795ba")
+    .set("code", "configuration-parameter-select-notification-fill-required")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Preencher obrigat\u00F3rios")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "1f588ffb-950b-430c-9cdf-a271f0a010b4")
+    .set("code", "configuration-parameter-select-notification-create-fail")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Falha ao criar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ff0066b4-1192-4787-9d7b-03a6543821c5")
+    .set("code", "configuration-parameter-select-notification-update-success")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Sucesso ao atualizar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ba33078a-cb35-4988-8a93-93d3912ba5a2")
+    .set("code", "configuration-parameter-select-notification-update-fail")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Falha ao atualizar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "cd4c1235-2742-48ad-986a-642e7db46e8f")
+    .set("code", "configuration-parameter-select-notification-delete-success")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Sucesso ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "5cdde61d-dde0-467f-98f9-21b24d09394c")
+    .set("code", "configuration-parameter-select-notification-delete-fail")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Notifica\u00E7\u00E3o - Falha ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "42870057-1073-4182-bc02-82f9ffc4ecf0")
+    .set("code", "configuration-parameter-select-empty")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Lista Vazia")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "8b8619c0-6fa4-48ff-a2ec-ae18a98f268d")
+    .set("code", "configuration-parameter-select-placeholder-code")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Placeholder - C\u00F3digo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2c0718c2-9ff6-46b1-83f7-63078515b225")
+    .set("code", "configuration-parameter-select-placeholder-description")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Placeholder - Descri\u00E7\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "e9f7c28b-234d-44e6-9c88-d9a104e64126")
+    .set("code", "configuration-parameter-select-placeholder-select")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Placeholder - Selecione")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "8b4bd59d-317a-415e-8aec-db0a58f2eb4b")
+    .set("code", "configuration-parameter-select-placeholder-select-type")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Placeholder - Selecione um tipo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "7a7887e7-d75e-4936-abc1-6ef600f5c3b1")
+    .set("code", "configuration-parameter-select-popconfirm-delete-title")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Popconfirm - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "1159240f-ee51-4f9c-b0bc-0480c69ce81c")
+    .set("code", "configuration-parameter-select-button-save")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Bot\u00E3o - Salvar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2ee33790-8ba4-4914-9ffb-c3998718ad49")
+    .set("code", "configuration-parameter-select-button-cancel")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Bot\u00E3o - Cancelar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "6e2a20d4-5c69-46b3-a3d3-6935104cf06f")
+    .set("code", "configuration-parameter-select-button-create")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Bot\u00E3o - Criar par\u00E2metro")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "4a65fa9e-65a9-414f-a0bb-93dbc2e9ec7c")
+    .set("code", "configuration-parameter-select-button-new")
+    .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Bot\u00E3o - Novo par\u00E2metro")
+);
+

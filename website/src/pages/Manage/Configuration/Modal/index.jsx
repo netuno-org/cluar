@@ -31,11 +31,13 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     const [languages, setLanguages] = useState([]);
     const [fileList, setFileList] = useState([]);
     const [parameters, setParameters] = useState([]);
+    const [parameterTypes, setParameterTypes] = useState([]);
     const [hexValue, setHexValue] = useState('');
     const [loading, setLoading] = useState({
         save: false,
         language: false,
-        parameter: false
+        parameter: false,
+        parameterType: false
     });
     const selectedParameterCode = Form.useWatch('parameter_code', formRef);
 
@@ -52,17 +54,17 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     });
 
     const onLoadLanguages = () => {
-        setLoading({ ...loading, language: true });
+        setLoading((prev) => ({ ...prev, language: true }));
         _service({
             url: "language/list",
             method: "POST",
             success: (response) => {
-                setLoading({ ...loading, language: false });
+                setLoading((prev) => ({ ...prev, language: false }));
                 const { items } = response.json.page;
                 setLanguages(items);
             },
             fail: (error) => {
-                setLoading({ ...loading, language: false });
+                setLoading((prev) => ({ ...prev, language: false }));
                 console.error(error);
                 notification.error({
                     message: "Falha ao carregar idiomas."
@@ -72,19 +74,38 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     }
 
     const onLoadParameters = () => {
-        setLoading({ ...loading, parameter: true });
+        setLoading((prev) => ({ ...prev, parameter: true }));
         _service({
             url: "configuration/parameter/list",
             method: "GET",
             success: (response) => {
-                setLoading({ ...loading, parameter: false });
+                setLoading((prev) => ({ ...prev, parameter: false }));
                 setParameters(response.json.parameters);
             },
             fail: (error) => {
-                setLoading({ ...loading, parameter: false });
+                setLoading((prev) => ({ ...prev, parameter: false }));
                 console.error(error);
                 notification.error({
                     message: "Falha ao carregar paramêtros."
+                })
+            }
+        })
+    }
+
+    const onLoadParameterTypes = () => {
+        setLoading((prev) => ({ ...prev, parameterType: true }));
+        _service({
+            url: "configuration/parameter/type/list",
+            method: "GET",
+            success: (response) => {
+                setLoading((prev) => ({ ...prev, parameterType: false }));
+                setParameterTypes(response.json.types);
+            },
+            fail: (error) => {
+                setLoading((prev) => ({ ...prev, parameterType: false }));
+                console.error(error);
+                notification.error({
+                    message: "Falha ao carregar tipos de parâmetro."
                 })
             }
         })
@@ -95,13 +116,12 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     }
 
     const onFinish = async (values) => {
-        const code = selectedParameterCode?.value || selectedParameterCode;
-        const parameter = parameters.find(item => item.code === code);
-        const type = parameter?.type;
+        const parameter = parameters.find(item => item.code === selectedParameterCode);
+        const type = parameter?.type_code;
 
         const data = {
             ...values,
-            parameter_code: values?.parameter_code.value,
+            parameter_code: values?.parameter_code,
             language_code: values?.language_code?.value
         };
 
@@ -119,7 +139,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
         }
 
         if (editeMode) {
-            setLoading({ ...loading, save: true });
+            setLoading((prev) => ({ ...prev, save: true }));
             _service({
                 url: "configuration",
                 method: "PUT",
@@ -128,7 +148,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     ...data
                 },
                 success: (reponse) => {
-                    setLoading({ ...loading, save: false });
+                    setLoading((prev) => ({ ...prev, save: false }));
                     setIsModalOpen(false);
                     notification.success({
                         message: Cluar.plainDictionary('configuration-modal-edit-success-message')
@@ -136,7 +156,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     onReloadTable();
                 },
                 fail: (error) => {
-                    setLoading({ ...loading, save: false });
+                    setLoading((prev) => ({ ...prev, save: false }));
                     console.error(error);
                     notification.error({
                         message: Cluar.plainDictionary('configuration-form-edit-failed-message')
@@ -144,7 +164,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                 }
             });
         } else {
-            setLoading({ ...loading, save: true });
+            setLoading((prev) => ({ ...prev, save: true }));
             _service({
                 url: "configuration",
                 method: "POST",
@@ -152,7 +172,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     ...data
                 },
                 success: (reponse) => {
-                    setLoading({ ...loading, save: false });
+                    setLoading((prev) => ({ ...prev, save: false }));
                     setIsModalOpen(false);
                     notification.success({
                         message: Cluar.plainDictionary('configuration-form-new-success-message')
@@ -160,7 +180,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                     onReloadTable();
                 },
                 fail: (error) => {
-                    setLoading({ ...loading, save: false });
+                    setLoading((prev) => ({ ...prev, save: false }));
                     console.error(error);
                     notification.error({
                         message: Cluar.plainDictionary('configuration-form-new-failed-message')
@@ -171,9 +191,8 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     }
 
     const InputValue = () => {
-        const code = selectedParameterCode?.value || selectedParameterCode;
-        const parameter = parameters.find(item => item.code === code);
-        const type = parameter?.type;
+        const parameter = parameters.find(item => item.code === selectedParameterCode);
+        const type = parameter?.type_code;
 
         if (type === "color") {
             return <ColorPicker showText onChange={handleChangeColor} />;
@@ -238,10 +257,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
 
             formRef.setFieldsValue({
                 ...configurationDataFormatted,
-                parameter_code: {
-                    value: configurationData.parameter.code,
-                    label: configurationData.parameter.description
-                },
+                parameter_code: configurationData.parameter.code,
                 language_code: {
                     value: configurationData.language?.code,
                     label: configurationData.language?.description
@@ -253,6 +269,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     useEffect(() => {
         onLoadLanguages();
         onLoadParameters();
+        onLoadParameterTypes();
     }, []);
 
     return (
@@ -292,7 +309,16 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
                             name={"parameter_code"}
                             rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
                         >
-                            <ConfigurationParameterSelect />
+                            <ConfigurationParameterSelect
+                                parameters={parameters}
+                                loading={loading.parameter}
+                                onParametersChange={setParameters}
+                                typeOptions={parameterTypes.map((type) => ({
+                                    value: type.code,
+                                    label: type.name
+                                }))}
+                                typeLoading={loading.parameterType}
+                            />
                         </Form.Item>
                     </Col>
                     <Col span={24}>

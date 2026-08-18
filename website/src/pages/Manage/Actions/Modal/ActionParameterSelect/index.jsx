@@ -193,7 +193,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
             options={filteredParameters.length > 0
                 ? filteredParameters.map((p) => ({
                     value: p.uid,
-                    label: `${p.code} — ${p.description}`,
+                    label: `${p.code} | ${p.description}`,
                 }))
                 : [{ value: "__empty__", label: "empty", disabled: true }] // Opção fantasma
             }
@@ -260,7 +260,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
                                     }}
                                 >
                                     <span className="action-parameter-select-label">
-                                        <strong>{parameter.code}</strong> — {parameter.description}
+                                        <strong>{parameter.code}</strong> | {parameter.description}
                                     </span>
                                     <Space size={4} className="action-parameter-select-actions">
                                         <Button
