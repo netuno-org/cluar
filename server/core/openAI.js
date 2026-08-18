@@ -155,3 +155,5 @@ class OpenAI {
             .set("error", response.getContent())
     }
 }
+
+export { OpenAI };

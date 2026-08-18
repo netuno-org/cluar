@@ -1,4 +1,4 @@
-// _core: cluar/main
+import cluar from "#core/cluar/main.js"
 
 const page = _req.getString("page");
 const structures = _req.get("structures");

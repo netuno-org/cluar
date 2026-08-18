@@ -1,3 +1,5 @@
+const cluar = {};
+
 cluar.actions = (section, id) => {
   const dbActions = _db.query(`
         SELECT
@@ -33,3 +35,5 @@ cluar.actions = (section, id) => {
   }
   return actions
 }
+
+export default cluar;

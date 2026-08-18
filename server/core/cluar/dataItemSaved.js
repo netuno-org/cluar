@@ -1,7 +1,11 @@
+import cluarBase from "#core/cluar/base.js"
+
+const cluar = {};
+
 cluar.dataItemSavedWithImage = ()=> {
   const section = _dataItem.getFormName()
 
-  const folder = _app.folder(`${cluar.base()}/cluar/images/${section}`)
+  const folder = _app.folder(`${cluarBase.base()}/cluar/images/${section}`)
   
   if (!folder.exists()) {
     folder.mkdir()
@@ -17,3 +21,5 @@ cluar.dataItemSavedWithImage = ()=> {
       .copy(`${folder.path()}/${_dataItem.getValues().getString("image:new")}`)
   }
 }
+
+export default cluar;

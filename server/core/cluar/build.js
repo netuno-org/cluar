@@ -1,7 +1,13 @@
+import cluarBase from "#core/cluar/base.js"
+import cluarCustom from "#core/cluar/custom/main.js"
+import cluarPage from "#core/cluar/page/main.js"
+
+const cluar = {};
+
 cluar.build = (settings)=> {
   settings = settings || {}
   
-  const folder = _app.folder(`${cluar.base()}/cluar`)
+  const folder = _app.folder(`${cluarBase.base()}/cluar`)
   if (!folder.exists()) {
     folder.mkdir()
   }
@@ -20,7 +26,7 @@ cluar.build = (settings)=> {
    *
    */        
 
-  const languages = cluar.base.languages();
+  const languages = cluarBase.languages();
   data.set("languages", languages)
   
   /*
@@ -29,15 +35,15 @@ cluar.build = (settings)=> {
    *
    */
   
-  const configuration = cluar.base.configuration()
+  const configuration = cluarBase.configuration()
   data.set("configuration", configuration)
 
   /*
    *  Título (index.html) + root.css (cores). Ambos ficheiros "de raiz",
    *  nunca tocam em páginas já publicadas - ver comentário completo em
-   *  cluar.base.applyConfigurationToIndexHtml.
+   *  cluarBase.applyConfigurationToIndexHtml.
    */
-  cluar.base.applyConfigurationToIndexHtml(configuration)
+  cluarBase.applyConfigurationToIndexHtml(configuration)
   
   /*
    *
@@ -45,7 +51,7 @@ cluar.build = (settings)=> {
    *
    */
   
-  data.set("dictionary", cluar.base.dictionary())
+  data.set("dictionary", cluarBase.dictionary())
 
   /*
    *
@@ -58,7 +64,7 @@ cluar.build = (settings)=> {
    *  conteúdo, etc. Ver server/services/admin/cluar/sync.js.
    */
 
-  const pages = cluar.base.pages({publish: settings.publishAll === true})
+  const pages = cluarBase.pages({publishFn: settings.publishAll === true ? cluarPage.publish : null})
   data.set("pages", pages)
 
   /*
@@ -67,9 +73,9 @@ cluar.build = (settings)=> {
    *
    */
 
-  data.set("actions", cluar.base.actions())
+  data.set("actions", cluarBase.actions())
   
-  cluar.custom.build(settings, data)
+  cluarCustom.build(settings, data)
   
   /*
    *
@@ -77,12 +83,12 @@ cluar.build = (settings)=> {
    *
    */
 
-  const file = _app.file(`${cluar.base()}/cluar/data.js`)
+  const file = _app.file(`${cluarBase.base()}/cluar/data.js`)
   file.output().print(`window.cluar = ${data.toJSON(4)};`).close()
   
   if (_app.settings.getValues('cluar', _val.map()).getBoolean("uglifyjs") == true) {
     const osUglifyJS = _os.init()
-    osUglifyJS.directory(_app.folder(cluar.base()))
+    osUglifyJS.directory(_app.folder(cluarBase.base()))
     const osUglifyJSResult = osUglifyJS.command(`uglifyjs -o cluar/data.js -- cluar/data.js`)
     if (osUglifyJSResult.output() != '' && osUglifyJSResult.error() != '') {
       _log.error(`UglifyJS failed:\n\tOutput: ${osUglifyJSResult.output()}\n\tError: ${osUglifyJSResult.error()}`)
@@ -108,13 +114,13 @@ cluar.build = (settings)=> {
   attrXHTML.setValue("http://www.w3.org/1999/xhtml")
   tagURLSet.setAttributeNode(attrXHTML)
   const attrMobile = document.createAttribute("xmlns:mobile")
-  attrMobile.setValue("http://www.sitemaps.org/schemas/sitemap/0.9")
+  attrMobile.setValue("http://www.sitemaps.org/schemas/sitemap/1.0")
   tagURLSet.setAttributeNode(attrMobile)
   const attrImage = document.createAttribute("xmlns:image")
   attrImage.setValue("http://www.google.com/schemas/sitemap-image/1.1")
   tagURLSet.setAttributeNode(attrImage)
   const attrVideo = document.createAttribute("xmlns:video")
-  attrVideo.setValue("http://www.google.com/schemas/sitemap-video/1.1")
+  attrVideo.setValue("http://www.google.com/schemas/sitemap-video/2.1")
   tagURLSet.setAttributeNode(attrVideo)
   for (const language of languages) {
     if (pages.getValues(language.getString("code")) == null) {
@@ -143,14 +149,16 @@ cluar.build = (settings)=> {
       tagURLSet.appendChild(tagURL)
     }
   }
-  cluar.custom.siteMap(origin, document, tagURLSet)
+  cluarCustom.siteMap(origin, document, tagURLSet)
   document.appendChild(tagURLSet)
-  xml.save(document, _app.file(`${cluar.base()}/sitemap.xml`))
-  if (!_app.file(`${cluar.base()}/robots.txt`).exists()) {
-    const output = _app.file(`${cluar.base()}/robots.txt`).output()
+  xml.save(document, _app.file(`${cluarBase.base()}/sitemap.xml`))
+  if (!_app.file(`${cluarBase.base()}/robots.txt`).exists()) {
+    const output = _app.file(`${cluarBase.base()}/robots.txt`).output()
           .println('User-agent: *')
           .println('Allow: /')
           .println(`Sitemap: ${origin}/sitemap.xml`)
           .close()
   }
 }
+
+export default cluar;

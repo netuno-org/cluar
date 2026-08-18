@@ -1,8 +1,12 @@
+import cluarBase from "#core/cluar/base.js"
+
+const cluar = {};
+
 cluar.publishImage = (section, fileName)=> {
   if (fileName == "") {
     return;
   }
-  const folder = _app.folder(`${cluar.base()}/cluar/images/page_${section}`)
+  const folder = _app.folder(`${cluarBase.base()}/cluar/images/page_${section}`)
   if (!folder.exists()) {
     folder.mkdirs()
   }
@@ -21,7 +25,7 @@ cluar.publishPageSocialImage = (fileName)=> {
   if (fileName == "") {
     return;
   }
-  const folder = _app.folder(`${cluar.base()}/cluar/images/page`)
+  const folder = _app.folder(`${cluarBase.base()}/cluar/images/page`)
   if (!folder.exists()) {
     folder.mkdirs()
   }
@@ -35,3 +39,5 @@ cluar.publishPageSocialImage = (fileName)=> {
       .copy(`${folder.path()}/${fileName}`, true)
   }
 }
+
+export default cluar;
