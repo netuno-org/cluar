@@ -11,6 +11,7 @@ import {
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
+import DictionaryParameterSelect from "./DictionaryParemeterSelect";
 
 const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     const configColumn = {
@@ -29,7 +30,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     const [loading, setLoading] = useState({
         language: false,
         entry: false,
-        save:false
+        save: false
     });
 
     const onOpenModal = () => {
@@ -78,20 +79,20 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     const onFinish = (values) => {
         const data = {
             ...values,
-            language_code:values.language_code.value,
-            entry_code:values.entry_code.value
+            language_code: values.language_code.value,
+            entry_code: values.entry_code.value
         }
         if (editeMode) {
-            setLoading({...loading, save:true});
+            setLoading({ ...loading, save: true });
             _service({
-                url:"dictionary",
-                method:"PUT",
-                data:{
-                    uid:dictionaryData.uid,
+                url: "dictionary",
+                method: "PUT",
+                data: {
+                    uid: dictionaryData.uid,
                     ...data
                 },
                 success: (response) => {
-                    setLoading({...loading, save:false});
+                    setLoading({ ...loading, save: false });
                     notification.success({
                         message: Cluar.plainDictionary('dictionary-form-edit-success-message')
                     });
@@ -100,22 +101,22 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 },
                 fail: (error) => {
                     console.error(error);
-                    setLoading({...loading, save:false});
+                    setLoading({ ...loading, save: false });
                     notification.error({
                         message: Cluar.plainDictionary('dictionary-form-edit-failed-message')
                     });
                 }
             });
         } else {
-            setLoading({...loading, save:true});
+            setLoading({ ...loading, save: true });
             _service({
-                url:"dictionary",
-                method:"POST",
-                data:{
+                url: "dictionary",
+                method: "POST",
+                data: {
                     ...data
                 },
                 success: (response) => {
-                    setLoading({...loading, save:false});
+                    setLoading({ ...loading, save: false });
                     notification.success({
                         message: Cluar.plainDictionary('dictionary-form-new-success-message')
                     });
@@ -124,7 +125,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 },
                 fail: (error) => {
                     console.error(error);
-                    setLoading({...loading, save:false});
+                    setLoading({ ...loading, save: false });
                     notification.error({
                         message: Cluar.plainDictionary('dictionary-form-new-failed-message')
                     });
@@ -148,13 +149,13 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
         if (editeMode && isModalOpen) {
             formRef.setFieldsValue({
                 ...dictionaryData,
-                language_code:{
-                    label:dictionaryData.language.description,
-                    value:dictionaryData.language.code
+                language_code: {
+                    label: dictionaryData.language.description,
+                    value: dictionaryData.language.code
                 },
-                entry_code:{
-                    label:dictionaryData.entry.description,
-                    value:dictionaryData.entry.code
+                entry_code: {
+                    label: dictionaryData.entry.description,
+                    value: dictionaryData.entry.code
                 }
             });
         }
@@ -189,6 +190,15 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 <Row justify={"space-between"} align={"middle"} gutter={[10, 0]} >
                     <Col span={24}>
                         <Form.Item
+                            name="dictionary_code"
+                            label={Cluar.plainDictionary('dictionary-form-parameter')}
+                            rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required') }]}
+                        >
+                            <DictionaryParameterSelect />
+                        </Form.Item>
+                    </Col>
+                    <Col span={24}>
+                        <Form.Item
                             name="language_code"
                             label={Cluar.plainDictionary('dictionary-form-language')}
                             rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required') }]}
@@ -206,7 +216,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                         <Form.Item
                             name="entry_code"
                             label={Cluar.plainDictionary('dictionary-form-entry')}
-                            rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required')}]}
+                            rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required') }]}
                         >
                             <Select
                                 labelInValue
