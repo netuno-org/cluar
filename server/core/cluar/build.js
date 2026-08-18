@@ -1,6 +1,6 @@
 import cluarBase from "#core/cluar/base.js"
-import cluarCustomMain from "#core/cluar/custom/main.js"
-import cluarPageMain from "#core/cluar/page/main.js"
+import cluarCustom from "#core/cluar/custom/main.js"
+import cluarPage from "#core/cluar/page/main.js"
 
 const cluar = {};
 
@@ -41,7 +41,7 @@ cluar.build = (settings)=> {
   /*
    *  Título (index.html) + root.css (cores). Ambos ficheiros "de raiz",
    *  nunca tocam em páginas já publicadas - ver comentário completo em
-   *  cluar.applyConfigurationToIndexHtml.
+   *  cluarBase.applyConfigurationToIndexHtml.
    */
   cluarBase.applyConfigurationToIndexHtml(configuration)
   
@@ -64,7 +64,7 @@ cluar.build = (settings)=> {
    *  conteúdo, etc. Ver server/services/admin/cluar/sync.js.
    */
 
-  const pages = cluarBase.pages({publishFn: settings.publishAll === true ? cluarPageMain.publish : null})
+  const pages = cluarBase.pages({publishFn: settings.publishAll === true ? cluarPage.publish : null})
   data.set("pages", pages)
 
   /*
@@ -75,7 +75,7 @@ cluar.build = (settings)=> {
 
   data.set("actions", cluarBase.actions())
   
-  cluarCustomMain.build(settings, data)
+  cluarCustom.build(settings, data)
   
   /*
    *
@@ -149,7 +149,7 @@ cluar.build = (settings)=> {
       tagURLSet.appendChild(tagURL)
     }
   }
-  cluarCustomMain.siteMap(origin, document, tagURLSet)
+  cluarCustom.siteMap(origin, document, tagURLSet)
   document.appendChild(tagURLSet)
   xml.save(document, _app.file(`${cluarBase.base()}/sitemap.xml`))
   if (!_app.file(`${cluarBase.base()}/robots.txt`).exists()) {

@@ -5,9 +5,9 @@ import cluarPublishImage from "#core/cluar/publishImage.js"
 import cluarDataItemSaved from "#core/cluar/dataItemSaved.js"
 import cluarActions from "#core/cluar/actions.js"
 
-import cluarPageMain from "#core/cluar/page/main.js"
+import cluarPage from "#core/cluar/page/main.js"
 
-import cluarCustomMain from "#core/cluar/custom/main.js"
+import cluarCustom from "#core/cluar/custom/main.js"
 
 
 const cluar = {
@@ -16,8 +16,8 @@ const cluar = {
   ...cluarPublishImage,
   ...cluarDataItemSaved,
   ...cluarActions,
-  custom: cluarCustomMain,
-  page: cluarPageMain,
+  custom: cluarCustom,
+  page: cluarPage,
 };
 
 export default cluar;
