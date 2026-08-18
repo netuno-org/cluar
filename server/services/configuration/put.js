@@ -1,4 +1,4 @@
-// _core : cluar/main
+import cluar from "#core/cluar/main.js"
 
 const uid = _req.getString("uid");
 const value = _req.getString("value");
@@ -70,7 +70,7 @@ _db.update(
 if (value?.includes("base64")) {
     const dbNewConfiguration = _db.get("configuration", dbConfiguration.getInt("id"))
     const fileName = dbNewConfiguration.getString("value_img")
-    const location = cluar.base.configurationImageLocation(parameterCode, fileName)
+    const location = cluar.configurationImageLocation(parameterCode, fileName)
 
     _db.update(
         'configuration', 

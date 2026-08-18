@@ -1,4 +1,5 @@
-cluar.custom.siteMap = (origin, document, tagURLSet)=> {
+const siteMap = (origin, document, tagURLSet)=> {
   // TODO...
 }
 
+export default siteMap;

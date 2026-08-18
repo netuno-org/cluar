@@ -1,4 +1,4 @@
-// _core: openAI
+import { OpenAI } from "#core/openAI.js"
 
 const currentHtml = _req.getString("html", "");
 const userPrompt = _req.getString("prompt", null);

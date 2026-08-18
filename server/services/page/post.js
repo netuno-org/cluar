@@ -1,4 +1,4 @@
-// _core: db/insertAndReturn
+import insertAndReturn from "#core/db/insertAndReturn.js"
 
 const languageCode = _req.getString("language_code");
 

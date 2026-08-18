@@ -1,4 +1,4 @@
-// _core : cluar/main
+import cluar from "#core/cluar/main.js"
 
 cluar.build()
 

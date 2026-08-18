@@ -1,4 +1,4 @@
-// _core : cluar/main
+import cluar from "#core/cluar/main.js"
 
 if (_val.global().getBoolean('cluar:setup')) {
     cluar.build({ images: true, publishAll: true });
