@@ -1,7 +1,8 @@
 const dbEntries = _db.form('dictionary_entry')
-.get('description')
-.get('code')
-.all();
+    .get('uid')
+    .get('description')
+    .get('code')
+    .all();
 
 _out.json(
     _val.map()

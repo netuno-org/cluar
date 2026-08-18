@@ -11,7 +11,7 @@ import {
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
-import DictionaryParameterSelect from "./DictionaryParemeterSelect";
+import DictionaryEntrySelect from "./DictionaryEntrySelect";
 
 const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     const configColumn = {
@@ -38,17 +38,17 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     }
 
     const onLoadLanguages = () => {
-        setLoading({ ...loading, language: true });
+        setLoading((prev) => ({ ...prev, language: true }));
         _service({
             url: "language/list",
             method: "POST",
             success: (response) => {
-                setLoading({ ...loading, language: false });
+                setLoading((prev) => ({ ...prev, language: false }));
                 const { items } = response.json.page;
                 setLanguages(items);
             },
             fail: (error) => {
-                setLoading({ ...loading, language: false });
+                setLoading((prev) => ({ ...prev, language: false }));
                 console.error(error);
                 notification.error({
                     message: "Falha ao carregar idiomas."
@@ -58,16 +58,16 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     }
 
     const onLoadEntries = () => {
-        setLoading({ ...loading, entry: true });
+        setLoading((prev) => ({ ...prev, entry: true }));
         _service({
             url: "dictionary/entry/list",
             method: "POST",
             success: (response) => {
-                setLoading({ ...loading, entry: false });
+                setLoading((prev) => ({ ...prev, entry: false }));
                 setEntries(response.json.entries);
             },
             fail: (error) => {
-                setLoading({ ...loading, entry: false });
+                setLoading((prev) => ({ ...prev, entry: false }));
                 console.error(error);
                 notification.error({
                     message: "Falha ao carregar chaves."
@@ -80,10 +80,10 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
         const data = {
             ...values,
             language_code: values.language_code.value,
-            entry_code: values.entry_code.value
+            entry_code: values.entry_code
         }
         if (editeMode) {
-            setLoading({ ...loading, save: true });
+            setLoading((prev) => ({ ...prev, save: true }));
             _service({
                 url: "dictionary",
                 method: "PUT",
@@ -92,7 +92,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                     ...data
                 },
                 success: (response) => {
-                    setLoading({ ...loading, save: false });
+                    setLoading((prev) => ({ ...prev, save: false }));
                     notification.success({
                         message: Cluar.plainDictionary('dictionary-form-edit-success-message')
                     });
@@ -101,14 +101,14 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 },
                 fail: (error) => {
                     console.error(error);
-                    setLoading({ ...loading, save: false });
+                    setLoading((prev) => ({ ...prev, save: false }));
                     notification.error({
                         message: Cluar.plainDictionary('dictionary-form-edit-failed-message')
                     });
                 }
             });
         } else {
-            setLoading({ ...loading, save: true });
+            setLoading((prev) => ({ ...prev, save: true }));
             _service({
                 url: "dictionary",
                 method: "POST",
@@ -116,7 +116,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                     ...data
                 },
                 success: (response) => {
-                    setLoading({ ...loading, save: false });
+                    setLoading((prev) => ({ ...prev, save: false }));
                     notification.success({
                         message: Cluar.plainDictionary('dictionary-form-new-success-message')
                     });
@@ -125,7 +125,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 },
                 fail: (error) => {
                     console.error(error);
-                    setLoading({ ...loading, save: false });
+                    setLoading((prev) => ({ ...prev, save: false }));
                     notification.error({
                         message: Cluar.plainDictionary('dictionary-form-new-failed-message')
                     });
@@ -153,10 +153,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                     label: dictionaryData.language.description,
                     value: dictionaryData.language.code
                 },
-                entry_code: {
-                    label: dictionaryData.entry.description,
-                    value: dictionaryData.entry.code
-                }
+                entry_code: dictionaryData.entry.code
             });
         }
     }, [isModalOpen])
@@ -190,11 +187,15 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                 <Row justify={"space-between"} align={"middle"} gutter={[10, 0]} >
                     <Col span={24}>
                         <Form.Item
-                            name="dictionary_code"
-                            label={Cluar.plainDictionary('dictionary-form-parameter')}
+                            name="entry_code"
+                            label={Cluar.plainDictionary('dictionary-form-entry')}
                             rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required') }]}
                         >
-                            <DictionaryParameterSelect />
+                            <DictionaryEntrySelect
+                                entries={entries}
+                                loading={loading.entry}
+                                onEntriesChange={setEntries}
+                            />
                         </Form.Item>
                     </Col>
                     <Col span={24}>
@@ -204,28 +205,11 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
                             rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required') }]}
                         >
                             <Select
+                                loading={loading.language}
                                 labelInValue
                                 options={languages.map((language) => ({
                                     label: language.description,
                                     value: language.code
-                                }))}
-                            />
-                        </Form.Item>
-                    </Col>
-                    <Col span={24}>
-                        <Form.Item
-                            name="entry_code"
-                            label={Cluar.plainDictionary('dictionary-form-entry')}
-                            rules={[{ required: true, message: Cluar.plainDictionary('dictionary-form-validate-message-required') }]}
-                        >
-                            <Select
-                                labelInValue
-                                showSearch
-                                optionFilterProp="label"
-                                listHeight={200}
-                                options={entries.map((entry) => ({
-                                    label: entry.description,
-                                    value: entry.code
                                 }))}
                             />
                         </Form.Item>

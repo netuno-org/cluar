@@ -15,18 +15,24 @@ import {
     CheckOutlined,
     CloseOutlined,
 } from "@ant-design/icons";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../../common/Cluar";
 import "./index.less";
 
 const emptyDraft = { code: "", description: "" };
+const VISIBLE_STEP = 20; // quantidade exibida por vez, expande ao clicar em "ver mais"
 
-const DictionaryParameterSelect = ({ value, onChange }) => {
-    const [parameters, setParameters] = useState([]);
-    const [loading, setLoading] = useState(false);
+const DictionaryEntrySelect = ({
+    value,
+    onChange,
+    entries,
+    loading,
+    onEntriesChange,
+}) => {
     const [open, setOpen] = useState(false);
     const [searchValue, setSearchValue] = useState("");
+    const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP);
 
     const [editingUid, setEditingUid] = useState(null);
     const [editDraft, setEditDraft] = useState(emptyDraft);
@@ -49,38 +55,17 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
         }, 0);
     };
 
-    useEffect(() => {
-        loadParameters();
-    }, []);
-
-    const loadParameters = () => {
-        setLoading(true);
-        _service({
-            url: "dictionary/parameter/list",
-            method: "POST",
-            success: (response) => {
-                setLoading(false);
-                setParameters(response.json.data);
-            },
-            fail: (error) => {
-                setLoading(false);
-                console.error(error);
-                notification.error({ message: Cluar.plainDictionary("dictionary-parameter-select-notification-load-fail") });
-            },
-        });
-    };
-
-    const filteredParameters = parameters.filter((parameter) => {
+    const filteredEntries = entries.filter((entry) => {
         if (!searchValue) return true;
         const term = searchValue.toLowerCase();
         return (
-            parameter.code?.toLowerCase().includes(term) ||
-            parameter.description?.toLowerCase().includes(term)
+            entry.code?.toLowerCase().includes(term) ||
+            entry.description?.toLowerCase().includes(term)
         );
     });
 
-    const exactMatch = parameters.some(
-        (parameter) => parameter.code?.toLowerCase() === searchValue.toLowerCase()
+    const exactMatch = entries.some(
+        (entry) => entry.code?.toLowerCase() === searchValue.toLowerCase()
     );
 
     const startCreate = (prefillCode = "") => {
@@ -100,13 +85,13 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
             return;
         }
         _service({
-            url: "dictionary/parameter",
+            url: "dictionary/entry",
             method: "POST",
             data: createDraft,
             success: (response) => {
-                const newParameter = response.json.parameter;
-                setParameters((prev) => [...prev, newParameter]);
-                onChange?.(newParameter.uid);
+                const newEntry = response.json.entry;
+                onEntriesChange((prev) => [...prev, newEntry]);
+                onChange?.(newEntry.code);
                 cancelCreate();
                 setSearchValue("");
                 setOpen(false);
@@ -118,10 +103,10 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
         });
     };
 
-    const startEdit = (parameter) => {
+    const startEdit = (entry) => {
         setCreating(false);
-        setEditingUid(parameter.uid);
-        setEditDraft({ code: parameter.code, description: parameter.description });
+        setEditingUid(entry.uid);
+        setEditDraft({ code: entry.code, description: entry.description });
     };
 
     const cancelEdit = () => {
@@ -135,12 +120,12 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
             return;
         }
         _service({
-            url: "dictionary/parameter",
+            url: "dictionary/entry",
             method: "PUT",
             data: { uid, ...editDraft },
             success: () => {
-                setParameters((prev) =>
-                    prev.map((p) => (p.uid === uid ? { ...p, ...editDraft } : p))
+                onEntriesChange((prev) =>
+                    prev.map((e) => (e.uid === uid ? { ...e, ...editDraft } : e))
                 );
                 cancelEdit();
                 notification.success({
@@ -154,14 +139,14 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
         });
     };
 
-    const deleteParameter = (uid) => {
+    const deleteEntry = (entry) => {
         _service({
-            url: "dictionary/parameter",
+            url: "dictionary/entry",
             method: "DELETE",
-            data: { uid },
+            data: { uid: entry.uid },
             success: () => {
-                setParameters((prev) => prev.filter((p) => p.uid !== uid));
-                if (value === uid) onChange?.(undefined);
+                onEntriesChange((prev) => prev.filter((e) => e.uid !== entry.uid));
+                if (value === entry.code) onChange?.(undefined);
                 notification.success({ message: Cluar.plainDictionary("dictionary-parameter-select-notification-delete-success") });
             },
             fail: (error) => {
@@ -183,21 +168,28 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
                     return;
                 }
                 setOpen(newOpen);
+                if (newOpen) {
+                    setVisibleCount(VISIBLE_STEP);
+                }
             }}
             showSearch
             searchValue={searchValue}
-            onSearch={setSearchValue}
+            onSearch={(v) => {
+                setSearchValue(v);
+                setVisibleCount(VISIBLE_STEP);
+            }}
             filterOption={false}
-            placeholder={Cluar.plainDictionary("dictionary-form-parameter-placeholder")}
-            options={filteredParameters.length > 0
-                ? filteredParameters.map((p) => ({
-                    value: p.uid,
-                    label: `${p.code} — ${p.description}`,
+            loading={loading}
+            placeholder={Cluar.plainDictionary("dictionary-form-entry-placeholder")}
+            options={filteredEntries.length > 0
+                ? filteredEntries.map((e) => ({
+                    value: e.code,
+                    label: `${e.description}`,
                 }))
                 : [{ value: "__empty__", label: "empty", disabled: true }] // Opção fantasma
             }
-            onChange={(uid) => {
-                onChange?.(uid);
+            onChange={(code) => {
+                onChange?.(code);
                 setSearchValue("");
                 setOpen(false);
             }}
@@ -208,14 +200,14 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
                     onMouseUp={handleDropdownMouseUp}
                 >
                     <div className="dictionary-parameter-select-list">
-                        {filteredParameters.length === 0 && !creating && (
+                        {filteredEntries.length === 0 && !creating && (
                             <div className="dictionary-parameter-select-empty">
                                 {Cluar.plainDictionary("dictionary-parameter-select-empty")}
                             </div>
                         )}
-                        {filteredParameters.map((parameter) =>
-                            editingUid === parameter.uid ? (
-                                <div className="dictionary-parameter-select-row editing" key={parameter.uid}>
+                        {filteredEntries.slice(0, visibleCount).map((entry) =>
+                            editingUid === entry.uid ? (
+                                <div className="dictionary-parameter-select-row editing" key={entry.uid}>
                                     <Input
                                         size="small"
                                         value={editDraft.code}
@@ -232,20 +224,12 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
                                         }
                                         placeholder={Cluar.plainDictionary("dictionary-parameter-select-placeholder-description")}
                                     />
-                                    <Input
-                                        size="small"
-                                        value={editDraft.select}
-                                        onChange={(e) =>
-                                            setEditDraft({ ...editDraft, select: e.target.value })
-                                        }
-                                        placeholder={Cluar.plainDictionary("dictionary-parameter-select-placeholder-select")}
-                                    />
                                     <Space size={4} style={{ alignSelf: "flex-end" }}>
                                         <Button
                                             size="small"
                                             type="text"
                                             icon={<CheckOutlined />}
-                                            onClick={() => saveEdit(parameter.uid)}
+                                            onClick={() => saveEdit(entry.uid)}
                                         />
                                         <Button
                                             size="small"
@@ -257,17 +241,17 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
                                 </div>
                             ) : (
                                 <div
-                                    className={`dictionary-parameter-select-row ${value === parameter.uid ? "selected" : ""
+                                    className={`dictionary-parameter-select-row ${value === entry.code ? "selected" : ""
                                         }`}
-                                    key={parameter.uid}
+                                    key={entry.uid}
                                     onClick={() => {
-                                        onChange?.(parameter.uid);
+                                        onChange?.(entry.code);
                                         setSearchValue("");
                                         setOpen(false);
                                     }}
                                 >
                                     <span className="dictionary-parameter-select-label">
-                                        <strong>{parameter.code}</strong> — {parameter.description}
+                                        {entry.description}
                                     </span>
                                     <Space size={4} className="dictionary-parameter-select-actions">
                                         <Button
@@ -276,14 +260,14 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
                                             icon={<EditOutlined />}
                                             onClick={(e) => {
                                                 e.stopPropagation();
-                                                startEdit(parameter);
+                                                startEdit(entry);
                                             }}
                                         />
                                         <Popconfirm
                                             title={Cluar.plainDictionary("dictionary-parameter-select-popconfirm-delete-title")}
                                             onConfirm={(e) => {
                                                 e?.stopPropagation?.();
-                                                deleteParameter(parameter.uid);
+                                                deleteEntry(entry);
                                             }}
                                             onCancel={(e) => e?.stopPropagation?.()}
                                         >
@@ -298,6 +282,16 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
                                     </Space>
                                 </div>
                             )
+                        )}
+                        {filteredEntries.length > visibleCount && (
+                            <Button
+                                type="link"
+                                size="small"
+                                block
+                                onClick={() => setVisibleCount((prev) => prev + VISIBLE_STEP)}
+                            >
+                                Ver mais ({filteredEntries.length - visibleCount} restantes)
+                            </Button>
                         )}
                     </div>
 
@@ -348,4 +342,4 @@ const DictionaryParameterSelect = ({ value, onChange }) => {
     );
 };
 
-export default DictionaryParameterSelect;
+export default DictionaryEntrySelect;

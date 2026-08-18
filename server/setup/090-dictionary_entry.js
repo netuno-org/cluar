@@ -3929,3 +3929,123 @@ _db.insertIfNotExists(
     .set("description", "Configura\u00E7\u00E3o - Par\u00E2metro Select - Bot\u00E3o - Novo par\u00E2metro")
 );
 
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3efecd39-3792-49b1-b457-5c351ad0bb4c")
+    .set("code", "dictionary-form-entry-placeholder")
+    .set("description", "Dicion\u00E1rio - Formul\u00E1rio - Placeholder - Selecionar Entrada")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3a363a13-f3a2-498c-b662-ae8e790086e7")
+    .set("code", "dictionary-parameter-select-notification-fill-required")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Notifica\u00E7\u00E3o - Preencher obrigat\u00F3rios")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "d8fe05c1-5ce3-46ca-84c4-fb364762636e")
+    .set("code", "dictionary-parameter-select-notification-create-fail")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Notifica\u00E7\u00E3o - Falha ao criar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2c793e6e-afe4-43a5-bb0a-399be4810fc9")
+    .set("code", "dictionary-parameter-select-notification-update-success")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Notifica\u00E7\u00E3o - Sucesso ao atualizar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "559abdd7-50a7-489b-b58c-8dc00e118373")
+    .set("code", "dictionary-parameter-select-notification-update-fail")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Notifica\u00E7\u00E3o - Falha ao atualizar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "b60ad2b7-1e30-486f-8729-940631f2deb1")
+    .set("code", "dictionary-parameter-select-notification-delete-success")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Notifica\u00E7\u00E3o - Sucesso ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "c576b0ff-1458-47e3-8b72-4c78551a2dc2")
+    .set("code", "dictionary-parameter-select-notification-delete-fail")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Notifica\u00E7\u00E3o - Falha ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "dd0d8e40-10ee-4b0b-82c4-69413714ecf2")
+    .set("code", "dictionary-parameter-select-empty")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Lista Vazia")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "bf696fa8-7e96-4c0a-9491-f248925d2a58")
+    .set("code", "dictionary-parameter-select-placeholder-code")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Placeholder - C\u00F3digo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "04198ffa-2750-4a30-b287-b659c5758bd1")
+    .set("code", "dictionary-parameter-select-placeholder-description")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Placeholder - Descri\u00E7\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "00e18c7f-472b-473e-8826-4d9219c7f2aa")
+    .set("code", "dictionary-parameter-select-popconfirm-delete-title")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Popconfirm - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "681634a3-859a-4b04-8ad8-357f6e677b57")
+    .set("code", "dictionary-parameter-select-button-save")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Bot\u00E3o - Salvar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "020cc138-ef59-4c8a-8955-2b48820df16c")
+    .set("code", "dictionary-parameter-select-button-cancel")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Bot\u00E3o - Cancelar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3230da41-5b24-4e6c-a4fd-c19cb8b0ca49")
+    .set("code", "dictionary-parameter-select-button-create")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Bot\u00E3o - Criar entrada")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "c75358f1-fedb-4d02-b58e-5a93801d2319")
+    .set("code", "dictionary-parameter-select-button-new")
+    .set("description", "Dicion\u00E1rio - Entrada Select - Bot\u00E3o - Nova entrada")
+);
+
