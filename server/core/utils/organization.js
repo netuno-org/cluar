@@ -35,3 +35,5 @@ const organizationIsDescendant = (params) => {
     `);
     return !!isDescendant;
 }
+
+export default organizationIsDescendant;

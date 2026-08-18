@@ -1,4 +1,5 @@
-//_core: utils/user
+import user from "#core/utils/user.js"
+
 const {
     uid,
     people_uid,
@@ -46,7 +47,7 @@ if (!dbOrganization) {
     _exec.stop();
 }
 
-const isAuthorized = isUserAuthorizedInOrganization(
+const isAuthorized = user.isUserAuthorizedInOrganization(
     _val.map()
         .set('organization', dbOrganization)
 );

@@ -1,5 +1,5 @@
-//_core: utils/organization
-//_core: utils/user
+import user from "#core/utils/user.js"
+import organizationIsDescendant from "#core/utils/organization.js"
 
 const {
     uid,
@@ -22,7 +22,7 @@ if (!dbOrganization) {
     _exec.stop();
 }
 
-const isAuthorized = isUserAuthorizedInOrganization(
+const isAuthorized = user.isUserAuthorizedInOrganization(
     _val.map()
         .set('organization', dbOrganization)
 );
@@ -82,7 +82,7 @@ if (parent_code) {
         _exec.stop();
     }
 
-    const isAuthorized = isUserAuthorizedInOrganization(
+    const isAuthorized = user.isUserAuthorizedInOrganization(
         _val.map()
             .set('organization', dbParent)
     );

@@ -1,6 +1,6 @@
-//_core: db/insertAndReturn
-//_core: utils/organization
-//_core: utils/user
+import { _exec, _val, _db, _heder, _out, _req } from "@netuno/server-types";
+import insertAndReturn from "#core/db/insertAndReturn.js"
+import user from "#core/utils/user.js"
 
 const {
     name,
@@ -24,7 +24,7 @@ if (parent_code) {
         _exec.stop();
     }
 
-    const isAuthorized = isUserAuthorizedInOrganization(
+    const isAuthorized = user.isUserAuthorizedInOrganization(
         _val.map()
             .set('organization', dbParent)
     );

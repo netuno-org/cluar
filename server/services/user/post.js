@@ -1,5 +1,6 @@
-//_core: db/insertAndReturn
-//_core: utils/user
+import { _user } from "@netuno/server-types";
+import insertAndReturn from "#core/db/insertAndReturn.js"
+import user from "#core/utils/user.js"
 
 const name = _req.getString("name");
 const username = _req.getString("username");
@@ -47,7 +48,7 @@ if (!dbGroup) {
     _exec.stop();
 }
 
-const isAuthorized = isUserAuthorizedInOrganization(
+const isAuthorized = user.isUserAuthorizedInOrganization(
   _val.map()
       .set('organization', dbOrganization)
 );

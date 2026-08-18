@@ -1,5 +1,5 @@
-//_core: db/insertAndReturn
-//_core: utils/user
+import insertAndReturn from "#core/db/insertAndReturn.js"
+import user from "#core/utils/user.js"
 
 const {
     people_uid,
@@ -35,7 +35,7 @@ if (!dbOrganization) {
     _exec.stop();
 }
 
-const isAuthorized = isUserAuthorizedInOrganization(
+const isAuthorized = user.isUserAuthorizedInOrganization(
     _val.map()
         .set('organization', dbOrganization)
 );
