@@ -35,6 +35,7 @@ import _auth from '@netuno/auth-client';
 import "./index.less"
 import { useNavigate, useLocation } from "react-router";
 import ThemeSwitch from '../ThemeSwitch';
+import LanguageSwitch from '../LanguageSwitch';
 
 /*
  * Fonte única de "quem pode aceder a quê" dentro da área de gestão -
@@ -410,6 +411,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           />
         </div>
         <div className='theme-switch-wrapper'>
+          <LanguageSwitch />
           <ThemeSwitch />
         </div>
       </Layout.Sider>
