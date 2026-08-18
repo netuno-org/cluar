@@ -2,9 +2,11 @@ import _service from "@netuno/service-client";
 import {
     Button,
     notification,
-    Table
+    Table,
+    Space,
+    Popconfirm
 } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
 import DictionaryModal from "../Modal";
 import Cluar from "../../../../common/Cluar";
@@ -15,6 +17,7 @@ const DictionaryTable = forwardRef(({ }, ref) => {
     const [filters, setFilters] = useState({});
     const [languages, setLanguages] = useState([]);
     const [dictionaryData, setDictionaryData] = useState(null);
+    const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
     const dictionaryModalRef = useRef();
     const [pagination, setPagination] = useState({
         page: 1,
@@ -68,6 +71,28 @@ const DictionaryTable = forwardRef(({ }, ref) => {
                 })
             }
         })
+    }
+
+    const onDelete = (uid) => {
+        setDeleteLoadingUid(uid);
+        _service({
+            url: "dictionary",
+            method: "DELETE",
+            data: { uid },
+            success: () => {
+                setDeleteLoadingUid(null);
+                notification.success({
+                    message: Cluar.plainDictionary("dictionary-table-delete-success-message")
+                });
+                onLoadDictionaries();
+            },
+            fail: (error) => {
+                setDeleteLoadingUid(null);
+                console.error(error);
+                const errorMessage = error?.json?.error || Cluar.plainDictionary("dictionary-table-delete-failed-message");
+                notification.error({ message: errorMessage });
+            }
+        });
     }
 
     const onReloadTable = () => {
@@ -135,15 +160,29 @@ const DictionaryTable = forwardRef(({ }, ref) => {
                 "data-column-key": "actions",
             }),
             render: (val, record) => (
-                <Button
-                    type="text"
-                    title="Editar"
-                    icon={<EditOutlined />}
-                    onClick={() => {
-                        setDictionaryData(record);
-                        dictionaryModalRef.current.onOpenModal();
-                    }}
-                />
+                <Space size={4}>
+                    <Button
+                        type="text"
+                        title="Editar"
+                        icon={<EditOutlined />}
+                        onClick={() => {
+                            setDictionaryData(record);
+                            dictionaryModalRef.current.onOpenModal();
+                        }}
+                    />
+                    <Popconfirm
+                        title={Cluar.plainDictionary("dictionary-table-popconfirm-delete-title")}
+                        onConfirm={() => onDelete(record.uid)}
+                    >
+                        <Button
+                            type="text"
+                            danger
+                            title="Apagar"
+                            icon={<DeleteOutlined />}
+                            loading={deleteLoadingUid === record.uid}
+                        />
+                    </Popconfirm>
+                </Space>
             )
         }
     ]

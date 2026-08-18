@@ -5,7 +5,9 @@ import {
     Row,
     Switch,
     Table,
-    Input
+    Input,
+    Space,
+    Popconfirm
 } from "antd";
 import {
     forwardRef,
@@ -14,7 +16,7 @@ import {
     useRef,
     useState
 } from "react";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
+import { EditOutlined, SearchOutlined, DeleteOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 import ActionsModal from "../Modal";
@@ -31,6 +33,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
         key: "",
         isLoading: false
     });
+    const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
     const [filters, setFilters] = useState({});
     const [pagination, setPagination] = useState({
         page: 1,
@@ -87,6 +90,28 @@ const ActionsTable = forwardRef(({ }, ref) => {
                 });
             }
         })
+    }
+
+    const onDelete = (uid) => {
+        setDeleteLoadingUid(uid);
+        _service({
+            url: "actions",
+            method: "DELETE",
+            data: { uid },
+            success: () => {
+                setDeleteLoadingUid(null);
+                notification.success({
+                    message: Cluar.plainDictionary("actions-table-delete-success-message")
+                });
+                onLoadActions();
+            },
+            fail: (error) => {
+                setDeleteLoadingUid(null);
+                console.error(error);
+                const errorMessage = error?.json?.error || Cluar.plainDictionary("actions-table-delete-failed-message");
+                notification.error({ message: errorMessage });
+            }
+        });
     }
 
     const getTextFilterProps = (key) => {
@@ -267,15 +292,29 @@ const ActionsTable = forwardRef(({ }, ref) => {
                 "data-column-key": "actions",
             }),
             render: (val, record) => (
-                <Button
-                    type="text"
-                    title={Cluar.plainDictionary("actions-table-button-edit")}
-                    icon={<EditOutlined />}
-                    onClick={() => {
-                        setActionEditeData(record);
-                        actionModalRef.current.openModal();
-                    }}
-                />
+                <Space size={4}>
+                    <Button
+                        type="text"
+                        title={Cluar.plainDictionary("actions-table-button-edit")}
+                        icon={<EditOutlined />}
+                        onClick={() => {
+                            setActionEditeData(record);
+                            actionModalRef.current.openModal();
+                        }}
+                    />
+                    <Popconfirm
+                        title={Cluar.plainDictionary("actions-table-popconfirm-delete-title")}
+                        onConfirm={() => onDelete(record.uid)}
+                    >
+                        <Button
+                            type="text"
+                            danger
+                            title={Cluar.plainDictionary("actions-table-button-delete")}
+                            icon={<DeleteOutlined />}
+                            loading={deleteLoadingUid === record.uid}
+                        />
+                    </Popconfirm>
+                </Space>
             ),
         },
     ];

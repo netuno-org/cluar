@@ -1830,10 +1830,28 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "106835de-5a8a-4578-8653-3ef480f4816d")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "2ba5aada-a2cb-48ae-b3f1-f20cdc9c380c")
+    .set("value", "Delete")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "4bf49b7b-40ff-4cca-b1ed-041976e96fb6")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "ea8484b0-6760-42b8-bfa6-50f4d5327b3e")
     .set("value", "Apenas para imagens com transpar\u00EAncia.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "436cab4b-ede8-4002-bf18-047c9b0f4f44")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "2ba5aada-a2cb-48ae-b3f1-f20cdc9c380c")
+    .set("value", "Apagar")
 );
 
 _db.insertIfNotExists(
@@ -2509,6 +2527,15 @@ _db.insertIfNotExists(
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "a4fa03bc-2405-49b9-bfc5-b11933983a8a")
     .set("value", "Keywords")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "02e8e6a1-194a-4d2c-81cd-06a190e526eb")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "fa5ee477-ff55-435b-a65d-895435bf77e9")
+    .set("value", "Delete this action?")
 );
 
 _db.insertIfNotExists(
@@ -3202,6 +3229,15 @@ _db.insertIfNotExists(
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "9491cf29-ee04-44cc-8c44-4ff441eb693e")
     .set("value", "P\u00E1ginas")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "1537240f-0b84-42b5-82da-b086024489c1")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "fa5ee477-ff55-435b-a65d-895435bf77e9")
+    .set("value", "Apagar esta a\u00E7\u00E3o?")
 );
 
 _db.insertIfNotExists(
@@ -3922,6 +3958,15 @@ _db.insertIfNotExists(
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "ab2dbd34-3b6b-4696-a157-188ce223b266")
     .set("value", "")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "711d9d11-b7c5-4b0f-804f-47740f89a56f")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "e1144c02-c368-41f6-8aad-dac32bbf9f76")
+    .set("value", "Action deleted successfully.")
 );
 
 _db.insertIfNotExists(
@@ -6537,6 +6582,15 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "fdcb06ad-1d34-4f46-8022-1a4304c186d5")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "e1144c02-c368-41f6-8aad-dac32bbf9f76")
+    .set("value", "A\u00E7\u00E3o apagada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "9e3846c1-f3cc-4a38-bb35-019a1a66c6c7")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "a25eaa97-56c4-457c-b59f-c6b14318156b")
@@ -8571,10 +8625,28 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "0e6045a8-dbdf-4737-a29a-23aba8f1016f")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "33ffe5d8-699f-4a67-9911-1e3937d1e8e1")
+    .set("value", "Failed to delete the action.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "40c00a19-e1b9-4069-aef6-9e5c3f702f5c")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "ba33078a-cb35-4988-8a93-93d3912ba5a2")
     .set("value", "Falha ao atualizar par\u00E2metro.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "f0470c7d-2e04-4fc9-af98-02e0d55cf63b")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "33ffe5d8-699f-4a67-9911-1e3937d1e8e1")
+    .set("value", "Falha ao apagar a a\u00E7\u00E3o.")
 );
 
 _db.insertIfNotExists(
@@ -8589,10 +8661,28 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "fd41ffa2-23b0-4242-87d1-873e4352a3ce")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "b6d8470c-563e-47ec-8e26-f852ad7b9b58")
+    .set("value", "Delete this configuration?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "3ade20b5-8292-4a28-a737-17d2c1dc5aa2")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "cd4c1235-2742-48ad-986a-642e7db46e8f")
     .set("value", "Par\u00E2metro apagado.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "2811f319-bde7-4dfe-9238-8071f85356a7")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "b6d8470c-563e-47ec-8e26-f852ad7b9b58")
+    .set("value", "Apagar esta configura\u00E7\u00E3o?")
 );
 
 _db.insertIfNotExists(
@@ -8607,10 +8697,28 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "c71bcb07-d7c5-4164-85aa-2d5f08eda762")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "51dfad1a-1874-4a6a-89e1-947c4edf60fd")
+    .set("value", "Configuration deleted successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "d3b5ea90-616a-4404-b5f1-29acd9386cc2")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "5cdde61d-dde0-467f-98f9-21b24d09394c")
     .set("value", "Falha ao apagar par\u00E2metro.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "dc5c5274-6372-4427-bdd8-a17262b09602")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "51dfad1a-1874-4a6a-89e1-947c4edf60fd")
+    .set("value", "Configura\u00E7\u00E3o apagada com sucesso.")
 );
 
 _db.insertIfNotExists(
@@ -8625,10 +8733,28 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "585fa5a7-fe58-4055-a247-07a1fbdb06e4")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "e3c0aa7a-d4e4-4138-ba71-2af17f946d14")
+    .set("value", "Failed to delete the configuration.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "5a799309-f6a0-42ba-bb6f-a84962751f3b")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "42870057-1073-4182-bc02-82f9ffc4ecf0")
     .set("value", "Nenhum par\u00E2metro encontrado.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "f2d8171d-1de7-419d-9a24-1dd892eda0fa")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "e3c0aa7a-d4e4-4138-ba71-2af17f946d14")
+    .set("value", "Falha ao apagar a configura\u00E7\u00E3o.")
 );
 
 _db.insertIfNotExists(
@@ -8643,10 +8769,28 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "b8485856-dbe0-4923-9bdb-e052dfda9c72")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "cd6e1473-73c7-4c1d-a9a3-6a8dbd086d21")
+    .set("value", "Delete this dictionary record?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "524d8fe7-8756-4a0a-96dd-31f4fd8166f9")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "8b8619c0-6fa4-48ff-a2ec-ae18a98f268d")
     .set("value", "C\u00F3digo")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "1be57362-b5ae-4233-9517-07b2d8103b2b")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "cd6e1473-73c7-4c1d-a9a3-6a8dbd086d21")
+    .set("value", "Apagar este registo do dicion\u00E1rio?")
 );
 
 _db.insertIfNotExists(
@@ -8661,10 +8805,28 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "8255e87a-5ab4-4029-8c7e-53d9f0980541")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "3b2f9158-c535-4931-ab93-3269d7fe8a8b")
+    .set("value", "Record deleted successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "47155f5c-d80a-486b-af77-63e10d1d00e0")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "2c0718c2-9ff6-46b1-83f7-63078515b225")
     .set("value", "Descri\u00E7\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "79842928-e0ac-4f89-96ce-95c8954c01d9")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "3b2f9158-c535-4931-ab93-3269d7fe8a8b")
+    .set("value", "Registo apagado com sucesso.")
 );
 
 _db.insertIfNotExists(
@@ -8679,10 +8841,28 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "42f53b20-8374-458a-b946-9f551efdc153")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "d9308a24-be9d-4452-9939-f44a73b2e53a")
+    .set("value", "Failed to delete the record.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "7a01bc6d-fad2-4384-80e1-c7044c2a6de4")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "e9f7c28b-234d-44e6-9c88-d9a104e64126")
     .set("value", "Selecione")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "3e7d8f97-4bd0-4bb1-baf8-179f330cf361")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "d9308a24-be9d-4452-9939-f44a73b2e53a")
+    .set("value", "Falha ao apagar o registo.")
 );
 
 _db.insertIfNotExists(

@@ -2,10 +2,12 @@ import {
     Button,
     notification,
     Table,
-    Image
+    Image,
+    Space,
+    Popconfirm
 } from "antd";
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react";
-import { EditOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import ConfigurationModal from "../Modal";
 import Cluar from "../../../../common/Cluar";
@@ -19,6 +21,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
     const [total, setTotal] = useState(false);
     const [languages, setLanguages] = useState([]);
     const [filters, setFilters] = useState({});
+    const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
     const configurationModalRef = useRef();
     const [configurationData, setConfigurationData] = useState(null);
     const [pagination, setPagination] = useState({
@@ -69,6 +72,28 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
                 })
             }
         })
+    }
+
+    const onDelete = (uid) => {
+        setDeleteLoadingUid(uid);
+        _service({
+            url: "configuration",
+            method: "DELETE",
+            data: { uid },
+            success: () => {
+                setDeleteLoadingUid(null);
+                notification.success({
+                    message: Cluar.plainDictionary("configuration-table-delete-success-message")
+                });
+                onLoadConfigurations();
+            },
+            fail: (error) => {
+                setDeleteLoadingUid(null);
+                console.error(error);
+                const errorMessage = error?.json?.error || Cluar.plainDictionary("configuration-table-delete-failed-message");
+                notification.error({ message: errorMessage });
+            }
+        });
     }
 
     const onReloadTable = () => {
@@ -155,14 +180,27 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
                 "data-column-key": "actions",
             }),
             render: (val, record) => (
-                <Button
-                    type="text"
-                    onClick={() => {
-                        setConfigurationData(record);
-                        configurationModalRef.current.onOpenModal();
-                    }}
-                    icon={<EditOutlined />}
-                />
+                <Space size={4}>
+                    <Button
+                        type="text"
+                        onClick={() => {
+                            setConfigurationData(record);
+                            configurationModalRef.current.onOpenModal();
+                        }}
+                        icon={<EditOutlined />}
+                    />
+                    <Popconfirm
+                        title={Cluar.plainDictionary("configuration-table-popconfirm-delete-title")}
+                        onConfirm={() => onDelete(record.uid)}
+                    >
+                        <Button
+                            type="text"
+                            danger
+                            icon={<DeleteOutlined />}
+                            loading={deleteLoadingUid === record.uid}
+                        />
+                    </Popconfirm>
+                </Space>
             )
         }
     ];
