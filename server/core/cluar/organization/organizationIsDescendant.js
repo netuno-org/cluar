@@ -1,4 +1,6 @@
-const organizationIsDescendant = (params) => {
+const cluar = {};
+
+cluar.organizationIsDescendant = (params) => {
     const organizationChildren = params.getValues("organizationChildren");
     const organizationParent = params.getValues("organizationParent");
 
@@ -36,4 +38,4 @@ const organizationIsDescendant = (params) => {
     return !!isDescendant;
 }
 
-export default organizationIsDescendant;
+export default cluar;

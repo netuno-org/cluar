@@ -8,6 +8,7 @@ import cluarPublishPage from "#core/cluar/publishPage.js"
 import cluarCustom from "#core/cluar/custom/main.js"
 
 import cluarDBInsertAndReturn from "#core/cluar/db/insertAndReturn.js"
+import cluarOrganizationIsDescendant from "#core/cluar/organization/organizationIsDescendant.js"
 
 const cluar = {
   ...cluarBase,
@@ -17,7 +18,8 @@ const cluar = {
   ...cluarActions,
   ...cluarPublishPage,
   custom: cluarCustom,
-  db: { ...cluarDBInsertAndReturn }
+  db: { ...cluarDBInsertAndReturn },
+  organization: { ...cluarOrganizationIsDescendant }
 };
 
 export default cluar;

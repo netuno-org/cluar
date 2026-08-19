@@ -1,5 +1,5 @@
 import user from "#core/utils/user.js"
-import organizationIsDescendant from "#core/utils/organization.js"
+import cluar from "#core/cluar/main.js"
 
 const {
     uid,
@@ -98,7 +98,7 @@ if (parent_code) {
         _exec.stop();
     }
 
-    const isDescendant = organizationIsDescendant(
+    const isDescendant = cluar.organization.organizationIsDescendant(
         _val.map()
             .set('organizationChildren', dbOrganization)
             .set('organizationParent', dbParent)
