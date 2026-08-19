@@ -1,4 +1,4 @@
-import user from "#core/utils/user.js"
+import cluar from "#core/cluar/main.js"
 
 const {
     uid,
@@ -47,7 +47,7 @@ if (!dbOrganization) {
     _exec.stop();
 }
 
-const isAuthorized = user.isUserAuthorizedInOrganization(
+const isAuthorized = cluar.user.isUserAuthorizedInOrganization(
     _val.map()
         .set('organization', dbOrganization)
 );

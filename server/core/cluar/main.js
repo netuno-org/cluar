@@ -12,6 +12,7 @@ import cluarOrganizationIsDescendant from "#core/cluar/organization/organization
 
 import cluarPermission from "#core/cluar/permission.js"
 import cluarResponse from "#core/cluar/response.js"
+import cluarUser from "#core/cluar/user.js"
 
 const cluar = {
   ...cluarBase,
@@ -25,6 +26,7 @@ const cluar = {
   organization: { ...cluarOrganizationIsDescendant },
   permission: { ...cluarPermission },
   response: { ...cluarResponse },
+  user: { ...cluarUser },
 };
 
 export default cluar;

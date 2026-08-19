@@ -1,5 +1,5 @@
 import { _db, _req, _val, _out } from "@netuno/server-types";
-import user from "#core/utils/user.js"
+import cluar from "#core/cluar/main.js"
 
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
@@ -42,7 +42,7 @@ if (filters) {
     }
 }
 
-const userOrganizations = user.getUserOrganizations();
+const userOrganizations = cluar.user.getUserOrganizations();
 const organizationWhere = _db.where(
     'organization_id'
 ).in(userOrganizations.map((organization) => organization.getInt("id")))

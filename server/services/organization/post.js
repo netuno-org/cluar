@@ -1,6 +1,5 @@
 import { _exec, _val, _db, _heder, _out, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
-import user from "#core/utils/user.js"
 
 const {
     name,
@@ -24,7 +23,7 @@ if (parent_code) {
         _exec.stop();
     }
 
-    const isAuthorized = user.isUserAuthorizedInOrganization(
+    const isAuthorized = cluar.user.isUserAuthorizedInOrganization(
         _val.map()
             .set('organization', dbParent)
     );

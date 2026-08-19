@@ -1,6 +1,5 @@
-import { _user } from "@netuno/server-types";
+import { _req, _db, _out, _val, _exec, _header, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
-import user from "#core/utils/user.js"
 
 const name = _req.getString("name");
 const username = _req.getString("username");
@@ -48,7 +47,7 @@ if (!dbGroup) {
     _exec.stop();
 }
 
-const isAuthorized = user.isUserAuthorizedInOrganization(
+const isAuthorized = cluar.user.isUserAuthorizedInOrganization(
   _val.map()
       .set('organization', dbOrganization)
 );

@@ -1,4 +1,3 @@
-import user from "#core/utils/user.js"
 import cluar from "#core/cluar/main.js"
 
 const {
@@ -22,7 +21,7 @@ if (!dbOrganization) {
     _exec.stop();
 }
 
-const isAuthorized = user.isUserAuthorizedInOrganization(
+const isAuthorized = cluar.user.isUserAuthorizedInOrganization(
     _val.map()
         .set('organization', dbOrganization)
 );
@@ -82,7 +81,7 @@ if (parent_code) {
         _exec.stop();
     }
 
-    const isAuthorized = user.isUserAuthorizedInOrganization(
+    const isAuthorized = cluar.user.isUserAuthorizedInOrganization(
         _val.map()
             .set('organization', dbParent)
     );
