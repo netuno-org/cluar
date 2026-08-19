@@ -487,7 +487,7 @@ if (statusId === publishedStatus.getInt("id")) {
         .set("status_id", draftStatus.getInt("id"))
         .update();
 
-    cluar.page.publish(newPage);
+    cluar.publishPage(newPage);
 }
 
 _out.json(

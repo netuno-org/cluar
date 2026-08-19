@@ -6,4 +6,4 @@ const dbPageVersion = _db.get(
 );
 const dbPage = _db.get("page", dbPageVersion.getInt("page_id"));
 
-cluar.page.publish(dbPage)
+cluar.publishPage(dbPage)

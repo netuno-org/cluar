@@ -24,5 +24,5 @@ if (!lastPageVersion) {
     );
 }
 
-cluar.page.publish(_dataItem.getRecord())
+cluar.publishPage(_dataItem.getRecord())
 cluar.build()

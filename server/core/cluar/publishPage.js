@@ -2,7 +2,9 @@ import cluarActions from "#core/cluar/actions.js"
 import cluarPublishImage from "#core/cluar/publishImage.js"
 import cluarBase from "#core/cluar/base.js"
 
-const publish = (dbPage) => {
+const cluar = {};
+
+cluar.publishPage = (dbPage) => {
   const dbPageStatus = _db.queryFirst(`
     SELECT * FROM page_status WHERE page_status.code = 'published'
   `);
@@ -477,4 +479,4 @@ const publish = (dbPage) => {
   }
 }
 
-export default publish;
+export default cluar;

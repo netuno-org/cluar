@@ -55,4 +55,4 @@ _db.update(
     .set("status_id", dbPageStatusPublished.getInt("id"))
 );
 
-cluar.page.publish(dbPage);
+cluar.publishPage(dbPage);

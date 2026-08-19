@@ -1,6 +1,6 @@
 import cluarBase from "#core/cluar/base.js"
 import cluarCustom from "#core/cluar/custom/main.js"
-import cluarPage from "#core/cluar/page/main.js"
+import cluarPage from "#core/cluar/publishPage.js"
 
 const cluar = {};
 
@@ -64,7 +64,7 @@ cluar.build = (settings)=> {
    *  conteúdo, etc. Ver server/services/admin/cluar/sync.js.
    */
 
-  const pages = cluarBase.pages({publishFn: settings.publishAll === true ? cluarPage.publish : null})
+  const pages = cluarBase.pages({publishFn: settings.publishAll === true ? cluarPage.publishPage : null})
   data.set("pages", pages)
 
   /*
