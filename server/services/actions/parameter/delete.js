@@ -1,12 +1,12 @@
 import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
-import response from "#core/utils/response.js";
+import cluar from "#core/cluar/main.js";
 
 const parameterUid = _req.getString('uid');
 
 const dbActionParameter = _db.get('action_parameter', parameterUid);
 
 if (!dbActionParameter) {
-    response.error({ status: 404, error: 'parameter not found' });
+    cluar.response.error({ status: 404, error: 'parameter not found' });
 }
 
 const parameterId = dbActionParameter.getInt("id");
@@ -18,7 +18,7 @@ const inUse = _db.queryFirst(`
 
 if (inUse && inUse.getInt("total") > 0) {
     // Se estiver em uso, bloqueia a exclusão e avisa o usuário
-    response.error({
+    cluar.response.error({
         status: 409,
         error: 'Não é possível apagar este parâmetro pois ele está sendo usado por uma ou mais ações.'
     });
@@ -26,4 +26,4 @@ if (inUse && inUse.getInt("total") > 0) {
 
 // Se não estiver em uso, apaga normalmente
 _db.delete('action_parameter', parameterId);
-response.successWithoutData({ status: 200 });
+cluar.response.successWithoutData({ status: 200 });

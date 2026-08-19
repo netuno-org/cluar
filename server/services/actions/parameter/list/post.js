@@ -1,5 +1,5 @@
 import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
-import response from "#core/utils/response.js";
+import cluar from "#core/cluar/main.js";
 
 const dbActionParameters = _db.form('action_parameter')
     .all()
@@ -17,4 +17,4 @@ for (const actionParameter of dbActionParameters) {
     parameters.push(parameter)
 }
 
-response.successWithData({ status: 200, data: parameters });
+cluar.response.successWithData({ status: 200, data: parameters });

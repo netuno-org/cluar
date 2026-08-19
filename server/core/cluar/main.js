@@ -11,6 +11,7 @@ import cluarDBInsertAndReturn from "#core/cluar/db/insertAndReturn.js"
 import cluarOrganizationIsDescendant from "#core/cluar/organization/organizationIsDescendant.js"
 
 import cluarPermission from "#core/cluar/permission.js"
+import cluarResponse from "#core/cluar/response.js"
 
 const cluar = {
   ...cluarBase,
@@ -23,6 +24,7 @@ const cluar = {
   db: { ...cluarDBInsertAndReturn },
   organization: { ...cluarOrganizationIsDescendant },
   permission: { ...cluarPermission },
+  response: { ...cluarResponse },
 };
 
 export default cluar;

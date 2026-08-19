@@ -1,5 +1,5 @@
 import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
-import response from "#core/utils/response.js";
+import cluar from "#core/cluar/main.js";
 
 const code = _req.getString("code");
 const description = _req.getString("description");
@@ -7,15 +7,15 @@ const typeCode = _req.getString("type_code");
 
 /* ---------- VALIDAÇÕES DOS DADOS RECEBIDOS ---------- */
 if (!code) {
-    response.error({ status: 400, error: 'code is required' });
+    cluar.response.error({ status: 400, error: 'code is required' });
 }
 
 if (!description) {
-    response.error({ status: 400, error: 'description is required' });
+    cluar.response.error({ status: 400, error: 'description is required' });
 }
 
 if (!typeCode) {
-    response.error({ status: 400, error: 'type_code is required' });
+    cluar.response.error({ status: 400, error: 'type_code is required' });
 }
 
 const codeExists = _db.queryFirst(`
@@ -24,7 +24,7 @@ const codeExists = _db.queryFirst(`
 `, code);
 
 if (codeExists) {
-    response.error({ status: 409, error: `parameter code already exists: ${code}` })
+    cluar.response.error({ status: 409, error: `parameter code already exists: ${code}` })
 }
 
 const dbParameterType = _db.form('configuration_parameter_type')

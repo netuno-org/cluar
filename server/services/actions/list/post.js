@@ -1,6 +1,6 @@
 // server/services/actions/list.js
 import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
-import response from "#core/utils/response.js";
+import cluar from "#core/cluar/main.js";
 
 const dbActions = _db.query(`
     SELECT 
@@ -40,4 +40,4 @@ for (const dbAction of dbActions) {
     );
 }
 
-response.successWithData({ status: 200, data: items });
+cluar.response.successWithData({ status: 200, data: items });

@@ -1,12 +1,12 @@
 import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
-import response from "#core/utils/response.js";
+import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString('uid');
 
 const dbAction = _db.get('action', uid);
 
 if (!dbAction) {
-    response.error({ status: 404, error: 'action not found' });
+    cluar.response.error({ status: 404, error: 'action not found' });
 }
 
 const actionId = dbAction.getInt("id");
@@ -33,7 +33,7 @@ for (const check of usageChecks) {
 }
 
 if (usedIn.length > 0) {
-    response.error({
+    cluar.response.error({
         status: 409,
         error: `Não é possível apagar esta ação pois ela está sendo usada em: ${usedIn.join(', ')}.`
     });
@@ -41,4 +41,4 @@ if (usedIn.length > 0) {
 
 // Se não estiver em uso em nenhum lugar, apaga normalmente
 _db.delete('action', actionId);
-response.successWithoutData({ status: 200 });
+cluar.response.successWithoutData({ status: 200 });

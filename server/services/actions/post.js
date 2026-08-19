@@ -1,5 +1,5 @@
 import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
-import response from "#core/utils/response.js";
+import cluar from "#core/cluar/main.js";
 
 const languageCode = _req.getString("language_code");
 const parameterUid = _req.getString("parameter_uid")
@@ -15,13 +15,13 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-    response.error({ status: 404, error: `language not found with code: ${languageCode}` });
+    cluar.response.error({ status: 404, error: `language not found with code: ${languageCode}` });
 }
 
 const dbActionParameter = _db.get('action_parameter', parameterUid);
 
 if (!dbActionParameter) {
-    response.error({ status: 404, error: 'parameter not found' });
+    cluar.response.error({ status: 404, error: 'parameter not found' });
 }
 
 const data = _db.form("action")
