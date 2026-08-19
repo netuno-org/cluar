@@ -10,6 +10,8 @@ import cluarCustom from "#core/cluar/custom/main.js"
 import cluarDBInsertAndReturn from "#core/cluar/db/insertAndReturn.js"
 import cluarOrganizationIsDescendant from "#core/cluar/organization/organizationIsDescendant.js"
 
+import cluarPermission from "#core/cluar/permission.js"
+
 const cluar = {
   ...cluarBase,
   ...cluarBuild,
@@ -19,7 +21,8 @@ const cluar = {
   ...cluarPublishPage,
   custom: cluarCustom,
   db: { ...cluarDBInsertAndReturn },
-  organization: { ...cluarOrganizationIsDescendant }
+  organization: { ...cluarOrganizationIsDescendant },
+  permission: { ...cluarPermission },
 };
 
 export default cluar;

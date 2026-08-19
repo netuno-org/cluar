@@ -1,5 +1,5 @@
 import { _service, _env, _exec } from "@netuno/server-types";
-import permission from "#core/utils/permission.js";
+import cluar from "#core/cluar/main.js"
 import groups from "#core/consts/group.js";
 
 /**
@@ -117,13 +117,13 @@ if (PUBLIC_PATHS.includes(_service.path) || PUBLIC_PATH_PREFIXES.some((prefix) =
     _service.allow()
 
 } else if (CONTENT_MANAGEMENT_PATHS.includes(_service.path)) {
-    permission.validPermissions({
+    cluar.permission.validPermissions({
         organization: ORGANIZATION_CODE,
         allowedGroups: [groups["ADMIN"], groups["EDITOR"]]
     }) ? _service.allow() : _service.deny();
 
 } else if (SITE_ADMIN_PATHS.includes(_service.path) || ACCESS_MANAGEMENT_PATHS.includes(_service.path)) {
-    permission.validPermissions({
+    cluar.permission.validPermissions({
         organization: ORGANIZATION_CODE,
         allowedGroups: [groups["ADMIN"]]
     }) ? _service.allow() : _service.deny();

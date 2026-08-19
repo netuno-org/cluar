@@ -1,4 +1,3 @@
-import groups from "#core/consts/group.js";
 import { _db, _user } from "@netuno/server-types";
 
 const permission = {
