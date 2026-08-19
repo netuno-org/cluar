@@ -1,5 +1,5 @@
 import { _exec, _val, _db, _heder, _out, _req } from "@netuno/server-types";
-import insertAndReturn from "#core/db/insertAndReturn.js"
+import cluar from "#core/cluar/main.js"
 import user from "#core/utils/user.js"
 
 const {
@@ -59,7 +59,7 @@ if (codeAlreadyInUse) {
     _exec.stop();
 }
 
-const insertedOrganization = insertAndReturn(
+const insertedOrganization = cluar.db.insertAndReturn(
     'organization', 
     _val.map()
         .set('name', name)

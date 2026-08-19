@@ -1,4 +1,3 @@
-import insertAndReturn from "#core/db/insertAndReturn.js"
 import cluar from "#core/cluar/main.js"
 
 const value = _req.getString("value");
@@ -46,7 +45,7 @@ if (value?.includes("base64")) {
     data.set('value', value)
 }
 
-const registedConfig = insertAndReturn('configuration', data);
+const registedConfig = cluar.db.insertAndReturn('configuration', data);
 
 if (value?.includes("base64")) {
     const dbNewConfiguration = _db.get("configuration", registedConfig.getInt("id"))

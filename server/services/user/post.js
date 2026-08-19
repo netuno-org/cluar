@@ -1,5 +1,5 @@
 import { _user } from "@netuno/server-types";
-import insertAndReturn from "#core/db/insertAndReturn.js"
+import cluar from "#core/cluar/main.js"
 import user from "#core/utils/user.js"
 
 const name = _req.getString("name");
@@ -81,7 +81,7 @@ const userId = _user.create(userData);
 peopleData.set("people_user_id", userId);
 
 
-const registedPeople = insertAndReturn("people", peopleData);
+const registedPeople = cluar.db.insertAndReturn("people", peopleData);
 const registedUser = _user.get(userId);
 
 _db.insert(

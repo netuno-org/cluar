@@ -1,4 +1,4 @@
-import insertAndReturn from "#core/db/insertAndReturn.js"
+import cluar from "#core/cluar/main.js"
 
 const value = _req.getString("value");
 const languageCode = _req.getString("language_code");
@@ -39,7 +39,7 @@ const data = _val.map()
     .set('language_id', dbLanguage.getInt("id"))
     .set('entry_id', dbEntry.getInt("id"))
 
-const dbDictionary = insertAndReturn('dictionary', data);
+const dbDictionary = cluar.db.insertAndReturn('dictionary', data);
 
 _header.status(201);
 _out.json(

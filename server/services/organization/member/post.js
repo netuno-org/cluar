@@ -1,4 +1,4 @@
-import insertAndReturn from "#core/db/insertAndReturn.js"
+import cluar from "#core/cluar/main.js"
 import user from "#core/utils/user.js"
 
 const {
@@ -89,7 +89,7 @@ const memberData = _val.map()
     .set("user_group_id", dbGroup.getInt("id"))
     .set("active", active)
 
-const createdMember = insertAndReturn("organization_people", memberData);
+const createdMember = cluar.db.insertAndReturn("organization_people", memberData);
 
 _header.status(201);
 _out.json(

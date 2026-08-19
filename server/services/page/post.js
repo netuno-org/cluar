@@ -1,4 +1,4 @@
-import insertAndReturn from "#core/db/insertAndReturn.js"
+import cluar from "#core/cluar/main.js"
 
 const languageCode = _req.getString("language_code");
 
@@ -92,7 +92,7 @@ const data = _val.map()
     .set("social_description", social_description)
     .set("template", template);
 
-const dbPage = insertAndReturn('page', data);
+const dbPage = cluar.db.insertAndReturn('page', data);
 
 _out.json(
     _val.map()
