@@ -1,5 +1,5 @@
 import { _service, _env, _exec } from "@netuno/server-types";
-import cluar from "#core/cluar/main.js"
+import cluar from "#core/cluar/main.js";
 import groups from "#core/consts/group.js";
 
 /**
