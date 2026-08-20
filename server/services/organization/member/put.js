@@ -47,7 +47,7 @@ if (!dbOrganization) {
     _exec.stop();
 }
 
-const isAuthorized = cluar.user.isUserAuthorizedInOrganization(
+const isAuthorized = cluar.permission.isUserAuthorizedInOrganization(
     _val.map()
         .set('organization', dbOrganization)
 );

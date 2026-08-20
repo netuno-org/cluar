@@ -1,4 +1,27 @@
 const organization = {
+  getOrganization: (code) => {
+    return _db.form("organization")
+      .where(
+        _db.where("code").equals(code)
+      )
+      .first();
+  },
+
+  getPeopleGroupsByOrg: (organizationId, peopleId) => {
+    return _db.form("organization_people")
+      .where(
+        _db.where("organization_id").equals(organizationId)
+          .and("people_id").equals(peopleId)
+          .and("active").equals(true)
+      )
+      .link("user_group")
+      .get("user_group.id")
+      .get("user_group.uid")
+      .get("user_group.name")
+      .get("user_group.code")
+      .all();
+  },
+
   organizationIsDescendant: (params) => {
     const organizationChildren = params.getValues("organizationChildren");
     const organizationParent = params.getValues("organizationParent");
