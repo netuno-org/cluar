@@ -1,4 +1,4 @@
-const cluar = { page: {}, custom: {} }
+const cluar = {}
 
 cluar.base = () => {
   if (_env.is("dev")) {
