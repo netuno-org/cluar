@@ -7,7 +7,7 @@ import cluarPublishPage from "#core/cluar/publishPage.js"
 
 import cluarCustom from "#core/cluar/custom/main.js"
 
-import cluarDBInsertAndReturn from "#core/cluar/db/insertAndReturn.js"
+import cluarDB from "#core/cluar/db.js"
 
 import cluarOrganization from "#core/cluar/organization.js"
 import cluarPermission from "#core/cluar/permission.js"
@@ -22,7 +22,7 @@ const cluar = {
   ...cluarActions,
   ...cluarPublishPage,
   custom: cluarCustom,
-  db: { ...cluarDBInsertAndReturn },
+  db: { ...cluarDB },
   organization: { ...cluarOrganization },
   permission: { ...cluarPermission },
   response: { ...cluarResponse },
