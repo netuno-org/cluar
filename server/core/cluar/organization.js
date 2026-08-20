@@ -1,11 +1,10 @@
-const organization = {};
-
-organization.organizationIsDescendant = (params) => {
+const organization = {
+  organizationIsDescendant: (params) => {
     const organizationChildren = params.getValues("organizationChildren");
     const organizationParent = params.getValues("organizationParent");
 
     const isDescendant = _db.queryFirst(`
-         WITH RECURSIVE childrens AS (
+        WITH RECURSIVE childrens AS (
             SELECT 
                 org.name, 
                 org.id, 
@@ -34,8 +33,9 @@ organization.organizationIsDescendant = (params) => {
         FROM childrens
         WHERE 1 = 1
             AND childrens.id = ${organizationParent.getInt("id")}
-    `);
+      `);
     return !!isDescendant;
-}
+  }
+};
 
 export default organization;
