@@ -1,12 +1,12 @@
-import cluarBase from "#core/cluar/base.js"
-import cluarCustom from "#core/cluar/custom/main.js"
-import cluarPage from "#core/cluar/publishPage.js"
+import base from "#core/cluar/base.js"
+import custom from "#core/cluar/custom/main.js"
+import page from "#core/cluar/publishPage.js"
 
 export default {
   build: (settings)=> {
     settings = settings || {}
     
-    const folder = _app.folder(`${cluarBase.base()}/cluar`)
+    const folder = _app.folder(`${base.base()}/cluar`)
     if (!folder.exists()) {
       folder.mkdir()
     }
@@ -25,7 +25,7 @@ export default {
      *
      */        
 
-    const languages = cluarBase.languages();
+    const languages = base.languages();
     data.set("languages", languages)
     
     /*
@@ -34,7 +34,7 @@ export default {
      *
      */
     
-    const configuration = cluarBase.configuration()
+    const configuration = base.configuration()
     data.set("configuration", configuration)
 
     /*
@@ -42,7 +42,7 @@ export default {
      *  nunca tocam em páginas já publicadas - ver comentário completo em
      *  cluarBase.applyConfigurationToIndexHtml.
      */
-    cluarBase.applyConfigurationToIndexHtml(configuration)
+    base.applyConfigurationToIndexHtml(configuration)
     
     /*
      *
@@ -50,7 +50,7 @@ export default {
      *
      */
     
-    data.set("dictionary", cluarBase.dictionary())
+    data.set("dictionary", base.dictionary())
 
     /*
      *
@@ -63,7 +63,7 @@ export default {
      *  conteúdo, etc. Ver server/services/admin/cluar/sync.js.
      */
 
-    const pages = cluarBase.pages({publishFn: settings.publishAll === true ? cluarPage.publishPage : null})
+    const pages = base.pages({publishFn: settings.publishAll === true ? page.publishPage : null})
     data.set("pages", pages)
 
     /*
@@ -72,9 +72,9 @@ export default {
      *
      */
 
-    data.set("actions", cluarBase.actions())
+    data.set("actions", base.actions())
     
-    cluarCustom.build(settings, data)
+    custom.build(settings, data)
     
     /*
      *
@@ -82,12 +82,12 @@ export default {
      *
      */
 
-    const file = _app.file(`${cluarBase.base()}/cluar/data.js`)
+    const file = _app.file(`${base.base()}/cluar/data.js`)
     file.output().print(`window.cluar = ${data.toJSON(4)};`).close()
     
     if (_app.settings.getValues('cluar', _val.map()).getBoolean("uglifyjs") == true) {
       const osUglifyJS = _os.init()
-      osUglifyJS.directory(_app.folder(cluarBase.base()))
+      osUglifyJS.directory(_app.folder(base.base()))
       const osUglifyJSResult = osUglifyJS.command(`uglifyjs -o cluar/data.js -- cluar/data.js`)
       if (osUglifyJSResult.output() != '' && osUglifyJSResult.error() != '') {
         _log.error(`UglifyJS failed:\n\tOutput: ${osUglifyJSResult.output()}\n\tError: ${osUglifyJSResult.error()}`)
@@ -148,11 +148,11 @@ export default {
         tagURLSet.appendChild(tagURL)
       }
     }
-    cluarCustom.siteMap(origin, document, tagURLSet)
+    custom.siteMap(origin, document, tagURLSet)
     document.appendChild(tagURLSet)
-    xml.save(document, _app.file(`${cluarBase.base()}/sitemap.xml`))
-    if (!_app.file(`${cluarBase.base()}/robots.txt`).exists()) {
-      const output = _app.file(`${cluarBase.base()}/robots.txt`).output()
+    xml.save(document, _app.file(`${base.base()}/sitemap.xml`))
+    if (!_app.file(`${base.base()}/robots.txt`).exists()) {
+      const output = _app.file(`${base.base()}/robots.txt`).output()
             .println('User-agent: *')
             .println('Allow: /')
             .println(`Sitemap: ${origin}/sitemap.xml`)

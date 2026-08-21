@@ -1,6 +1,6 @@
-import cluarActions from "#core/cluar/actions.js"
-import cluarPublishImage from "#core/cluar/publishImage.js"
-import cluarBase from "#core/cluar/base.js"
+import actions from "#core/cluar/actions.js"
+import publishImage from "#core/cluar/publishImage.js"
+import base from "#core/cluar/base.js"
 
 export default {
   publishPage: (dbPage) => {
@@ -72,7 +72,7 @@ export default {
           .set("image_title", dbContent.getString("image_title"))
           .set("image_max_width", dbContent.getString("image_max_width"))
           .set("sorter", dbContent.getInt("sorter"))
-          .set("actions", cluarActions.actions("content", dbContent.getInt("id")))
+          .set("actions", actions.actions("content", dbContent.getInt("id")))
           .set("title_invert_background", dbContent.getBoolean("title_invert_background"))
           .set("content_invert_background", dbContent.getBoolean("content_invert_background"))
       );
@@ -127,12 +127,12 @@ export default {
               .set("x", dbBanner.getString("position_x"))
               .set("y", dbBanner.getString("position_y"))
           )
-          .set("actions", cluarActions.actions("banner", dbBanner.getInt("id")))
+          .set("actions", actions.actions("banner", dbBanner.getInt("id")))
           .set("title_invert_background", dbBanner.getBoolean("title_invert_background"))
           .set("content_invert_background", dbBanner.getBoolean("content_invert_background"))
       );
       if (settings.images === true) {
-        cluarPublishImage.publishImage("banner", dbBanner.getString("image"));
+        publishImage.publishImage("banner", dbBanner.getString("image"));
       }
     }
 
@@ -205,7 +205,7 @@ export default {
           .set("image_title", dbListing.getString("image_title"))
           .set("items", items)
           .set("sorter", dbListing.getInt("sorter"))
-          .set("actions", cluarActions.actions("listing", dbListing.getInt("id")))
+          .set("actions", actions.actions("listing", dbListing.getInt("id")))
           .set("title_invert_background", dbListing.getBoolean("title_invert_background"))
           .set("content_invert_background", dbListing.getBoolean("content_invert_background"))
       );
@@ -247,7 +247,7 @@ export default {
         `);
 
       for (const dbItem of dbItems) {
-        const actions = cluarActions.actions("slider_item", dbItem.getInt("id"));
+        const actions = actions.actions("slider_item", dbItem.getInt("id"));
         const actionsList = _val.list();
 
         for (const action of actions) {
@@ -330,7 +330,7 @@ export default {
           .set("edit_mode", dbFunctionality.getString("edit_mode"))
           .set("image", dbFunctionality.getString("image"))
           .set("sorter", dbFunctionality.getInt("sorter"))
-          .set("actions", cluarActions.actions("functionality", dbFunctionality.getInt("id")))
+          .set("actions", actions.actions("functionality", dbFunctionality.getInt("id")))
           .set("title_invert_background", dbFunctionality.getBoolean("title_invert_background"))
           .set("content_invert_background", dbFunctionality.getBoolean("content_invert_background"))
       );
@@ -338,13 +338,13 @@ export default {
 
     structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"));
 
-    const folder = _app.folder(`${cluarBase.base()}/cluar/structures`);
+    const folder = _app.folder(`${base.base()}/cluar/structures`);
     if (!folder.exists()) {
       folder.mkdir();
     }
 
     const file = _app.file(
-      `${cluarBase.base()}/cluar/structures/${dbPage.getString("uid")}.json`
+      `${base.base()}/cluar/structures/${dbPage.getString("uid")}.json`
     );
     file
       .output()
@@ -361,12 +361,12 @@ export default {
 
     const htmlContent = _template.getOutput("cluar/builder", {
       structure,
-      configuration: cluarBase.configuration(),
-      dictionary: cluarBase.dictionary(),
-      languages: cluarBase.languages(),
+      configuration: base.configuration(),
+      dictionary: base.dictionary(),
+      languages: base.languages(),
       currentLanguage,
-      pages: cluarBase.pages({}),
-      actions: cluarBase.actions(),
+      pages: base.pages({}),
+      actions: base.actions(),
       page: dbPage,
     });
 
@@ -374,7 +374,7 @@ export default {
       /**
        * PUBLISH SOCIAL IMAGE IN PRODUCTION
        */
-      cluarPublishImage.publishPageSocialImage(dbPage.getString("social_image"));
+      publishImage.publishPageSocialImage(dbPage.getString("social_image"));
     }
 
     if (!_env.is("dev")) {

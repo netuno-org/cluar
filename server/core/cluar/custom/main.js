@@ -1,7 +1,7 @@
-import cluarCustomBuild from "#core/cluar/custom/build.js"
-import cluarSiteMap from "#core/cluar/custom/siteMap.js"
+import build from "#core/cluar/custom/build.js"
+import siteMap from "#core/cluar/custom/siteMap.js"
 
 export default {
-  ...cluarCustomBuild,
-  ...cluarSiteMap
+  ...build,
+  ...siteMap
 };

@@ -1,11 +1,11 @@
-import cluarBase from "#core/cluar/base.js"
+import base from "#core/cluar/base.js"
 
 export default {
   publishImage: (section, fileName)=> {
     if (fileName == "") {
       return;
     }
-    const folder = _app.folder(`${cluarBase.base()}/cluar/images/page_${section}`)
+    const folder = _app.folder(`${base.base()}/cluar/images/page_${section}`)
     if (!folder.exists()) {
       folder.mkdirs()
     }
@@ -24,7 +24,7 @@ export default {
     if (fileName == "") {
       return;
     }
-    const folder = _app.folder(`${cluarBase.base()}/cluar/images/page`)
+    const folder = _app.folder(`${base.base()}/cluar/images/page`)
     if (!folder.exists()) {
       folder.mkdirs()
     }
