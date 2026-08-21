@@ -2,7 +2,7 @@ import { _db, _user } from "@netuno/server-types"
 import user from "#core/cluar/user.js"
 import organization from "#core/cluar/organization.js" 
 
-const permission = {
+export default {
   validPermissions: ({ organization: orgCode, allowedGroups }) => {
     const loggedPeople = user.getLoggedPeople();
     const currentOrg = organization.getOrganization(orgCode);
@@ -50,6 +50,4 @@ const permission = {
 
     return !!dbIsAuthorized;
   }
-}
-
-export default permission;
+};

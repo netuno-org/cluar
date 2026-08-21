@@ -1,6 +1,6 @@
 import { _user } from "@netuno/server-types"
 
-const user = {
+export default {
   getLoggedPeople: () => {
     return _db.form("people")
       .where(
@@ -214,6 +214,4 @@ const user = {
     }
     return hierarchy;
   }
-}
-
-export default user;
+};

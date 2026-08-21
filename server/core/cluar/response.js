@@ -1,6 +1,6 @@
 import { _header, _out, _val } from "@netuno/server-types";
 
-const response = {
+export default {
     error: ({ status, error }) => {
         _header.status(status);
         _out.json(
@@ -27,6 +27,4 @@ const response = {
                 .set("result", true)
         );
     }
-}
-
-export default response;
+};

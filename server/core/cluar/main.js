@@ -13,7 +13,7 @@ import cluarPermission from "#core/cluar/permission.js"
 import cluarResponse from "#core/cluar/response.js"
 import cluarUser from "#core/cluar/user.js"
 
-const cluar = {
+export default {
   ...cluarBase,
   ...cluarBuild,
   ...cluarPublishImage,
@@ -27,5 +27,3 @@ const cluar = {
   response: { ...cluarResponse },
   user: { ...cluarUser },
 };
-
-export default cluar;

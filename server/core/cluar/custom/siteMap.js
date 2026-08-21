@@ -1,7 +1,5 @@
-const cluar = {};
-
-cluar.siteMap = (origin, document, tagURLSet)=> {
-  // TODO...
-}
-
-export default cluar;
+export default {
+  siteMap: (origin, document, tagURLSet)=> {
+    // TODO...
+  }
+};

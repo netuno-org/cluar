@@ -1,4 +1,4 @@
-const organization = {
+export default {
   getOrganization: (code) => {
     return _db.form("organization")
       .where(
@@ -60,5 +60,3 @@ const organization = {
     return !!isDescendant;
   }
 };
-
-export default organization;

@@ -1,25 +1,23 @@
 import cluarBase from "#core/cluar/base.js"
 
-const cluar = {};
+export default {
+  dataItemSavedWithImage: ()=> {
+    const section = _dataItem.getFormName()
 
-cluar.dataItemSavedWithImage = ()=> {
-  const section = _dataItem.getFormName()
+    const folder = _app.folder(`${cluarBase.base()}/cluar/images/${section}`)
+    
+    if (!folder.exists()) {
+      folder.mkdir()
+    }
 
-  const folder = _app.folder(`${cluarBase.base()}/cluar/images/${section}`)
-  
-  if (!folder.exists()) {
-    folder.mkdir()
+    if (_dataItem.getValues().has("image:old")) {
+      _app.file(`${folder.path()}/${_dataItem.getValues().getString("image:old")}`).delete()
+    }
+
+    if (_dataItem.getValues().has("image:new")) {
+      _storage.database(section, "image", _dataItem.getValues().getString("image:new"))
+        .file()
+        .copy(`${folder.path()}/${_dataItem.getValues().getString("image:new")}`)
+    }
   }
-
-  if (_dataItem.getValues().has("image:old")) {
-    _app.file(`${folder.path()}/${_dataItem.getValues().getString("image:old")}`).delete()
-  }
-
-  if (_dataItem.getValues().has("image:new")) {
-    _storage.database(section, "image", _dataItem.getValues().getString("image:new"))
-      .file()
-      .copy(`${folder.path()}/${_dataItem.getValues().getString("image:new")}`)
-  }
-}
-
-export default cluar;
+};
