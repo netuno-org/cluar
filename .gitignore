@@ -5,7 +5,9 @@ node_modules/
 .idea/
 .metadata/
 .vscode
+
 package-lock.json
+bun.lock
 
 /trash/*
 
