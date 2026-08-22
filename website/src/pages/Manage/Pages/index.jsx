@@ -16,7 +16,7 @@ const Pages = () => {
     const pageTableRef = useRef();
 
     const [syncing, setSyncing] = useState(false);
-    
+
     const loggedUserInfo = useSelector(
         (state) => state.loggedUserInfoState?.loggedUserInfo
     );
