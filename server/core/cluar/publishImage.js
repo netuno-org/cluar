@@ -1,4 +1,5 @@
-import base from "#core/cluar/base.js"
+import { _app, _storage } from "@netuno/server-types";
+import base from "#core/cluar/base.js";
 
 export default {
   publishImage: (section, fileName) => {

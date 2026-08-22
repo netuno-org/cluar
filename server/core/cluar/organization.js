@@ -1,3 +1,5 @@
+import { _db } from "@netuno/server-types";
+
 export default {
   getOrganization: (code) => {
     return _db.form("organization")

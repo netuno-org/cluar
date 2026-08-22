@@ -1,6 +1,7 @@
-import base from "#core/cluar/base.js"
-import custom from "#core/cluar/custom/main.js"
-import page from "#core/cluar/publishPage.js"
+import { _app, _val, _os, _log, _xml } from "@netuno/server-types";
+import base from "#core/cluar/base.js";
+import custom from "#core/cluar/custom/main.js";
+import page from "#core/cluar/publishPage.js";
 
 export default {
   build: (settings) => {

@@ -1,6 +1,7 @@
-import actions from "#core/cluar/actions.js"
-import publishImage from "#core/cluar/publishImage.js"
-import base from "#core/cluar/base.js"
+import { _db, _val, _app, _template, _env, _html } from "@netuno/server-types";
+import actions from "#core/cluar/actions.js";
+import publishImage from "#core/cluar/publishImage.js";
+import base from "#core/cluar/base.js";
 
 export default {
   publishPage: (dbPage) => {

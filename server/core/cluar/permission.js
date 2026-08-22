@@ -1,6 +1,6 @@
-import { _db, _user } from "@netuno/server-types"
-import user from "#core/cluar/user.js"
-import organization from "#core/cluar/organization.js"
+import { _db, _user } from "@netuno/server-types";
+import user from "#core/cluar/user.js";
+import organization from "#core/cluar/organization.js";
 
 export default {
   validPermissions: ({ organization: orgCode, allowedGroups }) => {

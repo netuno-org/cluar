@@ -1,3 +1,5 @@
+import { _env, _app, _config, _val, _db, _storage, _html } from "@netuno/server-types";
+
 export default {
   base: () => {
     if (_env.is("dev")) {

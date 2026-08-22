@@ -1,4 +1,4 @@
-import { _user } from "@netuno/server-types"
+import { _db, _user, _val } from "@netuno/server-types";
 
 export default {
   getLoggedPeople: () => {
