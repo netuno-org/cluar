@@ -1,6 +1,6 @@
 import { _db, _user } from "@netuno/server-types"
 import user from "#core/cluar/user.js"
-import organization from "#core/cluar/organization.js" 
+import organization from "#core/cluar/organization.js"
 
 export default {
   validPermissions: ({ organization: orgCode, allowedGroups }) => {
@@ -9,9 +9,9 @@ export default {
     const peopleGroups = organization.getPeopleGroupsByOrg(currentOrg.getInt("id"), loggedPeople.getInt("id"));
     return peopleGroups.some((group) => allowedGroups.includes(group.getString("code")));
   },
-  
+
   isUserAuthorizedInOrganization: (params) => {
-    const people = user.getLoggedPeople(); 
+    const people = user.getLoggedPeople();
     const organization = params.getValues("organization");
 
     const dbIsAuthorized = _db.queryFirst(`

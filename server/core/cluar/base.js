@@ -188,15 +188,15 @@ export default {
     const backgroundColorDark = generic.getString("background-color-dark")
 
     let cssOverrides = ":root {"
-      if (primaryColor) {
-        cssOverrides += `--cluar-loading-color: ${primaryColor};`
-      }
-      if (backgroundColorLight) {
-        cssOverrides += `--cluar-bg-light: ${backgroundColorLight};`
-      }
-      if (backgroundColorDark) {
-        cssOverrides += `--cluar-bg-dark: ${backgroundColorDark};`
-      }
+    if (primaryColor) {
+      cssOverrides += `--cluar-loading-color: ${primaryColor};`
+    }
+    if (backgroundColorLight) {
+      cssOverrides += `--cluar-bg-light: ${backgroundColorLight};`
+    }
+    if (backgroundColorDark) {
+      cssOverrides += `--cluar-bg-dark: ${backgroundColorDark};`
+    }
     cssOverrides += "}\n"
 
     const faviconLocation = cluar.FIXED_IMAGE_LOCATION["favicon"]

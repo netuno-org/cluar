@@ -3,9 +3,9 @@ import custom from "#core/cluar/custom/main.js"
 import page from "#core/cluar/publishPage.js"
 
 export default {
-  build: (settings)=> {
+  build: (settings) => {
     settings = settings || {}
-    
+
     const folder = _app.folder(`${base.base()}/cluar`)
     if (!folder.exists()) {
       folder.mkdir()
@@ -23,17 +23,17 @@ export default {
      *
      *  LANGUAGES
      *
-     */        
+     */
 
     const languages = base.languages();
     data.set("languages", languages)
-    
+
     /*
      *
      *  CONFIGURATION
      *
      */
-    
+
     const configuration = base.configuration()
     data.set("configuration", configuration)
 
@@ -43,13 +43,13 @@ export default {
      *  cluarBase.applyConfigurationToIndexHtml.
      */
     base.applyConfigurationToIndexHtml(configuration)
-    
+
     /*
      *
      *  DICTIONARY
      *
      */
-    
+
     data.set("dictionary", base.dictionary())
 
     /*
@@ -63,7 +63,7 @@ export default {
      *  conteúdo, etc. Ver server/services/admin/cluar/sync.js.
      */
 
-    const pages = base.pages({publishFn: settings.publishAll === true ? page.publishPage : null})
+    const pages = base.pages({ publishFn: settings.publishAll === true ? page.publishPage : null })
     data.set("pages", pages)
 
     /*
@@ -73,9 +73,9 @@ export default {
      */
 
     data.set("actions", base.actions())
-    
+
     custom.build(settings, data)
-    
+
     /*
      *
      *  MAIN FILE
@@ -84,7 +84,7 @@ export default {
 
     const file = _app.file(`${base.base()}/cluar/data.js`)
     file.output().print(`window.cluar = ${data.toJSON(4)};`).close()
-    
+
     if (_app.settings.getValues('cluar', _val.map()).getBoolean("uglifyjs") == true) {
       const osUglifyJS = _os.init()
       osUglifyJS.directory(_app.folder(base.base()))
@@ -131,7 +131,7 @@ export default {
         }
         const tagURL = document.createElement("url")
         const tagLoc = document.createElement("loc")
-        tagLoc.appendChild(document.createTextNode(origin +"/"+ language.getString("locale") + page.getString("link")))
+        tagLoc.appendChild(document.createTextNode(origin + "/" + language.getString("locale") + page.getString("link")))
         tagURL.appendChild(tagLoc)
         const tagChangeFreq = document.createElement("changefreq")
         tagChangeFreq.appendChild(document.createTextNode("daily"))
@@ -153,10 +153,10 @@ export default {
     xml.save(document, _app.file(`${base.base()}/sitemap.xml`))
     if (!_app.file(`${base.base()}/robots.txt`).exists()) {
       const output = _app.file(`${base.base()}/robots.txt`).output()
-            .println('User-agent: *')
-            .println('Allow: /')
-            .println(`Sitemap: ${origin}/sitemap.xml`)
-            .close()
+        .println('User-agent: *')
+        .println('Allow: /')
+        .println(`Sitemap: ${origin}/sitemap.xml`)
+        .close()
     }
   }
 };

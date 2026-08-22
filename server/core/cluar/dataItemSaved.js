@@ -1,11 +1,11 @@
 import base from "#core/cluar/base.js"
 
 export default {
-  dataItemSavedWithImage: ()=> {
+  dataItemSavedWithImage: () => {
     const section = _dataItem.getFormName()
 
     const folder = _app.folder(`${base.base()}/cluar/images/${section}`)
-    
+
     if (!folder.exists()) {
       folder.mkdir()
     }
