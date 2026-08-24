@@ -118,12 +118,12 @@ const ORGANIZATION_CODE = "admins";
 if (PUBLIC_PATHS.includes(_service.path) || PUBLIC_PATH_PREFIXES.some((prefix) => _service.path.startsWith(prefix))) {
   _service.allow()
 } else if (CONTENT_MANAGEMENT_PATHS.includes(_service.path)) {
-  cluar.permission.validPermissions({
+  cluar.permission.isAllowed({
     organization: ORGANIZATION_CODE,
     allowedGroups: [groups["ADMIN"], groups["EDITOR"]]
   }) ? _service.allow() : _service.deny();
 } else if (SITE_ADMIN_PATHS.includes(_service.path) || ACCESS_MANAGEMENT_PATHS.includes(_service.path)) {
-  cluar.permission.validPermissions({
+  cluar.permission.isAllowed({
     organization: ORGANIZATION_CODE,
     allowedGroups: [groups["ADMIN"]]
   }) ? _service.allow() : _service.deny();

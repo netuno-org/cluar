@@ -1,7 +1,7 @@
 import { _db } from "@netuno/server-types";
 
 export default {
-  getOrganization: (code) => {
+  getByCode: (code) => {
     return _db.form("organization")
       .where(
         _db.where("code").equals(code)

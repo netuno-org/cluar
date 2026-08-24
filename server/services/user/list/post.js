@@ -42,7 +42,7 @@ if (filters) {
     }
 }
 
-const userOrganizations = cluar.user.getUserOrganizations();
+const userOrganizations = cluar.user.getOrganizations();
 const organizationWhere = _db.where(
     'organization_id'
 ).in(userOrganizations.map((organization) => organization.getInt("id")))

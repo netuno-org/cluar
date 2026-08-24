@@ -9,7 +9,7 @@ export default {
       .first();
   },
 
-  getUserOrganizations: () => {
+  getOrganizations: () => {
     const dbPeople = _db.queryFirst(`SELECT id FROM people WHERE people_user_id = ?`, _user.id());
 
     const dbOrganizations = _db.query(`
@@ -54,7 +54,7 @@ export default {
     return dbOrganizations;
   },
 
-  getUserOrganizationHierarchy: () => {
+  getOrganizationHierarchy: () => {
     const dbPeople = _db.queryFirst(`SELECT id FROM people WHERE people_user_id = ?`, _user.id());
 
     const dbOrganizations = _db.query(`

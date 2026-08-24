@@ -3,9 +3,9 @@ import user from "#core/cluar/user.js";
 import organization from "#core/cluar/organization.js";
 
 export default {
-  validPermissions: ({ organization: orgCode, allowedGroups }) => {
+  isAllowed: ({ organization: orgCode, allowedGroups }) => {
     const loggedPeople = user.getLoggedPeople();
-    const currentOrg = organization.getOrganization(orgCode);
+    const currentOrg = organization.getByCode(orgCode);
     const peopleGroups = organization.getPeopleGroupsByOrg(currentOrg.getInt("id"), loggedPeople.getInt("id"));
     return peopleGroups.some((group) => allowedGroups.includes(group.getString("code")));
   },
