@@ -444,7 +444,7 @@ if (lastPageVersion) {
     );
 
     for (const dbStructure of dbStructures) {
-      cluar.publishImage(`${key}`, dbStructure.getString("image"));
+      cluar.image.publish(`${key}`, dbStructure.getString("image"));
     }
   }
 

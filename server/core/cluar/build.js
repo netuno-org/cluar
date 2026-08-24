@@ -1,7 +1,7 @@
 import { _app, _val, _os, _log, _xml } from "@netuno/server-types";
 import base from "#core/cluar/base.js";
 import custom from "#core/cluar/custom/main.js";
-import page from "#core/cluar/publishPage.js";
+import page from "#core/cluar/page.js";
 
 export default {
   build: (settings) => {
@@ -64,7 +64,7 @@ export default {
      *  conteúdo, etc. Ver server/services/admin/cluar/sync.js.
      */
 
-    const pages = base.pages({ publishFn: settings.publishAll === true ? page.publishPage : null })
+    const pages = base.pages({ publishFn: settings.publishAll === true ? page.publish : null })
     data.set("pages", pages)
 
     /*

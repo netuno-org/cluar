@@ -1,10 +1,10 @@
 import { _db, _val, _app, _template, _env, _html } from "@netuno/server-types";
 import action from "#core/cluar/action.js";
-import publishImage from "#core/cluar/publishImage.js";
+import image from "#core/cluar/image.js";
 import base from "#core/cluar/base.js";
 
 export default {
-  publishPage: (dbPage) => {
+  publish: (dbPage) => {
     const dbPageStatus = _db.queryFirst(`
       SELECT * FROM page_status WHERE page_status.code = 'published'
     `);
@@ -133,7 +133,7 @@ export default {
           .set("content_invert_background", dbBanner.getBoolean("content_invert_background"))
       );
       if (settings.images === true) {
-        publishImage.publishImage("banner", dbBanner.getString("image"));
+        image.publish("banner", dbBanner.getString("image"));
       }
     }
 
@@ -375,7 +375,7 @@ export default {
       /**
        * PUBLISH SOCIAL IMAGE IN PRODUCTION
        */
-      publishImage.publishPageSocialImage(dbPage.getString("social_image"));
+      image.publishSocial(dbPage.getString("social_image"));
     }
 
     if (!_env.is("dev")) {

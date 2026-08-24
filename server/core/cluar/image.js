@@ -2,7 +2,7 @@ import { _app, _storage } from "@netuno/server-types";
 import base from "#core/cluar/base.js";
 
 export default {
-  publishImage: (section, fileName) => {
+  publish: (section, fileName) => {
     if (fileName == "") {
       return;
     }
@@ -21,7 +21,7 @@ export default {
     }
   },
 
-  publishPageSocialImage: (fileName) => {
+  publishSocial: (fileName) => {
     if (fileName == "") {
       return;
     }
