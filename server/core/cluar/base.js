@@ -1,40 +1,44 @@
 import { _env, _app, _config, _val, _db, _storage, _html } from "@netuno/server-types";
 
+const base = () => {
+  if (_env.is("dev")) {
+    return "website/public"
+  } else {
+    return "website/dist"
+  }
+}
+
+/*
+ * Parâmetros de configuração do tipo "image" que devem ser sempre
+ * gravados na MESMA pasta e com o MESMO nome de ficheiro em disco,
+ * independentemente do nome que o Netuno atribuiu ao upload
+ * (configuration.value_img).
+ *
+ * Isto é essencial para imagens referenciadas fora do React/JS
+ * (ex: favicon em <link rel="icon">, manifest.json), porque essas
+ * referências são estáticas e não podem mudar a cada upload -
+ * só o conteúdo do ficheiro é substituído.
+ *
+ * Por omissão (parâmetro não listado aqui), mantém-se o comportamento
+ * já existente: pasta "cluar/images/configuration" + nome gerado pelo
+ * Netuno no upload (ex: o "logo").
+ */
+const FIXED_IMAGE_LOCATION = {
+  "favicon": { folder: "images", fileName: "favicon.png" },
+}
+
+const configurationImageLocation = (parameterCode, uploadedFileName) => {
+  const fixed = FIXED_IMAGE_LOCATION[parameterCode]
+  if (fixed) {
+    return { folder: fixed.folder, fileName: fixed.fileName }
+  }
+  return { folder: "cluar/images/configuration", fileName: uploadedFileName }
+}
+
 export default {
-  base: () => {
-    if (_env.is("dev")) {
-      return "website/public"
-    } else {
-      return "website/dist"
-    }
-  },
-
-  /*
-   * Parâmetros de configuração do tipo "image" que devem ser sempre
-   * gravados na MESMA pasta e com o MESMO nome de ficheiro em disco,
-   * independentemente do nome que o Netuno atribuiu ao upload
-   * (configuration.value_img).
-   *
-   * Isto é essencial para imagens referenciadas fora do React/JS
-   * (ex: favicon em <link rel="icon">, manifest.json), porque essas
-   * referências são estáticas e não podem mudar a cada upload -
-   * só o conteúdo do ficheiro é substituído.
-   *
-   * Por omissão (parâmetro não listado aqui), mantém-se o comportamento
-   * já existente: pasta "cluar/images/configuration" + nome gerado pelo
-   * Netuno no upload (ex: o "logo").
-   */
-  FIXED_IMAGE_LOCATION: {
-    "favicon": { folder: "images", fileName: "favicon.png" },
-  },
-
-  configurationImageLocation: (parameterCode, uploadedFileName) => {
-    const fixed = cluar.FIXED_IMAGE_LOCATION[parameterCode]
-    if (fixed) {
-      return { folder: fixed.folder, fileName: fixed.fileName }
-    }
-    return { folder: "cluar/images/configuration", fileName: uploadedFileName }
-  },
+  base,
+  FIXED_IMAGE_LOCATION,
+  configurationImageLocation,
 
   /*
    * URL público para mostrar a imagem de um parâmetro de configuração
@@ -51,8 +55,8 @@ export default {
     if (!uploadedFileName) {
       return null
     }
-    const location = cluar.configurationImageLocation(parameterCode, uploadedFileName)
-    const file = _app.file(`${cluar.base()}/${location.folder}/${location.fileName}`)
+    const location = configurationImageLocation(parameterCode, uploadedFileName)
+    const file = _app.file(`${base()}/${location.folder}/${location.fileName}`)
     const version = file.exists() ? file.lastModified() : 0
     return `/${location.folder}/${location.fileName}?v=${version}`
   },
@@ -85,10 +89,10 @@ export default {
       const uploadedFileName = dbParameter.getString("value_img")
 
       if (uploadedFileName) {
-        const location = cluar.configurationImageLocation(
+        const location = configurationImageLocation(
           dbParameter.getString("code"), uploadedFileName
         )
-        const folder = _app.folder(`${cluar.base()}/${location.folder}`)
+        const folder = _app.folder(`${base()}/${location.folder}`)
         if (!folder.exists()) {
           folder.mkdirs()
         }
@@ -127,10 +131,10 @@ export default {
       const uploadedFileName = dbParameter.getString("value_img")
 
       if (uploadedFileName) {
-        const location = cluar.configurationImageLocation(
+        const location = configurationImageLocation(
           dbParameter.getString("code"), uploadedFileName
         )
-        const folder = _app.folder(`${cluar.base()}/${location.folder}`)
+        const folder = _app.folder(`${base()}/${location.folder}`)
         if (!folder.exists()) {
           folder.mkdirs()
         }
@@ -201,7 +205,7 @@ export default {
     }
     cssOverrides += "}\n"
 
-    const faviconLocation = cluar.FIXED_IMAGE_LOCATION["favicon"]
+    const faviconLocation = FIXED_IMAGE_LOCATION["favicon"]
 
     /*
      * website/index.html (fonte) usa as imagens/root.css de website/public/...
