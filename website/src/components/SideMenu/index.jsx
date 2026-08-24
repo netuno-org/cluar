@@ -80,9 +80,6 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const groupAliases = {
     admin: ["administrator", "admin"],
     editor: ["editor"],
-    author: ["author"],
-    contributor: ["contributor"],
-    subscriber: ["subscriber"],
   };
 
   const hasPermissions = (groupsAllowed) => {

@@ -1,9 +1,6 @@
 const group = {
-    ADMIN: "administrator",
-    EDITOR: "editor",
-    AUTHOR: "author",
-    CONTRIBUTOR: "contributor",
-    SUBSCRIBER: "subscriber"
+  ADMIN: "administrator",
+  EDITOR: "editor",
 }
 
 export default group;
