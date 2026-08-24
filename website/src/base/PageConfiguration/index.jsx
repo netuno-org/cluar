@@ -282,6 +282,9 @@ const PageConfiguration = ({
     _service({
       url: "/page/template/list",
       method: "POST",
+      data: {
+        language: Cluar.currentLanguage().locale,
+      },
       success: (res) => {
         setTemplateOptions(res.json.templates);
       },
@@ -345,7 +348,7 @@ const PageConfiguration = ({
           >
             <Select
               options={templateOptions.map((item) => ({
-                label: item.name,
+                label: item.info.label,
                 value: item.name,
               }))}
             />
