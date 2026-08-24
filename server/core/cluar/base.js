@@ -1,6 +1,6 @@
 import { _env, _app, _config, _val, _db, _storage, _html } from "@netuno/server-types";
 
-const base = () => {
+const basePath = () => {
   if (_env.is("dev")) {
     return "website/public"
   } else {
@@ -36,7 +36,7 @@ const configurationImageLocation = (parameterCode, uploadedFileName) => {
 }
 
 export default {
-  base,
+  basePath,
   FIXED_IMAGE_LOCATION,
   configurationImageLocation,
 
@@ -56,7 +56,7 @@ export default {
       return null
     }
     const location = configurationImageLocation(parameterCode, uploadedFileName)
-    const file = _app.file(`${base()}/${location.folder}/${location.fileName}`)
+    const file = _app.file(`${basePath()}/${location.folder}/${location.fileName}`)
     const version = file.exists() ? file.lastModified() : 0
     return `/${location.folder}/${location.fileName}?v=${version}`
   },
@@ -92,7 +92,7 @@ export default {
         const location = configurationImageLocation(
           dbParameter.getString("code"), uploadedFileName
         )
-        const folder = _app.folder(`${base()}/${location.folder}`)
+        const folder = _app.folder(`${basePath()}/${location.folder}`)
         if (!folder.exists()) {
           folder.mkdirs()
         }
@@ -134,7 +134,7 @@ export default {
         const location = configurationImageLocation(
           dbParameter.getString("code"), uploadedFileName
         )
-        const folder = _app.folder(`${base()}/${location.folder}`)
+        const folder = _app.folder(`${basePath()}/${location.folder}`)
         if (!folder.exists()) {
           folder.mkdirs()
         }
@@ -210,7 +210,7 @@ export default {
     /*
      * website/index.html (fonte) usa as imagens/root.css de website/public/...
      * website/dist/index.html (compilado) usa as de website/dist/...
-     * são as mesmas duas bases que cluar.base() já alterna consoante o
+     * são as mesmas duas bases que cluar.basePath() já alterna consoante o
      * ambiente - aqui percorremos as duas sempre, independentemente do
      * ambiente atual, para nenhuma delas ficar desatualizada.
      */

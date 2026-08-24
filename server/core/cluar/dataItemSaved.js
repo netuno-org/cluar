@@ -5,7 +5,7 @@ export default {
   dataItemSavedWithImage: () => {
     const section = _dataItem.getFormName()
 
-    const folder = _app.folder(`${base.base()}/cluar/images/${section}`)
+    const folder = _app.folder(`${base.basePath()}/cluar/images/${section}`)
 
     if (!folder.exists()) {
       folder.mkdir()

@@ -7,7 +7,7 @@ export default {
   build: (settings) => {
     settings = settings || {}
 
-    const folder = _app.folder(`${base.base()}/cluar`)
+    const folder = _app.folder(`${base.basePath()}/cluar`)
     if (!folder.exists()) {
       folder.mkdir()
     }
@@ -83,12 +83,12 @@ export default {
      *
      */
 
-    const file = _app.file(`${base.base()}/cluar/data.js`)
+    const file = _app.file(`${base.basePath()}/cluar/data.js`)
     file.output().print(`window.cluar = ${data.toJSON(4)};`).close()
 
     if (_app.settings.getValues('cluar', _val.map()).getBoolean("uglifyjs") == true) {
       const osUglifyJS = _os.init()
-      osUglifyJS.directory(_app.folder(base.base()))
+      osUglifyJS.directory(_app.folder(base.basePath()))
       const osUglifyJSResult = osUglifyJS.command(`uglifyjs -o cluar/data.js -- cluar/data.js`)
       if (osUglifyJSResult.output() != '' && osUglifyJSResult.error() != '') {
         _log.error(`UglifyJS failed:\n\tOutput: ${osUglifyJSResult.output()}\n\tError: ${osUglifyJSResult.error()}`)
@@ -151,9 +151,9 @@ export default {
     }
     custom.siteMap(origin, document, tagURLSet)
     document.appendChild(tagURLSet)
-    xml.save(document, _app.file(`${base.base()}/sitemap.xml`))
-    if (!_app.file(`${base.base()}/robots.txt`).exists()) {
-      const output = _app.file(`${base.base()}/robots.txt`).output()
+    xml.save(document, _app.file(`${base.basePath()}/sitemap.xml`))
+    if (!_app.file(`${base.basePath()}/robots.txt`).exists()) {
+      const output = _app.file(`${base.basePath()}/robots.txt`).output()
         .println('User-agent: *')
         .println('Allow: /')
         .println(`Sitemap: ${origin}/sitemap.xml`)

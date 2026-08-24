@@ -339,13 +339,13 @@ export default {
 
     structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"));
 
-    const folder = _app.folder(`${base.base()}/cluar/structures`);
+    const folder = _app.folder(`${base.basePath()}/cluar/structures`);
     if (!folder.exists()) {
       folder.mkdir();
     }
 
     const file = _app.file(
-      `${base.base()}/cluar/structures/${dbPage.getString("uid")}.json`
+      `${base.basePath()}/cluar/structures/${dbPage.getString("uid")}.json`
     );
     file
       .output()

@@ -6,7 +6,7 @@ export default {
     if (fileName == "") {
       return;
     }
-    const folder = _app.folder(`${base.base()}/cluar/images/page_${section}`)
+    const folder = _app.folder(`${base.basePath()}/cluar/images/page_${section}`)
     if (!folder.exists()) {
       folder.mkdirs()
     }
@@ -25,7 +25,7 @@ export default {
     if (fileName == "") {
       return;
     }
-    const folder = _app.folder(`${base.base()}/cluar/images/page`)
+    const folder = _app.folder(`${base.basePath()}/cluar/images/page`)
     if (!folder.exists()) {
       folder.mkdirs()
     }
