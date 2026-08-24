@@ -1,134 +1,152 @@
 ![logocluar](https://raw.githubusercontent.com/netuno-org/cluar/main/docs/logo.svg)
 
 # CLUAR CMS 
-Uma solução pronta a usar para gestão de conteúdos e sites multilingues usando [Netuno](https://www.netuno.org/), [ReactJS](https://reactjs.org/) e [Ant Design](https://ant.design/).
+
+Uma solução pronta a usar para gestão de conteúdos e websites multilíngues usando [Netuno](https://www.netuno.org/), [ReactJS](https://reactjs.org/) e [Ant Design](https://ant.design/).
+
+## Documentação :books:
+
+A documentação completa do CLUAR — instalação, configuração, páginas, componentes, ações, configurações, dicionários, templates e permissões — está disponível na [Academia do Netuno](https://doc.netuno.org/pt/docs/academy/cluar/overview).
 
 ## Instalação :cd:
 
-**Netuno**
+Instala estes requisitos:
+1. [Netuno](https://doc.netuno.org/pt/docs/get-started/installation)
+2. [Bun](https://bun.sh/docs/installation)
 
-[Siga os passos aqui](https://doc.netuno.org/docs/get-started/installation)
+Depois clona este projeto dentro de:
 
-**Bun**
+- :open_file_folder: `[diretório raiz do Netuno]/apps`
 
-[Siga os passos aqui](https://bun.sh/docs/installation)
+Usando o comando de clone:
 
-**Cluar App**
-
-Clone este projeto para `(Netuno Root diretory)/apps/cluar/`.
-
-## Documentação
-
-[Documentação Geral do CLUAR CMS](docs/README.md)
+```
+git clone https://github.com/netuno-org/cluar.git
+```
 
 ## Configuração :wrench:
 
-> O seguinte processo é orientado para ambientes de desenvolvimento Linux.
+> O processo abaixo é orientado para ambientes de desenvolvimento Linux.
 
-1. Copie o ficheiro de configuração de amostra da aplicação executando (no diretório raiz da aplicação):
-    - `cp config/sample.json config/_development.json` (para um ambiente de desenvolvimento)
-    - `cp config/sample.json config/_production.json` (para um ambiente de produção)
-    - e ajuste o ficheiro `_development.json` e/ou `_production.json` de acordo com o seu ambiente.
-  
-2. Você precisará configurar uma conexão do tipo banco de dados PostgreSQL para que este aplicativo funcione corretamente, [aprenda como fazer isso aqui] (https://doc.netuno.org/pt/docs/academy/server/database/psql/).
+1. Renomeia a pasta do projeto (o nome da app) usando apenas letras minúsculas, números e underscore.
 
-3. Localizar e substituir a palavra `S3cR3t` por um código secreto, o mais aleatório possível, pois é este que garante a segurança das credenciais dos utilizadores. Por exemplo: `#J&Az+7(8d+k/9q]` . [Ferramenta recomendada de geração de código seguro](https://www.random.org/passwords/).
+2. Copia o ficheiro de configuração de amostra da app, executando (no diretório raiz da app):
+  - `cp config/sample.json config/_development.json` (para um ambiente de desenvolvimento)
+  - `cp config/sample.json config/_production.json` (para um ambiente de produção)
+  - Altera a propriedade `name` na raiz do JSON para o nome da app escolhido.
+  - Faz os restantes ajustes de acordo com o teu ambiente.
 
-### Configuração do JWT:
-4. Certifique-se de que os seguintes parâmetros `_development.json` correspondem ao exemplo:
+3. Vais precisar de configurar uma ligação a uma base de dados do tipo PostgreSQL para esta app funcionar corretamente, [aprende a fazê-lo aqui](https://doc.netuno.org/pt/docs/academy/server/database/psql/).
 
-```
-"commands": [
-        {
-            "path": "ui",
-            "command": "npm run watch",
-            "install": "npm install --force",
-            "enabled": true
-        },
-        {
-            "path": "website",
-            "command": "npm run dev",
-            "install": "npm install --force",
-            "enabled": true
-        }
-    ]
-```
+4. Edita o ficheiro de configuração criado no primeiro passo e localiza `"db": { "default": ... }`, depois substitui os dados de ligação pelos da tua base de dados.
+
+5. Muda o segredo de autenticação JWT, localizando `"auth": { "jwt": { "secret": ... } }` — garante que este segredo tem 32 caracteres.
+
+6. Se quiseres, ativa o [Altcha](https://altcha.org/) (uma alternativa ao reCAPTCHA que preserva a privacidade), definindo `"auth": { "altcha": { "enabled": true } }`, e `"settings": { "cluar": { "website": { "auth": { "altcha": { "enabled": true } } } } }` para o widget aparecer no website.
+
+7. Dentro de `"settings": { "cluar": ... }` ajusta o URL do Website, o URL da API de Serviços, e o resto conforme necessário.
+
+## Website com Bun :art:
+
+Dentro da pasta website:
 
 ```
-"cluar": {
-            "website": {
-                "url": "http://localhost:3000",
-                "name": "Website Name",
-                "analytics": null,
-                "mapbox": {
-                    "dark": false,
-                    "accessToken": null
-                },
-                "services": {
-                    "api": "http://localhost:9000/services/"
-                },
-                "auth": {"providers": {
-                    "discord": false,
-                    "facebook": false,
-                    "github": false,
-                    "google": true
-                }}
-            },
-            "uglifyjs": false
-        },
+cd website
 ```
 
+Executa o comando de instalação do Bun:
+
 ```
-"config": {
-        "auth": {"providers": {
-            "discord": false,
-            "facebook": false,
-            "github": false,
-            "google": true
-        }},
-        "mapbox": {"dark": false},
-        "name": "Website Name",
-        "services": {"api": "http://localhost:9000/services/"},
-        "url": "http://localhost:3000"
-    }
+bun install
 ```
 
-  - adicionar o parâmetro `auth` após o fecho do parâmetro `settings`:
-```
-"auth": {
-        "jwt": {
-          "enabled": true,
-          "secret": "ThisSecretMustContains32Chars!!!",
-          "expires": {
-            "access": 1440,
-            "refresh": 1440
-          }
-        }
-    }
-```
-> Na chave "jwt", preencha de acordo com a sua preferência. Recomenda-se a utilização de um gerador de palavras-passe aleatórias: [Ferramenta recomendada de geração de código seguro](https://www.random.org/passwords/).
+É necessário permitir a execução de scripts não confiáveis do ESBUILD, então executa:
 
-5. no diretório `website/` executar o comando `npm install --force`.
+```
+bun pm trust --all
+```
 
-6. Você também precisará configurar o arquivo de configuração de exemplo do site localizado em `website/src/config/`:
-    - Altere as configurações dentro de `_development_config.json` e `_production_config.json` para os ambientes de desenvolvimento e produção, respetivamente.
-      
+Se precisares de reiniciar a instalação do website, remove esta pasta e estes ficheiros:
+
+```
+rm -rf node_modules
+bun install
+bun pm trust --all
+```
+
+Agora podes iniciar o website com o comando clássico:
+
+```bun run dev```
+
+> Por padrão, o website corre com Bun.
+
+## Resolução de problemas :hammer_and_wrench:
+
+### Erro de versão do GLIBC ao correr `bun run dev`
+
+Se aparecer um erro como este ao iniciar o website:
+
+```
+Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (https://github.com/npm/cli/issues/4828). Please try `npm i` again after removing both package-lock.json and node_modules directory.
+...
+[cause]: Error: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found (required by .../node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node)
+code: 'ERR_DLOPEN_FAILED'
+```
+
+Não se trata do bug de dependências opcionais do npm mencionado na mensagem, mas sim de uma **incompatibilidade de versão do GLIBC**: o binário nativo do Rollup foi compilado exigindo o `GLIBC_2.32` ou mais recente, e distribuições Linux mais antigas (por exemplo, Ubuntu 20.04, que traz o glibc 2.31) não o têm disponível.
+
+Para resolver, força o Rollup a usar a versão WASM em vez da nativa, adicionando um campo `overrides` na raiz do `package.json` do website:
+
+```json
+"overrides": {
+  "rollup": "npm:@rollup/wasm-node"
+}
+```
+
+De seguida, reinstala as dependências:
+
+```
+rm -rf node_modules bun.lock bun.lockb
+bun install
+bun pm trust --all
+bun run dev
+```
 
 ## Execução :rocket:
 
-No diretório raiz do Netuno, execute
+No diretório raiz do Netuno, executa
 
 `./netuno server app=cluar`
 
-e deverá iniciar tanto o servidor back-end como o front-end.
+e deve iniciar tanto o servidor back-end como o front-end.
 
-> A primeira execução pode demorar um pouco devido à instalação das dependências do front-end.
+> A primeira execução pode demorar mais tempo, devido à instalação das dependências do front-end.
 
-Por padrão, o back office Netuno estará disponível em:
+Por padrão, o backoffice do Netuno fica disponível em:
   - [http://localhost:9000/](http://localhost:9000/)
 
-O OpenAPI estará em:
+O OpenAPI fica em:
   - [http://localhost:9000/services/_openapi](http://localhost:9000/services/_openapi)
 
-E o front-end (site restrito) iniciará em:
+Para iniciar o website:
+
+```
+cd website
+bun run dev
+```
+
+Por padrão, o website fica disponível em:
   - [http://localhost:3000/](http://localhost:3000/)
+
+Podes fazer o website arrancar automaticamente junto com o servidor Netuno, ativando o comando em `config/_development.json`:
+
+```
+   "commands": [
+      ...
+      {
+         "path": "website",
+         ...
+         "enabled": true
+      }
+   ]
+```

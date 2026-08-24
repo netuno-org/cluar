@@ -4,6 +4,10 @@
 
 A ready to use solution for content management and multilingual websites using [Netuno](https://www.netuno.org/), [ReactJS](https://reactjs.org/) and [Ant Design](https://ant.design/).
 
+## Documentation :books:
+
+The full CLUAR documentation — installation, configuration, pages, components, actions, settings, dictionaries, templates and permissions — is available in the [Netuno Academy](https://doc.netuno.org/docs/academy/cluar/overview).
+
 ## Installation :cd:
 
 Install these requirements:
@@ -20,12 +24,6 @@ Using the clone command:
 git clone https://github.com/netuno-org/cluar.git
 ```
 
-## Documentation
-
-After the installation and the configuration, see here the developer documentation:
-
-[CLUAR CMS General Developer Documentation](docs/README.md)
-
 ## Configuration :wrench:
 
 > The following process is oriented to Linux development environments.
@@ -38,14 +36,16 @@ After the installation and the configuration, see here the developer documentati
   - Change the `name` property in the JSON root to your chosen app name.
   - Make all the adjustments according to your environment.
 
-3. You'll need to configure a PostgreSQL database type connection for this app to work properly, [learn how to do it here](https://doc.netuno.org/pt/docs/academy/server/database/psql/).
+3. You'll need to configure a PostgreSQL database type connection for this app to work properly, [learn how to do it here](https://doc.netuno.org/docs/academy/server/database/psql/).
 
 4. Edit your configuration file created in the first step and
 find the `"db": { "default": ... }`, then locate and replace the database settings with the password.
 
 5. Change the authentication JWT secret, finding the `"auth": { "jwt": { "secret": ... } }`, ensure that this secret must have a 32-character length.
 
-6. Inside of the `"settings": { "cluar": ... }` adjust the Website URL, the Services API URL, and others as you need.
+6. If needed, enable [Altcha](https://altcha.org/) (a privacy-friendly alternative to reCAPTCHA) by setting `"auth": { "altcha": { "enabled": true } }`, and `"settings": { "cluar": { "website": { "auth": { "altcha": { "enabled": true } } } } }` for the widget to show up on the website.
+
+7. Inside of the `"settings": { "cluar": ... }` adjust the Website URL, the Services API URL, and others as you need.
 
 ## Website with Bun :art:
 
