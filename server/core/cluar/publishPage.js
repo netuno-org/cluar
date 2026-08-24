@@ -1,5 +1,5 @@
 import { _db, _val, _app, _template, _env, _html } from "@netuno/server-types";
-import actions from "#core/cluar/actions.js";
+import action from "#core/cluar/action.js";
 import publishImage from "#core/cluar/publishImage.js";
 import base from "#core/cluar/base.js";
 
@@ -73,7 +73,7 @@ export default {
           .set("image_title", dbContent.getString("image_title"))
           .set("image_max_width", dbContent.getString("image_max_width"))
           .set("sorter", dbContent.getInt("sorter"))
-          .set("actions", actions.actions("content", dbContent.getInt("id")))
+          .set("actions", action.getByItem("content", dbContent.getInt("id")))
           .set("title_invert_background", dbContent.getBoolean("title_invert_background"))
           .set("content_invert_background", dbContent.getBoolean("content_invert_background"))
       );
@@ -128,7 +128,7 @@ export default {
               .set("x", dbBanner.getString("position_x"))
               .set("y", dbBanner.getString("position_y"))
           )
-          .set("actions", actions.actions("banner", dbBanner.getInt("id")))
+          .set("actions", action.getByItem("banner", dbBanner.getInt("id")))
           .set("title_invert_background", dbBanner.getBoolean("title_invert_background"))
           .set("content_invert_background", dbBanner.getBoolean("content_invert_background"))
       );
@@ -206,7 +206,7 @@ export default {
           .set("image_title", dbListing.getString("image_title"))
           .set("items", items)
           .set("sorter", dbListing.getInt("sorter"))
-          .set("actions", actions.actions("listing", dbListing.getInt("id")))
+          .set("actions", action.getByItem("listing", dbListing.getInt("id")))
           .set("title_invert_background", dbListing.getBoolean("title_invert_background"))
           .set("content_invert_background", dbListing.getBoolean("content_invert_background"))
       );
@@ -248,12 +248,12 @@ export default {
         `);
 
       for (const dbItem of dbItems) {
-        const actions = actions.actions("slider_item", dbItem.getInt("id"));
+        const itemActions = action.getByItem("slider_item", dbItem.getInt("id"));
         const actionsList = _val.list();
 
-        for (const action of actions) {
+        for (const itemAction of itemActions) {
           actionsList.add(
-            action.getString("uid")
+            itemAction.getString("uid")
           )
         }
 
@@ -331,7 +331,7 @@ export default {
           .set("edit_mode", dbFunctionality.getString("edit_mode"))
           .set("image", dbFunctionality.getString("image"))
           .set("sorter", dbFunctionality.getInt("sorter"))
-          .set("actions", actions.actions("functionality", dbFunctionality.getInt("id")))
+          .set("actions", action.getByItem("functionality", dbFunctionality.getInt("id")))
           .set("title_invert_background", dbFunctionality.getBoolean("title_invert_background"))
           .set("content_invert_background", dbFunctionality.getBoolean("content_invert_background"))
       );

@@ -1,4 +1,5 @@
 import cluar from "#core/cluar/main.js"
+import { _req, _db, _val, _out } from "@netuno/server-types";
 
 const version = _req.getString("version");
 
@@ -50,7 +51,7 @@ if (dbPageVersion) {
         .set("image_title", dbContent.getString("image_title"))
         .set("image_max_width", dbContent.getString("image_max_width"))
         .set("sorter", dbContent.getInt("sorter"))
-        .set("actions", cluar.actions("content", dbContent.getInt("id")))
+        .set("actions", cluar.action.getByItem("content", dbContent.getInt("id")))
         .set("title_invert_background", dbContent.getBoolean("title_invert_background"))
         .set("content_invert_background", dbContent.getBoolean("content_invert_background"))
     );
@@ -111,7 +112,7 @@ if (dbPageVersion) {
             .set("x", dbBanner.getString("position_x"))
             .set("y", dbBanner.getString("position_y"))
         )
-        .set("actions", cluar.actions("banner", dbBanner.getInt("id")))
+        .set("actions", cluar.action.getByItem("banner", dbBanner.getInt("id")))
     );
 
     // if (settings.images === true) {
@@ -195,7 +196,7 @@ if (dbPageVersion) {
         .set("sorter", dbListing.getInt("sorter"))
         .set("title_invert_background", dbListing.getBoolean("title_invert_background"))
         .set("content_invert_background", dbListing.getBoolean("content_invert_background"))
-        .set("actions", cluar.actions("listing", dbListing.getInt("id")))
+        .set("actions", cluar.action.getByItem("listing", dbListing.getInt("id")))
     );
 
     // if (settings.images === true) {
@@ -241,12 +242,12 @@ if (dbPageVersion) {
                 `);
 
     for (const dbItem of dbItems) {
-      const actions = cluar.actions("slider_item", dbItem.getInt("id"));
+      const itemActions = cluar.action.getByItem("slider_item", dbItem.getInt("id"));
       const actionsList = _val.list();
 
-      for (const action of actions) {
+      for (const itemAction of itemActions) {
         actionsList.add(
-          action.getString("uid")
+          itemAction.getString("uid")
         )
       }
 
@@ -327,7 +328,7 @@ if (dbPageVersion) {
         .set("sorter", dbFunctionality.getInt("sorter"))
         .set("title_invert_background", dbFunctionality.getBoolean("title_invert_background"))
         .set("content_invert_background", dbFunctionality.getBoolean("content_invert_background"))
-        .set("actions", cluar.actions("functionality", dbFunctionality.getInt("id")))
+        .set("actions", cluar.action.getByItem("functionality", dbFunctionality.getInt("id")))
     );
 
     // if (settings.images === true) {

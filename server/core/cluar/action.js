@@ -1,7 +1,7 @@
 import { _db, _val } from "@netuno/server-types";
 
 export default {
-  actions: (section, id) => {
+  getByItem: (section, id) => {
     const dbActions = _db.query(`
           SELECT
               action.title,
