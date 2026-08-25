@@ -56,7 +56,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     const onLoadLanguages = () => {
         setLoading((prev) => ({ ...prev, language: true }));
         _service({
-            url: "language/list",
+            url: "reserved-area/language/list",
             method: "POST",
             success: (response) => {
                 setLoading((prev) => ({ ...prev, language: false }));
@@ -76,7 +76,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     const onLoadParameters = () => {
         setLoading((prev) => ({ ...prev, parameter: true }));
         _service({
-            url: "configuration/parameter/list",
+            url: "reserved-area/configuration/parameter/list",
             method: "GET",
             success: (response) => {
                 setLoading((prev) => ({ ...prev, parameter: false }));
@@ -95,7 +95,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     const onLoadParameterTypes = () => {
         setLoading((prev) => ({ ...prev, parameterType: true }));
         _service({
-            url: "configuration/parameter/type/list",
+            url: "reserved-area/configuration/parameter/type/list",
             method: "GET",
             success: (response) => {
                 setLoading((prev) => ({ ...prev, parameterType: false }));
@@ -141,7 +141,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
         if (editeMode) {
             setLoading((prev) => ({ ...prev, save: true }));
             _service({
-                url: "configuration",
+                url: "reserved-area/configuration",
                 method: "PUT",
                 data: {
                     uid: configurationData.uid,
@@ -166,7 +166,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
         } else {
             setLoading((prev) => ({ ...prev, save: true }));
             _service({
-                url: "configuration",
+                url: "reserved-area/configuration",
                 method: "POST",
                 data: {
                     ...data

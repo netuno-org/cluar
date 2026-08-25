@@ -40,7 +40,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
   const onLoadLanguages = () => {
     setLoading({ ...loading, languages: true });
     _service({
-      url: "language/list",
+      url: "reserved-area/language/list",
       method: "POST",
       success: (response) => {
         setLoading({ ...loading, languages: false });
@@ -62,7 +62,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
 
     setLoading({ ...loading, pages: true });
     _service({
-      url: "page/list",
+      url: "reserved-area/page/list",
       method: "POST",
       data: {
         filters: {
@@ -96,7 +96,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
     if (editeMode) {
       setLoading({ ...loading, saving: true });
       _service({
-        url: "page",
+        url: "reserved-area/page",
         method: "PUT",
         data: {
           ...data,
@@ -130,7 +130,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
     } else {
       setLoading({ ...loading, saving: true });
       _service({
-        url: "page",
+        url: "reserved-area/page",
         method: "POST",
         data: {
           ...data,
@@ -170,7 +170,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
 
   useEffect(() => {
     _service({
-      url: "/page/template/list",
+      url: "/reserved-area/page/template/list",
       method: "POST",
       data: {
         language: Cluar.currentLanguage().locale,

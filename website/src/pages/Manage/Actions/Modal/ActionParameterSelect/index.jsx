@@ -56,7 +56,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
     const loadParameters = () => {
         setLoading(true);
         _service({
-            url: "actions/parameter/list",
+            url: "reserved-area/actions/parameter/list",
             method: "POST",
             success: (response) => {
                 setLoading(false);
@@ -100,7 +100,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
             return;
         }
         _service({
-            url: "actions/parameter",
+            url: "reserved-area/actions/parameter",
             method: "POST",
             data: createDraft,
             success: (response) => {
@@ -135,7 +135,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
             return;
         }
         _service({
-            url: "actions/parameter",
+            url: "reserved-area/actions/parameter",
             method: "PUT",
             data: { uid, ...editDraft },
             success: () => {
@@ -156,7 +156,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
 
     const deleteParameter = (uid) => {
         _service({
-            url: "actions/parameter",
+            url: "reserved-area/actions/parameter",
             method: "DELETE",
             data: { uid },
             success: () => {

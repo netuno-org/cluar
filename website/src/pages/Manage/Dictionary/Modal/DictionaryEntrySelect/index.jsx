@@ -85,7 +85,7 @@ const DictionaryEntrySelect = ({
             return;
         }
         _service({
-            url: "dictionary/entry",
+            url: "reserved-area/dictionary/entry",
             method: "POST",
             data: createDraft,
             success: (response) => {
@@ -120,7 +120,7 @@ const DictionaryEntrySelect = ({
             return;
         }
         _service({
-            url: "dictionary/entry",
+            url: "reserved-area/dictionary/entry",
             method: "PUT",
             data: { uid, ...editDraft },
             success: () => {
@@ -141,7 +141,7 @@ const DictionaryEntrySelect = ({
 
     const deleteEntry = (entry) => {
         _service({
-            url: "dictionary/entry",
+            url: "reserved-area/dictionary/entry",
             method: "DELETE",
             data: { uid: entry.uid },
             success: () => {

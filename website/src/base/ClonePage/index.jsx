@@ -39,7 +39,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
     const onLoadLanguages = () => {
         setLoading((prev) => ({ ...prev, languages: true }));
         _service({
-            url: "language/list",
+            url: "reserved-area/language/list",
             method: "POST",
             success: (response) => {
                 setLoading((prev) => ({ ...prev, languages: false }));
@@ -57,7 +57,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
     const onLoadVersions = (page = 1) => {
         setLoading((prev) => ({ ...prev, versions: true }));
         _service({
-            url: "editor/page-version/list",
+            url: "reserved-area/editor/page-version/list",
             method: "POST",
             data: {
                 page_uid: pageData.uid,
@@ -143,7 +143,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
             };
 
             _service({
-                url: "page/clone",
+                url: "reserved-area/page/clone",
                 method: "POST",
                 data,
                 success: (response) => {

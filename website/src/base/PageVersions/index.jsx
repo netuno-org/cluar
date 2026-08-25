@@ -23,7 +23,7 @@ const PageVersions = ({ pageData, open, onClose }) => {
     if (uid) {
       setDeleting([...deleting, uid]);
       _service({
-        url: "/editor/page-version",
+        url: "/reserved-area/editor/page-version",
         method: "DELETE",
         data: {
           uid,
@@ -44,7 +44,7 @@ const PageVersions = ({ pageData, open, onClose }) => {
   useEffect(() => {
     if (pageData.uid && open) {
       _service({
-        url: "editor/page-version/list",
+        url: "reserved-area/editor/page-version/list",
         method: "POST",
         data: {
           page_uid: pageData.uid,

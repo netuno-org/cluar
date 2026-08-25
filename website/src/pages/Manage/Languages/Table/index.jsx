@@ -41,7 +41,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
     const onLoadLanguages = () => {
         setLoading(true);
         _service({
-            url: "language/list",
+            url: "reserved-area/language/list",
             method: "POST",
             data: {
                 pagination,
@@ -69,7 +69,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
             isLoading: true
         });
         _service({
-            url: "language/active",
+            url: "reserved-area/language/active",
             method: "PUT",
             data: {
                 uid,
@@ -115,7 +115,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
                 isLoading: true
             });
             _service({
-                url: "language",
+                url: "reserved-area/language",
                 method: "PUT",
                 data: {
                     ...data,

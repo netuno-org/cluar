@@ -187,7 +187,7 @@ function Builder({ page, canEdit }) {
   useEffect(() => {
     if (searchParams.get("version")) {
       _service({
-        url: "/editor/page-version",
+        url: "/reserved-area/editor/page-version",
         method: "GET",
         data: {
           version: searchParams.get("version"),
@@ -267,7 +267,7 @@ function Builder({ page, canEdit }) {
   const handleSavePage = () => {
     setSaving(true);
     _service({
-      url: "/editor/page-version/save",
+      url: "/reserved-area/editor/page-version/save",
       method: "POST",
       data: {
         structures: structure.filter((item) => item.status !== "to_remove")?.map(item => ({
@@ -300,7 +300,7 @@ function Builder({ page, canEdit }) {
     setPublishing(true);
 
     _service({
-      url: "/editor/page-version/save/publish",
+      url: "/reserved-area/editor/page-version/save/publish",
       method: "POST",
       data: {
         page: page.uid,

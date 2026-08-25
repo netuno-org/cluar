@@ -18,7 +18,7 @@ const ContentEditor = ({ sectionData, form }) => {
 
   useEffect(() => {
     _service({
-      url: "/components/content/list",
+      url: "/reserved-area/components/content/list",
       method: "POST",
       data: {
         language: Cluar.currentLanguage().locale

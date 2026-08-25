@@ -20,7 +20,7 @@ const FunctionalityEditor = ({ sectionData, form }) => {
 
   useEffect(() => {
     _service({
-      url: "/components/functionality/list",
+      url: "/reserved-area/components/functionality/list",
       method: "POST",
       data: {
         language: Cluar.currentLanguage().locale

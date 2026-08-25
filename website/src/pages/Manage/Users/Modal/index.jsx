@@ -43,7 +43,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     const onLoadOrganizations = () => {
         setLoading({ ...loading, organization: true });
         _service({
-            url: "organization/list",
+            url: "reserved-area/organization/list",
             method: "POST",
             data: {
                 pagination: {
@@ -69,7 +69,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
     const onLoadGroups = () => {
         setLoading({ ...loading, group: true });
         _service({
-            url: "user/group/list",
+            url: "reserved-area/user/group/list",
             method: "GET",
             data: {},
             success: (response) => {
@@ -128,7 +128,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         if (userData) {
             _service({
                 method: "PUT",
-                url: "user/",
+                url: "reserved-area/user/",
                 data: {
                     ...data,
                     uid: userData.uid
@@ -152,7 +152,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         } else {
             _service({
                 method: "POST",
-                url: "user/",
+                url: "reserved-area/user/",
                 data: {
                     ...data
                 },

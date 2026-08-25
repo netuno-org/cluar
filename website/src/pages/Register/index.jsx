@@ -72,7 +72,7 @@ export default function Register(props) {
         const { username, password, email, name } = values;
         _service({
             method: 'POST',
-            url: 'people',
+            url: 'reserved-area/people',
             data: {
                 name,
                 username,

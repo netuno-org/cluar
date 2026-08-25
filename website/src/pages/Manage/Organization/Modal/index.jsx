@@ -35,7 +35,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
     const onLoadOrganizations = () => {
         setLoading({ ...loading, organization: true });
         _service({
-            url: "organization/list",
+            url: "reserved-area/organization/list",
             method: "POST",
             data: {
 
@@ -61,7 +61,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
         if (editeMode) {
             setLoading({ ...loading, saving: true });
             _service({
-                url: "organization",
+                url: "reserved-area/organization",
                 method: "PUT",
                 data: {
                     ...data,
@@ -100,7 +100,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
         } else {
             setLoading({ ...loading, saving: true });
             _service({
-                url: "organization",
+                url: "reserved-area/organization",
                 method: "POST",
                 data: {
                     ...data

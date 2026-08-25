@@ -43,7 +43,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
             isLoading: true
         });
         _service({
-            url: "organization/active",
+            url: "reserved-area/organization/active",
             method: "PUT",
             data: {
                 uid,
@@ -111,7 +111,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
     const onLoadOrganizations = () => {
         setLoading(true);
         _service({
-            url: "organization/list",
+            url: "reserved-area/organization/list",
             method: "POST",
             data: {
                 pagination,

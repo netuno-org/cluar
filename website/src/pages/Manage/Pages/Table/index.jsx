@@ -50,7 +50,7 @@ const PageTable = forwardRef(({ }, ref) => {
             isLoading: true
         });
         _service({
-            url: "page/active",
+            url: "reserved-area/page/active",
             method: "PUT",
             data: {
                 uid,

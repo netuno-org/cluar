@@ -138,7 +138,7 @@ function App() {
     useEffect(() => {
       _service({
         method: 'GET',
-        url: 'people',
+        url: 'reserved-area/people',
         success: (response) => {
           if (response.json.result) {
             dispatch(loggedUserInfoAction(response.json.data));

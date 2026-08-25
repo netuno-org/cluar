@@ -40,7 +40,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     const onLoadLanguages = () => {
         setLoading((prev) => ({ ...prev, language: true }));
         _service({
-            url: "language/list",
+            url: "reserved-area/language/list",
             method: "POST",
             success: (response) => {
                 setLoading((prev) => ({ ...prev, language: false }));
@@ -60,7 +60,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     const onLoadEntries = () => {
         setLoading((prev) => ({ ...prev, entry: true }));
         _service({
-            url: "dictionary/entry/list",
+            url: "reserved-area/dictionary/entry/list",
             method: "POST",
             success: (response) => {
                 setLoading((prev) => ({ ...prev, entry: false }));
@@ -85,7 +85,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
         if (editeMode) {
             setLoading((prev) => ({ ...prev, save: true }));
             _service({
-                url: "dictionary",
+                url: "reserved-area/dictionary",
                 method: "PUT",
                 data: {
                     uid: dictionaryData.uid,
@@ -110,7 +110,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
         } else {
             setLoading((prev) => ({ ...prev, save: true }));
             _service({
-                url: "dictionary",
+                url: "reserved-area/dictionary",
                 method: "POST",
                 data: {
                     ...data

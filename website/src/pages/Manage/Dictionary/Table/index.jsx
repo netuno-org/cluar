@@ -31,7 +31,7 @@ const DictionaryTable = forwardRef(({ }, ref) => {
     const onLoadDictionaries = () => {
         setLoading({ ...loading, dictionary: true });
         _service({
-            url: "dictionary/list",
+            url: "reserved-area/dictionary/list",
             method: "POST",
             data: {
                 filters,
@@ -56,7 +56,7 @@ const DictionaryTable = forwardRef(({ }, ref) => {
     const onLoadLanguages = () => {
         setLoading({ ...loading, language: true });
         _service({
-            url: "language/list",
+            url: "reserved-area/language/list",
             method: "POST",
             success: (response) => {
                 setLoading({ ...loading, language: false });
@@ -76,7 +76,7 @@ const DictionaryTable = forwardRef(({ }, ref) => {
     const onDelete = (uid) => {
         setDeleteLoadingUid(uid);
         _service({
-            url: "dictionary",
+            url: "reserved-area/dictionary",
             method: "DELETE",
             data: { uid },
             success: () => {

@@ -42,7 +42,7 @@ const UserTable = forwardRef(({ }, ref) => {
             key: uid
         });
         _service({
-            url: "user/active",
+            url: "reserved-area/user/active",
             method: "PUT",
             data: {
                 uid,
@@ -93,7 +93,7 @@ const UserTable = forwardRef(({ }, ref) => {
     const onLoadData = () => {
         setLoading(true);
         _service({
-            url: "user/list",
+            url: "reserved-area/user/list",
             method: "POST",
             data: {
                 filters,

@@ -87,7 +87,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
   const onLoadLanguages = () => {
     setLoading({ ...loading, languages: true });
     _service({
-      url: "language/list",
+      url: "reserved-area/language/list",
       method: "POST",
       success: (response) => {
         setLoading({ ...loading, languages: false });
@@ -132,7 +132,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     setLoading({ ...loading, saving: true });
 
     _service({
-      url: "actions",
+      url: "reserved-area/actions",
       method: editeMode ? "PUT" : "POST",
       data: formData,
       success: (response) => {
@@ -173,7 +173,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
 
       if (editeMode) {
         const imageUrl = actionData.image
-          ? `${_service.config().prefix}actions/image?uid=${actionData.uid}`
+          ? `${_service.config().prefix}reserved-area/actions/image?uid=${actionData.uid}`
           : null;
 
         formRef.setFieldsValue({

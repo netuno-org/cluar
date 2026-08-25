@@ -24,14 +24,14 @@ if (_service.path == 'samples/my-service') {
  */
 const PUBLIC_PATHS = [
   'contact/post',
-  'actions/image/get',
+  'reserved-area/actions/image/get',
   'recovery/post',
   'recovery/put',
-  'people/avatar/get',
-  'people/get',
+  'reserved-area/people/avatar/get',
+  'reserved-area/people/get',
   '_altcha',
   '_auth',
-  // 'page/template/list',
+  // 'reserved-area/page/template/list',
 ]
 
 const PUBLIC_PATH_PREFIXES = [
@@ -43,39 +43,39 @@ const PUBLIC_PATH_PREFIXES = [
  * sincronização) - administrator + editor.
  */
 const CONTENT_MANAGEMENT_PATHS = [
-  'page/post',
-  'page/put',
-  'page/clone/post',
-  'page/publish/post',
-  'page/template/list/post',
-  'editor/page-version/delete',
-  'editor/page-version/get',
-  'editor/page-version/list/post',
-  'editor/page-version/save/post',
-  'editor/page-version/save/publish/post',
-  'components/banner/list/post',
-  'components/content/list/post',
-  'components/functionality/list/post',
-  'components/listing/list/post',
-  'components/slider/list/post',
-  'dictionary/post',
-  'dictionary/put',
-  'dictionary/list/post',
-  'dictionary/entry/list/post',
-  'actions/post',
-  'actions/put',
-  'actions/active/put',
-  'actions/list/post',
-  'actions/parameter/post',
-  'actions/parameter/put',
-  'actions/parameter/delete',
-  'actions/parameter/list/post',
+  'reserved-area/page/post',
+  'reserved-area/page/put',
+  'reserved-area/page/clone/post',
+  'reserved-area/page/publish/post',
+  'reserved-area/page/template/list/post',
+  'reserved-area/editor/page-version/delete',
+  'reserved-area/editor/page-version/get',
+  'reserved-area/editor/page-version/list/post',
+  'reserved-area/editor/page-version/save/post',
+  'reserved-area/editor/page-version/save/publish/post',
+  'reserved-area/components/banner/list/post',
+  'reserved-area/components/content/list/post',
+  'reserved-area/components/functionality/list/post',
+  'reserved-area/components/listing/list/post',
+  'reserved-area/components/slider/list/post',
+  'reserved-area/dictionary/post',
+  'reserved-area/dictionary/put',
+  'reserved-area/dictionary/list/post',
+  'reserved-area/dictionary/entry/list/post',
+  'reserved-area/actions/post',
+  'reserved-area/actions/put',
+  'reserved-area/actions/active/put',
+  'reserved-area/actions/list/post',
+  'reserved-area/actions/parameter/post',
+  'reserved-area/actions/parameter/put',
+  'reserved-area/actions/parameter/delete',
+  'reserved-area/actions/parameter/list/post',
 ]
 
 const SITE_ADMIN_PATHS = [
-  'people/post',
-  'people/put',
-  'people/delete',
+  'reserved-area/people/post',
+  'reserved-area/people/put',
+  'reserved-area/people/delete',
 ]
 
 const SITE_ADMIN_PATH_PREFIXES = [
@@ -83,14 +83,14 @@ const SITE_ADMIN_PATH_PREFIXES = [
    * Configuração/estrutura do site (favicon, título, cores, idiomas,
    * sincronização manual) - só administrator, por afetar o site inteiro.
    */
-  'configuration/',
-  'language/',
+  'reserved-area/configuration/',
+  'reserved-area/language/',
   /*
    * Gestão de acessos (organizações, pessoas, utilizadores, contactos
    * recebidos) - só administrator, por serem dados sensíveis/permissões.
    */
-  'organization/',
-  'user/',
+  'reserved-area/organization/',
+  'reserved-area/user/',
 ]
 
 const ORGANIZATION_CODE = "admins";

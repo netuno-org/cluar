@@ -85,7 +85,7 @@ const ConfigurationParameterSelect = ({
             return;
         }
         _service({
-            url: "configuration/parameter",
+            url: "reserved-area/configuration/parameter",
             method: "POST",
             data: createDraft,
             success: (response) => {
@@ -124,7 +124,7 @@ const ConfigurationParameterSelect = ({
             return;
         }
         _service({
-            url: "configuration/parameter",
+            url: "reserved-area/configuration/parameter",
             method: "PUT",
             data: { uid, ...editDraft },
             success: () => {
@@ -145,7 +145,7 @@ const ConfigurationParameterSelect = ({
 
     const deleteParameter = (parameter) => {
         _service({
-            url: "configuration/parameter",
+            url: "reserved-area/configuration/parameter",
             method: "DELETE",
             data: { uid: parameter.uid },
             success: () => {

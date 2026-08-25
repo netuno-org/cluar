@@ -32,7 +32,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
     const onLoadConfigurations = () => {
         setLoading({ ...loading, configuration: true });
         _service({
-            url: "configuration/list",
+            url: "reserved-area/configuration/list",
             method: "POST",
             data: {
                 filters,
@@ -57,7 +57,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
     const onLoadLanguages = () => {
         setLoading({ ...loading, language: true });
         _service({
-            url: "language/list",
+            url: "reserved-area/language/list",
             method: "POST",
             success: (response) => {
                 setLoading({ ...loading, language: false });
@@ -77,7 +77,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
     const onDelete = (uid) => {
         setDeleteLoadingUid(uid);
         _service({
-            url: "configuration",
+            url: "reserved-area/configuration",
             method: "DELETE",
             data: { uid },
             success: () => {

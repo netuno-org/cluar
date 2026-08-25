@@ -184,7 +184,7 @@ const PageConfiguration = ({
       //   : { ...values, uid: pageData.uid };
 
       _service({
-        url: "page",
+        url: "reserved-area/page",
         method,
         data: formData,
         success: (response) => {
@@ -231,7 +231,7 @@ const PageConfiguration = ({
 
     if (hasStructChanges) {
       _service({
-        url: "/editor/page-version/save",
+        url: "/reserved-area/editor/page-version/save",
         method: "POST",
         data: {
           structures: structure.map((item, index) => ({
@@ -280,7 +280,7 @@ const PageConfiguration = ({
 
   useEffect(() => {
     _service({
-      url: "/page/template/list",
+      url: "/reserved-area/page/template/list",
       method: "POST",
       data: {
         language: Cluar.currentLanguage().locale,

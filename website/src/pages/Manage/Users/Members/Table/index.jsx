@@ -40,7 +40,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
 
     const onLoadGroups = () => {
         _service({
-            url: "user/group/list",
+            url: "reserved-area/user/group/list",
             method: "GET",
             data: {},
             success: (response) => {
@@ -59,7 +59,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
             isLoading: true
         });
         _service({
-            url: "organization/member/active",
+            url: "reserved-area/organization/member/active",
             method: "PUT",
             data: {
                 uid,
@@ -127,7 +127,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
     const onLoadMembers = () => {
         setLoading(true);
         _service({
-            url: "organization/member/list",
+            url: "reserved-area/organization/member/list",
             method: "POST",
             data: {
                 pagination,

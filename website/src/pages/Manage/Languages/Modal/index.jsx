@@ -40,7 +40,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
         if (editeMode) {
             setLoading(true);
             _service({
-                url: "language",
+                url: "reserved-area/language",
                 method: "PUT",
                 data: {
                     ...values,
@@ -65,7 +65,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
         } else {
             setLoading(true);
             _service({
-                url: "language",
+                url: "reserved-area/language",
                 method: "POST",
                 data: {
                     ...values

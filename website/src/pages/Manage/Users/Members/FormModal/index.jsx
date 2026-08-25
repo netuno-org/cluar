@@ -44,7 +44,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
     const onLoadOrganizations = () => {
         setLoading({ ...loading, organization: true });
         _service({
-            url: "organization/list",
+            url: "reserved-area/organization/list",
             method: "POST",
             data: {
                 pagination:{
@@ -70,7 +70,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
     const onLoadGroups = () => {
         setLoading({ ...loading, group: true });
         _service({
-            url: "user/group/list",
+            url: "reserved-area/user/group/list",
             method: "GET",
             data: {},
             success: (response) => {
@@ -111,7 +111,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
         if (editeMode) {
             setLoading({ ...loading, saving: true });
             _service({
-                url: "organization/member",
+                url: "reserved-area/organization/member",
                 method: "PUT",
                 data: {
                     ...data,
@@ -144,7 +144,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
         } else {
             setLoading({ ...loading, saving: true });
             _service({
-                url: "organization/member",
+                url: "reserved-area/organization/member",
                 method: "POST",
                 data: {
                     ...data
