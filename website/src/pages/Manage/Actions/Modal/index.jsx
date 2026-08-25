@@ -173,7 +173,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
 
       if (editeMode) {
         const imageUrl = actionData.image
-          ? `${_service.config().prefix}reserved-area/actions/image?uid=${actionData.uid}`
+          ? `${_service.config().prefix}reserved-area/action/image?uid=${actionData.uid}`
           : null;
 
         formRef.setFieldsValue({

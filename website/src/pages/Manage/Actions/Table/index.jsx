@@ -53,7 +53,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
             isLoading: true
         });
         _service({
-            url: "reserved-area/actions/active",
+            url: "reserved-area/action/active",
             method: "PUT",
             data: {
                 uid,
@@ -95,7 +95,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
     const onDelete = (uid) => {
         setDeleteLoadingUid(uid);
         _service({
-            url: "reserved-area/actions",
+            url: "reserved-area/action",
             method: "DELETE",
             data: { uid },
             success: () => {
@@ -142,7 +142,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
     const onLoadActions = () => {
         setLoading(true);
         _service({
-            url: "reserved-area/actions/list",
+            url: "reserved-area/action/list",
             method: "POST",
             success: (response) => {
                 setLoading(false);
@@ -251,7 +251,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
                 }
                 return (
                     <img
-                        src={`${_service.config().prefix}reserved-area/actions/image?uid=${record.uid}`}
+                        src={`${_service.config().prefix}reserved-area/action/image?uid=${record.uid}`}
                         alt={Cluar.plainDictionary("actions-table-image")}
                         style={{ width: 50, height: 50, objectFit: 'cover', display: 'block', margin: '0 auto' }}
                     />

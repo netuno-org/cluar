@@ -29,7 +29,7 @@ const PUBLIC_PATHS = [
   '_altcha',
   '_auth',
   'reserved-area/people/avatar/get',
-  'reserved-area/actions/image/get',
+  'reserved-area/action/image/get',
 ];
 
 const PUBLIC_PATH_PREFIXES = [
@@ -47,9 +47,9 @@ const CONTENT_MANAGEMENT_PATHS = [
 const CONTENT_MANAGEMENT_PATH_PREFIXES = [
   'reserved-area/page/',
   'reserved-area/editor/',
-  'reserved-area/components/',
+  'reserved-area/component/',
   'reserved-area/dictionary/',
-  'reserved-area/actions/',
+  'reserved-area/action/',
 ];
 
 const SITE_ADMIN_PATHS = [

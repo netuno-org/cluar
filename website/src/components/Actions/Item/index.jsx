@@ -12,7 +12,7 @@ function Item({ section, type, title, content, indication, link, uid, image }) {
         {indication !== '' ? <a href={link}>{indication}</a> : null}
         {image &&
           <img
-            src={`${_service.config().prefix}reserved-area/actions/image?uid=${uid}`}
+            src={`${_service.config().prefix}reserved-area/action/image?uid=${uid}`}
             alt="Action"
             style={{ width: 50, height: 50, objectFit: 'cover', display: 'block', margin: '0 auto' }}
           />}

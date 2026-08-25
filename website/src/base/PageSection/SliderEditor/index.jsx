@@ -107,7 +107,7 @@ const SliderEditor = ({ sectionData, form }) => {
 
   useEffect(() => {
     _service({
-      url: "/reserved-area/components/slider/list",
+      url: "/reserved-area/component/slider/list",
       method: "POST",
       data: {
         language: Cluar.currentLanguage().locale

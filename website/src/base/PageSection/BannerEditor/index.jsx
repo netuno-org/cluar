@@ -23,7 +23,7 @@ const BannerEditor = ({ sectionData, form }) => {
 
   useEffect(() => {
     _service({
-      url: "/reserved-area/components/banner/list",
+      url: "/reserved-area/component/banner/list",
       method: "POST",
       data: {
         language: Cluar.currentLanguage().locale
