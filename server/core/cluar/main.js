@@ -2,8 +2,7 @@ import base from "#core/cluar/base.js";
 import build from "#core/cluar/build.js";
 import dataItemSaved from "#core/cluar/dataItemSaved.js";
 
-import custom from "#core/cluar/custom/main.js";
-
+import custom from "#core/cluar/custom.js";
 import action from "#core/cluar/action.js";
 import db from "#core/cluar/db.js";
 import image from "#core/cluar/image.js";
@@ -17,7 +16,7 @@ export default {
   ...base,
   ...build,
   ...dataItemSaved,
-  custom: custom,
+  custom: { ...custom },
   action: { ...action },
   db: { ...db },
   image: { ...image },
