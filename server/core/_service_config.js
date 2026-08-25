@@ -73,7 +73,7 @@ const SITE_ADMIN_PATH_PREFIXES = [
   'reserved-area/user/',
 ];
 
-const ORGANIZATION_CODE = "admins";
+const ORGANIZATION_CODE = "default";
 
 if (_header.isOptions()) {
   _service.allow();
