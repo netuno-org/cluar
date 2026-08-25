@@ -110,11 +110,12 @@ function App() {
       }
 
       let comPage = <Template page={page} />;
+      const pageLink = page.link.startsWith('/') ? page.link : `/${page.link}`;
 
       subroutes.push(
         <Route
-          key={`/${language.locale}${page.link}`}
-          path={`/${language.locale}${page.link}`}
+          key={`/${language.locale}${pageLink}`}
+          path={`/${language.locale}${pageLink}`}
           exact
           element={comPage}
         />
