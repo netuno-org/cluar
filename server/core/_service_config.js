@@ -30,12 +30,11 @@ const PUBLIC_PATHS = [
   '_auth',
   'reserved-area/people/avatar/get',
   'reserved-area/actions/image/get',
-  // 'reserved-area/page/template/list',
-]
+];
 
 const PUBLIC_PATH_PREFIXES = [
   '_auth_provider/',
-]
+];
 
 /*
  * Gestão de conteúdo (páginas, blocos, dicionário, idiomas, ações,
@@ -43,42 +42,21 @@ const PUBLIC_PATH_PREFIXES = [
  */
 const CONTENT_MANAGEMENT_PATHS = [
   'reserved-area/people/get',
-  'reserved-area/page/post',
-  'reserved-area/page/put',
-  'reserved-area/page/clone/post',
-  'reserved-area/page/publish/post',
-  'reserved-area/page/template/list/post',
-  'reserved-area/editor/page-version/delete',
-  'reserved-area/editor/page-version/get',
-  'reserved-area/editor/page-version/list/post',
-  'reserved-area/editor/page-version/save/post',
-  'reserved-area/editor/page-version/save/publish/post',
-  'reserved-area/components/banner/list/post',
-  'reserved-area/components/content/list/post',
-  'reserved-area/components/functionality/list/post',
-  'reserved-area/components/listing/list/post',
-  'reserved-area/components/slider/list/post',
-  'reserved-area/dictionary/post',
-  'reserved-area/dictionary/put',
-  'reserved-area/dictionary/delete',
-  'reserved-area/dictionary/list/post',
-  'reserved-area/dictionary/entry/list/post',
-  'reserved-area/actions/post',
-  'reserved-area/actions/put',
-  'reserved-area/actions/delete',
-  'reserved-area/actions/active/put',
-  'reserved-area/actions/list/post',
-  'reserved-area/actions/parameter/post',
-  'reserved-area/actions/parameter/put',
-  'reserved-area/actions/parameter/delete',
-  'reserved-area/actions/parameter/list/post',
-]
+];
+
+const CONTENT_MANAGEMENT_PATH_PREFIXES = [
+  'reserved-area/page/',
+  'reserved-area/editor/',
+  'reserved-area/components/',
+  'reserved-area/dictionary/',
+  'reserved-area/actions/',
+];
 
 const SITE_ADMIN_PATHS = [
   'reserved-area/people/post',
   'reserved-area/people/put',
   'reserved-area/people/delete',
-]
+];
 
 const SITE_ADMIN_PATH_PREFIXES = [
   /*
@@ -93,7 +71,7 @@ const SITE_ADMIN_PATH_PREFIXES = [
    */
   'reserved-area/organization/',
   'reserved-area/user/',
-]
+];
 
 const ORGANIZATION_CODE = "admins";
 
@@ -101,7 +79,8 @@ if (_header.isOptions()) {
   _service.allow();
 } else if (PUBLIC_PATHS.includes(_service.path) || PUBLIC_PATH_PREFIXES.some((prefix) => _service.path.startsWith(prefix))) {
   _service.allow()
-} else if (CONTENT_MANAGEMENT_PATHS.includes(_service.path)) {
+} else if (CONTENT_MANAGEMENT_PATHS.includes(_service.path)
+  || CONTENT_MANAGEMENT_PATH_PREFIXES.some((prefix) => _service.path.startsWith(prefix))) {
   cluar.permission.isAllowed({
     organization: ORGANIZATION_CODE,
     allowedGroups: [groups["ADMIN"], groups["EDITOR"]]
