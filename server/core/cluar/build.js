@@ -1,6 +1,6 @@
 import { _app, _val, _os, _log, _xml } from "@netuno/server-types";
 import base from "#core/cluar/base.js";
-import custom from "#core/cluar/custom/main.js";
+import custom from "#core/cluar/custom.js";
 import page from "#core/cluar/page.js";
 
 export default {
