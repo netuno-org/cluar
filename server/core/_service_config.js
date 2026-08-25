@@ -24,13 +24,12 @@ if (_service.path == 'samples/my-service') {
  */
 const PUBLIC_PATHS = [
   'contact/post',
-  'reserved-area/actions/image/get',
   'recovery/post',
   'recovery/put',
-  'reserved-area/people/avatar/get',
-  'reserved-area/people/get',
   '_altcha',
   '_auth',
+  'reserved-area/people/avatar/get',
+  'reserved-area/actions/image/get',
   // 'reserved-area/page/template/list',
 ]
 
@@ -43,6 +42,7 @@ const PUBLIC_PATH_PREFIXES = [
  * sincronização) - administrator + editor.
  */
 const CONTENT_MANAGEMENT_PATHS = [
+  'reserved-area/people/get',
   'reserved-area/page/post',
   'reserved-area/page/put',
   'reserved-area/page/clone/post',
