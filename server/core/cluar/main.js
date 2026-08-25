@@ -1,6 +1,5 @@
 import base from "#core/cluar/base.js";
 import build from "#core/cluar/build.js";
-import dataItemSaved from "#core/cluar/dataItemSaved.js";
 
 import custom from "#core/cluar/custom.js";
 import action from "#core/cluar/action.js";
@@ -15,7 +14,6 @@ import user from "#core/cluar/user.js";
 export default {
   ...base,
   ...build,
-  ...dataItemSaved,
   custom: { ...custom },
   action: { ...action },
   db: { ...db },

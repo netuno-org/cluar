@@ -1,4 +1,4 @@
-import cluar from "#core/cluar/main.js"
+import cluar from "#core/cluar/main.js";
 
-cluar.build()
-cluar.dataItemSavedWithImage()
+cluar.build();
+cluar.db.dataItemSavedWithImage();
