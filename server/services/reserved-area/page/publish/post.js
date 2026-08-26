@@ -25,7 +25,7 @@ if (!dbPageVersion) {
   _header.status(400);
   _out.json({
     result: false,
-    error: "page-version-not-found";
+    error: "page-version-not-found"
   });
 
   _exec.stop();

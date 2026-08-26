@@ -123,4 +123,4 @@ _form.syncField(
     .set("width", 0)
     .set("x", 1)
     .set("y", 2)
-;
+);
