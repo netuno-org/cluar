@@ -2,7 +2,8 @@
   "compilerOptions": {
     "module": "esnext",
     "target": "esnext",
-    "modeuleResolution": "node",
-    "checkJs": true
+    "moduleResolution": "node",
+    "checkJs": true,
+    "lib": ["esnext", "dom"]
   }
 }
