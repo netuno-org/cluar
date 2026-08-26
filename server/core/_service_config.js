@@ -42,6 +42,8 @@ const PUBLIC_PATH_PREFIXES = [
  */
 const CONTENT_MANAGEMENT_PATHS = [
   'reserved-area/people/get',
+  'reserved-area/people/put',
+  'reserved-area/people/delete',
 ];
 
 const CONTENT_MANAGEMENT_PATH_PREFIXES = [
@@ -54,8 +56,6 @@ const CONTENT_MANAGEMENT_PATH_PREFIXES = [
 
 const SITE_ADMIN_PATHS = [
   'reserved-area/people/post',
-  'reserved-area/people/put',
-  'reserved-area/people/delete',
 ];
 
 const SITE_ADMIN_PATH_PREFIXES = [

@@ -5,7 +5,7 @@ import { _db, _val, _out, _exec, _user } from "@netuno/server-types";
  *  Comment or delete the line below to allow this service execution. 
  */
 
-_exec.stop();
+// _exec.stop();
 
 /** * **/
 
@@ -14,9 +14,11 @@ const dbPeople = _db.queryFirst(`
 `, _user.id);
 
 if (dbPeople) {
+  const peopleId = dbPeople.getInt("id")
+  _db.execute(`DELETE from organization_people WHERE people_id = ${peopleId}`);
   _db.delete(
     "people",
-    dbClient.getInt("id")
+    peopleId
   );
   _user.remove(dbPeople.getInt("people_user_id"));
   _out.json(
