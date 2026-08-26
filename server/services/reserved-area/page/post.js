@@ -1,4 +1,5 @@
-import cluar from "#core/cluar/main.js"
+import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const languageCode = _req.getString("language_code");
 
@@ -16,14 +17,14 @@ const template = _req.getString("template");
 const sorterInput = _req.getString("sorter");
 
 if (menu === true && !menuTitle) {
-    _header.status(400);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', 'menu_title is required when menu is enabled')
-            .set('error_code', 'page-menu-title-required')
-    );
-    _exec.stop();
+  _header.status(400);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', 'menu_title is required when menu is enabled')
+      .set('error_code', 'page-menu-title-required')
+  );
+  _exec.stop();
 }
 
 const dbLanguage = _db.queryFirst(`
@@ -31,14 +32,14 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `language not found with code: ${languageCode}`)
-            .set('error_code', `language-not-found`)
-    );
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `language not found with code: ${languageCode}`)
+      .set('error_code', `language-not-found`)
+  );
+  _exec.stop();
 }
 
 const linkExists = _db.queryFirst(`
@@ -48,53 +49,53 @@ const linkExists = _db.queryFirst(`
 `, link, dbLanguage.getInt("id"));
 
 if (linkExists) {
-    _header.status(409);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `page link already exists: ${link}`)
-            .set('error_code', `page-link-already-exists`)
-    );
-    _exec.stop();
+  _header.status(409);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `page link already exists: ${link}`)
+      .set('error_code', `page-link-already-exists`)
+  );
+  _exec.stop();
 }
 
 const dbPageStatusPublished = _db.queryFirst(`SELECT id, code, description FROM page_status WHERE code = 'published'`);
 let parentPage = null;
 if (parentUid != null) {
-    parentPage = _db.get("page", parentUid);
+  parentPage = _db.get("page", parentUid);
 }
 const parentId = parentPage ? parentPage.getInt("id") : 0;
 
 let sorter = sorterInput ? parseInt(sorterInput, 10) : NaN;
 if (isNaN(sorter)) {
-    const dbMaxSorter = _db.queryFirst(`
+  const dbMaxSorter = _db.queryFirst(`
         SELECT MAX(sorter) as max_sorter FROM page
         WHERE language_id = ?
             AND parent_id = ?
     `, dbLanguage.getInt("id"), parentId);
 
-    sorter = (dbMaxSorter?.getInt("max_sorter") || 0) + 10;
+  sorter = (dbMaxSorter?.getInt("max_sorter") || 0) + 10;
 }
 
 const data = _val.map()
-    .set('title', title)
-    .set('description', description)
-    .set('keywords', keywords)
-    .set('link', link)
-    .set('menu', menu)
-    .set('menu_title', menuTitle)
-    .set('navigable', navigable)
-    .set("language_id", dbLanguage.getInt("id"))
-    .set("status_id", dbPageStatusPublished.getInt("id"))
-    .set("parent_id", parentId)
-    .set("sorter", sorter)
-    .set("social_image", social_image)
-    .set("social_description", social_description)
-    .set("template", template);
+  .set('title', title)
+  .set('description', description)
+  .set('keywords', keywords)
+  .set('link', link)
+  .set('menu', menu)
+  .set('menu_title', menuTitle)
+  .set('navigable', navigable)
+  .set("language_id", dbLanguage.getInt("id"))
+  .set("status_id", dbPageStatusPublished.getInt("id"))
+  .set("parent_id", parentId)
+  .set("sorter", sorter)
+  .set("social_image", social_image)
+  .set("social_description", social_description)
+  .set("template", template);
 
 const dbPage = cluar.db.insertAndReturn('page', data);
 
 _out.json(
-    _val.map()
-        .set('result', true)
+  _val.map()
+    .set('result', true)
 );

@@ -6,18 +6,18 @@ import base from "#core/cluar/base.js";
 export default {
   publish: (dbPage) => {
     const dbPageStatus = _db.queryFirst(`
-      SELECT * FROM page_status WHERE page_status.code = 'published'
+        SELECT * FROM page_status WHERE page_status.code = 'published'
     `);
 
     const dbPageVersion = _db.queryFirst(`
-      SELECT
-          *
-      FROM
-          page_version pv
-      WHERE
-          pv.status_id = ${dbPageStatus.getInt("id")}
-          AND pv.page_id = ${dbPage.getInt("id")}
-      `);
+        SELECT
+            *
+        FROM
+            page_version pv
+        WHERE
+            pv.status_id = ${dbPageStatus.getInt("id")}
+            AND pv.page_id = ${dbPage.getInt("id")}
+    `);
 
     if (dbPageVersion) {
       dbPage
@@ -42,7 +42,7 @@ export default {
             content.title,
             content.content,
             content.html_content,
-            content.edit_mode, 
+            content.edit_mode,
             content.image,
             content.image_alt,
             content.image_title,
@@ -55,7 +55,7 @@ export default {
         WHERE content.active = TRUE
             AND content.active = TRUE
             AND content.page_version_id = ${dbPage.getInt("page_version_id")}
-      `);
+    `);
 
     for (const dbContent of dbContents) {
       structure.add(
@@ -92,7 +92,7 @@ export default {
             banner.title,
             banner.content,
             banner.html_content,
-            banner.edit_mode, 
+            banner.edit_mode,
             banner.image,
             banner.image_alt,
             banner.image_title,
@@ -105,7 +105,7 @@ export default {
         WHERE banner.active = TRUE
             AND banner.active = TRUE
             AND banner.page_version_id = ${dbPage.getInt("page_version_id")}
-      `);
+    `);
     for (const dbBanner of dbBanners) {
       structure.add(
         _val
@@ -161,17 +161,15 @@ export default {
         WHERE listing.active = TRUE
             AND listing.active = TRUE
             AND listing.page_version_id = ${dbPage.getInt("page_version_id")}
-      `);
+    `);
     for (const dbListing of dbListings) {
       const items = _val.list();
       const dbItems = _db.query(`
-                  SELECT
-                      uid, title, content, html_content, edit_mode, image, image_alt, image_title, sorter, link, title_invert_background, content_invert_background
-                  FROM page_listing_item
-                  WHERE page_listing_id = ${dbListing.getInt(
-        "id"
-      )} AND active = TRUE
-                  `);
+          SELECT
+              uid, title, content, html_content, edit_mode, image, image_alt, image_title, sorter, link, title_invert_background, content_invert_background
+          FROM page_listing_item
+          WHERE page_listing_id = ${dbListing.getInt("id")} AND active = TRUE
+      `);
       for (const dbItem of dbItems) {
         items.add(
           _val
@@ -227,7 +225,7 @@ export default {
             slider.image_title,
             slider.content,
             slider.html_content,
-            slider.edit_mode, 
+            slider.edit_mode,
             slider.image,
             slider.sorter,
             slider.title_invert_background,
@@ -236,7 +234,7 @@ export default {
         WHERE slider.active = TRUE
             AND slider.active = TRUE
             AND slider.page_version_id = ${dbPage.getInt("page_version_id")}
-              `);
+    `);
     for (const dbSlider of dbSliders) {
       const items = _val.list();
       const dbItems = _db.query(`
@@ -245,7 +243,7 @@ export default {
           FROM page_slider_item
           WHERE page_slider_id = ${dbSlider.getInt("id")}
           AND active = TRUE
-        `);
+      `);
 
       for (const dbItem of dbItems) {
         const itemActions = action.getByItem("slider_item", dbItem.getInt("id"));
@@ -254,7 +252,7 @@ export default {
         for (const itemAction of itemActions) {
           actionsList.add(
             itemAction.getString("uid")
-          )
+          );
         }
 
         items.add(
@@ -317,7 +315,7 @@ export default {
         WHERE functionality.active = TRUE
             AND functionality.active = TRUE
             AND functionality.page_version_id = ${dbPage.getInt("page_version_id")}
-      `);
+    `);
     for (const dbFunctionality of dbFunctionalities) {
       structure.add(
         _val
@@ -455,8 +453,7 @@ export default {
             )}" />`
           );
           headElement.prepend(
-            `<meta property="og:url" content="${websiteConfig.getString("url", "") + dbPage.getString("link")
-            }" />`
+            `<meta property="og:url" content="${websiteConfig.getString("url", "") + dbPage.getString("link")}" />`
           );
           bodyElement.prepend(htmlContent);
 

@@ -78,7 +78,7 @@ const ORGANIZATION_CODE = "default";
 if (_header.isOptions()) {
   _service.allow();
 } else if (PUBLIC_PATHS.includes(_service.path) || PUBLIC_PATH_PREFIXES.some((prefix) => _service.path.startsWith(prefix))) {
-  _service.allow()
+  _service.allow();
 } else if (CONTENT_MANAGEMENT_PATHS.includes(_service.path)
   || CONTENT_MANAGEMENT_PATH_PREFIXES.some((prefix) => _service.path.startsWith(prefix))) {
   cluar.permission.isAllowed({

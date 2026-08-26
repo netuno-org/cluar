@@ -1,25 +1,25 @@
 {
-    "_schema":"tags/configuration",
-    "summary":"Update a existing configuration",
-    "description":"Update a existing configuration",
-    "type":"object",
-    "properties":{
-        "uid":{
-            "type":"uuid"
-        },
-        "value":{
-            "type":"string"
-        },
-        "parameter_code":{
-            "type":"string"
-        },
-        "language_code":{
-            "type":"string"
-        }
+  "_schema":"tags/configuration",
+  "summary":"Update a existing configuration",
+  "description":"Update a existing configuration",
+  "type":"object",
+  "properties":{
+    "uid":{
+      "type":"uuid"
     },
-    "required":[
-        "uid",
-        "value",
-        "parameter_code"
+    "value":{
+      "type":"string"
+    },
+    "parameter_code":{
+      "type":"string"
+    },
+    "language_code":{
+      "type":"string"
+    }
+  },
+  "required":[
+    "uid",
+    "value",
+    "parameter_code"
     ]
 }

@@ -1,11 +1,12 @@
-import cluar from "#core/cluar/main.js"
+import { _db, _val, _req, _out } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
 const page = _db.pagination(1, 10);
 const where = _val.map()
     .set('language', _db.where())
-    .set('parameter', _db.where())
+    .set('parameter', _db.where());
 
 if (pagination) {
     page.size(pagination.getInt("size"));
@@ -72,7 +73,7 @@ const query = _db.form('configuration')
         'configuration_parameter_type.code',
         'configuration_parameter_type.name'
     )
-    .order('configuration.id', 'desc')
+    .order('configuration.id', 'desc');
 
 const dbPage = query.page(page);
 const items = _val.list();
@@ -99,11 +100,11 @@ for (const dbItem of dbPage.getList('items')) {
                 .set('description', dbItem.getString('language_description'))
                 .set('code', dbItem.getString('languge_code'))
             )
-    )
+    );
 }
 dbPage.set('items', items);
 
 _out.json(
     _val.map()
         .set('page', dbPage)
-)
+);

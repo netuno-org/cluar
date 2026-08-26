@@ -1,3 +1,5 @@
+import { _val, _req, _out, _app } from "@netuno/server-types";
+
 const language = _req.getString("language");
 
 const templates = [];

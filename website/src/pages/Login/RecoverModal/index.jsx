@@ -22,7 +22,7 @@ export default function RecoverModal(props) {
       url: 'recovery',
       data: {
         mail,
-        current_language:Cluar.currentLanguage().code
+        current_language: Cluar.currentLanguage().code
       },
       success: (response) => {
         if (response.json.result) {
@@ -77,7 +77,7 @@ export default function RecoverModal(props) {
           {Cluar.plainDictionary('recovery-modal-cancel')}
         </Button>,
         <Button key="send" type="primary" htmlType="submit" loading={submitting} onClick={onSubmit} >
-           {Cluar.plainDictionary('recovery-modal-send')}
+          {Cluar.plainDictionary('recovery-modal-send')}
         </Button>
       ]}
     >
@@ -87,11 +87,11 @@ export default function RecoverModal(props) {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label= {Cluar.plainDictionary('recovery-modal-mail')}
+          label={Cluar.plainDictionary('recovery-modal-mail')}
           name="mail"
           rules={[
-            { type: 'email', message: Cluar.plainDictionary('recovery-modal-mail-valid-message')},
-            { required: true, message: Cluar.plainDictionary('recovery-modal-validate-message-required')}
+            { type: 'email', message: Cluar.plainDictionary('recovery-modal-mail-valid-message') },
+            { required: true, message: Cluar.plainDictionary('recovery-modal-validate-message-required') }
           ]}
         >
           <Input disabled={submitting} maxLength={250} />

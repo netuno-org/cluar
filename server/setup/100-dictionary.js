@@ -1,13 +1,13 @@
 // -----------------------------------------------------------
-// 
+//
 // DICTIONARY
-// 
+//
 // -----------------------------------------------------------
-// 
+//
 // CODE GENERATED AUTOMATICALLY
-// 
+//
 
-import {_val, _db} from "@netuno/server-types";
+import { _db, _val } from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary",
@@ -9242,4 +9242,3 @@ _db.insertIfNotExists(
     .set("entry_id", "c75358f1-fedb-4d02-b58e-5a93801d2319")
     .set("value", "Nova entrada")
 );
-

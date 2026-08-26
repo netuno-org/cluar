@@ -1,3 +1,5 @@
+import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+
 const uid = _req.getString("uid");
 
 const dbLanguage = _db.queryFirst(`
@@ -15,19 +17,19 @@ const dbLanguage = _db.queryFirst(`
 `, uid);
 
 if (!dbLanguage) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `language not found with uid: ${uid}`)
-            .set('error_code', `language-not-found`)
-    );
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `language not found with uid: ${uid}`)
+      .set('error_code', `language-not-found`)
+  );
+  _exec.stop();
 }
 
 _out.json(
-    _val.map()
-        .set('result', true)
-        .set('language', dbLanguage)
-)
+  _val.map()
+    .set('result', true)
+    .set('language', dbLanguage)
+);
 

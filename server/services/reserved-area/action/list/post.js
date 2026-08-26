@@ -1,4 +1,3 @@
-// server/services/actions/list.js
 import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
@@ -24,20 +23,20 @@ const dbActions = _db.query(`
 const items = _val.list();
 
 for (const dbAction of dbActions) {
-    items.add(
-        _val.map()
-            .set("uid", dbAction.getString("uid"))
-            .set("title", dbAction.getString("title"))
-            .set("content", dbAction.getString("content"))
-            .set("indication", dbAction.getString("indication"))
-            .set("link", dbAction.getString("link"))
-            .set("active", dbAction.getBoolean("active"))
-            .set("image", dbAction.getString("image"))
-            .set("language_code", dbAction.getString("language_code"))
-            .set("language_description", dbAction.getString("language_description"))
-            .set("parameter_uid", dbAction.getString("parameter_uid"))
-            .set("parameter_code", dbAction.getString("parameter_code"))
-    );
+  items.add(
+    _val.map()
+      .set("uid", dbAction.getString("uid"))
+      .set("title", dbAction.getString("title"))
+      .set("content", dbAction.getString("content"))
+      .set("indication", dbAction.getString("indication"))
+      .set("link", dbAction.getString("link"))
+      .set("active", dbAction.getBoolean("active"))
+      .set("image", dbAction.getString("image"))
+      .set("language_code", dbAction.getString("language_code"))
+      .set("language_description", dbAction.getString("language_description"))
+      .set("parameter_uid", dbAction.getString("parameter_uid"))
+      .set("parameter_code", dbAction.getString("parameter_code"))
+  );
 }
 
 cluar.response.successWithData({ status: 200, data: items });

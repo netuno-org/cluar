@@ -1,3 +1,5 @@
+import { _db, _val, _req, _out, _header, _exec, _user } from "@netuno/server-types";
+
 const uid = _req.getString('uid');
 
 const dbPeople = _db.queryFirst(`
@@ -50,33 +52,33 @@ const dbOrganization = _db.queryFirst(`
 `, uid);
 
 if (!dbOrganization) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error_code', 'organization-not-found')
-            .set('error', `not fund organization with uid: ${uid}`)
-    )
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error_code', 'organization-not-found')
+      .set('error', `not fund organization with uid: ${uid}`)
+  );
+  _exec.stop();
 }
 
 const organization = _val.map()
-    .set('uid', dbOrganization.getString('org_uid'))
-    .set('name', dbOrganization.getString('org_name'))
-    .set('code', dbOrganization.getString('org_code'))
-    .set('active', dbOrganization.getBoolean('org_active'))
+  .set('uid', dbOrganization.getString('org_uid'))
+  .set('name', dbOrganization.getString('org_name'))
+  .set('code', dbOrganization.getString('org_code'))
+  .set('active', dbOrganization.getBoolean('org_active'));
 
 if (dbOrganization.has('parent_uid')) {
-    organization.set("parent",
-        _val.map()
-            .set('uid', dbOrganization.getString('parent_uid'))
-            .set('name', dbOrganization.getString('parent_name'))
-            .set('code', dbOrganization.getString('parent_code'))
-    )
+  organization.set("parent",
+    _val.map()
+      .set('uid', dbOrganization.getString('parent_uid'))
+      .set('name', dbOrganization.getString('parent_name'))
+      .set('code', dbOrganization.getString('parent_code'))
+  );
 }
 
 _out.json(
-    _val.map()
-        .set('result', true)
-        .set('organization', organization)
-)
+  _val.map()
+    .set('result', true)
+    .set('organization', organization)
+);

@@ -1,56 +1,58 @@
-const name = _req.getString("name")
-const username = _req.getString("username")
-let email = _req.getString("email")
-const password = _req.getString("password")
-const code = _req.getString("code")
-const provider = _req.getString("provider")
+import { _db, _val, _req, _out, _header, _exec, _user, _group, _auth, _altcha, _remote } from "@netuno/server-types";
+
+const name = _req.getString("name");
+const username = _req.getString("username");
+let email = _req.getString("email");
+const password = _req.getString("password");
+const code = _req.getString("code");
+const provider = _req.getString("provider");
 const altchaPayload = _req.getString("altcha");
 
-const noPass = code != '' && provider != '' && password == '' && email == ''
+const noPass = code != '' && provider != '' && password == '' && email == '';
 
-let avatar = ''
+let avatar = '';
 
 if (noPass) {
-  const dbProviderUser = _user.providerDataByUid(code)
+  const dbProviderUser = _user.providerDataByUid(code);
   if (dbProviderUser == null || dbProviderUser.getString('provider_code') !== provider) {
-    _header.status(409)
+    _header.status(409);
     _out.json(
       _val.map()
         .set("error", `invalid-provider-data`)
-    )
-    _exec.stop()
+    );
+    _exec.stop();
   }
-  email = dbProviderUser.getString('email')
-  const urlAvatar = dbProviderUser.getString('avatar')
+  email = dbProviderUser.getString('email');
+  const urlAvatar = dbProviderUser.getString('avatar');
   if (urlAvatar !== '') {
-    const responseAvatar = _remote.init().asBinary().get(urlAvatar)
+    const responseAvatar = _remote.init().asBinary().get(urlAvatar);
     if (responseAvatar.ok()) {
-      avatar = responseAvatar.file()
-      avatar.rename("avatar.png")
+      avatar = responseAvatar.file();
+      avatar.rename("avatar.png");
     }
   } else if (_auth.altchaEnabled() && !_altcha.verifySolution(altchaPayload)) {
-    _header.status(409)
+    _header.status(409);
     _out.json(
       _val.map()
         .set("error", `invalid-altcha-payload`)
-    )
-    _exec.stop()
+    );
+    _exec.stop();
   }
 }
 
-const userEmailExists = _user.firstByMail(email)
-const usernameExists = _user.firstByUser(username)
+const userEmailExists = _user.firstByMail(email);
+const usernameExists = _user.firstByUser(username);
 
 if (userEmailExists || usernameExists) {
-  _header.status(409)
+  _header.status(409);
   _out.json(
     _val.map()
       .set("error", `${userEmailExists ? 'email' : 'user'}-already-exists`)
-  )
-  _exec.stop()
+  );
+  _exec.stop();
 }
 
-const dbGroup = _group.firstByCode("people")
+const dbGroup = _group.firstByCode("people");
 
 const userData = _val.map()
   .set("name", name)
@@ -59,9 +61,9 @@ const userData = _val.map()
   .set("no_pass", noPass)
   .set("mail", email)
   .set("active", true)
-  .set("group_id", dbGroup.getInt("id"))
+  .set("group_id", dbGroup.getInt("id"));
 
-const user_id = _user.create(userData)
+const user_id = _user.create(userData);
 
 _db.insertIfNotExists(
   'people',
@@ -70,9 +72,9 @@ _db.insertIfNotExists(
     .set("email", email)
     .set("people_user_id", user_id)
     .set("avatar", avatar)
-)
+);
 
 _out.json(
   _val.map()
     .set("result", true)
-)
+);

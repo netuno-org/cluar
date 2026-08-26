@@ -1,3 +1,5 @@
+import { _db, _val, _req, _out, _header, _exec, _user } from "@netuno/server-types";
+
 const uid = _req.getString("uid");
 const active = _req.getBoolean("active");
 
@@ -6,31 +8,31 @@ const dbPeople = _db.queryFirst(`
 `, uid);
 
 if (!dbPeople) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `user not found with uid: ${uid}`)
-            .set('error_code', 'user-not-found')
-    )
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `user not found with uid: ${uid}`)
+      .set('error_code', 'user-not-found')
+  );
+  _exec.stop();
 }
 
 _user.update(
-    dbPeople.getInt("people_user_id"),
-    _val.map()
-        .set('active', active),
-    false
+  dbPeople.getInt("people_user_id"),
+  _val.map()
+    .set('active', active),
+  false
 );
 
 _db.update(
-    'people',
-    dbPeople.getInt("id"),
-    _val.map()
-        .set('active', active)
+  'people',
+  dbPeople.getInt("id"),
+  _val.map()
+    .set('active', active)
 );
 
 _out.json(
-    _val.map()
-        .set('result', true)
-)
+  _val.map()
+    .set('result', true)
+);

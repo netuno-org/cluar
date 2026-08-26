@@ -30,7 +30,7 @@ if (dashboardContainer) {
 }
 
 netuno.addNavigationLoad(() => {
-  $('[netuno-navigation]').find('a').on('netuno:click', (e)=> {
+  $('[netuno-navigation]').find('a').on('netuno:click', (e) => {
     const link = $(e.target);
     if (dashboardContainer && link.is('[netuno-navigation-dashboard]')) {
       // Menu > Dashboard > Clicked!
@@ -50,14 +50,14 @@ netuno.addContentLoad((container) => {
 netuno.addPageLoad(() => {
   // When page is loaded...
   let modal = $('#app-dashboard-modal-form');
-  modal.on('hidden.bs.modal', ()=> {
+  modal.on('hidden.bs.modal', () => {
     modal.find('[netuno-form-edit]').empty();
   });
-  $('#app-dashboard-modal-form-button').on('click', ()=> {
+  $('#app-dashboard-modal-form-button').on('click', () => {
     modal.modal('show');
     netuno.loadFormEdit(modal.find('[netuno-form]'));
   });
-  modal.find('[netuno-form]').on('netuno:save', ()=> {
+  modal.find('[netuno-form]').on('netuno:save', () => {
     modal.modal('hide');
   });
 });

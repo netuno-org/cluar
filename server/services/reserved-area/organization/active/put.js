@@ -1,26 +1,28 @@
+import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+
 const {
-    uid,
-    active
+  uid,
+  active
 } = JSON.parse(_req.toJSON());
 
 const dbOrganization = _db.queryFirst('SELECT * FROM organization WHERE uid = ?::uuid', uid);
 
 if (!dbOrganization) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error_code', "not-found")
-            .set('error', `organization not found with uid: ${uid}`)
-    );
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error_code', "not-found")
+      .set('error', `organization not found with uid: ${uid}`)
+  );
+  _exec.stop();
 }
 
 _db.update(
-    'organization',
-    dbOrganization.getInt("id"),
-    _val.map()
-        .set('active', active)
+  'organization',
+  dbOrganization.getInt("id"),
+  _val.map()
+    .set('active', active)
 );
 
-_out.json({result: true});
+_out.json({ result: true });

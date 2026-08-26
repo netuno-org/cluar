@@ -1,11 +1,11 @@
 {
-    "type": "object",
-    "properties": {
-      "result": {
-        "type": "boolean"
-      }
-    },
-    "required": [
-      "result"
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "result"
     ]
-  }
+}

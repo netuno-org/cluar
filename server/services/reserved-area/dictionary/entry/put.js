@@ -7,21 +7,21 @@ const description = _req.getString("description");
 
 /* ---------- VALIDAÇÕES DOS DADOS RECEBIDOS ---------- */
 if (!uid) {
-    cluar.response.error({ status: 400, error: 'uid is required' });
+  cluar.response.error({ status: 400, error: 'uid is required' });
 }
 
 if (!code) {
-    cluar.response.error({ status: 400, error: 'code is required' });
+  cluar.response.error({ status: 400, error: 'code is required' });
 }
 
 if (!description) {
-    cluar.response.error({ status: 400, error: 'description is required' });
+  cluar.response.error({ status: 400, error: 'description is required' });
 }
 
 const dbDictionaryEntry = _db.get('dictionary_entry', uid);
 
 if (!dbDictionaryEntry) {
-    cluar.response.error({ status: 404, error: 'entry not found' });
+  cluar.response.error({ status: 404, error: 'entry not found' });
 }
 
 const codeExists = _db.queryFirst(`
@@ -30,18 +30,18 @@ const codeExists = _db.queryFirst(`
 `, code, uid);
 
 if (codeExists) {
-    cluar.response.error({ status: 409, error: `entry code already exists: ${code}` })
+  cluar.response.error({ status: 409, error: `entry code already exists: ${code}` })
 }
 
 const entry = _db.form("dictionary_entry")
-    .where(
-        _db.where('id').equal(dbDictionaryEntry.getInt('id'))
-    )
-    .set('code', code)
-    .set('description', description)
-    .update();
+  .where(
+    _db.where('id').equal(dbDictionaryEntry.getInt('id'))
+  )
+  .set('code', code)
+  .set('description', description)
+  .update();
 
 _out.json(
-    _val.map()
-        .set('result', true)
+  _val.map()
+    .set('result', true)
 );

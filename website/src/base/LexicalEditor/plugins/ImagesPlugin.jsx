@@ -1,55 +1,55 @@
 import { useEffect } from 'react';
 import {
-    $insertNodes,
-    COMMAND_PRIORITY_EDITOR,
-    COMMAND_PRIORITY_HIGH,
-    COMMAND_PRIORITY_LOW,
-    $createParagraphNode,
-    $isRootOrShadowRoot,
-    createCommand
+  $insertNodes,
+  COMMAND_PRIORITY_EDITOR,
+  COMMAND_PRIORITY_HIGH,
+  COMMAND_PRIORITY_LOW,
+  $createParagraphNode,
+  $isRootOrShadowRoot,
+  createCommand
 } from 'lexical';
 import {
-    useLexicalComposerContext
+  useLexicalComposerContext
 } from '@lexical/react/LexicalComposerContext';
 import {
-    DRAGSTART_COMMAND,
-    DRAGOVER_COMMAND,
-    DROP_COMMAND,
+  DRAGSTART_COMMAND,
+  DRAGOVER_COMMAND,
+  DROP_COMMAND,
 } from 'lexical';
 import {
-    $createImageNode,
-    ImageNode
+  $createImageNode,
+  ImageNode
 } from '../nodes/ImageNode';
 import { mergeRegister, $wrapNodeInElement } from '@lexical/utils';
 
 import { INSERT_IMAGE_COMMAND } from '../utils/commands';
 
 export default function ImagesPlugin({ captionsEnabled }) {
-    const [editor] = useLexicalComposerContext();
+  const [editor] = useLexicalComposerContext();
 
-    useEffect(() => {
-        if (!editor.hasNodes([ImageNode])) {
-            throw new Error('ImagesPlugin: ImageNode not registered on editor');
-        }
+  useEffect(() => {
+    if (!editor.hasNodes([ImageNode])) {
+      throw new Error('ImagesPlugin: ImageNode not registered on editor');
+    }
 
-        return mergeRegister(
-            editor.registerCommand(
-                INSERT_IMAGE_COMMAND,
-                (payload) => {
-                    const imageNode = $createImageNode(payload);
-                    $insertNodes([imageNode]);
+    return mergeRegister(
+      editor.registerCommand(
+        INSERT_IMAGE_COMMAND,
+        (payload) => {
+          const imageNode = $createImageNode(payload);
+          $insertNodes([imageNode]);
 
-                    const parent = imageNode.getParentOrThrow();
-                    if ($isRootOrShadowRoot(parent)) {
-                        $wrapNodeInElement(imageNode, $createParagraphNode).selectEnd();
-                    }
+          const parent = imageNode.getParentOrThrow();
+          if ($isRootOrShadowRoot(parent)) {
+            $wrapNodeInElement(imageNode, $createParagraphNode).selectEnd();
+          }
 
-                    return true;
-                },
-                COMMAND_PRIORITY_EDITOR,
-            )
-        );
-    }, [editor, captionsEnabled]);
+          return true;
+        },
+        COMMAND_PRIORITY_EDITOR,
+      )
+    );
+  }, [editor, captionsEnabled]);
 
-    return null;
+  return null;
 }

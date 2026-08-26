@@ -6,7 +6,7 @@ const entryUid = _req.getString('uid');
 const dbDictionaryEntry = _db.get('dictionary_entry', entryUid);
 
 if (!dbDictionaryEntry) {
-    cluar.response.error({ status: 404, error: 'entry not found' });
+  cluar.response.error({ status: 404, error: 'entry not found' });
 }
 
 const entryId = dbDictionaryEntry.getInt("id");
@@ -17,11 +17,11 @@ const inUse = _db.queryFirst(`
 `, entryId);
 
 if (inUse && inUse.getInt("total") > 0) {
-    // Se estiver em uso, bloqueia a exclusão e avisa o usuário
-    cluar.response.error({
-        status: 409,
-        error: 'Não é possível apagar esta entrada pois ela está sendo usada em um ou mais dicionários.'
-    });
+  // Se estiver em uso, bloqueia a exclusão e avisa o usuário
+  cluar.response.error({
+    status: 409,
+    error: 'Não é possível apagar esta entrada pois ela está sendo usada em um ou mais dicionários.'
+  });
 }
 
 // Se não estiver em uso, apaga normalmente

@@ -1,3 +1,5 @@
+import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+
 const uid = _req.getString("uid");
 const description = _req.getString("description");
 const code = _req.getString("code");
@@ -10,14 +12,14 @@ const dbLanguage = _db.queryFirst(`
 `, uid);
 
 if (!dbLanguage) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `language not found with uid: ${uid}`)
-            .set('error_code', `language-not-found`)
-    );
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `language not found with uid: ${uid}`)
+      .set('error_code', `language-not-found`)
+  );
+  _exec.stop();
 }
 
 const languageExists = _db.queryFirst(`
@@ -30,30 +32,30 @@ const languageExists = _db.queryFirst(`
 `, code, locale, dbLanguage.getInt("id")).getBoolean("result");
 
 if (languageExists) {
-    _header.status(409);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `language already exists with this code or locale`)
-            .set('error_code', `language-exists`)    
-    );
-    _exec.stop();
+  _header.status(409);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `language already exists with this code or locale`)
+      .set('error_code', `language-exists`)
+  );
+  _exec.stop();
 }
 
 const data = _val.map()
-    .set('description', description)
-    .set('code', code)
-    .set('locale', locale)
-    .set('default', isDefault)
-    .set('active', active)
+  .set('description', description)
+  .set('code', code)
+  .set('locale', locale)
+  .set('default', isDefault)
+  .set('active', active);
 
 _db.update(
-    'language',
-    dbLanguage.getInt("id"),
-    data
+  'language',
+  dbLanguage.getInt("id"),
+  data
 );
 
 _out.json(
-    _val.map()
-        .set('result', true)
-)
+  _val.map()
+    .set('result', true)
+);

@@ -1,14 +1,14 @@
 {
-    "type": "object",
-    "properties": {
-      "result": {
-        "type": "boolean"
-      },
-      "error":{
-        "type":"string"
-      },
-      "error_code":{
-        "type":"string"
-      }
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "boolean"
+    },
+    "error":{
+      "type":"string"
+    },
+    "error_code":{
+      "type":"string"
     }
   }
+}

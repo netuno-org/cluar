@@ -1,4 +1,5 @@
-import cluar from "#core/cluar/main.js"
+import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString("uid");
 const value = _req.getString("value");
@@ -10,14 +11,14 @@ const dbConfiguration = _db.queryFirst(`
 `, uid);
 
 if (!dbConfiguration) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `configuration not found with uid: ${uid}`)
-            .set('error_code', `configuration-not-found`)
-    );
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `configuration not found with uid: ${uid}`)
+      .set('error_code', `configuration-not-found`)
+  );
+  _exec.stop();
 }
 
 const dbParameter = _db.queryFirst(`
@@ -25,14 +26,14 @@ const dbParameter = _db.queryFirst(`
 `, parameterCode);
 
 if (!dbParameter) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `parameter not found with code: ${parameterCode}`)
-            .set('error_code', `parameter-not-found`)
-    );
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `parameter not found with code: ${parameterCode}`)
+      .set('error_code', `parameter-not-found`)
+  );
+  _exec.stop();
 }
 
 const dbLanguage = _db.queryFirst(`
@@ -52,34 +53,34 @@ const dbLanguage = _db.queryFirst(`
 //}
 
 const data = _val.map()
-    .set('parameter_id', dbParameter.getInt("id"))
-    .set('language_id', dbLanguage?.getInt("id"))
+  .set('parameter_id', dbParameter.getInt("id"))
+  .set('language_id', dbLanguage?.getInt("id"));
 
 if (value?.includes("base64")) {
-    data.set("value_img", _req.getFile("value"))
+  data.set("value_img", _req.getFile("value"));
 } else {
-    data.set('value', value)
+  data.set('value', value);
 }
 
 _db.update(
-    'configuration', 
-    dbConfiguration.getInt("id"),
-    data
+  'configuration',
+  dbConfiguration.getInt("id"),
+  data
 );
 
 if (value?.includes("base64")) {
-    const dbNewConfiguration = _db.get("configuration", dbConfiguration.getInt("id"))
-    const fileName = dbNewConfiguration.getString("value_img")
-    const location = cluar.configurationImageLocation(parameterCode, fileName)
+  const dbNewConfiguration = _db.get("configuration", dbConfiguration.getInt("id"));
+  const fileName = dbNewConfiguration.getString("value_img");
+  const location = cluar.configurationImageLocation(parameterCode, fileName);
 
-    _db.update(
-        'configuration', 
-        dbConfiguration.getInt("id"),
-        _val.map().set(`value`, `/${location.folder}/${location.fileName}`)
-    );
+  _db.update(
+    'configuration',
+    dbConfiguration.getInt("id"),
+    _val.map().set(`value`, `/${location.folder}/${location.fileName}`)
+  );
 }
-    
+
 _out.json(
-    _val.map()
-        .set("result", true)
+  _val.map()
+    .set("result", true)
 );

@@ -1,3 +1,5 @@
+import { _db, _val, _req, _out, _header, _user } from "@netuno/server-types";
+
 const filters = _req.getValues('filters');
 let queryWhere = "";
 const queryParams = _val.list();
@@ -5,49 +7,49 @@ const pagination = _req.getValues('pagination');
 const page = _db.pagination(1, 10);
 
 if (pagination) {
-    page.page(pagination.getInt('page'));
-    page.size(pagination.getInt('size'));
+  page.page(pagination.getInt('page'));
+  page.size(pagination.getInt('size'));
 
-    if (page.size() > 100) {
-        page.size(100);
-    }
+  if (page.size() > 100) {
+    page.size(100);
+  }
 }
 
 if (filters) {
-    const name = filters.has('name') && filters.getString('name');
+  const name = filters.has('name') && filters.getString('name');
 
-    if (name) {
-        queryWhere += `
+  if (name) {
+    queryWhere += `
             AND user_orgs.name like ?
-        `
-        queryParams.add(`%${name}%`)
-    }
+        `;
+    queryParams.add(`%${name}%`);
+  }
 
-    const code = filters.has('code') && filters.getString('code');
+  const code = filters.has('code') && filters.getString('code');
 
-    if (code) {
-        queryWhere += `
+  if (code) {
+    queryWhere += `
             AND user_orgs.code like ?
-        `
-        queryParams.add(`%${code}%`)
-    }
+        `;
+    queryParams.add(`%${code}%`);
+  }
 
-    const active = filters.has('active') && filters.getList('active');
+  const active = filters.has('active') && filters.getList('active');
 
-    if (active.length > 0) {
-        queryWhere += `
+  if (active.length > 0) {
+    queryWhere += `
             AND user_orgs.active IN (${active.join(", ")})
-        `
-    }
+        `;
+  }
 
-    const parentName = filters.has('parent_name') && filters.getString('parent_name');
+  const parentName = filters.has('parent_name') && filters.getString('parent_name');
 
-    if (parentName) {
-        queryWhere += `
+  if (parentName) {
+    queryWhere += `
             AND parent.name like ?
-        `
-        queryParams.add(`%${parentName}%`)
-    }
+        `;
+    queryParams.add(`%${parentName}%`);
+  }
 }
 
 const dbPeople = _db.queryFirst(`
@@ -103,21 +105,21 @@ const dbOrganizations = _db.query(`
 const organizations = _val.list();
 
 for (const dbOrganization of dbOrganizations) {
-    const organization = _val.map()
-        .set('uid', dbOrganization.getString('org_uid'))
-        .set('name', dbOrganization.getString('org_name'))
-        .set('code', dbOrganization.getString('org_code'))
-        .set('active', dbOrganization.getBoolean('org_active'))
+  const organization = _val.map()
+    .set('uid', dbOrganization.getString('org_uid'))
+    .set('name', dbOrganization.getString('org_name'))
+    .set('code', dbOrganization.getString('org_code'))
+    .set('active', dbOrganization.getBoolean('org_active'));
 
-    if (dbOrganization.has('parent_uid')) {
-        organization.set("parent",
-            _val.map()
-                .set('uid', dbOrganization.getString('parent_uid'))
-                .set('name', dbOrganization.getString('parent_name'))
-                .set('code', dbOrganization.getString('parent_code'))
-        )
-    }
-    organizations.add(organization);
+  if (dbOrganization.has('parent_uid')) {
+    organization.set("parent",
+      _val.map()
+        .set('uid', dbOrganization.getString('parent_uid'))
+        .set('name', dbOrganization.getString('parent_name'))
+        .set('code', dbOrganization.getString('parent_code'))
+    );
+  }
+  organizations.add(organization);
 }
 
 const dbOrganizationTotal = _db.queryFirst(`
@@ -161,7 +163,7 @@ const dbOrganizationTotal = _db.queryFirst(`
 
 _header.status(201);
 _out.json(
-    _val.map()
-        .set('organizations', organizations)
-        .set('organization_total', dbOrganizationTotal.getInt('total'))
-)
+  _val.map()
+    .set('organizations', organizations)
+    .set('organization_total', dbOrganizationTotal.getInt('total'))
+);

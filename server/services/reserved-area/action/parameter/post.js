@@ -6,11 +6,11 @@ const description = _req.getString("description");
 
 /* ---------- VALIDAÇÕES DOS DADOS RECEBIDOS ---------- */
 if (!code) {
-    cluar.response.error({ status: 400, error: 'code is required' });
+  cluar.response.error({ status: 400, error: 'code is required' });
 }
 
 if (!description) {
-    cluar.response.error({ status: 400, error: 'description is required' });
+  cluar.response.error({ status: 400, error: 'description is required' });
 }
 
 const codeExists = _db.queryFirst(`
@@ -19,19 +19,19 @@ const codeExists = _db.queryFirst(`
 `, code);
 
 if (codeExists) {
-    cluar.response.error({ status: 409, error: `parameter code already exists: ${code}` })
+  cluar.response.error({ status: 409, error: `parameter code already exists: ${code}` })
 }
 
 const parameter = _db.form("action_parameter")
-    .set('code', code)
-    .set('description', description)
-    .get("uid")
-    .get("code")
-    .get("description")
-    .insertAndReturn();
+  .set('code', code)
+  .set('description', description)
+  .get("uid")
+  .get("code")
+  .get("description")
+  .insertAndReturn();
 
 _out.json(
-    _val.map()
-        .set('result', true)
-        .set('parameter', parameter)
+  _val.map()
+    .set('result', true)
+    .set('parameter', parameter)
 );

@@ -1,4 +1,5 @@
-import cluar from "#core/cluar/main.js"
+import { _db, _val, _req, _out, _header, _storage } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const page = _req.getString("page");
 const structures = _req.get("structures");

@@ -13,7 +13,7 @@ const Default = ({ page, loggedUserInfo }) => {
   const canEdit = ["administrator", "editor"].some(
     (g) => loggedUserInfo?.groups?.some((group) => group?.code === g)
   );
-  
+
   return (
     <div className="default-template">
       <BaseHeader canEdit={canEdit} />

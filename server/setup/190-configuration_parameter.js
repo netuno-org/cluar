@@ -1,13 +1,13 @@
 // -----------------------------------------------------------
-// 
+//
 // CONFIGURATION_PARAMETER
-// 
+//
 // -----------------------------------------------------------
-// 
+//
 // CODE GENERATED AUTOMATICALLY
-// 
+//
 
-import {_val, _db} from "@netuno/server-types";
+import { _db, _val } from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "configuration_parameter",
@@ -134,4 +134,3 @@ _db.insertIfNotExists(
     .set("description", "T\u00EDtulo do Website")
     .set("configuration_parameter_type_id", "9aa06e94-1b26-4f90-8291-51f9d802110d")
 );
-

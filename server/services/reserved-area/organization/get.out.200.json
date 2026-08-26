@@ -1,11 +1,11 @@
 {
-    "type":"object",
-    "properties":{
-        "result":{
-            "type":"boolean"
-        },
-        "organization":{
-            "_schema":"response/organization"
-        }
+  "type":"object",
+  "properties":{
+    "result":{
+      "type":"boolean"
+    },
+    "organization":{
+      "_schema":"response/organization"
     }
+  }
 }

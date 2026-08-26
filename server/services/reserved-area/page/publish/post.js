@@ -1,4 +1,5 @@
-import cluar from "#core/cluar/main.js"
+import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const pageVersionUid = _req.getString("page_version_uid");
 
@@ -24,7 +25,7 @@ if (!dbPageVersion) {
   _header.status(400);
   _out.json({
     result: false,
-    error: "page-version-not-found"
+    error: "page-version-not-found";
   });
 
   _exec.stop();
@@ -35,7 +36,7 @@ if (!dbPage) {
   _header.status(400);
   _out.json({
     result: false,
-    error: "page-not-found"
+    error: "page-not-found";
   });
 
   _exec.stop();

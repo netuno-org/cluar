@@ -1,63 +1,65 @@
+import { _db, _val, _req, _out, _user } from "@netuno/server-types";
+
 const filters = _req.getValues("filters");
-const pagination = _req.getValues("pagination")
+const pagination = _req.getValues("pagination");
 const page = _db.pagination(1, 10);
 const queryParams = _val.init();
 let queryWhere = "";
 
 if (pagination) {
-    page.size(pagination.getInt("size"))
-    page.page(pagination.getInt("page"))
+  page.size(pagination.getInt("size"));
+  page.page(pagination.getInt("page"));
 
-    if (page.size() > 100) {
-        page.size(100);
-    }
+  if (page.size() > 100) {
+    page.size(100);
+  }
 }
 
 if (filters) {
-    const organizationName = filters.has("organization_name") && filters.getString("organization_name");
+  const organizationName = filters.has("organization_name") && filters.getString("organization_name");
 
-    if (organizationName) {
-        queryWhere += `
+  if (organizationName) {
+    queryWhere += `
             AND user_orgs.name like ?
-        `
-        queryParams.add(`%${organizationName}%`);
-    }
+        `;
+    queryParams.add(`%${organizationName}%`);
+  }
 
-    const peopleName = filters.has("people_name") && filters.getString("people_name");
+  const peopleName = filters.has("people_name") && filters.getString("people_name");
 
-    if (peopleName) {
-        queryWhere += `
+  if (peopleName) {
+    queryWhere += `
             AND people.name like ?
-        `
-        queryParams.add(`%${peopleName}%`)
-    }
+        `;
+    queryParams.add(`%${peopleName}%`);
+  }
 
-    const peopleUID = filters.has("people_uid") && filters.getString("people_uid");
+  const peopleUID = filters.has("people_uid") && filters.getString("people_uid");
 
-    if (peopleUID) {
-        queryWhere += `
+  if (peopleUID) {
+    queryWhere += `
             AND people.uid = ?::uuid
-        `
-        queryParams.add(peopleUID)
-    }
+        `;
+    queryParams.add(peopleUID);
+  }
 
-    const groupCodes = filters.has("group_codes") && filters.getList("group_codes");
+  const groupCodes = filters.has("group_codes") && filters.getList("group_codes");
 
-    if (groupCodes && groupCodes.size() > 0) {
-        queryWhere += `
+  if (groupCodes && groupCodes.size() > 0) {
+    queryWhere += `
             AND user_group.code IN (${groupCodes.map(() => "?").join(", ")})
-        `
-        queryParams.addAll(groupCodes)
-    }
+        `;
+    queryParams.addAll(groupCodes);
+  }
 
-    const active = filters.has("active") && filters.getList("active");
+  const active = filters.has("active") && filters.getList("active");
 
-    if (active && active.size() > 0) {
-        queryWhere += `
+  if (active && active.size() > 0) {
+    queryWhere += `
             AND organization_people.active IN (${active.map(() => "?").join(", ")})
-        `
-        queryParams.addAll(active)
-    }
+        `;
+    queryParams.addAll(active);
+  }
 }
 
 const dbPeople = _db.queryFirst(`
@@ -164,29 +166,29 @@ const dbMembersTotal = _db.queryFirst(`
 const members = _val.list();
 
 for (const dbMember of dbMembers) {
-    members.add(
-        _val.map()
-            .set('uid', dbMember.getString("organization_people_uid"))
-            .set('active', dbMember.getBoolean('organization_people_active'))
-            .set('organization', _val.map()
-                .set('uid', dbMember.getString("org_uid"))
-                .set('name', dbMember.getString("org_name"))
-                .set('code', dbMember.getString("org_code"))
-            )
-            .set('user', _val.map()
-                .set('uid', dbMember.getString("people_uid"))
-                .set('name', dbMember.getString("people_name"))
-            )
-            .set('group', _val.map()
-                .set('uid', dbMember.getString("group_uid"))
-                .set('name', dbMember.getString("group_name"))
-                .set('code', dbMember.getString("group_code"))
-            )
-    )
+  members.add(
+    _val.map()
+      .set('uid', dbMember.getString("organization_people_uid"))
+      .set('active', dbMember.getBoolean('organization_people_active'))
+      .set('organization', _val.map()
+        .set('uid', dbMember.getString("org_uid"))
+        .set('name', dbMember.getString("org_name"))
+        .set('code', dbMember.getString("org_code"))
+      )
+      .set('user', _val.map()
+        .set('uid', dbMember.getString("people_uid"))
+        .set('name', dbMember.getString("people_name"))
+      )
+      .set('group', _val.map()
+        .set('uid', dbMember.getString("group_uid"))
+        .set('name', dbMember.getString("group_name"))
+        .set('code', dbMember.getString("group_code"))
+      )
+  );
 }
 
 _out.json(
-    _val.map()
-        .set('members', members)
-        .set('total', dbMembersTotal.getInt("total"))
-)
+  _val.map()
+    .set('members', members)
+    .set('total', dbMembersTotal.getInt("total"))
+);

@@ -7,15 +7,15 @@ const typeCode = _req.getString("type_code");
 
 /* ---------- VALIDAÇÕES DOS DADOS RECEBIDOS ---------- */
 if (!code) {
-    cluar.response.error({ status: 400, error: 'code is required' });
+  cluar.response.error({ status: 400, error: 'code is required' });
 }
 
 if (!description) {
-    cluar.response.error({ status: 400, error: 'description is required' });
+  cluar.response.error({ status: 400, error: 'description is required' });
 }
 
 if (!typeCode) {
-    cluar.response.error({ status: 400, error: 'type_code is required' });
+  cluar.response.error({ status: 400, error: 'type_code is required' });
 }
 
 const codeExists = _db.queryFirst(`
@@ -24,28 +24,28 @@ const codeExists = _db.queryFirst(`
 `, code);
 
 if (codeExists) {
-    cluar.response.error({ status: 409, error: `parameter code already exists: ${code}` })
+  cluar.response.error({ status: 409, error: `parameter code already exists: ${code}` })
 }
 
 const dbParameterType = _db.form('configuration_parameter_type')
-    .where(
-        _db.where('code').equals(typeCode)
-    )
-    .first()
+  .where(
+    _db.where('code').equals(typeCode)
+  )
+  .first()
 
 const parameter = _db.form("configuration_parameter")
-    .set('code', code)
-    .set('description', description)
-    .set('configuration_parameter_type_id', dbParameterType.getInt("id"))
-    .get("uid")
-    .get("code")
-    .get("description")
-    .insertAndReturn();
+  .set('code', code)
+  .set('description', description)
+  .set('configuration_parameter_type_id', dbParameterType.getInt("id"))
+  .get("uid")
+  .get("code")
+  .get("description")
+  .insertAndReturn();
 
 parameter.set("type_code", typeCode);
 
 _out.json(
-    _val.map()
-        .set('result', true)
-        .set('parameter', parameter)
+  _val.map()
+    .set('result', true)
+    .set('parameter', parameter)
 );

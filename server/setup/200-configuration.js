@@ -1,9 +1,10 @@
-
 // -----------------------------------------------------------
-// 
+//
 // CONFIGURATION
-// 
+//
 // -----------------------------------------------------------
+
+import { _db, _val } from "@netuno/server-types";
 
 if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(
@@ -14,7 +15,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("parameter_id", "7ac5d2fe-7c98-46b2-826c-f8f4d41f9857")
       .set("value", "38.7038342")
   );
-  
+
   _db.insertIfNotExists(
     "configuration",
     _val.init()
@@ -23,7 +24,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("parameter_id", "5502693e-8113-429b-852e-9a7364fc48d0")
       .set("value", "-8.9698548")
   );
-  
+
   _db.insertIfNotExists(
     "configuration",
     _val.init()
@@ -32,7 +33,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("parameter_id", "199c3736-4996-4b7b-a565-3a2f45ae8971")
       .set("value", "meu@e-mail.org")
   );
-  
+
   _db.insertIfNotExists(
     "configuration",
     _val.init()
@@ -41,7 +42,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("parameter_id", "199c3736-4996-4b7b-a565-3a2f45ae8971")
       .set("value", "my@e-mail.org")
   );
-  
+
   _db.insertIfNotExists(
     "configuration",
     _val.init()
@@ -50,7 +51,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("parameter_id", "2c3a4663-8a09-409f-bddf-b1506b7b9fb7")
       .set("value", "Netuno.org, Cluar CMS\r\nOpen Source")
   );
-  
+
   _db.insertIfNotExists(
     "configuration",
     _val.init()

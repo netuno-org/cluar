@@ -1,11 +1,13 @@
 // -----------------------------------------------------------
-// 
+//
 // PAGE
-// 
+//
 // -----------------------------------------------------------
-// 
+//
 // CODE GENERATED AUTOMATICALLY
-// 
+//
+
+import { _db, _val } from "@netuno/server-types";
 
 if (_val.global().getBoolean('cluar:setup')) {
   _db.insertIfNotExists(

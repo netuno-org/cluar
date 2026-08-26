@@ -6,7 +6,7 @@ const parameterUid = _req.getString('uid');
 const dbConfigurationParameter = _db.get('configuration_parameter', parameterUid);
 
 if (!dbConfigurationParameter) {
-    cluar.response.error({ status: 404, error: 'parameter not found' });
+  cluar.response.error({ status: 404, error: 'parameter not found' });
 }
 
 const parameterId = dbConfigurationParameter.getInt("id");
@@ -17,11 +17,11 @@ const inUse = _db.queryFirst(`
 `, parameterId);
 
 if (inUse && inUse.getInt("total") > 0) {
-    // Se estiver em uso, bloqueia a exclusão e avisa o usuário
-    cluar.response.error({
-        status: 409,
-        error: 'Não é possível apagar este parâmetro pois ele está sendo usado por uma ou mais configurações.'
-    });
+  // Se estiver em uso, bloqueia a exclusão e avisa o usuário
+  cluar.response.error({
+    status: 409,
+    error: 'Não é possível apagar este parâmetro pois ele está sendo usado por uma ou mais configurações.'
+  });
 }
 
 // Se não estiver em uso, apaga normalmente

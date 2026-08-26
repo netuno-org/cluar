@@ -1,100 +1,100 @@
 {
-    "cron": {"jobs": []},
-    "settings": {
-        "public": {},
-        "cluar": {
-            "website": {
-                "url": "http://localhost:3000",
-                "name": "Website Name",
-                "analytics": null,
-                "mapbox": {
-                    "dark": false,
-                    "accessToken": null
-                },
-                "services": {
-                    "api": "http://localhost:9000/services/"
-                },
-                "auth": {"providers": {
-                    "discord": false,
-                    "facebook": false,
-                    "github": false,
-                    "google": false
-                }}
-            },
-            "uglifyjs": false
+  "cron": {"jobs": []},
+  "settings": {
+    "public": {},
+    "cluar": {
+      "website": {
+        "url": "http://localhost:3000",
+        "name": "Website Name",
+        "analytics": null,
+        "mapbox": {
+          "dark": false,
+          "accessToken": null
         },
-        "recaptcha": {
-            "url": "https://www.google.com/recaptcha/api/siteverify",
-            "secret_key": ""
-        }
-    },
-    "cors": [{
-        "origins": [ "*" ],
-        "enabled": true
-    }],
-    "smtp": {
-        "default": {
-            "enabled": true,
-            "host": "smtp.gmail.com",
-            "port": 465,
-            "ssl": true,
-            "from": "email@gmail.com",
-            "username": "username",
-            "password": "s3cr37"
-          }      
-    },
-    "name": "cluar",
-    "setup": {
-        "schema": {
-            "execution": true,
-            "auto_create": true
+        "services": {
+          "api": "http://localhost:9000/services/"
         },
-        "scripts": {"execution": true},
-        "enabled": true
+        "auth": {"providers": {
+          "discord": false,
+          "facebook": false,
+          "github": false,
+          "google": false
+        }}
+      },
+      "uglifyjs": false
     },
-    "language": "en_GB",
-    "firebase": {
-        "app_name": "",
-        "database_url": "",
-        "key_file": "",
-        "listener_secret": ""
-    },
-    "locale": "en_GB",
-    "remote": {
-        "recaptcha": {
-            "json": true
-        }
-    },
-    "commands": [
-        {
-            "path": "ui",
-            "command": "bun run watch",
-            "install": "bun install",
-            "enabled": false
-        },
-        {
-            "path": "website",
-            "command": "bun run dev",
-            "install": "bun install",
-            "enabled": false
-        }
-    ],
-    "db": {"default": {
-        "password": "Your-DB-SeCr3t-Her3",
-        "engine": "pg",
-        "port": "5432",
-        "host": "localhost",
-        "name": "cluar",
-        "username": "cluar"
-    }},
-    "auth": {
-        "jwt": {
-            "enabled": true,
-            "secret": "ThisSecretMustContains32Chars!!!",
-            "expires": {
-                "access": 1440,
-                "refresh": 1440
-            }
-        }
+    "recaptcha": {
+      "url": "https://www.google.com/recaptcha/api/siteverify",
+      "secret_key": ""
     }
+  },
+  "cors": [{
+    "origins": [ "*" ],
+    "enabled": true
+  }],
+  "smtp": {
+    "default": {
+      "enabled": true,
+      "host": "smtp.gmail.com",
+      "port": 465,
+      "ssl": true,
+      "from": "email@gmail.com",
+      "username": "username",
+      "password": "s3cr37"
+    }      
+  },
+  "name": "cluar",
+  "setup": {
+    "schema": {
+      "execution": true,
+      "auto_create": true
+    },
+    "scripts": {"execution": true},
+    "enabled": true
+  },
+  "language": "en_GB",
+  "firebase": {
+    "app_name": "",
+    "database_url": "",
+    "key_file": "",
+    "listener_secret": ""
+  },
+  "locale": "en_GB",
+  "remote": {
+    "recaptcha": {
+      "json": true
+    }
+  },
+  "commands": [
+    {
+      "path": "ui",
+      "command": "bun run watch",
+      "install": "bun install",
+      "enabled": false
+    },
+    {
+      "path": "website",
+      "command": "bun run dev",
+      "install": "bun install",
+      "enabled": false
+    }
+  ],
+  "db": {"default": {
+    "password": "Your-DB-SeCr3t-Her3",
+    "engine": "pg",
+    "port": "5432",
+    "host": "localhost",
+    "name": "cluar",
+    "username": "cluar"
+  }},
+  "auth": {
+    "jwt": {
+      "enabled": true,
+      "secret": "ThisSecretMustContains32Chars!!!",
+      "expires": {
+        "access": 1440,
+        "refresh": 1440
+      }
+    }
+  }
 }

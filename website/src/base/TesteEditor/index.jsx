@@ -16,113 +16,113 @@ import "./index.less";
 import LexicalEditor from "../LexicalEditor";
 
 const theme = {
-    heading: {
-        h1: 'editor-heading-h1',
-        h2: 'editor-heading-h2',
-        h3: 'editor-heading-h3'
+  heading: {
+    h1: 'editor-heading-h1',
+    h2: 'editor-heading-h2',
+    h3: 'editor-heading-h3'
+  },
+  text: {
+    bold: 'editor-text-bold',
+    italic: 'editor-text-italic',
+    underline: 'editor-text-underline'
+  },
+  list: {
+    nested: {
+      listitem: 'editor-nested-listitem',
     },
-    text: {
-        bold: 'editor-text-bold',
-        italic: 'editor-text-italic',
-        underline: 'editor-text-underline'
-    },
-    list: {
-        nested: {
-            listitem: 'editor-nested-listitem',
-        },
-        ol: 'editor-list-ol',
-        ul: 'editor-list-ul',
-        listitem: 'editor-listItem',
-        listitemChecked: 'editor-listItemChecked',
-        listitemUnchecked: 'editor-listItemUnchecked',
-    },
-    quote: 'editor-quote',
+    ol: 'editor-list-ol',
+    ul: 'editor-list-ul',
+    listitem: 'editor-listItem',
+    listitemChecked: 'editor-listItemChecked',
+    listitemUnchecked: 'editor-listItemUnchecked',
+  },
+  quote: 'editor-quote',
 };
 
 const editorNodes = [
-    ParagraphNode,
-    TextNode,
-    HeadingNode,
-    ListNode,
-    ListItemNode,
-    QuoteNode
+  ParagraphNode,
+  TextNode,
+  HeadingNode,
+  ListNode,
+  ListItemNode,
+  QuoteNode
 ];
 
 function onError(error) {
-    console.error(error);
+  console.error(error);
 }
 
 function CustomOnChangePlugin({ onChange }) {
-    const [editor] = useLexicalComposerContext();
+  const [editor] = useLexicalComposerContext();
 
-    useEffect(() => {
-        return editor.registerUpdateListener(({ editorState }) => {
-            onChange(editorState);
-        });
-    }, [onChange, editor]);
-    return null;
+  useEffect(() => {
+    return editor.registerUpdateListener(({ editorState }) => {
+      onChange(editorState);
+    });
+  }, [onChange, editor]);
+  return null;
 }
 
 // Componente para extrair o HTML do editor
 function HtmlExtractorPlugin({ onHtmlChange }) {
-    const [editor] = useLexicalComposerContext();
+  const [editor] = useLexicalComposerContext();
 
-    useEffect(() => {
-        return editor.registerUpdateListener(() => {
-            // Capturar o HTML diretamente do elemento raiz
-            if (editor._rootElement) {
-                const html = editor._rootElement.innerHTML;
-                onHtmlChange(html);
-            }
-        });
-    }, [editor, onHtmlChange]);
+  useEffect(() => {
+    return editor.registerUpdateListener(() => {
+      // Capturar o HTML diretamente do elemento raiz
+      if (editor._rootElement) {
+        const html = editor._rootElement.innerHTML;
+        onHtmlChange(html);
+      }
+    });
+  }, [editor, onHtmlChange]);
 
-    return null;
+  return null;
 }
 
 const TesteEditor = () => {
-    const initialConfig = {
-        namespace: "My Editor",
-        theme,
-        onError,
-        nodes: editorNodes
-    };
+  const initialConfig = {
+    namespace: "My Editor",
+    theme,
+    onError,
+    nodes: editorNodes
+  };
 
-    const [isHtmlMode, setIsHtmlMode] = useState(false);
-    const [htmlContent, setHtmlContent] = useState('');
-    const [htmlEditorValue, setHtmlEditorValue] = useState('');
+  const [isHtmlMode, setIsHtmlMode] = useState(false);
+  const [htmlContent, setHtmlContent] = useState('');
+  const [htmlEditorValue, setHtmlEditorValue] = useState('');
 
-    const handleEditorChange = (editorState) => {
-        // Função para lidar com as mudanças do editor
-        // Você pode adicionar lógica adicional aqui se necessário
-        //console.log('Editor state changed:', editorState);
-    };
+  const handleEditorChange = (editorState) => {
+    // Função para lidar com as mudanças do editor
+    // Você pode adicionar lógica adicional aqui se necessário
+    //console.log('Editor state changed:', editorState);
+  };
 
-    const handleToggleHtmlMode = () => {
-        if (isHtmlMode) {
-            // Estamos saindo do modo HTML, salvar as alterações
-            setHtmlContent(htmlEditorValue);
-        }
-        setIsHtmlMode(!isHtmlMode);
-    };
+  const handleToggleHtmlMode = () => {
+    if (isHtmlMode) {
+      // Estamos saindo do modo HTML, salvar as alterações
+      setHtmlContent(htmlEditorValue);
+    }
+    setIsHtmlMode(!isHtmlMode);
+  };
 
-    const handleHtmlChange = (html) => {
-        if (!isHtmlMode) {
-            setHtmlContent(html);
-            setHtmlEditorValue(html);
-        }
-    };
+  const handleHtmlChange = (html) => {
+    if (!isHtmlMode) {
+      setHtmlContent(html);
+      setHtmlEditorValue(html);
+    }
+  };
 
-    const handleHtmlEditorChange = (e) => {
-        const newHtml = e.target.value;
-        setHtmlEditorValue(newHtml);
-    };
+  const handleHtmlEditorChange = (e) => {
+    const newHtml = e.target.value;
+    setHtmlEditorValue(newHtml);
+  };
 
-    return (
-        <div className="editor-wrapper">
-            <LexicalEditor />
-        </div>
-    );
+  return (
+    <div className="editor-wrapper">
+      <LexicalEditor />
+    </div>
+  );
 };
 
 export default TesteEditor;

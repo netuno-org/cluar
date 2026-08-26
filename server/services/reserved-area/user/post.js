@@ -1,4 +1,4 @@
-import { _req, _db, _out, _val, _exec, _header, _user } from "@netuno/server-types";
+import { _req, _db, _out, _val, _exec, _header, _user, _group } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
 
 const name = _req.getString("name");
@@ -24,52 +24,52 @@ if (userEmailExists || usernameExists) {
 const dbOrganization = _db.queryFirst(`SELECT id, name, code FROM organization WHERE code = ?::varchar`, organizationcode);
 
 if (!dbOrganization) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `organization not found with uid: ${organizationcode}`)
-            .set('error_code', `organization-not-found`)
-    );
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `organization not found with uid: ${organizationcode}`)
+      .set('error_code', `organization-not-found`)
+  );
+  _exec.stop();
 }
 
 const dbGroup = _db.queryFirst(`SELECT id, name, code FROM user_group WHERE code = ?::varchar`, groupCode);
 
 if (!dbGroup) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `group not found with uid: ${groupCode}`)
-            .set('error_code', `group-not-found`)
-    );
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `group not found with uid: ${groupCode}`)
+      .set('error_code', `group-not-found`)
+  );
+  _exec.stop();
 }
 
 const isAuthorized = cluar.permission.isUserAuthorizedInOrganization(
   _val.map()
-      .set('organization', dbOrganization)
+    .set('organization', dbOrganization)
 );
 
 if (!isAuthorized) {
   _header.status(401);
   _out.json(
-      _val.map()
-          .set('result', false)
-          .set('error_code', 'user-unauthorized')
-          .set('error', `user not authorized in the organization`)
+    _val.map()
+      .set('result', false)
+      .set('error_code', 'user-unauthorized')
+      .set('error', `user not authorized in the organization`)
   )
   _exec.stop();
 }
 
 const userData = _val.map()
-    .set("name", name)
-    .set("active", active)
-    .set("user", username)
-    .set("pass", password)
-    .set("mail", email)
-    .set("group_id", _group.firstByCode('people').getInt('id'))
+  .set("name", name)
+  .set("active", active)
+  .set("user", username)
+  .set("pass", password)
+  .set("mail", email)
+  .set("group_id", _group.firstByCode('people').getInt('id'))
 
 const peopleData = _val.map()
   .set("name", name)
@@ -91,16 +91,16 @@ _db.insert(
     .set('user_group_id', dbGroup.getInt('id'))
 )
 
-  _header.status(201);
-  _out.json(
-    _val.map()
-      .set("result", true)
-      .set("user", _val.map()
-        .set('name', registedPeople.getString('name'))
-        .set('email', registedPeople.getString('email'))
-        .set('active', registedUser.getBoolean('active'))
-        .set('uid', registedPeople.getString('uid'))
-        .set('username', registedUser.getString('user'))
-      )
-  )
-  
+_header.status(201);
+_out.json(
+  _val.map()
+    .set("result", true)
+    .set("user", _val.map()
+      .set('name', registedPeople.getString('name'))
+      .set('email', registedPeople.getString('email'))
+      .set('active', registedUser.getBoolean('active'))
+      .set('uid', registedPeople.getString('uid'))
+      .set('username', registedUser.getString('user'))
+    )
+)
+

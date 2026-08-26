@@ -1,11 +1,11 @@
 {
-    "type":"object",
-    "properties":{
-        "size":{
-            "type":"number"
-        },
-        "page":{
-            "type":"number"
-        }
+  "type":"object",
+  "properties":{
+    "size":{
+      "type":"number"
+    },
+    "page":{
+      "type":"number"
     }
+  }
 }

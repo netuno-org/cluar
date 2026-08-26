@@ -2,11 +2,11 @@ import { _env, _app, _config, _val, _db, _storage, _html } from "@netuno/server-
 
 const basePath = () => {
   if (_env.is("dev")) {
-    return "website/public"
+    return "website/public";
   } else {
-    return "website/dist"
+    return "website/dist";
   }
-}
+};
 
 /*
  * Parâmetros de configuração do tipo "image" que devem ser sempre
@@ -25,15 +25,15 @@ const basePath = () => {
  */
 const FIXED_IMAGE_LOCATION = {
   "favicon": { folder: "images", fileName: "favicon.png" },
-}
+};
 
 const configurationImageLocation = (parameterCode, uploadedFileName) => {
-  const fixed = FIXED_IMAGE_LOCATION[parameterCode]
+  const fixed = FIXED_IMAGE_LOCATION[parameterCode];
   if (fixed) {
-    return { folder: fixed.folder, fileName: fixed.fileName }
+    return { folder: fixed.folder, fileName: fixed.fileName };
   }
-  return { folder: "cluar/images/configuration", fileName: uploadedFileName }
-}
+  return { folder: "cluar/images/configuration", fileName: uploadedFileName };
+};
 
 export default {
   basePath,
@@ -53,12 +53,12 @@ export default {
    */
   configurationImageUrl: (parameterCode, uploadedFileName) => {
     if (!uploadedFileName) {
-      return null
+      return null;
     }
-    const location = configurationImageLocation(parameterCode, uploadedFileName)
-    const file = _app.file(`${basePath()}/${location.folder}/${location.fileName}`)
-    const version = file.exists() ? file.lastModified() : 0
-    return `/${location.folder}/${location.fileName}?v=${version}`
+    const location = configurationImageLocation(parameterCode, uploadedFileName);
+    const file = _app.file(`${basePath()}/${location.folder}/${location.fileName}`);
+    const version = file.exists() ? file.lastModified() : 0;
+    return `/${location.folder}/${location.fileName}?v=${version}`;
   },
 
   configuration: () => {
@@ -66,94 +66,94 @@ export default {
       return _config.getValues("cluar:base:configuration");
     }
 
-    const configuration = _val.map()
+    const configuration = _val.map();
     const dbConfigurationWithLanguages = _db.query(`
-          SELECT
-              language.code "language",
-              configuration_parameter.code "code",
-              configuration.value_img,
-              configuration.${_db.escape('value')}
-          FROM language
-              INNER JOIN configuration ON language.id = configuration.language_id
-              INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
-          WHERE language.active = TRUE
-              AND configuration.active = TRUE
-              AND configuration_parameter.active = TRUE
-          ORDER BY language.code, configuration_parameter.code
-          `)
+        SELECT
+            language.code "language",
+            configuration_parameter.code "code",
+            configuration.value_img,
+            configuration.${_db.escape('value')}
+        FROM language
+            INNER JOIN configuration ON language.id = configuration.language_id
+            INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
+        WHERE language.active = TRUE
+            AND configuration.active = TRUE
+            AND configuration_parameter.active = TRUE
+        ORDER BY language.code, configuration_parameter.code
+    `);
     for (const dbParameter of dbConfigurationWithLanguages) {
       if (!configuration.has(dbParameter.getString("language"))) {
-        configuration.set(dbParameter.getString("language"), _val.map())
+        configuration.set(dbParameter.getString("language"), _val.map());
       }
 
-      const uploadedFileName = dbParameter.getString("value_img")
+      const uploadedFileName = dbParameter.getString("value_img");
 
       if (uploadedFileName) {
         const location = configurationImageLocation(
           dbParameter.getString("code"), uploadedFileName
-        )
-        const folder = _app.folder(`${basePath()}/${location.folder}`)
+        );
+        const folder = _app.folder(`${basePath()}/${location.folder}`);
         if (!folder.exists()) {
-          folder.mkdirs()
+          folder.mkdirs();
         }
-        const websiteFile = _app.file(`${folder.path()}/${location.fileName}`)
-        const databaseFile = _storage.database(`configuration`, "value_img", uploadedFileName).file()
+        const websiteFile = _app.file(`${folder.path()}/${location.fileName}`);
+        const databaseFile = _storage.database(`configuration`, "value_img", uploadedFileName).file();
         if (!websiteFile.exists()
           || databaseFile.available() != websiteFile.available()
           || databaseFile.lastModified() > websiteFile.lastModified()) {
-          databaseFile.copy(`${folder.path()}/${location.fileName}`, true)
+          databaseFile.copy(`${folder.path()}/${location.fileName}`, true);
         }
 
         configuration.getValues(dbParameter.getString("language"))
-          .set(dbParameter.getString("code"), `/${location.folder}/${location.fileName}`)
+          .set(dbParameter.getString("code"), `/${location.folder}/${location.fileName}`);
       } else {
         configuration.getValues(dbParameter.getString("language"))
-          .set(dbParameter.getString("code"), dbParameter.getString("value"))
+          .set(dbParameter.getString("code"), dbParameter.getString("value"));
       }
     }
     const dbConfigurationWithoutLanguages = _db.query(`
-          SELECT
-              configuration_parameter.code "code",
-              configuration.value_img,
-              configuration.${_db.escape('value')}
-          FROM configuration
-              INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
-          WHERE (configuration.language_id = 0 OR configuration.language_id IS NULL)
-              AND configuration.active = TRUE
-              AND configuration_parameter.active = TRUE
-          ORDER BY configuration_parameter.code
-          `)
+        SELECT
+            configuration_parameter.code "code",
+            configuration.value_img,
+            configuration.${_db.escape('value')}
+        FROM configuration
+            INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
+        WHERE (configuration.language_id = 0 OR configuration.language_id IS NULL)
+            AND configuration.active = TRUE
+            AND configuration_parameter.active = TRUE
+        ORDER BY configuration_parameter.code
+    `);
     for (const dbParameter of dbConfigurationWithoutLanguages) {
       if (!configuration.has("GENERIC")) {
-        configuration.set("GENERIC", _val.map())
+        configuration.set("GENERIC", _val.map());
       }
 
-      const uploadedFileName = dbParameter.getString("value_img")
+      const uploadedFileName = dbParameter.getString("value_img");
 
       if (uploadedFileName) {
         const location = configurationImageLocation(
           dbParameter.getString("code"), uploadedFileName
-        )
-        const folder = _app.folder(`${basePath()}/${location.folder}`)
+        );
+        const folder = _app.folder(`${basePath()}/${location.folder}`);
         if (!folder.exists()) {
-          folder.mkdirs()
+          folder.mkdirs();
         }
-        const websiteFile = _app.file(`${folder.path()}/${location.fileName}`)
-        const databaseFile = _storage.database(`configuration`, "value_img", uploadedFileName).file()
+        const websiteFile = _app.file(`${folder.path()}/${location.fileName}`);
+        const databaseFile = _storage.database(`configuration`, "value_img", uploadedFileName).file();
         if (!websiteFile.exists()
           || databaseFile.available() != websiteFile.available()
           || databaseFile.lastModified() > websiteFile.lastModified()) {
-          databaseFile.copy(`${folder.path()}/${location.fileName}`, true)
+          databaseFile.copy(`${folder.path()}/${location.fileName}`, true);
         }
 
         configuration.getValues("GENERIC")
-          .set(dbParameter.getString("code"), `/${location.folder}/${location.fileName}`)
+          .set(dbParameter.getString("code"), `/${location.folder}/${location.fileName}`);
       } else {
         configuration.getValues("GENERIC")
-          .set(dbParameter.getString("code"), dbParameter.getString("value"))
+          .set(dbParameter.getString("code"), dbParameter.getString("value"));
       }
     }
-    _config.set("cluar:base:configuration", configuration)
+    _config.set("cluar:base:configuration", configuration);
     return configuration;
   },
 
@@ -186,26 +186,26 @@ export default {
    *  MAIS além destes 3 tiver mudado (ex: menu de navegação).
    */
   applyConfigurationToIndexHtml: (configuration) => {
-    const generic = configuration.getValues("GENERIC") || _val.map()
+    const generic = configuration.getValues("GENERIC") || _val.map();
 
-    const title = generic.getString("title")
-    const primaryColor = generic.getString("primary-color")
-    const backgroundColorLight = generic.getString("background-color-light")
-    const backgroundColorDark = generic.getString("background-color-dark")
+    const title = generic.getString("title");
+    const primaryColor = generic.getString("primary-color");
+    const backgroundColorLight = generic.getString("background-color-light");
+    const backgroundColorDark = generic.getString("background-color-dark");
 
-    let cssOverrides = ":root {"
+    let cssOverrides = ":root {";
     if (primaryColor) {
-      cssOverrides += `--cluar-loading-color: ${primaryColor};`
+      cssOverrides += `--cluar-loading-color: ${primaryColor};`;
     }
     if (backgroundColorLight) {
-      cssOverrides += `--cluar-bg-light: ${backgroundColorLight};`
+      cssOverrides += `--cluar-bg-light: ${backgroundColorLight};`;
     }
     if (backgroundColorDark) {
-      cssOverrides += `--cluar-bg-dark: ${backgroundColorDark};`
+      cssOverrides += `--cluar-bg-dark: ${backgroundColorDark};`;
     }
-    cssOverrides += "}\n"
+    cssOverrides += "}\n";
 
-    const faviconLocation = FIXED_IMAGE_LOCATION["favicon"]
+    const faviconLocation = FIXED_IMAGE_LOCATION["favicon"];
 
     /*
      * website/index.html (fonte) usa as imagens/root.css de website/public/...
@@ -217,38 +217,38 @@ export default {
     const targets = [
       { indexHtml: "website/index.html", base: "website/public" },
       { indexHtml: "website/dist/index.html", base: "website/dist" },
-    ]
+    ];
 
     for (const target of targets) {
-      const baseFolder = _app.folder(target.base)
+      const baseFolder = _app.folder(target.base);
       if (!baseFolder.exists()) {
-        continue
+        continue;
       }
 
       /*
        * root.css - ficheiro único e barato de reescrever, independente
        * de haver 1 ou 1000 páginas publicadas.
        */
-      const rootCssFile = _app.file(`${target.base}/root.css`)
-      rootCssFile.output().print(cssOverrides).close()
+      const rootCssFile = _app.file(`${target.base}/root.css`);
+      rootCssFile.output().print(cssOverrides).close();
 
-      const indexHtmlFile = _app.file(target.indexHtml)
+      const indexHtmlFile = _app.file(target.indexHtml);
       if (!indexHtmlFile.exists()) {
-        continue
+        continue;
       }
 
-      const document = _html.parse(indexHtmlFile, "UTF-8", "")
-      const headElement = document.select("head").first()
+      const document = _html.parse(indexHtmlFile, "UTF-8", "");
+      const headElement = document.select("head").first();
       if (!headElement) {
-        continue
+        continue;
       }
 
       if (title) {
-        const titleElement = headElement.selectFirst("title")
+        const titleElement = headElement.selectFirst("title");
         if (titleElement) {
-          titleElement.text(title)
+          titleElement.text(title);
         } else {
-          headElement.appendElement("title").text(title)
+          headElement.appendElement("title").text(title);
         }
       }
 
@@ -264,18 +264,18 @@ export default {
        */
       const faviconFile = _app.file(
         `${target.base}/${faviconLocation.folder}/${faviconLocation.fileName}`
-      )
+      );
       if (faviconFile.exists()) {
-        const iconElement = headElement.selectFirst("link[rel=icon]")
+        const iconElement = headElement.selectFirst("link[rel=icon]");
         if (iconElement) {
           iconElement.attr(
             "href",
             `/${faviconLocation.folder}/${faviconLocation.fileName}?v=${faviconFile.lastModified()}`
-          )
+          );
         }
       }
 
-      indexHtmlFile.output().print(document.outerHtml()).close()
+      indexHtmlFile.output().print(document.outerHtml()).close();
     }
   },
 
@@ -302,17 +302,17 @@ export default {
             AND dictionary.active = TRUE
             AND dictionary_entry.active = TRUE
         ORDER BY language.code, dictionary_entry.code
-          `)
-    const dictionary = _val.map()
+    `);
+    const dictionary = _val.map();
     for (const dbEntry of dbDictionary) {
       if (!dictionary.has(dbEntry.getString("language"))) {
-        dictionary.set(dbEntry.getString("language"), _val.map())
+        dictionary.set(dbEntry.getString("language"), _val.map());
       }
       dictionary.getValues(dbEntry.getString("language"))
-        .set(dbEntry.getString("code"), dbEntry.getString("value"))
+        .set(dbEntry.getString("code"), dbEntry.getString("value"));
     }
 
-    _config.set("cluar:base:dictionary", dictionary)
+    _config.set("cluar:base:dictionary", dictionary);
 
     return dictionary;
   },
@@ -347,7 +347,7 @@ export default {
             page.template
         FROM language
             INNER JOIN page ON language.id = page.language_id
-        INNER JOIN page_version ON page_version.page_id = page.id 
+        INNER JOIN page_version ON page_version.page_id = page.id
             INNER JOIN page_status ON page_version.status_id = page_status.id
         WHERE language.active = TRUE
             AND page.active = TRUE
@@ -399,7 +399,7 @@ export default {
       }
     }
 
-    _config.set("cluar:base:pages", pages)
+    _config.set("cluar:base:pages", pages);
 
     return pages;
   },
@@ -423,8 +423,8 @@ export default {
           _val.map()
             .set("active", true)
         )
-    )
-    const languages = _val.list()
+    );
+    const languages = _val.list();
 
     for (const dbLanguage of dbLanguages) {
       languages.add(
@@ -433,10 +433,10 @@ export default {
           .set("locale", dbLanguage.getString("locale"))
           .set("description", dbLanguage.getString("description"))
           .set("default", dbLanguage.getBoolean("default"))
-      )
+      );
     }
 
-    _config.set("cluar:base:languages", languages)
+    _config.set("cluar:base:languages", languages);
 
     return languages;
   },
@@ -465,7 +465,7 @@ export default {
         INNER JOIN action ON language.id = action.language_id
         WHERE language.active = TRUE
     `);
-    const actions = _val.list()
+    const actions = _val.list();
     for (const dbAction of dbActions) {
       actions.add(
         _val.map()
@@ -477,9 +477,9 @@ export default {
           .set("active", dbAction.getBoolean("active"))
           .set("image", dbAction.getString("image"))
           .set("language_code", dbAction.getString("language"))
-      )
+      );
     }
-    _config.set("cluar:base:actions", actions)
+    _config.set("cluar:base:actions", actions);
 
     return actions;
   }

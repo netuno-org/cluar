@@ -4,98 +4,98 @@ import { ElementNode } from 'lexical';
 import './GridContainerNode.less';
 
 function $convertGridContainerElement(domNode) {
-    if (domNode.classList.contains('section') && domNode.classList.contains('group')) {
-        const node = $createGridContainerNode();
-        return { node };
-    }
-    return null;
+  if (domNode.classList.contains('section') && domNode.classList.contains('group')) {
+    const node = $createGridContainerNode();
+    return { node };
+  }
+  return null;
 }
 
 export class GridContainerNode extends ElementNode {
-    constructor(key) {
-        super(key);
-    }
+  constructor(key) {
+    super(key);
+  }
 
-    static getType() {
-        return 'grid-container';
-    }
+  static getType() {
+    return 'grid-container';
+  }
 
-    static clone(node) {
-        return new GridContainerNode(node.__key);
-    }
+  static clone(node) {
+    return new GridContainerNode(node.__key);
+  }
 
-    isInline() {
-        return false;
-    }
+  isInline() {
+    return false;
+  }
 
-    canBeEmpty() {
-        return false;
-    }
+  canBeEmpty() {
+    return false;
+  }
 
-    canContainType(type) {
-        return true;
-    }
+  canContainType(type) {
+    return true;
+  }
 
-    createDOM(config) {
-        const dom = document.createElement('div');
-        dom.className = 'section group';
-        if (typeof config.theme.layoutContainer === 'string') {
-            addClassNamesToElement(dom, config.theme.layoutContainer);
+  createDOM(config) {
+    const dom = document.createElement('div');
+    dom.className = 'section group';
+    if (typeof config.theme.layoutContainer === 'string') {
+      addClassNamesToElement(dom, config.theme.layoutContainer);
+    }
+    return dom;
+  }
+
+  exportDOM() {
+    const element = document.createElement('div');
+    element.className = 'section group';
+    element.setAttribute('data-lexical-grid-container', 'true');
+    return { element };
+  }
+
+  updateDOM(prevNode, dom) {
+    return false;
+  }
+
+  static importDOM() {
+    return {
+      div: (domNode) => {
+        if (!domNode.hasAttribute('data-lexical-grid-container') &&
+          !(domNode.classList.contains('section') && domNode.classList.contains('group'))) {
+          return null;
         }
-        return dom;
-    }
-
-    exportDOM() {
-        const element = document.createElement('div');
-        element.className = 'section group';
-        element.setAttribute('data-lexical-grid-container', 'true');
-        return { element };
-    }
-
-    updateDOM(prevNode, dom) {
-        return false;
-    }
-
-    static importDOM() {
         return {
-            div: (domNode) => {
-                if (!domNode.hasAttribute('data-lexical-grid-container') && 
-                    !(domNode.classList.contains('section') && domNode.classList.contains('group'))) {
-                    return null;
-                }
-                return {
-                    conversion: $convertGridContainerElement,
-                    priority: 2,
-                };
-            },
+          conversion: $convertGridContainerElement,
+          priority: 2,
         };
-    }
+      },
+    };
+  }
 
-    static importJSON(json) {
-        return $createGridContainerNode().updateFromJSON(json);
-    }
+  static importJSON(json) {
+    return $createGridContainerNode().updateFromJSON(json);
+  }
 
-    updateFromJSON(serializedNode) {
-        return super.updateFromJSON(serializedNode);
-    }
+  updateFromJSON(serializedNode) {
+    return super.updateFromJSON(serializedNode);
+  }
 
-    isShadowRoot() {
-        return true;
-    }
+  isShadowRoot() {
+    return true;
+  }
 
-    exportJSON() {
-        return {
-            ...super.exportJSON(),
-        };
-    }
+  exportJSON() {
+    return {
+      ...super.exportJSON(),
+    };
+  }
 }
 
 export function $createGridContainerNode() {
-    return new GridContainerNode();
+  return new GridContainerNode();
 }
 
 export function $isLayoutContainerNode(node) {
-    return node instanceof GridContainerNode;
+  return node instanceof GridContainerNode;
 }
 
 export { GridContainerNode as LayoutContainerNode };

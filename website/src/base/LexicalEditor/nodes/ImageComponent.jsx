@@ -273,12 +273,12 @@ export default function ImageComponent({
 
   return (
     <Suspense fallback={null}>
-      <div 
+      <div
         className={`image-container ${isSelected ? 'selected' : ''}`}
         draggable={draggable}
       >
         <div className="image-selection-indicator" />
-        
+
         {isLoadError ? (
           <BrokenImage />
         ) : (
@@ -293,7 +293,7 @@ export default function ImageComponent({
             onError={() => setIsLoadError(true)}
           />
         )}
-        
+
         {resizable && $isNodeSelection(selection) && isFocused && (
           <ImageResizer
             showCaption={showCaption}

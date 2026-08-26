@@ -1,3 +1,5 @@
+import { _db, _val, _req, _out, _header, _exec, _user } from "@netuno/server-types";
+
 const uid = _req.getString("uid");
 
 
@@ -57,36 +59,36 @@ WITH RECURSIVE user_orgs AS (
 `, uid);
 
 if (!dbMember) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `member not found with uid: ${uid}`)
-            .set('error_code', `member-not-found`)
-    );
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `member not found with uid: ${uid}`)
+      .set('error_code', `member-not-found`)
+  );
+  _exec.stop();
 }
 
 _out.json(
-    _val.map()
-        .set('result', true)
-        .set('member',
-            _val.map()
-                .set('uid', dbMember.getString("organization_people_uid"))
-                .set('active', dbMember.getBoolean('organization_people_active'))
-                .set('organization', _val.map()
-                    .set('uid', dbMember.getString("org_uid"))
-                    .set('name', dbMember.getString("org_name"))
-                    .set('code', dbMember.getString("org_code"))
-                )
-                .set('user', _val.map()
-                    .set('uid', dbMember.getString("people_uid"))
-                    .set('name', dbMember.getString("people_name"))
-                )
-                .set('group', _val.map()
-                    .set('uid', dbMember.getString("group_uid"))
-                    .set('name', dbMember.getString("group_name"))
-                    .set('code', dbMember.getString("group_code"))
-                )
+  _val.map()
+    .set('result', true)
+    .set('member',
+      _val.map()
+        .set('uid', dbMember.getString("organization_people_uid"))
+        .set('active', dbMember.getBoolean('organization_people_active'))
+        .set('organization', _val.map()
+          .set('uid', dbMember.getString("org_uid"))
+          .set('name', dbMember.getString("org_name"))
+          .set('code', dbMember.getString("org_code"))
         )
-)
+        .set('user', _val.map()
+          .set('uid', dbMember.getString("people_uid"))
+          .set('name', dbMember.getString("people_name"))
+        )
+        .set('group', _val.map()
+          .set('uid', dbMember.getString("group_uid"))
+          .set('name', dbMember.getString("group_name"))
+          .set('code', dbMember.getString("group_code"))
+        )
+    )
+);

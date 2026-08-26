@@ -6,18 +6,18 @@ export default {
     if (fileName == "") {
       return;
     }
-    const folder = _app.folder(`${base.basePath()}/cluar/images/page_${section}`)
+    const folder = _app.folder(`${base.basePath()}/cluar/images/page_${section}`);
     if (!folder.exists()) {
-      folder.mkdirs()
+      folder.mkdirs();
     }
-    const websiteFile = _app.file(`${folder.path()}/${fileName}`)
-    const databaseFile = _storage.database(`page_${section}`, "image", fileName).file()
+    const websiteFile = _app.file(`${folder.path()}/${fileName}`);
+    const databaseFile = _storage.database(`page_${section}`, "image", fileName).file();
     if (!websiteFile.exists()
       || databaseFile.available() != websiteFile.available()
       || databaseFile.lastModified() > websiteFile.lastModified()) {
       _storage.database(`page_${section}`, "image", fileName)
         .file()
-        .copy(`${folder.path()}/${fileName}`, true)
+        .copy(`${folder.path()}/${fileName}`, true);
     }
   },
 
@@ -25,18 +25,18 @@ export default {
     if (fileName == "") {
       return;
     }
-    const folder = _app.folder(`${base.basePath()}/cluar/images/page`)
+    const folder = _app.folder(`${base.basePath()}/cluar/images/page`);
     if (!folder.exists()) {
-      folder.mkdirs()
+      folder.mkdirs();
     }
-    const websiteFile = _app.file(`${folder.path()}/${fileName}`)
-    const databaseFile = _storage.database("page", "social_image", fileName).file()
+    const websiteFile = _app.file(`${folder.path()}/${fileName}`);
+    const databaseFile = _storage.database("page", "social_image", fileName).file();
     if (!websiteFile.exists()
       || databaseFile.available() != websiteFile.available()
       || databaseFile.lastModified() > websiteFile.lastModified()) {
       _storage.database("page", "social_image", fileName)
         .file()
-        .copy(`${folder.path()}/${fileName}`, true)
+        .copy(`${folder.path()}/${fileName}`, true);
     }
   }
 };

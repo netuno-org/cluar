@@ -16,43 +16,43 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-    cluar.response.error({ status: 404, error: `language not found with code: ${languageCode}` });
+  cluar.response.error({ status: 404, error: `language not found with code: ${languageCode}` });
 }
 
 const dbActionParameter = _db.get('action_parameter', parameterUid);
 
 if (!dbActionParameter) {
-    cluar.response.error({ status: 404, error: 'parameter not found' });
+  cluar.response.error({ status: 404, error: 'parameter not found' });
 }
 
 const dbAction = _db.get('action', uid);
 if (!dbAction) {
-    cluar.response.error({ status: 404, error: `action not found with uid: ${uid}` });
+  cluar.response.error({ status: 404, error: `action not found with uid: ${uid}` });
 }
 
 const data = _val.map()
-    .set('title', title)
-    .set('content', content)
-    .set('indication', indication)
-    .set('link', link)
-    .set('active', active)
-    .set("language_id", dbLanguage.getInt("id"))
-    .set("parameter_id", dbActionParameter.getInt("id"));
+  .set('title', title)
+  .set('content', content)
+  .set('indication', indication)
+  .set('link', link)
+  .set('active', active)
+  .set("language_id", dbLanguage.getInt("id"))
+  .set("parameter_id", dbActionParameter.getInt("id"));
 
 if (image != null) {
-    data.set("image", image);
+  data.set("image", image);
 } else {
-    data.set("image", "");
+  data.set("image", "");
 }
 
 _db.update(
-    'action',
-    dbAction.getInt("id"),
-    data
+  'action',
+  dbAction.getInt("id"),
+  data
 )
 
 
 _out.json(
-    _val.map()
-        .set('result', true)
+  _val.map()
+    .set('result', true)
 );

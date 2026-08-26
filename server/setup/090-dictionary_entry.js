@@ -1,13 +1,13 @@
 // -----------------------------------------------------------
-// 
+//
 // DICTIONARY_ENTRY
-// 
+//
 // -----------------------------------------------------------
-// 
+//
 // CODE GENERATED AUTOMATICALLY
-// 
+//
 
-import {_val, _db} from "@netuno/server-types";
+import { _db, _val } from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary_entry",
@@ -4128,4 +4128,3 @@ _db.insertIfNotExists(
     .set("code", "dictionary-table-delete-failed-message")
     .set("description", "Dicion\u00E1rio - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
 );
-

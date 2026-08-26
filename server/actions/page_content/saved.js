@@ -1,4 +1,5 @@
-import cluar from "#core/cluar/main.js"
+import { _db, _dataItem } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const dbPageVersion = _db.get(
   "page_version",
@@ -6,4 +7,4 @@ const dbPageVersion = _db.get(
 );
 const dbPage = _db.get("page", dbPageVersion.getInt("page_id"));
 
-cluar.page.publish(dbPage)
+cluar.page.publish(dbPage);

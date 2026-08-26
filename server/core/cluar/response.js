@@ -7,7 +7,7 @@ export default {
       _val.map()
         .set("result", false)
         .set("error", error)
-    )
+    );
     _exec.stop();
   },
 

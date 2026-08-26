@@ -6,7 +6,7 @@ const uid = _req.getString('uid');
 const dbDictionary = _db.get('dictionary', uid);
 
 if (!dbDictionary) {
-    cluar.response.error({ status: 404, error: 'dictionary not found' });
+  cluar.response.error({ status: 404, error: 'dictionary not found' });
 }
 
 _db.delete('dictionary', dbDictionary.getInt("id"));

@@ -23,17 +23,17 @@ function BaseFooter() {
             <Col><HomeOutlined /></Col>
             <Col>&nbsp;</Col>
             <Col>
-              <address><Configuration parameter="footer-address" multilines/></address>
+              <address><Configuration parameter="footer-address" multilines /></address>
             </Col>
           </Row>
           <Row>
             <Col>
-              <p><PhoneOutlined /> <Configuration parameter="footer-phone"/></p>
+              <p><PhoneOutlined /> <Configuration parameter="footer-phone" /></p>
             </Col>
           </Row>
           <Row>
             <Col>
-              <p><MailOutlined /> <Configuration parameter="footer-email"/></p>
+              <p><MailOutlined /> <Configuration parameter="footer-email" /></p>
             </Col>
           </Row>
           <p className="footer__social-links">

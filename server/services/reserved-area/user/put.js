@@ -1,3 +1,5 @@
+import { _db, _val, _req, _out, _header, _exec, _user, _group } from "@netuno/server-types";
+
 const uid = _req.getString("uid");
 const name = _req.getString("name");
 const username = _req.getString("username");
@@ -10,14 +12,14 @@ const usernameExists = _user.firstByUser(username);
 const dbPeople = _db.get("people", uid);
 
 if (!dbPeople) {
-    _header.status(404);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `user not found with uid: ${uid}`)
-            .set('error-code', 'user-not-found')
-    )
-    _exec.stop();
+  _header.status(404);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `user not found with uid: ${uid}`)
+      .set('error-code', 'user-not-found')
+  );
+  _exec.stop();
 }
 
 const peopleEmailExists = _db.queryFirst(`
@@ -39,52 +41,52 @@ const userExists = _db.queryFirst(`
 `, username, email, dbPeople.getInt("people_user_id")).getBoolean("result");
 
 if (peopleEmailExists || userExists) {
-    _header.status(409);
-    _out.json(
-        _val.map()
-            .set('result', false)
-            .set('error', `email or username already exists`)
-            .set('error-code', 'user-exists')
-    )
-    _exec.stop();
+  _header.status(409);
+  _out.json(
+    _val.map()
+      .set('result', false)
+      .set('error', `email or username already exists`)
+      .set('error-code', 'user-exists')
+  );
+  _exec.stop();
 }
 
 const userData = _val.map()
-    .set("name", name)
-    .set("user", username)
-    .set("mail", email)
-    .set("pass", password)
-    .set("group_id", _group.firstByCode('people').getInt('id'))
+  .set("name", name)
+  .set("user", username)
+  .set("mail", email)
+  .set("pass", password)
+  .set("group_id", _group.firstByCode('people').getInt('id'));
 
 let shouldUpdatePass = false;
 
 if (password.length > 1) {
-    shouldUpdatePass = true;
+  shouldUpdatePass = true;
 }
 
 const peopleData = _val.map()
   .set("name", name)
-  .set("email", email)
+  .set("email", email);
 
 if (_req.has("active")) {
-    userData.set("active", _req.getBoolean("active"));
-    peopleData.set("active", _req.getBoolean("active"));
+  userData.set("active", _req.getBoolean("active"));
+  peopleData.set("active", _req.getBoolean("active"));
 }
 
 _user.update(
-    dbPeople.getInt("people_user_id"),
-    userData,
-    shouldUpdatePass
-)
+  dbPeople.getInt("people_user_id"),
+  userData,
+  shouldUpdatePass
+);
 
 _db.update(
-    'people',
-    dbPeople.getInt("id"),
-    peopleData
+  'people',
+  dbPeople.getInt("id"),
+  peopleData
 );
 
 _out.json(
-    _val.map()
-        .set('result', true)
-)
+  _val.map()
+    .set('result', true)
+);
 

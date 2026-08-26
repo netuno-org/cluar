@@ -1,3 +1,5 @@
+import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+
 const uid = _req.getString("uid");
 
 const languageCode = _req.getString("language_code");
@@ -109,18 +111,18 @@ const data = _val
   .set("language_id", dbLanguage.getInt("id"));
 
 if (social_image != null) {
-  data.set("social_image", social_image)
+  data.set("social_image", social_image);
 } else {
-  data.set("social_image", "")
+  data.set("social_image", "");
 }
 
 _db.update(
   'page',
   dbPage.getInt("id"),
   data
-)
+);
 
 _out.json(
   _val.map()
     .set('result', true)
-)
+);

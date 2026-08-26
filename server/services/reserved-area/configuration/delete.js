@@ -6,7 +6,7 @@ const uid = _req.getString('uid');
 const dbConfiguration = _db.get('configuration', uid);
 
 if (!dbConfiguration) {
-    cluar.response.error({ status: 404, error: 'configuration not found' });
+  cluar.response.error({ status: 404, error: 'configuration not found' });
 }
 
 _db.delete('configuration', dbConfiguration.getInt("id"));

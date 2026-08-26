@@ -1,3 +1,5 @@
+import { _db, _val, _req, _out, _header } from "@netuno/server-types";
+
 const page = _req.getString("page");
 const pageVersion = _req.getString("page_version");
 
