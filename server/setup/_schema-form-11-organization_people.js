@@ -109,7 +109,7 @@ _form.syncField(
 		.set("rowspan", 0)
 		.set("tdheight", 0)
 		.set("tdwidth", 0)
-		.set("title", "Group")
+		.set("title", "Grupo")
 		.set("type", "select")
 		.set("uid", "00ac5c6a-163e-4be3-8488-0621abdc7402")
 		.set("unique", false)

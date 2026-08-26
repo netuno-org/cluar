@@ -693,7 +693,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "c91ca4ff-4434-4d5f-afc0-0cb72e051719")
-    .set("code", "profile-page-previus")
+    .set("code", "profile-page-previous")
     .set("description", "P\u00E1gina de Perfil - Voltar atr\u00E1s")
 );
 

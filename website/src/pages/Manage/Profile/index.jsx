@@ -105,7 +105,7 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
   return (
     <div>
       <div className="content-title">
-        <Button className="go-back-btn" type="link" onClick={() => navigate(-1)}><ArrowLeftOutlined /> {Cluar.plainDictionary('profile-page-previus')}</Button>
+        <Button className="go-back-btn" type="link" onClick={() => navigate(-1)}><ArrowLeftOutlined /> {Cluar.plainDictionary('profile-page-previous')}</Button>
       </div>
       <div className="content-title">
         <Title level={2}>{Cluar.plainDictionary('profile-page-title')}</Title>

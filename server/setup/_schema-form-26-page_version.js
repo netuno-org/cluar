@@ -109,7 +109,7 @@ _form.syncField(
 		.set("rowspan", 0)
 		.set("tdheight", 0)
 		.set("tdwidth", 0)
-		.set("title", "Status")
+		.set("title", "Estado")
 		.set("type", "select")
 		.set("uid", "2e1f26fd-5356-4a02-b9e7-1e1296a55da3")
 		.set("unique", false)

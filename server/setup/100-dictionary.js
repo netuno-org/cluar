@@ -1032,7 +1032,7 @@ _db.insertIfNotExists(
     .set("uid", "151bfe41-a333-4a44-a1ce-51fdbe112dba")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "c91ca4ff-4434-4d5f-afc0-0cb72e051719")
-    .set("value", "Previus")
+    .set("value", "Previous")
 );
 
 _db.insertIfNotExists(

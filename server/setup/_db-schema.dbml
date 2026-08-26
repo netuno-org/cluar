@@ -88,7 +88,7 @@ Table organization_people {
   id int [pk, increment]
   organization_id int [ref: > organization.id, note: 'Organização']
   people_id int [ref: > people.id, note: 'Pessoa']
-  user_group_id int [ref: > user_group.id, note: 'Group']
+  user_group_id int [ref: > user_group.id, note: 'Grupo']
   Note: 'Membros'
 }
 
@@ -281,7 +281,7 @@ Table page_version {
   id int [pk, increment]
   created_at timestamp [note: 'Data de Criação']
   page_id int [ref: > page.id, note: 'Página']
-  status_id int [ref: > page_status.id, note: 'Status']
+  status_id int [ref: > page_status.id, note: 'Estado']
   version int [note: 'Versão']
   Note: 'Versão'
 }
