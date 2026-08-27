@@ -14,8 +14,8 @@ if (_val.global().getBoolean('cluar:setup')) {
     "organization",
     _val.init()
       .set("uid", "e27a232e-ba5b-4397-b17c-ff458c42a442")
-      .set("name", "Default")
-      .set("code", "default")
+      .set("name", "Base")
+      .set("code", "base")
       .set("parent_id", null)
   );
 }
