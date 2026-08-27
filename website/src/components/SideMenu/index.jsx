@@ -35,7 +35,6 @@ import _auth from '@netuno/auth-client';
 import "./index.less"
 import { useNavigate, useLocation } from "react-router";
 import ThemeSwitch from '../ThemeSwitch';
-import LanguageSwitch from '../LanguageSwitch';
 
 /*
  * Fonte única de "quem pode aceder a quê" dentro da área de gestão -
@@ -124,6 +123,21 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       label: Cluar.plainDictionary('user-menu-return-site'),
       icon: <RollbackOutlined />,
       onClick: () => navigate(`/${Cluar.currentLanguage().locale}/`),
+    },
+    {
+      key: 'language',
+      label: Cluar.plainDictionary('side-menu-options-language'),
+      icon: <GlobalOutlined />,
+      children: Cluar.languages()
+        .filter((language) => language.code !== Cluar.currentLanguage().code)
+        .map((language) => ({
+          key: `language-${language.code}`,
+          label: language.description,
+          onClick: () => {
+            Cluar.changeLanguage(language.locale);
+            window.location.reload();
+          },
+        })),
     },
     hasPermissions([
       "admin",
@@ -408,7 +422,6 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           />
         </div>
         <div className='theme-switch-wrapper'>
-          <LanguageSwitch />
           <ThemeSwitch />
         </div>
       </Layout.Sider>
