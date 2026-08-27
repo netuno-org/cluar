@@ -25,5 +25,33 @@ export default {
         .file()
         .copy(`${folder.path()}/${_dataItem.getValues().getString("image:new")}`);
     }
+  },
+
+  cascadeDeletePageVersion: (pageVersionId) => {
+    _db.execute(`DELETE FROM page_content WHERE page_version_id = ?`, pageVersionId);
+    _db.execute(`DELETE FROM page_banner WHERE page_version_id = ?`, pageVersionId);
+    _db.execute(`DELETE FROM page_functionality WHERE page_version_id = ?`, pageVersionId);
+
+    _db.execute(`
+      DELETE FROM page_listing_item
+      WHERE page_listing_id IN (
+          SELECT id FROM page_listing WHERE page_version_id = ?
+      )
+      `,
+      pageVersionId
+    );
+    _db.execute(` DELETE FROM page_listing WHERE page_version_id = ? `, pageVersionId);
+
+    _db.execute(`
+      DELETE FROM page_slider_item
+      WHERE page_slider_id IN (
+          SELECT id FROM page_slider WHERE page_version_id = ?
+      )
+    `,
+      pageVersionId
+    );
+    _db.execute(`DELETE FROM page_slider WHERE page_version_id = ?`, pageVersionId);
+
+    _db.execute(`DELETE FROM page_version WHERE id = ?`, pageVersionId);
   }
 };
