@@ -5,7 +5,7 @@ import { _db, _val, _out, _exec, _user } from "@netuno/server-types";
  *  Comment or delete the line below to allow this service execution. 
  */
 
-// _exec.stop();
+_exec.stop();
 
 /** * **/
 
