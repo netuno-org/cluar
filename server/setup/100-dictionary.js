@@ -1,13 +1,13 @@
 // -----------------------------------------------------------
-//
+// 
 // DICTIONARY
-//
+// 
 // -----------------------------------------------------------
-//
+// 
 // CODE GENERATED AUTOMATICALLY
-//
+// 
 
-import { _db, _val } from "@netuno/server-types";
+import {_val, _db} from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary",
@@ -1249,6 +1249,15 @@ _db.insertIfNotExists(
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "55050e8a-7e5d-424b-bd90-5251be74eda0")
     .set("value", "Iniciar Sess\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "11572227-ba28-4d4b-b067-aa1f0bba711b")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "ffceef8a-1bb3-453e-a302-de4678f4b182")
+    .set("value", "Trocar idioma")
 );
 
 _db.insertIfNotExists(
@@ -3207,10 +3216,28 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "f5d44b9e-caf7-47e6-8039-31e1085af995")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "304b4775-7c88-477b-a3e9-763b1e8e67fa")
+    .set("value", "Salvar")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "750f627c-ea08-4579-9c86-5b52dec4e400")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "44d841f5-560d-4bb9-a778-bc5574e7e5c0")
     .set("value", "An error occurred while load user info, please try again.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "6773782a-46e4-4e93-a77a-23d7e6713631")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "ffceef8a-1bb3-453e-a302-de4678f4b182")
+    .set("value", "Change language")
 );
 
 _db.insertIfNotExists(
@@ -5254,15 +5281,6 @@ _db.insertIfNotExists(
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "12f09ff2-6e0a-42c8-9557-1b26473e6e59")
     .set("value", "Cancel")
-);
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
-    .set("uid", "f5d44b9e-caf7-47e6-8039-31e1085af995")
-    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
-    .set("entry_id", "304b4775-7c88-477b-a3e9-763b1e8e67fa")
-    .set("value", "Salvar")
 );
 
 _db.insertIfNotExists(
@@ -7932,6 +7950,15 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "4db29dd8-a558-402b-aedb-ba4c62d831a7")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "3230da41-5b24-4e6c-a4fd-c19cb8b0ca49")
+    .set("value", "Create entry")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "1e1f5259-8848-45e1-9ced-11cb4bbe2d38")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "bf182a71-e369-4c4f-9d72-acde25c99bf6")
@@ -9210,15 +9237,6 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
-    .set("uid", "4db29dd8-a558-402b-aedb-ba4c62d831a7")
-    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
-    .set("entry_id", "3230da41-5b24-4e6c-a4fd-c19cb8b0ca49")
-    .set("value", "Create entry")
-);
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
     .set("uid", "2f3e34b4-32dd-437f-9c48-57342bfdee70")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "3230da41-5b24-4e6c-a4fd-c19cb8b0ca49")
@@ -9242,3 +9260,4 @@ _db.insertIfNotExists(
     .set("entry_id", "c75358f1-fedb-4d02-b58e-5a93801d2319")
     .set("value", "Nova entrada")
 );
+

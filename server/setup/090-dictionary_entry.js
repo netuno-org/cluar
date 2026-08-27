@@ -1,13 +1,13 @@
 // -----------------------------------------------------------
-//
+// 
 // DICTIONARY_ENTRY
-//
+// 
 // -----------------------------------------------------------
-//
+// 
 // CODE GENERATED AUTOMATICALLY
-//
+// 
 
-import { _db, _val } from "@netuno/server-types";
+import {_val, _db} from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary_entry",
@@ -4076,6 +4076,14 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
+    .set("uid", "ffceef8a-1bb3-453e-a302-de4678f4b182")
+    .set("code", "side-menu-options-language")
+    .set("description", "Menu Lateral - Op\u00E7\u00F5es - Trocar idioma")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
     .set("uid", "33ffe5d8-699f-4a67-9911-1e3937d1e8e1")
     .set("code", "actions-table-delete-failed-message")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
@@ -4128,3 +4136,4 @@ _db.insertIfNotExists(
     .set("code", "dictionary-table-delete-failed-message")
     .set("description", "Dicion\u00E1rio - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
 );
+
