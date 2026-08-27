@@ -5,12 +5,14 @@ const pageVersion = _req.getString("uid");
 const dbPageVersion = _db.get("page_version", pageVersion);
 
 if (pageVersion) {
+  const pageVersionId = dbPageVersion.getInt("id");
+
   _db.execute(
     `
     DELETE FROM page_content
     WHERE page_version_id = ?
   `,
-    dbPageVersion.getInt("id")
+    pageVersionId
   );
 
   _db.execute(
@@ -18,7 +20,7 @@ if (pageVersion) {
     DELETE FROM page_banner
     WHERE page_version_id = ?
   `,
-    dbPageVersion.getInt("id")
+    pageVersionId
   );
 
   _db.execute(
@@ -26,67 +28,43 @@ if (pageVersion) {
     DELETE FROM page_functionality
     WHERE page_version_id = ?
   `,
-    dbPageVersion.getInt("id")
+    pageVersionId
   );
 
-  const dbListings = _db.query(
+  _db.execute(
     `
-    SELECT
-      *
-    FROM
-      page_listing
-    WHERE 1 = 1
-    AND page_version_id = ?
-  `,
-    dbPageVersion.getInt("id")
-  );
-
-  dbListings.forEach((dbListing) => {
-    _db.execute(
-      `
-      DELETE FROM page_listing_item
-      WHERE page_listing_id = ?
+    DELETE FROM page_listing_item
+    WHERE page_listing_id IN (
+        SELECT id FROM page_listing WHERE page_version_id = ?
+    )
     `,
-      dbListing.getInt("id")
-    );
-  });
+    pageVersionId
+  );
 
   _db.execute(
     `
     DELETE FROM page_listing
     WHERE page_version_id = ?
   `,
-    dbPageVersion.getInt("id")
+    pageVersionId
   );
 
-  const dbSliders = _db.query(
+  _db.execute(
     `
-    SELECT
-      *
-    FROM
-      page_slider
-    WHERE 1 = 1
-    AND page_version_id = ?
+    DELETE FROM page_slider_item
+    WHERE page_slider_id IN (
+        SELECT id FROM page_slider WHERE page_version_id = ?
+    )
   `,
-    dbPageVersion.getInt("id")
+    pageVersionId
   );
-
-  dbSliders.forEach((dbSlider) => {
-    _db.execute(
-      `
-      DELETE FROM page_slider_item
-      WHERE page_slider_id = ?
-    `,
-      dbSlider.getInt("id")
-    );
-  });
 
   _db.execute(
     `
     DELETE FROM page_slider
     WHERE page_version_id = ?
   `,
-    dbPageVersion.getInt("id")
+    pageVersionId
   );
 
   _db.execute(
@@ -94,7 +72,7 @@ if (pageVersion) {
     DELETE FROM page_version
     WHERE id = ?
   `,
-    dbPageVersion.getInt("id")
+    pageVersionId
   );
 
   _out.json(_val.map().set("result", true));
