@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import {_val, _db} from "@netuno/server-types";
+import { _val, _db } from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary",
@@ -8854,6 +8854,60 @@ _db.insertIfNotExists(
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "3b2f9158-c535-4931-ab93-3269d7fe8a8b")
     .set("value", "Registo apagado com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "7e811909-d8ff-4aff-a635-5799872e481b")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "0188739f-0575-4081-8068-b0b6743bf704")
+    .set("value", "Página apagada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "aaddf307-14e0-4641-b5ad-58cdaa0553f9")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "0188739f-0575-4081-8068-b0b6743bf704")
+    .set("value", "Page deleted successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "25e2bcab-d328-4740-b31f-4e0a58ce6080")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "535b5894-c176-43b4-b2db-0d17bed12ac8")
+    .set("value", "Falha ao apagar a página.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "daa466e9-94d8-4317-859b-f71062e1684e")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "535b5894-c176-43b4-b2db-0d17bed12ac8")
+    .set("value", "Failed to delete the page.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "0f6594c9-eb5a-45df-9beb-ffc458f5cf57")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "87262ca1-9f40-4595-ad51-f38bb2c441e9")
+    .set("value", "Delete this page?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "2d792e20-2529-42ab-ab92-aa5b614bb591")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "87262ca1-9f40-4595-ad51-f38bb2c441e9")
+    .set("value", "Apagar esta página?")
 );
 
 _db.insertIfNotExists(

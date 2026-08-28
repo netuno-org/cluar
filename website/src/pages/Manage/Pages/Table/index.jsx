@@ -5,7 +5,9 @@ import {
   Row,
   Switch,
   Table,
-  Input
+  Input,
+  Popconfirm,
+  Space
 } from "antd";
 import {
   forwardRef,
@@ -14,7 +16,7 @@ import {
   useRef,
   useState
 } from "react";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, SearchOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 import PageModal from "../Modal";
@@ -27,6 +29,7 @@ const PageTable = forwardRef(({ }, ref) => {
   const [loading, setLoading] = useState(false);
   const pageModalRef = useRef();
   const [pageEditeData, setPageEditeData] = useState(null);
+  const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
   const [activeLoading, setActiveLoading] = useState({
     key: "",
     isLoading: false
@@ -168,6 +171,28 @@ const PageTable = forwardRef(({ }, ref) => {
     setLoading(false);
   }
 
+  const onDelete = (uid) => {
+    setDeleteLoadingUid(uid);
+    _service({
+      url: "reserved-area/page",
+      method: "DELETE",
+      data: { uid },
+      success: () => {
+        setDeleteLoadingUid(null);
+        notification.success({
+          message: Cluar.plainDictionary("page-table-delete-success-message")
+        });
+        onLoadPages();
+      },
+      fail: (error) => {
+        setDeleteLoadingUid(null);
+        console.error(error);
+        const errorMessage = error?.json?.error || Cluar.plainDictionary("page-table-delete-failed-message");
+        notification.error({ message: errorMessage });
+      }
+    });
+  }
+
   const onReloadTable = () => {
     setFilters({});
     setPagination({ page: 1, size: 10 });
@@ -250,15 +275,29 @@ const PageTable = forwardRef(({ }, ref) => {
         "data-column-key": "actions",
       }),
       render: (val, record) => (
-        <Button
-          type="text"
-          title="Editar"
-          icon={<EditOutlined />}
-          onClick={() => {
-            setPageEditeData(record);
-            pageModalRef.current.openModal();
-          }}
-        />
+        <Space size={4}>
+          <Button
+            type="text"
+            title="Editar"
+            icon={<EditOutlined />}
+            onClick={() => {
+              setPageEditeData(record);
+              pageModalRef.current.openModal();
+            }}
+          />
+          <Popconfirm
+            title={Cluar.plainDictionary("page-table-popconfirm-delete-title")}
+            onConfirm={() => onDelete(record.uid)}
+          >
+            <Button
+              type="text"
+              danger
+              title="Apagar"
+              icon={<DeleteOutlined />}
+              loading={deleteLoadingUid === record.uid}
+            />
+          </Popconfirm>
+        </Space>
       ),
     },
   ];

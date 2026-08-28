@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import {_val, _db} from "@netuno/server-types";
+import { _val, _db } from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary_entry",
@@ -967,6 +967,30 @@ _db.insertIfNotExists(
     .set("uid", "b6e05fd7-a46d-4ec0-9911-7ce8a4ae9f7f")
     .set("code", "page-table-actions")
     .set("description", "Tabela de P\u00E1ginas - A\u00E7\u00F5es")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "0188739f-0575-4081-8068-b0b6743bf704")
+    .set("code", "page-table-delete-success-message")
+    .set("description", "Tabela de P\u00E1ginas - Notifica\u00E7\u00E3o - Sucesso ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "535b5894-c176-43b4-b2db-0d17bed12ac8")
+    .set("code", "page-table-delete-failed-message")
+    .set("description", "Tabela de P\u00E1ginas - Notifica\u00E7\u00E3o - Falha ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "87262ca1-9f40-4595-ad51-f38bb2c441e9")
+    .set("code", "page-table-popconfirm-delete-title")
+    .set("description", "Tabela de P\u00E1ginas - Popconfirm - Apagar")
 );
 
 _db.insertIfNotExists(
