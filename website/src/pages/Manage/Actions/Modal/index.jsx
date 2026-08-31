@@ -132,7 +132,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     setLoading({ ...loading, saving: true });
 
     _service({
-      url: "reserved-area/actions",
+      url: "reserved-area/action",
       method: editeMode ? "PUT" : "POST",
       data: formData,
       success: (response) => {
