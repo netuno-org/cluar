@@ -8,6 +8,8 @@ Uma solução pronta a usar para gestão de conteúdos e websites multilíngues 
 
 A documentação completa do CLUAR — instalação, configuração, páginas, componentes, ações, configurações, dicionários, templates e permissões — está disponível na [Academia do Netuno](https://doc.netuno.org/pt/docs/academy/cluar/overview).
 
+A configuração deste repositório está documentada na [referência completa de configuração](docs/configuration-reference-pt_PT.md).
+
 ## Instalação :cd:
 
 Instala estes requisitos:
@@ -38,11 +40,11 @@ git clone https://github.com/netuno-org/cluar.git
 
 3. Vais precisar de configurar uma ligação a uma base de dados do tipo PostgreSQL para esta app funcionar corretamente, [aprende a fazê-lo aqui](https://doc.netuno.org/pt/docs/academy/server/database/psql/).
 
-4. Edita o ficheiro de configuração criado no primeiro passo e localiza `"db": { "default": ... }`, depois substitui os dados de ligação pelos da tua base de dados.
+4. Edita o ficheiro de configuração criado no passo anterior e localiza `"db": { "default": ... }`, depois substitui os dados de ligação pelos da tua base de dados.
 
 5. Muda o segredo de autenticação JWT, localizando `"auth": { "jwt": { "secret": ... } }` — garante que este segredo tem 32 caracteres.
 
-6. Se quiseres, ativa o [Altcha](https://altcha.org/) (uma alternativa ao reCAPTCHA que preserva a privacidade), definindo `"auth": { "altcha": { "enabled": true } }`, e `"settings": { "cluar": { "website": { "auth": { "altcha": { "enabled": true } } } } }` para o widget aparecer no website.
+6. Se quiseres, ativa o [Altcha](https://altcha.org/) (uma alternativa ao reCAPTCHA que preserva a privacidade), definindo `"auth": { "altcha": { "enabled": true } }` para a validação no servidor e `"settings": { "cluar": { "website": { "auth": { "altcha": true } } } }` para o widget aparecer no website.
 
 7. Dentro de `"settings": { "cluar": ... }` ajusta o URL do Website, o URL da API de Serviços, e o resto conforme necessário.
 
@@ -95,7 +97,7 @@ code: 'ERR_DLOPEN_FAILED'
 
 Não se trata do bug de dependências opcionais do npm mencionado na mensagem, mas sim de uma **incompatibilidade de versão do GLIBC**: o binário nativo do Rollup foi compilado exigindo o `GLIBC_2.32` ou mais recente, e distribuições Linux mais antigas (por exemplo, Ubuntu 20.04, que traz o glibc 2.31) não o têm disponível.
 
-Para resolver, força o Rollup a usar a versão WASM em vez da nativa, adicionando um campo `overrides` na raiz do `package.json` do website:
+O `package.json` do website já força o Rollup a usar a versão WASM em vez da nativa. Confirma que este campo `overrides` continua presente:
 
 ```json
 "overrides": {
@@ -116,9 +118,9 @@ bun run dev
 
 No diretório raiz do Netuno, executa
 
-`./netuno server app=cluar`
+`./netuno server app=<nome-da-app>`
 
-e deve iniciar tanto o servidor back-end como o front-end.
+Substitui `<nome-da-app>` pelo nome da pasta/configuração escolhido acima. O comando inicia o back-end e, quando o comando do website está ativado na configuração da app, o servidor front-end.
 
 > A primeira execução pode demorar mais tempo, devido à instalação das dependências do front-end.
 

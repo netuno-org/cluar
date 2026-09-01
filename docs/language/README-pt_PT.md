@@ -11,7 +11,7 @@ O menu de seleção do idioma é processado no Header do website em:
 
 - `website/src/base/Header`
 
-> No componente ReactJS (`index.js`) procure por `menuLanguages` e no CSS/LESS (`index.less`) é customizado pela class `menu-languages`.
+> No componente ReactJS (`index.jsx`) procura por `menuLanguages` e no CSS/LESS (`index.less`) a personalização usa a classe `menu-languages`.
 
 O componente utilizado para construir a seleção do idiomas é o [Menu do Ant.Design](https://ant.design/components/menu/).
 
