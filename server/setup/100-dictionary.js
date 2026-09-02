@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import { _val, _db } from "@netuno/server-types";
+import {_val, _db} from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary",
@@ -4629,6 +4629,15 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "7e811909-d8ff-4aff-a635-5799872e481b")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "0188739f-0575-4081-8068-b0b6743bf704")
+    .set("value", "P\u00E1gina apagada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "5246d166-67f9-4f59-b30d-b0e4792c5c1c")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "eddfa972-32c8-445f-bb7d-1d555fe5b4ff")
@@ -5929,6 +5938,15 @@ _db.insertIfNotExists(
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "09dee2ce-c4d0-4a92-a856-ac0910f018e2")
     .set("value", "Clone")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "aaddf307-14e0-4641-b5ad-58cdaa0553f9")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "0188739f-0575-4081-8068-b0b6743bf704")
+    .set("value", "Page deleted successfully.")
 );
 
 _db.insertIfNotExists(
@@ -7968,6 +7986,15 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "25e2bcab-d328-4740-b31f-4e0a58ce6080")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "535b5894-c176-43b4-b2db-0d17bed12ac8")
+    .set("value", "Falha ao apagar a p\u00E1gina.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "780e9351-3360-4d7c-9991-6a10a55732b6")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "bf182a71-e369-4c4f-9d72-acde25c99bf6")
@@ -8859,60 +8886,6 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
-    .set("uid", "7e811909-d8ff-4aff-a635-5799872e481b")
-    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
-    .set("entry_id", "0188739f-0575-4081-8068-b0b6743bf704")
-    .set("value", "Página apagada com sucesso.")
-);
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
-    .set("uid", "aaddf307-14e0-4641-b5ad-58cdaa0553f9")
-    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
-    .set("entry_id", "0188739f-0575-4081-8068-b0b6743bf704")
-    .set("value", "Page deleted successfully.")
-);
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
-    .set("uid", "25e2bcab-d328-4740-b31f-4e0a58ce6080")
-    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
-    .set("entry_id", "535b5894-c176-43b4-b2db-0d17bed12ac8")
-    .set("value", "Falha ao apagar a página.")
-);
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
-    .set("uid", "daa466e9-94d8-4317-859b-f71062e1684e")
-    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
-    .set("entry_id", "535b5894-c176-43b4-b2db-0d17bed12ac8")
-    .set("value", "Failed to delete the page.")
-);
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
-    .set("uid", "0f6594c9-eb5a-45df-9beb-ffc458f5cf57")
-    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
-    .set("entry_id", "87262ca1-9f40-4595-ad51-f38bb2c441e9")
-    .set("value", "Delete this page?")
-);
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
-    .set("uid", "2d792e20-2529-42ab-ab92-aa5b614bb591")
-    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
-    .set("entry_id", "87262ca1-9f40-4595-ad51-f38bb2c441e9")
-    .set("value", "Apagar esta página?")
-);
-
-_db.insertIfNotExists(
-  "dictionary",
-  _val.map()
     .set("uid", "d487dea7-9c49-42b7-ace5-bc2877f9eba8")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "e9f7c28b-234d-44e6-9c88-d9a104e64126")
@@ -9300,6 +9273,15 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "daa466e9-94d8-4317-859b-f71062e1684e")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "535b5894-c176-43b4-b2db-0d17bed12ac8")
+    .set("value", "Failed to delete the page.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "10f2dc03-e059-405b-abe5-4f6bd60bdc6c")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "c75358f1-fedb-4d02-b58e-5a93801d2319")
@@ -9313,5 +9295,59 @@ _db.insertIfNotExists(
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "c75358f1-fedb-4d02-b58e-5a93801d2319")
     .set("value", "Nova entrada")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "0f6594c9-eb5a-45df-9beb-ffc458f5cf57")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "87262ca1-9f40-4595-ad51-f38bb2c441e9")
+    .set("value", "Delete this page?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "2d792e20-2529-42ab-ab92-aa5b614bb591")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "87262ca1-9f40-4595-ad51-f38bb2c441e9")
+    .set("value", "Apagar esta p\u00E1gina?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "55d89d27-29ec-469c-8e01-dfc7a2ac9171")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "806cff53-2af2-433c-991e-5e04617af543")
+    .set("value", "Alterar para Claro")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "f938f05e-ea93-447b-be63-b5208d88c690")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "806cff53-2af2-433c-991e-5e04617af543")
+    .set("value", "Switch to Light Mode")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "4019b946-60a7-4564-b44c-c7005b0d01f5")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "be16deb7-f25f-441c-8318-cff5a15b5d8d")
+    .set("value", "Alterar para Escuro")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "ef7a8c29-5de7-45ec-9ecc-cb2180de4cd2")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "be16deb7-f25f-441c-8318-cff5a15b5d8d")
+    .set("value", "Switch to Dark Mode")
 );
 

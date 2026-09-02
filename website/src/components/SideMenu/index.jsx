@@ -11,7 +11,9 @@ import {
   ApartmentOutlined,
   FileOutlined,
   RollbackOutlined,
-  LinkOutlined
+  LinkOutlined,
+  SunOutlined,
+  MoonOutlined
 } from '@ant-design/icons';
 import {
   Col,
@@ -29,12 +31,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loggedUserInfoAction } from '../../redux/actions';
 
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../../redux/actions/theme";
+
 import _service from '@netuno/service-client';
 import _auth from '@netuno/auth-client';
 
 import "./index.less"
 import { useNavigate, useLocation } from "react-router";
-import ThemeSwitch from '../ThemeSwitch';
 
 /*
  * Fonte única de "quem pode aceder a quê" dentro da área de gestão -
@@ -62,6 +66,10 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const [avatarImageURL, setAvatarImageURL] = useState('/images/profile-default.png');
   const navigate = useNavigate();
   const location = useLocation();
+
+  const dispatch = useDispatch();
+  const themeMode = useSelector((state) => state.theme?.mode || "light");
+  const isDark = themeMode === "dark";
 
   const normalizeGroupCode = (group) => {
     if (!group) {
@@ -138,6 +146,16 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
             window.location.reload();
           },
         })),
+    },
+    {
+      key: 'theme-toggle',
+      label: isDark
+        ? Cluar.plainDictionary('side-menu-options-theme-light')
+        : Cluar.plainDictionary('side-menu-options-theme-dark'),
+      icon: isDark ? <SunOutlined /> : <MoonOutlined />,
+      onClick: () => {
+        dispatch(toggleTheme());
+      },
     },
     hasPermissions([
       "admin",
@@ -420,9 +438,6 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
             width={240}
             items={items}
           />
-        </div>
-        <div className='theme-switch-wrapper'>
-          <ThemeSwitch />
         </div>
       </Layout.Sider>
     );

@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import { _val, _db } from "@netuno/server-types";
+import {_val, _db} from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary_entry",
@@ -967,30 +967,6 @@ _db.insertIfNotExists(
     .set("uid", "b6e05fd7-a46d-4ec0-9911-7ce8a4ae9f7f")
     .set("code", "page-table-actions")
     .set("description", "Tabela de P\u00E1ginas - A\u00E7\u00F5es")
-);
-
-_db.insertIfNotExists(
-  "dictionary_entry",
-  _val.map()
-    .set("uid", "0188739f-0575-4081-8068-b0b6743bf704")
-    .set("code", "page-table-delete-success-message")
-    .set("description", "Tabela de P\u00E1ginas - Notifica\u00E7\u00E3o - Sucesso ao apagar")
-);
-
-_db.insertIfNotExists(
-  "dictionary_entry",
-  _val.map()
-    .set("uid", "535b5894-c176-43b4-b2db-0d17bed12ac8")
-    .set("code", "page-table-delete-failed-message")
-    .set("description", "Tabela de P\u00E1ginas - Notifica\u00E7\u00E3o - Falha ao apagar")
-);
-
-_db.insertIfNotExists(
-  "dictionary_entry",
-  _val.map()
-    .set("uid", "87262ca1-9f40-4595-ad51-f38bb2c441e9")
-    .set("code", "page-table-popconfirm-delete-title")
-    .set("description", "Tabela de P\u00E1ginas - Popconfirm - Apagar")
 );
 
 _db.insertIfNotExists(
@@ -4116,6 +4092,14 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
+    .set("uid", "0188739f-0575-4081-8068-b0b6743bf704")
+    .set("code", "page-table-delete-success-message")
+    .set("description", "Tabela de P\u00E1ginas - Notifica\u00E7\u00E3o - Sucesso ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
     .set("uid", "b6d8470c-563e-47ec-8e26-f852ad7b9b58")
     .set("code", "configuration-table-popconfirm-delete-title")
     .set("description", "Configura\u00E7\u00E3o - Tabela - Popconfirm - Apagar")
@@ -4127,6 +4111,14 @@ _db.insertIfNotExists(
     .set("uid", "51dfad1a-1874-4a6a-89e1-947c4edf60fd")
     .set("code", "configuration-table-delete-success-message")
     .set("description", "Configura\u00E7\u00E3o - Tabela - Notifica\u00E7\u00E3o - Sucesso ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "535b5894-c176-43b4-b2db-0d17bed12ac8")
+    .set("code", "page-table-delete-failed-message")
+    .set("description", "Tabela de P\u00E1ginas - Notifica\u00E7\u00E3o - Falha ao apagar")
 );
 
 _db.insertIfNotExists(
@@ -4148,9 +4140,25 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
+    .set("uid", "87262ca1-9f40-4595-ad51-f38bb2c441e9")
+    .set("code", "page-table-popconfirm-delete-title")
+    .set("description", "Tabela de P\u00E1ginas - Popconfirm - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
     .set("uid", "3b2f9158-c535-4931-ab93-3269d7fe8a8b")
     .set("code", "dictionary-table-delete-success-message")
     .set("description", "Dicion\u00E1rio - Tabela - Notifica\u00E7\u00E3o - Sucesso ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "806cff53-2af2-433c-991e-5e04617af543")
+    .set("code", "side-menu-options-theme-light")
+    .set("description", "Menu Lateral - Op\u00E7\u00F5es - Alterar para Claro")
 );
 
 _db.insertIfNotExists(
@@ -4161,3 +4169,10 @@ _db.insertIfNotExists(
     .set("description", "Dicion\u00E1rio - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
 );
 
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "be16deb7-f25f-441c-8318-cff5a15b5d8d")
+    .set("code", "side-menu-options-theme-dark")
+    .set("description", "Menu Lateral - Op\u00E7\u00F5es - Alterar para Escuro")
+);
