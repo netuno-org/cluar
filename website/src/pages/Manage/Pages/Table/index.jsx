@@ -1,8 +1,6 @@
 import {
   Button,
-  Col,
   notification,
-  Row,
   Switch,
   Table,
   Input,
@@ -119,56 +117,66 @@ const PageTable = forwardRef(({ }, ref) => {
 
   const onLoadPages = () => {
     setLoading(true);
-    const pagesData = Cluar.pages() || {};
+    _service({
+      url: "reserved-area/page/list",
+      method: "POST",
+      success: (response) => {
+        setLoading(false);
+        const pagesData = response.json.data || {};
+        let allPages = [];
+        Object.keys(pagesData).forEach(langKey => {
+          if (Array.isArray(pagesData[langKey])) {
+            // Adiciona o campo language_code a cada página com o valor de langKey
+            const pagesWithLanguageCode = pagesData[langKey].map(page => ({
+              ...page,
+              language_code: langKey
+            }));
+            allPages = [...allPages, ...pagesWithLanguageCode];
+          }
+        });
 
-    let allPages = [];
-    Object.keys(pagesData).forEach(langKey => {
-      if (Array.isArray(pagesData[langKey])) {
-        // Adiciona o campo language_code a cada página com o valor de langKey
-        const pagesWithLanguageCode = pagesData[langKey].map(page => ({
-          ...page,
-          language_code: langKey
-        }));
-        allPages = [...allPages, ...pagesWithLanguageCode];
-      }
-    });
+        let filteredPages = [...allPages];
 
-    let filteredPages = [...allPages];
-
-    if (filters.language_code && filters.language_code.length > 0) {
-      filteredPages = filteredPages.filter(page =>
-        filters.language_code.includes(page.language_code)
-      );
-    }
-
-    if (filters.title) {
-      filteredPages = filteredPages.filter(page =>
-        page.title && page.title.toLowerCase().includes(filters.title.toLowerCase())
-      );
-    }
-
-    if (filters.link) {
-      filteredPages = filteredPages.filter(page =>
-        page.link && page.link.toLowerCase().includes(filters.link.toLowerCase())
-      );
-    }
-
-    if (filters.menu && filters.menu !== undefined) {
-      filteredPages = filteredPages.filter(page => {
-        if (Array.isArray(filters.menu) && filters.menu.length > 0) {
-          return page.menu === filters.menu[0];
+        if (filters.language_code && filters.language_code.length > 0) {
+          filteredPages = filteredPages.filter(page =>
+            filters.language_code.includes(page.language_code)
+          );
         }
 
-        return page.menu === filters.menu;
-      });
-    }
+        if (filters.title) {
+          filteredPages = filteredPages.filter(page =>
+            page.title && page.title.toLowerCase().includes(filters.title.toLowerCase())
+          );
+        }
 
-    const startIndex = (pagination.page - 1) * pagination.size;
-    const paginatedPages = filteredPages.slice(startIndex, startIndex + pagination.size);
+        if (filters.link) {
+          filteredPages = filteredPages.filter(page =>
+            page.link && page.link.toLowerCase().includes(filters.link.toLowerCase())
+          );
+        }
 
-    setData(paginatedPages);
-    setTotal(filteredPages.length);
-    setLoading(false);
+        if (filters.menu && filters.menu !== undefined) {
+          filteredPages = filteredPages.filter(page => {
+            if (Array.isArray(filters.menu) && filters.menu.length > 0) {
+              return page.menu === filters.menu[0];
+            }
+
+            return page.menu === filters.menu;
+          });
+        }
+
+        const startIndex = (pagination.page - 1) * pagination.size;
+        const paginatedPages = filteredPages.slice(startIndex, startIndex + pagination.size);
+
+        setData(paginatedPages);
+        setTotal(filteredPages.length);
+      },
+      fail: (error) => {
+        setLoading(false);
+        console.error(error);
+        notification.error({ message: Cluar.plainDictionary("actions-table-notification-load-fail") });
+      }
+    });
   }
 
   const onDelete = (uid) => {
