@@ -3,6 +3,9 @@
 // CONFIGURATION
 // 
 // -----------------------------------------------------------
+// 
+// CODE GENERATED AUTOMATICALLY
+// 
 
 import {_val, _db} from "@netuno/server-types";
 
@@ -73,6 +76,16 @@ _db.insertIfNotExists(
     .set("language_id", null)
     .set("parameter_id", "eba53efb-bfa5-47cf-bd09-8929c6272b00")
     .set("value", "#ff6e1a")
+    .set("value_img", "")
+);
+
+_db.insertIfNotExists(
+  "configuration",
+  _val.map()
+    .set("uid", "d935ca76-61f3-4ec1-8b1f-57013b352318")
+    .set("language_id", null)
+    .set("parameter_id", "1d0f0380-8124-49c7-a90f-bc7e03f37b46")
+    .set("value", "#141414")
     .set("value_img", "")
 );
 
