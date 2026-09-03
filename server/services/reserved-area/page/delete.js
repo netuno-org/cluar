@@ -18,7 +18,7 @@ if (dbPage) {
     cluar.db.cascadeDeletePageVersion(dbPageVersion.getInt("id"));
   }
 
-  _db.execute(`DELETE FROM page WHERE uid = ?::uuid`, pageUid);
+  _db.delete("page", pageId);
 
   _out.json(_val.map().set("result", true));
 } else {
