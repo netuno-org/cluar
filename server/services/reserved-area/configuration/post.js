@@ -60,6 +60,8 @@ if (value?.includes("base64")) {
   );
 }
 
+cluar.build();
+
 _header.status(201);
 _out.json(
   _val.map()

@@ -10,4 +10,7 @@ if (!dbConfiguration) {
 }
 
 _db.delete('configuration', dbConfiguration.getInt("id"));
+
+cluar.build();
+
 cluar.response.successWithoutData({ status: 200 });
