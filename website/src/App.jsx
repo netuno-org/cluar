@@ -64,6 +64,7 @@ const ThemedConfigProvider = ({ children }) => {
   return (
     <ConfigProvider
       theme={{
+        cssVar: true,
         token: {
           colorPrimary: Cluar.configuration("primary-color") || "#FF6E1A",
           fontSize: Cluar.configuration("text-font-base") !== "text-font-base" ? Number(Cluar.configuration("text-font-base")) : 16,

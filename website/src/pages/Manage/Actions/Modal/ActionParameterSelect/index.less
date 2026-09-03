@@ -12,11 +12,11 @@
     border-radius: 4px;
 
     &:hover {
-        background: #f5f5f5;
+        background: var(--ant-control-item-bg-hover);
     }
 
     &.selected {
-        background: #e6f4ff;
+        background: var(--ant-control-item-bg-active);
     }
 
     &.editing,
@@ -26,7 +26,7 @@
         gap: 6px;
         padding: 8px;
         cursor: default;
-        border: 1px solid #f0f0f0;
+        border: 1px solid var(--ant-color-border);
         border-radius: 4px;
         margin-bottom: 4px;
     }
@@ -41,6 +41,6 @@
 
 .action-parameter-select-empty {
     padding: 8px;
-    color: rgba(0, 0, 0, 0.45);
+    color: var(--ant-color-text-tertiary);
     text-align: center;
 }
