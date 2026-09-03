@@ -117,9 +117,11 @@ bun run dev
 
 ## Running :rocket:
 
-In the Netuno root directory run
+In the Netuno root directory run:
 
 `./netuno server app=<app-name>`
+
+> If the app name was not changed, use `cluar`.
 
 Replace `<app-name>` with the folder/configuration name chosen above. The command starts the back-end and, when the website command is enabled in the app configuration, the front-end server.
 
