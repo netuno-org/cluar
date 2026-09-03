@@ -16,10 +16,10 @@ These are the main mechanisms that CLUAR CMS offers by default:
 3. [Contents](content/README.md)
 4. [Standard](banner/README.md)
 5. [Listing](listing/README.md)
-6. [Action](action/README.md)
-7. [Dictionary](dictionary/README.md)
-8. [Settings](configuration/README.md)
-9. [Funcionalidade](functionality/README.md)
+6. [Action](https://doc.netuno.org/docs/academy/cluar/actions)
+7. [Dictionary](https://doc.netuno.org/docs/academy/cluar/dictionaries)
+8. [Settings](https://doc.netuno.org/docs/academy/cluar/configuration)
+9. [Functionality](https://doc.netuno.org/docs/academy/cluar/components/functionality)
 
 #### Estrutura do Código do Website
 
@@ -37,23 +37,20 @@ The code is organized as follows:
 - `website/src/components/functionality`
   Contains custom-made components to be integrated into page content.
 
-- `website/src/config`
-  Parameterization of the essential configuration used in code.
-  
 - `website/src/styles`
   Here it contains the main and global CSS, with the management of the variables (`variables`) of layout and design settings.
 
 - `website/src/pages`
   Custom developed pages without being processed by the CLUAR CMS engine.
   
-- `website/src/App.js`
-  Definition of navigation routes (`react-router-dom`) and has the overall structure of the website. 
+- `website/src/App.jsx`
+  Definition of navigation routes (`react-router`) and the overall structure of the website.
 
-- `website/src/index.js`
-  This is where it all starts, it is also where the base content of the CLUAR CMS is loaded and where it defines the address of the REST API of services.
+- `website/src/main.jsx`
+  This is where the React application starts and where the base CLUAR CMS data is loaded from `/cluar/data.js`.
 
-- `website/craco.config.js`
-  Customizing Ant.Design layout and design variables
+- `website/vite.config.js`
+  Vite development/build configuration, including the development port and LESS preprocessing.
 
 #### Netuno Application Code Structure
 
@@ -62,16 +59,13 @@ About the structure of the Neptune application:
 - `config`
   Netuno application configuration as database, commands executed at startup, CORS, SMTP, and much more.
 
-- `dbs`
-  Where are the database files (`H2Database`) and where scripts for other types of databases can be stored.
-
 - `public`
   Public files of the Netuno application.
   
 - `server`
   Netuno application server code.
   
-- `server/sevices`
+- `server/services`
   Code programming REST API services.
 
 - `storage`
@@ -88,9 +82,9 @@ The central and global LESS code is in `website/src/styles`, inside this folder 
 
 ### Ant.Design styling
 
-The styling of Ant.Design is done in the `website/craco.config.js` file, inside the `less` settings is to configure the Ant.Design variables in `modifyVars`, check the Ant.Design variables that can be redefined:
+Ant Design theme tokens (colors, font size, border radius, layout backgrounds, and the light/dark algorithm) are configured in code through the `ThemedConfigProvider` in `website/src/App.jsx` — look for the `ConfigProvider` `theme={{ token, components, algorithm }}` object (for example `token.colorPrimary`). This is the mechanism to change the Ant Design look and feel.
 
-- [themes/default.less](https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less)
+Vite enables LESS preprocessing in `website/vite.config.js` for the application's own stylesheets. Project-wide design variables are defined in `website/src/styles/variables.less`; component-specific styles live beside their React components. LESS here styles the app's custom CSS and does not configure the Ant Design theme.
 
 ## ReactJS Components
 
@@ -109,13 +103,13 @@ The main components
 ## Engine
 
 - `website/src/common/Cluar.js`
-- `website/src/common/Builder.js`
+- `website/src/common/Builder.jsx`
   Files Responsible for building the interface.
 
 
 ## Routes with React Router
 
-- `website/src/App.js`
+- `website/src/App.jsx`
   File responsible for defining the routes.
 
 ## Production

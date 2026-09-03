@@ -8,6 +8,8 @@ A ready to use solution for content management and multilingual websites using [
 
 The full CLUAR documentation — installation, configuration, pages, components, actions, settings, dictionaries, templates and permissions — is available in the [Netuno Academy](https://doc.netuno.org/docs/academy/cluar/overview).
 
+Repository-level configuration is documented in the [complete configuration reference](docs/configuration-reference.md).
+
 ## Installation :cd:
 
 Install these requirements:
@@ -38,12 +40,12 @@ git clone https://github.com/netuno-org/cluar.git
 
 3. You'll need to configure a PostgreSQL database type connection for this app to work properly, [learn how to do it here](https://doc.netuno.org/docs/academy/server/database/psql/).
 
-4. Edit your configuration file created in the first step and
+4. Edit the configuration file created in the previous step and
 find the `"db": { "default": ... }`, then locate and replace the database settings with the password.
 
 5. Change the authentication JWT secret, finding the `"auth": { "jwt": { "secret": ... } }`, ensure that this secret must have a 32-character length.
 
-6. If needed, enable [Altcha](https://altcha.org/) (a privacy-friendly alternative to reCAPTCHA) by setting `"auth": { "altcha": { "enabled": true } }`, and `"settings": { "cluar": { "website": { "auth": { "altcha": { "enabled": true } } } } }` for the widget to show up on the website.
+6. If needed, enable [Altcha](https://altcha.org/) (a privacy-friendly alternative to reCAPTCHA) by setting `"auth": { "altcha": { "enabled": true } }` for server-side validation and `"settings": { "cluar": { "website": { "auth": { "altcha": true } } } }` for the widget to appear on the website.
 
 7. Inside of the `"settings": { "cluar": ... }` adjust the Website URL, the Services API URL, and others as you need.
 
@@ -96,7 +98,7 @@ code: 'ERR_DLOPEN_FAILED'
 
 This is **not** actually the npm optional dependencies bug mentioned in the message. It's a **GLIBC version mismatch**: Rollup's native binary was built requiring `GLIBC_2.32` or newer, while older Linux distributions (e.g. Ubuntu 20.04, which ships with glibc 2.31) don't have it available.
 
-To fix it, force Rollup to use its WASM build instead of the native one, by adding an `overrides` field at the root of the website's `package.json`:
+The website's `package.json` already forces Rollup to use its WASM build instead of the native one. Verify that this `overrides` field is still present:
 
 ```json
 "overrides": {
@@ -117,9 +119,9 @@ bun run dev
 
 In the Netuno root directory run
 
-`./netuno server app=cluar`
+`./netuno server app=<app-name>`
 
-and it should start both the back-end and the front-end server.
+Replace `<app-name>` with the folder/configuration name chosen above. The command starts the back-end and, when the website command is enabled in the app configuration, the front-end server.
 
 > The first run may take a while due to the installation of frontend dependencies.
 

@@ -56,6 +56,6 @@ Se o campo de Menu estiver ativo então a página aparece no menu de navegação
 
 No campo Ordem define o número de posição da página no menu.
 
-O campo Menu Título permite ter um título diferente para ser apresentado no menu de navegação do website, assim o título que aparecerá no menu de navegação poderá ser diferente do título da página, não é obrigatório o seu preenchimento e quando não preenchido é utilizado o título da página.
+O campo Menu Título permite apresentar no menu de navegação um título diferente do título da página. É obrigatório quando o campo Menu está ativo.
 
 [:arrow_backward: Principal](../README-pt_PT.md)

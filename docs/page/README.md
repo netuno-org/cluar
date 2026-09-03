@@ -56,6 +56,6 @@ If the Menu field is active then the page appears in the website navigation menu
 
 In the Order field, define the page position number in the menu.
 
-The Title Menu field allows you to have a different title to be displayed in the website navigation menu, so the title that will appear in the navigation menu may be different from the page title, it is not mandatory to fill it out and when not filled in the title is used from page.
+The Menu Title field allows a title different from the page title to be displayed in website navigation. It is required when Menu is enabled.
 
 [:arrow_backward: Main](../README.md)
