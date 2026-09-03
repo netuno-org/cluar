@@ -116,9 +116,11 @@ bun run dev
 
 ## Execução :rocket:
 
-No diretório raiz do Netuno, executa
+No diretório raiz do Netuno, executa:
 
 `./netuno server app=<nome-da-app>`
+
+> Se o nome da aplicação não foi alterado, utilize `cluar` como nome da app.
 
 Substitui `<nome-da-app>` pelo nome da pasta/configuração escolhido acima. O comando inicia o back-end e, quando o comando do website está ativado na configuração da app, o servidor front-end.
 
