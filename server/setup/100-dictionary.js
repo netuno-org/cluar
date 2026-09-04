@@ -9639,3 +9639,93 @@ _db.insertIfNotExists(
     .set("value", "Register with your details.")
 );
 
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "4accc5e9-4e0c-4891-8d15-436d35f70083")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "840a16e9-66b9-43c8-97a4-14d739de6f36")
+    .set("value", "Delete this organization?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "4873dfd0-9e6a-4308-a700-fee4bfaaac2f")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "840a16e9-66b9-43c8-97a4-14d739de6f36")
+    .set("value", "Apagar esta organiza\u00E7\u00E3o?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "017b227b-58ec-42ca-b7ea-a20858362f21")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "6a5481c8-12bc-4295-af1c-5e66e78bca35")
+    .set("value", "Edit")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "ec9a34d9-26d4-4eb4-a1df-82629e4c4d73")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "6a5481c8-12bc-4295-af1c-5e66e78bca35")
+    .set("value", "Editar")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "71b20967-ead4-48ae-9db0-0967fd860af3")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "5fcb4b91-ca93-4669-aead-cdcc0c158fcb")
+    .set("value", "Delete")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "b1b0c56b-7e40-47a2-91ce-1c0793e21ee9")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "5fcb4b91-ca93-4669-aead-cdcc0c158fcb")
+    .set("value", "Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "7f8b4a2c-de3e-4816-9f0a-9f3a47f2c5f1")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "3176bd73-1186-4e14-8e03-19a6c0177332")
+    .set("value", "Organization deleted successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "cbf0835a-91b9-4b9e-8d2e-b7d7bd9a2e6d")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "3176bd73-1186-4e14-8e03-19a6c0177332")
+    .set("value", "Organiza\u00E7\u00E3o apagada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "afc50c1e-9ad5-4a7e-99ba-03e2a0af8c18")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "ffb60988-3822-4e75-b4c0-a28ef9533dda")
+    .set("value", "Failed to delete the organization.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "8f45079b-8771-4aa6-8e88-be0c4d22f5fc")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "ffb60988-3822-4e75-b4c0-a28ef9533dda")
+    .set("value", "Falha ao apagar a organiza\u00E7\u00E3o.")
+);
+

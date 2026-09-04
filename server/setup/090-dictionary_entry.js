@@ -4288,3 +4288,43 @@ _db.insertIfNotExists(
     .set("code", "theme-switch-activate-light")
     .set("description", "Alternador de Tema - Ativar - Claro")
 );
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "840a16e9-66b9-43c8-97a4-14d739de6f36")
+    .set("code", "organization-table-popconfirm-delete-title")
+    .set("description", "Tabela de Organiza\u00E7\u00F5es - Popconfirm - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "6a5481c8-12bc-4295-af1c-5e66e78bca35")
+    .set("code", "organization-table-button-edit")
+    .set("description", "Organiza\u00E7\u00F5es - Tabela - Bot\u00E3o - Editar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "5fcb4b91-ca93-4669-aead-cdcc0c158fcb")
+    .set("code", "organization-table-button-delete")
+    .set("description", "Organiza\u00E7\u00F5es - Tabela - Bot\u00E3o - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3176bd73-1186-4e14-8e03-19a6c0177332")
+    .set("code", "organization-table-delete-success-message")
+    .set("description", "Organiza\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Sucesso ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ffb60988-3822-4e75-b4c0-a28ef9533dda")
+    .set("code", "organization-table-delete-failed-message")
+    .set("description", "Organiza\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
+);

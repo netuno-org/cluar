@@ -5,7 +5,9 @@ import {
   Row,
   Switch,
   Table,
-  Input
+  Input,
+  Popconfirm,
+  Space
 } from "antd";
 import {
   forwardRef,
@@ -14,7 +16,7 @@ import {
   useRef,
   useState
 } from "react";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, SearchOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 import OrganizationModal from "../Modal";
@@ -31,6 +33,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
     key: "",
     isLoading: false
   });
+  const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
   const [filters, setFilters] = useState({});
   const [pagination, setPagination] = useState({
     page: 1,
@@ -82,6 +85,27 @@ const OrganizationTable = forwardRef(({ }, ref) => {
     })
   }
 
+  const onDelete = (uid) => {
+    setDeleteLoadingUid(uid);
+    _service({
+      url: "reserved-area/organization",
+      method: "DELETE",
+      data: { uid },
+      success: () => {
+        setDeleteLoadingUid(null);
+        notification.success({
+          message: Cluar.plainDictionary("organization-table-delete-success-message")
+        });
+        onLoadOrganizations();
+      },
+      fail: (error) => {
+        setDeleteLoadingUid(null);
+        console.error(error);
+        const errorMessage = error?.json?.error || Cluar.plainDictionary("organization-table-delete-failed-message");
+        notification.error({ message: errorMessage });
+      }
+    });
+  }
 
   const getTextFilterProps = (key) => {
     return ({
@@ -205,19 +229,29 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         "data-column-key": "actions",
       }),
       render: (val, record) => (
-        <Row>
-          <Col>
+        <Space size={4}>
+          <Button
+            icon={<EditOutlined />}
+            type="text"
+            title={Cluar.plainDictionary("organization-table-button-edit")}
+            onClick={() => {
+              setOrganizationEditeData(record);
+              organizationModalRef.current.onOpenModal();
+            }}
+          />
+          <Popconfirm
+            title={Cluar.plainDictionary("organization-table-popconfirm-delete-title")}
+            onConfirm={() => onDelete(record.uid)}
+          >
             <Button
-              icon={<EditOutlined />}
               type="text"
-              title="Editar"
-              onClick={() => {
-                setOrganizationEditeData(record);
-                organizationModalRef.current.onOpenModal();
-              }}
+              danger
+              title={Cluar.plainDictionary("organization-table-button-delete")}
+              icon={<DeleteOutlined />}
+              loading={deleteLoadingUid === record.uid}
             />
-          </Col>
-        </Row>
+          </Popconfirm>
+        </Space>
       )
     },
   ]
