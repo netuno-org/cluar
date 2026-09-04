@@ -215,7 +215,7 @@ export default {
      * ambiente atual, para nenhuma delas ficar desatualizada.
      */
     const targets = [
-      { indexHtml: "website/index.html", base: "website/public" },
+      { indexHtml: "website/index.html", base: "website/public", devSource: true },
       { indexHtml: "website/dist/index.html", base: "website/dist" },
     ];
 
@@ -231,6 +231,18 @@ export default {
        */
       const rootCssFile = _app.file(`${target.base}/root.css`);
       rootCssFile.output().print(cssOverrides).close();
+
+      /*
+       * Em dev, website/index.html é a entrada do Vite (hot reload).
+       * Reescrevê-lo a cada gravação faz o Vite dar full-reload à página,
+       * recarregando o admin (reserved-area) a cada gravação de uma página,
+       * action, dicionário, etc. Em dev as cores já chegam via root.css
+       * (pasta pública, sem reload), por isso não se toca na origem; o
+       * dist continua a ser atualizado para a produção.
+       */
+      if (target.devSource && _env.is("dev")) {
+        continue;
+      }
 
       const indexHtmlFile = _app.file(target.indexHtml);
       if (!indexHtmlFile.exists()) {
