@@ -9351,3 +9351,291 @@ _db.insertIfNotExists(
     .set("value", "Switch to Dark Mode")
 );
 
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "605c7ddf-feb3-4911-99e6-35bccd2af9b8")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "af58691c-306e-4054-a96b-f9f9f156171c")
+    .set("value", "Failed to load organizations.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "f556ec11-5dd6-4e7a-962e-e673b0134b00")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "af58691c-306e-4054-a96b-f9f9f156171c")
+    .set("value", "Falha ao carregar organiza\u00E7\u00F5es.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "6d957cd3-c99e-4dda-837e-381e54f0e63a")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "7ac17ea5-f38e-4660-9d35-71b5f2c05988")
+    .set("value", "Please enter the menu title.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "0900a112-e6db-47f1-a1fd-70be0716c61e")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "7ac17ea5-f38e-4660-9d35-71b5f2c05988")
+    .set("value", "Por favor, insira o t\u00EDtulo do menu.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "4b8543da-cb72-43be-a60d-5f061bbab9ec")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "97a21ab1-d809-4130-ab97-4e0ae81ee458")
+    .set("value", "Failed to edit page.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "27fb4733-eb8b-46cd-9a41-29d96ff8384c")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "97a21ab1-d809-4130-ab97-4e0ae81ee458")
+    .set("value", "Falha ao editar p\u00E1gina.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "e1faec2d-435d-42e2-8e95-2602a395cac4")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "cef22b2e-4e70-4ce9-bc89-be19c17a9355")
+    .set("value", "Page successfully edited.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "aa958e18-4f30-46af-ae17-ca2f0c23245a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "cef22b2e-4e70-4ce9-bc89-be19c17a9355")
+    .set("value", "P\u00E1gina editada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "5d323c0a-a925-4ce3-9cb8-a4498ffaa7f3")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "c3f6bb18-abad-4d80-9336-773a4972046b")
+    .set("value", "Failed to save page.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "14928b60-1e8f-4906-92c6-3dc175fc21bd")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "c3f6bb18-abad-4d80-9336-773a4972046b")
+    .set("value", "Falha ao guardar p\u00E1gina.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "82d5b686-7fc7-46cb-b0d8-8a567cda7d76")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "2b7907b8-ab26-4d3b-b5f1-7423d4e2a4ac")
+    .set("value", "Page successfully saved.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "2cdc3f35-f7b3-4789-ab94-9a2f02867d7d")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "2b7907b8-ab26-4d3b-b5f1-7423d4e2a4ac")
+    .set("value", "P\u00E1gina guardada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "b10d9a7c-bb33-4e62-9d68-f2b4241ec16e")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "367bb6ae-6ce2-41eb-91a5-d6a9b0cff829")
+    .set("value", "Failed to activate page.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "da8d87cb-e9ee-43d0-89d1-513a0a4cd011")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "367bb6ae-6ce2-41eb-91a5-d6a9b0cff829")
+    .set("value", "Falha ao ativar p\u00E1gina.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "62662249-8bc3-4da6-935b-516acd121a24")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "3caf9378-5069-421d-a759-ca2cbff57484")
+    .set("value", "Page activated successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "e069a01b-0818-45cf-a4ab-f74e860fee79")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "3caf9378-5069-421d-a759-ca2cbff57484")
+    .set("value", "P\u00E1gina ativada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "3229554e-d54d-4b9e-b6bd-a34531b98dec")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "3a248c34-a1ce-45d1-a02a-766ad99d43a1")
+    .set("value", "Failed to deactivate page.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "15974e38-f240-4b06-aec1-c824579840be")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "3a248c34-a1ce-45d1-a02a-766ad99d43a1")
+    .set("value", "Falha ao desativar p\u00E1gina.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "a7845c8c-c0f0-4ed8-a3ad-5d6df8d6aa3e")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "760ffb25-7e62-47d9-9c06-9025d5fb69a1")
+    .set("value", "Page deactivated successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "04e8425f-6349-4f85-b680-eeaeae25725f")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "760ffb25-7e62-47d9-9c06-9025d5fb69a1")
+    .set("value", "P\u00E1gina desativada com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "3b60113a-bac2-49c2-8796-7c1d81e8a0c5")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "adb09df1-7213-4839-9e67-140d04691aa9")
+    .set("value", "Type")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "72ddbe1d-9061-4f91-bb58-0caa4d72c7b7")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "adb09df1-7213-4839-9e67-140d04691aa9")
+    .set("value", "Tipo")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "85f117f5-2947-44a2-84ed-4dfea050745c")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "883065e6-5d2e-45ac-b560-a6d52c5852dc")
+    .set("value", "Scroll down")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "086185ea-ecbe-45d5-84b8-4a3c0ae73195")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "883065e6-5d2e-45ac-b560-a6d52c5852dc")
+    .set("value", "Des\u00E7a")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "8fa58248-d862-4b20-9ad8-9a6720aab6eb")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "d3469733-f858-4f5d-82fb-480cb59a0474")
+    .set("value", "Switch to Dark Mode")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "0215dcd2-4a78-484c-9203-66312ec6d0af")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "d3469733-f858-4f5d-82fb-480cb59a0474")
+    .set("value", "Alterar para Escuro")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "44a4d53d-ae07-4182-8d9c-f8a0fd41fcb0")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "e43d9a6f-aba0-4ac8-84e2-006447c26251")
+    .set("value", "Switch to Light Mode")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "16115fac-8c47-47cd-b31e-6527bc9c4f9c")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "e43d9a6f-aba0-4ac8-84e2-006447c26251")
+    .set("value", "Alterar para Claro")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "10a85401-0d53-4875-8903-c3c4d35547df")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "3a226649-cbad-414d-9d78-56b395d422b8")
+    .set("value", "Failed to load members.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "cd1d776d-f27c-4e7f-a45d-d429da3d21ab")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "ce1a750e-2671-4ce8-bd89-490473488d09")
+    .set("value", "User already exists.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "e4f4f524-5ce0-4ab1-9bd3-3628a8054d33")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "9fd434b1-50f5-4fa4-8ba4-713eb35cdc03")
+    .set("value", "Registar com seus dados.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "3dfba720-e3d0-4a36-acec-3b05d97140f4")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "9fd434b1-50f5-4fa4-8ba4-713eb35cdc03")
+    .set("value", "Register with your details.")
+);
+

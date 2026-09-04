@@ -4176,3 +4176,115 @@ _db.insertIfNotExists(
     .set("code", "side-menu-options-theme-dark")
     .set("description", "Menu Lateral - Op\u00E7\u00F5es - Alterar para Escuro")
 );
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "af58691c-306e-4054-a96b-f9f9f156171c")
+    .set("code", "organization-table-load-failed")
+    .set("description", "Tabela de Organiza\u00E7\u00F5es - Carregar - Falha")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "7ac17ea5-f38e-4660-9d35-71b5f2c05988")
+    .set("code", "page-configuration-validation-menu-title")
+    .set("description", "Configura\u00E7\u00E3o de P\u00E1ginas - Valida\u00E7\u00E3o - T\u00EDtulo do Menu")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "97a21ab1-d809-4130-ab97-4e0ae81ee458")
+    .set("code", "page-form-edit-failed-message")
+    .set("description", "Formul\u00E1rio de P\u00E1ginas - Editar - Falha - Mensagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "cef22b2e-4e70-4ce9-bc89-be19c17a9355")
+    .set("code", "page-form-edit-success-message")
+    .set("description", "Formul\u00E1rio de P\u00E1ginas - Editar - Sucesso - Mensagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "c3f6bb18-abad-4d80-9336-773a4972046b")
+    .set("code", "page-form-save-failed-message")
+    .set("description", "Formul\u00E1rio de P\u00E1ginas - Guardar - Falha - Mensagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2b7907b8-ab26-4d3b-b5f1-7423d4e2a4ac")
+    .set("code", "page-form-save-success-message")
+    .set("description", "Formul\u00E1rio de P\u00E1ginas - Guardar - Sucesso - Mensagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "367bb6ae-6ce2-41eb-91a5-d6a9b0cff829")
+    .set("code", "page-table-active-failed-message")
+    .set("description", "Tabela de P\u00E1ginas - Ativar - Falha - Mensagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3caf9378-5069-421d-a759-ca2cbff57484")
+    .set("code", "page-table-active-success-message")
+    .set("description", "Tabela de P\u00E1ginas - Ativar - Sucesso - Mensagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3a248c34-a1ce-45d1-a02a-766ad99d43a1")
+    .set("code", "page-table-desactive-failed-message")
+    .set("description", "Tabela de P\u00E1ginas - Desativar - Falha - Mensagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "760ffb25-7e62-47d9-9c06-9025d5fb69a1")
+    .set("code", "page-table-desactive-success-message")
+    .set("description", "Tabela de P\u00E1ginas - Desativar - Sucesso - Mensagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "adb09df1-7213-4839-9e67-140d04691aa9")
+    .set("code", "slider-editor-field-type")
+    .set("description", "Editor de Slider - Campo - Tipo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "883065e6-5d2e-45ac-b560-a6d52c5852dc")
+    .set("code", "text-sub-banner")
+    .set("description", "Texto do Sub-banner")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "d3469733-f858-4f5d-82fb-480cb59a0474")
+    .set("code", "theme-switch-activate-dark")
+    .set("description", "Alternador de Tema - Ativar - Escuro")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "e43d9a6f-aba0-4ac8-84e2-006447c26251")
+    .set("code", "theme-switch-activate-light")
+    .set("description", "Alternador de Tema - Ativar - Claro")
+);
