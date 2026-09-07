@@ -29,5 +29,8 @@
   },
   "devDependencies": {
     "@netuno/server-types": "^1.4.4"
+  },
+  "dependencies": {
+    "eslint": "^10.10.0"
   }
 }
