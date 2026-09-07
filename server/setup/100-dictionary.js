@@ -9729,3 +9729,75 @@ _db.insertIfNotExists(
     .set("value", "Falha ao apagar a organiza\u00E7\u00E3o.")
 );
 
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "52ae9bf6-3f8f-4d29-b908-3e35968f3a60")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "02541532-5a3f-452a-9911-e9c380751cd7")
+    .set("value", "Delete this user?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "1b4ffcbb-e2c0-4cc9-a41b-57ec8df8963c")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "02541532-5a3f-452a-9911-e9c380751cd7")
+    .set("value", "Apagar este utilizador?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "f5b6c11c-9f5c-4ebb-9552-323bfe9d3e5d")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "8699593f-c608-4db5-b41d-b6a0602f48d0")
+    .set("value", "Delete")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "be0e7172-870e-4182-8135-02eecb1f7f9a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "8699593f-c608-4db5-b41d-b6a0602f48d0")
+    .set("value", "Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "28395df4-4910-4c90-a1ef-3f087bfccd11")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "6e2cf569-5e2e-40d8-a513-a5f838c82cb1")
+    .set("value", "User deleted successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "2ed87efd-90d8-4bdf-90f4-87186243ded2")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "6e2cf569-5e2e-40d8-a513-a5f838c82cb1")
+    .set("value", "Utilizador apagado com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "1563b843-e5d1-4bbc-970c-0b2e58f2b0d3")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "0b25904c-046b-4c71-8393-f491795e7fc2")
+    .set("value", "Failed to delete the user.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "c25a7a71-a04c-49d0-9052-cd6b46fc9654")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "0b25904c-046b-4c71-8393-f491795e7fc2")
+    .set("value", "Falha ao apagar o utilizador.")
+);
+
