@@ -4,6 +4,7 @@ import CluarCustom from "./CluarCustom";
 import _auth from "@netuno/auth-client";
 
 let data = null;
+let cluarSettings = null;
 let currentLanguage = null;
 let custom = null;
 let gaEnabled = false;
@@ -11,28 +12,29 @@ let gaEnabled = false;
 export default class Cluar {
   static init() {
     data = window.cluar;
+    cluarSettings = window.cluarSettings;
     currentLanguage = Cluar.defaultLanguage();
     custom = new CluarCustom(data);
     _service.config({
-      prefix: data.config.services.api,
+      prefix: cluarSettings.config.services.api,
     });
     _auth.config({
       storage: "local",
     });
-    if (data.config.analytics && data.config.analytics !== "") {
-      ReactGA.initialize(data.config.analytics);
+    if (cluarSettings.config.analytics && cluarSettings.config.analytics !== "") {
+      ReactGA.initialize(cluarSettings.config.analytics);
       gaEnabled = true;
     }
   }
 
   static authProviders() {
-    const { config } = window.cluar;
-    return config?.auth.providers;
+    const { auth } = window.cluarSettings;
+    return auth?.providers;
   }
 
   static authAltcha() {
-    const { config } = window.cluar;
-    return !!config.auth.altcha;
+    const { auth } = window.cluarSettings;
+    return !!auth.altcha;
   }
 
   static custom() {
@@ -40,7 +42,7 @@ export default class Cluar {
   }
 
   static config() {
-    return data.config;
+    return cluarSettings.config;
   }
 
   static isGAEnabled() {

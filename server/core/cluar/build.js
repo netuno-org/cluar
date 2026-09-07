@@ -14,12 +14,6 @@ export default {
 
     const data = _val.map();
 
-    data.set(
-      "config",
-      _app.settings.getValues("cluar", _val.map())
-        .getValues("website", _val.map())
-    );
-
     /*
      *
      *  LANGUAGES

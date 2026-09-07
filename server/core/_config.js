@@ -2,8 +2,7 @@ import { _config, _env, _url, _header, _app, _val, _auth, _req, _log } from "@ne
 
 _config.set("_lang", _config.get("_lang:default"));
 
-if (_env.is("dev")
-  && (_url.equals("/") || _url.equals("/Index.netuno"))) {
+if (_env.is("dev") && (_url.equals("/") || _url.equals("/Index.netuno"))) {
   _config
     .set("_login:user", "dev")
     .set("_login:pass", "dev")
@@ -29,26 +28,39 @@ if (_env.is("dev")) {
   websiteBuildPath = "website/dist";
 }
 if (_app.isFolder(websiteBuildPath)) {
-  const websiteConfigFile = _app.file(`${websiteBuildPath}/reauthkit.js`);
+  const websiteConfigFile = _app.file(`${websiteBuildPath}/cluar/settings.js`);
   if (_app.configReloaded() || !websiteConfigFile.exists()) {
-    const websiteConfig = _val.map()
-      .set("api", _app.settings.getValues("api", _val.map()))
+    const websiteConfig = _val
+      .map()
+      .set(
+        "config",
+        _app.settings
+          .getValues("cluar", _val.map())
+          .getValues("website", _val.map()),
+      )
       .set(
         "auth",
-        _val.map()
+        _val
+          .map()
           .set("altcha", _auth.altchaEnabled())
           .set(
             "providers",
-            _val.map()
+            _val
+              .map()
               .set("facebook", _auth.providerEnabled("facebook"))
               .set("google", _auth.providerEnabled("google"))
               .set("microsoft", _auth.providerEnabled("microsoft"))
               .set("github", _auth.providerEnabled("github"))
-              .set("discord", _auth.providerEnabled("discord"))
-          )
+              .set("discord", _auth.providerEnabled("discord")),
+          ),
       );
-    websiteConfigFile.output().printAndClose(`window.reauthkit = { config: ${websiteConfig.toJSON(4)} };`);
+
+    websiteConfigFile
+      .output()
+      .printAndClose(`window.cluarSettings = ${websiteConfig.toJSON(4)};`);
   }
 } else {
-  _log.fatal(`Cannot create the website config, because the ${websiteBuildPath} folder does not exist.`);
+  _log.fatal(
+    `Cannot create the settings, because the ${websiteBuildPath} folder does not exist.`,
+  );
 }
