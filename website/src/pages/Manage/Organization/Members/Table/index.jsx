@@ -5,9 +5,7 @@ import {
   Row,
   Switch,
   Table,
-  Input,
-  Popconfirm,
-  Space
+  Input
 } from "antd";
 import {
   forwardRef,
@@ -16,31 +14,44 @@ import {
   useRef,
   useState
 } from "react";
-import { DeleteOutlined, EditOutlined, SearchOutlined, UserOutlined } from "@ant-design/icons";
+import { EditOutlined, SearchOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
-import Cluar from "../../../../common/Cluar";
-import OrganizationModal from "../Modal";
-import MembersModal from "../Members";
+import Cluar from "../../../../../common/Cluar";
+import MembersModal from "../FormModal";
 
 const debounces = {}
 
-const OrganizationTable = forwardRef(({ }, ref) => {
+const MembersTable = forwardRef(({ organizationData }, ref) => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
-  const organizationModalRef = useRef();
   const membersModalRef = useRef();
-  const [organizationData, setOrganizationData] = useState(null);
+  const [memberEditeData, setMemberEditeData] = useState(null);
   const [activeLoading, setActiveLoading] = useState({
     key: "",
     isLoading: false
   });
-  const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
   const [filters, setFilters] = useState({});
   const [pagination, setPagination] = useState({
     page: 1,
     size: 10
   });
+  const [groups, setGroups] = useState([]);
+
+  const onLoadGroups = () => {
+    _service({
+      url: "reserved-area/user/group/list",
+      method: "GET",
+      data: {},
+      success: (response) => {
+        const { groups } = response.json;
+        setGroups(groups);
+      },
+      fail: (error) => {
+        console.error(error);
+      }
+    })
+  }
 
   const onActive = ({ uid, active }) => {
     setActiveLoading({
@@ -48,7 +59,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
       isLoading: true
     });
     _service({
-      url: "reserved-area/organization/active",
+      url: "reserved-area/organization/member/active",
       method: "PUT",
       data: {
         uid,
@@ -71,7 +82,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('language-table-desactive-success-message') : Cluar.plainDictionary('language-table-active-success-message')
+          message: active ? Cluar.plainDictionary('members-table-desactive-success-message') : Cluar.plainDictionary('members-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -81,33 +92,12 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('language-table-desactive-failed-message') : Cluar.plainDictionary('language-table-active-failed-message')
+          message: active ? Cluar.plainDictionary('members-table-desactive-failed-message') : Cluar.plainDictionary('members-table-active-failed-message')
         });
       }
     })
   }
 
-  const onDelete = (uid) => {
-    setDeleteLoadingUid(uid);
-    _service({
-      url: "reserved-area/organization",
-      method: "DELETE",
-      data: { uid },
-      success: () => {
-        setDeleteLoadingUid(null);
-        notification.success({
-          message: Cluar.plainDictionary("organization-table-delete-success-message")
-        });
-        onLoadOrganizations();
-      },
-      fail: (error) => {
-        setDeleteLoadingUid(null);
-        console.error(error);
-        const errorMessage = error?.json?.error || Cluar.plainDictionary("organization-table-delete-failed-message");
-        notification.error({ message: errorMessage });
-      }
-    });
-  }
 
   const getTextFilterProps = (key) => {
     return ({
@@ -134,26 +124,29 @@ const OrganizationTable = forwardRef(({ }, ref) => {
     });
   };
 
-  const onLoadOrganizations = () => {
+  const onLoadMembers = () => {
     setLoading(true);
     _service({
-      url: "reserved-area/organization/list",
+      url: "reserved-area/organization/member/list",
       method: "POST",
       data: {
         pagination,
-        filters
+        filters: {
+          organization_name: organizationData.name,
+          ...filters
+        }
       },
       success: (response) => {
         setLoading(false);
-        const { organizations, organization_total } = response.json
-        setData(organizations);
-        setTotal(organization_total);
+        const { members, total } = response.json
+        setData(members);
+        setTotal(total);
       },
       fail: (error) => {
         setLoading(false);
         console.error(error);
         notification.error({
-          message: Cluar.plainDictionary("organization-table-load-failed")
+          message: Cluar.plainDictionary("members-table-load-failed")
         })
       }
     })
@@ -166,7 +159,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainDictionary('organization-table-active'),
+      title: Cluar.plainDictionary('members-table-active'),
       dataIndex: 'active',
       key: 'active',
       onHeaderCell: () => ({
@@ -195,74 +188,62 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         }
       ]
     },
+    // {
+    //     title: Cluar.plainDictionary('members-table-user'),
+    //     dataIndex: 'user',
+    //     key: 'user',
+    //     ...getTextFilterProps("people_name"),
+    //     onHeaderCell: () => ({
+    //         "data-column-key": "user",
+    //     }),
+    //     render: (val, record) => val?.name
+    // },
     {
-      title: Cluar.plainDictionary('organization-table-name'),
-      dataIndex: 'name',
-      key: 'name',
-      ...getTextFilterProps("name"),
+      title: Cluar.plainDictionary('members-table-user'),
+      dataIndex: 'user',
+      ...getTextFilterProps("user_name"),
       onHeaderCell: () => ({
-        "data-column-key": "name",
+        "data-column-key": "user",
       }),
-    },
-    {
-      title: Cluar.plainDictionary('organization-table-code'),
-      dataIndex: 'code',
-      ...getTextFilterProps("code"),
-      onHeaderCell: () => ({
-        "data-column-key": "code",
-      }),
-      key: 'code',
-    },
-    {
-      title: Cluar.plainDictionary('organization-table-parent'),
-      dataIndex: 'parent',
-      ...getTextFilterProps("parent_name"),
-      onHeaderCell: () => ({
-        "data-column-key": "parent",
-      }),
-      key: 'parent',
+      key: 'user',
       render: (val, record) => val?.name
     },
     {
-      title: Cluar.plainDictionary('organization-table-actions'),
+      title: Cluar.plainDictionary('members-table-group'),
+      dataIndex: 'group',
+      onHeaderCell: () => ({
+        "data-column-key": "group",
+      }),
+      key: 'group_codes',
+      render: (val, record) => val?.name,
+      filtered: filters.group_codes,
+      filters: groups.map((group) => ({
+        text: group.name,
+        value: group.code
+      }))
+
+    },
+    {
+      title: Cluar.plainDictionary('members-table-actions'),
       dataIndex: 'Actions',
       key: 'actions',
       onHeaderCell: () => ({
         "data-column-key": "actions",
       }),
       render: (val, record) => (
-        <Space size={4}>
-          <Button
-            icon={<EditOutlined />}
-            type="text"
-            title={Cluar.plainDictionary("organization-table-button-edit")}
-            onClick={() => {
-              setOrganizationData(record);
-              organizationModalRef.current.onOpenModal();
-            }}
-          />
-          <Button
-            icon={<UserOutlined />}
-            type="text"
-            title={"Organizações"}
-            onClick={() => {
-              setOrganizationData(record);
-              membersModalRef.current.openModal();
-            }}
-          />
-          <Popconfirm
-            title={Cluar.plainDictionary("organization-table-popconfirm-delete-title")}
-            onConfirm={() => onDelete(record.uid)}
-          >
+        <Row>
+          <Col>
             <Button
+              icon={<EditOutlined />}
               type="text"
-              danger
-              title={Cluar.plainDictionary("organization-table-button-delete")}
-              icon={<DeleteOutlined />}
-              loading={deleteLoadingUid === record.uid}
+              title="Editar"
+              onClick={() => {
+                setMemberEditeData(record);
+                membersModalRef.current.onOpenModal();
+              }}
             />
-          </Popconfirm>
-        </Space>
+          </Col>
+        </Row>
       )
     },
   ]
@@ -274,23 +255,25 @@ const OrganizationTable = forwardRef(({ }, ref) => {
   }, []);
 
   useEffect(() => {
-    onLoadOrganizations();
+    if (organizationData) {
+      onLoadMembers();
+      onLoadGroups();
+    }
   }, [])
 
   useEffect(() => {
-    onLoadOrganizations();
+    if (organizationData) {
+      onLoadMembers();
+    }
   }, [pagination, filters])
 
   return (
     <div>
-      <OrganizationModal
-        ref={organizationModalRef}
-        organizationData={organizationData}
-        onReloadTable={onReloadTable}
-      />
       <MembersModal
         ref={membersModalRef}
-        organizationData={organizationData}
+        memberData={memberEditeData}
+        userData={memberEditeData?.user}
+        onReloadTable={onReloadTable}
       />
       <Table
         columns={columns}
@@ -301,7 +284,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           total: total,
           pageSize: pagination.size,
           current: pagination.page,
-          position: ["topRight", "bottomRight"],
+          position: ["bottomRight"],
           onChange: (current) => { setPagination({ page: current, size: pagination.size }) }
         }}
         onChange={(pagination, currentFilters, currentSorter, { action }) => {
@@ -312,9 +295,9 @@ const OrganizationTable = forwardRef(({ }, ref) => {
             }
             Object.keys(currentFilters).forEach((key) => {
               const value = currentFilters[key];
-              if (filtersModify.includes(key)) {
-                newFilters[key] = value;
-              }
+
+              newFilters[key] = value;
+
             })
             setFilters(newFilters);
           }
@@ -324,4 +307,4 @@ const OrganizationTable = forwardRef(({ }, ref) => {
   )
 })
 
-export default OrganizationTable;
+export default MembersTable;
