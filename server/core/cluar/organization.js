@@ -60,5 +60,43 @@ export default {
             AND descendant.id = ${descendant.getInt("id")}
     `);
     return !!isAncestor;
-  }
+  },
+
+  getAncestors: (organizationId) => {
+    return _db.query(`
+        WITH RECURSIVE ancestor AS (
+            SELECT
+                org.name,
+                org.id,
+                org.parent_id,
+                org.code,
+                org.uid,
+                org.active
+            FROM
+                organization org
+            WHERE 1 = 1
+               AND org.id = ?::int 
+            UNION
+            SELECT
+                org.name,
+                org.id,
+                org.parent_id,
+                org.code,
+                org.uid,
+                org.active
+            FROM
+                organization org
+            INNER JOIN
+                ancestor a ON a.parent_id = org.id
+        )
+        SELECT
+            a.name,
+            a.id,
+            a.parent_id,
+            a.code,
+            a.uid,
+            a.active
+        FROM ancestor a
+    `, organizationId);
+  },
 };
