@@ -1,7 +1,11 @@
+/*
+  * Functions that deal with the logged user
+  */
+
 import { _db, _user, _val } from "@netuno/server-types";
 
 export default {
-  getLoggedPeople: () => {
+  getPeople: () => {
     return _db.form("people")
       .where(
         _db.where("people_user_id").equals(_user.id())
