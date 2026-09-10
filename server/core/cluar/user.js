@@ -54,7 +54,7 @@ export default {
     return dbOrganizations;
   },
 
-  getOrganizationHierarchy: () => {
+  getAuthorizedOrganizations: () => {
     const dbPeople = _db.queryFirst(`SELECT id FROM people WHERE people_user_id = ?`, _user.id());
 
     const dbOrganizations = _db.query(`
