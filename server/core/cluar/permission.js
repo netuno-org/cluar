@@ -4,14 +4,14 @@ import organization from "#core/cluar/organization.js";
 
 export default {
   isAllowed: ({ organization: orgCode, allowedGroups }) => {
-    const loggedPeople = user.getLoggedPeople();
+    const loggedPeople = user.getPeople();
     const currentOrg = organization.getByCode(orgCode);
     const peopleGroups = organization.getPeopleGroupsByOrg(currentOrg.getInt("id"), loggedPeople.getInt("id"));
     return peopleGroups.some((group) => allowedGroups.includes(group.getString("code")));
   },
 
   isUserAuthorizedInOrganization: (params) => {
-    const people = user.getLoggedPeople();
+    const people = user.getPeople();
     const organization = params.getValues("organization");
 
     const dbIsAuthorized = _db.queryFirst(`
