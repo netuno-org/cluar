@@ -98,19 +98,19 @@ if (parent_code) {
     _exec.stop();
   }
 
-  const isDescendant = cluar.organization.organizationIsDescendant(
+  const isParentDescendant = cluar.organization.isAncestorOf(
     _val.map()
-      .set('organizationChildren', dbOrganization)
-      .set('organizationParent', dbParent)
+      .set('ancestor', dbOrganization)
+      .set('descendant', dbParent)
   );
 
-  if (isDescendant) {
+  if (isParentDescendant) {
     _header.status(401);
     _out.json(
       _val.map()
         .set('result', false)
         .set('error_code', 'hierarchy-breakdown')
-        .set('error', `An organization can not have as parent an organization below your hierarchy`)
+        .set('error', `An organization can not have as parent an organization below it's hierarchy`)
     );
     _exec.stop();
   }

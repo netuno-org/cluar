@@ -127,7 +127,7 @@ export default {
           )
       );
       const dbDescendants = _db.query(`
-          WITH RECURSIVE childrens AS (
+          WITH RECURSIVE descendant AS (
              SELECT
                  org.name,
                  org.id,
@@ -150,27 +150,27 @@ export default {
              FROM
                  organization org
              INNER JOIN
-                 childrens cs ON org.parent_id = cs.id
+                 descendant cs ON org.parent_id = cs.id
          )
          SELECT
-             childrens.name AS childrens_name,
-             childrens.code AS childrens_code,
-             childrens.uid AS childrens_uid,
-             childrens.id AS childrens_id
+             descendant.name AS descendant_name,
+             descendant.code AS descendant_code,
+             descendant.uid AS descendant_uid,
+             descendant.id AS descendant_id
          FROM
-             childrens
+             descendant
       `);
 
       for (const dbDescendant of dbDescendants) {
         hierarchy.set(
-          dbDescendant.getString('childrens_code'),
+          dbDescendant.getString('descendant_code'),
           _val.map()
             .set('active', dbOrganization.getBoolean('member_active'))
             .set('organization',
               _val.map()
-                .set('name', dbDescendant.getString('childrens_name'))
-                .set('code', dbDescendant.getString('childrens_code'))
-                .set('uid', dbDescendant.getString("childrens_uid"))
+                .set('name', dbDescendant.getString('descendant_name'))
+                .set('code', dbDescendant.getString('descendant_code'))
+                .set('uid', dbDescendant.getString("descendant_uid"))
             )
             .set('group',
               _val.map()
@@ -190,18 +190,18 @@ export default {
             WHERE 1 = 1
                 AND organization_people.organization_id = ?
                 AND organization_people.people_id = ?
-        `, dbDescendant.getInt("childrens_id"), dbOrganization.getInt("people_id"));
+        `, dbDescendant.getInt("descendant_id"), dbOrganization.getInt("people_id"));
 
         if (specificMember) {
           hierarchy.set(
-            dbDescendant.getString('childrens_code'),
+            dbDescendant.getString('descendant_code'),
             _val.map()
               .set('active', specificMember.getBoolean('member_active'))
               .set('organization',
                 _val.map()
-                  .set('name', dbDescendant.getString('childrens_name'))
-                  .set('code', dbDescendant.getString('childrens_code'))
-                  .set('uid', dbDescendant.getString("childrens_uid"))
+                  .set('name', dbDescendant.getString('descendant_name'))
+                  .set('code', dbDescendant.getString('descendant_code'))
+                  .set('uid', dbDescendant.getString("descendant_uid"))
               )
               .set('group',
                 _val.map()

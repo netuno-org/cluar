@@ -24,12 +24,12 @@ export default {
       .all();
   },
 
-  organizationIsDescendant: (params) => {
-    const organizationChildren = params.getValues("organizationChildren");
-    const organizationParent = params.getValues("organizationParent");
+  isAncestorOf: (params) => {
+    const ancestor = params.getValues("ancestor");
+    const descendant = params.getValues("descendant");
 
-    const isDescendant = _db.queryFirst(`
-        WITH RECURSIVE childrens AS (
+    const isAncestor = _db.queryFirst(`
+        WITH RECURSIVE descendant AS (
             SELECT
                 org.name,
                 org.id,
@@ -40,7 +40,7 @@ export default {
             FROM
                 organization org
             WHERE 1 = 1
-               AND org.id = ${organizationChildren.getInt("id")}
+               AND org.id = ${ancestor.getInt("id")}
             UNION
             SELECT
                 org.name,
@@ -52,13 +52,13 @@ export default {
             FROM
                 organization org
             INNER JOIN
-                childrens cs ON org.parent_id = cs.id
+                descendant d ON org.parent_id = d.id
         )
         SELECT 1
-        FROM childrens
+        FROM descendant
         WHERE 1 = 1
-            AND childrens.id = ${organizationParent.getInt("id")}
+            AND descendant.id = ${descendant.getInt("id")}
     `);
-    return !!isDescendant;
+    return !!isAncestor;
   }
 };
