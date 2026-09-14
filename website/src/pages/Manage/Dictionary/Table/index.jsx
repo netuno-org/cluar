@@ -163,7 +163,7 @@ const DictionaryTable = forwardRef(({ }, ref) => {
         <Space size={4}>
           <Button
             type="text"
-            title="Editar"
+            title={Cluar.plainDictionary("dictionary-table-button-edit")}
             icon={<EditOutlined />}
             onClick={() => {
               setDictionaryData(record);
@@ -177,7 +177,7 @@ const DictionaryTable = forwardRef(({ }, ref) => {
             <Button
               type="text"
               danger
-              title="Apagar"
+              title={Cluar.plainDictionary("dictionary-table-button-delete")}
               icon={<DeleteOutlined />}
               loading={deleteLoadingUid === record.uid}
             />

@@ -237,7 +237,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
             <Button
               icon={<EditOutlined />}
               type="text"
-              title="Editar"
+              title={Cluar.plainDictionary("language-table-button-edit")}
               onClick={() => {
                 setLanguageEditeData(record);
                 languageModalRef.current.openModal();

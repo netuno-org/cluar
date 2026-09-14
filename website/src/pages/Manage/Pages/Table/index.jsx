@@ -286,7 +286,7 @@ const PageTable = forwardRef(({ }, ref) => {
         <Space size={4}>
           <Button
             type="text"
-            title="Editar"
+            title={Cluar.plainDictionary("page-table-button-edit")}
             icon={<EditOutlined />}
             onClick={() => {
               setPageEditeData(record);
@@ -300,7 +300,7 @@ const PageTable = forwardRef(({ }, ref) => {
             <Button
               type="text"
               danger
-              title="Apagar"
+              title={Cluar.plainDictionary("page-table-button-delete")}
               icon={<DeleteOutlined />}
               loading={deleteLoadingUid === record.uid}
             />

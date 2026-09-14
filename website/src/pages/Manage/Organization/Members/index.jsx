@@ -28,7 +28,7 @@ const MembersModal = forwardRef(({ organizationData }, ref) => {
 
   return (
     <Modal
-      title={organizationData ? `Membros da Organização ${organizationData.name}` : "Membros da Organização"}
+      title={organizationData ? `${Cluar.plainDictionary("organization-members-title")} ${organizationData.name}` : Cluar.plainDictionary("organization-members-title")}
       maskClosable={false}
       destroyOnHidden={true}
       centered

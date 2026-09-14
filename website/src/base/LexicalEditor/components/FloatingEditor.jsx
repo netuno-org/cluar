@@ -13,6 +13,8 @@ import {
 import { TOGGLE_LINK_COMMAND, $isLinkNode } from "@lexical/link";
 import { mergeRegister } from '@lexical/utils';
 
+import Cluar from "../../../common/Cluar";
+
 import "./FloatingEditor.less";
 
 const getSelectedNode = (selection) => {
@@ -152,7 +154,7 @@ export default function FloatingEditor({ editor }) {
           className={`toolbar-button ${formatState.bold ? 'active' : ''}`}
           onClick={() => handleFormatCommand('bold')}
           onMouseDown={(event) => event.preventDefault()}
-          title="Negrito (Ctrl+B)"
+          title={`${Cluar.plainDictionary("toolbar-bold")} (Ctrl+B)`}
         >
           <BoldOutlined />
         </button>
@@ -161,7 +163,7 @@ export default function FloatingEditor({ editor }) {
           className={`toolbar-button ${formatState.italic ? 'active' : ''}`}
           onClick={() => handleFormatCommand('italic')}
           onMouseDown={(event) => event.preventDefault()}
-          title="Itálico (Ctrl+I)"
+          title={`${Cluar.plainDictionary("toolbar-italic")} (Ctrl+I)`}
         >
           <ItalicOutlined />
         </button>
@@ -170,7 +172,7 @@ export default function FloatingEditor({ editor }) {
           className={`toolbar-button ${formatState.underline ? 'active' : ''}`}
           onClick={() => handleFormatCommand('underline')}
           onMouseDown={(event) => event.preventDefault()}
-          title="Sublinhado (Ctrl+U)"
+          title={`${Cluar.plainDictionary("toolbar-underline")} (Ctrl+U)`}
         >
           <UnderlineOutlined />
         </button>
@@ -181,7 +183,7 @@ export default function FloatingEditor({ editor }) {
           className={`toolbar-button ${formatState.link ? 'active' : ''}`}
           onClick={() => handleLinkCommand()}
           onMouseDown={(event) => event.preventDefault()}
-          title="Adicionar Link (Ctrl+K)"
+          title={`${Cluar.plainDictionary("toolbar-link")} (Ctrl+K)`}
         >
           <LinkOutlined />
         </button>

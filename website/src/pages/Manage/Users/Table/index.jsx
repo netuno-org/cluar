@@ -248,7 +248,7 @@ const UserTable = forwardRef(({ }, ref) => {
           <Button
             icon={<ApartmentOutlined />}
             type="text"
-            title={"Organizações"}
+            title={Cluar.plainDictionary("user-table-button-organizations")}
             onClick={() => {
               setUserData(record);
               membersModalRef.current.openModal();

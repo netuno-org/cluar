@@ -13,6 +13,8 @@ import SectionEditor from "./SectionEditor";
 
 import "./index.less";
 
+import Cluar from "../../common/Cluar";
+
 const PageSection = ({
   children,
   sectionData,
@@ -115,7 +117,7 @@ const PageSection = ({
               </Button>
             )}
             <Popover
-              title="Nova seção"
+              title={Cluar.plainDictionary("page-section-new-section")}
               trigger="click"
               content={newSection}
               onVisibleChange={setNewSectionVisible}

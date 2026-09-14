@@ -259,7 +259,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
           <Button
             icon={<EditOutlined />}
             type="text"
-            title="Editar"
+            title={Cluar.plainDictionary("members-table-button-edit")}
             onClick={() => {
               console.log(record);
               setMemberEditeData(record);

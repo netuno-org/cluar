@@ -244,7 +244,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           <Button
             icon={<UserOutlined />}
             type="text"
-            title={"Organizações"}
+            title={Cluar.plainDictionary("organization-table-button-organizations")}
             onClick={() => {
               setOrganizationData(record);
               membersModalRef.current.openModal();

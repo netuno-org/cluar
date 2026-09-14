@@ -4392,3 +4392,267 @@ _db.insertIfNotExists(
     .set("code", "members-table-delete-failed-message")
     .set("description", "Membros - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
 );
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "aa830e62-0fdc-4bfe-82f2-5796694fec18")
+    .set("code", "toolbar-undo")
+    .set("description", "Editor - Barra de Ferramentas - Desfazer")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "4792a672-4252-44dd-ae00-dd44c8859217")
+    .set("code", "toolbar-redo")
+    .set("description", "Editor - Barra de Ferramentas - Refazer")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "e92fbd95-a3f6-4f75-b8fd-c5740933421e")
+    .set("code", "toolbar-styles")
+    .set("description", "Editor - Barra de Ferramentas - Estilos")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "a4feb344-558d-4a10-b04a-4e9f93f391eb")
+    .set("code", "toolbar-font")
+    .set("description", "Editor - Barra de Ferramentas - Fonte")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "82373bbb-e815-47a4-b02b-618379a8e8ae")
+    .set("code", "toolbar-font-size-decrease")
+    .set("description", "Editor - Barra de Ferramentas - Diminuir tamanho da fonte")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "766994d8-1c42-49d9-998d-393551339c0b")
+    .set("code", "toolbar-font-size-increase")
+    .set("description", "Editor - Barra de Ferramentas - Aumentar tamanho da fonte")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "24cbea20-c6b4-4590-9138-2c994343d4b3")
+    .set("code", "toolbar-bold")
+    .set("description", "Editor - Barra de Ferramentas - Negrito")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "5cc65705-32e2-4d1d-b65b-f212874a33d7")
+    .set("code", "toolbar-italic")
+    .set("description", "Editor - Barra de Ferramentas - It\u00E1lico")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "392ca935-469a-4802-aefd-b836f6251831")
+    .set("code", "toolbar-underline")
+    .set("description", "Editor - Barra de Ferramentas - Sublinhado")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "33fb1dd8-0105-4103-83de-58b0a6dc3ec1")
+    .set("code", "toolbar-link")
+    .set("description", "Editor - Barra de Ferramentas - Inserir Link")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "37c56695-7d3e-40a1-9b87-a35ea25aa569")
+    .set("code", "toolbar-html-mode")
+    .set("description", "Editor - Barra de Ferramentas - Modo HTML")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "5e62ffea-d600-4e8c-9790-432878567165")
+    .set("code", "toolbar-align-left")
+    .set("description", "Editor - Barra de Ferramentas - Alinhar \u00E0 Esquerda")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "6002c530-7da5-420a-911c-fa8eccbd262f")
+    .set("code", "toolbar-align-center")
+    .set("description", "Editor - Barra de Ferramentas - Alinhar ao Centro")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2be6dbca-4f11-4b8f-8b8d-6d34907b7a80")
+    .set("code", "toolbar-align-right")
+    .set("description", "Editor - Barra de Ferramentas - Alinhar \u00E0 Direita")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "b0f050d1-f67d-4a36-a5de-955e8b057b53")
+    .set("code", "toolbar-insert-image")
+    .set("description", "Editor - Barra de Ferramentas - Inserir Imagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "226fec6c-8aaa-4969-80dd-63d539b87940")
+    .set("code", "toolbar-image-upload-label")
+    .set("description", "Editor - Barra de Ferramentas - Formul\u00E1rio - Upload de Imagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "79cfe642-ddd6-47c9-bf69-fc0ab3d30d25")
+    .set("code", "toolbar-image-url-label")
+    .set("description", "Editor - Barra de Ferramentas - Formul\u00E1rio - URL da Imagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "39d09380-7076-493d-a6bf-6698cb0437ca")
+    .set("code", "toolbar-insert-columns")
+    .set("description", "Editor - Barra de Ferramentas - Inserir Colunas")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "c8d4f17b-40e5-4d94-bc8f-c05c33ddb19e")
+    .set("code", "toolbar-columns-layout-label")
+    .set("description", "Editor - Barra de Ferramentas - Formul\u00E1rio - Layout das Colunas")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "7a92af88-f11d-47df-9886-823b7e988cd3")
+    .set("code", "image-editor-field-image")
+    .set("description", "Sec\u00E7\u00E3o - Editor de Imagem - Campo - Imagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "60dbcce5-edce-44ef-b39b-1269e924baae")
+    .set("code", "image-editor-field-title")
+    .set("description", "Sec\u00E7\u00E3o - Editor de Imagem - Campo - T\u00EDtulo da Imagem")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "131d22c9-d72e-40f6-a1f8-56fa80ceb4c0")
+    .set("code", "image-editor-field-alt")
+    .set("description", "Sec\u00E7\u00E3o - Editor de Imagem - Campo - T\u00EDtulo Alt")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ce0ae486-1dc9-4fe1-a810-f3c4bb86ac01")
+    .set("code", "page-section-new-section")
+    .set("description", "Sec\u00E7\u00E3o - Nova Sec\u00E7\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "b2de3d3f-c960-4eac-9b53-07b38d4aa8d5")
+    .set("code", "user-table-button-organizations")
+    .set("description", "Tabela de Utilizadores - Bot\u00E3o - Organiza\u00E7\u00F5es")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "69dd61d3-f0bc-4493-b966-bd7a2886c0d0")
+    .set("code", "organization-table-button-organizations")
+    .set("description", "Tabela de Organiza\u00E7\u00F5es - Bot\u00E3o - Organiza\u00E7\u00F5es")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "bac966a4-b774-4e9a-8ab8-0619d4a6dedd")
+    .set("code", "members-table-button-edit")
+    .set("description", "Tabela de Membros - Bot\u00E3o - Editar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "061eddaa-7e83-46b5-92ec-053ee71a8128")
+    .set("code", "page-table-button-edit")
+    .set("description", "Tabela de P\u00E1ginas - Bot\u00E3o - Editar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "ee53afe2-c5ed-4936-8c9b-5f33df124879")
+    .set("code", "page-table-button-delete")
+    .set("description", "Tabela de P\u00E1ginas - Bot\u00E3o - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "cf894945-f0b9-43df-b81b-535ff017620a")
+    .set("code", "dictionary-table-button-edit")
+    .set("description", "Tabela de Dicion\u00E1rio - Bot\u00E3o - Editar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "59b73150-bd27-4604-8613-fb524da13835")
+    .set("code", "dictionary-table-button-delete")
+    .set("description", "Tabela de Dicion\u00E1rio - Bot\u00E3o - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "be012dda-b531-4172-859a-f0a4c6ade1db")
+    .set("code", "language-table-button-edit")
+    .set("description", "Tabela de Idiomas - Bot\u00E3o - Editar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "a58f30ba-8022-41a8-89b9-8cbd0a52385a")
+    .set("code", "user-members-organizations-title")
+    .set("description", "Utilizador - Membros - T\u00EDtulo - Organiza\u00E7\u00F5es do Utilizador")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "02538e46-43ab-42be-aa4d-f1b0da435438")
+    .set("code", "organization-members-title")
+    .set("description", "Organiza\u00E7\u00E3o - Membros - T\u00EDtulo - Membros da Organiza\u00E7\u00E3o")
+);
