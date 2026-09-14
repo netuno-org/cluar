@@ -20,18 +20,18 @@ if (filters) {
 
   if (organizationName) {
     queryWhere += `
-            AND user_orgs.name like ?
+            AND user_orgs.name = ?
         `;
-    queryParams.add(`%${organizationName}%`);
+    queryParams.add(organizationName);
   }
 
   const peopleName = filters.has("people_name") && filters.getString("people_name");
 
   if (peopleName) {
     queryWhere += `
-            AND people.name like ?
+            AND people.name = ?
         `;
-    queryParams.add(`%${peopleName}%`);
+    queryParams.add(peopleName);
   }
 
   const peopleUID = filters.has("people_uid") && filters.getString("people_uid");
