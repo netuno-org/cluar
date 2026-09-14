@@ -222,7 +222,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
 
   return (
     <Modal
-      title={editeMode ? Cluar.plainDictionary('members-modal-edit-title') : Cluar.plainDictionary('members-modal-new-title')}
+      title={editeMode ? Cluar.plainDictionary('members-modal-edit-title') : Cluar.plainDictionary('members-modal-new-title') + "a"}
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       onClose={() => setIsModalOpen(false)}

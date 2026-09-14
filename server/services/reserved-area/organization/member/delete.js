@@ -35,7 +35,7 @@ const membershipCount = _db.form("organization_people")
 if (membershipCount <= 1) {
   cluar.response.error({
     status: 409,
-    error: 'cannot remove membership, a user must be in at least one organization'
+    error: 'Cannot remove membership, a user must be in at least one organization'
   });
 }
 

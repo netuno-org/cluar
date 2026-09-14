@@ -4360,3 +4360,35 @@ _db.insertIfNotExists(
     .set("code", "user-table-delete-failed-message")
     .set("description", "Utilizadores - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
 );
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "412c856b-6e27-4559-a785-a53b7323343a")
+    .set("code", "members-table-popconfirm-delete-title")
+    .set("description", "Tabela de Membros - Popconfirm - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "a3303f8a-8784-4f31-9080-951e851c0e9a")
+    .set("code", "members-table-button-delete")
+    .set("description", "Membros - Tabela - Bot\u00E3o - Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "c137c56d-7685-429d-9961-603c240ebeb7")
+    .set("code", "members-table-delete-success-message")
+    .set("description", "Membros - Tabela - Notifica\u00E7\u00E3o - Sucesso ao apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "f04bac84-d0e7-40da-9978-3540a45ffe19")
+    .set("code", "members-table-delete-failed-message")
+    .set("description", "Membros - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
+);

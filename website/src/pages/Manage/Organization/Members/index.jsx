@@ -28,7 +28,7 @@ const MembersModal = forwardRef(({ organizationData }, ref) => {
 
   return (
     <Modal
-      title={"Membros da Organização"}
+      title={organizationData ? `Membros da Organização ${organizationData.name}` : "Membros da Organização"}
       maskClosable={false}
       destroyOnHidden={true}
       centered
