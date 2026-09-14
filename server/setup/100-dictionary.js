@@ -9801,3 +9801,75 @@ _db.insertIfNotExists(
     .set("value", "Falha ao apagar o utilizador.")
 );
 
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "e7a4aa8d-5123-4c9d-ba2b-9d6f6bcc1c2a")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "412c856b-6e27-4559-a785-a53b7323343a")
+    .set("value", "Delete this member?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "f5b083d4-19a4-4fc5-93a5-4dd371fcbd7a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "412c856b-6e27-4559-a785-a53b7323343a")
+    .set("value", "Apagar este membro?")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "9e28b4ec-7172-41c3-aafd-9def7cd21c39")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "a3303f8a-8784-4f31-9080-951e851c0e9a")
+    .set("value", "Delete")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "cbab0d34-02b4-4b68-8502-c37515566bc1")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "a3303f8a-8784-4f31-9080-951e851c0e9a")
+    .set("value", "Apagar")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "b48f6b9f-46bb-4065-a4a9-b42b497d971d")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "c137c56d-7685-429d-9961-603c240ebeb7")
+    .set("value", "Member deleted successfully.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "9098f8b6-27ba-4cdd-a73f-071ad48f06ca")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "c137c56d-7685-429d-9961-603c240ebeb7")
+    .set("value", "Membro apagado com sucesso.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "1478a453-125d-4112-836e-a38ee294f3b1")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "f04bac84-d0e7-40da-9978-3540a45ffe19")
+    .set("value", "Failed to delete the member.")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "b933b399-aa84-46c0-b33d-27f971b2ea1a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "f04bac84-d0e7-40da-9978-3540a45ffe19")
+    .set("value", "Falha ao apagar o membro.")
+);
+

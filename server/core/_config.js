@@ -28,6 +28,10 @@ if (_env.is("dev")) {
   websiteBuildPath = "website/dist";
 }
 if (_app.isFolder(websiteBuildPath)) {
+  if (!_app.isFolder(`${websiteBuildPath}/cluar`)) {
+    _app.file(`${websiteBuildPath}/cluar`).mkdir();
+  }
+  
   const websiteConfigFile = _app.file(`${websiteBuildPath}/cluar/settings.js`);
   if (_app.configReloaded() || !websiteConfigFile.exists()) {
     const websiteConfig = _val

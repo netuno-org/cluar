@@ -5,7 +5,9 @@ import {
   Row,
   Switch,
   Table,
-  Input
+  Input,
+  Popconfirm,
+  Space
 } from "antd";
 import {
   forwardRef,
@@ -14,7 +16,7 @@ import {
   useRef,
   useState
 } from "react";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined, SearchOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../../common/Cluar";
 import MembersModal from "../FormModal";
@@ -25,6 +27,7 @@ const MembersTable = forwardRef(({ organizationData }, ref) => {
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
   const membersModalRef = useRef();
   const [memberEditeData, setMemberEditeData] = useState(null);
   const [activeLoading, setActiveLoading] = useState({
@@ -98,6 +101,27 @@ const MembersTable = forwardRef(({ organizationData }, ref) => {
     })
   }
 
+  const onDelete = (record) => {
+    setDeleteLoadingUid(record.uid);
+    _service({
+      url: "reserved-area/organization/member",
+      method: "DELETE",
+      data: { people_uid: record.user.uid, organization_uid: record.organization.uid },
+      success: () => {
+        setDeleteLoadingUid(null);
+        notification.success({
+          message: Cluar.plainDictionary("members-table-delete-success-message")
+        });
+        onLoadMembers();
+      },
+      fail: (error) => {
+        setDeleteLoadingUid(null);
+        console.error(error);
+        const errorMessage = error?.json?.error || Cluar.plainDictionary("members-table-delete-failed-message");
+        notification.error({ message: errorMessage });
+      }
+    });
+  }
 
   const getTextFilterProps = (key) => {
     return ({
@@ -231,19 +255,29 @@ const MembersTable = forwardRef(({ organizationData }, ref) => {
         "data-column-key": "actions",
       }),
       render: (val, record) => (
-        <Row>
-          <Col>
+        <Space size={4}>
+          <Button
+            icon={<EditOutlined />}
+            type="text"
+            title="Editar"
+            onClick={() => {
+              setMemberEditeData(record);
+              membersModalRef.current.onOpenModal();
+            }}
+          />
+          <Popconfirm
+            title={Cluar.plainDictionary("members-table-popconfirm-delete-title")}
+            onConfirm={() => onDelete(record)}
+          >
             <Button
-              icon={<EditOutlined />}
               type="text"
-              title="Editar"
-              onClick={() => {
-                setMemberEditeData(record);
-                membersModalRef.current.onOpenModal();
-              }}
+              danger
+              title={Cluar.plainDictionary("members-table-button-delete")}
+              icon={<DeleteOutlined />}
+              loading={deleteLoadingUid === record.uid}
             />
-          </Col>
-        </Row>
+          </Popconfirm>
+        </Space>
       )
     },
   ]
@@ -256,6 +290,7 @@ const MembersTable = forwardRef(({ organizationData }, ref) => {
 
   useEffect(() => {
     if (organizationData) {
+      console.log(organizationData);
       onLoadMembers();
       onLoadGroups();
     }
