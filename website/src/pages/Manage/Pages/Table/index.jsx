@@ -174,7 +174,7 @@ const PageTable = forwardRef(({ }, ref) => {
       fail: (error) => {
         setLoading(false);
         console.error(error);
-        notification.error({ message: Cluar.plainDictionary("actions-table-notification-load-fail") });
+        notification.error({ message: Cluar.plainDictionary("page-table-load-failed-message") });
       }
     });
   }

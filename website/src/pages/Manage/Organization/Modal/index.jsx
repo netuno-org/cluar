@@ -88,7 +88,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           } else if (error?.json?.error_code === "hierarchy-breakdown") {
             notification.error({
               message: Cluar.plainDictionary('organization-form-edit-failed-message'),
-              description: Cluar.plainDictionary('members-form-validation-hierarchy-breakdown')
+              description: Cluar.plainDictionary('organization-form-validation-hierarchy-breakdown')
             });
             return;
           }
@@ -126,7 +126,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           } else if (error?.json?.error_code === "hierarchy-breakdown") {
             notification.error({
               message: Cluar.plainDictionary('organization-form-save-failed-message'),
-              description: Cluar.plainDictionary('members-form-validation-hierarchy-breakdown')
+              description: Cluar.plainDictionary('organization-form-validation-hierarchy-breakdown')
             });
             return;
           }

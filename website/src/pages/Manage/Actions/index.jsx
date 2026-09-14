@@ -31,7 +31,7 @@ const Actions = () => {
                 icon={<PlusOutlined />}
                 onClick={() => actionModalRef.current.openModal()}
               >
-                {Cluar.plainDictionary('users-page-new')}
+                {Cluar.plainDictionary('actions-page-new')}
               </Button>
             </Col>
           </Row>

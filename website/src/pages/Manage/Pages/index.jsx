@@ -69,7 +69,7 @@ const Pages = () => {
                   icon={<PlusOutlined />}
                   onClick={() => pageModalRef.current.openModal()}
                 >
-                  {Cluar.plainDictionary('users-page-new')}
+                  {Cluar.plainDictionary('pages-page-new')}
                 </Button>
               </Space>
             </Col>

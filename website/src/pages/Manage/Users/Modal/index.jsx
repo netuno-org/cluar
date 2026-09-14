@@ -256,8 +256,8 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 <Col span={24}>
                   <Form.Item
                     name="organization_code"
-                    label={Cluar.plainDictionary('members-form-organization')}
-                    rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
+                    label={Cluar.plainDictionary('users-form-organization')}
+                    rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
                   >
                     <Select
                       labelInValue
@@ -277,8 +277,8 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 <Col span={24}>
                   <Form.Item
                     name="group_code"
-                    label={Cluar.plainDictionary('members-form-group')}
-                    rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
+                    label={Cluar.plainDictionary('users-form-group')}
+                    rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
                   >
                     <Select
                       labelInValue

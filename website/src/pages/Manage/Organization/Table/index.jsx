@@ -71,7 +71,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('language-table-desactive-success-message') : Cluar.plainDictionary('language-table-active-success-message')
+          message: active ? Cluar.plainDictionary('organization-table-desactive-success-message') : Cluar.plainDictionary('organization-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -81,7 +81,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('language-table-desactive-failed-message') : Cluar.plainDictionary('language-table-active-failed-message')
+          message: active ? Cluar.plainDictionary('organization-table-desactive-failed-message') : Cluar.plainDictionary('organization-table-active-failed-message')
         });
       }
     })
@@ -244,7 +244,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           <Button
             icon={<UserOutlined />}
             type="text"
-            title={Cluar.plainDictionary("organization-table-button-organizations")}
+            title={Cluar.plainDictionary("organization-table-button-members")}
             onClick={() => {
               setOrganizationData(record);
               membersModalRef.current.openModal();

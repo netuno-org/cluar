@@ -140,7 +140,7 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
         setIsModalOpen(false);
         onReloadTable();
         notification.success({
-          message: editeMode ? Cluar.plainDictionary("page-form-edit-success-message") : Cluar.plainDictionary("page-form-save-success-message"),
+          message: editeMode ? Cluar.plainDictionary("action-form-edit-success-message") : Cluar.plainDictionary("action-form-save-success-message"),
         });
       },
       fail: (error) => {
@@ -149,13 +149,13 @@ const ActionsModal = forwardRef(({ onReloadTable, actionData }, ref) => {
 
         if (error?.json?.error_code) {
           notification.error({
-            message: editeMode ? Cluar.plainDictionary("page-form-edit-failed-message") : Cluar.plainDictionary("page-form-save-failed-message"),
+            message: editeMode ? Cluar.plainDictionary("action-form-edit-failed-message") : Cluar.plainDictionary("action-form-save-failed-message"),
             description: Cluar.plainDictionary(error.json.error_code),
           });
           return;
         }
         notification.error({
-          message: editeMode ? Cluar.plainDictionary("page-form-edit-failed-message") : Cluar.plainDictionary("page-form-save-failed-message"),
+          message: editeMode ? Cluar.plainDictionary("action-form-edit-failed-message") : Cluar.plainDictionary("action-form-save-failed-message"),
         });
       },
     });

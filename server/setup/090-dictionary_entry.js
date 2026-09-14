@@ -4588,14 +4588,6 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
-    .set("uid", "69dd61d3-f0bc-4493-b966-bd7a2886c0d0")
-    .set("code", "organization-table-button-organizations")
-    .set("description", "Tabela de Organiza\u00E7\u00F5es - Bot\u00E3o - Organiza\u00E7\u00F5es")
-);
-
-_db.insertIfNotExists(
-  "dictionary_entry",
-  _val.map()
     .set("uid", "bac966a4-b774-4e9a-8ab8-0619d4a6dedd")
     .set("code", "members-table-button-edit")
     .set("description", "Tabela de Membros - Bot\u00E3o - Editar")
@@ -4655,4 +4647,84 @@ _db.insertIfNotExists(
     .set("uid", "02538e46-43ab-42be-aa4d-f1b0da435438")
     .set("code", "organization-members-title")
     .set("description", "Organiza\u00E7\u00E3o - Membros - T\u00EDtulo - Membros da Organiza\u00E7\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "32ce308f-83b1-4f7d-94c5-5430ad11f527")
+    .set("code", "organization-table-button-members")
+    .set("description", "Tabela de Organiza\u00E7\u00F5es - Bot\u00E3o - Membros")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "70b54e5f-fd48-48db-8c93-4bd523e876e5")
+    .set("code", "action-form-edit-success-message")
+    .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Editar - Sucesso")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3da81f46-512a-465a-bda6-2aec1da81122")
+    .set("code", "action-form-save-success-message")
+    .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Guardar - Sucesso")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "d5fdadee-35da-4860-96b9-0fe7430d490e")
+    .set("code", "action-form-edit-failed-message")
+    .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Editar - Falha")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "3553e9ec-db61-41e4-86fd-88d6384f7e8d")
+    .set("code", "action-form-save-failed-message")
+    .set("description", "Formul\u00E1rio de A\u00E7\u00F5es - Guardar - Falha")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "2de80f3a-4275-4eff-b908-1aee4e63136d")
+    .set("code", "page-table-load-failed-message")
+    .set("description", "Tabela de P\u00E1ginas - Falha ao Carregar")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "194b6ffe-6289-47a0-98a7-5202f14410ec")
+    .set("code", "pages-page-new")
+    .set("description", "P\u00E1gina de P\u00E1ginas - Novo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "6043fffd-088a-4465-8f78-c430bb9ccbc8")
+    .set("code", "actions-page-new")
+    .set("description", "P\u00E1gina de A\u00E7\u00F5es - Novo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "9526a320-2b78-4007-8b20-a1c75df91c8e")
+    .set("code", "users-form-organization")
+    .set("description", "Formul\u00E1rio de Utilizadores - Organiza\u00E7\u00E3o")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "5ed5d89b-9838-4ea9-aa11-a741c1032c9d")
+    .set("code", "organization-form-validation-hierarchy-breakdown")
+    .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Valida\u00E7\u00E3o - Quebra de Hierarquia")
 );
