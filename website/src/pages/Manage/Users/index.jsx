@@ -28,7 +28,7 @@ const Users = () => {
         <Col span={24}>
           <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
             <Col>
-              <HeadTitle text={Cluar.plainDictionary('users-page-title')} level={4} type={"secondary"} />
+              <HeadTitle text={Cluar.plainDictionary('user-page-title')} level={4} type={"secondary"} />
             </Col>
             <Col>
               <Button
@@ -36,7 +36,7 @@ const Users = () => {
                 icon={<PlusOutlined />}
                 onClick={() => userModalRef.current.openModal()}
               >
-                {Cluar.plainDictionary('users-page-new')}
+                {Cluar.plainDictionary('user-page-new')}
               </Button>
             </Col>
           </Row>

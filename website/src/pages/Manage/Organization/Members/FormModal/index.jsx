@@ -122,7 +122,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
           setIsModalOpen(false);
           onReloadTable();
           notification.success({
-            message: Cluar.plainDictionary('members-form-edit-success-message')
+            message: Cluar.plainDictionary('member-form-edit-success-message')
           });
         },
         fail: (error) => {
@@ -131,13 +131,13 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
 
           if (error?.json?.error_code === "person-already-member") {
             notification.error({
-              description: Cluar.plainDictionary('members-form-already-exists-validation-message'),
-              message: Cluar.plainDictionary('members-form-edit-failed-message')
+              description: Cluar.plainDictionary('member-form-already-exists-validation-message'),
+              message: Cluar.plainDictionary('member-form-edit-failed-message')
             });
             return;
           }
           notification.error({
-            message: Cluar.plainDictionary('members-form-edit-failed-message')
+            message: Cluar.plainDictionary('member-form-edit-failed-message')
           });
         }
       })
@@ -154,7 +154,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
           setIsModalOpen(false);
           onReloadTable();
           notification.success({
-            message: Cluar.plainDictionary('members-form-save-success-message')
+            message: Cluar.plainDictionary('member-form-save-success-message')
           });
         },
         fail: (error) => {
@@ -163,13 +163,13 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
 
           if (error?.json?.error_code === "person-already-member") {
             notification.error({
-              description: Cluar.plainDictionary('members-form-already-exists-validation-message'),
-              message: Cluar.plainDictionary('members-form-save-failed-message')
+              description: Cluar.plainDictionary('member-form-already-exists-validation-message'),
+              message: Cluar.plainDictionary('member-form-save-failed-message')
             });
             return;
           }
           notification.error({
-            message: Cluar.plainDictionary('members-form-save-failed-message')
+            message: Cluar.plainDictionary('member-form-save-failed-message')
           });
         }
       })
@@ -222,7 +222,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
 
   return (
     <Modal
-      title={editeMode ? Cluar.plainDictionary('members-modal-edit-title') : Cluar.plainDictionary('members-modal-new-title')}
+      title={editeMode ? Cluar.plainDictionary('member-modal-edit-title') : Cluar.plainDictionary('member-modal-new-title')}
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       onClose={() => setIsModalOpen(false)}
@@ -232,10 +232,10 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
       centered
       footer={[
         <Button onClick={() => setIsModalOpen(false)}>
-          {Cluar.plainDictionary('members-form-cancel')}
+          {Cluar.plainDictionary('member-form-cancel')}
         </Button>,
         <Button type="primary" onClick={() => formRef.submit()} loading={loading.saving} disabled={loading.saving}>
-          {Cluar.plainDictionary('members-form-save')}
+          {Cluar.plainDictionary('member-form-save')}
         </Button>
       ]}
     >
@@ -248,7 +248,7 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
           <Col>
             <Form.Item
               name="active"
-              label={Cluar.plainDictionary('members-form-active')}
+              label={Cluar.plainDictionary('member-form-active')}
               initialValue={false}
             >
               <Switch />
@@ -257,8 +257,8 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
           <Col span={24}>
             <Form.Item
               name="user_uid"
-              label={Cluar.plainDictionary('members-form-user')}
-              rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
+              label={Cluar.plainDictionary('member-form-user')}
+              rules={[{ required: true, message: Cluar.plainDictionary('member-form-validate-message-required') }]}
             >
               <Select
                 labelInValue
@@ -269,8 +269,8 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
           <Col span={24}>
             <Form.Item
               name="organization_code"
-              label={Cluar.plainDictionary('members-form-organization')}
-              rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
+              label={Cluar.plainDictionary('member-form-organization')}
+              rules={[{ required: true, message: Cluar.plainDictionary('member-form-validate-message-required') }]}
             >
               <Select
                 labelInValue
@@ -290,8 +290,8 @@ const MembersFormModal = forwardRef(({ onReloadTable, memberData, userData }, re
           <Col span={24}>
             <Form.Item
               name="group_code"
-              label={Cluar.plainDictionary('members-form-group')}
-              rules={[{ required: true, message: Cluar.plainDictionary('members-form-validate-message-required') }]}
+              label={Cluar.plainDictionary('member-form-group')}
+              rules={[{ required: true, message: Cluar.plainDictionary('member-form-validate-message-required') }]}
             >
               <Select
                 labelInValue

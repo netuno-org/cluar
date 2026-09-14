@@ -85,7 +85,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('members-table-desactive-success-message') : Cluar.plainDictionary('members-table-active-success-message')
+          message: active ? Cluar.plainDictionary('member-table-desactive-success-message') : Cluar.plainDictionary('member-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -95,7 +95,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('members-table-desactive-failed-message') : Cluar.plainDictionary('members-table-active-failed-message')
+          message: active ? Cluar.plainDictionary('member-table-desactive-failed-message') : Cluar.plainDictionary('member-table-active-failed-message')
         });
       }
     })
@@ -110,14 +110,14 @@ const MembersTable = forwardRef(({ userData }, ref) => {
       success: () => {
         setDeleteLoadingUid(null);
         notification.success({
-          message: Cluar.plainDictionary("members-table-delete-success-message")
+          message: Cluar.plainDictionary("member-table-delete-success-message")
         });
         onLoadMembers();
       },
       fail: (error) => {
         setDeleteLoadingUid(null);
         console.error(error);
-        const errorMessage = error?.json?.error || Cluar.plainDictionary("members-table-delete-failed-message");
+        const errorMessage = error?.json?.error || Cluar.plainDictionary("member-table-delete-failed-message");
         notification.error({ message: errorMessage });
       }
     });
@@ -170,7 +170,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
         setLoading(false);
         console.error(error);
         notification.error({
-          message: Cluar.plainDictionary("members-table-load-failed")
+          message: Cluar.plainDictionary("member-table-load-failed")
         })
       }
     })
@@ -183,7 +183,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainDictionary('members-table-active'),
+      title: Cluar.plainDictionary('member-table-active'),
       dataIndex: 'active',
       key: 'active',
       onHeaderCell: () => ({
@@ -213,7 +213,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
       ]
     },
     // {
-    //     title: Cluar.plainDictionary('members-table-user'),
+    //     title: Cluar.plainDictionary('member-table-user'),
     //     dataIndex: 'user',
     //     key: 'user',
     //     ...getTextFilterProps("people_name"),
@@ -223,7 +223,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
     //     render: (val, record) => val?.name
     // },
     {
-      title: Cluar.plainDictionary('members-table-organization'),
+      title: Cluar.plainDictionary('member-table-organization'),
       dataIndex: 'organization',
       ...getTextFilterProps("organization_name"),
       onHeaderCell: () => ({
@@ -233,7 +233,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
       render: (val, record) => val?.name
     },
     {
-      title: Cluar.plainDictionary('members-table-group'),
+      title: Cluar.plainDictionary('member-table-group'),
       dataIndex: 'group',
       onHeaderCell: () => ({
         "data-column-key": "group",
@@ -248,7 +248,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
 
     },
     {
-      title: Cluar.plainDictionary('members-table-actions'),
+      title: Cluar.plainDictionary('member-table-actions'),
       dataIndex: 'Actions',
       key: 'actions',
       onHeaderCell: () => ({
@@ -259,7 +259,7 @@ const MembersTable = forwardRef(({ userData }, ref) => {
           <Button
             icon={<EditOutlined />}
             type="text"
-            title={Cluar.plainDictionary("members-table-button-edit")}
+            title={Cluar.plainDictionary("member-table-button-edit")}
             onClick={() => {
               console.log(record);
               setMemberEditeData(record);
@@ -267,13 +267,13 @@ const MembersTable = forwardRef(({ userData }, ref) => {
             }}
           />
           <Popconfirm
-            title={Cluar.plainDictionary("members-table-popconfirm-delete-title")}
+            title={Cluar.plainDictionary("member-table-popconfirm-delete-title")}
             onConfirm={() => onDelete(record)}
           >
             <Button
               type="text"
               danger
-              title={Cluar.plainDictionary("members-table-button-delete")}
+              title={Cluar.plainDictionary("member-table-button-delete")}
               icon={<DeleteOutlined />}
               loading={deleteLoadingUid === record.uid}
             />

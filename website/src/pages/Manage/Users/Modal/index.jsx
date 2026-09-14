@@ -136,7 +136,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         success: (response) => {
           setOnFinishLoading(false);
           notification.success({
-            message: Cluar.plainDictionary('users-form-edit-success-message')
+            message: Cluar.plainDictionary('user-form-edit-success-message')
           });
           setIsModalOpen(false);
           onReloadTable();
@@ -145,7 +145,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
           setOnFinishLoading(false);
           console.error(error);
           notification.error({
-            message: Cluar.plainDictionary('users-form-edit-failed-message')
+            message: Cluar.plainDictionary('user-form-edit-failed-message')
           })
         }
       })
@@ -159,7 +159,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         success: (response) => {
           setOnFinishLoading(false);
           notification.success({
-            message: Cluar.plainDictionary('users-form-save-success-message')
+            message: Cluar.plainDictionary('user-form-save-success-message')
           });
           setIsModalOpen(false);
           onReloadTable();
@@ -168,7 +168,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
           setOnFinishLoading(false);
           console.error(error);
           notification.error({
-            message: Cluar.plainDictionary('users-form-save-failed-message')
+            message: Cluar.plainDictionary('user-form-save-failed-message')
           })
         }
       })
@@ -183,7 +183,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
   return (
     <div className="modal-content">
       <Modal
-        title={userData ? Cluar.plainDictionary('users-modal-title-edit') : Cluar.plainDictionary('users-modal-title-new')}
+        title={userData ? Cluar.plainDictionary('user-modal-title-edit') : Cluar.plainDictionary('user-modal-title-new')}
         maskClosable={false}
         destroyOnHidden={true}
         centered
@@ -193,10 +193,10 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         afterClose={() => formRef.resetFields()}
         footer={[
           <Button key="back" onClick={() => setIsModalOpen(false)}>
-            {Cluar.plainDictionary('users-form-cancel')}
+            {Cluar.plainDictionary('user-form-cancel')}
           </Button>,
           <Button key="send" type="primary" onClick={() => { formRef.submit() }} loading={onFinishLoading}>
-            {Cluar.plainDictionary('users-form-save')}
+            {Cluar.plainDictionary('user-form-save')}
           </Button>
         ]}
       >
@@ -208,7 +208,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
           <Row justify={"space-between"} align={"middle"} gutter={[10, 0]}>
             <Col {...configColumn}>
               <Form.Item
-                label={Cluar.plainDictionary('users-form-active')}
+                label={Cluar.plainDictionary('user-form-active')}
                 name="active"
                 initialValue={false}
               >
@@ -217,36 +217,36 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
             </Col>
             <Col {...configColumn}>
               <Form.Item
-                label={Cluar.plainDictionary('users-form-name')}
+                label={Cluar.plainDictionary('user-form-name')}
                 name="name"
-                rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
+                rules={[{ required: true, message: Cluar.plainDictionary('user-form-validate-message-required') }]}
               >
                 <Input />
               </Form.Item>
             </Col>
             <Col {...configColumn}>
               <Form.Item
-                label={Cluar.plainDictionary('users-form-username')}
+                label={Cluar.plainDictionary('user-form-username')}
                 name="username"
-                rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
+                rules={[{ required: true, message: Cluar.plainDictionary('user-form-validate-message-required') }]}
               >
                 <Input />
               </Form.Item>
             </Col>
             <Col {...configColumn}>
               <Form.Item
-                label={Cluar.plainDictionary('users-form-password')}
+                label={Cluar.plainDictionary('user-form-password')}
                 name="password"
-                rules={[{ required: userData ? false : true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
+                rules={[{ required: userData ? false : true, message: Cluar.plainDictionary('user-form-validate-message-required') }]}
               >
                 <Input.Password autoComplete="off" />
               </Form.Item>
             </Col>
             <Col span={24}>
               <Form.Item
-                label={Cluar.plainDictionary('users-form-email')}
+                label={Cluar.plainDictionary('user-form-email')}
                 name="email"
-                rules={[{ required: true, type: "email", message: Cluar.plainDictionary('users-form-validate-message-required') }]}
+                rules={[{ required: true, type: "email", message: Cluar.plainDictionary('user-form-validate-message-required') }]}
               >
                 <Input />
               </Form.Item>
@@ -256,8 +256,8 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 <Col span={24}>
                   <Form.Item
                     name="organization_code"
-                    label={Cluar.plainDictionary('users-form-organization')}
-                    rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
+                    label={Cluar.plainDictionary('user-form-organization')}
+                    rules={[{ required: true, message: Cluar.plainDictionary('user-form-validate-message-required') }]}
                   >
                     <Select
                       labelInValue
@@ -277,8 +277,8 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 <Col span={24}>
                   <Form.Item
                     name="group_code"
-                    label={Cluar.plainDictionary('users-form-group')}
-                    rules={[{ required: true, message: Cluar.plainDictionary('users-form-validate-message-required') }]}
+                    label={Cluar.plainDictionary('user-form-group')}
+                    rules={[{ required: true, message: Cluar.plainDictionary('user-form-validate-message-required') }]}
                   >
                     <Select
                       labelInValue

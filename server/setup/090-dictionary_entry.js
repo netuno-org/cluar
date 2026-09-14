@@ -917,7 +917,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "9491cf29-ee04-44cc-8c44-4ff441eb693e")
-    .set("code", "pages-page-title")
+    .set("code", "page-page-title")
     .set("description", "P\u00E1gina de P\u00E1ginas - T\u00EDtulo")
 );
 
@@ -973,7 +973,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "01329d49-b5e8-460f-9af5-fedc8acf7c5f")
-    .set("code", "users-page-title")
+    .set("code", "user-page-title")
     .set("description", "P\u00E1gina de Utilizadores - T\u00EDtulo")
 );
 
@@ -981,7 +981,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "939cb82a-1a03-467e-af9c-4c585c5d456e")
-    .set("code", "users-page-new")
+    .set("code", "user-page-new")
     .set("description", "P\u00E1gina de Utilizadores - Novo")
 );
 
@@ -989,7 +989,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "32d95621-1eec-475a-ac75-b219b86ad488")
-    .set("code", "users-table-active")
+    .set("code", "user-table-active")
     .set("description", "Tabela de Utilizadores - Activo")
 );
 
@@ -997,7 +997,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "7d5ec0e1-3c9a-4bc4-90df-e159a62af600")
-    .set("code", "users-table-name")
+    .set("code", "user-table-name")
     .set("description", "Tabela de Utilizadores - Nome")
 );
 
@@ -1005,7 +1005,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "9a481dbc-6f15-4df0-9ed2-eff1988d8ce0")
-    .set("code", "users-table-mail")
+    .set("code", "user-table-mail")
     .set("description", "Tabela de Utilizadores - E-mail")
 );
 
@@ -1013,7 +1013,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "fc9bb440-6c0d-4a47-a262-7de29a1ba3de")
-    .set("code", "users-table-group")
+    .set("code", "user-table-group")
     .set("description", "Tabela de Utilizadores - Grupo")
 );
 
@@ -1021,7 +1021,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "fe721b26-ab85-4878-b349-5d37a9f186d9")
-    .set("code", "users-table-actions")
+    .set("code", "user-table-actions")
     .set("description", "Tabela de Utilizadores - A\u00E7\u00F5es")
 );
 
@@ -1029,7 +1029,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "1e19f885-a528-4538-95ac-dfa2a90bae7e")
-    .set("code", "users-table-actions-edit-title")
+    .set("code", "user-table-actions-edit-title")
     .set("description", "Tabela de Utilizadores - A\u00E7\u00F5es - Editar - T\u00EDtulo")
 );
 
@@ -1037,7 +1037,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "2f315e92-ccb7-4ee1-aa3f-416a8b66d967")
-    .set("code", "users-table-user")
+    .set("code", "user-table-user")
     .set("description", "Tabela de Utilizadores - Utilizador")
 );
 
@@ -1045,7 +1045,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "9f447ef7-d096-4b0e-886c-13db1971afd8")
-    .set("code", "users-table-active-success-message")
+    .set("code", "user-table-active-success-message")
     .set("description", "Tabela de Utilizadores - Active - Sucesso - Mensagem")
 );
 
@@ -1053,7 +1053,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "ef55fd8a-0777-4726-bc57-920e528de15a")
-    .set("code", "users-table-active-success-description")
+    .set("code", "user-table-active-success-description")
     .set("description", "Tabela de Utilizadores - Active - Sucesso - Descri\u00E7\u00E3o")
 );
 
@@ -1061,7 +1061,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "9fa040cb-6bf9-49c7-805c-946e88768171")
-    .set("code", "users-table-active-failed-message")
+    .set("code", "user-table-active-failed-message")
     .set("description", "Tabela de Utilizadores - Active - Failed - Mensagem")
 );
 
@@ -1069,7 +1069,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "671aa3d2-79e6-44a2-85fd-39db4aa1805b")
-    .set("code", "users-table-active-failed-description")
+    .set("code", "user-table-active-failed-description")
     .set("description", "Tabela de Utilizadores - Active - Failed - Descri\u00E7\u00E3o")
 );
 
@@ -1077,7 +1077,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "95e71496-e332-439a-a98f-d314fb99f1ee")
-    .set("code", "users-table-load-failed-message")
+    .set("code", "user-table-load-failed-message")
     .set("description", "Tabela de Utilizadores - Falha no Carregamento - Mensagem")
 );
 
@@ -1085,7 +1085,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "c0a02b36-ed83-4084-b01a-36c5f1548ff0")
-    .set("code", "users-table-load-failed-description")
+    .set("code", "user-table-load-failed-description")
     .set("description", "Tabela de Utilizadores - Falha no Carregamento - Descri\u00E7\u00E3o")
 );
 
@@ -1093,7 +1093,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "c11efd6a-9634-4ba0-bbe2-fedffa97bc82")
-    .set("code", "users-table-desactive-success-message")
+    .set("code", "user-table-desactive-success-message")
     .set("description", "Tabela de Utilizadores - Desactive - Sucesso - Mensagem")
 );
 
@@ -1101,7 +1101,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "ab2dbd34-3b6b-4696-a157-188ce223b266")
-    .set("code", "users-table-desactive-success-description")
+    .set("code", "user-table-desactive-success-description")
     .set("description", "Tabela de Utilizadores - Desactive - Sucesso - Description")
 );
 
@@ -1109,7 +1109,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "384101dd-2e4e-4d41-9ee3-cff1e35883f0")
-    .set("code", "users-table-desactive-failed-description")
+    .set("code", "user-table-desactive-failed-description")
     .set("description", "Tabela de Utilizadores - Desactive - Falha - Descri\u00E7\u00E3o")
 );
 
@@ -1117,7 +1117,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "f9aac546-1091-4eda-a930-ca49915cb3a2")
-    .set("code", "users-table-desactive-failed-message")
+    .set("code", "user-table-desactive-failed-message")
     .set("description", "Tabela de Utilizadores - Desactive - Falha - Mensagem")
 );
 
@@ -1125,7 +1125,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "7ca07cf4-1c8b-4fc3-8a72-6522cff0bbe3")
-    .set("code", "actions-table-active")
+    .set("code", "action-table-active")
     .set("description", "Tabela de A\u00E7\u00F5es - Activo")
 );
 
@@ -1133,7 +1133,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "766f75f0-73a1-4841-ac00-2db1154e720d")
-    .set("code", "actions-table-language")
+    .set("code", "action-table-language")
     .set("description", "Tabela de A\u00E7\u00F5es - Idioma")
 );
 
@@ -1141,7 +1141,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "50a0860d-44c7-4eb9-a19c-735687b5f283")
-    .set("code", "actions-table-title")
+    .set("code", "action-table-title")
     .set("description", "Tabela de A\u00E7\u00F5es - T\u00EDtulo")
 );
 
@@ -1149,7 +1149,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "08c8347e-b139-449c-aa5a-ee0005e362ff")
-    .set("code", "actions-table-content")
+    .set("code", "action-table-content")
     .set("description", "Tabela de A\u00E7\u00F5es - Conte\u00FAdo")
 );
 
@@ -1157,7 +1157,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "384a3701-c54d-4185-a94d-6881e72b084e")
-    .set("code", "actions-table-indication")
+    .set("code", "action-table-indication")
     .set("description", "Tabela de A\u00E7\u00F5es - Indica\u00E7\u00E3o")
 );
 
@@ -1165,7 +1165,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "db388310-d856-44f4-984b-838caae3f6e0")
-    .set("code", "actions-table-link")
+    .set("code", "action-table-link")
     .set("description", "Tabela de A\u00E7\u00F5es - Liga\u00E7\u00E3o")
 );
 
@@ -1173,7 +1173,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "c2b9fa69-5635-4008-878a-b3cca3dffc97")
-    .set("code", "actions-table-actions")
+    .set("code", "action-table-actions")
     .set("description", "Tabela de A\u00E7\u00F5es - A\u00E7\u00F5es")
 );
 
@@ -1181,7 +1181,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "c13e2474-11a5-4ebd-bd53-654bfb1e4dcf")
-    .set("code", "actions-page-title")
+    .set("code", "action-page-title")
     .set("description", "P\u00E1gina de A\u00E7\u00F5es - T\u00EDtulo")
 );
 
@@ -1293,7 +1293,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "cd9ca6b4-b7de-411c-a35d-6b2ebb9370d3")
-    .set("code", "pages-page-sync")
+    .set("code", "page-page-sync")
     .set("description", "P\u00E1ginas - Bot\u00E3o - Sincronizar")
 );
 
@@ -1469,7 +1469,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "62cdf9d3-f760-4df4-b27f-132a86f2894f")
-    .set("code", "users-form-active")
+    .set("code", "user-form-active")
     .set("description", "Formul\u00E1rio de Utilizadores - Activo")
 );
 
@@ -1477,7 +1477,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "0deeec16-fbc5-4121-9971-571f84020489")
-    .set("code", "users-form-name")
+    .set("code", "user-form-name")
     .set("description", "Formul\u00E1rio de Utilizadores - Nome")
 );
 
@@ -1485,7 +1485,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "5765fb68-58e1-468e-ac4b-e5e523fb773e")
-    .set("code", "users-form-username")
+    .set("code", "user-form-username")
     .set("description", "Formul\u00E1rio de Utilizadores - Utilizador")
 );
 
@@ -1493,7 +1493,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "f8ba1570-686c-4e27-9511-42357e574aa3")
-    .set("code", "users-form-password")
+    .set("code", "user-form-password")
     .set("description", "Formul\u00E1rio de Utilizadores - Palavra-passe")
 );
 
@@ -1501,7 +1501,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "c2a55741-9e10-4568-b35a-17d1d94161f1")
-    .set("code", "users-form-email")
+    .set("code", "user-form-email")
     .set("description", "Formul\u00E1rio de Utilizadores - E-mail")
 );
 
@@ -1509,7 +1509,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "de64a4fd-c309-438f-a2ad-f1a01a758a3c")
-    .set("code", "users-form-cancel")
+    .set("code", "user-form-cancel")
     .set("description", "Formul\u00E1rio de Utilizadores - Cancelar")
 );
 
@@ -1517,7 +1517,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "3a37f86e-4ed5-486d-b4ec-b951164eefaf")
-    .set("code", "users-form-save")
+    .set("code", "user-form-save")
     .set("description", "Formul\u00E1rio de Utilizadores - Guardar")
 );
 
@@ -1525,7 +1525,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "7faf345a-8348-44df-8727-d1f359b38a5e")
-    .set("code", "users-modal-title-new")
+    .set("code", "user-modal-title-new")
     .set("description", "Modal de Utilizadores - T\u00EDtulo - Novo")
 );
 
@@ -1533,7 +1533,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "a39f13d4-a3e8-4ad6-9375-9667b6fe6f8f")
-    .set("code", "users-modal-title-edit")
+    .set("code", "user-modal-title-edit")
     .set("description", "Modal de Utilizadores - T\u00EDtulo - Editar")
 );
 
@@ -1541,7 +1541,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "204b44bc-537e-45e6-a510-c25ed15f29fd")
-    .set("code", "users-form-group")
+    .set("code", "user-form-group")
     .set("description", "Formul\u00E1rio de Utilizadores - Grupo")
 );
 
@@ -1549,7 +1549,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "f3dafdf1-0e4c-409a-98fb-aec0a4231aae")
-    .set("code", "users-form-validate-message-required")
+    .set("code", "user-form-validate-message-required")
     .set("description", "Formul\u00E1rio de Utilizadores - Valida\u00E7\u00E3o Mensagem - Obrigat\u00F3rio")
 );
 
@@ -1557,7 +1557,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "650ba746-8ac2-4486-b4c4-73ba611b10c4")
-    .set("code", "users-form-load-groups-failed-message")
+    .set("code", "user-form-load-groups-failed-message")
     .set("description", "Formul\u00E1rio de Utilizadores - Carregar Grupos - Falha - Mensagem")
 );
 
@@ -1565,7 +1565,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "cac15cb8-b9f0-47a2-adce-7c5cd6596878")
-    .set("code", "users-form-load-groups-failed-description")
+    .set("code", "user-form-load-groups-failed-description")
     .set("description", "Formul\u00E1rio de Utilizadores - Carregar Grupos - Falha - Descri\u00E7\u00E3o")
 );
 
@@ -1573,7 +1573,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "eac3f61f-2672-4aa2-bf44-657a66bb1050")
-    .set("code", "users-form-save-success-description")
+    .set("code", "user-form-save-success-description")
     .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Sucesso - Descri\u00E7\u00E3o")
 );
 
@@ -1581,7 +1581,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "70c03cc5-523d-483d-82e3-db9e35a6e5b2")
-    .set("code", "users-form-save-success-message")
+    .set("code", "user-form-save-success-message")
     .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Sucesso - Mensagem")
 );
 
@@ -1589,7 +1589,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "2c6c6417-bb02-4533-89c1-edb779bc014b")
-    .set("code", "users-form-save-failed-message")
+    .set("code", "user-form-save-failed-message")
     .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Falha - Mensagem")
 );
 
@@ -1597,7 +1597,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "2980c79d-89f6-4a31-aabe-765788b53047")
-    .set("code", "users-form-save-failed-description")
+    .set("code", "user-form-save-failed-description")
     .set("description", "Formul\u00E1rio de Utilizadores - Guardar - Falha - Descri\u00E7\u00E3o")
 );
 
@@ -1605,7 +1605,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "69367e06-9a65-4908-849b-9cdcd1e42a2a")
-    .set("code", "users-form-edit-success-message")
+    .set("code", "user-form-edit-success-message")
     .set("description", "Formul\u00E1rio de Utilizadores - Editar - Sucesso - Mensagem")
 );
 
@@ -1613,7 +1613,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "6c0e9206-20eb-4fc9-b4e9-30f5dd022383")
-    .set("code", "users-form-edit-success-description")
+    .set("code", "user-form-edit-success-description")
     .set("description", "Formul\u00E1rio de Utilizadores - Editar - Sucesso - Descri\u00E7\u00E3o")
 );
 
@@ -1621,7 +1621,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "f212f926-3c99-4fe7-91fc-bb4acf5d0d95")
-    .set("code", "users-form-edit-failed-message")
+    .set("code", "user-form-edit-failed-message")
     .set("description", "Formul\u00E1rio de Utilizadores - Editar - Falha - Mensagem")
 );
 
@@ -1629,7 +1629,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "ea4cddb1-aee0-42b9-bd7d-47eb7c6cec80")
-    .set("code", "users-form-edit-failed-description")
+    .set("code", "user-form-edit-failed-description")
     .set("description", "Formul\u00E1rio de Utilizadores - Editar - Falha - Descri\u00E7\u00E3o")
 );
 
@@ -1709,7 +1709,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "abd3c711-4b0f-4ffb-a43c-a936bf2a5500")
-    .set("code", "members-form-user")
+    .set("code", "member-form-user")
     .set("description", "Formul\u00E1rio de Membros - Utilizador")
 );
 
@@ -2389,7 +2389,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "b3d5d524-15af-493f-a11e-727df00fd4fd")
-    .set("code", "members-page-title")
+    .set("code", "member-page-title")
     .set("description", "P\u00E1gina de Membros - T\u00EDtulo")
 );
 
@@ -2397,7 +2397,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "8209f931-d4ee-4fd1-b7c0-b3c286b54bd4")
-    .set("code", "members-page-new")
+    .set("code", "member-page-new")
     .set("description", "P\u00E1gina de Membros - Novo")
 );
 
@@ -2405,7 +2405,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "0227f944-4457-420c-a573-125b908a5952")
-    .set("code", "members-table-desactive-success-message")
+    .set("code", "member-table-desactive-success-message")
     .set("description", "Tabela de Membros - Desactivo - Sucesso")
 );
 
@@ -2413,7 +2413,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "d9a81108-c5b6-4695-9a3a-79c28fdcf8b3")
-    .set("code", "members-table-active-success-message")
+    .set("code", "member-table-active-success-message")
     .set("description", "Tabela de Membros - Activo - Sucesso")
 );
 
@@ -2421,7 +2421,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "d2f6a57b-a310-4035-8534-04d0aa1b4c6d")
-    .set("code", "members-table-desactive-failed-message")
+    .set("code", "member-table-desactive-failed-message")
     .set("description", "Tabela de Membros - Desactivo - Falha")
 );
 
@@ -2429,7 +2429,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "9a173070-390c-4ffa-869a-dfdbf0a7e325")
-    .set("code", "members-table-active-failed-message")
+    .set("code", "member-table-active-failed-message")
     .set("description", "Tabela de Membros - Activo - Falha")
 );
 
@@ -2437,7 +2437,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "3a226649-cbad-414d-9d78-56b395d422b8")
-    .set("code", "members-table-load-failed")
+    .set("code", "member-table-load-failed")
     .set("description", "Tabela de Membros - Carregar - Falha")
 );
 
@@ -2445,7 +2445,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "2bfa0550-0c45-45f1-943f-fd65640ba018")
-    .set("code", "members-table-active")
+    .set("code", "member-table-active")
     .set("description", "Tabela de Membros - Activo")
 );
 
@@ -2453,7 +2453,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "abe67bcd-0c27-42cb-a2f7-c4fe64dba1f8")
-    .set("code", "members-table-user")
+    .set("code", "member-table-user")
     .set("description", "Tabela de Membros - Utilizador")
 );
 
@@ -2461,7 +2461,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "9066ed56-778f-41a6-8ef8-57971b508508")
-    .set("code", "members-table-organization")
+    .set("code", "member-table-organization")
     .set("description", "Tabela de Membros - Organiza\u00E7\u00E3o")
 );
 
@@ -2469,7 +2469,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "f0a58c1f-1a0d-449d-b7bf-a50f9a1acdb0")
-    .set("code", "members-table-group")
+    .set("code", "member-table-group")
     .set("description", "Tabela de Membros - Grupo")
 );
 
@@ -2477,7 +2477,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "76f495d3-6cd3-4577-8fa9-ba43ba4bd81c")
-    .set("code", "members-table-actions")
+    .set("code", "member-table-actions")
     .set("description", "Tabela de Membros - A\u00E7\u00F5es")
 );
 
@@ -2485,7 +2485,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "71f61d7c-0ee5-4381-8cd8-27c36dc3c33c")
-    .set("code", "members-form-edit-failed-message")
+    .set("code", "member-form-edit-failed-message")
     .set("description", "Formul\u00E1rio de Membros - Editar - Falha")
 );
 
@@ -2493,7 +2493,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "d365088c-7315-4f1a-8fca-ce5b208ac10f")
-    .set("code", "members-form-save-success-message")
+    .set("code", "member-form-save-success-message")
     .set("description", "Formul\u00E1rio de Membros - Registar - Sucesso")
 );
 
@@ -2501,7 +2501,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "350ab06f-d9c0-4870-ad92-816700442733")
-    .set("code", "members-form-save-failed-message")
+    .set("code", "member-form-save-failed-message")
     .set("description", "Formul\u00E1rio de Membros - Registar - Falha")
 );
 
@@ -2509,7 +2509,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "cd3a71cb-d46b-4e3c-8fa6-782183bf1047")
-    .set("code", "members-form-edit-success-message")
+    .set("code", "member-form-edit-success-message")
     .set("description", "Formul\u00E1rio de Membros - Editar - Sucesso")
 );
 
@@ -2517,7 +2517,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "8dc6a2d2-6917-463d-8c4c-9d4392283c33")
-    .set("code", "members-modal-new-title")
+    .set("code", "member-modal-new-title")
     .set("description", "Formul\u00E1rio de Membros - T\u00EDtulo - Novo")
 );
 
@@ -2525,7 +2525,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "c8baa7ee-9475-4c80-9c84-d60b26522ffe")
-    .set("code", "members-modal-edit-title")
+    .set("code", "member-modal-edit-title")
     .set("description", "Formul\u00E1rio de Membros - T\u00EDtulo - Editar")
 );
 
@@ -2533,7 +2533,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "1f8a0bca-6eeb-4289-af0e-0eafe8d74d3f")
-    .set("code", "members-form-cancel")
+    .set("code", "member-form-cancel")
     .set("description", "Formul\u00E1rio de Membros - Cancelar")
 );
 
@@ -2541,7 +2541,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "c3839a26-a4f6-4349-909d-78645661e3ab")
-    .set("code", "members-form-save")
+    .set("code", "member-form-save")
     .set("description", "Formul\u00E1rio de Membros - Guardar")
 );
 
@@ -2549,7 +2549,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "7453deef-535b-4537-93ff-c517dfb4696f")
-    .set("code", "members-form-active")
+    .set("code", "member-form-active")
     .set("description", "Formul\u00E1rio de Membros - Activo")
 );
 
@@ -2557,7 +2557,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "02472161-92c4-4d9e-b802-edd52eddc744")
-    .set("code", "members-form-validate-message-required")
+    .set("code", "member-form-validate-message-required")
     .set("description", "Formul\u00E1rio de Membros - Obrigat\u00F3rio - Mensagem")
 );
 
@@ -2565,7 +2565,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "0cc13f0f-280f-4790-86b2-f64e943ab9bc")
-    .set("code", "members-form-organization")
+    .set("code", "member-form-organization")
     .set("description", "Formul\u00E1rio de Membros - Organiza\u00E7\u00E3o")
 );
 
@@ -2581,7 +2581,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "2885a2e0-ac23-4002-a625-dbbdfc3fe281")
-    .set("code", "members-form-group")
+    .set("code", "member-form-group")
     .set("description", "Formul\u00E1rio de Membros - Grupo")
 );
 
@@ -2605,7 +2605,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "090ad0da-732a-48ee-92b5-45150e500d2c")
-    .set("code", "members-form-already-exists-validation-message")
+    .set("code", "member-form-already-exists-validation-message")
     .set("description", "Formul\u00E1rio de Membros - Valida\u00E7\u00E3o - J\u00E1 existente - Mensagem")
 );
 
@@ -2621,7 +2621,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "d7aed264-c531-4b34-a368-07bef7943613")
-    .set("code", "members-form-validation-hierarchy-breakdown")
+    .set("code", "member-form-validation-hierarchy-breakdown")
     .set("description", "Formul\u00E1rio de Membros - Valida\u00E7\u00E3o - Quebra de Hierarquia")
 );
 
@@ -3325,7 +3325,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "fc57bd9b-e8a2-41b1-85f6-c2991871a620")
-    .set("code", "actions-table-image")
+    .set("code", "action-table-image")
     .set("description", "A\u00E7\u00F5es - Tabela - Coluna - Imagem")
 );
 
@@ -3685,7 +3685,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "7a36a5c7-a781-4443-8567-43af5814c000")
-    .set("code", "actions-table-notification-load-fail")
+    .set("code", "action-table-notification-load-fail")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao carregar")
 );
 
@@ -3693,7 +3693,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "ea20fbf7-e7ac-4d3d-95e2-c3aedce1213f")
-    .set("code", "actions-table-filter-active")
+    .set("code", "action-table-filter-active")
     .set("description", "A\u00E7\u00F5es - Tabela - Filtro - Activo")
 );
 
@@ -3701,7 +3701,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "305f9680-c815-4d48-ba5b-7e264dacc7ad")
-    .set("code", "actions-table-filter-inactive")
+    .set("code", "action-table-filter-inactive")
     .set("description", "A\u00E7\u00F5es - Tabela - Filtro - Inactivo")
 );
 
@@ -3709,7 +3709,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "9c22b8c6-d55c-40cc-ad61-2c7b59752171")
-    .set("code", "actions-table-parameter")
+    .set("code", "action-table-parameter")
     .set("description", "A\u00E7\u00F5es - Tabela - Coluna - Par\u00E2metro")
 );
 
@@ -3717,7 +3717,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "73a763c9-3d50-4fe9-b10a-02e6627b1776")
-    .set("code", "actions-table-button-edit")
+    .set("code", "action-table-button-edit")
     .set("description", "A\u00E7\u00F5es - Tabela - Bot\u00E3o - Editar")
 );
 
@@ -3725,7 +3725,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "2ba5aada-a2cb-48ae-b3f1-f20cdc9c380c")
-    .set("code", "actions-table-button-delete")
+    .set("code", "action-table-button-delete")
     .set("description", "A\u00E7\u00F5es - Tabela - Bot\u00E3o - Apagar")
 );
 
@@ -3741,7 +3741,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "fa5ee477-ff55-435b-a65d-895435bf77e9")
-    .set("code", "actions-table-popconfirm-delete-title")
+    .set("code", "action-table-popconfirm-delete-title")
     .set("description", "A\u00E7\u00F5es - Tabela - Popconfirm - Apagar")
 );
 
@@ -3757,7 +3757,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "1b863bd9-19ab-41af-9d67-c06e9a27d086")
-    .set("code", "actions-table-desactive-success-message")
+    .set("code", "action-table-desactive-success-message")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Sucesso ao desativar")
 );
 
@@ -3765,7 +3765,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "9fa6b840-2d6d-4319-80a9-85c19ec64791")
-    .set("code", "actions-table-active-success-message")
+    .set("code", "action-table-active-success-message")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Sucesso ao ativar")
 );
 
@@ -3773,7 +3773,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "61b7dfc8-2620-4682-a508-071ec3bce975")
-    .set("code", "actions-table-desactive-failed-message")
+    .set("code", "action-table-desactive-failed-message")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao desativar")
 );
 
@@ -3781,7 +3781,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "40d6de60-9860-46be-b3f0-696d3699f67d")
-    .set("code", "actions-table-active-failed-message")
+    .set("code", "action-table-active-failed-message")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao ativar")
 );
 
@@ -4069,7 +4069,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "e1144c02-c368-41f6-8aad-dac32bbf9f76")
-    .set("code", "actions-table-delete-success-message")
+    .set("code", "action-table-delete-success-message")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Sucesso ao apagar")
 );
 
@@ -4085,7 +4085,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "33ffe5d8-699f-4a67-9911-1e3937d1e8e1")
-    .set("code", "actions-table-delete-failed-message")
+    .set("code", "action-table-delete-failed-message")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
 );
 
@@ -4365,7 +4365,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "412c856b-6e27-4559-a785-a53b7323343a")
-    .set("code", "members-table-popconfirm-delete-title")
+    .set("code", "member-table-popconfirm-delete-title")
     .set("description", "Tabela de Membros - Popconfirm - Apagar")
 );
 
@@ -4373,7 +4373,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "a3303f8a-8784-4f31-9080-951e851c0e9a")
-    .set("code", "members-table-button-delete")
+    .set("code", "member-table-button-delete")
     .set("description", "Membros - Tabela - Bot\u00E3o - Apagar")
 );
 
@@ -4381,7 +4381,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "c137c56d-7685-429d-9961-603c240ebeb7")
-    .set("code", "members-table-delete-success-message")
+    .set("code", "member-table-delete-success-message")
     .set("description", "Membros - Tabela - Notifica\u00E7\u00E3o - Sucesso ao apagar")
 );
 
@@ -4389,7 +4389,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "f04bac84-d0e7-40da-9978-3540a45ffe19")
-    .set("code", "members-table-delete-failed-message")
+    .set("code", "member-table-delete-failed-message")
     .set("description", "Membros - Tabela - Notifica\u00E7\u00E3o - Falha ao apagar")
 );
 
@@ -4589,7 +4589,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "bac966a4-b774-4e9a-8ab8-0619d4a6dedd")
-    .set("code", "members-table-button-edit")
+    .set("code", "member-table-button-edit")
     .set("description", "Tabela de Membros - Bot\u00E3o - Editar")
 );
 
@@ -4701,7 +4701,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "194b6ffe-6289-47a0-98a7-5202f14410ec")
-    .set("code", "pages-page-new")
+    .set("code", "page-page-new")
     .set("description", "P\u00E1gina de P\u00E1ginas - Novo")
 );
 
@@ -4709,7 +4709,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "6043fffd-088a-4465-8f78-c430bb9ccbc8")
-    .set("code", "actions-page-new")
+    .set("code", "action-page-new")
     .set("description", "P\u00E1gina de A\u00E7\u00F5es - Novo")
 );
 
@@ -4717,7 +4717,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "9526a320-2b78-4007-8b20-a1c75df91c8e")
-    .set("code", "users-form-organization")
+    .set("code", "user-form-organization")
     .set("description", "Formul\u00E1rio de Utilizadores - Organiza\u00E7\u00E3o")
 );
 

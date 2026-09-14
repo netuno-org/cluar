@@ -76,7 +76,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('actions-table-desactive-success-message') : Cluar.plainDictionary('actions-table-active-success-message')
+          message: active ? Cluar.plainDictionary('action-table-desactive-success-message') : Cluar.plainDictionary('action-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -86,7 +86,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('actions-table-desactive-failed-message') : Cluar.plainDictionary('actions-table-active-failed-message')
+          message: active ? Cluar.plainDictionary('action-table-desactive-failed-message') : Cluar.plainDictionary('action-table-active-failed-message')
         });
       }
     })
@@ -101,14 +101,14 @@ const ActionsTable = forwardRef(({ }, ref) => {
       success: () => {
         setDeleteLoadingUid(null);
         notification.success({
-          message: Cluar.plainDictionary("actions-table-delete-success-message")
+          message: Cluar.plainDictionary("action-table-delete-success-message")
         });
         onLoadActions();
       },
       fail: (error) => {
         setDeleteLoadingUid(null);
         console.error(error);
-        const errorMessage = error?.json?.error || Cluar.plainDictionary("actions-table-delete-failed-message");
+        const errorMessage = error?.json?.error || Cluar.plainDictionary("action-table-delete-failed-message");
         notification.error({ message: errorMessage });
       }
     });
@@ -157,7 +157,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
       fail: (error) => {
         setLoading(false);
         console.error(error);
-        notification.error({ message: Cluar.plainDictionary("actions-table-notification-load-fail") });
+        notification.error({ message: Cluar.plainDictionary("action-table-notification-load-fail") });
       }
     });
   }
@@ -170,7 +170,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainDictionary('actions-table-active'),
+      title: Cluar.plainDictionary('action-table-active'),
       dataIndex: 'active',
       key: 'active',
       onHeaderCell: () => ({
@@ -190,17 +190,17 @@ const ActionsTable = forwardRef(({ }, ref) => {
       filtered: filters.active,
       filters: [
         {
-          text: Cluar.plainDictionary("actions-table-filter-active"),
+          text: Cluar.plainDictionary("action-table-filter-active"),
           value: true
         },
         {
-          text: Cluar.plainDictionary("actions-table-filter-inactive"),
+          text: Cluar.plainDictionary("action-table-filter-inactive"),
           value: false
         }
       ]
     },
     {
-      title: Cluar.plainDictionary("actions-table-language"),
+      title: Cluar.plainDictionary("action-table-language"),
       dataIndex: "language",
       key: "language_code",
       onHeaderCell: () => ({
@@ -219,7 +219,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
       })),
     },
     {
-      title: Cluar.plainDictionary("actions-table-parameter"),
+      title: Cluar.plainDictionary("action-table-parameter"),
       dataIndex: "parameter_code",
       key: "parameter_code",
       onHeaderCell: () => ({
@@ -233,7 +233,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
       }
     },
     {
-      title: Cluar.plainDictionary("actions-table-title"),
+      title: Cluar.plainDictionary("action-table-title"),
       dataIndex: "title",
       key: "title",
       ...getTextFilterProps("title"),
@@ -242,7 +242,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary("actions-table-image"),
+      title: Cluar.plainDictionary("action-table-image"),
       dataIndex: 'image',
       key: 'image',
       render: (val, record) => {
@@ -252,14 +252,14 @@ const ActionsTable = forwardRef(({ }, ref) => {
         return (
           <img
             src={`${_service.config().prefix}reserved-area/action/image?uid=${record.uid}`}
-            alt={Cluar.plainDictionary("actions-table-image")}
+            alt={Cluar.plainDictionary("action-table-image")}
             style={{ width: 50, height: 50, objectFit: 'cover', display: 'block', margin: '0 auto' }}
           />
         );
       },
     },
     {
-      title: Cluar.plainDictionary("actions-table-content"),
+      title: Cluar.plainDictionary("action-table-content"),
       dataIndex: "content",
       key: "content",
       ...getTextFilterProps("content"),
@@ -268,7 +268,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary("actions-table-indication"),
+      title: Cluar.plainDictionary("action-table-indication"),
       dataIndex: "indication",
       key: "indication",
       ...getTextFilterProps("indication"),
@@ -277,7 +277,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary("actions-table-link"),
+      title: Cluar.plainDictionary("action-table-link"),
       dataIndex: "link",
       key: "link",
       onHeaderCell: () => ({
@@ -285,7 +285,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary("actions-table-actions"),
+      title: Cluar.plainDictionary("action-table-actions"),
       dataIndex: "actions",
       key: "actions",
       onHeaderCell: () => ({
@@ -295,7 +295,7 @@ const ActionsTable = forwardRef(({ }, ref) => {
         <Space size={4}>
           <Button
             type="text"
-            title={Cluar.plainDictionary("actions-table-button-edit")}
+            title={Cluar.plainDictionary("action-table-button-edit")}
             icon={<EditOutlined />}
             onClick={() => {
               setActionEditeData(record);
@@ -303,13 +303,13 @@ const ActionsTable = forwardRef(({ }, ref) => {
             }}
           />
           <Popconfirm
-            title={Cluar.plainDictionary("actions-table-popconfirm-delete-title")}
+            title={Cluar.plainDictionary("action-table-popconfirm-delete-title")}
             onConfirm={() => onDelete(record.uid)}
           >
             <Button
               type="text"
               danger
-              title={Cluar.plainDictionary("actions-table-button-delete")}
+              title={Cluar.plainDictionary("action-table-button-delete")}
               icon={<DeleteOutlined />}
               loading={deleteLoadingUid === record.uid}
             />

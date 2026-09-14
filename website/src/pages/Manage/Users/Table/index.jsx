@@ -68,7 +68,7 @@ const UserTable = forwardRef(({ }, ref) => {
           key: uid
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('users-table-desactive-success-message') : Cluar.plainDictionary('users-table-active-success-message')
+          message: active ? Cluar.plainDictionary('user-table-desactive-success-message') : Cluar.plainDictionary('user-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -78,7 +78,7 @@ const UserTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('users-table-desactive-failed-message') : Cluar.plainDictionary('users-table-active-failed-message')
+          message: active ? Cluar.plainDictionary('user-table-desactive-failed-message') : Cluar.plainDictionary('user-table-active-failed-message')
         });
       }
     })
@@ -182,7 +182,7 @@ const UserTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainDictionary('users-table-active'),
+      title: Cluar.plainDictionary('user-table-active'),
       dataIndex: 'active',
       key: 'active',
       render: (val, record) => (
@@ -213,25 +213,25 @@ const UserTable = forwardRef(({ }, ref) => {
 
     },
     {
-      title: Cluar.plainDictionary('users-table-name'),
+      title: Cluar.plainDictionary('user-table-name'),
       dataIndex: 'name',
       key: 'name',
       ...getTextFilterProps("name")
     },
     {
-      title: Cluar.plainDictionary('users-table-user'),
+      title: Cluar.plainDictionary('user-table-user'),
       dataIndex: 'username',
       key: 'username',
       ...getTextFilterProps("username")
     },
     {
-      title: Cluar.plainDictionary('users-table-mail'),
+      title: Cluar.plainDictionary('user-table-mail'),
       dataIndex: 'email',
       key: 'email',
       ...getTextFilterProps("email")
     },
     {
-      title: Cluar.plainDictionary('users-table-actions'),
+      title: Cluar.plainDictionary('user-table-actions'),
       dataIndex: 'actions',
       key: 'action',
       render: (val, record) => (
@@ -239,7 +239,7 @@ const UserTable = forwardRef(({ }, ref) => {
           <Button
             icon={<EditOutlined />}
             type="text"
-            title={Cluar.plainDictionary('users-table-actions-edit-title')}
+            title={Cluar.plainDictionary('user-table-actions-edit-title')}
             onClick={() => {
               setUserData(record);
               userModalRef.current.openModal()
