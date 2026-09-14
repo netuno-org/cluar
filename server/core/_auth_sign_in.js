@@ -4,7 +4,7 @@ import groups from "#core/consts/group.js";
 const dbPeople = _db.queryFirst(`
     SELECT *
     FROM people
-    WHERE people_user_id = ${_db.param("int")}
+    WHERE people_user_id = ?
 `, _user.id);
 
 if (!dbPeople) {
@@ -21,14 +21,14 @@ const isAuthorized = _db.queryFirst(`
     SELECT 1
     FROM organization_people
     WHERE 1 = 1
-        AND people_id = ${dbPeople.getInt("id")}
+        AND people_id = ?
         AND user_group_id IN (
-            SELECT id FROM user_group WHERE code IN (
-                ${authorizedGroups.map((group) => `'${group}'`).join(", ")}
-            )
+            SELECT id FROM user_group WHERE code IN (?, ?)
         )
         AND active = true
-`);
+`, _val.init()
+  .add(dbPeople.getInt("id"))
+  .addAll(authorizedGroups));
 
 if (!isAuthorized) {
   _auth.signInAbortWithData(
