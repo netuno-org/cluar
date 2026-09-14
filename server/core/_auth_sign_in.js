@@ -21,14 +21,14 @@ const isAuthorized = _db.queryFirst(`
     SELECT 1
     FROM organization_people
     WHERE 1 = 1
-        AND people_id = ${dbPeople.getInt("id")}
+        AND people_id = ${_db.param("int")}
         AND user_group_id IN (
             SELECT id FROM user_group WHERE code IN (
-                ${authorizedGroups.map((group) => `'${group}'`).join(", ")}
+                ${authorizedGroups.map(() => "?").join(", ")}
             )
         )
         AND active = true
-`);
+`, dbPeople.getInt("id"), ...authorizedGroups);
 
 if (!isAuthorized) {
   _auth.signInAbortWithData(
