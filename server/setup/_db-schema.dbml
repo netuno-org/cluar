@@ -229,6 +229,16 @@ Table page_listing_item {
   Note: 'Item'
 }
 
+Table page_row {
+  id int [pk, increment]
+  Note: 'Linha'
+}
+
+Table page_row_coluna {
+  id int [pk, increment]
+  Note: 'Coluna'
+}
+
 Table page_slider {
   id int [pk, increment]
   content text [note: 'Conteúdo']
