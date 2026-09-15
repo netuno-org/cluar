@@ -1,7 +1,7 @@
 
 # Documentation
 
-CLUAR CMS facilitates the creation of websites using ReactJS but with the maintenance of content, navigation, pages, languages, settings and much more, through a back office provided by the Neptune platform.
+CLUAR CMS facilitates the creation of websites using ReactJS but with the maintenance of content, navigation, pages, languages, settings and much more, through a back office provided by the Netuno platform.
 
 For those who are starting to learn about ReactJS & CSS, you will be able to create a modern and customized website in a very practical and intuitive way.
 
@@ -21,7 +21,7 @@ These are the main mechanisms that CLUAR CMS offers by default:
 8. [Settings](https://doc.netuno.org/docs/academy/cluar/configuration)
 9. [Functionality](https://doc.netuno.org/docs/academy/cluar/components/functionality)
 
-#### Estrutura do Código do Website
+#### Website Code Structure
 
 The code is organized as follows:
 
@@ -38,7 +38,7 @@ The code is organized as follows:
   Contains custom-made components to be integrated into page content.
 
 - `website/src/styles`
-  Here it contains the main and global CSS, with the management of the variables (`variables`) of layout and design settings.
+  This is where the main and global CSS is located, with the management of the variables (`variables`) of layout and design settings.
 
 - `website/src/pages`
   Custom developed pages without being processed by the CLUAR CMS engine.
@@ -54,10 +54,10 @@ The code is organized as follows:
 
 #### Netuno Application Code Structure
 
-About the structure of the Neptune application:
+About the structure of the Netuno application:
 
 - `config`
-  Netuno application configuration as database, commands executed at startup, CORS, SMTP, and much more.
+  Netuno application configuration such as database, startup commands, CORS, SMTP, and much more.
 
 - `public`
   Public files of the Netuno application.
@@ -90,7 +90,7 @@ Vite enables LESS preprocessing in `website/vite.config.js` for the application'
 
 The main components
 
-## Header e Menu
+## Header and Menu
 
 - `website/src/base/Header`
   Contains the files responsible for the header and menu.
@@ -104,7 +104,7 @@ The main components
 
 - `website/src/common/Cluar.js`
 - `website/src/common/Builder.jsx`
-  Files Responsible for building the interface.
+  Files responsible for building the interface.
 
 
 ## Routes with React Router

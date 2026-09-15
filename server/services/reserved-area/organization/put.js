@@ -17,7 +17,7 @@ if (!dbOrganization) {
     _val.map()
       .set('result', false)
       .set('error_code', 'organization-not-found')
-      .set('error', `not fund organization with uid: ${uid}`)
+      .set('error', `organization not found with uid: ${uid}`)
   );
   _exec.stop();
 }
@@ -50,8 +50,8 @@ if (codeAlreadyInUse) {
   _out.json(
     _val.map()
       .set('result', false)
-      .set('error_code', 'code-alread-in-use')
-      .set('error', `the code ${code} already in use in other organization.`)
+      .set('error_code', 'code-already-in-use')
+      .set('error', `the code ${code} is already in use by another organization.`)
   );
   _exec.stop();
 }
@@ -66,7 +66,7 @@ if (parent_code) {
       _val.map()
         .set('result', false)
         .set('error_code', 'parent-organization-not-found')
-        .set('error', `not fund parent organization with code: ${parent_code}`)
+        .set('error', `parent organization not found with code: ${parent_code}`)
     );
     _exec.stop();
   }
@@ -110,7 +110,7 @@ if (parent_code) {
       _val.map()
         .set('result', false)
         .set('error_code', 'hierarchy-breakdown')
-        .set('error', `An organization can not have as parent an organization below it's hierarchy`)
+        .set('error', `An organization cannot have as parent an organization below its hierarchy`)
     );
     _exec.stop();
   }

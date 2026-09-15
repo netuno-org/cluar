@@ -1,7 +1,7 @@
 {
   "_schema":"tags/language",
-  "summary":"Update an existente language",
-  "description":"Update an existente language",
+  "summary":"Update an existing language",
+  "description":"Update an existing language",
   "type":"object",
   "properties":{
     "uid": {

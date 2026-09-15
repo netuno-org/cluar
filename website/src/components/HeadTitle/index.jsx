@@ -4,7 +4,7 @@ import "./index.less"
 const HeadTitle = ({ text, level, type }) => {
   return (
     <Typography.Title
-      className="heade-title"
+      className="header-title"
       type={type}
       level={level}
     >

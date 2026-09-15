@@ -1,7 +1,7 @@
 {
   "_schema":"tags/configuration",
-  "summary":"Update a existing configuration",
-  "description":"Update a existing configuration",
+  "summary":"Update an existing configuration",
+  "description":"Update an existing configuration",
   "type":"object",
   "properties":{
     "uid":{

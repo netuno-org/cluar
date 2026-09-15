@@ -1,6 +1,6 @@
 {
-  "summary":"Resgiter a new organization",
-  "description":"Resgiter a new organization",
+  "summary":"Register a new organization",
+  "description":"Register a new organization",
   "_schema":"tags/organization",
   "type":"object",
   "properties":{

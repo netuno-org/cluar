@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Cluar from '../../../common/Cluar';
-import Actions from '../../Actions';
+import Action from '../../Action';
 import config from './config.json';
 
 import './index.less';
@@ -21,7 +21,7 @@ const TextContent = ({ section, type, title, content, actions, html_content, edi
       </div>
       {config.action && (
         <div>
-          <Actions {... { section, type, actions }} />
+          <Action {... { section, type, actions }} />
         </div>
       )}
     </div>

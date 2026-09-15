@@ -1,7 +1,7 @@
 {
   "_schema":"tags/user",
-  "summary":"Active/Dasactive a user",
-  "description":"Active/Dasactive a user",
+  "summary":"Activate/Deactivate a user",
+  "description":"Activate/Deactivate a user",
   "type":"object",
   "properties":{
     "uid":{

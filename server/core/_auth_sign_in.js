@@ -4,7 +4,7 @@ import groups from "#core/consts/group.js";
 const dbPeople = _db.queryFirst(`
     SELECT *
     FROM people
-    WHERE people_user_id = ${_db.param("int")}
+    WHERE people_user_id = ?
 `, _user.id);
 
 if (!dbPeople) {

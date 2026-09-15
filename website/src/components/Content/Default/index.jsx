@@ -1,6 +1,6 @@
 import React from 'react';
 import Cluar from '../../../common/Cluar';
-import Actions from '../../Actions';
+import Action from '../../Action';
 import config from './config.json'
 
 import './index.less';
@@ -27,7 +27,7 @@ const Default = ({ section, type, title, content, image_title, image_alt, imageS
       </div>
       {config.action && (
         <div>
-          <Actions {... { section, type, actions }} />
+          <Action {... { section, type, actions }} />
         </div>
       )}
     </div>

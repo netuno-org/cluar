@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'antd';
 
 import Cluar from '../../../common/Cluar';
-import Actions from '../../Actions';
+import Action from '../../Action';
 import config from './config.json';
 
 import './index.less';
@@ -36,7 +36,7 @@ const ImageRight = ({ section, type, title, content, image_title, image_alt, ima
         </Col>
         {config.action && (
           <Col>
-            <Actions {... { section, type, actions }} />
+            <Action {... { section, type, actions }} />
           </Col>
         )}
       </Row>

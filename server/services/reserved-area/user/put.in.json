@@ -1,7 +1,7 @@
 {
   "_schema":"tags/user",
-  "summary":"Update an user",
-  "description":"Update an user",
+  "summary":"Update a user",
+  "description":"Update a user",
   "type":"object",
   "properties":{
     "uid":{

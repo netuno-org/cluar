@@ -14,6 +14,7 @@ export default class Cluar {
     data = window.cluar;
     cluarSettings = window.cluarSettings;
     currentLanguage = Cluar.defaultLanguage();
+    console.log(Cluar.defaultLanguage());
     custom = new CluarCustom(data);
     _service.config({
       prefix: cluarSettings.config.services.api,
@@ -61,7 +62,12 @@ export default class Cluar {
     currentLanguage = data.languages.find(
       (e) => e.code === codeOrLocale || e.locale === codeOrLocale,
     );
-    window.localStorage.setItem("locale", currentLanguage.locale);
+    if (!currentLanguage) {
+      currentLanguage = Cluar.defaultLanguage();
+    }
+    if (currentLanguage) {
+      window.localStorage.setItem("locale", currentLanguage.locale);
+    }
   }
 
   static languages() {

@@ -1,7 +1,7 @@
 {
   "_schema":"tags/page",
-  "summary":"Update a existent page",
-  "description":"Update a existent page",
+  "summary":"Update an existing page",
+  "description":"Update an existing page",
   "type":"object",
   "properties":{
     "uid":{

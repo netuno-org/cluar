@@ -59,7 +59,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "5af389c8-ca95-4430-8f24-0e8517ff90a0")
     .set("code", "contact-notification-recipient")
-    .set("description", "Destinat\u00E1rio da notifica\u00E7\u00E3o de contato")
+    .set("description", "Destinat\u00E1rio da notifica\u00E7\u00E3o de contacto")
     .set("configuration_parameter_type_id", "9aa06e94-1b26-4f90-8291-51f9d802110d")
 );
 

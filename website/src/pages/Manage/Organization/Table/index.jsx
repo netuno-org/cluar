@@ -20,7 +20,7 @@ import { DeleteOutlined, EditOutlined, SearchOutlined, UserOutlined } from "@ant
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 import OrganizationModal from "../Modal";
-import MembersModal from "../Members";
+import MemberModal from "../Member";
 
 const debounces = {}
 
@@ -288,7 +288,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         organizationData={organizationData}
         onReloadTable={onReloadTable}
       />
-      <MembersModal
+      <MemberModal
         ref={membersModalRef}
         organizationData={organizationData}
       />

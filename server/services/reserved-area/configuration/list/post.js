@@ -60,7 +60,7 @@ const query = _db.form('configuration')
     .get('configuration.active', 'configuration_active')
     .get('language.id', 'language_id')
     .get('language.description', 'language_description')
-    .get('language.code', 'languge_code')
+    .get('language.code', 'language_code')
     .get('configuration_parameter.id', 'parameter_id')
     .get('configuration_parameter.code', 'parameter_code')
     .get('configuration_parameter.description', 'parameter_description')
@@ -98,7 +98,7 @@ for (const dbItem of dbPage.getList('items')) {
             )
             .set('language', _val.map()
                 .set('description', dbItem.getString('language_description'))
-                .set('code', dbItem.getString('languge_code'))
+                .set('code', dbItem.getString('language_code'))
             )
     );
 }

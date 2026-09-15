@@ -1,7 +1,7 @@
 {
   "_schema":"tags/dictionary",
-  "summary":"Update a existent dictionary",
-  "description":"Update a existent dictionary",
+  "summary":"Update an existing dictionary",
+  "description":"Update an existing dictionary",
   "type":"object",
   "properties":{
     "uid":{

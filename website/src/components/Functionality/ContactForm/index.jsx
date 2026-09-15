@@ -3,7 +3,7 @@ import { Row, Col, Form, Input, Button, notification } from 'antd';
 import _service from '@netuno/service-client';
 import Cluar from '../../../common/Cluar';
 import config from "./config.json"
-import Actions from "../../Actions";
+import Action from "../../Action";
 import ReCAPTCHA from "react-google-recaptcha";
 
 import './index.less';
@@ -124,7 +124,7 @@ function ContactForm({ section, type, title, actions }) {
           {config.action && (
             <Row {...layout.rowGutter}>
               <Col lg={6} sm={24}>
-                <Actions {...{ section, type, actions }} />
+                <Action {...{ section, type, actions }} />
               </Col>
             </Row>
           )}

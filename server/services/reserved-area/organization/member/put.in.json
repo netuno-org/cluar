@@ -1,6 +1,6 @@
 {
-  "summary": "Update an existent organization member",
-  "description": "Update an existent organization member",
+  "summary": "Update an existing organization member",
+  "description": "Update an existing organization member",
   "_schema": "tags/member",
   "type": "object",
   "properties": {

@@ -133,7 +133,7 @@ function Login({ loggedUserInfoAction }) {
                 <Title>{Cluar.plainDictionary('login-form-subject')}</Title>
               </div>
               <div className="content-body">
-                <p>{Cluar.plainDictionary('login-form-prividers-title')}</p>
+                <p>{Cluar.plainDictionary('login-form-providers-title')}</p>
                 <Form
                   layout="vertical"
                   name="basic"

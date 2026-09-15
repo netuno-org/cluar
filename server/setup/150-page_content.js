@@ -39,7 +39,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("sorter", 30)
       .set("image_max_width", 0)
       .set("image_alt", "")
-      .set("content", "<p>All technologies used here are free and open.</p><p>Collaborate by suggesting improvements or reporting problems in <a href=\"https://github.com/netuno-org/cluar/issues\" target=\"_blank\">issues</a>.</p><p>To help the community post your doubts and difficulties in the <a href=\"https://forum.netuno.org/\" target=\"_blank\">forum</a>.&nbsp;<br></p><p>Visit <a href=\"https://www.netuno.org/\" target=\"_blank\">Netuno</a>'s website and follow us on social media and join our discord server, the links are in the footer.</span></p>")
+      .set("content", "<p>All technologies used here are free and open.</p><p>Collaborate by suggesting improvements or reporting problems in <a href=\"https://github.com/netuno-org/cluar/issues\" target=\"_blank\">issues</a>.</p><p>To help the community post your questions and difficulties in the <a href=\"https://forum.netuno.org/\" target=\"_blank\">forum</a>.&nbsp;<br></p><p>Visit <a href=\"https://www.netuno.org/\" target=\"_blank\">Netuno</a>'s website and follow us on social media and join our Discord server, the links are in the footer.</p>")
   );
 
   _db.insertIfNotExists(
@@ -55,7 +55,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("sorter", 20)
       .set("image_max_width", 0)
       .set("image_alt", "")
-      .set("content", "<p>Veja a documenta\u00E7\u00E3o oficial online em:</p><ul><li><a href=\"https://github.com/netuno-org/cluar/blob/main/docs/README-pt_PT.md\" target=\"_blank\">Documenta\u00E7\u00E3o Oficial no GitHub</a></li></ul><p>A vers\u00E3o offline est\u00E1 na pasta <b>docs</b> que est\u00E1 na ra\u00EDz deste projeto, a\u00ED \u00E9 onde vai encontrar o README inicial.</p>")
+      .set("content", "<p>Veja a documenta\u00E7\u00E3o oficial online em:</p><ul><li><a href=\"https://github.com/netuno-org/cluar/blob/main/docs/README-pt_PT.md\" target=\"_blank\">Documenta\u00E7\u00E3o Oficial no GitHub</a></li></ul><p>A vers\u00E3o offline est\u00E1 na pasta <b>docs</b> que est\u00E1 na raiz deste projeto, a\u00ED \u00E9 onde vai encontrar o README inicial.</p>")
   );
 
   _db.insertIfNotExists(
@@ -71,6 +71,6 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("sorter", 30)
       .set("image_max_width", 0)
       .set("image_alt", "")
-      .set("content", "<p>Todas as tecnologias utilizadas aqui s\u00E3o livres e abertas.</p><p>Colabore sugerindo melhorias ou reportando problemas em&nbsp;<a href=\"https://github.com/netuno-org/cluar/issues\" target=\"_blank\">issues</a>.</p><p>Para ajudar a comunidade publique as tuas d\u00FAvidas e dificuldades no <a href=\"https://forum.netuno.org/\" target=\"_blank\">forum</a>.&nbsp;<br></p><p>Visite o site do <a href=\"https://www.netuno.org/\" target=\"_blank\">Netuno</a>&nbsp;e siga-nos nas redes sociais e participe do nosso servidor no discord, os links est\u00E3o no rodap\u00E9.</p>")
+      .set("content", "<p>Todas as tecnologias utilizadas aqui s\u00E3o livres e abertas.</p><p>Colabore sugerindo melhorias ou reportando problemas em&nbsp;<a href=\"https://github.com/netuno-org/cluar/issues\" target=\"_blank\">issues</a>.</p><p>Para ajudar a comunidade publique as tuas d\u00FAvidas e dificuldades no <a href=\"https://forum.netuno.org/\" target=\"_blank\">forum</a>.&nbsp;<br></p><p>Visite o site do <a href=\"https://www.netuno.org/\" target=\"_blank\">Netuno</a>&nbsp;e siga-nos nas redes sociais e participe no nosso servidor do Discord, os links est\u00E3o no rodap\u00E9.</p>")
   );
 }

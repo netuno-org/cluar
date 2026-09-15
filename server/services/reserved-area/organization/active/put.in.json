@@ -1,6 +1,6 @@
 {
-  "summary":"Desactive/Active a existent organization",
-  "description":"Desactive/Active a existent organization",
+  "summary":"Deactivate/Activate an existing organization",
+  "description":"Deactivate/Activate an existing organization",
   "_schema":"tags/organization",
   "type":"object",
   "properties":{

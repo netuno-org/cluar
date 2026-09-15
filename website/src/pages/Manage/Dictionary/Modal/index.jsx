@@ -23,7 +23,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
     }
   }
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const editeMode = dictionaryData ? true : false;
+  const editMode = dictionaryData ? true : false;
   const [formRef] = Form.useForm();
   const [languages, setLanguages] = useState([]);
   const [entries, setEntries] = useState([]);
@@ -82,7 +82,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
       language_code: values.language_code.value,
       entry_code: values.entry_code
     }
-    if (editeMode) {
+    if (editMode) {
       setLoading((prev) => ({ ...prev, save: true }));
       _service({
         url: "reserved-area/dictionary",
@@ -146,7 +146,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
   }, []);
 
   useEffect(() => {
-    if (editeMode && isModalOpen) {
+    if (editMode && isModalOpen) {
       formRef.setFieldsValue({
         ...dictionaryData,
         language_code: {
@@ -160,7 +160,7 @@ const DictionaryModal = forwardRef(({ dictionaryData, onReloadTable }, ref) => {
 
   return (
     <Modal
-      title={editeMode ? Cluar.plainDictionary('dictionary-modal-edit-title') : Cluar.plainDictionary('dictionary-modal-new-title')}
+      title={editMode ? Cluar.plainDictionary('dictionary-modal-edit-title') : Cluar.plainDictionary('dictionary-modal-new-title')}
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       onClose={() => { setIsModalOpen(false) }}

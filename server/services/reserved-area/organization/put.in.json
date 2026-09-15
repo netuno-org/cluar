@@ -1,6 +1,6 @@
 {
-  "summary":"Update a existent organization",
-  "description":"Update a existent organization",
+  "summary":"Update an existing organization",
+  "description":"Update an existing organization",
   "_schema":"tags/organization",
   "type":"object",
   "properties":{

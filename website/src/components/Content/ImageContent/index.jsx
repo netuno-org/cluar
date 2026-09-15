@@ -1,5 +1,5 @@
 import React from 'react';
-import Actions from '../../Actions';
+import Action from '../../Action';
 import config from './config.json';
 
 import './index.less';
@@ -17,7 +17,7 @@ const ImageContent = ({ section, type, image_title, image_alt, imageSrc, imageSt
       </div>
       {config.action && (
         <div>
-          <Actions {... { section, type, actions }} />
+          <Action {... { section, type, actions }} />
         </div>
       )}
     </div>

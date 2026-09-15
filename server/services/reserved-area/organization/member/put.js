@@ -95,7 +95,7 @@ if (memberAlreadyExists) {
   _out.json(
     _val.map()
       .set('result', false)
-      .set('error', `this person is already a member of this organization, but you can manager your group`)
+      .set('error', `this person is already a member of this organization, but you can manage your group`)
       .set('error_code', `person-already-member`)
   );
   _exec.stop();
