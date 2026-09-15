@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import {_val, _db} from "@netuno/server-types";
+import { _val, _db } from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "dictionary",
@@ -5496,7 +5496,7 @@ _db.insertIfNotExists(
     .set("uid", "06dbea11-4963-4f6c-82ed-96c49692de9c")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "090ad0da-732a-48ee-92b5-45150e500d2c")
-    .set("value", "The user already is member of the organization. you can manage your group in the same organization.")
+    .set("value", "The user already is member of the organization. You can manage your group in the same organization.")
 );
 
 _db.insertIfNotExists(
@@ -5676,7 +5676,7 @@ _db.insertIfNotExists(
     .set("uid", "f01ec073-b528-44f1-8630-ab58cca824b2")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "d7aed264-c531-4b34-a368-07bef7943613")
-    .set("value", "An organization can not have as parent an organization below your hierarchy")
+    .set("value", "An organization can not have as parent an organization below it's hierarchy")
 );
 
 _db.insertIfNotExists(
@@ -10617,7 +10617,7 @@ _db.insertIfNotExists(
     .set("uid", "f763fc3c-bdfe-4a19-bfd8-19e2a860f01a")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "5ed5d89b-9838-4ea9-aa11-a741c1032c9d")
-    .set("value", "An organization can not have as parent an organization below your hierarchy")
+    .set("value", "An organization can not have as parent an organization below it's hierarchy")
 );
 
 _db.insertIfNotExists(
