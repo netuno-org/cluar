@@ -1,5 +1,5 @@
 import React from "react";
-import Actions from "../../Actions";
+import Action from "../../Action";
 import Cluar from "../../../common/Cluar";
 import config from "./config.json";
 import "./index.less";
@@ -53,7 +53,7 @@ function DefaultSubBanner({
           />
           {config.action && (
             <div className="banner__actions">
-              <Actions {...{ section, type, actions }} />
+              <Action {...{ section, type, actions }} />
             </div>
           )}
         </div>
