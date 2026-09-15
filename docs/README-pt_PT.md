@@ -3,9 +3,9 @@
 
 O CLUAR CMS facilita a criação de websites utilizando ReactJS mas com a manutenção dos conteúdos, navegação, páginas, idiomas, configurações e muito mais, através de um backoffice fornecido pela plataforma Netuno.
 
-Para quem está começando a aprender sobre ReactJS & CSS vai conseguir criar um website moderno e customizado de uma maneira muito prática e intuitiva.
+Para quem está a começar a aprender sobre ReactJS & CSS vai conseguir criar um website moderno e personalizado de uma maneira muito prática e intuitiva.
 
-Para quem já domina ReactJS & CSS vai conseguir reduzir muito o tempo de implementação de websites dinâmico com a gestão dos conteúdos, assim poderá focar mais no design e em customizações avançadas.
+Para quem já domina ReactJS & CSS vai conseguir reduzir muito o tempo de implementação de websites dinâmicos com a gestão dos conteúdos, assim poderá focar mais no design e em customizações avançadas.
 
 ## Visão Geral 
 
@@ -29,16 +29,16 @@ O código está organizado da seguinte forma:
   Contém os componentes de cabeçalho (`header` e `menu`) e o rodapé (`footer`), e ainda o alerta de privacidade de cookies.
 
 - `website/src/common`
-  Código essencial e utíl de modo geral, e ainda o motor de processamento das páginas (`Builder`)
+  Código essencial e útil de modo geral, e ainda o motor de processamento das páginas (`Builder`)
 
 - `website/src/components`
-  Componentes para ser utilizados para construir os conteúdos das páginas.
+  Componentes para serem utilizados para construir os conteúdos das páginas.
 
 - `website/src/components/functionality`
   Contém os componentes feitos à medida para ser integrados nos conteúdos das páginas.
 
 - `website/src/styles`
-  Aqui contém o CSS principal e global, com a gestão das variáveis (`variables`) de configurações de layout e design.
+  Aqui encontra-se o CSS principal e global, com a gestão das variáveis (`variables`) de configurações de layout e design.
 
 - `website/src/pages`
   Páginas desenvolvidas à medida sem serem processadas pelo motor do CLUAR CMS.
@@ -66,7 +66,7 @@ Sobre a estrutura da aplicação do Netuno:
   Código de servidor da aplicação Netuno.
   
 - `server/services`
-  Código a programação dos serviços da API REST.
+  Código de programação dos serviços da API REST.
 
 - `storage`
   Ficheiros gerais geridos pelo servidor da aplicação Netuno.
@@ -76,9 +76,9 @@ Sobre a estrutura da aplicação do Netuno:
 
 ## Customização de Layout & Design
 
-Para customizar a aparência é utilizado o LESS, então basta editar todos os arquivos `.less` que estão dentro da pasta `website/src` e nos repectivos subdiretórios.
+Para customizar a aparência é utilizado o LESS, então basta editar todos os ficheiros `.less` que estão dentro da pasta `website/src` e nos respetivos subdiretórios.
 
-O código LESS central e global fica em `website/src/styles`, dentra desta pasta ficheiro `variables.less` tem as principais parameetrizações de estilos globais.
+O código LESS central e global fica em `website/src/styles`, dentro desta pasta, o ficheiro `variables.less` tem as principais parametrizações de estilos globais.
 
 ### Estilização do Ant.Design
 
@@ -93,18 +93,18 @@ Os componentes principais
 ## Cabeçalho (Header) e Menu
 
 - `website/src/base/Header`
-  Contem os ficheiros responsáveis pelo header e menu.
+  Contém os ficheiros responsáveis pelo header e menu.
 
 ## Rodapé (Footer)
 
 - `website/src/base/Footer`
-  Contem os ficheiros responsáveis pelo footer.
+  Contém os ficheiros responsáveis pelo footer.
 
 ## Motor
 
 - `website/src/common/Cluar.js`
 - `website/src/common/Builder.jsx`
-  Ficheiros Responsáveis por construir a interface.
+  Ficheiros responsáveis por construir a interface.
 
 ## Rotas com React Router
 

@@ -29,7 +29,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
   const [languages, setLanguages] = useState([]);
   const [pages, setPages] = useState([]);
   const [templateOptions, setTemplateOptions] = useState([]);
-  const editeMode = pageData ? true : false;
+  const editMode = pageData ? true : false;
   const [formRef] = Form.useForm();
   const menuEnabled = Form.useWatch("menu", formRef);
 
@@ -93,7 +93,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
       language_code: values.language_code?.value,
     };
 
-    if (editeMode) {
+    if (editMode) {
       setLoading({ ...loading, saving: true });
       _service({
         url: "reserved-area/page",
@@ -188,7 +188,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
     if (isModalOpen) {
       onLoadLanguages();
 
-      if (editeMode) {
+      if (editMode) {
         formRef.setFieldsValue({
           ...pageData,
           language_code: pageData.language_code,
@@ -214,7 +214,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
   return (
     <Modal
       title={
-        editeMode
+        editMode
           ? Cluar.plainDictionary("page-modal-edit-title")
           : Cluar.plainDictionary("page-modal-new-title")
       }

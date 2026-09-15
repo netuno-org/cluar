@@ -155,7 +155,7 @@ export default function Register(props) {
                                     </Form.Item>}
                                 {Cluar.authProviders().discord &&
                                     <Form.Item>
-                                        <Button href={`${servicePrefix}_auth_provider/register/discord`} icon={<FaDiscord />}>{Cluar.plainDictionary('register-form-register-provider').replace('${label}', 'Discotd')}</Button>
+                                        <Button href={`${servicePrefix}_auth_provider/register/discord`} icon={<FaDiscord />}>{Cluar.plainDictionary('register-form-register-provider').replace('${label}', 'Discord')}</Button>
                                     </Form.Item>}
                                 <Form.Item
                                     label={Cluar.plainDictionary('register-form-name')}

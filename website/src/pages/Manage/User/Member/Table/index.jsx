@@ -29,7 +29,7 @@ const MemberTable = forwardRef(({ userData }, ref) => {
   const [loading, setLoading] = useState(false);
   const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
   const membersModalRef = useRef();
-  const [memberEditeData, setMemberEditeData] = useState(null);
+  const [memberEditData, setMemberEditData] = useState(null);
   const [activeLoading, setActiveLoading] = useState({
     key: "",
     isLoading: false
@@ -262,7 +262,7 @@ const MemberTable = forwardRef(({ userData }, ref) => {
             title={Cluar.plainDictionary("member-table-button-edit")}
             onClick={() => {
               console.log(record);
-              setMemberEditeData(record);
+              setMemberEditData(record);
               membersModalRef.current.onOpenModal();
             }}
           />
@@ -306,8 +306,8 @@ const MemberTable = forwardRef(({ userData }, ref) => {
     <div>
       <MemberFormModal
         ref={membersModalRef}
-        memberData={memberEditeData}
-        userData={memberEditeData?.user}
+        memberData={memberEditData}
+        userData={memberEditData?.user}
         onReloadTable={onReloadTable}
       />
       <Table

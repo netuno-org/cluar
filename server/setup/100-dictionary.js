@@ -357,7 +357,7 @@ _db.insertIfNotExists(
     .set("uid", "262ad4ca-4b2c-4496-9f9b-11d187c50c92")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "d8ce1b44-a9ad-412b-97f8-4b55476a7448")
-    .set("value", "O login foi bloqueado, realize o processo de desbloquamento ou contate o suporte.")
+    .set("value", "O login foi bloqueado, realize o processo de desbloqueio ou contacte o suporte.")
 );
 
 _db.insertIfNotExists(
@@ -366,7 +366,7 @@ _db.insertIfNotExists(
     .set("uid", "74476486-ef35-4576-b189-1c1b64cd3ebc")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "89cc2ec4-8fe2-466a-8280-e9ee98e867ba")
-    .set("value", "Dear <span style=\"font-weight: bold;\">${name}</span>,To recover your password click <a href=\"${link}\" target=\"_blank\">here</a>Thank you.")
+    .set("value", "Dear <span style=\"font-weight: bold;\">${name}</span>, To recover your password click <a href=\"${link}\" target=\"_blank\">here</a>. Thank you.")
 );
 
 _db.insertIfNotExists(
@@ -375,7 +375,7 @@ _db.insertIfNotExists(
     .set("uid", "199cd714-bbc0-4bce-8e70-e9144a9b1182")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "89cc2ec4-8fe2-466a-8280-e9ee98e867ba")
-    .set("value", "Caro ${name},Para recupera\u00E7\u00E3o da password clique <a href=\"${link}\" target=\"_blank\">aqui</a>Obrigado.")
+    .set("value", "Caro ${name}, Para recupera\u00E7\u00E3o da password clique <a href=\"${link}\" target=\"_blank\">aqui</a>. Obrigado.")
 );
 
 _db.insertIfNotExists(
@@ -384,7 +384,7 @@ _db.insertIfNotExists(
     .set("uid", "de110dad-85e2-4430-a84e-5df2b40bd129")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "d8ce1b44-a9ad-412b-97f8-4b55476a7448")
-    .set("value", "Your login has been blocked, complete the unblocked process or contact the suport.")
+    .set("value", "Your login has been blocked, complete the unblocking process or contact the support.")
 );
 
 _db.insertIfNotExists(
@@ -951,7 +951,7 @@ _db.insertIfNotExists(
     .set("uid", "f2879ae2-feae-4489-9802-4348acc70f8c")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "77f85f74-1ce6-4728-9388-e8f621eef787")
-    .set("value", "The password must be between 8 and 25 characteres long.")
+    .set("value", "The password must be between 8 and 25 characters long.")
 );
 
 _db.insertIfNotExists(
@@ -1014,7 +1014,7 @@ _db.insertIfNotExists(
     .set("uid", "a79f3d4c-dfa8-4d7a-8f58-b02dc3fc714a")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "22476929-015c-4ded-8364-10fad2c27953")
-    .set("value", "It was not possible change your password, please contacte us through of suport chat.")
+    .set("value", "It was not possible to change your password, please contact us through the support chat.")
 );
 
 _db.insertIfNotExists(
@@ -1185,7 +1185,7 @@ _db.insertIfNotExists(
     .set("uid", "e779296a-ce91-4942-a878-b2bfce93742e")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "7140f2ec-41ff-41d8-8e2f-0144291afa66")
-    .set("value", "The passwords are not equals.")
+    .set("value", "The passwords are not equal.")
 );
 
 _db.insertIfNotExists(
@@ -1302,7 +1302,7 @@ _db.insertIfNotExists(
     .set("uid", "0e3a38a4-e6e8-4005-a766-b855bd7b5662")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "0cdd3033-37f6-4054-a040-cc174ebbec30")
-    .set("value", "This username already exists, regain access in sign in page or choose another one.")
+    .set("value", "This username already exists, regain access on the sign-in page or choose another one.")
 );
 
 _db.insertIfNotExists(
@@ -1338,7 +1338,7 @@ _db.insertIfNotExists(
     .set("uid", "98e5e022-3cbe-4d3b-a5f9-a3b42109946f")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "17e575b7-3b9b-4ffc-92f6-1a68ee404a59")
-    .set("value", "Invalid name, only lowercase e uppercase letters.")
+    .set("value", "Invalid name, only lowercase and uppercase letters.")
 );
 
 _db.insertIfNotExists(
@@ -1374,7 +1374,7 @@ _db.insertIfNotExists(
     .set("uid", "faf78241-ae1e-40de-939f-4694e7d3b1b2")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "5e663edf-3134-4447-bd6f-bac5e02fb4cd")
-    .set("value", "This e-mail already exists, regain access on the sign in page or choose another one.")
+    .set("value", "This e-mail already exists, regain access on the sign-in page or choose another one.")
 );
 
 _db.insertIfNotExists(
@@ -1446,7 +1446,7 @@ _db.insertIfNotExists(
     .set("uid", "89285105-b628-486a-a310-b19b27725400")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "3d036cba-067c-4a95-b294-cacc26ee936b")
-    .set("value", "The passwords are not same.")
+    .set("value", "The passwords are not the same.")
 );
 
 _db.insertIfNotExists(
@@ -1617,7 +1617,7 @@ _db.insertIfNotExists(
     .set("uid", "ebc7500d-fc0a-4c60-a3c7-9b375404eea9")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "26106564-6c4c-487e-99e4-9cb001e67300")
-    .set("value", "Passwords is not equals.")
+    .set("value", "Passwords are not equal.")
 );
 
 _db.insertIfNotExists(
@@ -1644,7 +1644,7 @@ _db.insertIfNotExists(
     .set("uid", "ac530f3b-d7b9-414d-b498-07ff5a7da746")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "22476929-015c-4ded-8364-10fad2c27953")
-    .set("value", "N\u00E3o foi possiv\u00E9l alterar sua palavra-passe, por favor contacte-nos atrav\u00E9s do chat de suporte.")
+    .set("value", "N\u00E3o foi poss\u00EDvel alterar a sua palavra-passe, por favor contacte-nos atrav\u00E9s do chat de suporte.")
 );
 
 _db.insertIfNotExists(
@@ -2112,7 +2112,7 @@ _db.insertIfNotExists(
     .set("uid", "4b6acb20-e675-41d7-9b60-872bd33e9b62")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "69367e06-9a65-4908-849b-9cdcd1e42a2a")
-    .set("value", "Utilizador atulizado com sucesso.")
+    .set("value", "Utilizador atualizado com sucesso.")
 );
 
 _db.insertIfNotExists(
@@ -3228,7 +3228,7 @@ _db.insertIfNotExists(
     .set("uid", "750f627c-ea08-4579-9c86-5b52dec4e400")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "44d841f5-560d-4bb9-a778-bc5574e7e5c0")
-    .set("value", "An error occurred while load user info, please try again.")
+    .set("value", "An error occurred while loading user info, please try again.")
 );
 
 _db.insertIfNotExists(
@@ -4002,7 +4002,7 @@ _db.insertIfNotExists(
     .set("uid", "e1c8c45a-ce47-494a-874d-bcf8a3b7dd6d")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "c11efd6a-9634-4ba0-bbe2-fedffa97bc82")
-    .set("value", "Utilizador desctivado com sucesso.")
+    .set("value", "Utilizador desactivado com sucesso.")
 );
 
 _db.insertIfNotExists(
@@ -4299,7 +4299,7 @@ _db.insertIfNotExists(
     .set("uid", "ee7d16f2-e079-495a-930d-d68b36e87d32")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "f98114e4-46b5-43ec-a056-88b6a373043f")
-    .set("value", "Language successfully update.")
+    .set("value", "Language successfully updated.")
 );
 
 _db.insertIfNotExists(
@@ -5496,7 +5496,7 @@ _db.insertIfNotExists(
     .set("uid", "06dbea11-4963-4f6c-82ed-96c49692de9c")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "090ad0da-732a-48ee-92b5-45150e500d2c")
-    .set("value", "The user already is member of the organization. You can manage your group in the same organization.")
+    .set("value", "The user is already a member of the organization. You can manage your group in the same organization.")
 );
 
 _db.insertIfNotExists(
@@ -5613,7 +5613,7 @@ _db.insertIfNotExists(
     .set("uid", "47df853e-4876-43a6-9b1e-61e5216559b2")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "617577cc-29e6-4735-b449-7d96ab869cb3")
-    .set("value", "Codigo j\u00E1 em uso por outra organiza\u00E7\u00F5es.")
+    .set("value", "C\u00F3digo j\u00E1 em uso por outra organiza\u00E7\u00E3o.")
 );
 
 _db.insertIfNotExists(
@@ -5640,7 +5640,7 @@ _db.insertIfNotExists(
     .set("uid", "10a3f7a2-c275-4c39-ab43-7e4478f85124")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "617577cc-29e6-4735-b449-7d96ab869cb3")
-    .set("value", "The code already in use by another organization.")
+    .set("value", "The code is already in use by another organization.")
 );
 
 _db.insertIfNotExists(
@@ -5676,7 +5676,7 @@ _db.insertIfNotExists(
     .set("uid", "f01ec073-b528-44f1-8630-ab58cca824b2")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "d7aed264-c531-4b34-a368-07bef7943613")
-    .set("value", "An organization can not have as parent an organization below it's hierarchy")
+    .set("value", "An organization cannot have as parent an organization below its hierarchy")
 );
 
 _db.insertIfNotExists(
@@ -10617,7 +10617,7 @@ _db.insertIfNotExists(
     .set("uid", "f763fc3c-bdfe-4a19-bfd8-19e2a860f01a")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "5ed5d89b-9838-4ea9-aa11-a741c1032c9d")
-    .set("value", "An organization can not have as parent an organization below it's hierarchy")
+    .set("value", "An organization cannot have as parent an organization below its hierarchy")
 );
 
 _db.insertIfNotExists(

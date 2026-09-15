@@ -25,7 +25,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
     saving: false,
     organization: false
   });
-  const editeMode = organizationData ? true : false;
+  const editMode = organizationData ? true : false;
   const [formRef] = Form.useForm();
 
   const onOpenModal = () => {
@@ -58,7 +58,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
       parent_code: values.parent_code ? values.parent_code.value : ""
     }
 
-    if (editeMode) {
+    if (editMode) {
       setLoading({ ...loading, saving: true });
       _service({
         url: "reserved-area/organization",
@@ -79,7 +79,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           setLoading({ ...loading, saving: false });
           console.error(error);
 
-          if (error?.json?.error_code === "code-alread-in-use") {
+          if (error?.json?.error_code === "code-already-in-use") {
             notification.error({
               message: Cluar.plainDictionary('organization-form-edit-failed-message'),
               description: Cluar.plainDictionary('organization-form-already-exists-message')
@@ -117,7 +117,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           setLoading({ ...loading, saving: false });
           console.error(error);
 
-          if (error?.json?.error_code === "code-alread-in-use") {
+          if (error?.json?.error_code === "code-already-in-use") {
             notification.error({
               message: Cluar.plainDictionary('organization-form-save-failed-message'),
               description: Cluar.plainDictionary('organization-form-already-exists-message')
@@ -145,7 +145,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
   }, []);
 
   useEffect(() => {
-    if (editeMode && isModalOpen) {
+    if (editMode && isModalOpen) {
       formRef.setFieldsValue({
         ...organizationData,
         parent_code: {
@@ -162,7 +162,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
 
   return (
     <Modal
-      title={editeMode ? Cluar.plainDictionary('organization-modal-new-title') : Cluar.plainDictionary('organization-modal-new-title')}
+      title={editMode ? Cluar.plainDictionary('organization-modal-new-title') : Cluar.plainDictionary('organization-modal-new-title')}
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       onClose={() => setIsModalOpen(false)}

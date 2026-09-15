@@ -1,7 +1,7 @@
 {
   "_schema":"tags/language",
-  "summary":"Get an existente language by uid",
-  "description":"Get an existente language by uid",
+  "summary":"Get an existing language by uid",
+  "description":"Get an existing language by uid",
   "type":"object",
   "properties":{
     "uid":{

@@ -14,7 +14,7 @@ import {
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
-import ConfigurationParameterSelect from "./ConfigurationParemeterSelect";
+import ConfigurationParameterSelect from "./ConfigurationParameterSelect";
 
 const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref) => {
   const configColumn = {
@@ -26,7 +26,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
     }
   }
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const editeMode = configurationData ? true : false;
+  const editMode = configurationData ? true : false;
   const [formRef] = Form.useForm();
   const [languages, setLanguages] = useState([]);
   const [fileList, setFileList] = useState([]);
@@ -138,7 +138,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
       }
     }
 
-    if (editeMode) {
+    if (editMode) {
       setLoading((prev) => ({ ...prev, save: true }));
       _service({
         url: "reserved-area/configuration",
@@ -147,7 +147,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
           uid: configurationData.uid,
           ...data
         },
-        success: (reponse) => {
+        success: (response) => {
           setLoading((prev) => ({ ...prev, save: false }));
           setIsModalOpen(false);
           notification.success({
@@ -171,7 +171,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
         data: {
           ...data
         },
-        success: (reponse) => {
+        success: (response) => {
           setLoading((prev) => ({ ...prev, save: false }));
           setIsModalOpen(false);
           notification.success({
@@ -233,7 +233,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
   }, []);
 
   useEffect(() => {
-    if (editeMode && isModalOpen) {
+    if (editMode && isModalOpen) {
       const configurationDataFormatted = { ...configurationData };
 
       if (configurationData.parameter_type?.code === "boolean") {
@@ -274,7 +274,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
 
   return (
     <Modal
-      title={editeMode ? Cluar.plainDictionary('configuration-modal-edit-title') : Cluar.plainDictionary('configuration-modal-new-title')}
+      title={editMode ? Cluar.plainDictionary('configuration-modal-edit-title') : Cluar.plainDictionary('configuration-modal-new-title')}
       open={isModalOpen}
       maskClosable={false}
       onCancel={() => { setIsModalOpen(false) }}

@@ -16,7 +16,7 @@
         "properties": {
           "section": {
             "type": "string",
-            "description": "Field to identify which type of section is.</br>Can be: `banner`, `content`, `listing` or `functionality`"
+            "description": "Field to identify which type of section it is.<br/>Can be: `banner`, `content`, `listing` or `functionality`"
           },
           "type": {
             "type": "string"
@@ -83,7 +83,7 @@
             }
           }
         },
-        "requried": [
+        "required": [
           "section"
         ]
       }

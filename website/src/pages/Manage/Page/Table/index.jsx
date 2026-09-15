@@ -26,7 +26,7 @@ const PageTable = forwardRef(({ }, ref) => {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const pageModalRef = useRef();
-  const [pageEditeData, setPageEditeData] = useState(null);
+  const [pageEditData, setPageEditData] = useState(null);
   const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
   const [activeLoading, setActiveLoading] = useState({
     key: "",
@@ -289,7 +289,7 @@ const PageTable = forwardRef(({ }, ref) => {
             title={Cluar.plainDictionary("page-table-button-edit")}
             icon={<EditOutlined />}
             onClick={() => {
-              setPageEditeData(record);
+              setPageEditData(record);
               pageModalRef.current.openModal();
             }}
           />
@@ -329,7 +329,7 @@ const PageTable = forwardRef(({ }, ref) => {
     <div>
       <PageModal
         ref={pageModalRef}
-        pageData={pageEditeData}
+        pageData={pageEditData}
         onReloadTable={onReloadTable}
       />
       <Table

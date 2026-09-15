@@ -28,7 +28,7 @@ const ActionTable = forwardRef(({ }, ref) => {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const actionModalRef = useRef();
-  const [actionEditeData, setActionEditeData] = useState(null);
+  const [actionEditData, setActionEditData] = useState(null);
   const [activeLoading, setActiveLoading] = useState({
     key: "",
     isLoading: false
@@ -298,7 +298,7 @@ const ActionTable = forwardRef(({ }, ref) => {
             title={Cluar.plainDictionary("action-table-button-edit")}
             icon={<EditOutlined />}
             onClick={() => {
-              setActionEditeData(record);
+              setActionEditData(record);
               actionModalRef.current.openModal();
             }}
           />
@@ -338,7 +338,7 @@ const ActionTable = forwardRef(({ }, ref) => {
     <div>
       <ActionModal
         ref={actionModalRef}
-        actionData={actionEditeData}
+        actionData={actionEditData}
         onReloadTable={onReloadTable}
       />
       <Table

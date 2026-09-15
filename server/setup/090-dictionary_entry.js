@@ -173,7 +173,7 @@ _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
     .set("uid", "35306dcb-8da0-4248-b000-c4e79531d50c")
-    .set("code", "login-form-prividers-title")
+    .set("code", "login-form-providers-title")
     .set("description", "Formul\u00E1rio de Login - Providers - T\u00EDtulo")
 );
 
@@ -182,7 +182,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "47cbe608-c011-4eb2-9d94-80755ac72187")
     .set("code", "login-form-forgot-password")
-    .set("description", "Formul\u00E1rio de Login - Esqueceu Paralavra-passe")
+    .set("description", "Formul\u00E1rio de Login - Esqueceu Palavra-passe")
 );
 
 _db.insertIfNotExists(

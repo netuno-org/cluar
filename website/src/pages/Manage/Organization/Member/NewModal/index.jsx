@@ -34,7 +34,7 @@ const MemberFormModal = forwardRef(({ onReloadTable, memberData, userData, organ
     option: "",
     value: ""
   });
-  const editeMode = memberData ? true : false;
+  const editMode = memberData ? true : false;
   const [formRef] = Form.useForm();
 
   const onOpenModal = () => {
@@ -108,7 +108,7 @@ const MemberFormModal = forwardRef(({ onReloadTable, memberData, userData, organ
       people_uid: values.user_uid.value
     }
 
-    if (editeMode) {
+    if (editMode) {
       setLoading({ ...loading, saving: true });
       _service({
         url: "reserved-area/organization/member",
@@ -183,7 +183,7 @@ const MemberFormModal = forwardRef(({ onReloadTable, memberData, userData, organ
   }, []);
 
   useEffect(() => {
-    if (editeMode && isModalOpen) {
+    if (editMode && isModalOpen) {
       formRef.setFieldsValue({
         ...memberData,
         user_uid: {
@@ -222,7 +222,7 @@ const MemberFormModal = forwardRef(({ onReloadTable, memberData, userData, organ
 
   return (
     <Modal
-      title={editeMode ? Cluar.plainDictionary('member-modal-edit-title') : Cluar.plainDictionary('member-modal-new-title')}
+      title={editMode ? Cluar.plainDictionary('member-modal-edit-title') : Cluar.plainDictionary('member-modal-new-title')}
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       onClose={() => setIsModalOpen(false)}

@@ -1,7 +1,7 @@
 import { _db, _val, _out, _exec, _user } from "@netuno/server-types";
 
 /**
- *  This is a sample of the user account remotion.                                                           
+ *  This is a sample of the user account removal.                                                           
  *  Comment or delete the line below to allow this service execution. 
  */
 

@@ -1,6 +1,6 @@
 {
-  "summary":"Active/desactive organization member by uid",
-  "description":"Active/desactive organization member by uid",
+  "summary":"Activate/Deactivate an organization member by uid",
+  "description":"Activate/Deactivate an organization member by uid",
   "_schema":"tags/member",
   "type":"object",
   "properties":{

@@ -21,7 +21,7 @@ import "./index.less"
 const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const editeMode = languageData ? true : false;
+  const editMode = languageData ? true : false;
   const [formRef] = Form.useForm();
   const configColumn = {
     xs: {
@@ -37,7 +37,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
   }
 
   const onFinish = (values) => {
-    if (editeMode) {
+    if (editMode) {
       setLoading(true);
       _service({
         url: "reserved-area/language",
@@ -96,7 +96,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
   }, []);
 
   useEffect(() => {
-    if (editeMode && isModalOpen) {
+    if (editMode && isModalOpen) {
       formRef.setFieldsValue({
         ...languageData
       })
@@ -105,7 +105,7 @@ const LanguageModal = forwardRef(({ onReloadTable, languageData }, ref) => {
 
   return (
     <Modal
-      title={editeMode ? Cluar.plainDictionary('language-modal-new-title') : Cluar.plainDictionary('language-modal-new-title')}
+      title={editMode ? Cluar.plainDictionary('language-modal-new-title') : Cluar.plainDictionary('language-modal-new-title')}
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       onClose={() => setIsModalOpen(false)}

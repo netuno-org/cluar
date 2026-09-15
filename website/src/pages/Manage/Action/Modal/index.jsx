@@ -38,7 +38,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     pages: false
   });
   const [languages, setLanguages] = useState([]);
-  const editeMode = actionData ? true : false;
+  const editMode = actionData ? true : false;
   const [formRef] = Form.useForm();
 
   const [fileList, setFileList] = useState([]);
@@ -124,7 +124,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
       }
     })
 
-    if (editeMode) {
+    if (editMode) {
       formData.append('uid', actionData.uid);
       formData.append('language_code', actionData.language_code);
     }
@@ -133,14 +133,14 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
 
     _service({
       url: "reserved-area/action",
-      method: editeMode ? "PUT" : "POST",
+      method: editMode ? "PUT" : "POST",
       data: formData,
       success: (response) => {
         setLoading({ ...loading, saving: false });
         setIsModalOpen(false);
         onReloadTable();
         notification.success({
-          message: editeMode ? Cluar.plainDictionary("action-form-edit-success-message") : Cluar.plainDictionary("action-form-save-success-message"),
+          message: editMode ? Cluar.plainDictionary("action-form-edit-success-message") : Cluar.plainDictionary("action-form-save-success-message"),
         });
       },
       fail: (error) => {
@@ -149,13 +149,13 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
 
         if (error?.json?.error_code) {
           notification.error({
-            message: editeMode ? Cluar.plainDictionary("action-form-edit-failed-message") : Cluar.plainDictionary("action-form-save-failed-message"),
+            message: editMode ? Cluar.plainDictionary("action-form-edit-failed-message") : Cluar.plainDictionary("action-form-save-failed-message"),
             description: Cluar.plainDictionary(error.json.error_code),
           });
           return;
         }
         notification.error({
-          message: editeMode ? Cluar.plainDictionary("action-form-edit-failed-message") : Cluar.plainDictionary("action-form-save-failed-message"),
+          message: editMode ? Cluar.plainDictionary("action-form-edit-failed-message") : Cluar.plainDictionary("action-form-save-failed-message"),
         });
       },
     });
@@ -171,7 +171,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     if (isModalOpen) {
       onLoadLanguages();
 
-      if (editeMode) {
+      if (editMode) {
         const imageUrl = actionData.image
           ? `${_service.config().prefix}reserved-area/action/image?uid=${actionData.uid}`
           : null;
@@ -203,7 +203,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
   return (
     <Modal
       title={
-        editeMode
+        editMode
           ? Cluar.plainDictionary("action-modal-edit-title")
           : Cluar.plainDictionary("action-modal-new-title")
       }

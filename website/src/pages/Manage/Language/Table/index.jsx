@@ -23,7 +23,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const languageModalRef = useRef();
-  const [languageEditeData, setLanguageEditeData] = useState(null);
+  const [languageEditData, setLanguageEditData] = useState(null);
   const [activeLoading, setActiveLoading] = useState({
     key: "",
     isLoading: false
@@ -239,7 +239,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
               type="text"
               title={Cluar.plainDictionary("language-table-button-edit")}
               onClick={() => {
-                setLanguageEditeData(record);
+                setLanguageEditData(record);
                 languageModalRef.current.openModal();
               }}
             />
@@ -267,7 +267,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
     <div>
       <LanguageModal
         ref={languageModalRef}
-        languageData={languageEditeData}
+        languageData={languageEditData}
         onReloadTable={onReloadTable}
       />
       <Table

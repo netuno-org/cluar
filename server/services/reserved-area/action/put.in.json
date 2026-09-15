@@ -1,7 +1,7 @@
 {
   "_schema": "tags/actions",
-  "summary": "Update an existent action",
-  "description": "Update an existent action",
+  "summary": "Update an existing action",
+  "description": "Update an existing action",
   "type": "object",
   "properties": {
     "uid": {
