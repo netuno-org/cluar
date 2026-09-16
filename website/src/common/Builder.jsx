@@ -427,6 +427,7 @@ function Builder({ page, canEdit }) {
               SectionComponent = (
                 <CluarRow
                   {...item}
+                  editMode={editMode}
                   onUpdateRow={(data) => {
                     handleChangeSection(data, item.uid);
                   }}

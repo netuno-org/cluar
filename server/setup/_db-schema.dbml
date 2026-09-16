@@ -237,7 +237,10 @@ Table page_row {
   id int [pk, increment]
   content text [note: 'Conteúdo']
   page_row_col_id int [ref: > page_row_col.id, note: 'Coluna']
+  page_version_id int [ref: > page_version.id, note: 'Página']
+  sorter int [note: 'Ordem']
   title text [note: 'Título']
+  type varchar(250) [note: 'Tipo']
   Note: 'Linha'
 }
 

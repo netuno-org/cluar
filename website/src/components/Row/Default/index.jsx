@@ -11,6 +11,7 @@ const Default = ({
   onNewSection,
   itemsComponent,
   renderColumnSection,
+  editMode,
 }) => {
   return (
     <div className="row__default">
@@ -29,7 +30,7 @@ const Default = ({
                 <PageSection
                   showAddSectionButton={false}
                   sectionData={item?.section}
-                  editMode={true}
+                  editMode={editMode}
                   onRemoveSection={() => onRemoveSection(item.uid)}
                   onConfirmChanges={(data) => onConfirmChanges(item.uid, data)}
                 >
@@ -37,7 +38,7 @@ const Default = ({
                 </PageSection>
               ) : (
                 <PageSection
-                  editMode={true}
+                  editMode={editMode}
                   onNewSection={(data) => onNewSection(item.uid, data)}
                 />
               )}

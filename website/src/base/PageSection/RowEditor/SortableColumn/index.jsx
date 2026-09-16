@@ -14,6 +14,7 @@ import {
   Space,
   Switch,
   Radio,
+  InputNumber,
 } from "antd";
 
 import {
@@ -201,7 +202,7 @@ const SortableItem = ({
                       <Input />
                     </Form.Item>
 
-                    <Row gutter={4}>
+                    <Row gutter={24}>
                       {[
                         "span",
                         "xs",
@@ -212,15 +213,24 @@ const SortableItem = ({
                         "xxl",
                         "xxxl",
                       ].map((size) => (
-                        <Col span={3} key={size}>
+                        <Col span={8} key={size}>
                           <Form.Item
                             label={size}
                             name={["itemsByUid", itemIndex, size]}
+                            getValueProps={(value) => ({
+                              value: value !== null && value < 0 ? null : value,
+                            })}
                           >
-                            <Input
-                              onChange={(e) =>
-                                onChangeItem(item.uid, size, e.target.value)
+                            <InputNumber
+                              onChange={(value) =>
+                                onChangeItem(
+                                  item.uid,
+                                  size,
+                                  value !== null && value < 0 ? null : value,
+                                )
                               }
+
+                              mode="spinner"
                             />
                           </Form.Item>
                         </Col>
