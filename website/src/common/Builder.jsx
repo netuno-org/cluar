@@ -175,7 +175,6 @@ function Builder({ page, canEdit }) {
   }, [hasDiff]);
 
   useEffect(() => {
-    // Verifica se o currentPageVersion é diferente da publicada
     if (currentPageVersion !== page?.page_version_uid && hasDiff == false) {
       setHasDiff(false);
       setCanPublish(true);
@@ -425,7 +424,14 @@ function Builder({ page, canEdit }) {
               SectionComponent = <Slider {...item} />;
               break;
             case "row":
-              SectionComponent = <CluarRow {...item} />;
+              SectionComponent = (
+                <CluarRow
+                  {...item}
+                  onUpdateRow={(data) => {
+                    handleChangeSection(data, item.uid);
+                  }}
+                />
+              );
               break;
             case "functionality":
               SectionComponent = <Functionality {...item} />;

@@ -235,8 +235,9 @@ Table page_listing_item {
 
 Table page_row {
   id int [pk, increment]
+  content text [note: 'Conteúdo']
   page_row_col_id int [ref: > page_row_col.id, note: 'Coluna']
-  title varchar(250) [note: 'Título']
+  title text [note: 'Título']
   Note: 'Linha'
 }
 
@@ -247,7 +248,7 @@ Table page_row_col {
   page_row_id int [ref: > page_row.id, note: 'Linha']
   sm int [note: 'SM']
   span int [note: 'Span']
-  title varchar(250) [note: 'Título']
+  title text [note: 'Título']
   xl int [note: 'XL']
   xs int [note: 'XS']
   xxl int [note: 'XXL']
