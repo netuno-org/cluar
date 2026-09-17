@@ -106,7 +106,7 @@ const MemberTable = forwardRef(({ userData }, ref) => {
     _service({
       url: "reserved-area/organization/member",
       method: "DELETE",
-      data: { people_uid: record.user.uid, organization_uid: record.organization.uid },
+      data: { profile_uid: record.user.uid, organization_uid: record.organization.uid },
       success: () => {
         setDeleteLoadingUid(null);
         notification.success({
@@ -156,7 +156,7 @@ const MemberTable = forwardRef(({ userData }, ref) => {
       data: {
         pagination,
         filters: {
-          people_uid: userData.uid,
+          profile_uid: userData.uid,
           ...filters
         }
       },
@@ -216,7 +216,7 @@ const MemberTable = forwardRef(({ userData }, ref) => {
     //     title: Cluar.plainDictionary('member-table-user'),
     //     dataIndex: 'user',
     //     key: 'user',
-    //     ...getTextFilterProps("people_name"),
+    //     ...getTextFilterProps("profile_name"),
     //     onHeaderCell: () => ({
     //         "data-column-key": "user",
     //     }),

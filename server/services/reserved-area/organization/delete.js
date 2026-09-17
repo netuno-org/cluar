@@ -17,7 +17,7 @@ if (dbOrganization) {
   for (const dbChildOrganization of dbChildOrganizations) {
     const childOrganizationId = dbChildOrganization.getInt("id");
     _db.execute(`
-        DELETE FROM organization_people
+        DELETE FROM organization_profile
         WHERE organization_id = ?::int
       `, childOrganizationId
     );
@@ -26,7 +26,7 @@ if (dbOrganization) {
   }
 
   _db.execute(`
-      DELETE FROM organization_people
+      DELETE FROM organization_profile
       WHERE organization_id = ?::int
     `, organizationId
   );

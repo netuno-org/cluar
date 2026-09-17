@@ -5,16 +5,16 @@
 import { _db, _user, _val } from "@netuno/server-types";
 
 export default {
-  getPeople: () => {
-    return _db.form("people")
+  getProfile: () => {
+    return _db.form("profile")
       .where(
-        _db.where("people_user_id").equals(_user.id())
+        _db.where("profile_user_id").equals(_user.id())
       )
       .first();
   },
 
   getOrganizations: () => {
-    const dbPeople = _db.queryFirst(`SELECT id FROM people WHERE people_user_id = ?`, _user.id());
+    const dbProfile = _db.queryFirst(`SELECT id FROM profile WHERE profile_user_id = ?`, _user.id());
 
     const dbOrganizations = _db.query(`
         WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (
@@ -28,9 +28,9 @@ export default {
             FROM
                 organization org
             INNER JOIN
-                organization_people op ON org.id = op.organization_id
+                organization_profile op ON org.id = op.organization_id
             WHERE 1 = 1
-                AND op.people_id = ${dbPeople.getInt("id")}
+                AND op.profile_id = ${dbProfile.getInt("id")}
                 AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
                 AND op.active = true
             UNION
@@ -59,7 +59,7 @@ export default {
   },
 
   getOrganizationsWithDescendants: () => {
-    const dbPeople = _db.queryFirst(`SELECT id FROM people WHERE people_user_id = ?`, _user.id());
+    const dbProfile = _db.queryFirst(`SELECT id FROM profile WHERE profile_user_id = ?`, _user.id());
 
     const dbOrganizations = _db.query(`
         WITH RECURSIVE user_orgs AS (
@@ -73,9 +73,9 @@ export default {
             FROM
                 organization org
             INNER JOIN
-                organization_people op ON org.id = op.organization_id
+                organization_profile op ON org.id = op.organization_id
             WHERE 1 = 1
-                AND op.people_id = ${dbPeople.getInt("id")}
+                AND op.profile_id = ${dbProfile.getInt("id")}
             UNION
             SELECT
                 org.name,
@@ -93,22 +93,22 @@ export default {
             user_orgs.code org_code,
             user_orgs.uid AS org_uid,
             user_orgs.id AS org_id,
-            people.name AS people_name,
-            people.uid AS people_uid,
-            people.id AS people_id,
+            profile.name AS profile_name,
+            profile.uid AS profile_uid,
+            profile.id AS profile_id,
             user_group.name AS group_name,
             user_group.code AS group_code,
-            organization_people.active AS member_active
+            organization_profile.active AS member_active
         FROM
             user_orgs
         INNER JOIN
-            organization_people ON organization_people.organization_id = user_orgs.id
+            organization_profile ON organization_profile.organization_id = user_orgs.id
         INNER JOIN
-            people ON people.id = organization_people.people_id
+            profile ON profile.id = organization_profile.profile_id
         INNER JOIN
-            user_group ON user_group.id = organization_people.user_group_id
+            user_group ON user_group.id = organization_profile.user_group_id
          WHERE 1 = 1
-            AND people.id = ${dbPeople.getInt("id")}
+            AND profile.id = ${dbProfile.getInt("id")}
     `);
 
     const hierarchy = _val.map();
@@ -187,14 +187,14 @@ export default {
             SELECT
                 user_group.name,
                 user_group.code,
-                organization_people.active AS member_active
+                organization_profile.active AS member_active
             FROM user_group
             INNER JOIN
-                organization_people ON organization_people.user_group_id = user_group.id
+                organization_profile ON organization_profile.user_group_id = user_group.id
             WHERE 1 = 1
-                AND organization_people.organization_id = ?
-                AND organization_people.people_id = ?
-        `, dbDescendant.getInt("descendant_id"), dbOrganization.getInt("people_id"));
+                AND organization_profile.organization_id = ?
+                AND organization_profile.profile_id = ?
+        `, dbDescendant.getInt("descendant_id"), dbOrganization.getInt("profile_id"));
 
         if (specificMember) {
           hierarchy.set(

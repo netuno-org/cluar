@@ -4,7 +4,7 @@
   "_schema":"tags/member",
   "type":"object",
   "properties":{
-    "people_uid":{
+    "profile_uid":{
       "type":"uuid"
     },
     "organization_code":{
@@ -18,7 +18,7 @@
     }
   },
   "required":[
-    "people_uid",
+    "profile_uid",
     "organization_code",
     "group_code",
     "active"

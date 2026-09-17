@@ -1,19 +1,19 @@
 import { _db, _val, _out, _exec, _user, _req } from "@netuno/server-types";
 
-const peopleUid = _req.getString("uid");
+const profileUid = _req.getString("uid");
 
-const dbPeople = _db.queryFirst(`
-    SELECT * FROM people WHERE uid = ?::uuid 
-`, peopleUid);
+const dbProfile = _db.queryFirst(`
+    SELECT * FROM profile WHERE uid = ?::uuid 
+`, profileUid);
 
-if (dbPeople) {
-  const peopleId = dbPeople.getInt("id")
-  _db.execute(`DELETE from organization_people WHERE people_id = ${peopleId}`);
+if (dbProfile) {
+  const profileId = dbProfile.getInt("id")
+  _db.execute(`DELETE from organization_profile WHERE profile_id = ${profileId}`);
   _db.delete(
-    "people",
-    peopleId
+    "profile",
+    profileId
   );
-  _user.remove(dbPeople.getInt("people_user_id"));
+  _user.remove(dbProfile.getInt("profile_user_id"));
   _out.json(
     _val.map()
       .set("result", true)

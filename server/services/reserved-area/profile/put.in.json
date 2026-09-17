@@ -1,5 +1,5 @@
 {
-  "_schema":"tags/people",
+  "_schema":"tags/profile",
   "summary": "Update Account",
   "description": "Change the information of the logged user.",
   "type": "object",

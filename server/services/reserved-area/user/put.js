@@ -9,9 +9,9 @@ const password = _req.getString("password");
 const userEmailExists = _user.firstByMail(email);
 const usernameExists = _user.firstByUser(username);
 
-const dbPeople = _db.get("people", uid);
+const dbProfile = _db.get("profile", uid);
 
-if (!dbPeople) {
+if (!dbProfile) {
   _header.status(404);
   _out.json(
     _val.map()
@@ -22,14 +22,14 @@ if (!dbPeople) {
   _exec.stop();
 }
 
-const peopleEmailExists = _db.queryFirst(`
+const profileEmailExists = _db.queryFirst(`
     SELECT 
         CASE WHEN COUNT(1) > 0 THEN TRUE ELSE FALSE END AS result
-    FROM people
+    FROM profile
     WHERE 1 = 1
-        AND people.email = ?
-        AND people.id != ? 
-`, email, dbPeople.getInt("id")).getBoolean("result");
+        AND profile.email = ?
+        AND profile.id != ? 
+`, email, dbProfile.getInt("id")).getBoolean("result");
 
 const userExists = _db.queryFirst(`
     SELECT
@@ -38,9 +38,9 @@ const userExists = _db.queryFirst(`
     WHERE 1 = 1
         AND (netuno_user.user = ? OR netuno_user.mail = ?)
         AND netuno_user.id != ?
-`, username, email, dbPeople.getInt("people_user_id")).getBoolean("result");
+`, username, email, dbProfile.getInt("profile_user_id")).getBoolean("result");
 
-if (peopleEmailExists || userExists) {
+if (profileEmailExists || userExists) {
   _header.status(409);
   _out.json(
     _val.map()
@@ -56,7 +56,7 @@ const userData = _val.map()
   .set("user", username)
   .set("mail", email)
   .set("pass", password)
-  .set("group_id", _group.firstByCode('people').getInt('id'));
+  .set("group_id", _group.firstByCode('profile').getInt('id'));
 
 let shouldUpdatePass = false;
 
@@ -64,25 +64,25 @@ if (password.length > 1) {
   shouldUpdatePass = true;
 }
 
-const peopleData = _val.map()
+const profileData = _val.map()
   .set("name", name)
   .set("email", email);
 
 if (_req.has("active")) {
   userData.set("active", _req.getBoolean("active"));
-  peopleData.set("active", _req.getBoolean("active"));
+  profileData.set("active", _req.getBoolean("active"));
 }
 
 _user.update(
-  dbPeople.getInt("people_user_id"),
+  dbProfile.getInt("profile_user_id"),
   userData,
   shouldUpdatePass
 );
 
 _db.update(
-  'people',
-  dbPeople.getInt("id"),
-  peopleData
+  'profile',
+  dbProfile.getInt("id"),
+  profileData
 );
 
 _out.json(

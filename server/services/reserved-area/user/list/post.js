@@ -5,7 +5,7 @@ const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
 let page = _db.pagination(1, 10);
 const where = _val.map()
-  .set('people', _db.where())
+  .set('profile', _db.where())
   .set('group', _db.where())
   .set('user', _db.where())
 
@@ -22,12 +22,12 @@ if (pagination) {
 if (filters) {
   const name = filters.has("name") && filters.getString("name")
   if (name) {
-    where.get('people').and('name').contains(name);
+    where.get('profile').and('name').contains(name);
   }
 
   const email = filters.has("email") && filters.getString("email")
   if (email) {
-    where.get('people').and('email').contains(email);
+    where.get('profile').and('email').contains(email);
   }
 
   const active = filters.has('active') && filters.getList('active');
@@ -47,30 +47,30 @@ const organizationWhere = _db.where(
   'organization_id'
 ).in(userOrganizations.map((organization) => organization.getInt("id")))
 
-const query = _db.form("people")
+const query = _db.form("profile")
   .join(
     _db.manyToOne(
       "netuno_user",
-      "people_user_id",
+      "profile_user_id",
       where.get('user')
     )
   )
   .link(
-    'organization_people',
+    'organization_profile',
     organizationWhere
   )
-  .where(where.get('people'))
-  .get("people.name")
-  .get("people.uid")
-  .get("people.email")
+  .where(where.get('profile'))
+  .get("profile.name")
+  .get("profile.uid")
+  .get("profile.email")
   .get("netuno_user.id", "netuno_user_id")
   .get('netuno_user.user')
   .get("netuno_user.active")
   .group(
-    'people.id',
+    'profile.id',
     'netuno_user.id'
   )
-  .order("people.id", "desc")
+  .order("profile.id", "desc")
 
 const pageUsers = query.page(page);
 

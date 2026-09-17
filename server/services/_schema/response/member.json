@@ -7,7 +7,7 @@
     "active":{
       "type":"boolean"
     },
-    "people":{
+    "profile":{
       "type":"object",
       "properties": {
         "uid":{

@@ -9,18 +9,18 @@ _exec.stop();
 
 /** * **/
 
-const dbPeople = _db.queryFirst(`
-    SELECT * FROM people WHERE people_user_id = ${_db.param("int")}
+const dbProfile = _db.queryFirst(`
+    SELECT * FROM profile WHERE profile_user_id = ${_db.param("int")}
 `, _user.id);
 
-if (dbPeople) {
-  const peopleId = dbPeople.getInt("id")
-  _db.execute(`DELETE from organization_people WHERE people_id = ${peopleId}`);
+if (dbProfile) {
+  const profileId = dbProfile.getInt("id")
+  _db.execute(`DELETE from organization_profile WHERE profile_id = ${profileId}`);
   _db.delete(
-    "people",
-    peopleId
+    "profile",
+    profileId
   );
-  _user.remove(dbPeople.getInt("people_user_id"));
+  _user.remove(dbProfile.getInt("profile_user_id"));
   _out.json(
     _val.map()
       .set("result", true)

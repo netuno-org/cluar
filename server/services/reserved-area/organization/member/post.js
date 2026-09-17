@@ -2,22 +2,22 @@ import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const {
-  people_uid,
+  profile_uid,
   organization_code,
   group_code,
   active
 } = JSON.parse(_req.toJSON());
 
 
-const dbPeople = _db.queryFirst(`SELECT id, uid, name FROM people WHERE uid = ?::uuid`, people_uid);
+const dbProfile = _db.queryFirst(`SELECT id, uid, name FROM profile WHERE uid = ?::uuid`, profile_uid);
 
-if (!dbPeople) {
+if (!dbProfile) {
   _header.status(404);
   _out.json(
     _val.map()
       .set('result', false)
-      .set('error', `people not found with uid: ${people_uid}`)
-      .set('error_code', `people-not-found`)
+      .set('error', `profile not found with uid: ${profile_uid}`)
+      .set('error_code', `profile-not-found`)
   );
   _exec.stop();
 }
@@ -66,11 +66,11 @@ if (!dbGroup) {
 
 const memberAlreadyExists = _db.queryFirst(`
    SELECT 1
-   FROM organization_people
+   FROM organization_profile
    WHERE 1 = 1
-    AND people_id = ?::integer
+    AND profile_id = ?::integer
     AND organization_id = ?::integer
-`, dbPeople.getInt("id"), dbOrganization.getInt("id"));
+`, dbProfile.getInt("id"), dbOrganization.getInt("id"));
 
 if (memberAlreadyExists) {
   _header.status(409);
@@ -85,11 +85,11 @@ if (memberAlreadyExists) {
 
 const memberData = _val.map()
   .set("organization_id", dbOrganization.getInt("id"))
-  .set("people_id", dbPeople.getInt("id"))
+  .set("profile_id", dbProfile.getInt("id"))
   .set("user_group_id", dbGroup.getInt("id"))
   .set("active", active);
 
-const createdMember = cluar.db.insertAndReturn("organization_people", memberData);
+const createdMember = cluar.db.insertAndReturn("organization_profile", memberData);
 
 _header.status(201);
 _out.json(
@@ -98,9 +98,9 @@ _out.json(
     .set('member', _val.map()
       .set('uid', createdMember.getString("uid"))
       .set('active', createdMember.getBoolean("active"))
-      .set('people', _val.map()
-        .set('name', dbPeople.getString("name"))
-        .set('uid', dbPeople.getString("uid"))
+      .set('profile', _val.map()
+        .set('name', dbProfile.getString("name"))
+        .set('uid', dbProfile.getString("uid"))
       )
       .set('group', _val.map()
         .set('name', dbGroup.getString("name"))

@@ -2,19 +2,19 @@ import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
 
 const uid = _req.getString("uid");
 
-const dbUser = _db.form('people')
+const dbUser = _db.form('profile')
   .join(
     _db.manyToOne(
       'netuno_user',
-      'people_user_id'
+      'profile_user_id'
     )
   )
   .where(
     _db.where('uid').equal(uid)
   )
-  .get('people.name', 'people_name')
-  .get('people.email', 'people_email')
-  .get('people.uid', 'people_uid')
+  .get('profile.name', 'profile_name')
+  .get('profile.email', 'profile_email')
+  .get('profile.uid', 'profile_uid')
   .get('netuno_user.active', 'user_active')
   .get('netuno_user.user', 'username')
   .first();
@@ -31,9 +31,9 @@ if (!dbUser) {
 }
 
 const user = _val.map()
-  .set('name', dbUser.getString('people_name'))
-  .set('email', dbUser.getString('people_email'))
-  .set('uid', dbUser.getString('people_uid'))
+  .set('name', dbUser.getString('profile_name'))
+  .set('email', dbUser.getString('profile_email'))
+  .set('uid', dbUser.getString('profile_uid'))
   .set('active', dbUser.getBoolean('user_active'))
   .set('username', dbUser.getString('username'));
 

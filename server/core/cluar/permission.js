@@ -4,14 +4,14 @@ import organization from "#core/cluar/organization.js";
 
 export default {
   isAllowed: ({ organization: orgCode, allowedGroups }) => {
-    const loggedPeople = user.getPeople();
+    const loggedProfile = user.getProfile();
     const currentOrg = organization.getByCode(orgCode);
-    const peopleGroups = organization.getPeopleGroupsByOrg(currentOrg.getInt("id"), loggedPeople.getInt("id"));
-    return peopleGroups.some((group) => allowedGroups.includes(group.getString("code")));
+    const profileGroups = organization.getProfileGroupsByOrg(currentOrg.getInt("id"), loggedProfile.getInt("id"));
+    return profileGroups.some((group) => allowedGroups.includes(group.getString("code")));
   },
 
   isUserAuthorizedInOrganization: (params) => {
-    const people = user.getPeople();
+    const profile = user.getProfile();
     const organization = params.getValues("organization");
 
     const dbIsAuthorized = _db.queryFirst(`
@@ -26,9 +26,9 @@ export default {
             FROM
                 organization org
             INNER JOIN
-                organization_people op ON org.id = op.organization_id
+                organization_profile op ON org.id = op.organization_id
             WHERE 1 = 1
-                AND op.people_id = ${people.getInt("id")}
+                AND op.profile_id = ${profile.getInt("id")}
                 AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
                 AND op.active = true
             UNION

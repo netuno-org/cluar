@@ -3,8 +3,8 @@ import { _db, _val, _req, _out, _header, _exec, _storage, _template, _crypto, _s
 const mail = _req.getString("mail");
 const currentLanguageCode = _req.getString("current_language");
 
-const dbPeople = _db.findFirst(
-  "people",
+const dbProfile = _db.findFirst(
+  "profile",
   _val.map()
     .set(
       "where",
@@ -29,21 +29,21 @@ if (!dbLanguage) {
   _exec.stop();
 }
 
-if (dbPeople != null && dbPeople.getBoolean("active")) {
+if (dbProfile != null && dbProfile.getBoolean("active")) {
   const recoveryKey = _crypto.sha512(_uid.generate());
   const recoveryLimit = _time.localDateTime().plusDays(1);
   _db.update(
-    "people",
-    dbPeople.getInt("id"),
+    "profile",
+    dbProfile.getInt("id"),
     _val.map()
       .set("recovery_key", recoveryKey)
       .set("recovery_limit", _db.timestamp(recoveryLimit))
   );
-  dbPeople.set("recovery_key", recoveryKey);
-  dbPeople.set("recovery_link", `${_header.getString("Origin")}/recovery#${recoveryKey}`);
+  dbProfile.set("recovery_key", recoveryKey);
+  dbProfile.set("recovery_link", `${_header.getString("Origin")}/recovery#${recoveryKey}`);
 
   const smtp = _smtp.init();
-  smtp.to = dbPeople.getString("email");
+  smtp.to = dbProfile.getString("email");
   smtp.text = `
    
   `;
@@ -61,8 +61,8 @@ if (dbPeople != null && dbPeople.getBoolean("active")) {
 
   const subject = dictionaries.find((dictionary) => dictionary.getString('code') === "recovery-mail-subject").getString('value') || "";
   let content = dictionaries.find((dictionary) => dictionary.getString('code') === "recovery-mail-message").getString('value') || "";
-  content = content.replace('${name}', dbPeople.getString('name'));
-  content = content.replace('${link}', dbPeople.getString('recovery_link'));
+  content = content.replace('${name}', dbProfile.getString('name'));
+  content = content.replace('${link}', dbProfile.getString('recovery_link'));
 
   smtp.subject = subject;
   smtp.html = _template.getOutput(
@@ -79,7 +79,7 @@ if (dbPeople != null && dbPeople.getBoolean("active")) {
   _out.json(
     _val.map().set("result", true)
   );
-} else if (dbPeople != null && !dbPeople.getBoolean("active")) {
+} else if (dbProfile != null && !dbProfile.getBoolean("active")) {
   _header.status(409);
   _out.json(
     _val.map()

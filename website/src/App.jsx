@@ -140,7 +140,7 @@ function App() {
     useEffect(() => {
       _service({
         method: 'GET',
-        url: 'reserved-area/people',
+        url: 'reserved-area/profile',
         success: (response) => {
           if (response.json.result) {
             dispatch(loggedUserInfoAction(response.json.data));

@@ -52,7 +52,7 @@ if (userEmailExists || usernameExists) {
   _exec.stop();
 }
 
-const dbGroup = _group.firstByCode("people");
+const dbGroup = _group.firstByCode("profile");
 
 const userData = _val.map()
   .set("name", name)
@@ -66,11 +66,11 @@ const userData = _val.map()
 const user_id = _user.create(userData);
 
 _db.insertIfNotExists(
-  'people',
+  'profile',
   _val.map()
     .set("name", name)
     .set("email", email)
-    .set("people_user_id", user_id)
+    .set("profile_user_id", user_id)
     .set("avatar", avatar)
 );
 

@@ -5,7 +5,7 @@ const {
   active
 } = JSON.parse(_req.toJSON());
 
-const dbMember = _db.queryFirst(`SELECT id FROM organization_people WHERE uid = ?::uuid`, uid);
+const dbMember = _db.queryFirst(`SELECT id FROM organization_profile WHERE uid = ?::uuid`, uid);
 
 if (!dbMember) {
   _header.status(404);
@@ -19,7 +19,7 @@ if (!dbMember) {
 }
 
 _db.update(
-  'organization_people',
+  'organization_profile',
   dbMember.getInt("id"),
   _val.map()
     .set('active', active)

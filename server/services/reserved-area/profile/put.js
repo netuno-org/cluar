@@ -6,8 +6,8 @@ const email = _req.getString("email");
 const password = _req.getString("password");
 const avatar = _req.getFile("avatar");
 
-const dbPeople = _db.queryFirst(`
-  SELECT * FROM people WHERE people_user_id = ${_db.param("int")}
+const dbProfile = _db.queryFirst(`
+  SELECT * FROM profile WHERE profile_user_id = ${_db.param("int")}
 `, _user.id());
 
 const userData = _user.get(_user.id());
@@ -30,12 +30,12 @@ if (password.length > 0) {
   );
 }
 
-const peopleData = _val.map()
+const profileData = _val.map()
   .set("name", name)
   .set("email", email);
 
 if (avatar) {
-  peopleData.set(
+  profileData.set(
     "avatar",
     _image
       .init(avatar)
@@ -45,9 +45,9 @@ if (avatar) {
 }
 
 _db.update(
-  "people",
-  dbPeople.getInt("id"),
-  peopleData
+  "profile",
+  dbProfile.getInt("id"),
+  profileData
 );
 
 _out.json(

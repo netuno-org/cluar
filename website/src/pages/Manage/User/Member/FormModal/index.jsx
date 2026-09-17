@@ -105,7 +105,7 @@ const MemberFormModal = forwardRef(({ onReloadTable, memberData, userData }, ref
       ...values,
       organization_code: values.organization_code.value,
       group_code: values.group_code.value,
-      people_uid: values.user_uid.value
+      profile_uid: values.user_uid.value
     }
 
     if (editMode) {

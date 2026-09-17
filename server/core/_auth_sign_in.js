@@ -1,13 +1,13 @@
 import { _db, _user, _auth, _val, _exec, _group } from "@netuno/server-types";
 import groups from "#core/consts/group.js";
 
-const dbPeople = _db.queryFirst(`
+const dbProfile = _db.queryFirst(`
     SELECT *
-    FROM people
-    WHERE people_user_id = ?
+    FROM profile
+    WHERE profile_user_id = ?
 `, _user.id);
 
-if (!dbPeople) {
+if (!dbProfile) {
   _auth.signInAbortWithData(
     _val.map()
       .set('error', 'invalid-user')
@@ -19,16 +19,16 @@ const authorizedGroups = [groups["ADMIN"], groups["EDITOR"]];
 
 const isAuthorized = _db.queryFirst(`
     SELECT 1
-    FROM organization_people
+    FROM organization_profile
     WHERE 1 = 1
-        AND people_id = ${_db.param("int")}
+        AND profile_id = ${_db.param("int")}
         AND user_group_id IN (
             SELECT id FROM user_group WHERE code IN (
                 ${authorizedGroups.map(() => "?").join(", ")}
             )
         )
         AND active = true
-`, dbPeople.getInt("id"), ...authorizedGroups);
+`, dbProfile.getInt("id"), ...authorizedGroups);
 
 if (!isAuthorized) {
   _auth.signInAbortWithData(
@@ -41,11 +41,11 @@ if (!isAuthorized) {
 }
 
 const data = _val.map()
-  .set("uid", dbPeople.getString("uid"))
-  .set("name", dbPeople.getString("name"))
-  .set("email", dbPeople.getString("email"))
+  .set("uid", dbProfile.getString("uid"))
+  .set("name", dbProfile.getString("name"))
+  .set("email", dbProfile.getString("email"))
   .set("username", _user.get(_user.id()).getString("user"))
-  .set("avatar", dbPeople.getString("avatar") != '')
+  .set("avatar", dbProfile.getString("avatar") != '')
   .set("group", _group.code());
 
 _auth.signInExtraData(data);

@@ -28,7 +28,7 @@ const PUBLIC_PATHS = [
   'recovery/put',
   '_altcha',
   '_auth',
-  'reserved-area/people/avatar/get',
+  'reserved-area/profile/avatar/get',
   'reserved-area/action/image/get',
 ];
 
@@ -41,9 +41,9 @@ const PUBLIC_PATH_PREFIXES = [
  * sincronização) - administrator + editor.
  */
 const CONTENT_MANAGEMENT_PATHS = [
-  'reserved-area/people/get',
-  'reserved-area/people/put',
-  'reserved-area/people/delete',
+  'reserved-area/profile/get',
+  'reserved-area/profile/put',
+  'reserved-area/profile/delete',
 ];
 
 const CONTENT_MANAGEMENT_PATH_PREFIXES = [
@@ -55,7 +55,7 @@ const CONTENT_MANAGEMENT_PATH_PREFIXES = [
 ];
 
 const SITE_ADMIN_PATHS = [
-  'reserved-area/people/post',
+  'reserved-area/profile/post',
 ];
 
 const SITE_ADMIN_PATH_PREFIXES = [

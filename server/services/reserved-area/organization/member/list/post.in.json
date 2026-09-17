@@ -11,7 +11,7 @@
       "organization_name":{
         "type":"string"
       },
-      "people_name":{
+      "profile_name":{
         "type":"string"
       },
       "group_code":{

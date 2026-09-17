@@ -7,7 +7,7 @@
     "uid":{
       "type":"uuid"
     },
-    "people_uid": {
+    "profile_uid": {
       "type": "uuid"
     },
     "organization_code": {
@@ -22,7 +22,7 @@
   },
   "required": [
     "uid",
-    "people_uid",
+    "profile_uid",
     "organization_code",
     "group_code",
     "active"

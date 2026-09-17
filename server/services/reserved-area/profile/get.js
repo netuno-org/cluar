@@ -1,18 +1,18 @@
 import { _req, _val, _header, _out, _exec, _db, _user } from "@netuno/server-types";
 
-const dbPeople = _db.form('people')
+const dbProfile = _db.form('profile')
   .where(
-    _db.where('people_user_id').equals(_user.id())
+    _db.where('profile_user_id').equals(_user.id())
   ).first()
 
-if (!dbPeople) {
+if (!dbProfile) {
   _header.status(404)
   _exec.stop()
 }
 
-const groups = _db.form("organization_people")
+const groups = _db.form("organization_profile")
   .where(
-    _db.where("people_id").equals(dbPeople.getInt("id"))
+    _db.where("profile_id").equals(dbProfile.getInt("id"))
       .and(_db.where("active").equals(true))
   )
   .link(_db.link("organization").where(_db.where("code").equals("base")))
@@ -23,11 +23,11 @@ const groups = _db.form("organization_people")
   .all();
 
 const data = _val.map()
-  .set("uid", dbPeople.getString("uid"))
-  .set("name", dbPeople.getString("name"))
-  .set("email", dbPeople.getString("email"))
+  .set("uid", dbProfile.getString("uid"))
+  .set("name", dbProfile.getString("name"))
+  .set("email", dbProfile.getString("email"))
   .set("username", _user.get(_user.id()).getString("user"))
-  .set("avatar", dbPeople.getString("avatar") != '')
+  .set("avatar", dbProfile.getString("avatar") != '')
   .set("groups", groups)
 
 _out.json(

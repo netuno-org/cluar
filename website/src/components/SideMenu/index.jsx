@@ -319,7 +319,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     setLoading(true);
     _service({
       method: 'GET',
-      url: 'reserved-area/people',
+      url: 'reserved-area/profile',
       success: (response) => {
         setLoading(false);
         if (response.json.result) {
@@ -348,7 +348,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   useEffect(() => {
     if (loggedUserInfo && loggedUserInfo.avatar) {
       setAvatarImageURL(null);
-      setTimeout(() => setAvatarImageURL(`${_service.config().prefix}reserved-area/people/avatar?uid=${loggedUserInfo.uid}&${new Date().getTime()}`), 250);
+      setTimeout(() => setAvatarImageURL(`${_service.config().prefix}reserved-area/profile/avatar?uid=${loggedUserInfo.uid}&${new Date().getTime()}`), 250);
     }
   }, [loggedUserInfo]);
 

@@ -3,11 +3,11 @@ import { _db, _val, _req, _out, _header, _exec, _user } from "@netuno/server-typ
 const uid = _req.getString("uid");
 const active = _req.getBoolean("active");
 
-const dbPeople = _db.queryFirst(`
-    SELECT id, people_user_id FROM people WHERE uid = ?::uuid
+const dbProfile = _db.queryFirst(`
+    SELECT id, profile_user_id FROM profile WHERE uid = ?::uuid
 `, uid);
 
-if (!dbPeople) {
+if (!dbProfile) {
   _header.status(404);
   _out.json(
     _val.map()
@@ -19,15 +19,15 @@ if (!dbPeople) {
 }
 
 _user.update(
-  dbPeople.getInt("people_user_id"),
+  dbProfile.getInt("profile_user_id"),
   _val.map()
     .set('active', active),
   false
 );
 
 _db.update(
-  'people',
-  dbPeople.getInt("id"),
+  'profile',
+  dbProfile.getInt("id"),
   _val.map()
     .set('active', active)
 );

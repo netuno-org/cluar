@@ -2,8 +2,8 @@ import { _db, _val, _req, _out, _header, _exec, _user } from "@netuno/server-typ
 
 const uid = _req.getString('uid');
 
-const dbPeople = _db.queryFirst(`
-    SELECT id FROM people WHERE people_user_id = ? 
+const dbProfile = _db.queryFirst(`
+    SELECT id FROM profile WHERE profile_user_id = ? 
 `, _user.id());
 
 const dbOrganization = _db.queryFirst(`
@@ -18,9 +18,9 @@ const dbOrganization = _db.queryFirst(`
         FROM 
             organization org
         INNER JOIN 
-            organization_people op ON org.id = op.organization_id
+            organization_profile op ON org.id = op.organization_id
         WHERE 1 = 1 
-            AND op.people_id = ${dbPeople.getInt("id")}
+            AND op.profile_id = ${dbProfile.getInt("id")}
             AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
             AND op.active = true
         UNION

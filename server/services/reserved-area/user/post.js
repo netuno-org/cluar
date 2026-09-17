@@ -69,24 +69,24 @@ const userData = _val.map()
   .set("user", username)
   .set("pass", password)
   .set("mail", email)
-  .set("group_id", _group.firstByCode('people').getInt('id'))
+  .set("group_id", _group.firstByCode('profile').getInt('id'))
 
-const peopleData = _val.map()
+const profileData = _val.map()
   .set("name", name)
   .set("active", active)
   .set("email", email)
 
 const userId = _user.create(userData);
-peopleData.set("people_user_id", userId);
+profileData.set("profile_user_id", userId);
 
 
-const registedPeople = cluar.db.insertAndReturn("people", peopleData);
+const registedProfile = cluar.db.insertAndReturn("profile", profileData);
 const registedUser = _user.get(userId);
 
 _db.insert(
-  'organization_people',
+  'organization_profile',
   _val.map()
-    .set('people_id', registedPeople.getInt('id'))
+    .set('profile_id', registedProfile.getInt('id'))
     .set('organization_id', dbOrganization.getInt('id'))
     .set('user_group_id', dbGroup.getInt('id'))
 )
@@ -96,10 +96,10 @@ _out.json(
   _val.map()
     .set("result", true)
     .set("user", _val.map()
-      .set('name', registedPeople.getString('name'))
-      .set('email', registedPeople.getString('email'))
+      .set('name', registedProfile.getString('name'))
+      .set('email', registedProfile.getString('email'))
       .set('active', registedUser.getBoolean('active'))
-      .set('uid', registedPeople.getString('uid'))
+      .set('uid', registedProfile.getString('uid'))
       .set('username', registedUser.getString('user'))
     )
 )

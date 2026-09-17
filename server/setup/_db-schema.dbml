@@ -84,10 +84,10 @@ Table organization {
   Note: 'Organização'
 }
 
-Table organization_people {
+Table organization_profile {
   id int [pk, increment]
   organization_id int [ref: > organization.id, note: 'Organização']
-  people_id int [ref: > people.id, note: 'Pessoa']
+  profile_id int [ref: > profile.id, note: 'Pessoa']
   user_group_id int [ref: > user_group.id, note: 'Grupo']
   Note: 'Membros'
 }
@@ -286,12 +286,12 @@ Table page_version {
   Note: 'Versão'
 }
 
-Table people {
+Table profile {
   id int [pk, increment]
   avatar text [note: 'Avatar']
   email varchar(250) [note: 'Email']
   name varchar(250) [not null, note: 'Nome']
-  people_user_id int [not null, note: 'Utilizador']
+  profile_user_id int [not null, note: 'Utilizador']
   recovery_key varchar(250) [note: 'Chave de Recuperação']
   recovery_limit timestamp [note: 'Limite de Recuperação']
   Note: 'Pessoa'

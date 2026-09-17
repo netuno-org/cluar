@@ -9,11 +9,11 @@ export default {
       .first();
   },
 
-  getPeopleGroupsByOrg: (organizationId, peopleId) => {
-    return _db.form("organization_people")
+  getProfileGroupsByOrg: (organizationId, profileId) => {
+    return _db.form("organization_profile")
       .where(
         _db.where("organization_id").equals(organizationId)
-          .and("people_id").equals(peopleId)
+          .and("profile_id").equals(profileId)
           .and("active").equals(true)
       )
       .link("user_group")

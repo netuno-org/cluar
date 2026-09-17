@@ -1,5 +1,5 @@
 {
-  "_schema":"tags/people",
+  "_schema":"tags/profile",
   "summary": "Register",
   "description": "Create a new account.",
   "type": "object",

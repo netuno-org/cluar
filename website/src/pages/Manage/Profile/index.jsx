@@ -38,7 +38,7 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
         });
       }
       if (loggedUserInfo.avatar) {
-        setAvatarImageURL(`${_service.config().prefix}reserved-area/people/avatar?uid=${loggedUserInfo.uid}`);
+        setAvatarImageURL(`${_service.config().prefix}reserved-area/profile/avatar?uid=${loggedUserInfo.uid}`);
       }
     }
   }, [location, loggedUserInfo]);
@@ -48,7 +48,7 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
     const { name, username, password, email } = values;
     _service({
       method: 'PUT',
-      url: 'reserved-area/people',
+      url: 'reserved-area/profile',
       data: {
         name,
         username,
