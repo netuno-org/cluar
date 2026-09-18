@@ -290,7 +290,6 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
 
   useEffect(() => {
     if (organizationData) {
-      console.log(organizationData);
       onLoadMembers();
       onLoadGroups();
     }
