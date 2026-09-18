@@ -13,7 +13,7 @@ export default {
       .first();
   },
 
-  getOrganizations: () => {
+  getActiveAdminOrganizationsWithDescendants: () => {
     const dbProfile = _db.queryFirst(`SELECT id FROM profile WHERE profile_user_id = ?`, _user.id());
 
     const dbOrganizations = _db.query(`

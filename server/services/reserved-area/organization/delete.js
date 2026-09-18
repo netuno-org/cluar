@@ -5,35 +5,40 @@ const organizationUid = _req.getString("uid");
 
 const dbOrganization = _db.get("organization", organizationUid);
 
-if (dbOrganization) {
-  const organizationId = dbOrganization.getInt("id");
+if (!dbOrganization) {
+  cluar.response.error({ status: 404, error: "organization not found" });
+}
 
-  const dbChildOrganizations = _db.query(`
-      SELECT * FROM organization
-      WHERE parent_id = ?::int
-    `, organizationId
-  );
+const userOganizations = cluar.user.getActiveAdminOrganizationsWithDescendants();
+if (!userOganizations.some((org) => org.getString("uid") === organizationUid)) {
+  cluar.response.error({ status: 403, error: 'permission denied' });
+}
 
-  for (const dbChildOrganization of dbChildOrganizations) {
-    const childOrganizationId = dbChildOrganization.getInt("id");
-    _db.execute(`
-        DELETE FROM organization_profile
-        WHERE organization_id = ?::int
-      `, childOrganizationId
-    );
+const organizationId = dbOrganization.getInt("id");
 
-    _db.execute(`DELETE FROM organization WHERE id = ?::int`, childOrganizationId);
-  }
+const dbChildOrganizations = _db.query(`
+    SELECT * FROM organization
+    WHERE parent_id = ?::int
+  `, organizationId
+);
 
+for (const dbChildOrganization of dbChildOrganizations) {
+  const childOrganizationId = dbChildOrganization.getInt("id");
   _db.execute(`
       DELETE FROM organization_profile
       WHERE organization_id = ?::int
-    `, organizationId
+    `, childOrganizationId
   );
 
-  _db.execute(`DELETE FROM organization WHERE uid = ?::uuid`, organizationUid);
-
-  _out.json(_val.map().set("result", true));
-} else {
-  _out.json(_val.map().set("result", false).set("error", "not-found"));
+  _db.execute(`DELETE FROM organization WHERE id = ?::int`, childOrganizationId);
 }
+
+_db.execute(`
+    DELETE FROM organization_profile
+    WHERE organization_id = ?::int
+  `, organizationId
+);
+
+_db.execute(`DELETE FROM organization WHERE uid = ?::uuid`, organizationUid);
+
+_out.json(_val.map().set("result", true));

@@ -6,6 +6,9 @@ const dbProfile = _db.queryFirst(`
     SELECT * FROM profile WHERE uid = ?::uuid 
 `, profileUid);
 
+// existe alguma organização à qual o usuário a ser deletado pertença
+// ou organização acima dessa
+// da qual o usuário logado seja administrador?
 if (dbProfile) {
   const profileId = dbProfile.getInt("id")
   _db.execute(`DELETE from organization_profile WHERE profile_id = ${profileId}`);

@@ -3,6 +3,7 @@ import user from "#core/cluar/user.js";
 import organization from "#core/cluar/organization.js";
 
 export default {
+  // logged user is allowed
   isAllowed: ({ organization: orgCode, allowedGroups }) => {
     const loggedProfile = user.getProfile();
     const currentOrg = organization.getByCode(orgCode);
