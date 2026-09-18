@@ -37,7 +37,7 @@ const PUBLIC_PATH_PREFIXES = [
 ];
 
 /*
- * Gestão de conteúdo (páginas, blocos, dicionário, idiomas, ações,
+ * Gestão de conteúdo (páginas, blocos, tradução, idiomas, ações,
  * sincronização) - administrator + editor.
  */
 const CONTENT_MANAGEMENT_PATHS = [
@@ -50,7 +50,7 @@ const CONTENT_MANAGEMENT_PATH_PREFIXES = [
   'reserved-area/page/',
   'reserved-area/editor/',
   'reserved-area/component/',
-  'reserved-area/dictionary/',
+  'reserved-area/translation/',
   'reserved-area/action/',
 ];
 

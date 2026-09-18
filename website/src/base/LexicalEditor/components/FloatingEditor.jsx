@@ -154,7 +154,7 @@ export default function FloatingEditor({ editor }) {
           className={`toolbar-button ${formatState.bold ? 'active' : ''}`}
           onClick={() => handleFormatCommand('bold')}
           onMouseDown={(event) => event.preventDefault()}
-          title={`${Cluar.plainDictionary("toolbar-bold")} (Ctrl+B)`}
+          title={`${Cluar.plainTranslation("toolbar-bold")} (Ctrl+B)`}
         >
           <BoldOutlined />
         </button>
@@ -163,7 +163,7 @@ export default function FloatingEditor({ editor }) {
           className={`toolbar-button ${formatState.italic ? 'active' : ''}`}
           onClick={() => handleFormatCommand('italic')}
           onMouseDown={(event) => event.preventDefault()}
-          title={`${Cluar.plainDictionary("toolbar-italic")} (Ctrl+I)`}
+          title={`${Cluar.plainTranslation("toolbar-italic")} (Ctrl+I)`}
         >
           <ItalicOutlined />
         </button>
@@ -172,7 +172,7 @@ export default function FloatingEditor({ editor }) {
           className={`toolbar-button ${formatState.underline ? 'active' : ''}`}
           onClick={() => handleFormatCommand('underline')}
           onMouseDown={(event) => event.preventDefault()}
-          title={`${Cluar.plainDictionary("toolbar-underline")} (Ctrl+U)`}
+          title={`${Cluar.plainTranslation("toolbar-underline")} (Ctrl+U)`}
         >
           <UnderlineOutlined />
         </button>
@@ -183,7 +183,7 @@ export default function FloatingEditor({ editor }) {
           className={`toolbar-button ${formatState.link ? 'active' : ''}`}
           onClick={() => handleLinkCommand()}
           onMouseDown={(event) => event.preventDefault()}
-          title={`${Cluar.plainDictionary("toolbar-link")} (Ctrl+K)`}
+          title={`${Cluar.plainTranslation("toolbar-link")} (Ctrl+K)`}
         >
           <LinkOutlined />
         </button>

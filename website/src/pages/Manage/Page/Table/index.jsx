@@ -74,7 +74,7 @@ const PageTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('page-table-desactive-success-message') : Cluar.plainDictionary('page-table-active-success-message')
+          message: active ? Cluar.plainTranslation('page-table-desactive-success-message') : Cluar.plainTranslation('page-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -84,7 +84,7 @@ const PageTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('page-table-desactive-failed-message') : Cluar.plainDictionary('page-table-active-failed-message')
+          message: active ? Cluar.plainTranslation('page-table-desactive-failed-message') : Cluar.plainTranslation('page-table-active-failed-message')
         });
       }
     })
@@ -174,7 +174,7 @@ const PageTable = forwardRef(({ }, ref) => {
       fail: (error) => {
         setLoading(false);
         console.error(error);
-        notification.error({ message: Cluar.plainDictionary("page-table-load-failed-message") });
+        notification.error({ message: Cluar.plainTranslation("page-table-load-failed-message") });
       }
     });
   }
@@ -188,14 +188,14 @@ const PageTable = forwardRef(({ }, ref) => {
       success: () => {
         setDeleteLoadingUid(null);
         notification.success({
-          message: Cluar.plainDictionary("page-table-delete-success-message")
+          message: Cluar.plainTranslation("page-table-delete-success-message")
         });
         onLoadPages();
       },
       fail: (error) => {
         setDeleteLoadingUid(null);
         console.error(error);
-        const errorMessage = error?.json?.error || Cluar.plainDictionary("page-table-delete-failed-message");
+        const errorMessage = error?.json?.error || Cluar.plainTranslation("page-table-delete-failed-message");
         notification.error({ message: errorMessage });
       }
     });
@@ -209,7 +209,7 @@ const PageTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainDictionary("page-table-language"),
+      title: Cluar.plainTranslation("page-table-language"),
       dataIndex: "language",
       key: "language_code",
       onHeaderCell: () => ({
@@ -228,7 +228,7 @@ const PageTable = forwardRef(({ }, ref) => {
       })),
     },
     {
-      title: Cluar.plainDictionary("page-table-title"),
+      title: Cluar.plainTranslation("page-table-title"),
       dataIndex: "title",
       key: "title",
       ...getTextFilterProps("title"),
@@ -237,7 +237,7 @@ const PageTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary("page-table-template"),
+      title: Cluar.plainTranslation("page-table-template"),
       dataIndex: "template",
       key: "template",
       ...getTextFilterProps("template"),
@@ -246,7 +246,7 @@ const PageTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary("page-table-link"),
+      title: Cluar.plainTranslation("page-table-link"),
       dataIndex: "link",
       key: "link",
       ...getTextFilterProps("link"),
@@ -255,7 +255,7 @@ const PageTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary("page-table-menu"),
+      title: Cluar.plainTranslation("page-table-menu"),
       dataIndex: "menu",
       key: "menu",
       onHeaderCell: () => ({
@@ -276,7 +276,7 @@ const PageTable = forwardRef(({ }, ref) => {
       ],
     },
     {
-      title: Cluar.plainDictionary("page-table-actions"),
+      title: Cluar.plainTranslation("page-table-actions"),
       dataIndex: "actions",
       key: "actions",
       onHeaderCell: () => ({
@@ -286,7 +286,7 @@ const PageTable = forwardRef(({ }, ref) => {
         <Space size={4}>
           <Button
             type="text"
-            title={Cluar.plainDictionary("page-table-button-edit")}
+            title={Cluar.plainTranslation("page-table-button-edit")}
             icon={<EditOutlined />}
             onClick={() => {
               setPageEditData(record);
@@ -294,13 +294,13 @@ const PageTable = forwardRef(({ }, ref) => {
             }}
           />
           <Popconfirm
-            title={Cluar.plainDictionary("page-table-popconfirm-delete-title")}
+            title={Cluar.plainTranslation("page-table-popconfirm-delete-title")}
             onConfirm={() => onDelete(record.uid)}
           >
             <Button
               type="text"
               danger
-              title={Cluar.plainDictionary("page-table-button-delete")}
+              title={Cluar.plainTranslation("page-table-button-delete")}
               icon={<DeleteOutlined />}
               loading={deleteLoadingUid === record.uid}
             />

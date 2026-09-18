@@ -108,7 +108,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           setIsModalOpen(false);
           onReloadTable();
           notification.success({
-            message: Cluar.plainDictionary("page-form-edit-success-message"),
+            message: Cluar.plainTranslation("page-form-edit-success-message"),
           });
         },
         fail: (error) => {
@@ -117,13 +117,13 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
 
           if (error?.json?.error_code) {
             notification.error({
-              message: Cluar.plainDictionary("page-form-edit-failed-message"),
-              description: Cluar.plainDictionary(error.json.error_code),
+              message: Cluar.plainTranslation("page-form-edit-failed-message"),
+              description: Cluar.plainTranslation(error.json.error_code),
             });
             return;
           }
           notification.error({
-            message: Cluar.plainDictionary("page-form-edit-failed-message"),
+            message: Cluar.plainTranslation("page-form-edit-failed-message"),
           });
         },
       });
@@ -140,7 +140,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           setIsModalOpen(false);
           onReloadTable();
           notification.success({
-            message: Cluar.plainDictionary("page-form-save-success-message"),
+            message: Cluar.plainTranslation("page-form-save-success-message"),
           });
         },
         fail: (error) => {
@@ -149,13 +149,13 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
 
           if (error?.json?.error_code) {
             notification.error({
-              message: Cluar.plainDictionary("page-form-save-failed-message"),
-              description: Cluar.plainDictionary(error.json.error_code),
+              message: Cluar.plainTranslation("page-form-save-failed-message"),
+              description: Cluar.plainTranslation(error.json.error_code),
             });
             return;
           }
           notification.error({
-            message: Cluar.plainDictionary("page-form-save-failed-message"),
+            message: Cluar.plainTranslation("page-form-save-failed-message"),
           });
         },
       });
@@ -215,8 +215,8 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
     <Modal
       title={
         editMode
-          ? Cluar.plainDictionary("page-modal-edit-title")
-          : Cluar.plainDictionary("page-modal-new-title")
+          ? Cluar.plainTranslation("page-modal-edit-title")
+          : Cluar.plainTranslation("page-modal-new-title")
       }
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
@@ -227,7 +227,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
       centered
       footer={[
         <Button onClick={() => setIsModalOpen(false)}>
-          {Cluar.plainDictionary("page-form-cancel")}
+          {Cluar.plainTranslation("page-form-cancel")}
         </Button>,
         <Button
           type="primary"
@@ -235,7 +235,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           loading={loading.saving}
           disabled={loading.saving}
         >
-          {Cluar.plainDictionary("page-form-save")}
+          {Cluar.plainTranslation("page-form-save")}
         </Button>,
       ]}
     >
@@ -244,11 +244,11 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="language_code"
-              label={Cluar.plainDictionary("page-form-language")}
+              label={Cluar.plainTranslation("page-form-language")}
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "page-form-validate-message-required"
                   ),
                 },
@@ -268,11 +268,11 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="title"
-              label={Cluar.plainDictionary("page-form-title")}
+              label={Cluar.plainTranslation("page-form-title")}
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "page-form-validate-message-required"
                   ),
                 },
@@ -283,12 +283,12 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           </Col>
           <Col span={24}>
             <Form.Item
-              label={Cluar.plainDictionary("page-table-template")}
+              label={Cluar.plainTranslation("page-table-template")}
               name="template"
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "page-form-validate-message-required"
                   ),
                 },
@@ -305,7 +305,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="description"
-              label={Cluar.plainDictionary("page-form-description")}
+              label={Cluar.plainTranslation("page-form-description")}
             >
               <Input.TextArea rows={3} />
             </Form.Item>
@@ -313,7 +313,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="keywords"
-              label={Cluar.plainDictionary("page-form-keywords")}
+              label={Cluar.plainTranslation("page-form-keywords")}
             >
               <Input.TextArea rows={2} />
             </Form.Item>
@@ -321,11 +321,11 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="link"
-              label={Cluar.plainDictionary("page-form-link")}
+              label={Cluar.plainTranslation("page-form-link")}
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "page-form-validate-message-required"
                   ),
                 },
@@ -337,7 +337,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="parent_uid"
-              label={Cluar.plainDictionary("page-form-parent")}
+              label={Cluar.plainTranslation("page-form-parent")}
             >
               <Select
                 labelInValue
@@ -353,7 +353,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={12}>
             <Form.Item
               name="menu"
-              label={Cluar.plainDictionary("page-form-menu")}
+              label={Cluar.plainTranslation("page-form-menu")}
               valuePropName="checked"
               initialValue={false}
             >
@@ -363,7 +363,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={12}>
             <Form.Item
               name="navigable"
-              label={Cluar.plainDictionary("page-form-navigable")}
+              label={Cluar.plainTranslation("page-form-navigable")}
               valuePropName="checked"
               initialValue={true}
             >
@@ -373,12 +373,12 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="menu_title"
-              label={Cluar.plainDictionary("page-form-menu-title")}
+              label={Cluar.plainTranslation("page-form-menu-title")}
               dependencies={["menu"]}
               rules={[
                 {
                   required: !!menuEnabled,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "page-form-validate-message-required"
                   ),
                 },
@@ -390,14 +390,14 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="sorter"
-              label={Cluar.plainDictionary("page-form-sorter")}
-              tooltip={Cluar.plainDictionary("page-configuration-tooltip-sorter")}
+              label={Cluar.plainTranslation("page-form-sorter")}
+              tooltip={Cluar.plainTranslation("page-configuration-tooltip-sorter")}
             >
               <InputNumber
                 style={{ width: "100%" }}
                 min={0}
                 step={10}
-                placeholder={Cluar.plainDictionary("page-form-sorter-placeholder")}
+                placeholder={Cluar.plainTranslation("page-form-sorter-placeholder")}
               />
             </Form.Item>
           </Col>

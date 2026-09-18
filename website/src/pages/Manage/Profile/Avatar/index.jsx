@@ -51,22 +51,22 @@ function Avatar({ currentImage }, ref) {
         </div>
       </Col>
       <Col>
-        <p><Button onClick={open} type="primary" ghost>{Cluar.plainDictionary('profile-form-image-upload')}</Button></p>
+        <p><Button onClick={open} type="primary" ghost>{Cluar.plainTranslation('profile-form-image-upload')}</Button></p>
         {imageEditing &&
           <>
-            <Divider orientation="left" plain>{Cluar.plainDictionary('profile-form-image-config')}</Divider>
+            <Divider orientation="left" plain>{Cluar.plainTranslation('profile-form-image-config')}</Divider>
             <p>
-              {Cluar.plainDictionary('profile-form-image-scale')}<Slider min={0.5} max={1.5} defaultValue={scale} step={0.01} onChange={(value) => setScale(value)}></Slider>
+              {Cluar.plainTranslation('profile-form-image-scale')}<Slider min={0.5} max={1.5} defaultValue={scale} step={0.01} onChange={(value) => setScale(value)}></Slider>
             </p>
             <p>
-              {Cluar.plainDictionary('profile-form-image-ratation')}<Slider min={-180} max={180} defaultValue={rotate} step={1} onChange={(value) => setRotate(value)}></Slider>
+              {Cluar.plainTranslation('profile-form-image-ratation')}<Slider min={-180} max={180} defaultValue={rotate} step={1} onChange={(value) => setRotate(value)}></Slider>
             </p>
             <p>
-              {Cluar.plainDictionary('profile-form-image-background-color')}<input type="color" defaultValue={color} onChange={(e) => setColor(e.target.value)} />
-              <br /><i>{Cluar.plainDictionary('profile-form-image-background-color-description')}</i>
+              {Cluar.plainTranslation('profile-form-image-background-color')}<input type="color" defaultValue={color} onChange={(e) => setColor(e.target.value)} />
+              <br /><i>{Cluar.plainTranslation('profile-form-image-background-color-description')}</i>
             </p>
             <p>
-              <Button onClick={() => setImage(currentImage)} type="dashed" danger>{Cluar.plainDictionary('profile-form-image-undo')}</Button>
+              <Button onClick={() => setImage(currentImage)} type="dashed" danger>{Cluar.plainTranslation('profile-form-image-undo')}</Button>
             </p>
           </>
         }

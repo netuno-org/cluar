@@ -23,7 +23,7 @@ const Action = () => {
         <Col span={24}>
           <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
             <Col>
-              <HeadTitle text={Cluar.plainDictionary('action-page-title')} level={4} type={"secondary"} />
+              <HeadTitle text={Cluar.plainTranslation('action-page-title')} level={4} type={"secondary"} />
             </Col>
             <Col>
               <Button
@@ -31,7 +31,7 @@ const Action = () => {
                 icon={<PlusOutlined />}
                 onClick={() => actionModalRef.current.openModal()}
               >
-                {Cluar.plainDictionary('action-page-new')}
+                {Cluar.plainTranslation('action-page-new')}
               </Button>
             </Col>
           </Row>

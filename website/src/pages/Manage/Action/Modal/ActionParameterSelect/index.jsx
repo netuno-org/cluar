@@ -65,7 +65,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
       fail: (error) => {
         setLoading(false);
         console.error(error);
-        notification.error({ message: Cluar.plainDictionary("action-parameter-select-notification-load-fail") });
+        notification.error({ message: Cluar.plainTranslation("action-parameter-select-notification-load-fail") });
       },
     });
   };
@@ -96,7 +96,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
 
   const saveCreate = () => {
     if (!createDraft.code || !createDraft.description) {
-      notification.warning({ message: Cluar.plainDictionary("action-parameter-select-notification-fill-required") });
+      notification.warning({ message: Cluar.plainTranslation("action-parameter-select-notification-fill-required") });
       return;
     }
     _service({
@@ -113,7 +113,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
       },
       fail: (error) => {
         console.error(error);
-        notification.error({ message: Cluar.plainDictionary("action-parameter-select-notification-create-fail") });
+        notification.error({ message: Cluar.plainTranslation("action-parameter-select-notification-create-fail") });
       },
     });
   };
@@ -131,7 +131,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
 
   const saveEdit = (uid) => {
     if (!editDraft.code || !editDraft.description) {
-      notification.warning({ message: Cluar.plainDictionary("action-parameter-select-notification-fill-required") });
+      notification.warning({ message: Cluar.plainTranslation("action-parameter-select-notification-fill-required") });
       return;
     }
     _service({
@@ -144,12 +144,12 @@ const ActionParameterSelect = ({ value, onChange }) => {
         );
         cancelEdit();
         notification.success({
-          message: Cluar.plainDictionary("action-parameter-select-notification-update-success")
+          message: Cluar.plainTranslation("action-parameter-select-notification-update-success")
         });
       },
       fail: (error) => {
         console.error(error);
-        notification.error({ message: Cluar.plainDictionary("action-parameter-select-notification-update-fail") });
+        notification.error({ message: Cluar.plainTranslation("action-parameter-select-notification-update-fail") });
       },
     });
   };
@@ -162,12 +162,12 @@ const ActionParameterSelect = ({ value, onChange }) => {
       success: () => {
         setParameters((prev) => prev.filter((p) => p.uid !== uid));
         if (value === uid) onChange?.(undefined);
-        notification.success({ message: Cluar.plainDictionary("action-parameter-select-notification-delete-success") });
+        notification.success({ message: Cluar.plainTranslation("action-parameter-select-notification-delete-success") });
       },
       fail: (error) => {
         console.error(error);
         // Pega a mensagem de erro que veio do backend, se existir
-        const errorMessage = error?.json?.error || Cluar.plainDictionary("action-parameter-select-notification-delete-fail");
+        const errorMessage = error?.json?.error || Cluar.plainTranslation("action-parameter-select-notification-delete-fail");
         notification.error({ message: errorMessage });
       },
     });
@@ -189,7 +189,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
       onSearch={setSearchValue}
       filterOption={false}
       loading={loading}
-      placeholder={Cluar.plainDictionary("action-form-parameter-placeholder")}
+      placeholder={Cluar.plainTranslation("action-form-parameter-placeholder")}
       options={filteredParameters.length > 0
         ? filteredParameters.map((p) => ({
           value: p.uid,
@@ -211,7 +211,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
           <div className="action-parameter-select-list">
             {filteredParameters.length === 0 && !creating && (
               <div className="action-parameter-select-empty">
-                {Cluar.plainDictionary("action-parameter-select-empty")}
+                {Cluar.plainTranslation("action-parameter-select-empty")}
               </div>
             )}
             {filteredParameters.map((parameter) =>
@@ -223,7 +223,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
                     onChange={(e) =>
                       setEditDraft({ ...editDraft, code: e.target.value })
                     }
-                    placeholder={Cluar.plainDictionary("action-parameter-select-placeholder-code")}
+                    placeholder={Cluar.plainTranslation("action-parameter-select-placeholder-code")}
                   />
                   <Input
                     size="small"
@@ -231,7 +231,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
                     onChange={(e) =>
                       setEditDraft({ ...editDraft, description: e.target.value })
                     }
-                    placeholder={Cluar.plainDictionary("action-parameter-select-placeholder-description")}
+                    placeholder={Cluar.plainTranslation("action-parameter-select-placeholder-description")}
                   />
                   <Space size={4} style={{ alignSelf: "flex-end" }}>
                     <Button
@@ -273,7 +273,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
                       }}
                     />
                     <Popconfirm
-                      title={Cluar.plainDictionary("action-parameter-select-popconfirm-delete-title")}
+                      title={Cluar.plainTranslation("action-parameter-select-popconfirm-delete-title")}
                       onConfirm={(e) => {
                         e?.stopPropagation?.();
                         deleteParameter(parameter.uid);
@@ -304,7 +304,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
                 onChange={(e) =>
                   setCreateDraft({ ...createDraft, code: e.target.value })
                 }
-                placeholder={Cluar.plainDictionary("action-parameter-select-placeholder-code")}
+                placeholder={Cluar.plainTranslation("action-parameter-select-placeholder-code")}
               />
               <Input
                 size="small"
@@ -312,14 +312,14 @@ const ActionParameterSelect = ({ value, onChange }) => {
                 onChange={(e) =>
                   setCreateDraft({ ...createDraft, description: e.target.value })
                 }
-                placeholder={Cluar.plainDictionary("action-parameter-select-placeholder-description")}
+                placeholder={Cluar.plainTranslation("action-parameter-select-placeholder-description")}
               />
               <Space size={4} style={{ alignSelf: "flex-end" }}>
                 <Button size="small" type="primary" onClick={saveCreate}>
-                  {Cluar.plainDictionary("action-parameter-select-button-save")}
+                  {Cluar.plainTranslation("action-parameter-select-button-save")}
                 </Button>
                 <Button size="small" onClick={cancelCreate}>
-                  {Cluar.plainDictionary("action-parameter-select-button-cancel")}
+                  {Cluar.plainTranslation("action-parameter-select-button-cancel")}
                 </Button>
               </Space>
             </div>
@@ -331,8 +331,8 @@ const ActionParameterSelect = ({ value, onChange }) => {
               onClick={() => startCreate(!exactMatch ? searchValue : "")}
             >
               {searchValue && !exactMatch
-                ? `${Cluar.plainDictionary("action-parameter-select-button-create")} "${searchValue}"`
-                : Cluar.plainDictionary("action-parameter-select-button-new")}
+                ? `${Cluar.plainTranslation("action-parameter-select-button-create")} "${searchValue}"`
+                : Cluar.plainTranslation("action-parameter-select-button-new")}
             </Button>
           )}
         </div>

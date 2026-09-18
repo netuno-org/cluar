@@ -26,7 +26,7 @@ const Language = () => {
         <Col span={24}>
           <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
             <Col>
-              <HeadTitle level={4} type={"secondary"} text={Cluar.plainDictionary('language-page-title')} />
+              <HeadTitle level={4} type={"secondary"} text={Cluar.plainTranslation('language-page-title')} />
             </Col>
             <Col>
               <Button
@@ -34,7 +34,7 @@ const Language = () => {
                 icon={<PlusOutlined />}
                 onClick={() => { languageModalRef.current.openModal() }}
               >
-                {Cluar.plainDictionary('language-page-new')}
+                {Cluar.plainTranslation('language-page-new')}
               </Button>
             </Col>
           </Row>

@@ -1,6 +1,6 @@
 {
-  "summary":"List all organization with filters and pagination",
-  "description":"List all organization with filters and pagination",
+  "summary":"List all organizations with filters and pagination",
+  "description":"List all organizations with filters and pagination",
   "_schema":"tags/organization",
   "type":"object",
   "properties":{

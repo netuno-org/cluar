@@ -75,7 +75,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           marginTop: 8,
         }}
       >
-        {Cluar.plainDictionary("action-form-upload")}
+        {Cluar.plainTranslation("action-form-upload")}
       </div>
     </button>
   );
@@ -98,7 +98,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
         setLoading({ ...loading, languages: false });
         console.error(error);
         notification.error({
-          message: Cluar.plainDictionary("action-modal-notification-load-languages-fail"),
+          message: Cluar.plainTranslation("action-modal-notification-load-languages-fail"),
         });
       },
     });
@@ -140,7 +140,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
         setIsModalOpen(false);
         onReloadTable();
         notification.success({
-          message: editMode ? Cluar.plainDictionary("action-form-edit-success-message") : Cluar.plainDictionary("action-form-save-success-message"),
+          message: editMode ? Cluar.plainTranslation("action-form-edit-success-message") : Cluar.plainTranslation("action-form-save-success-message"),
         });
       },
       fail: (error) => {
@@ -149,13 +149,13 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
 
         if (error?.json?.error_code) {
           notification.error({
-            message: editMode ? Cluar.plainDictionary("action-form-edit-failed-message") : Cluar.plainDictionary("action-form-save-failed-message"),
-            description: Cluar.plainDictionary(error.json.error_code),
+            message: editMode ? Cluar.plainTranslation("action-form-edit-failed-message") : Cluar.plainTranslation("action-form-save-failed-message"),
+            description: Cluar.plainTranslation(error.json.error_code),
           });
           return;
         }
         notification.error({
-          message: editMode ? Cluar.plainDictionary("action-form-edit-failed-message") : Cluar.plainDictionary("action-form-save-failed-message"),
+          message: editMode ? Cluar.plainTranslation("action-form-edit-failed-message") : Cluar.plainTranslation("action-form-save-failed-message"),
         });
       },
     });
@@ -204,8 +204,8 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     <Modal
       title={
         editMode
-          ? Cluar.plainDictionary("action-modal-edit-title")
-          : Cluar.plainDictionary("action-modal-new-title")
+          ? Cluar.plainTranslation("action-modal-edit-title")
+          : Cluar.plainTranslation("action-modal-new-title")
       }
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
@@ -216,7 +216,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
       centered
       footer={[
         <Button onClick={() => setIsModalOpen(false)}>
-          {Cluar.plainDictionary("action-form-cancel")}
+          {Cluar.plainTranslation("action-form-cancel")}
         </Button>,
         <Button
           type="primary"
@@ -224,7 +224,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           loading={loading.saving}
           disabled={loading.saving}
         >
-          {Cluar.plainDictionary("action-form-save")}
+          {Cluar.plainTranslation("action-form-save")}
         </Button>,
       ]}
     >
@@ -233,11 +233,11 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="parameter_uid"
-              label={Cluar.plainDictionary("action-form-parameter")}
+              label={Cluar.plainTranslation("action-form-parameter")}
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary("action-form-validate-message-required"),
+                  message: Cluar.plainTranslation("action-form-validate-message-required"),
                 },
               ]}
             >
@@ -247,11 +247,11 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="language_code"
-              label={Cluar.plainDictionary("action-form-language")}
+              label={Cluar.plainTranslation("action-form-language")}
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "action-form-validate-message-required"
                   ),
                 },
@@ -270,11 +270,11 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="title"
-              label={Cluar.plainDictionary("action-form-title")}
+              label={Cluar.plainTranslation("action-form-title")}
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "action-form-validate-message-required"
                   ),
                 },
@@ -286,11 +286,11 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="content"
-              label={Cluar.plainDictionary("action-form-content")}
+              label={Cluar.plainTranslation("action-form-content")}
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "action-form-validate-message-required"
                   ),
                 },
@@ -302,11 +302,11 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="indication"
-              label={Cluar.plainDictionary("action-form-indication")}
+              label={Cluar.plainTranslation("action-form-indication")}
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "action-form-validate-message-required"
                   ),
                 },
@@ -318,11 +318,11 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="link"
-              label={Cluar.plainDictionary("action-form-link")}
+              label={Cluar.plainTranslation("action-form-link")}
               rules={[
                 {
                   required: true,
-                  message: Cluar.plainDictionary(
+                  message: Cluar.plainTranslation(
                     "action-form-validate-message-required"
                   ),
                 },
@@ -334,7 +334,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           <Col span={12}>
             <Form.Item
               name="active"
-              label={Cluar.plainDictionary("action-form-active")}
+              label={Cluar.plainTranslation("action-form-active")}
               valuePropName="checked"
               initialValue={true}
             >
@@ -345,7 +345,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
           <Col span={24}>
             <Form.Item
               name="image"
-              label={Cluar.plainDictionary("action-form-image")}
+              label={Cluar.plainTranslation("action-form-image")}
             >
               <Upload
                 className="actions-upload"

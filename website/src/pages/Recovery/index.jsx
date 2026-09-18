@@ -56,8 +56,8 @@ export default function Recovery(props) {
       success: (response) => {
         if (response.json.result) {
           notification["success"]({
-            message: Cluar.plainDictionary('recovery-form-success-message'),
-            description: Cluar.plainDictionary('recovery-form-success-description'),
+            message: Cluar.plainTranslation('recovery-form-success-message'),
+            description: Cluar.plainTranslation('recovery-form-success-description'),
           });
           setSubmitting(false);
           setReady(true);
@@ -66,8 +66,8 @@ export default function Recovery(props) {
       fail: () => {
         setSubmitting(false);
         notification["error"]({
-          message: Cluar.plainDictionary('recovery-form-failed-message'),
-          description: Cluar.plainDictionary('recovery-form-failed-description'),
+          message: Cluar.plainTranslation('recovery-form-failed-message'),
+          description: Cluar.plainTranslation('recovery-form-failed-description'),
         });
       }
     });
@@ -86,7 +86,7 @@ export default function Recovery(props) {
           <Row justify={'center'}>
             <Col {...columnConfig}>
               <div className="content-title">
-                <Title>{Cluar.plainDictionary('recovery-form-title')}</Title>
+                <Title>{Cluar.plainTranslation('recovery-form-title')}</Title>
               </div>
               <div className="content-body">
                 <Form
@@ -98,27 +98,27 @@ export default function Recovery(props) {
                   onFinishFailed={onFinishFailed}
                 >
                   <Form.Item
-                    label={Cluar.plainDictionary('recovery-form-password')}
+                    label={Cluar.plainTranslation('recovery-form-password')}
                     name="password"
                     rules={[
-                      { required: true, message: Cluar.plainDictionary('recovery-form-validate-message-required') },
-                      { type: 'string', message: Cluar.plainDictionary('recovery-form-password-valid-message'), min: 8, max: 25 },
+                      { required: true, message: Cluar.plainTranslation('recovery-form-validate-message-required') },
+                      { type: 'string', message: Cluar.plainTranslation('recovery-form-password-valid-message'), min: 8, max: 25 },
                     ]}
                   >
                     <PasswordInput disabled={submitting} maxLength={25} />
                   </Form.Item>
                   <Form.Item
-                    label={Cluar.plainDictionary('recovery-form-confirm-password')}
+                    label={Cluar.plainTranslation('recovery-form-confirm-password')}
                     name="password_confirm"
                     rules={[
-                      { required: true, message: Cluar.plainDictionary('recovery-form-validate-message-required') },
-                      { type: 'string', message: Cluar.plainDictionary('recovery-form-password-valid-message'), min: 8, max: 25 },
+                      { required: true, message: Cluar.plainTranslation('recovery-form-validate-message-required') },
+                      { type: 'string', message: Cluar.plainTranslation('recovery-form-password-valid-message'), min: 8, max: 25 },
                       ({ getFieldValue }) => ({
                         validator(_, value) {
                           if (!value || getFieldValue('password') === value) {
                             return Promise.resolve();
                           }
-                          return Promise.reject(Cluar.plainDictionary('recovery-form-passwords-not-equals-message'));
+                          return Promise.reject(Cluar.plainTranslation('recovery-form-passwords-not-equals-message'));
                         },
                       })
                     ]}
@@ -127,7 +127,7 @@ export default function Recovery(props) {
                   </Form.Item>
                   <Form.Item>
                     <Button type="primary" htmlType="submit" loading={submitting}>
-                      {Cluar.plainDictionary('recovery-form-confirm-password')}
+                      {Cluar.plainTranslation('recovery-form-confirm-password')}
                     </Button>
                   </Form.Item>
                 </Form>

@@ -125,8 +125,8 @@ export default class Cluar {
     return value;
   }
 
-  static plainDictionary(entry) {
-    let value = Cluar.dictionary(entry);
+  static plainTranslation(entry) {
+    let value = Cluar.translation(entry);
     if (value) {
       return value.replace(/<\/?((p)|(br))[^>]*>/g, "");
     }
@@ -134,7 +134,7 @@ export default class Cluar {
   }
 
   static plainTitle(entry) {
-    let value = Cluar.dictionary(entry);
+    let value = Cluar.translation(entry);
     if (value) {
       return value.replace(/<\/?p[^>]*>/g, "");
     }
@@ -142,24 +142,24 @@ export default class Cluar {
   }
 
   static plainHTML(entry) {
-    let value = Cluar.dictionary(entry);
+    let value = Cluar.translation(entry);
     if (value) {
       return value.replace(/<[^>]*>/g, "");
     }
     return entry;
   }
 
-  static dictionaryNoParagraph(entry) {
-    let value = Cluar.dictionary(entry);
+  static translationNoParagraph(entry) {
+    let value = Cluar.translation(entry);
     if (value) {
       return value.replace(/<\/?p[^>]*>/g, "");
     }
     return entry;
   }
 
-  static dictionary(entry) {
-    let value = data.dictionary[Cluar.currentLanguage().code]
-      ? data.dictionary[Cluar.currentLanguage().code][entry]
+  static translation(entry) {
+    let value = data.translation[Cluar.currentLanguage().code]
+      ? data.translation[Cluar.currentLanguage().code][entry]
       : null;
     if (value) {
       return value;

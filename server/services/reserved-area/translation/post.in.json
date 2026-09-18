@@ -1,0 +1,22 @@
+{
+  "_schema":"tags/translation",
+  "summary":"Register a new translation",
+  "description":"Register a new translation",
+  "type":"object",
+  "properties":{
+    "value":{
+      "type":"string"
+    },
+    "language_code":{
+      "type":"string"
+    },
+    "entry_code":{
+      "type":"string"
+    }
+  },
+  "required":[
+    "value",
+    "language_code",
+    "entry_code"
+    ]
+}

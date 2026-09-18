@@ -75,7 +75,7 @@ const PageVersion = ({ pageData, open, onClose }) => {
         setVersions([]);
       }}
       width={520}
-      title={Cluar.plainDictionary("page-versions-drawer-title")}
+      title={Cluar.plainTranslation("page-versions-drawer-title")}
     >
       <Timeline
         items={versions.map((version) => ({
@@ -89,17 +89,17 @@ const PageVersion = ({ pageData, open, onClose }) => {
                 {version.uid === searchParams.get("version") ||
                   (!searchParams.has("version") &&
                     version.code === "published") ? (
-                  <Tag color="orange">{Cluar.plainDictionary("page-versions-tag-current")}</Tag>
+                  <Tag color="orange">{Cluar.plainTranslation("page-versions-tag-current")}</Tag>
                 ) : null}{" "}
                 {version.code === "published" && (
-                  <Tag color="green">{Cluar.plainDictionary("page-versions-tag-published")}</Tag>
+                  <Tag color="green">{Cluar.plainTranslation("page-versions-tag-published")}</Tag>
                 )}
               </Link>
               <Popconfirm
-                description={Cluar.plainDictionary("page-versions-popconfirm-delete-description")}
+                description={Cluar.plainTranslation("page-versions-popconfirm-delete-description")}
                 onConfirm={() => onDeleteVersion(version.uid)}
-                okText={Cluar.plainDictionary("page-versions-popconfirm-ok")}
-                cancelText={Cluar.plainDictionary("page-versions-popconfirm-cancel")}
+                okText={Cluar.plainTranslation("page-versions-popconfirm-ok")}
+                cancelText={Cluar.plainTranslation("page-versions-popconfirm-cancel")}
               >
                 <Button
                   disabled={
@@ -119,7 +119,7 @@ const PageVersion = ({ pageData, open, onClose }) => {
       />
       {totalVersions > versions.length && versions.length > 0 && (
         <Button onClick={() => setPage(page + 1)}>
-          {Cluar.plainDictionary("page-versions-load-more-button")}
+          {Cluar.plainTranslation("page-versions-load-more-button")}
         </Button>
       )}
     </Drawer>

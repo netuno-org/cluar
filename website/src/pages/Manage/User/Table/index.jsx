@@ -68,7 +68,7 @@ const UserTable = forwardRef(({ }, ref) => {
           key: uid
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('user-table-desactive-success-message') : Cluar.plainDictionary('user-table-active-success-message')
+          message: active ? Cluar.plainTranslation('user-table-desactive-success-message') : Cluar.plainTranslation('user-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -78,7 +78,7 @@ const UserTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('user-table-desactive-failed-message') : Cluar.plainDictionary('user-table-active-failed-message')
+          message: active ? Cluar.plainTranslation('user-table-desactive-failed-message') : Cluar.plainTranslation('user-table-active-failed-message')
         });
       }
     })
@@ -93,14 +93,14 @@ const UserTable = forwardRef(({ }, ref) => {
       success: () => {
         setDeleteLoadingUid(null);
         notification.success({
-          message: Cluar.plainDictionary("user-table-delete-success-message")
+          message: Cluar.plainTranslation("user-table-delete-success-message")
         });
         onLoadData();
       },
       fail: (error) => {
         setDeleteLoadingUid(null);
         console.error(error);
-        const errorMessage = error?.json?.error || Cluar.plainDictionary("user-table-delete-failed-message");
+        const errorMessage = error?.json?.error || Cluar.plainTranslation("user-table-delete-failed-message");
         notification.error({ message: errorMessage });
       }
     });
@@ -182,7 +182,7 @@ const UserTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainDictionary('user-table-active'),
+      title: Cluar.plainTranslation('user-table-active'),
       dataIndex: 'active',
       key: 'active',
       render: (val, record) => (
@@ -213,25 +213,25 @@ const UserTable = forwardRef(({ }, ref) => {
 
     },
     {
-      title: Cluar.plainDictionary('user-table-name'),
+      title: Cluar.plainTranslation('user-table-name'),
       dataIndex: 'name',
       key: 'name',
       ...getTextFilterProps("name")
     },
     {
-      title: Cluar.plainDictionary('user-table-user'),
+      title: Cluar.plainTranslation('user-table-user'),
       dataIndex: 'username',
       key: 'username',
       ...getTextFilterProps("username")
     },
     {
-      title: Cluar.plainDictionary('user-table-mail'),
+      title: Cluar.plainTranslation('user-table-mail'),
       dataIndex: 'email',
       key: 'email',
       ...getTextFilterProps("email")
     },
     {
-      title: Cluar.plainDictionary('user-table-actions'),
+      title: Cluar.plainTranslation('user-table-actions'),
       dataIndex: 'actions',
       key: 'action',
       render: (val, record) => (
@@ -239,7 +239,7 @@ const UserTable = forwardRef(({ }, ref) => {
           <Button
             icon={<EditOutlined />}
             type="text"
-            title={Cluar.plainDictionary('user-table-actions-edit-title')}
+            title={Cluar.plainTranslation('user-table-actions-edit-title')}
             onClick={() => {
               setUserData(record);
               userModalRef.current.openModal()
@@ -248,20 +248,20 @@ const UserTable = forwardRef(({ }, ref) => {
           <Button
             icon={<ApartmentOutlined />}
             type="text"
-            title={Cluar.plainDictionary("user-table-button-organizations")}
+            title={Cluar.plainTranslation("user-table-button-organizations")}
             onClick={() => {
               setUserData(record);
               membersModalRef.current.openModal();
             }}
           />
           <Popconfirm
-            title={Cluar.plainDictionary("user-table-popconfirm-delete-title")}
+            title={Cluar.plainTranslation("user-table-popconfirm-delete-title")}
             onConfirm={() => onDelete(record.uid)}
           >
             <Button
               type="text"
               danger
-              title={Cluar.plainDictionary("user-table-button-delete")}
+              title={Cluar.plainTranslation("user-table-button-delete")}
               icon={<DeleteOutlined />}
               loading={deleteLoadingUid === record.uid}
             />

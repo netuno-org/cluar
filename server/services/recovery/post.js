@@ -47,20 +47,20 @@ if (dbProfile != null && dbProfile.getBoolean("active")) {
   smtp.text = `
    
   `;
-  const dictionaries = _db.form('dictionary')
+  const translations = _db.form('translation')
     .link(
-      'dictionary_entry',
+      'translation_entry',
       _db.where('code').in('recovery-mail-message', 'recovery-mail-subject')
     )
     .where(
       _db.where('language_id').equals(dbLanguage.getInt("id"))
     )
-    .get('dictionary.value')
-    .get('dictionary_entry.code')
+    .get('translation.value')
+    .get('translation_entry.code')
     .all();
 
-  const subject = dictionaries.find((dictionary) => dictionary.getString('code') === "recovery-mail-subject").getString('value') || "";
-  let content = dictionaries.find((dictionary) => dictionary.getString('code') === "recovery-mail-message").getString('value') || "";
+  const subject = translations.find((translation) => translation.getString('code') === "recovery-mail-subject").getString('value') || "";
+  let content = translations.find((translation) => translation.getString('code') === "recovery-mail-message").getString('value') || "";
   content = content.replace('${name}', dbProfile.getString('name'));
   content = content.replace('${link}', dbProfile.getString('recovery_link'));
 

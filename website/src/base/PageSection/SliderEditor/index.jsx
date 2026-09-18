@@ -130,7 +130,7 @@ const SliderEditor = ({ sectionData, form }) => {
 
   return (
     <div className="slider-editor">
-      <Form.Item label={Cluar.plainDictionary("slider-editor-field-type")} name="type">
+      <Form.Item label={Cluar.plainTranslation("slider-editor-field-type")} name="type">
         <Select
           options={typeOptions.map((item) => ({
             label: item.info.label,
@@ -164,7 +164,7 @@ const SliderEditor = ({ sectionData, form }) => {
         />
         <Col span={24}>
           <Button onClick={handleAddItem}>
-            {Cluar.plainDictionary("slider-editor-button-new-item")}
+            {Cluar.plainTranslation("slider-editor-button-new-item")}
           </Button>
         </Col>
       </Row>

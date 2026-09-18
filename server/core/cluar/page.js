@@ -361,7 +361,7 @@ export default {
     const htmlContent = _template.getOutput("cluar/builder", {
       structure,
       configuration: base.configuration(),
-      dictionary: base.dictionary(),
+      translation: base.translation(),
       languages: base.languages(),
       currentLanguage,
       pages: base.pages({}),

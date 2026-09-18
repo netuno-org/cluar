@@ -55,7 +55,7 @@ const MENU_PERMISSIONS = {
   actions: ["admin", "editor"],
   languages: ["admin"],
   configuration: ["admin"],
-  dictionary: ["admin", "editor"],
+  translation: ["admin", "editor"],
   organization: ["admin"],
 };
 
@@ -122,19 +122,19 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const items = buildMenuItems([
     {
       key: 'profile',
-      label: Cluar.plainDictionary('user-menu-edit-profile'),
+      label: Cluar.plainTranslation('user-menu-edit-profile'),
       icon: <UserOutlined />,
       onClick: () => navigate("/reserved-area/profile"),
     },
     {
       key: 'return',
-      label: Cluar.plainDictionary('user-menu-return-site'),
+      label: Cluar.plainTranslation('user-menu-return-site'),
       icon: <RollbackOutlined />,
       onClick: () => navigate(`/${Cluar.currentLanguage().locale}/`),
     },
     {
       key: 'language',
-      label: Cluar.plainDictionary('side-menu-options-language'),
+      label: Cluar.plainTranslation('side-menu-options-language'),
       icon: <GlobalOutlined />,
       children: Cluar.languages()
         .filter((language) => language.code !== Cluar.currentLanguage().code)
@@ -150,8 +150,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     {
       key: 'theme-toggle',
       label: isDark
-        ? Cluar.plainDictionary('side-menu-options-theme-light')
-        : Cluar.plainDictionary('side-menu-options-theme-dark'),
+        ? Cluar.plainTranslation('side-menu-options-theme-light')
+        : Cluar.plainTranslation('side-menu-options-theme-dark'),
       icon: isDark ? <SunOutlined /> : <MoonOutlined />,
       onClick: () => {
         dispatch(toggleTheme());
@@ -162,50 +162,50 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       "editor"
     ]) && {
       key: '1',
-      label: Cluar.plainDictionary('side-menu-options-manage'),
+      label: Cluar.plainTranslation('side-menu-options-manage'),
       type: 'group',
       children: [
         {
           key: 'pages',
-          label: Cluar.plainDictionary('side-menu-options-pages'),
+          label: Cluar.plainTranslation('side-menu-options-pages'),
           icon: <FileOutlined />,
           onClick: () => navigate("/reserved-area/pages")
         },
         hasPermissions(MENU_PERMISSIONS.users) && {
           key: 'users',
-          label: Cluar.plainDictionary('side-menu-options-users'),
+          label: Cluar.plainTranslation('side-menu-options-users'),
           icon: <UserOutlined />,
           onClick: () => navigate("/reserved-area/users")
         },
         {
           key: 'actions',
-          label: Cluar.plainDictionary('side-menu-options-actions'),
+          label: Cluar.plainTranslation('side-menu-options-actions'),
           icon: <LinkOutlined />,
           onClick: () => navigate("/reserved-area/actions")
         },
         hasPermissions(MENU_PERMISSIONS.languages) && {
           key: 'languages',
-          label: Cluar.plainDictionary('side-menu-options-languages'),
+          label: Cluar.plainTranslation('side-menu-options-languages'),
           icon: <GlobalOutlined />,
           onClick: () => navigate("/reserved-area/languages")
         },
         hasPermissions(MENU_PERMISSIONS.configuration) && {
           key: 'configuration',
-          label: Cluar.plainDictionary('side-menu-options-configurations'),
+          label: Cluar.plainTranslation('side-menu-options-configurations'),
           icon: <SettingOutlined />,
           onClick: () => navigate("/reserved-area/configuration")
 
         },
         {
-          key: 'dictionary',
-          label: Cluar.plainDictionary('side-menu-options-dictionaries'),
+          key: 'translation',
+          label: Cluar.plainTranslation('side-menu-options-translations'),
           icon: <FontSizeOutlined />,
-          onClick: () => navigate("/reserved-area/dictionary")
+          onClick: () => navigate("/reserved-area/translation")
 
         },
         hasPermissions(MENU_PERMISSIONS.organization) && {
           key: 'organization',
-          label: Cluar.plainDictionary('side-menu-options-organizations'),
+          label: Cluar.plainTranslation('side-menu-options-organizations'),
           icon: <ApartmentOutlined />,
           onClick: () => navigate("/reserved-area/organization"),
         }
@@ -213,7 +213,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     },
     {
       key: 'logout',
-      label: Cluar.plainDictionary('user-menu-sign-out'),
+      label: Cluar.plainTranslation('user-menu-sign-out'),
       icon: <LogoutOutlined />,
       danger: true,
       onClick: () => onLogout(),
@@ -239,8 +239,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       groupsAllowed: MENU_PERMISSIONS.configuration,
     },
     {
-      prefix: "/reserved-area/dictionary",
-      groupsAllowed: MENU_PERMISSIONS.dictionary,
+      prefix: "/reserved-area/translation",
+      groupsAllowed: MENU_PERMISSIONS.translation,
     },
     { prefix: "/reserved-area/organization", groupsAllowed: MENU_PERMISSIONS.organization },
   ];
@@ -281,8 +281,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     if (location.pathname.startsWith("/reserved-area/configuration")) {
       return "configuration";
     }
-    if (location.pathname.startsWith("/reserved-area/dictionary")) {
-      return "dictionary";
+    if (location.pathname.startsWith("/reserved-area/translation")) {
+      return "translation";
     }
     if (location.pathname.startsWith("/reserved-area/organization")) {
       return "organization";
@@ -303,14 +303,14 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     // {
     //   key: 'profile',
     //   icon: <EditOutlined />,
-    //   label: Cluar.plainDictionary('user-menu-edit-profile'),
+    //   label: Cluar.plainTranslation('user-menu-edit-profile'),
     //   onClick: () => navigate("/reserved-area/profile"),
     // },
     // {
     //   key: 'logout',
     //   icon: <LogoutOutlined />,
     //   danger: true,
-    //   label: Cluar.plainDictionary('user-menu-sign-out'),
+    //   label: Cluar.plainTranslation('user-menu-sign-out'),
     //   onClick: () => onLogout(),
     // }
   ];
@@ -336,8 +336,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         console.error('Dados do Utilizador', e);
         setLoading(false);
         notification["error"]({
-          message: Cluar.plainDictionary('side-menu-load-user-info-failed-message'),
-          description: Cluar.plainDictionary('side-menu-load-user-info-failed-description'),
+          message: Cluar.plainTranslation('side-menu-load-user-info-failed-message'),
+          description: Cluar.plainTranslation('side-menu-load-user-info-failed-description'),
         });
         window.sessionStorage.setItem("builder-edit-mode", "0");
         _auth.logout();

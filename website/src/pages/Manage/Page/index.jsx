@@ -51,7 +51,7 @@ const Page = () => {
         <Col span={24}>
           <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
             <Col>
-              <HeadTitle text={Cluar.plainDictionary('page-page-title')} level={4} type={"secondary"} />
+              <HeadTitle text={Cluar.plainTranslation('page-page-title')} level={4} type={"secondary"} />
             </Col>
             <Col>
               <Space>
@@ -61,7 +61,7 @@ const Page = () => {
                     loading={syncing}
                     onClick={onSync}
                   >
-                    {Cluar.plainDictionary('page-page-sync')}
+                    {Cluar.plainTranslation('page-page-sync')}
                   </Button>
                 )}
                 <Button
@@ -69,7 +69,7 @@ const Page = () => {
                   icon={<PlusOutlined />}
                   onClick={() => pageModalRef.current.openModal()}
                 >
-                  {Cluar.plainDictionary('page-page-new')}
+                  {Cluar.plainTranslation('page-page-new')}
                 </Button>
               </Space>
             </Col>

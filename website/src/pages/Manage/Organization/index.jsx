@@ -26,7 +26,7 @@ const Organization = () => {
         <Col span={24}>
           <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
             <Col>
-              <HeadTitle level={4} type={"secondary"} text={Cluar.plainDictionary('organization-page-title')} />
+              <HeadTitle level={4} type={"secondary"} text={Cluar.plainTranslation('organization-page-title')} />
             </Col>
             <Col>
               <Button
@@ -34,7 +34,7 @@ const Organization = () => {
                 icon={<PlusOutlined />}
                 onClick={() => { organizationModalRef.current.onOpenModal() }}
               >
-                {Cluar.plainDictionary('organization-page-new')}
+                {Cluar.plainTranslation('organization-page-new')}
               </Button>
             </Col>
           </Row>

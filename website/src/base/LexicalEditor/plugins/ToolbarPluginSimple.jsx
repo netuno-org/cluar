@@ -354,7 +354,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
         onClick={() => {
           editor.dispatchCommand(UNDO_COMMAND, undefined);
         }}
-        title={Cluar.plainDictionary("toolbar-undo")}
+        title={Cluar.plainTranslation("toolbar-undo")}
         type="button"
         className="toolbar-item"
       >
@@ -365,7 +365,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
         onClick={() => {
           editor.dispatchCommand(REDO_COMMAND, undefined);
         }}
-        title={Cluar.plainDictionary("toolbar-redo")}
+        title={Cluar.plainTranslation("toolbar-redo")}
         type="button"
         className="toolbar-item"
       >
@@ -394,7 +394,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
         >
           <button
             className="toolbar-item dropdown-button"
-            title={Cluar.plainDictionary("toolbar-font")}
+            title={Cluar.plainTranslation("toolbar-font")}
             type="button"
           >
             <span style={{ fontFamily: currentFontFamily }}>{FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily) ? FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily)[1] : currentFontFamily}</span>
@@ -407,7 +407,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
       <div className="font-size-container" style={{ display: 'flex', alignItems: 'center' }}>
         <button
           className="toolbar-item"
-          title={Cluar.plainDictionary("toolbar-font-size-decrease")}
+          title={Cluar.plainTranslation("toolbar-font-size-decrease")}
           type="button"
           onClick={decreaseFontSize}
           style={{ padding: '0 8px' }}
@@ -423,7 +423,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
         />
         <button
           className="toolbar-item"
-          title={Cluar.plainDictionary("toolbar-font-size-increase")}
+          title={Cluar.plainTranslation("toolbar-font-size-increase")}
           type="button"
           onClick={increaseFontSize}
           style={{ padding: '0 8px' }}
@@ -489,7 +489,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
       <button
         onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')}
         className={`toolbar-item ${isBold ? "active" : ""}`}
-        title={Cluar.plainDictionary("toolbar-bold")}
+        title={Cluar.plainTranslation("toolbar-bold")}
         type="button"
       >
         <i>B</i>
@@ -497,7 +497,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
       <button
         onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')}
         className={`toolbar-item ${isItalic ? "active" : ""}`}
-        title={Cluar.plainDictionary("toolbar-italic")}
+        title={Cluar.plainTranslation("toolbar-italic")}
         type="button"
       >
         <i>I</i>
@@ -507,7 +507,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
         }}
         className={`toolbar-item ${isUnderline ? "active" : ""}`}
-        title={Cluar.plainDictionary("toolbar-underline")}
+        title={Cluar.plainTranslation("toolbar-underline")}
         type="button"
       >
         <i>U</i>
@@ -515,7 +515,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
 
       <button
         onClick={() => insertLink()}
-        title={Cluar.plainDictionary("toolbar-link")}
+        title={Cluar.plainTranslation("toolbar-link")}
         type="button"
         className={isLink ? 'btn-active' : 'btn-inactive'}
         style={{
@@ -541,7 +541,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
             editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left');
           }}
           className="toolbar-item spaced"
-          aria-label={Cluar.plainDictionary("toolbar-align-left")}
+          aria-label={Cluar.plainTranslation("toolbar-align-left")}
           type="button"
         >
           <AlignLeftOutlined />
@@ -552,7 +552,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
             editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center');
           }}
           className="toolbar-item spaced"
-          aria-label={Cluar.plainDictionary("toolbar-align-center")}
+          aria-label={Cluar.plainTranslation("toolbar-align-center")}
           type="button"
         >
           <AlignCenterOutlined />
@@ -563,7 +563,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
             editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right');
           }}
           className="toolbar-item spaced"
-          aria-label={Cluar.plainDictionary("toolbar-align-right")}
+          aria-label={Cluar.plainTranslation("toolbar-align-right")}
           type="button"
         >
           <AlignRightOutlined />

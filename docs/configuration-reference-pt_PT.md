@@ -45,7 +45,7 @@ O código contém callbacks do fornecedor Microsoft através do Netuno, mas `sam
 | `settings.recaptcha.secret_key` | vazio | Segredo lido pelo serviço de contacto para verificar o token. Não submeta um valor real. |
 | `remote.recaptcha.json` | `true` | Configura a ligação remota `recaptcha` (usada pelo serviço de contacto) para JSON. |
 
-O formulário de contacto usa reCAPTCHA: `server/services/contact/post.js` lê `recaptchaValue` do pedido e verifica-o através da ligação remota `recaptcha` antes de guardar a mensagem. O registo (`server/services/reserved-area/people/post.js`) usa ALTCHA.
+O formulário de contacto usa reCAPTCHA: `server/services/contact/post.js` lê `recaptchaValue` do pedido e verifica-o através da ligação remota `recaptcha` antes de guardar a mensagem. O registo (`server/services/reserved-area/profile/post.js`) usa ALTCHA.
 
 ## CORS
 

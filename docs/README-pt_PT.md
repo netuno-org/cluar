@@ -17,7 +17,7 @@ Estes são os principais mecanismos que o CLUAR CMS oferece por padrão:
 4. [Estandarte](banner/README-pt_PT.md)
 5. [Listagem](listing/README-pt_PT.md)
 6. [Ação](https://doc.netuno.org/pt/docs/academy/cluar/actions)
-7. [Dicionário](https://doc.netuno.org/pt/docs/academy/cluar/dictionaries)
+7. [Tradução](https://doc.netuno.org/pt/docs/academy/cluar/translations)
 8. [Configuração](https://doc.netuno.org/pt/docs/academy/cluar/configuration)
 9. [Funcionalidade](https://doc.netuno.org/pt/docs/academy/cluar/components/functionality)
 

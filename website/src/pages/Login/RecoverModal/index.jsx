@@ -27,8 +27,8 @@ export default function RecoverModal(props) {
       success: (response) => {
         if (response.json.result) {
           notification["success"]({
-            message: Cluar.plainDictionary('recovery-modal-success-message'),
-            description: Cluar.plainDictionary('recovery-modal-success-description'),
+            message: Cluar.plainTranslation('recovery-modal-success-message'),
+            description: Cluar.plainTranslation('recovery-modal-success-description'),
           });
           setSubmitting(false);
           setOpen(false);
@@ -37,8 +37,8 @@ export default function RecoverModal(props) {
       fail: () => {
         setSubmitting(false);
         notification["error"]({
-          message: Cluar.plainDictionary('recovery-modal-failed-message'),
-          description: Cluar.plainDictionary('recovery-modal-failed-description'),
+          message: Cluar.plainTranslation('recovery-modal-failed-message'),
+          description: Cluar.plainTranslation('recovery-modal-failed-description'),
         });
       }
     });
@@ -69,15 +69,15 @@ export default function RecoverModal(props) {
   return (
     <Modal
       className={'modal-recover'}
-      title={Cluar.plainDictionary('recovery-modal-title')}
+      title={Cluar.plainTranslation('recovery-modal-title')}
       open={open}
       onCancel={onCancel}
       footer={[
         <Button key="back" onClick={onCancel}>
-          {Cluar.plainDictionary('recovery-modal-cancel')}
+          {Cluar.plainTranslation('recovery-modal-cancel')}
         </Button>,
         <Button key="send" type="primary" htmlType="submit" loading={submitting} onClick={onSubmit} >
-          {Cluar.plainDictionary('recovery-modal-send')}
+          {Cluar.plainTranslation('recovery-modal-send')}
         </Button>
       ]}
     >
@@ -87,11 +87,11 @@ export default function RecoverModal(props) {
         onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label={Cluar.plainDictionary('recovery-modal-mail')}
+          label={Cluar.plainTranslation('recovery-modal-mail')}
           name="mail"
           rules={[
-            { type: 'email', message: Cluar.plainDictionary('recovery-modal-mail-valid-message') },
-            { required: true, message: Cluar.plainDictionary('recovery-modal-validate-message-required') }
+            { type: 'email', message: Cluar.plainTranslation('recovery-modal-mail-valid-message') },
+            { required: true, message: Cluar.plainTranslation('recovery-modal-validate-message-required') }
           ]}
         >
           <Input disabled={submitting} maxLength={250} />

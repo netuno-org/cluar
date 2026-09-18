@@ -6,7 +6,7 @@ Uma solução pronta a usar para gestão de conteúdos e websites multilíngues 
 
 ## Documentação :books:
 
-A documentação completa do CLUAR — instalação, configuração, páginas, componentes, ações, configurações, dicionários, templates e permissões — está disponível na [Academia do Netuno](https://doc.netuno.org/pt/docs/academy/cluar/overview).
+A documentação completa do CLUAR — instalação, configuração, páginas, componentes, ações, configurações, traduções, templates e permissões — está disponível na [Academia do Netuno](https://doc.netuno.org/pt/docs/academy/cluar/overview).
 
 A configuração deste repositório está documentada na [referência completa de configuração](docs/configuration-reference-pt_PT.md).
 

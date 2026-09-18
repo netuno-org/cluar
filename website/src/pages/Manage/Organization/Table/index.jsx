@@ -71,7 +71,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('organization-table-desactive-success-message') : Cluar.plainDictionary('organization-table-active-success-message')
+          message: active ? Cluar.plainTranslation('organization-table-desactive-success-message') : Cluar.plainTranslation('organization-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -81,7 +81,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('organization-table-desactive-failed-message') : Cluar.plainDictionary('organization-table-active-failed-message')
+          message: active ? Cluar.plainTranslation('organization-table-desactive-failed-message') : Cluar.plainTranslation('organization-table-active-failed-message')
         });
       }
     })
@@ -96,14 +96,14 @@ const OrganizationTable = forwardRef(({ }, ref) => {
       success: () => {
         setDeleteLoadingUid(null);
         notification.success({
-          message: Cluar.plainDictionary("organization-table-delete-success-message")
+          message: Cluar.plainTranslation("organization-table-delete-success-message")
         });
         onLoadOrganizations();
       },
       fail: (error) => {
         setDeleteLoadingUid(null);
         console.error(error);
-        const errorMessage = error?.json?.error || Cluar.plainDictionary("organization-table-delete-failed-message");
+        const errorMessage = error?.json?.error || Cluar.plainTranslation("organization-table-delete-failed-message");
         notification.error({ message: errorMessage });
       }
     });
@@ -153,7 +153,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         setLoading(false);
         console.error(error);
         notification.error({
-          message: Cluar.plainDictionary("organization-table-load-failed")
+          message: Cluar.plainTranslation("organization-table-load-failed")
         })
       }
     })
@@ -166,7 +166,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainDictionary('organization-table-active'),
+      title: Cluar.plainTranslation('organization-table-active'),
       dataIndex: 'active',
       key: 'active',
       onHeaderCell: () => ({
@@ -196,7 +196,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
       ]
     },
     {
-      title: Cluar.plainDictionary('organization-table-name'),
+      title: Cluar.plainTranslation('organization-table-name'),
       dataIndex: 'name',
       key: 'name',
       ...getTextFilterProps("name"),
@@ -205,7 +205,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary('organization-table-code'),
+      title: Cluar.plainTranslation('organization-table-code'),
       dataIndex: 'code',
       ...getTextFilterProps("code"),
       onHeaderCell: () => ({
@@ -214,7 +214,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
       key: 'code',
     },
     {
-      title: Cluar.plainDictionary('organization-table-parent'),
+      title: Cluar.plainTranslation('organization-table-parent'),
       dataIndex: 'parent',
       ...getTextFilterProps("parent_name"),
       onHeaderCell: () => ({
@@ -224,7 +224,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
       render: (val, record) => val?.name
     },
     {
-      title: Cluar.plainDictionary('organization-table-actions'),
+      title: Cluar.plainTranslation('organization-table-actions'),
       dataIndex: 'Actions',
       key: 'actions',
       onHeaderCell: () => ({
@@ -235,7 +235,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           <Button
             icon={<EditOutlined />}
             type="text"
-            title={Cluar.plainDictionary("organization-table-button-edit")}
+            title={Cluar.plainTranslation("organization-table-button-edit")}
             onClick={() => {
               setOrganizationData(record);
               organizationModalRef.current.onOpenModal();
@@ -244,20 +244,20 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           <Button
             icon={<UserOutlined />}
             type="text"
-            title={Cluar.plainDictionary("organization-table-button-members")}
+            title={Cluar.plainTranslation("organization-table-button-members")}
             onClick={() => {
               setOrganizationData(record);
               membersModalRef.current.openModal();
             }}
           />
           <Popconfirm
-            title={Cluar.plainDictionary("organization-table-popconfirm-delete-title")}
+            title={Cluar.plainTranslation("organization-table-popconfirm-delete-title")}
             onConfirm={() => onDelete(record.uid)}
           >
             <Button
               type="text"
               danger
-              title={Cluar.plainDictionary("organization-table-button-delete")}
+              title={Cluar.plainTranslation("organization-table-button-delete")}
               icon={<DeleteOutlined />}
               loading={deleteLoadingUid === record.uid}
             />

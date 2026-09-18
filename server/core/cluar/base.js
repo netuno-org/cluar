@@ -236,7 +236,7 @@ export default {
        * Em dev, website/index.html é a entrada do Vite (hot reload).
        * Reescrevê-lo a cada gravação faz o Vite dar full-reload à página,
        * recarregando o admin (reserved-area) a cada gravação de uma página,
-       * action, dicionário, etc. Em dev as cores já chegam via root.css
+       * action, tradução, etc. Em dev as cores já chegam via root.css
        * (pasta pública, sem reload), por isso não se toca na origem; o
        * dist continua a ser atualizado para a produção.
        */
@@ -293,40 +293,40 @@ export default {
 
   /*
    *
-   *  DICTIONARY
+   *  TRANSLATION
    *
    */
 
-  dictionary: () => {
-    if (_config.has("cluar:base:dictionary")) {
-      return _config.getValues("cluar:base:dictionary");
+  translation: () => {
+    if (_config.has("cluar:base:translation")) {
+      return _config.getValues("cluar:base:translation");
     }
 
-    const dbDictionary = _db.query(`
+    const dbTranslation = _db.query(`
         SELECT
             language.code "language",
-            dictionary_entry.code "code",
-            dictionary.${_db.escape('value')}
+            translation_entry.code "code",
+            translation.${_db.escape('value')}
         FROM language
-            INNER JOIN dictionary ON dictionary.language_id = language.id
-            INNER JOIN dictionary_entry ON dictionary.entry_id = dictionary_entry.id
+            INNER JOIN translation ON translation.language_id = language.id
+            INNER JOIN translation_entry ON translation.entry_id = translation_entry.id
         WHERE language.active = TRUE
-            AND dictionary.active = TRUE
-            AND dictionary_entry.active = TRUE
-        ORDER BY language.code, dictionary_entry.code
+            AND translation.active = TRUE
+            AND translation_entry.active = TRUE
+        ORDER BY language.code, translation_entry.code
     `);
-    const dictionary = _val.map();
-    for (const dbEntry of dbDictionary) {
-      if (!dictionary.has(dbEntry.getString("language"))) {
-        dictionary.set(dbEntry.getString("language"), _val.map());
+    const translation = _val.map();
+    for (const dbEntry of dbTranslation) {
+      if (!translation.has(dbEntry.getString("language"))) {
+        translation.set(dbEntry.getString("language"), _val.map());
       }
-      dictionary.getValues(dbEntry.getString("language"))
+      translation.getValues(dbEntry.getString("language"))
         .set(dbEntry.getString("code"), dbEntry.getString("value"));
     }
 
-    _config.set("cluar:base:dictionary", dictionary);
+    _config.set("cluar:base:translation", translation);
 
-    return dictionary;
+    return translation;
   },
 
   /*

@@ -131,7 +131,7 @@ const ListEditor = ({ sectionData, form }) => {
 
   return (
     <div className="list-editor">
-      <Form.Item label={Cluar.plainDictionary("list-editor-field-type")} name="type">
+      <Form.Item label={Cluar.plainTranslation("list-editor-field-type")} name="type">
         <Select
           options={typeOptions.map((item) => ({
             label: item.info.label,
@@ -149,13 +149,13 @@ const ListEditor = ({ sectionData, form }) => {
       <ImageSectionEditor form={form} sectionData={sectionData} />
 
       {showActions && (
-        <Form.Item label={Cluar.plainDictionary("list-editor-field-actions")} name="action_uids">
+        <Form.Item label={Cluar.plainTranslation("list-editor-field-actions")} name="action_uids">
           <Select
             options={actionsData.map((action) => ({
               label: action.title,
               value: action.uid,
             }))}
-            placeholder={Cluar.plainDictionary("list-editor-placeholder-add")}
+            placeholder={Cluar.plainTranslation("list-editor-placeholder-add")}
             mode="multiple"
             allowClear
           />
@@ -177,7 +177,7 @@ const ListEditor = ({ sectionData, form }) => {
         />
         <Col span={24}>
           <Button onClick={handleAddItem}>
-            {Cluar.plainDictionary("list-editor-button-new-item")}
+            {Cluar.plainTranslation("list-editor-button-new-item")}
           </Button>
         </Col>
       </Row>

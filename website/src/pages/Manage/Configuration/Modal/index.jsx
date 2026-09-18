@@ -151,7 +151,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
           setLoading((prev) => ({ ...prev, save: false }));
           setIsModalOpen(false);
           notification.success({
-            message: Cluar.plainDictionary('configuration-modal-edit-success-message')
+            message: Cluar.plainTranslation('configuration-modal-edit-success-message')
           })
           onReloadTable();
         },
@@ -159,7 +159,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
           setLoading((prev) => ({ ...prev, save: false }));
           console.error(error);
           notification.error({
-            message: Cluar.plainDictionary('configuration-form-edit-failed-message')
+            message: Cluar.plainTranslation('configuration-form-edit-failed-message')
           });
         }
       });
@@ -175,7 +175,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
           setLoading((prev) => ({ ...prev, save: false }));
           setIsModalOpen(false);
           notification.success({
-            message: Cluar.plainDictionary('configuration-form-new-success-message')
+            message: Cluar.plainTranslation('configuration-form-new-success-message')
           })
           onReloadTable();
         },
@@ -183,7 +183,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
           setLoading((prev) => ({ ...prev, save: false }));
           console.error(error);
           notification.error({
-            message: Cluar.plainDictionary('configuration-form-new-failed-message')
+            message: Cluar.plainTranslation('configuration-form-new-failed-message')
           });
         }
       });
@@ -274,7 +274,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
 
   return (
     <Modal
-      title={editMode ? Cluar.plainDictionary('configuration-modal-edit-title') : Cluar.plainDictionary('configuration-modal-new-title')}
+      title={editMode ? Cluar.plainTranslation('configuration-modal-edit-title') : Cluar.plainTranslation('configuration-modal-new-title')}
       open={isModalOpen}
       maskClosable={false}
       onCancel={() => { setIsModalOpen(false) }}
@@ -286,14 +286,14 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
         <Button
           onClick={() => { setIsModalOpen(false) }}
         >
-          {Cluar.plainDictionary('configuration-form-cancel')}
+          {Cluar.plainTranslation('configuration-form-cancel')}
         </Button>,
         <Button
           type="primary"
           loading={loading.save}
           onClick={() => formRef.submit()}
         >
-          {Cluar.plainDictionary('configuration-form-save')}
+          {Cluar.plainTranslation('configuration-form-save')}
         </Button>
       ]}
     >
@@ -305,9 +305,9 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
         <Row justify={"space-between"} align={"middle"} gutter={[10, 0]}>
           <Col span={24}>
             <Form.Item
-              label={Cluar.plainDictionary('configuration-form-parameter_code')}
+              label={Cluar.plainTranslation('configuration-form-parameter_code')}
               name={"parameter_code"}
-              rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
+              rules={[{ required: true, message: Cluar.plainTranslation('configuration-form-validate-message-required') }]}
             >
               <ConfigurationParameterSelect
                 parameters={parameters}
@@ -323,9 +323,9 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
           </Col>
           <Col span={24}>
             <Form.Item
-              label={Cluar.plainDictionary('configuration-form-language_code')}
+              label={Cluar.plainTranslation('configuration-form-language_code')}
               name={"language_code"}
-            // rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
+            // rules={[{ required: true, message: Cluar.plainTranslation('configuration-form-validate-message-required') }]}
             >
               <Select
                 loading={loading.language}
@@ -339,9 +339,9 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
           </Col>
           <Col span={24}>
             <Form.Item
-              label={Cluar.plainDictionary('configuration-form-value')}
+              label={Cluar.plainTranslation('configuration-form-value')}
               name={"value"}
-              rules={[{ required: true, message: Cluar.plainDictionary('configuration-form-validate-message-required') }]}
+              rules={[{ required: true, message: Cluar.plainTranslation('configuration-form-validate-message-required') }]}
             >
               {InputValue()}
             </Form.Item>

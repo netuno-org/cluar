@@ -17,7 +17,7 @@ These are the main mechanisms that CLUAR CMS offers by default:
 4. [Standard](banner/README.md)
 5. [Listing](listing/README.md)
 6. [Action](https://doc.netuno.org/docs/academy/cluar/actions)
-7. [Dictionary](https://doc.netuno.org/docs/academy/cluar/dictionaries)
+7. [Translation](https://doc.netuno.org/docs/academy/cluar/translations)
 8. [Settings](https://doc.netuno.org/docs/academy/cluar/configuration)
 9. [Functionality](https://doc.netuno.org/docs/academy/cluar/components/functionality)
 

@@ -1,0 +1,22 @@
+{
+  "_schema":"tags/translation",
+  "summary":"List translations with filters and pagination",
+  "description":"List translations with filters and pagination",
+  "type":"object",
+  "properties":{
+    "filters":{
+      "type":"object",
+      "properties":{
+        "language_codes":{
+          "type":"array",
+          "items":{
+            "type":"string"
+          }
+        }
+      }
+    },
+    "pagination":{
+      "_schema":"request/pagination"
+    }
+  }
+}

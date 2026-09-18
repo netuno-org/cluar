@@ -26,7 +26,7 @@ const Configuration = () => {
         <Col span={24}>
           <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
             <Col>
-              <HeadTitle level={4} type={"secondary"} text={Cluar.plainDictionary('configuration-page-title')} />
+              <HeadTitle level={4} type={"secondary"} text={Cluar.plainTranslation('configuration-page-title')} />
             </Col>
             <Col>
               <Button
@@ -34,7 +34,7 @@ const Configuration = () => {
                 icon={<PlusOutlined />}
                 onClick={() => { configurationModalRef.current.onOpenModal() }}
               >
-                {Cluar.plainDictionary('configuration-page-new')}
+                {Cluar.plainTranslation('configuration-page-new')}
               </Button>
             </Col>
           </Row>

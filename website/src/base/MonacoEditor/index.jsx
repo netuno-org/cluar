@@ -12,7 +12,7 @@ const MonacoEditor = ({ value, onChange }) => {
 
     editor.addAction({
       id: "format-html",
-      label: Cluar.plainDictionary("monaco-editor-action-format-html"),
+      label: Cluar.plainTranslation("monaco-editor-action-format-html"),
       keybindings: [
         monaco.KeyMod.Shift | monaco.KeyMod.Alt | monaco.KeyCode.KeyF,
       ],
@@ -48,7 +48,7 @@ const MonacoEditor = ({ value, onChange }) => {
           HTML
         </span>
         <span className="monaco-editor-header__shortcut">
-          {Cluar.plainDictionary("monaco-editor-shortcut-format")}
+          {Cluar.plainTranslation("monaco-editor-shortcut-format")}
         </span>
       </div>
       <div className="monaco-editor-wrapper">

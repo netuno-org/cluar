@@ -117,7 +117,7 @@ const PageSection = ({
               </Button>
             )}
             <Popover
-              title={Cluar.plainDictionary("page-section-new-section")}
+              title={Cluar.plainTranslation("page-section-new-section")}
               trigger="click"
               content={newSection}
               onVisibleChange={setNewSectionVisible}

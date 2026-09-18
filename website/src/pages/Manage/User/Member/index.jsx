@@ -28,7 +28,7 @@ const MemberModal = forwardRef(({ userData }, ref) => {
 
   return (
     <Modal
-      title={userData ? `${Cluar.plainDictionary("user-members-organizations-title")} ${userData.name}` : Cluar.plainDictionary("user-members-organizations-title")}
+      title={userData ? `${Cluar.plainTranslation("user-members-organizations-title")} ${userData.name}` : Cluar.plainTranslation("user-members-organizations-title")}
       maskClosable={false}
       destroyOnHidden={true}
       centered
@@ -38,7 +38,7 @@ const MemberModal = forwardRef(({ userData }, ref) => {
       onCancel={() => setIsModalOpen(false)}
       footer={[
         <Button key="back" onClick={() => setIsModalOpen(false)}>
-          {Cluar.plainDictionary('member-form-cancel')}
+          {Cluar.plainTranslation('member-form-cancel')}
         </Button>
       ]}
     >
@@ -57,7 +57,7 @@ const MemberModal = forwardRef(({ userData }, ref) => {
                   icon={<PlusOutlined />}
                   onClick={() => { membersFormModalRef.current.onOpenModal() }}
                 >
-                  {Cluar.plainDictionary('member-page-new')}
+                  {Cluar.plainTranslation('member-page-new')}
                 </Button>
               </Col>
             </Row>

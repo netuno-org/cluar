@@ -45,7 +45,7 @@ The website code has support for Microsoft provider callbacks through Netuno, bu
 | `settings.recaptcha.secret_key` | empty | Secret read by the contact service to verify the token. Do not commit a real secret. |
 | `remote.recaptcha.json` | `true` | Configures the named `recaptcha` remote connection (used by the contact service) to parse JSON. |
 
-The contact form uses reCAPTCHA: `server/services/contact/post.js` reads `recaptchaValue` from the request and verifies it through the `recaptcha` remote before storing the message. Registration (`server/services/reserved-area/people/post.js`) uses ALTCHA instead.
+The contact form uses reCAPTCHA: `server/services/contact/post.js` reads `recaptchaValue` from the request and verifies it through the `recaptcha` remote before storing the message. Registration (`server/services/reserved-area/profile/post.js`) uses ALTCHA instead.
 
 ## CORS
 

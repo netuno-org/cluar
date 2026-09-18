@@ -85,7 +85,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('member-table-desactive-success-message') : Cluar.plainDictionary('member-table-active-success-message')
+          message: active ? Cluar.plainTranslation('member-table-desactive-success-message') : Cluar.plainTranslation('member-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -95,7 +95,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('member-table-desactive-failed-message') : Cluar.plainDictionary('member-table-active-failed-message')
+          message: active ? Cluar.plainTranslation('member-table-desactive-failed-message') : Cluar.plainTranslation('member-table-active-failed-message')
         });
       }
     })
@@ -110,14 +110,14 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
       success: () => {
         setDeleteLoadingUid(null);
         notification.success({
-          message: Cluar.plainDictionary("member-table-delete-success-message")
+          message: Cluar.plainTranslation("member-table-delete-success-message")
         });
         onLoadMembers();
       },
       fail: (error) => {
         setDeleteLoadingUid(null);
         console.error(error);
-        const errorMessage = error?.json?.error || Cluar.plainDictionary("member-table-delete-failed-message");
+        const errorMessage = error?.json?.error || Cluar.plainTranslation("member-table-delete-failed-message");
         notification.error({ message: errorMessage });
       }
     });
@@ -170,7 +170,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
         setLoading(false);
         console.error(error);
         notification.error({
-          message: Cluar.plainDictionary("member-table-load-failed")
+          message: Cluar.plainTranslation("member-table-load-failed")
         })
       }
     })
@@ -183,7 +183,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainDictionary('member-table-active'),
+      title: Cluar.plainTranslation('member-table-active'),
       dataIndex: 'active',
       key: 'active',
       onHeaderCell: () => ({
@@ -213,7 +213,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
       ]
     },
     // {
-    //     title: Cluar.plainDictionary('member-table-user'),
+    //     title: Cluar.plainTranslation('member-table-user'),
     //     dataIndex: 'user',
     //     key: 'user',
     //     ...getTextFilterProps("profile_name"),
@@ -223,7 +223,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
     //     render: (val, record) => val?.name
     // },
     {
-      title: Cluar.plainDictionary('member-table-user'),
+      title: Cluar.plainTranslation('member-table-user'),
       dataIndex: 'user',
       ...getTextFilterProps("user_name"),
       onHeaderCell: () => ({
@@ -233,7 +233,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
       render: (val, record) => val?.name
     },
     {
-      title: Cluar.plainDictionary('member-table-group'),
+      title: Cluar.plainTranslation('member-table-group'),
       dataIndex: 'group',
       onHeaderCell: () => ({
         "data-column-key": "group",
@@ -248,7 +248,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
 
     },
     {
-      title: Cluar.plainDictionary('member-table-actions'),
+      title: Cluar.plainTranslation('member-table-actions'),
       dataIndex: 'Actions',
       key: 'actions',
       onHeaderCell: () => ({
@@ -259,20 +259,20 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
           <Button
             icon={<EditOutlined />}
             type="text"
-            title={Cluar.plainDictionary("member-table-button-edit")}
+            title={Cluar.plainTranslation("member-table-button-edit")}
             onClick={() => {
               setMemberEditData(record);
               membersModalRef.current.onOpenModal();
             }}
           />
           <Popconfirm
-            title={Cluar.plainDictionary("member-table-popconfirm-delete-title")}
+            title={Cluar.plainTranslation("member-table-popconfirm-delete-title")}
             onConfirm={() => onDelete(record)}
           >
             <Button
               type="text"
               danger
-              title={Cluar.plainDictionary("member-table-button-delete")}
+              title={Cluar.plainTranslation("member-table-button-delete")}
               icon={<DeleteOutlined />}
               loading={deleteLoadingUid === record.uid}
             />

@@ -98,15 +98,15 @@ function Login({ loggedUserInfoAction }) {
         if (data.isJSON) {
           if (data.json.blocked) {
             notification["error"]({
-              message: Cluar.plainDictionary('login-form-user-blocked-message'),
-              description: Cluar.plainDictionary('login-form-user-blocked-description'),
+              message: Cluar.plainTranslation('login-form-user-blocked-message'),
+              description: Cluar.plainTranslation('login-form-user-blocked-description'),
             });
             return;
           }
         }
         notification["error"]({
-          message: Cluar.plainDictionary('login-form-wrong-credentials-message'),
-          description: Cluar.plainDictionary('login-form-wrong-credentials-description'),
+          message: Cluar.plainTranslation('login-form-wrong-credentials-message'),
+          description: Cluar.plainTranslation('login-form-wrong-credentials-description'),
         });
       }
     });
@@ -130,10 +130,10 @@ function Login({ loggedUserInfoAction }) {
           <Col {...columnConfig}>
             <Content className="login-container">
               <div className="content-title">
-                <Title>{Cluar.plainDictionary('login-form-subject')}</Title>
+                <Title>{Cluar.plainTranslation('login-form-subject')}</Title>
               </div>
               <div className="content-body">
-                <p>{Cluar.plainDictionary('login-form-providers-title')}</p>
+                <p>{Cluar.plainTranslation('login-form-providers-title')}</p>
                 <Form
                   layout="vertical"
                   name="basic"
@@ -143,42 +143,42 @@ function Login({ loggedUserInfoAction }) {
                 >
                   {Cluar.authProviders().facebook &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/facebook`} name='facebook' icon={<FaFacebook />}>{Cluar.plainDictionary('login-form-login-provider').replace('${label}', 'Facebook')}</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/facebook`} name='facebook' icon={<FaFacebook />}>{Cluar.plainTranslation('login-form-login-provider').replace('${label}', 'Facebook')}</Button>
                     </Form.Item>}
                   {Cluar.authProviders().google &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/google`} icon={<FaGoogle />}>{Cluar.plainDictionary('login-form-login-provider').replace('${label}', 'Google')}</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/google`} icon={<FaGoogle />}>{Cluar.plainTranslation('login-form-login-provider').replace('${label}', 'Google')}</Button>
                     </Form.Item>}
                   {Cluar.authProviders().github &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/github`} icon={<FaGithub />}>{Cluar.plainDictionary('login-form-login-provider').replace('${label}', 'GitHub')}</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/github`} icon={<FaGithub />}>{Cluar.plainTranslation('login-form-login-provider').replace('${label}', 'GitHub')}</Button>
                     </Form.Item>}
                   {Cluar.authProviders().discord &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/discord`} icon={<FaDiscord />}>{Cluar.plainDictionary('login-form-login-provider').replace('${label}', 'Discord')}</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/discord`} icon={<FaDiscord />}>{Cluar.plainTranslation('login-form-login-provider').replace('${label}', 'Discord')}</Button>
                     </Form.Item>}
 
                   <Form.Item
-                    label={Cluar.plainDictionary('login-form-username')}
+                    label={Cluar.plainTranslation('login-form-username')}
                     name="username"
                     rules={[
-                      { required: true, message: Cluar.plainDictionary('login-form-validate-message-required') },
-                      { type: 'string', message: Cluar.plainDictionary('login-form-invalid-username-message'), pattern: "^[a-z]+[a-z0-9]{1,24}$" }
+                      { required: true, message: Cluar.plainTranslation('login-form-validate-message-required') },
+                      { type: 'string', message: Cluar.plainTranslation('login-form-invalid-username-message'), pattern: "^[a-z]+[a-z0-9]{1,24}$" }
                     ]}
                   >
                     <Input />
                   </Form.Item>
 
                   <Form.Item
-                    label={Cluar.plainDictionary('login-form-password')}
+                    label={Cluar.plainTranslation('login-form-password')}
                     name="password"
-                    rules={[{ required: true, message: Cluar.plainDictionary('login-form-validate-message-required') }]}
+                    rules={[{ required: true, message: Cluar.plainTranslation('login-form-validate-message-required') }]}
                   >
                     <Input.Password />
                   </Form.Item>
 
                   <Form.Item name="remember" valuePropName="checked">
-                    <Checkbox>{Cluar.plainDictionary('login-form-remember')}</Checkbox>
+                    <Checkbox>{Cluar.plainTranslation('login-form-remember')}</Checkbox>
                   </Form.Item>
 
                   {Cluar.authAltcha() && (
@@ -196,20 +196,20 @@ function Login({ loggedUserInfoAction }) {
 
                   <Form.Item>
                     <Button loading={submitting} type="primary" className="login-btn" htmlType="submit">
-                      {Cluar.plainDictionary('login-form-sign-in')}
+                      {Cluar.plainTranslation('login-form-sign-in')}
                     </Button>
                   </Form.Item>
 
                   <Form.Item style={{ textAlign: 'center' }}>
-                    <Button type="link" onClick={() => setVisible(!visible)} >{Cluar.plainDictionary('login-form-forgot-password')}</Button>
+                    <Button type="link" onClick={() => setVisible(!visible)} >{Cluar.plainTranslation('login-form-forgot-password')}</Button>
                     {visible && <RecoverModal onClose={() => { setVisible(false) }} />}
                   </Form.Item>
 
                   <hr />
-                  <span><p>{Cluar.plainDictionary('login-form-division-title')}</p></span>
+                  <span><p>{Cluar.plainTranslation('login-form-division-title')}</p></span>
                   <Link to="/register">
                     <Button loading={submitting} type="default" className={"register-btn"}>
-                      {Cluar.plainDictionary('login-form-register')}
+                      {Cluar.plainTranslation('login-form-register')}
                     </Button>
                   </Link>
                 </Form>

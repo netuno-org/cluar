@@ -41,11 +41,11 @@ export default {
 
     /*
      *
-     *  DICTIONARY
+     *  TRANSLATION
      *
      */
 
-    data.set("dictionary", base.dictionary());
+    data.set("translation", base.translation());
 
     /*
      *

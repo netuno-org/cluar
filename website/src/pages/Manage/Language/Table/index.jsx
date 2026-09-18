@@ -57,7 +57,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
         setLoading(false);
         console.error(error);
         notification.error({
-          message: Cluar.plainDictionary('language-load-failed-message')
+          message: Cluar.plainTranslation('language-load-failed-message')
         })
       }
     })
@@ -92,7 +92,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainDictionary('language-table-desactive-success-message') : Cluar.plainDictionary('language-table-active-success-message')
+          message: active ? Cluar.plainTranslation('language-table-desactive-success-message') : Cluar.plainTranslation('language-table-active-success-message')
         })
       },
       fail: (error) => {
@@ -102,7 +102,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainDictionary('language-table-desactive-failed-message') : Cluar.plainDictionary('language-table-active-failed-message')
+          message: active ? Cluar.plainTranslation('language-table-desactive-failed-message') : Cluar.plainTranslation('language-table-active-failed-message')
         });
       }
     })
@@ -138,7 +138,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
             })
           });
           notification.success({
-            message: Cluar.plainDictionary('language-table-default-success-message')
+            message: Cluar.plainTranslation('language-table-default-success-message')
           });
         },
         fail: (error) => {
@@ -148,7 +148,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
           });
           console.error(error);
           notification.error({
-            message: Cluar.plainDictionary('language-table-default-failed-message')
+            message: Cluar.plainTranslation('language-table-default-failed-message')
           });
         }
       })
@@ -163,7 +163,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainDictionary('language-table-active'),
+      title: Cluar.plainTranslation('language-table-active'),
       dataIndex: 'active',
       key: 'active',
       onHeaderCell: () => ({
@@ -182,7 +182,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
       )
     },
     {
-      title: Cluar.plainDictionary('language-table-description'),
+      title: Cluar.plainTranslation('language-table-description'),
       dataIndex: 'description',
       key: 'description',
       onHeaderCell: () => ({
@@ -190,7 +190,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary('language-table-code'),
+      title: Cluar.plainTranslation('language-table-code'),
       dataIndex: 'code',
       key: 'code',
       onHeaderCell: () => ({
@@ -198,7 +198,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
       }),
     },
     {
-      title: Cluar.plainDictionary('language-table-locale'),
+      title: Cluar.plainTranslation('language-table-locale'),
       dataIndex: 'locale',
       onHeaderCell: () => ({
         "data-column-key": "locale",
@@ -206,7 +206,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
       key: 'locale',
     },
     {
-      title: Cluar.plainDictionary('language-table-default'),
+      title: Cluar.plainTranslation('language-table-default'),
       dataIndex: 'default',
       key: 'default',
       onHeaderCell: () => ({
@@ -225,7 +225,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
       )
     },
     {
-      title: Cluar.plainDictionary('language-table-actions'),
+      title: Cluar.plainTranslation('language-table-actions'),
       dataIndex: 'Actions',
       key: 'actions',
       onHeaderCell: () => ({
@@ -237,7 +237,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
             <Button
               icon={<EditOutlined />}
               type="text"
-              title={Cluar.plainDictionary("language-table-button-edit")}
+              title={Cluar.plainTranslation("language-table-button-edit")}
               onClick={() => {
                 setLanguageEditData(record);
                 languageModalRef.current.openModal();

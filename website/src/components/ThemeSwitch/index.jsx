@@ -13,8 +13,8 @@ function ThemeSwitch() {
 
     const label =
         themeMode === 'dark'
-            ? Cluar.plainDictionary('theme-switch-activate-light')
-            : Cluar.plainDictionary('theme-switch-activate-dark');
+            ? Cluar.plainTranslation('theme-switch-activate-light')
+            : Cluar.plainTranslation('theme-switch-activate-dark');
 
     return (
         <button

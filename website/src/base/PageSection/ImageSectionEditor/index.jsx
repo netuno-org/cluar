@@ -90,7 +90,7 @@ const ImageSectionEditor = ({
 
   return (
     <div className="image-section-editor">
-      <Form.Item label={Cluar.plainDictionary("image-editor-field-image")} name={imageName}>
+      <Form.Item label={Cluar.plainTranslation("image-editor-field-image")} name={imageName}>
         <Upload
           listType="picture"
           fileList={fileList}
@@ -133,7 +133,7 @@ const ImageSectionEditor = ({
         )}
       </Form.Item>
 
-      <Form.Item label={Cluar.plainDictionary("image-editor-field-title")} name={imageTitleName}>
+      <Form.Item label={Cluar.plainTranslation("image-editor-field-title")} name={imageTitleName}>
         <Input
           onChange={(e) => {
             if (onChangeImageTitle) {
@@ -144,7 +144,7 @@ const ImageSectionEditor = ({
       </Form.Item>
 
       <Form.Item
-        label={Cluar.plainDictionary("image-editor-field-alt")}
+        label={Cluar.plainTranslation("image-editor-field-alt")}
         name={imageAltName}
         onChange={(e) => {
           if (onChangeImageAlt) {

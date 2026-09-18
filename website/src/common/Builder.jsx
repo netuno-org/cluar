@@ -338,12 +338,12 @@ function Builder({ page, canEdit }) {
     <Row gutter={12}>
       <Col>
         <Button onClick={handleSavePage} loading={saving} disabled={!hasDiff}>
-          {Cluar.plainDictionary("extra-bar-admin-save")}
+          {Cluar.plainTranslation("extra-bar-admin-save")}
         </Button>
       </Col>
       <Col>
         <Button type="primary" onClick={handlePublishPage} loading={publishing} disabled={!canPublish || hasDiff}>
-          {Cluar.plainDictionary("extra-bar-admin-publish")}
+          {Cluar.plainTranslation("extra-bar-admin-publish")}
         </Button>
       </Col>
     </Row>

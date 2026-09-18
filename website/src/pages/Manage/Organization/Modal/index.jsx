@@ -72,7 +72,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           setIsModalOpen(false);
           onReloadTable();
           notification.success({
-            message: Cluar.plainDictionary('organization-form-edit-success-message')
+            message: Cluar.plainTranslation('organization-form-edit-success-message')
           });
         },
         fail: (error) => {
@@ -81,19 +81,19 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
 
           if (error?.json?.error_code === "code-already-in-use") {
             notification.error({
-              message: Cluar.plainDictionary('organization-form-edit-failed-message'),
-              description: Cluar.plainDictionary('organization-form-already-exists-message')
+              message: Cluar.plainTranslation('organization-form-edit-failed-message'),
+              description: Cluar.plainTranslation('organization-form-already-exists-message')
             });
             return;
           } else if (error?.json?.error_code === "hierarchy-breakdown") {
             notification.error({
-              message: Cluar.plainDictionary('organization-form-edit-failed-message'),
-              description: Cluar.plainDictionary('organization-form-validation-hierarchy-breakdown')
+              message: Cluar.plainTranslation('organization-form-edit-failed-message'),
+              description: Cluar.plainTranslation('organization-form-validation-hierarchy-breakdown')
             });
             return;
           }
           notification.error({
-            message: Cluar.plainDictionary('organization-form-edit-failed-message')
+            message: Cluar.plainTranslation('organization-form-edit-failed-message')
           });
         }
       })
@@ -110,7 +110,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           setIsModalOpen(false);
           onReloadTable();
           notification.success({
-            message: Cluar.plainDictionary('organization-form-save-success-message')
+            message: Cluar.plainTranslation('organization-form-save-success-message')
           });
         },
         fail: (error) => {
@@ -119,19 +119,19 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
 
           if (error?.json?.error_code === "code-already-in-use") {
             notification.error({
-              message: Cluar.plainDictionary('organization-form-save-failed-message'),
-              description: Cluar.plainDictionary('organization-form-already-exists-message')
+              message: Cluar.plainTranslation('organization-form-save-failed-message'),
+              description: Cluar.plainTranslation('organization-form-already-exists-message')
             });
             return;
           } else if (error?.json?.error_code === "hierarchy-breakdown") {
             notification.error({
-              message: Cluar.plainDictionary('organization-form-save-failed-message'),
-              description: Cluar.plainDictionary('organization-form-validation-hierarchy-breakdown')
+              message: Cluar.plainTranslation('organization-form-save-failed-message'),
+              description: Cluar.plainTranslation('organization-form-validation-hierarchy-breakdown')
             });
             return;
           }
           notification.error({
-            message: Cluar.plainDictionary('organization-form-save-failed-message')
+            message: Cluar.plainTranslation('organization-form-save-failed-message')
           });
         }
       })
@@ -162,7 +162,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
 
   return (
     <Modal
-      title={editMode ? Cluar.plainDictionary('organization-modal-new-title') : Cluar.plainDictionary('organization-modal-new-title')}
+      title={editMode ? Cluar.plainTranslation('organization-modal-new-title') : Cluar.plainTranslation('organization-modal-new-title')}
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       onClose={() => setIsModalOpen(false)}
@@ -172,10 +172,10 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
       centered
       footer={[
         <Button onClick={() => setIsModalOpen(false)}>
-          {Cluar.plainDictionary('organization-form-cancel')}
+          {Cluar.plainTranslation('organization-form-cancel')}
         </Button>,
         <Button type="primary" onClick={() => formRef.submit()} loading={loading.saving} disabled={loading.saving}>
-          {Cluar.plainDictionary('organization-form-save')}
+          {Cluar.plainTranslation('organization-form-save')}
         </Button>
       ]}
     >
@@ -188,7 +188,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           <Col span={24}>
             <Form.Item
               name="active"
-              label={Cluar.plainDictionary('organization-form-active')}
+              label={Cluar.plainTranslation('organization-form-active')}
               initialValue={false}
             >
               <Switch />
@@ -197,8 +197,8 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           <Col span={24}>
             <Form.Item
               name="parent_code"
-              label={Cluar.plainDictionary('organization-form-parent')}
-              rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required') }]}
+              label={Cluar.plainTranslation('organization-form-parent')}
+              rules={[{ required: true, message: Cluar.plainTranslation('organization-form-validate-message-required') }]}
             >
               <Select
                 labelInValue
@@ -219,8 +219,8 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           <Col span={24}>
             <Form.Item
               name="name"
-              label={Cluar.plainDictionary('organization-form-name')}
-              rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required') }]}
+              label={Cluar.plainTranslation('organization-form-name')}
+              rules={[{ required: true, message: Cluar.plainTranslation('organization-form-validate-message-required') }]}
             >
               <Input />
             </Form.Item>
@@ -228,8 +228,8 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
           <Col span={24}>
             <Form.Item
               name="code"
-              label={Cluar.plainDictionary('organization-form-code')}
-              rules={[{ required: true, message: Cluar.plainDictionary('organization-form-validate-message-required') }]}
+              label={Cluar.plainTranslation('organization-form-code')}
+              rules={[{ required: true, message: Cluar.plainTranslation('organization-form-validate-message-required') }]}
             >
               <Input />
             </Form.Item>

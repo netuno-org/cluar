@@ -59,7 +59,7 @@ function DefaultSubBanner({
         </div>
 
         <div className="banner__sub-banner">
-          {Cluar.plainDictionary("text-sub-banner")}
+          {Cluar.plainTranslation("text-sub-banner")}
         </div>
 
         <div className="banner__darken-bg" />

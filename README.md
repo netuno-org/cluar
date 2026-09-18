@@ -6,7 +6,7 @@ A ready to use solution for content management and multilingual websites using [
 
 ## Documentation :books:
 
-The full CLUAR documentation — installation, configuration, pages, components, actions, settings, dictionaries, templates and permissions — is available in the [Netuno Academy](https://doc.netuno.org/docs/academy/cluar/overview).
+The full CLUAR documentation — installation, configuration, pages, components, actions, settings, translations, templates and permissions — is available in the [Netuno Academy](https://doc.netuno.org/docs/academy/cluar/overview).
 
 Repository-level configuration is documented in the [complete configuration reference](docs/configuration-reference.md).
 

@@ -25,7 +25,7 @@ import Page from "./pages/Manage/Page";
 import User from "./pages/Manage/User";
 import Language from "./pages/Manage/Language";
 import Configuration from "./pages/Manage/Configuration";
-import Dictionary from "./pages/Manage/Dictionary";
+import Translation from "./pages/Manage/Translation";
 import Recovery from "./pages/Recovery";
 import Organization from "./pages/Manage/Organization";
 import Template from "./pages/Template";
@@ -180,7 +180,7 @@ function App() {
                 <Route path="actions" element={<Action />} />
                 <Route path="languages" element={<Language />} />
                 <Route path="configuration" element={<Configuration />} />
-                <Route path="dictionary" element={<Dictionary />} />
+                <Route path="translation" element={<Translation />} />
                 <Route path="organization" element={<Organization />} />
               </Route>
               {routes}

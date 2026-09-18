@@ -87,7 +87,7 @@ export default function ColumnsModal({ visible, onClose, activeEditor }) {
 
   return (
     <Modal
-      title={Cluar.plainDictionary("toolbar-insert-columns")}
+      title={Cluar.plainTranslation("toolbar-insert-columns")}
       open={visible}
       onCancel={() => {
         onClose();
@@ -109,7 +109,7 @@ export default function ColumnsModal({ visible, onClose, activeEditor }) {
       <Form form={form} layout="vertical" initialValues={{ layout: '2' }}>
         <Form.Item
           name="layout"
-          label={Cluar.plainDictionary("toolbar-columns-layout-label")}
+          label={Cluar.plainTranslation("toolbar-columns-layout-label")}
           rules={[{ required: true, message: 'Selecione um layout!' }]}
         >
           <Radio.Group style={{ width: '100%' }}>

@@ -95,7 +95,7 @@ const PageConfiguration = ({
           marginTop: 8,
         }}
       >
-        {Cluar.plainDictionary("page-form-upload")}
+        {Cluar.plainTranslation("page-form-upload")}
       </div>
     </button>
   );
@@ -191,8 +191,8 @@ const PageConfiguration = ({
           setLoading(false);
           notification.success({
             message: isNewPage
-              ? Cluar.plainDictionary("page-configuration-notification-create-success")
-              : Cluar.plainDictionary("page-configuration-notification-update-success"),
+              ? Cluar.plainTranslation("page-configuration-notification-create-success")
+              : Cluar.plainTranslation("page-configuration-notification-update-success"),
           });
 
           if (onClose) {
@@ -216,13 +216,13 @@ const PageConfiguration = ({
           const errorCode = error?.json?.error_code;
           if (errorCode) {
             notification.error({
-              message: Cluar.plainDictionary(errorCode),
+              message: Cluar.plainTranslation(errorCode),
             });
           } else {
             notification.error({
               message: isNewPage
-                ? Cluar.plainDictionary("page-configuration-notification-create-fail")
-                : Cluar.plainDictionary("page-configuration-notification-update-fail"),
+                ? Cluar.plainTranslation("page-configuration-notification-create-fail")
+                : Cluar.plainTranslation("page-configuration-notification-update-fail"),
             });
           }
         },
@@ -243,14 +243,14 @@ const PageConfiguration = ({
         success: (res) => {
           if (res.json.result) {
             notification.success({
-              message: Cluar.plainDictionary("page-configuration-notification-structure-order-success"),
+              message: Cluar.plainTranslation("page-configuration-notification-structure-order-success"),
             });
             window.location = `?version=${res.json.data}`;
           }
         },
         fail: (error) => {
           notification.error({
-            message: Cluar.plainDictionary("page-configuration-notification-structure-order-fail"),
+            message: Cluar.plainTranslation("page-configuration-notification-structure-order-fail"),
           });
         },
       });
@@ -316,33 +316,33 @@ const PageConfiguration = ({
         onClose={onClose}
         width={520}
         destroyOnHidden
-        title={isNewPage ? Cluar.plainDictionary("page-drawer-new-title") : Cluar.plainDictionary("page-drawer-config-title")}
+        title={isNewPage ? Cluar.plainTranslation("page-drawer-new-title") : Cluar.plainTranslation("page-drawer-config-title")}
         extra={
           <Button type="primary" onClick={handleSave} loading={loading}>
-            {isNewPage ? Cluar.plainDictionary("page-form-add") : Cluar.plainDictionary("page-form-save")}
+            {isNewPage ? Cluar.plainTranslation("page-form-add") : Cluar.plainTranslation("page-form-save")}
           </Button>
         }
       >
         <Form layout="vertical" initialValues={pageData || {}} form={form}>
           <Form.Item
-            label={Cluar.plainDictionary("page-form-title")}
+            label={Cluar.plainTranslation("page-form-title")}
             name="title"
             rules={[
               {
                 required: true,
-                message: Cluar.plainDictionary("page-configuration-validation-title"),
+                message: Cluar.plainTranslation("page-configuration-validation-title"),
               },
             ]}
           >
             <Input />
           </Form.Item>
           <Form.Item
-            label={Cluar.plainDictionary("page-table-template")}
+            label={Cluar.plainTranslation("page-table-template")}
             name="template"
             rules={[
               {
                 required: true,
-                message: Cluar.plainDictionary("page-configuration-validation-template"),
+                message: Cluar.plainTranslation("page-configuration-validation-template"),
               },
             ]}
           >
@@ -353,13 +353,13 @@ const PageConfiguration = ({
               }))}
             />
           </Form.Item>
-          <Form.Item label={Cluar.plainDictionary("page-form-description")}>
+          <Form.Item label={Cluar.plainTranslation("page-form-description")}>
             <Input.TextArea rows={3} />
           </Form.Item>
-          <Form.Item label={Cluar.plainDictionary("page-form-keywords")} name="keywords">
+          <Form.Item label={Cluar.plainTranslation("page-form-keywords")} name="keywords">
             <Input.TextArea rows={2} />
           </Form.Item>
-          <Form.Item label={Cluar.plainDictionary("page-form-social-image")} name="social_image">
+          <Form.Item label={Cluar.plainTranslation("page-form-social-image")} name="social_image">
             <Upload
               className="page-upload"
               listType="picture-card"
@@ -377,20 +377,20 @@ const PageConfiguration = ({
 
           </Form.Item>
           <Form.Item
-            label={Cluar.plainDictionary("page-form-social-description")}
+            label={Cluar.plainTranslation("page-form-social-description")}
             name="social_description"
           >
             <Input.TextArea rows={3} />
           </Form.Item>
           <Form.Item
-            label={Cluar.plainDictionary("page-form-link")}
+            label={Cluar.plainTranslation("page-form-link")}
             name="link"
             rules={[
-              { required: true, message: Cluar.plainDictionary("page-configuration-validation-link") },
+              { required: true, message: Cluar.plainTranslation("page-configuration-validation-link") },
             ]}
             tooltip={
               isRootLink
-                ? Cluar.plainDictionary("page-configuration-tooltip-link-root")
+                ? Cluar.plainTranslation("page-configuration-tooltip-link-root")
                 : ""
             }
           >
@@ -398,13 +398,13 @@ const PageConfiguration = ({
           </Form.Item>
 
           <Form.Item
-            label={Cluar.plainDictionary("page-form-parent")}
+            label={Cluar.plainTranslation("page-form-parent")}
             name="parent_uid"
-            tooltip={Cluar.plainDictionary("page-configuration-tooltip-parent")}
+            tooltip={Cluar.plainTranslation("page-configuration-tooltip-parent")}
           >
             <Select
               allowClear
-              placeholder={Cluar.plainDictionary("page-configuration-placeholder-parent")}
+              placeholder={Cluar.plainTranslation("page-configuration-placeholder-parent")}
               options={pagesOptions}
               optionFilterProp="label"
               showSearch
@@ -413,30 +413,30 @@ const PageConfiguration = ({
           </Form.Item>
 
           <Form.Item
-            label={Cluar.plainDictionary("page-form-menu")}
+            label={Cluar.plainTranslation("page-form-menu")}
             name="menu"
             valuePropName="checked"
             initialValue={false}
           >
             <Switch />
           </Form.Item>
-          <Form.Item label={Cluar.plainDictionary("page-form-menu-title")} name="menu_title" dependencies={["menu"]} rules={[
+          <Form.Item label={Cluar.plainTranslation("page-form-menu-title")} name="menu_title" dependencies={["menu"]} rules={[
             {
               required: !!menuEnabled,
-              message: Cluar.plainDictionary("page-configuration-validation-menu-title"),
+              message: Cluar.plainTranslation("page-configuration-validation-menu-title"),
             },
           ]}>
             <Input />
           </Form.Item>
           <Form.Item
-            label={Cluar.plainDictionary("page-form-sorter")}
+            label={Cluar.plainTranslation("page-form-sorter")}
             name="sorter"
-            tooltip={Cluar.plainDictionary("page-configuration-tooltip-sorter")}
+            tooltip={Cluar.plainTranslation("page-configuration-tooltip-sorter")}
           >
-            <InputNumber style={{ width: "100%" }} min={0} step={10} placeholder={Cluar.plainDictionary("page-form-sorter-placeholder")} />
+            <InputNumber style={{ width: "100%" }} min={0} step={10} placeholder={Cluar.plainTranslation("page-form-sorter-placeholder")} />
           </Form.Item>
           <Form.Item
-            label={Cluar.plainDictionary("page-form-navigable")}
+            label={Cluar.plainTranslation("page-form-navigable")}
             name="navigable"
             valuePropName="checked"
             initialValue={true}
@@ -444,7 +444,7 @@ const PageConfiguration = ({
             <Switch />
           </Form.Item>
           {!isNewPage && (
-            <Form.Item label={Cluar.plainDictionary("page-form-structure")}>
+            <Form.Item label={Cluar.plainTranslation("page-form-structure")}>
               <SortableStructure
                 structure={structure}
                 setStructure={setStructure}

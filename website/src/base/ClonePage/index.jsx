@@ -49,7 +49,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
       fail: (error) => {
         setLoading((prev) => ({ ...prev, languages: false }));
         console.error(error);
-        notification.error({ message: Cluar.plainDictionary("page-clone-notification-load-languages-fail") });
+        notification.error({ message: Cluar.plainTranslation("page-clone-notification-load-languages-fail") });
       },
     });
   };
@@ -78,7 +78,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
       fail: (error) => {
         setLoading((prev) => ({ ...prev, versions: false }));
         console.error(error);
-        notification.error({ message: Cluar.plainDictionary("page-clone-notification-load-versions-fail") });
+        notification.error({ message: Cluar.plainTranslation("page-clone-notification-load-versions-fail") });
       },
     });
   };
@@ -147,7 +147,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
         method: "POST",
         data,
         success: (response) => {
-          notification.success({ message: Cluar.plainDictionary("page-clone-notification-clone-success") });
+          notification.success({ message: Cluar.plainTranslation("page-clone-notification-clone-success") });
 
           if (onClose) onClose();
           setLoading((prev) => ({ ...prev, saving: false }));
@@ -171,8 +171,8 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
           const errorCode = error?.json?.error_code;
           notification.error({
             message: errorCode
-              ? Cluar.plainDictionary(errorCode)
-              : Cluar.plainDictionary("page-clone-notification-clone-fail"),
+              ? Cluar.plainTranslation(errorCode)
+              : Cluar.plainTranslation("page-clone-notification-clone-fail"),
           });
         },
       });
@@ -187,43 +187,43 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
       onClose={onClose}
       width={520}
       destroyOnHidden
-      title={Cluar.plainDictionary("page-drawer-clone-title")}
+      title={Cluar.plainTranslation("page-drawer-clone-title")}
       extra={
         <Button type="primary" onClick={handleSave} loading={loading.saving}>
-          {Cluar.plainDictionary("page-form-clone")}
+          {Cluar.plainTranslation("page-form-clone")}
         </Button>
       }
     >
       <Form layout="vertical" form={form}>
         <Form.Item
-          label={Cluar.plainDictionary("page-form-title")}
+          label={Cluar.plainTranslation("page-form-title")}
           name="title"
-          rules={[{ required: true, message: Cluar.plainDictionary("page-clone-validation-title") }]}
+          rules={[{ required: true, message: Cluar.plainTranslation("page-clone-validation-title") }]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label={Cluar.plainDictionary("page-form-link")}
+          label={Cluar.plainTranslation("page-form-link")}
           name="link"
-          rules={[{ required: true, message: Cluar.plainDictionary("page-clone-validation-link") }]}
+          rules={[{ required: true, message: Cluar.plainTranslation("page-clone-validation-link") }]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label={Cluar.plainDictionary("page-form-language")}
+          label={Cluar.plainTranslation("page-form-language")}
           name="language_code"
-          tooltip={Cluar.plainDictionary("page-form-language-tooltip")}
+          tooltip={Cluar.plainTranslation("page-form-language-tooltip")}
           rules={[
             {
               required: true,
-              message: Cluar.plainDictionary("page-form-validate-message-required"),
+              message: Cluar.plainTranslation("page-form-validate-message-required"),
             },
           ]}
         >
           <Select
-            placeholder={Cluar.plainDictionary("page-form-language-placeholder")}
+            placeholder={Cluar.plainTranslation("page-form-language-placeholder")}
             optionFilterProp="label"
             showSearch
             labelInValue
@@ -236,12 +236,12 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
         </Form.Item>
 
         <Form.Item
-          label={Cluar.plainDictionary("page-form-version")}
+          label={Cluar.plainTranslation("page-form-version")}
           name="page_version_uid"
-          tooltip={Cluar.plainDictionary("page-form-version-tooltip")}
+          tooltip={Cluar.plainTranslation("page-form-version-tooltip")}
         >
           <Select
-            placeholder={Cluar.plainDictionary("page-form-version-placeholder")}
+            placeholder={Cluar.plainTranslation("page-form-version-placeholder")}
             optionFilterProp="label"
             showSearch
             labelInValue
@@ -264,10 +264,10 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
                   </span>
                   <Flex gap={4}>
                     {isCurrentVersion(version) && (
-                      <Tag color="orange">{Cluar.plainDictionary("page-clone-tag-current")}</Tag>
+                      <Tag color="orange">{Cluar.plainTranslation("page-clone-tag-current")}</Tag>
                     )}
                     {version.code === "published" && (
-                      <Tag color="green">{Cluar.plainDictionary("page-clone-tag-published")}</Tag>
+                      <Tag color="green">{Cluar.plainTranslation("page-clone-tag-published")}</Tag>
                     )}
                   </Flex>
                 </Flex>
@@ -277,7 +277,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
         </Form.Item>
 
         <Form.Item
-          label={Cluar.plainDictionary("page-form-published")}
+          label={Cluar.plainTranslation("page-form-published")}
           name="published"
           valuePropName="checked"
           initialValue={true}

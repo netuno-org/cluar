@@ -50,7 +50,7 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
 
   return (
     <Modal
-      title={Cluar.plainDictionary("toolbar-insert-image")}
+      title={Cluar.plainTranslation("toolbar-insert-image")}
       open={visible}
       onCancel={() => {
         onClose();
@@ -69,7 +69,7 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
       ]}
     >
       <Form form={form} layout="vertical">
-        <Form.Item name="file" label={Cluar.plainDictionary("toolbar-image-upload-label")}>
+        <Form.Item name="file" label={Cluar.plainTranslation("toolbar-image-upload-label")}>
           <Upload
             accept="image/*"
             showUploadList={false}
@@ -84,7 +84,7 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
 
         <Form.Item
           name="url"
-          label={Cluar.plainDictionary("toolbar-image-url-label")}
+          label={Cluar.plainTranslation("toolbar-image-url-label")}
           rules={[
             {
               validator: (_, value) => {
