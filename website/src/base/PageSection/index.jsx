@@ -57,7 +57,7 @@ const PageSection = ({
     } else if (section === "slider") {
       newSectionData.type = "Default";
     } else if (section === "row") {
-      newSectionData.type = "row";
+      newSectionData.type = "Default";
     }
 
     if (onNewSection) {
