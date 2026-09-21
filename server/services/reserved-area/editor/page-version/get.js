@@ -444,7 +444,8 @@ if (dbPageVersion) {
       page_row.uid,
       page_row.title,
       page_row.content,
-      page_row.page_row_col_id
+      page_row.page_row_col_id,
+      page_row.sorter
     FROM page_row
     WHERE page_row.active = TRUE
       AND page_row.page_version_id = ${pageVersionId}

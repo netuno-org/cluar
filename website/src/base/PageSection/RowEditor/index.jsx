@@ -149,8 +149,6 @@ const RowEditor = ({ sectionData, form }) => {
         />
       </Form.Item>
 
-      <ImageSectionEditor form={form} sectionData={sectionData} />
-
       {showActions && (
         <Form.Item
           label={Cluar.plainDictionary("row-editor-field-actions")}

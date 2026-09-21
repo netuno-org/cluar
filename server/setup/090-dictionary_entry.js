@@ -12,6 +12,38 @@ import {_val, _db} from "@netuno/server-types";
 _db.insertIfNotExists(
   "dictionary_entry",
   _val.map()
+    .set("uid", "01dba58a-e67e-4e72-a5f8-7c134c9f6426")
+    .set("code", "row-editor-field-type")
+    .set("description", "Formul\u00E1rio de Linha - Campo Tipo")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "de2a66e1-34a9-4af8-84ae-c6b938b19433")
+    .set("code", "row-editor-button-new-item")
+    .set("description", "Formul\u00E1rio de Linha - Bot\u00E3o Novo Item")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "5662996e-447b-4386-bb2d-7a5138857d2d")
+    .set("code", "sortable-col-item-field-title")
+    .set("description", "Formul\u00E1rio de Linha - Campo Título")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
+    .set("uid", "5031c05c-4064-4455-9063-a2fd32fddb63")
+    .set("code", "sortable-col-item-button-edit-title")
+    .set("description", "Formul\u00E1rio de Linha - Bot\u00E3o Editar Título")
+);
+
+_db.insertIfNotExists(
+  "dictionary_entry",
+  _val.map()
     .set("uid", "8aa071de-147a-4774-bcba-414ba656a267")
     .set("code", "contact-form-validate-message-required")
     .set("description", "Formul\u00E1rio de Contato - Mensagem Valida\u00E7\u00E3o - Obrigat\u00F3rio")

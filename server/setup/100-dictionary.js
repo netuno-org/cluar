@@ -12,6 +12,42 @@ import {_val, _db} from "@netuno/server-types";
 _db.insertIfNotExists(
   "dictionary",
   _val.map()
+    .set("uid", "c03074a8-130f-4abf-a952-1e35f2d0d3cc")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "01dba58a-e67e-4e72-a5f8-7c134c9f6426")
+    .set("value", "Tipo")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "4fcb80b3-747d-4d55-8bc0-923528ef2566")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "de2a66e1-34a9-4af8-84ae-c6b938b19433")
+    .set("value", "Nova Coluna")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "5522bafc-3956-4e2d-9463-e98b6528da4d")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "5662996e-447b-4386-bb2d-7a5138857d2d")
+    .set("value", "Descrição")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
+    .set("uid", "82e75341-3b68-405c-8970-527347e54514")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "5031c05c-4064-4455-9063-a2fd32fddb63")
+    .set("value", "Editar Descrição")
+);
+
+_db.insertIfNotExists(
+  "dictionary",
+  _val.map()
     .set("uid", "11990a6e-4cb6-4024-9173-8e8154778f60")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "0deeec16-fbc5-4121-9971-571f84020489")
