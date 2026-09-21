@@ -38,8 +38,10 @@ const Default = ({
                 </PageSection>
               ) : (
                 <PageSection
+                  showAddLineButton={false}
                   editMode={editMode}
                   onNewSection={(data) => onNewSection(item.uid, data)}
+
                 />
               )}
             </Col>

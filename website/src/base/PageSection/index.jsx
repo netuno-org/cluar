@@ -26,6 +26,7 @@ const PageSection = ({
   disableSortUp = false,
   disableSortDown = false,
   showAddSectionButton = true,
+  showAddLineButton = true,
 }) => {
   const [openEditor, setOpenEditor] = useState(false);
   const [newSectionVisible, setNewSectionVisible] = useState(false);
@@ -73,7 +74,9 @@ const PageSection = ({
 
   const newSection = (
     <Flex vertical gap={8}>
-      <Button onClick={() => handleNewSection("row")}>Linha</Button>
+      {showAddLineButton && (
+        <Button onClick={() => handleNewSection("row")}>Linha</Button>
+      )}
       <Button onClick={() => handleNewSection("slider")}>Slider</Button>
       <Button onClick={() => handleNewSection("banner")}>Banner</Button>
       <Button onClick={() => handleNewSection("listing")}>Lista</Button>
