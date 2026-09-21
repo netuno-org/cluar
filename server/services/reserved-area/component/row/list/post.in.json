@@ -1,0 +1,14 @@
+{
+  "summary": "List Row types",
+  "description": "List row types",
+  "tags": [
+    "Row"
+  ],
+  "type": "object",
+  "properties": {
+    "language": {
+      "type": "string",
+      "descriptio": "Language code to access info.json properties"
+    }
+  }
+}
