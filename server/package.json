@@ -28,9 +28,8 @@
     }
   },
   "devDependencies": {
-    "@netuno/server-types": "^1.4.4"
-  },
-  "dependencies": {
-    "eslint": "^10.10.0"
+    "@eslint/js": "^10.0.1",
+    "@netuno/server-types": "^1.4.4",
+    "eslint": "^10.11.0"
   }
 }
