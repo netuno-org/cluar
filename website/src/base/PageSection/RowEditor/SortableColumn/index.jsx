@@ -15,6 +15,7 @@ import {
   Switch,
   Radio,
   InputNumber,
+  Tooltip,
 } from "antd";
 
 import {
@@ -40,6 +41,54 @@ import ImageSectionEditor from "../../ImageSectionEditor";
 
 import "./index.less";
 
+const ANT_GRID_COLUMNS = 24;
+const BREAKPOINTS = [
+  "span",
+  "xs",
+  "sm",
+  "md",
+  "lg",
+  "xl",
+  "xxl",
+  "xxxl",
+];
+const BREAKPOINT_LABELS = {
+  span: "Todos os tamanhos",
+  xs: "Extra pequeno",
+  sm: "Pequeno",
+  md: "Médio",
+  lg: "Grande",
+  xl: "Extra grande",
+  xxl: "Muito grande",
+  xxxl: "Ultra grande",
+};
+const BREAKPOINT_MIN_WIDTHS = {
+  span: "Largura padrão",
+  xs: "até 575px",
+  sm: "a partir de 576px",
+  md: "a partir de 768px",
+  lg: "a partir de 992px",
+  xl: "a partir de 1200px",
+  xxl: "a partir de 1600px",
+  xxxl: "a partir de 1920px",
+};
+
+const gridToPercentage = (value) => {
+  if (value === null || value === undefined || value < 0) {
+    return null;
+  }
+
+  return Number(((value / ANT_GRID_COLUMNS) * 100).toFixed(2));
+};
+
+const percentageToGrid = (value) => {
+  if (value === null || value === undefined || value === "") {
+    return null;
+  }
+
+  return Math.round((Number(value) / 100) * ANT_GRID_COLUMNS);
+};
+
 const SortableItem = ({
   item,
   itemIndex,
@@ -63,7 +112,6 @@ const SortableItem = ({
   const [isContentModalOpen, setIsContentModalOpen] = useState(false);
   const [contentValue, setContentValue] = useState(item?.content || "");
 
-  // Modo HTML Puro
   const [contentEditMode, setContentEditMode] = useState(
     item?.edit_mode || "visual",
   );
@@ -76,6 +124,11 @@ const SortableItem = ({
   );
   const [contentInvert, setContentInvert] = useState(
     item?.content_invert_background || false,
+  );
+  const [breakpointValues, setBreakpointValues] = useState(() =>
+    Object.fromEntries(
+      BREAKPOINTS.map((size) => [size, gridToPercentage(item?.[size])]),
+    ),
   );
 
   useEffect(() => {
@@ -203,33 +256,35 @@ const SortableItem = ({
                     </Form.Item>
 
                     <Row gutter={24}>
-                      {[
-                        "span",
-                        "xs",
-                        "sm",
-                        "md",
-                        "lg",
-                        "xl",
-                        "xxl",
-                        "xxxl",
-                      ].map((size) => (
+                      {BREAKPOINTS.map((size) => (
                         <Col span={8} key={size}>
                           <Form.Item
-                            label={size}
-                            name={["itemsByUid", itemIndex, size]}
-                            getValueProps={(value) => ({
-                              value: value !== null && value < 0 ? null : value,
-                            })}
+                            label={
+                              <Tooltip title={`${BREAKPOINT_LABELS[size]}: ${BREAKPOINT_MIN_WIDTHS[size]}`}>
+                                {size === "span"
+                                  ? BREAKPOINT_LABELS[size]
+                                  : `${BREAKPOINT_LABELS[size]} (${size})`}
+                              </Tooltip>
+                            }
                           >
                             <InputNumber
-                              onChange={(value) =>
+                              value={breakpointValues[size]}
+                              min={0}
+                              max={100}
+                              precision={2}
+                              step={0.01}
+                              addonAfter="%"
+                              onChange={(value) => {
+                                setBreakpointValues((previous) => ({
+                                  ...previous,
+                                  [size]: value,
+                                }));
                                 onChangeItem(
                                   item.uid,
                                   size,
-                                  value !== null && value < 0 ? null : value,
-                                )
-                              }
-
+                                  percentageToGrid(value),
+                                );
+                              }}
                               mode="spinner"
                             />
                           </Form.Item>
