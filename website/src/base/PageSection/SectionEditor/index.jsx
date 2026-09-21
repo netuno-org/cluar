@@ -2,8 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import {
-  Drawer, Form, Input, Button, Space, message, InputNumber,
-  Modal, Card, Switch, Radio
+  Drawer,
+  Form,
+  Input,
+  Button,
+  Space,
+  message,
+  InputNumber,
+  Modal,
+  Card,
+  Switch,
+  Radio,
 } from "antd";
 import { RobotOutlined, EditOutlined } from "@ant-design/icons";
 import BannerEditor from "../BannerEditor";
@@ -13,6 +22,8 @@ import ContentEditor from "../ContentEditor";
 import LexicalEditor from "../../LexicalEditor";
 import MonacoEditor from "../../MonacoEditor";
 import SliderEditor from "../SliderEditor";
+import RowEditor from "../RowEditor";
+
 import _service from "@netuno/service-client";
 import Cluar from "../../../common/Cluar";
 
@@ -32,17 +43,21 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const [isContentModalOpen, setIsContentModalOpen] = useState(false);
   const [contentValue, setContentValue] = useState(sectionData?.content || "");
 
-  // Modo HTML Puro externo 
+  // Modo HTML Puro externo
   const [contentEditMode, setContentEditMode] = useState(
-    sectionData?.edit_mode || "visual"
+    sectionData?.edit_mode || "visual",
   );
   // html_content só vem preenchido se o usuário já usou o modo HTML puro antes
   const [htmlContentValue, setHtmlContentValue] = useState(
-    sectionData?.html_content || ""
+    sectionData?.html_content || "",
   );
 
-  const [titleInvert, setTitleInvert] = useState(sectionData?.title_invert_background || false);
-  const [contentInvert, setContentInvert] = useState(sectionData?.content_invert_background || false);
+  const [titleInvert, setTitleInvert] = useState(
+    sectionData?.title_invert_background || false,
+  );
+  const [contentInvert, setContentInvert] = useState(
+    sectionData?.content_invert_background || false,
+  );
 
   useEffect(() => {
     setTitleValue(sectionData?.title || "");
@@ -51,7 +66,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
     setHtmlContentValue(sectionData?.html_content || "");
   }, [sectionData]);
 
-  // ao alternar para HTML Puro, inicializa com o conteúdo visual se vazio 
+  // ao alternar para HTML Puro, inicializa com o conteúdo visual se vazio
   const handleContentEditModeChange = (newMode) => {
     setContentEditMode(newMode);
     if (newMode === "html" && !htmlContentValue && contentValue) {
@@ -70,6 +85,8 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       return <SliderEditor sectionData={sectionData} form={form} />;
     } else if (sectionData?.section === "content") {
       return <ContentEditor sectionData={sectionData} form={form} />;
+    } else if (sectionData?.section === "row") {
+      return <RowEditor sectionData={sectionData} form={form} />;
     }
   };
 
@@ -109,7 +126,8 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
 
     setGenerating(true);
 
-    const activeContent = contentEditMode === "html" ? htmlContentValue : contentValue;
+    const activeContent =
+      contentEditMode === "html" ? htmlContentValue : contentValue;
 
     _service({
       url: "/test",
@@ -161,7 +179,8 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const isContentSection = sectionData?.section === "content";
 
   // Preview usa o conteúdo do modo ativo
-  const activeContentPreview = contentEditMode === "html" ? htmlContentValue : contentValue;
+  const activeContentPreview =
+    contentEditMode === "html" ? htmlContentValue : contentValue;
 
   return (
     <>
@@ -201,9 +220,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                 </div>,
               ]}
             >
-              <div>
-                {Cluar.plainHTML(titleValue).slice(0, 97) + "..."}
-              </div>
+              <div>{Cluar.plainHTML(titleValue).slice(0, 97) + "..."}</div>
             </Card>
           </Form.Item>
 

@@ -36,7 +36,7 @@ if (!dbPage) {
   _header.status(400);
   _out.json({
     result: false,
-    error: "page-not-found";
+    error: "page-not-found"
   });
 
   _exec.stop();

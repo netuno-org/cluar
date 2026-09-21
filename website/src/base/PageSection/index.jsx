@@ -27,6 +27,8 @@ const PageSection = ({
   onSortDown,
   disableSortUp = false,
   disableSortDown = false,
+  showAddSectionButton = true,
+  showAddLineButton = true,
 }) => {
   const [openEditor, setOpenEditor] = useState(false);
   const [newSectionVisible, setNewSectionVisible] = useState(false);
@@ -56,6 +58,8 @@ const PageSection = ({
       newSectionData.type = "ContactForm";
     } else if (section === "slider") {
       newSectionData.type = "Default";
+    } else if (section === "row") {
+      newSectionData.type = "Default";
     }
 
     if (onNewSection) {
@@ -72,6 +76,9 @@ const PageSection = ({
 
   const newSection = (
     <Flex vertical gap={8}>
+      {showAddLineButton && (
+        <Button onClick={() => handleNewSection("row")}>Linha</Button>
+      )}
       <Button onClick={() => handleNewSection("slider")}>Slider</Button>
       <Button onClick={() => handleNewSection("banner")}>Banner</Button>
       <Button onClick={() => handleNewSection("listing")}>Lista</Button>
@@ -105,8 +112,9 @@ const PageSection = ({
             onConfirmChanges={onConfirmChanges}
           />
           <div
-            className={`page-section__new ${newSectionVisible && "page-section__new--visible"
-              }`}
+            className={`page-section__new ${
+              newSectionVisible && "page-section__new--visible"
+            }`}
           >
             {sortArrowsVisible && (
               <Button
@@ -116,16 +124,18 @@ const PageSection = ({
                 <ArrowDownOutlined />
               </Button>
             )}
-            <Popover
-              title={Cluar.plainTranslation("page-section-new-section")}
-              trigger="click"
-              content={newSection}
-              onVisibleChange={setNewSectionVisible}
-            >
-              <Button>
-                <PlusCircleOutlined />
-              </Button>
-            </Popover>
+            {showAddSectionButton && (
+              <Popover
+                title={Cluar.plainTranslation("page-section-new-section")}
+                trigger="click"
+                content={newSection}
+                onVisibleChange={setNewSectionVisible}
+              >
+                <Button>
+                  <PlusCircleOutlined />
+                </Button>
+              </Popover>
+            )}
             {sortArrowsVisible && (
               <Button
                 onClick={() => onSortUp(sectionData)}

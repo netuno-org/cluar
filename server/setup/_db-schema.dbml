@@ -105,6 +105,7 @@ Table page_banner {
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_title varchar(250) [note: 'Imagem Título']
+  page_row_col_id int [ref: > page_row_col.id, note: 'Coluna']
   page_version_id int [ref: > page_version.id, note: 'Página']
   position_x varchar(250) [note: 'Posição X']
   position_y varchar(250) [note: 'Posição Y']
@@ -133,6 +134,7 @@ Table page_content {
   image_alt text [note: 'Imagem Alt']
   image_max_width int [note: 'Largura Máxima da Imagem']
   image_title varchar(250) [note: 'Imagem Título']
+  page_row_col_id int [ref: > page_row_col.id, note: 'Coluna']
   page_version_id int [ref: > page_version.id, note: 'Página']
   sorter int [note: 'Ordem']
   title text [note: 'Título']
@@ -156,6 +158,7 @@ Table page_functionality {
   edit_mode varchar(250) [note: 'Modo de Edição']
   html_content text [note: 'Conteúdo HTML']
   image text [note: 'Imagem']
+  page_row_col_id int [ref: > page_row_col.id, note: 'Coluna']
   page_version_id int [ref: > page_version.id, note: 'Página']
   sorter int [note: 'Ordem']
   title text [note: 'Título']
@@ -181,6 +184,7 @@ Table page_listing {
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_title varchar(250) [note: 'Imagem Título']
+  page_row_col_id int [ref: > page_row_col.id, note: 'Coluna']
   page_version_id int [ref: > page_version.id, note: 'Página']
   sorter int [note: 'Ordem']
   title text [note: 'Título']
@@ -214,6 +218,32 @@ Table page_listing_item {
   Note: 'Item'
 }
 
+Table page_row {
+  id int [pk, increment]
+  content text [note: 'Conteúdo']
+  page_row_col_id int [ref: > page_row_col.id, note: 'Coluna']
+  page_version_id int [ref: > page_version.id, note: 'Página']
+  sorter int [note: 'Ordem']
+  title text [note: 'Título']
+  type varchar(250) [note: 'Tipo']
+  Note: 'Linha'
+}
+
+Table page_row_col {
+  id int [pk, increment]
+  lg int [note: 'LG']
+  md int [note: 'MD']
+  page_row_id int [ref: > page_row.id, note: 'Linha']
+  sm int [note: 'SM']
+  span int [note: 'Span']
+  title text [note: 'Título']
+  xl int [note: 'XL']
+  xs int [note: 'XS']
+  xxl int [note: 'XXL']
+  xxxl int [note: 'XXXL']
+  Note: 'Coluna'
+}
+
 Table page_slider {
   id int [pk, increment]
   content text [note: 'Conteúdo']
@@ -223,6 +253,7 @@ Table page_slider {
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_title varchar(250) [note: 'Imagem Título']
+  page_row_col_id int [ref: > page_row_col.id, note: 'Coluna']
   page_version_id int [ref: > page_version.id, note: 'Página']
   sorter int [note: 'Ordem']
   title text [note: 'Título']

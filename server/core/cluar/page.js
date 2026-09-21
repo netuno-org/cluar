@@ -28,6 +28,20 @@ export default {
     const settings = { images: true };
 
     const structure = _val.list();
+    const sectionsByColumn = new Map();
+
+    const addSection = (sectionData) => {
+      const pageRowColId = sectionData.getInt("page_row_col_id", 0);
+
+      if (pageRowColId) {
+        if (!sectionsByColumn.has(pageRowColId)) {
+          sectionsByColumn.set(pageRowColId, []);
+        }
+        sectionsByColumn.get(pageRowColId).push(sectionData);
+      } else {
+        structure.add(sectionData);
+      }
+    };
 
     /*
      *
@@ -47,6 +61,7 @@ export default {
             content.image_alt,
             content.image_title,
             content.image_max_width,
+            content.page_row_col_id,
             content.sorter,
             content.type,
             content.title_invert_background,
@@ -58,7 +73,7 @@ export default {
     `);
 
     for (const dbContent of dbContents) {
-      structure.add(
+      addSection(
         _val
           .map()
           .set("uid", dbContent.getString("uid"))
@@ -72,10 +87,17 @@ export default {
           .set("image_alt", dbContent.getString("image_alt"))
           .set("image_title", dbContent.getString("image_title"))
           .set("image_max_width", dbContent.getString("image_max_width"))
+          .set("page_row_col_id", dbContent.getInt("page_row_col_id", 0))
           .set("sorter", dbContent.getInt("sorter"))
           .set("actions", action.getByItem("content", dbContent.getInt("id")))
-          .set("title_invert_background", dbContent.getBoolean("title_invert_background"))
-          .set("content_invert_background", dbContent.getBoolean("content_invert_background"))
+          .set(
+            "title_invert_background",
+            dbContent.getBoolean("title_invert_background"),
+          )
+          .set(
+            "content_invert_background",
+            dbContent.getBoolean("content_invert_background"),
+          ),
       );
     }
 
@@ -98,6 +120,7 @@ export default {
             banner.image_title,
             banner.position_x,
             banner.position_y,
+            banner.page_row_col_id,
             banner.sorter,
             banner.title_invert_background,
             banner.content_invert_background
@@ -107,7 +130,7 @@ export default {
             AND banner.page_version_id = ${dbPage.getInt("page_version_id")}
     `);
     for (const dbBanner of dbBanners) {
-      structure.add(
+      addSection(
         _val
           .map()
           .set("uid", dbBanner.getString("uid"))
@@ -126,11 +149,18 @@ export default {
             _val
               .map()
               .set("x", dbBanner.getString("position_x"))
-              .set("y", dbBanner.getString("position_y"))
+              .set("y", dbBanner.getString("position_y")),
           )
+          .set("page_row_col_id", dbBanner.getInt("page_row_col_id", 0))
           .set("actions", action.getByItem("banner", dbBanner.getInt("id")))
-          .set("title_invert_background", dbBanner.getBoolean("title_invert_background"))
-          .set("content_invert_background", dbBanner.getBoolean("content_invert_background"))
+          .set(
+            "title_invert_background",
+            dbBanner.getBoolean("title_invert_background"),
+          )
+          .set(
+            "content_invert_background",
+            dbBanner.getBoolean("content_invert_background"),
+          ),
       );
       if (settings.images === true) {
         image.publish("banner", dbBanner.getString("image"));
@@ -154,6 +184,7 @@ export default {
             listing.html_content,
             listing.edit_mode,
             listing.image,
+            listing.page_row_col_id,
             listing.sorter,
             listing.title_invert_background,
             listing.content_invert_background
@@ -185,11 +216,17 @@ export default {
             .set("image_title", dbItem.getString("image_title"))
             .set("sorter", dbItem.getInt("sorter"))
             .set("link", dbItem.getString("link"))
-            .set("title_invert_background", dbItem.getBoolean("title_invert_background"))
-            .set("content_invert_background", dbItem.getBoolean("content_invert_background"))
+            .set(
+              "title_invert_background",
+              dbItem.getBoolean("title_invert_background"),
+            )
+            .set(
+              "content_invert_background",
+              dbItem.getBoolean("content_invert_background"),
+            ),
         );
       }
-      structure.add(
+      addSection(
         _val
           .map()
           .set("uid", dbListing.getString("uid"))
@@ -203,10 +240,17 @@ export default {
           .set("image_alt", dbListing.getString("image_alt"))
           .set("image_title", dbListing.getString("image_title"))
           .set("items", items)
+          .set("page_row_col_id", dbListing.getInt("page_row_col_id", 0))
           .set("sorter", dbListing.getInt("sorter"))
           .set("actions", action.getByItem("listing", dbListing.getInt("id")))
-          .set("title_invert_background", dbListing.getBoolean("title_invert_background"))
-          .set("content_invert_background", dbListing.getBoolean("content_invert_background"))
+          .set(
+            "title_invert_background",
+            dbListing.getBoolean("title_invert_background"),
+          )
+          .set(
+            "content_invert_background",
+            dbListing.getBoolean("content_invert_background"),
+          ),
       );
     }
 
@@ -227,6 +271,7 @@ export default {
             slider.html_content,
             slider.edit_mode,
             slider.image,
+            slider.page_row_col_id,
             slider.sorter,
             slider.title_invert_background,
             slider.content_invert_background
@@ -246,13 +291,14 @@ export default {
       `);
 
       for (const dbItem of dbItems) {
-        const itemActions = action.getByItem("slider_item", dbItem.getInt("id"));
+        const itemActions = action.getByItem(
+          "slider_item",
+          dbItem.getInt("id"),
+        );
         const actionsList = _val.list();
 
         for (const itemAction of itemActions) {
-          actionsList.add(
-            itemAction.getString("uid")
-          );
+          actionsList.add(itemAction.getString("uid"));
         }
 
         items.add(
@@ -268,12 +314,18 @@ export default {
             .set("image_alt", dbItem.getString("image_alt"))
             .set("image_title", dbItem.getString("image_title"))
             .set("sorter", dbItem.getInt("sorter"))
-            .set("title_invert_background", dbItem.getBoolean("title_invert_background"))
-            .set("content_invert_background", dbItem.getBoolean("content_invert_background"))
-            .set("action_uids", actionsList)
+            .set(
+              "title_invert_background",
+              dbItem.getBoolean("title_invert_background"),
+            )
+            .set(
+              "content_invert_background",
+              dbItem.getBoolean("content_invert_background"),
+            )
+            .set("action_uids", actionsList),
         );
       }
-      structure.add(
+      addSection(
         _val
           .map()
           .set("uid", dbSlider.getString("uid"))
@@ -287,9 +339,16 @@ export default {
           .set("image_alt", dbSlider.getString("image_alt"))
           .set("image_title", dbSlider.getString("image_title"))
           .set("items", items)
+          .set("page_row_col_id", dbSlider.getInt("page_row_col_id", 0))
           .set("sorter", dbSlider.getInt("sorter"))
-          .set("title_invert_background", dbSlider.getBoolean("title_invert_background"))
-          .set("content_invert_background", dbSlider.getBoolean("content_invert_background"))
+          .set(
+            "title_invert_background",
+            dbSlider.getBoolean("title_invert_background"),
+          )
+          .set(
+            "content_invert_background",
+            dbSlider.getBoolean("content_invert_background"),
+          ),
       );
     }
 
@@ -308,6 +367,7 @@ export default {
             functionality.html_content,
             functionality.edit_mode,
             functionality.image,
+            functionality.page_row_col_id,
             functionality.sorter,
             functionality.title_invert_background,
             functionality.content_invert_background
@@ -317,7 +377,7 @@ export default {
             AND functionality.page_version_id = ${dbPage.getInt("page_version_id")}
     `);
     for (const dbFunctionality of dbFunctionalities) {
-      structure.add(
+      addSection(
         _val
           .map()
           .set("uid", dbFunctionality.getString("uid"))
@@ -328,11 +388,102 @@ export default {
           .set("html_content", dbFunctionality.getString("html_content"))
           .set("edit_mode", dbFunctionality.getString("edit_mode"))
           .set("image", dbFunctionality.getString("image"))
+          .set("page_row_col_id", dbFunctionality.getInt("page_row_col_id", 0))
           .set("sorter", dbFunctionality.getInt("sorter"))
-          .set("actions", action.getByItem("functionality", dbFunctionality.getInt("id")))
-          .set("title_invert_background", dbFunctionality.getBoolean("title_invert_background"))
-          .set("content_invert_background", dbFunctionality.getBoolean("content_invert_background"))
+          .set(
+            "actions",
+            action.getByItem("functionality", dbFunctionality.getInt("id")),
+          )
+          .set(
+            "title_invert_background",
+            dbFunctionality.getBoolean("title_invert_background"),
+          )
+          .set(
+            "content_invert_background",
+            dbFunctionality.getBoolean("content_invert_background"),
+          ),
       );
+    }
+
+    const pageVersionId = dbPage.getInt("page_version_id");
+    const dbRows = _db.query(`
+      SELECT
+        page_row.id,
+        page_row.uid,
+        page_row.title,
+        page_row.content,
+        page_row.type,
+        page_row.sorter,
+        page_row.page_row_col_id
+      FROM page_row
+      WHERE page_row.active = TRUE
+        AND page_row.page_version_id = ${pageVersionId}
+      ORDER BY page_row.id
+    `);
+
+    const rowsById = new Map();
+
+    for (const dbRow of dbRows) {
+      const row = _val
+        .map()
+        .set("uid", dbRow.getString("uid"))
+        .set("section", "row")
+        .set("type", dbRow.getString("type"))
+        .set("title", dbRow.getString("title"))
+        .set("content", dbRow.getString("content"))
+        .set("items", _val.list())
+        .set("sorter", dbRow.getInt("sorter"))
+        .set("page_row_col_id", dbRow.getInt("page_row_col_id", 0));
+
+      rowsById.set(dbRow.getInt("id"), row);
+      structure.add(row);
+    }
+
+    for (const dbRow of dbRows) {
+      const items = _val.list();
+      const dbColumns = _db.query(`
+        SELECT
+          id,
+          uid,
+          title,
+          span,
+          xs,
+          sm,
+          md,
+          lg,
+          xl,
+          xxl,
+          xxxl
+        FROM page_row_col
+        WHERE page_row_id = ${dbRow.getInt("id")}
+          AND active = TRUE
+        ORDER BY id
+      `);
+
+      for (const dbColumn of dbColumns) {
+        const column = _val
+          .map()
+          .set("uid", dbColumn.getString("uid"))
+          .set("section", "col")
+          .set("title", dbColumn.getString("title"))
+          .set("span", dbColumn.getInt("span", -1))
+          .set("xs", dbColumn.getInt("xs", -1))
+          .set("sm", dbColumn.getInt("sm", -1))
+          .set("md", dbColumn.getInt("md", -1))
+          .set("lg", dbColumn.getInt("lg", -1))
+          .set("xl", dbColumn.getInt("xl", -1))
+          .set("xxl", dbColumn.getInt("xxl", -1))
+          .set("xxxl", dbColumn.getInt("xxxl", -1));
+
+        const columnSections = sectionsByColumn.get(dbColumn.getInt("id"));
+        if (columnSections?.length) {
+          column.set("section", columnSections[0]);
+        }
+
+        items.add(column);
+      }
+
+      rowsById.get(dbRow.getInt("id")).set("items", items);
     }
 
     structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"));
@@ -343,7 +494,7 @@ export default {
     }
 
     const file = _app.file(
-      `${base.basePath()}/cluar/structures/${dbPage.getString("uid")}.json`
+      `${base.basePath()}/cluar/structures/${dbPage.getString("uid")}.json`,
     );
     file
       .output()
@@ -382,7 +533,7 @@ export default {
         .queryFirst(
           `SELECT * FROM language WHERE id = ? OR code = ?`,
           dbPage.getInt("language_id"),
-          dbPage.getString("language")
+          dbPage.getString("language"),
         )
         .getString("locale");
       const fullPath = `${basePath}/${locale}` + dbPage.getString("link");
@@ -409,12 +560,13 @@ export default {
           const pageKeywords = dbPage
             .getString("keywords")
             .replaceAll(removeNewLineRegex, "");
-          const metaKeywordsElement = headElement.selectFirst("[name=keywords]");
+          const metaKeywordsElement =
+            headElement.selectFirst("[name=keywords]");
           if (metaKeywordsElement) {
             metaKeywordsElement.attr("content", pageKeywords);
           } else {
             headElement.prependElement(
-              `<meta name="keywords" content="${pageKeywords}" />`
+              `<meta name="keywords" content="${pageKeywords}" />`,
             );
           }
 
@@ -427,33 +579,33 @@ export default {
             metaDescriptionElement.attr("content", pageDescription);
           } else {
             headElement.prependElement(
-              `<meta name="description" content="${pageDescription}" />`
+              `<meta name="description" content="${pageDescription}" />`,
             );
           }
 
           headElement.prepend(
-            `<meta property="og:title" content="${pageTitle}" />`
+            `<meta property="og:title" content="${pageTitle}" />`,
           );
           headElement.prepend(
             `<meta property="og:description" content="${dbPage.getString(
               "social_description",
-              ""
-            )}" />`
+              "",
+            )}" />`,
           );
           headElement.prepend(
             `<meta property="og:image" content="/cluar/images/page/${dbPage.getString(
               "social_image",
-              ""
-            )}"/>`
+              "",
+            )}"/>`,
           );
           headElement.prepend(
             `<meta property="og:site_name" content="${websiteConfig.getString(
               "name",
-              ""
-            )}" />`
+              "",
+            )}" />`,
           );
           headElement.prepend(
-            `<meta property="og:url" content="${websiteConfig.getString("url", "") + dbPage.getString("link")}" />`
+            `<meta property="og:url" content="${websiteConfig.getString("url", "") + dbPage.getString("link")}" />`,
           );
           bodyElement.prepend(htmlContent);
 
@@ -467,5 +619,5 @@ export default {
         }
       }
     }
-  }
+  },
 };

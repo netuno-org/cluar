@@ -1,4 +1,4 @@
-import cluar from "#core/cluar/main.js"
+import cluar from "#core/cluar/main.js";
 import { _req, _db, _val, _out } from "@netuno/server-types";
 
 const version = _req.getString("version");
@@ -7,6 +7,20 @@ const dbPageVersion = _db.get("page_version", version);
 
 if (dbPageVersion) {
   const structure = _val.list();
+  const sectionsByColumn = new Map();
+
+  const addSection = (sectionData) => {
+    const pageRowColId = sectionData.getInt("page_row_col_id", 0);
+
+    if (pageRowColId) {
+      if (!sectionsByColumn.has(pageRowColId)) {
+        sectionsByColumn.set(pageRowColId, []);
+      }
+      sectionsByColumn.get(pageRowColId).push(sectionData);
+    } else {
+      structure.add(sectionData);
+    }
+  };
 
   /*
    *
@@ -26,6 +40,7 @@ if (dbPageVersion) {
       content.image_alt,
       content.image_title,
       content.image_max_width,
+      content.page_row_col_id,
       content.title_invert_background,
       content.content_invert_background,
       content.sorter
@@ -36,7 +51,7 @@ if (dbPageVersion) {
   `);
 
   for (const dbContent of dbContents) {
-    structure.add(
+    addSection(
       _val
         .map()
         .set("uid", dbContent.getString("uid"))
@@ -50,10 +65,20 @@ if (dbPageVersion) {
         .set("image_alt", dbContent.getString("image_alt"))
         .set("image_title", dbContent.getString("image_title"))
         .set("image_max_width", dbContent.getString("image_max_width"))
+        .set("page_row_col_id", dbContent.getInt("page_row_col_id", 0))
         .set("sorter", dbContent.getInt("sorter"))
-        .set("actions", cluar.action.getByItem("content", dbContent.getInt("id")))
-        .set("title_invert_background", dbContent.getBoolean("title_invert_background"))
-        .set("content_invert_background", dbContent.getBoolean("content_invert_background"))
+        .set(
+          "actions",
+          cluar.action.getByItem("content", dbContent.getInt("id")),
+        )
+        .set(
+          "title_invert_background",
+          dbContent.getBoolean("title_invert_background"),
+        )
+        .set(
+          "content_invert_background",
+          dbContent.getBoolean("content_invert_background"),
+        ),
     );
     // if (settings.images === true) {
     //   cluar.publishImage("content", dbContent.getString("image"));
@@ -77,6 +102,7 @@ if (dbPageVersion) {
       banner.image,
       banner.image_alt,
       banner.image_title,
+      banner.page_row_col_id,
       banner.position_x,
       banner.position_y,
       banner.title_invert_background,
@@ -89,7 +115,7 @@ if (dbPageVersion) {
   `);
 
   for (const dbBanner of dbBanners) {
-    structure.add(
+    addSection(
       _val
         .map()
         .set("uid", dbBanner.getString("uid"))
@@ -102,17 +128,27 @@ if (dbPageVersion) {
         .set("image", dbBanner.getString("image"))
         .set("image_alt", dbBanner.getString("image_alt"))
         .set("image_title", dbBanner.getString("image_title"))
-        .set("title_invert_background", dbBanner.getBoolean("title_invert_background"))
-        .set("content_invert_background", dbBanner.getBoolean("content_invert_background"))
+        .set("page_row_col_id", dbBanner.getInt("page_row_col_id", 0))
+        .set(
+          "title_invert_background",
+          dbBanner.getBoolean("title_invert_background"),
+        )
+        .set(
+          "content_invert_background",
+          dbBanner.getBoolean("content_invert_background"),
+        )
         .set("sorter", dbBanner.getInt("sorter"))
         .set(
           "position",
           _val
             .map()
             .set("x", dbBanner.getString("position_x"))
-            .set("y", dbBanner.getString("position_y"))
+            .set("y", dbBanner.getString("position_y")),
         )
-        .set("actions", cluar.action.getByItem("banner", dbBanner.getInt("id")))
+        .set(
+          "actions",
+          cluar.action.getByItem("banner", dbBanner.getInt("id")),
+        ),
     );
 
     // if (settings.images === true) {
@@ -137,6 +173,7 @@ if (dbPageVersion) {
       listing.html_content,
       listing.edit_mode, 
       listing.image,
+      listing.page_row_col_id,
       listing.title_invert_background,
       listing.content_invert_background,
       listing.sorter
@@ -168,10 +205,16 @@ if (dbPageVersion) {
           .set("image", dbItem.getString("image"))
           .set("image_alt", dbItem.getString("image_alt"))
           .set("image_title", dbItem.getString("image_title"))
-          .set("title_invert_background", dbItem.getBoolean("title_invert_background"))
-          .set("content_invert_background", dbItem.getBoolean("content_invert_background"))
+          .set(
+            "title_invert_background",
+            dbItem.getBoolean("title_invert_background"),
+          )
+          .set(
+            "content_invert_background",
+            dbItem.getBoolean("content_invert_background"),
+          )
           .set("sorter", dbItem.getInt("sorter"))
-          .set("link", dbItem.getString("link"))
+          .set("link", dbItem.getString("link")),
       );
 
       // if (settings.images === true) {
@@ -179,7 +222,7 @@ if (dbPageVersion) {
       // }
     }
 
-    structure.add(
+    addSection(
       _val
         .map()
         .set("uid", dbListing.getString("uid"))
@@ -190,13 +233,23 @@ if (dbPageVersion) {
         .set("html_content", dbListing.getString("html_content"))
         .set("edit_mode", dbListing.getString("edit_mode"))
         .set("image", dbListing.getString("image"))
+        .set("page_row_col_id", dbListing.getInt("page_row_col_id", 0))
         .set("image_alt", dbListing.getString("image_alt"))
         .set("image_title", dbListing.getString("image_title"))
         .set("items", items)
         .set("sorter", dbListing.getInt("sorter"))
-        .set("title_invert_background", dbListing.getBoolean("title_invert_background"))
-        .set("content_invert_background", dbListing.getBoolean("content_invert_background"))
-        .set("actions", cluar.action.getByItem("listing", dbListing.getInt("id")))
+        .set(
+          "title_invert_background",
+          dbListing.getBoolean("title_invert_background"),
+        )
+        .set(
+          "content_invert_background",
+          dbListing.getBoolean("content_invert_background"),
+        )
+        .set(
+          "actions",
+          cluar.action.getByItem("listing", dbListing.getInt("id")),
+        ),
     );
 
     // if (settings.images === true) {
@@ -221,6 +274,7 @@ if (dbPageVersion) {
                 slider.html_content,
                 slider.edit_mode,
                 slider.image,
+                slider.page_row_col_id,
                 slider.title_invert_background,
                 slider.content_invert_background,
                 slider.sorter
@@ -237,18 +291,19 @@ if (dbPageVersion) {
                     uid, title, content, html_content, edit_mode, image, image_alt, image_title, sorter, id, title_invert_background, content_invert_background
                 FROM page_slider_item
                 WHERE page_slider_id = ${dbSlider.getInt(
-      "id"
-    )} AND active = TRUE
+                  "id",
+                )} AND active = TRUE
                 `);
 
     for (const dbItem of dbItems) {
-      const itemActions = cluar.action.getByItem("slider_item", dbItem.getInt("id"));
+      const itemActions = cluar.action.getByItem(
+        "slider_item",
+        dbItem.getInt("id"),
+      );
       const actionsList = _val.list();
 
       for (const itemAction of itemActions) {
-        actionsList.add(
-          itemAction.getString("uid")
-        )
+        actionsList.add(itemAction.getString("uid"));
       }
 
       items.add(
@@ -263,13 +318,19 @@ if (dbPageVersion) {
           .set("image", dbItem.getString("image"))
           .set("image_alt", dbItem.getString("image_alt"))
           .set("image_title", dbItem.getString("image_title"))
-          .set("title_invert_background", dbItem.getBoolean("title_invert_background"))
-          .set("content_invert_background", dbItem.getBoolean("content_invert_background"))
+          .set(
+            "title_invert_background",
+            dbItem.getBoolean("title_invert_background"),
+          )
+          .set(
+            "content_invert_background",
+            dbItem.getBoolean("content_invert_background"),
+          )
           .set("sorter", dbItem.getInt("sorter"))
-          .set("action_uids", actionsList)
+          .set("action_uids", actionsList),
       );
     }
-    structure.add(
+    addSection(
       _val
         .map()
         .set("uid", dbSlider.getString("uid"))
@@ -280,12 +341,19 @@ if (dbPageVersion) {
         .set("html_content", dbSlider.getString("html_content"))
         .set("edit_mode", dbSlider.getString("edit_mode"))
         .set("image", dbSlider.getString("image"))
+        .set("page_row_col_id", dbSlider.getInt("page_row_col_id", 0))
         .set("image_alt", dbSlider.getString("image_alt"))
         .set("image_title", dbSlider.getString("image_title"))
         .set("items", items)
-        .set("title_invert_background", dbSlider.getBoolean("title_invert_background"))
-        .set("content_invert_background", dbSlider.getBoolean("content_invert_background"))
-        .set("sorter", dbSlider.getInt("sorter"))
+        .set(
+          "title_invert_background",
+          dbSlider.getBoolean("title_invert_background"),
+        )
+        .set(
+          "content_invert_background",
+          dbSlider.getBoolean("content_invert_background"),
+        )
+        .set("sorter", dbSlider.getInt("sorter")),
     );
   }
 
@@ -304,6 +372,7 @@ if (dbPageVersion) {
       functionality.html_content,
       functionality.edit_mode,
       functionality.image,
+      functionality.page_row_col_id,
       functionality.title_invert_background,
       functionality.content_invert_background,
       functionality.sorter
@@ -314,7 +383,7 @@ if (dbPageVersion) {
   `);
 
   for (const dbFunctionality of dbFunctionalities) {
-    structure.add(
+    addSection(
       _val
         .map()
         .set("uid", dbFunctionality.getString("uid"))
@@ -325,15 +394,111 @@ if (dbPageVersion) {
         .set("html_content", dbFunctionality.getString("html_content"))
         .set("edit_mode", dbFunctionality.getString("edit_mode"))
         .set("image", dbFunctionality.getString("image"))
+        .set("page_row_col_id", dbFunctionality.getInt("page_row_col_id", 0))
         .set("sorter", dbFunctionality.getInt("sorter"))
-        .set("title_invert_background", dbFunctionality.getBoolean("title_invert_background"))
-        .set("content_invert_background", dbFunctionality.getBoolean("content_invert_background"))
-        .set("actions", cluar.action.getByItem("functionality", dbFunctionality.getInt("id")))
+        .set(
+          "title_invert_background",
+          dbFunctionality.getBoolean("title_invert_background"),
+        )
+        .set(
+          "content_invert_background",
+          dbFunctionality.getBoolean("content_invert_background"),
+        )
+        .set(
+          "actions",
+          cluar.action.getByItem("functionality", dbFunctionality.getInt("id")),
+        ),
     );
 
     // if (settings.images === true) {
     //   cluar.publishImage("functionality", dbFunctionality.getString("image"));
     // }
+  }
+
+  /*
+   *
+   *  ROW
+   *
+   */
+
+  const pageVersionId = dbPageVersion.getInt("id");
+  const dbRows = _db.query(`
+    SELECT
+      page_row.id,
+      page_row.uid,
+      page_row.title,
+      page_row.content,
+      page_row.page_row_col_id,
+      page_row.sorter
+    FROM page_row
+    WHERE page_row.active = TRUE
+      AND page_row.page_version_id = ${pageVersionId}
+    ORDER BY page_row.id
+  `);
+
+  const rowsById = new Map();
+
+  for (const dbRow of dbRows) {
+    const row = _val
+      .map()
+      .set("uid", dbRow.getString("uid"))
+      .set("section", "row")
+      .set("type", "Default")
+      .set("title", dbRow.getString("title"))
+      .set("content", dbRow.getString("content"))
+      .set("items", _val.list())
+      .set("sorter", dbRow.getInt("sorter"))
+      .set("page_row_col_id", dbRow.getInt("page_row_col_id", 0));
+
+    rowsById.set(dbRow.getInt("id"), row);
+    addSection(row);
+  }
+
+  for (const dbRow of dbRows) {
+    const items = _val.list();
+    const dbColumns = _db.query(`
+      SELECT
+        id,
+        uid,
+        title,
+        span,
+        xs,
+        sm,
+        md,
+        lg,
+        xl,
+        xxl,
+        xxxl
+      FROM page_row_col
+      WHERE page_row_id = ${dbRow.getInt("id")}
+        AND active = TRUE
+      ORDER BY id
+    `);
+
+    for (const dbColumn of dbColumns) {
+      const column = _val
+        .map()
+        .set("uid", dbColumn.getString("uid"))
+        .set("section", "col")
+        .set("title", dbColumn.getString("title"))
+        .set("span", dbColumn.getInt("span", -1))
+        .set("xs", dbColumn.getInt("xs", -1))
+        .set("sm", dbColumn.getInt("sm", -1))
+        .set("md", dbColumn.getInt("md", -1))
+        .set("lg", dbColumn.getInt("lg", -1))
+        .set("xl", dbColumn.getInt("xl", -1))
+        .set("xxl", dbColumn.getInt("xxl", -1))
+        .set("xxxl", dbColumn.getInt("xxxl", -1));
+
+      const columnSections = sectionsByColumn.get(dbColumn.getInt("id"));
+      if (columnSections?.length) {
+        column.set("section", columnSections[0]);
+      }
+
+      items.add(column);
+    }
+
+    rowsById.get(dbRow.getInt("id")).set("items", items);
   }
 
   structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"));
