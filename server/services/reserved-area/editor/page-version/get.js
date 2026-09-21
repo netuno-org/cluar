@@ -423,22 +423,6 @@ if (dbPageVersion) {
 
   const pageVersionId = dbPageVersion.getInt("id");
   const dbRows = _db.query(`
-    WITH page_row_columns AS (
-      SELECT page_row_col_id AS id FROM page_banner
-      WHERE page_version_id = ${pageVersionId} AND page_row_col_id IS NOT NULL
-      UNION
-      SELECT page_row_col_id FROM page_content
-      WHERE page_version_id = ${pageVersionId} AND page_row_col_id IS NOT NULL
-      UNION
-      SELECT page_row_col_id FROM page_listing
-      WHERE page_version_id = ${pageVersionId} AND page_row_col_id IS NOT NULL
-      UNION
-      SELECT page_row_col_id FROM page_slider
-      WHERE page_version_id = ${pageVersionId} AND page_row_col_id IS NOT NULL
-      UNION
-      SELECT page_row_col_id FROM page_functionality
-      WHERE page_version_id = ${pageVersionId} AND page_row_col_id IS NOT NULL
-    )
     SELECT
       page_row.id,
       page_row.uid,
@@ -449,17 +433,6 @@ if (dbPageVersion) {
     FROM page_row
     WHERE page_row.active = TRUE
       AND page_row.page_version_id = ${pageVersionId}
-      AND (
-        page_row.page_row_col_id IS NULL
-        OR
-        page_row.page_row_col_id IN (SELECT id FROM page_row_columns)
-        OR EXISTS (
-          SELECT 1
-          FROM page_row_col
-          WHERE page_row_col.page_row_id = page_row.id
-            AND page_row_col.id IN (SELECT id FROM page_row_columns)
-        )
-      )
     ORDER BY page_row.id
   `);
 
