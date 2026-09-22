@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 425 425" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:affinity="https://www.affinity.studio/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <style>
+    .icon-otherside { fill: black; }
+    @media (prefers-color-scheme: dark) {
+      .icon-otherside { fill: white; }
+    }
+  </style>
+    <g transform="matrix(1,0,0,1,-1800,-650)">
+        <g transform="matrix(0.319789,0,0,1.319876,1804.157261,-86.490683)">
+            <g transform="matrix(3.894046,0,0,0.943478,-237.418692,432.672792)">
+                <g transform="matrix(1.10395,-0.295803,0.295803,1.10395,-91.573289,55.801246)">
+                    <path class="icon-otherside" d="M282.157,165.553C311.92,182.926 335.296,210.899 344.911,246.784C355.932,287.915 346.754,329.735 323.469,361.693C298.105,371.607 271.257,375.446 248.805,373.52C273.74,345.651 284.266,304.603 273.873,265.819C264.048,229.152 239.004,201.098 206.108,188.32C230.856,172.575 255.024,164.211 281.599,165.518C281.785,165.527 281.971,165.541 282.157,165.553Z"/>
+                </g>
+                <g transform="matrix(0.269215,0.538303,-0.538303,0.269215,249.947751,-137.95085)">
+                    <path d="M426.873,215.983C423.948,230.189 422.41,244.917 422.41,260C422.41,380.091 519.909,477.59 640,477.59C760.091,477.59 857.59,380.091 857.59,260C857.59,244.917 856.052,230.189 853.127,215.983C880.973,257.089 897.243,306.66 897.243,360C897.243,501.976 781.976,617.243 640,617.243C498.024,617.243 382.757,501.976 382.757,360C382.757,306.66 399.027,257.089 426.873,215.983Z" style="fill:rgb(254,120,0);"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
