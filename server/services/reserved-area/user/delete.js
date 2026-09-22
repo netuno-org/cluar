@@ -37,10 +37,7 @@ if (membership.getInt("count") > 1) {
 }
 
 const userOrganizationUid = membership.getString("user_organization_uid");
-const loggedUserOganizations = cluar.user.getActiveAdminOrganizationsWithDescendants();
-if (!loggedUserOganizations.some((org) => org.getString("uid") === userOrganizationUid)) {
-  cluar.response.error({ status: 403, error: 'permission denied' });
-}
+cluar.permission.requireOrganizationAdminAccess(userOrganizationUid);
 
 _db.execute(`DELETE from organization_profile WHERE profile_id = ${profileId}`);
 _db.delete(

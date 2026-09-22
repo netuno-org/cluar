@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { NETUNO_URL } from '../config.js';
+import { NETUNO_URL } from "../config.js";
 
 const loginAsAdmin = async () => {
   const loginResponse = await request(NETUNO_URL)

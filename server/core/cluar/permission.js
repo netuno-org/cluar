@@ -1,6 +1,7 @@
 import { _db, _user } from "@netuno/server-types";
 import user from "#core/cluar/user.js";
 import organization from "#core/cluar/organization.js";
+import response from "#core/cluar/response.js";
 
 export default {
   // logged user is allowed
@@ -50,5 +51,12 @@ export default {
     `, organization.getInt('id'));
 
     return !!dbIsAuthorized;
+  },
+
+  requireOrganizationAdminAccess: (organizationUid) => {
+    const userOganizations = user.getActiveAdminOrganizationsWithDescendants();
+    if (!userOganizations.some((org) => org.getString("uid") === organizationUid)) {
+      response.error({ status: 403, error: 'permission denied' });
+    }
   }
 };

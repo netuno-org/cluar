@@ -9,10 +9,7 @@ if (!dbOrganization) {
   cluar.response.error({ status: 404, error: "organization not found" });
 }
 
-const userOganizations = cluar.user.getActiveAdminOrganizationsWithDescendants();
-if (!userOganizations.some((org) => org.getString("uid") === organizationUid)) {
-  cluar.response.error({ status: 403, error: 'permission denied' });
-}
+cluar.permission.requireOrganizationAdminAccess(organizationUid);
 
 const organizationId = dbOrganization.getInt("id");
 
