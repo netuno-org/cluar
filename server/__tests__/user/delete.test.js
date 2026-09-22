@@ -77,4 +77,14 @@ it("shouldn't delete a user if they are in more than one organization", async ()
     .delete(`/reserved-area/user?uid=${charlieUid}`)
     .set("Authorization", `Bearer ${accessToken}`)
     .expect(409);
+
+  await request(NETUNO_URL)
+    .delete(`/reserved-area/organization/member`)
+    .set("Authorization", `Bearer ${accessToken}`)
+    .set("Accept", "*/*")
+    .set("Content-Type", "application/json")
+    .send({
+      organization_uid: bUid,
+      profile_uid: charlieUid,
+    });
 });
