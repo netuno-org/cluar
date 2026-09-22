@@ -52,7 +52,7 @@ beforeEach(async () => {
     .send({
       active: true,
       email: "alice@mail.com",
-      group_code: "editor",
+      group_code: "administrator",
       name: "Alice",
       organization_code: "c11",
       password: "12345678",
