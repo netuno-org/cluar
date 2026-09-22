@@ -1,0 +1,18 @@
+{
+  "summary":"Activate/Deactivate an organization member by uid",
+  "description":"Activate/Deactivate an organization member by uid",
+  "_schema":"tags/member",
+  "type":"object",
+  "properties":{
+    "uid" : {
+      "type":"uuid"
+    },
+    "active":{
+      "type":"boolean"
+    }
+  },
+  "required":[
+    "uid",
+    "active"
+  ]
+}

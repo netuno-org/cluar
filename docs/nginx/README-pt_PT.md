@@ -7,7 +7,7 @@ Configuração do servidor do NGINX para publicar o website e o backoffice onlin
 server {
     listen 80;
     server_name my-domain.com www.my-domain.com;
-    root /srv/netuno/apps/my_cluar/website/build;
+    root /srv/netuno/apps/my_cluar/website/dist;
 
     gzip on;
     gzip_types text/plain application/xml application/json application/javascript;

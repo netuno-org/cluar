@@ -7,17 +7,17 @@ const initialState = {
 
 export const loggedUserInfoReducer = (state = initialState, action) => {
   switch (action.type) {
-  case LOGGED_USER_INFO:
-    return {
-      ...state,
-      loggedUserInfo: action.payload
-    };
-  case LOGGED_USER_INFO_RELOAD:
-    return {
-      ...state,
-      loggedUserInfoReload: action.payload
-    };
-  default:
-    return state;
+    case LOGGED_USER_INFO:
+      return {
+        ...state,
+        loggedUserInfo: action.payload
+      };
+    case LOGGED_USER_INFO_RELOAD:
+      return {
+        ...state,
+        loggedUserInfoReload: action.payload
+      };
+    default:
+      return state;
   }
 };

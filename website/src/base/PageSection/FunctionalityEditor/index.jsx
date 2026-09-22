@@ -20,7 +20,7 @@ const FunctionalityEditor = ({ sectionData, form }) => {
 
   useEffect(() => {
     _service({
-      url: "/components/functionality/list",
+      url: "/reserved-area/component/functionality/list",
       method: "POST",
       data: {
         language: Cluar.currentLanguage().locale
@@ -43,7 +43,7 @@ const FunctionalityEditor = ({ sectionData, form }) => {
 
   return (
     <div className="functionality-editor">
-      <Form.Item label={Cluar.plainDictionary("functionality-editor-field-type")} name="type">
+      <Form.Item label={Cluar.plainTranslation("functionality-editor-field-type")} name="type">
         <Select
           options={typeOptions.map((item) => ({
             label: item.info.label,
@@ -59,13 +59,13 @@ const FunctionalityEditor = ({ sectionData, form }) => {
       </Form.Item>
 
       {showActions && (
-        <Form.Item label={Cluar.plainDictionary("functionality-editor-field-actions")} name="action_uids">
+        <Form.Item label={Cluar.plainTranslation("functionality-editor-field-actions")} name="action_uids">
           <Select
             options={actionsData.map((action) => ({
               label: action.title,
               value: action.uid,
             }))}
-            placeholder={Cluar.plainDictionary("functionality-editor-placeholder-add")}
+            placeholder={Cluar.plainTranslation("functionality-editor-placeholder-add")}
             mode="multiple"
             allowClear
           />

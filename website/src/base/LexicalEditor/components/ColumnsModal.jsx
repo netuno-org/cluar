@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Modal, Button, Form, Radio, Card, Row, Col } from 'antd';
 
 import { INSERT_LAYOUT_COMMAND } from '../plugins/GridLayoutPlugin';
+import Cluar from "../../../common/Cluar";
 
 const columnLayouts = [
   { key: '1', label: '1 Coluna', columns: ['span_1_of_1'] },
@@ -86,7 +87,7 @@ export default function ColumnsModal({ visible, onClose, activeEditor }) {
 
   return (
     <Modal
-      title="Inserir Colunas"
+      title={Cluar.plainTranslation("toolbar-insert-columns")}
       open={visible}
       onCancel={() => {
         onClose();
@@ -108,7 +109,7 @@ export default function ColumnsModal({ visible, onClose, activeEditor }) {
       <Form form={form} layout="vertical" initialValues={{ layout: '2' }}>
         <Form.Item
           name="layout"
-          label="Selecione o Layout das Colunas"
+          label={Cluar.plainTranslation("toolbar-columns-layout-label")}
           rules={[{ required: true, message: 'Selecione um layout!' }]}
         >
           <Radio.Group style={{ width: '100%' }}>

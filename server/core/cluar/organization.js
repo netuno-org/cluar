@@ -1,7 +1,7 @@
 import { _db } from "@netuno/server-types";
 
 export default {
-  getOrganization: (code) => {
+  getByCode: (code) => {
     return _db.form("organization")
       .where(
         _db.where("code").equals(code)
@@ -9,11 +9,11 @@ export default {
       .first();
   },
 
-  getPeopleGroupsByOrg: (organizationId, peopleId) => {
-    return _db.form("organization_people")
+  getProfileGroupsByOrg: (organizationId, profileId) => {
+    return _db.form("organization_profile")
       .where(
         _db.where("organization_id").equals(organizationId)
-          .and("people_id").equals(peopleId)
+          .and("profile_id").equals(profileId)
           .and("active").equals(true)
       )
       .link("user_group")
@@ -24,41 +24,79 @@ export default {
       .all();
   },
 
-  organizationIsDescendant: (params) => {
-    const organizationChildren = params.getValues("organizationChildren");
-    const organizationParent = params.getValues("organizationParent");
+  isAncestorOf: (params) => {
+    const ancestor = params.getValues("ancestor");
+    const descendant = params.getValues("descendant");
 
-    const isDescendant = _db.queryFirst(`
-        WITH RECURSIVE childrens AS (
-            SELECT 
-                org.name, 
-                org.id, 
+    const isAncestor = _db.queryFirst(`
+        WITH RECURSIVE descendant AS (
+            SELECT
+                org.name,
+                org.id,
                 org.parent_id,
                 org.code,
                 org.uid,
                 org.active
-            FROM 
+            FROM
                 organization org
-            WHERE 1 = 1 
-               AND org.id = ${organizationChildren.getInt("id")}
+            WHERE 1 = 1
+               AND org.id = ${ancestor.getInt("id")}
             UNION
-            SELECT 
-                org.name, 
-                org.id, 
+            SELECT
+                org.name,
+                org.id,
                 org.parent_id,
                 org.code,
                 org.uid,
                 org.active
-            FROM 
+            FROM
                 organization org
-            INNER JOIN 
-                childrens cs ON org.parent_id = cs.id
+            INNER JOIN
+                descendant d ON org.parent_id = d.id
         )
         SELECT 1
-        FROM childrens
+        FROM descendant
         WHERE 1 = 1
-            AND childrens.id = ${organizationParent.getInt("id")}
-      `);
-    return !!isDescendant;
-  }
+            AND descendant.id = ${descendant.getInt("id")}
+    `);
+    return !!isAncestor;
+  },
+
+  getAncestors: (organizationId) => {
+    return _db.query(`
+        WITH RECURSIVE ancestor AS (
+            SELECT
+                org.name,
+                org.id,
+                org.parent_id,
+                org.code,
+                org.uid,
+                org.active
+            FROM
+                organization org
+            WHERE 1 = 1
+               AND org.id = ?::int 
+            UNION
+            SELECT
+                org.name,
+                org.id,
+                org.parent_id,
+                org.code,
+                org.uid,
+                org.active
+            FROM
+                organization org
+            INNER JOIN
+                ancestor a ON a.parent_id = org.id
+        )
+        SELECT
+            a.name,
+            a.id,
+            a.parent_id,
+            a.code,
+            a.uid,
+            a.active
+        FROM ancestor a
+    `, organizationId);
+  },
 };

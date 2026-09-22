@@ -1,0 +1,14 @@
+{
+  "_schema":"tags/configuration",
+  "summary":"Get a configuration by uid",
+  "description":"Get a configuration by uid",
+  "type":"object",
+  "properties":{
+    "uid":{
+      "type":"uuid"
+    }
+  },
+  "required":[
+    "uid"
+    ]
+}

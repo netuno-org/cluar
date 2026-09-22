@@ -1,0 +1,18 @@
+{
+  "_schema":"tags/user",
+  "summary":"Activate/Deactivate a user",
+  "description":"Activate/Deactivate a user",
+  "type":"object",
+  "properties":{
+    "uid":{
+      "type":"uuid"
+    },
+    "active":{
+      "type":"boolean"
+    }
+  },
+  "required":[
+    "uid",
+    "active"
+  ]
+}

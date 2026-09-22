@@ -24,3 +24,5 @@ dbs/
 public/scripts/main.*
 
 storage/database/
+
+jsconfig.json

@@ -4,7 +4,7 @@ import { Row, Col, Switch, Divider, Button, Flex, theme } from "antd";
 import { HistoryOutlined } from "@ant-design/icons";
 import Cluar from "../../common/Cluar"
 import PageConfiguration from "../PageConfiguration";
-import PageVersions from "../PageVersions";
+import PageVersion from "../PageVersion";
 
 import "./index.less";
 import ClonePage from "../ClonePage";
@@ -39,7 +39,7 @@ const AdminBar = ({
           <Row align="middle" gutter={12}>
             <Col>
               <Button type="text" onClick={navigateToReservedArea}>
-                {Cluar.plainDictionary("admin-bar-site-config")}
+                {Cluar.plainTranslation("admin-bar-site-config")}
               </Button>
             </Col>
           </Row>
@@ -48,7 +48,7 @@ const AdminBar = ({
           <Row align="middle" gutter={6}>
             <Col>
               <Button type="text" onClick={() => openPageConfig(true)}>
-                {Cluar.plainDictionary("page-drawer-new-title")}
+                {Cluar.plainTranslation("page-drawer-new-title")}
               </Button>
             </Col>
             <Col>
@@ -56,7 +56,7 @@ const AdminBar = ({
             </Col>
             <Col>
               <Button type="text" onClick={() => openPageConfig(false)}>
-                {Cluar.plainDictionary("page-drawer-config-title")}
+                {Cluar.plainTranslation("page-drawer-config-title")}
               </Button>
             </Col>
             <Col>
@@ -64,7 +64,7 @@ const AdminBar = ({
             </Col>
             <Col>
               <Button type="text" onClick={() => setIsClonePage(true)}>
-                {Cluar.plainDictionary("admin-bar-clone-page")}
+                {Cluar.plainTranslation("admin-bar-clone-page")}
               </Button>
             </Col>
             <Col>
@@ -82,8 +82,8 @@ const AdminBar = ({
               <Switch
                 checked={editMode}
                 onChange={onChangeEditMode}
-                checkedChildren={Cluar.plainDictionary("admin-bar-switch-edit")}
-                unCheckedChildren={Cluar.plainDictionary("admin-bar-switch-see")}
+                checkedChildren={Cluar.plainTranslation("admin-bar-switch-edit")}
+                unCheckedChildren={Cluar.plainTranslation("admin-bar-switch-see")}
               />
             </Col>
             {extra && (
@@ -101,7 +101,7 @@ const AdminBar = ({
         pageData={isNewPage ? null : pageData}
         currentStructure={currentStructure}
       />
-      <PageVersions
+      <PageVersion
         open={isPageVersionsOpen}
         onClose={() => setIsPageVersionsOpen(false)}
         pageData={pageData}

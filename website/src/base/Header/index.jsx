@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { Route, Link } from "react-router";
 import Cluar from '../../common/Cluar';
 import Builder from '../../common/Builder';
+import ThemeSwitch from '../../components/ThemeSwitch';
 
 import _auth from "@netuno/auth-client";
 
@@ -186,6 +187,11 @@ function BaseHeader({ canEdit }) {
             openKeys={subMenuKeys}
             items={menu}
           />
+          {['true', '1'].includes(String(Cluar.configuration('theme-switch')).toLowerCase()) && (
+            <div className="menu-burger__theme-switch">
+              <ThemeSwitch />
+            </div>
+          )}
         </div>
         <div className='burger-language'>
           <Menu
@@ -196,6 +202,11 @@ function BaseHeader({ canEdit }) {
             selectedKeys={[activeMenu]}
             items={[menuLanguages]}
           />
+          {['true', '1'].includes(String(Cluar.configuration('theme-switch')).toLowerCase()) && (
+            <div className="burger-language__theme-switch">
+              <ThemeSwitch />
+            </div>
+          )}
           <div className="menu-burger-button">
             <Burger
               isOpen={burgerMenu}

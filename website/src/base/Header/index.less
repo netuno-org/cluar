@@ -84,6 +84,12 @@
   .burger-language {
     display: flex;
     align-items: center;
+
+    &__theme-switch {
+      @media only screen and (max-width: @header-mobile-width) {
+        display: none;
+      }
+    }
   }
 
   .menu-languages {
@@ -178,6 +184,10 @@
   .menu-burger {
     @media only screen and (min-width: calc(@header-mobile-width + 1px)) {
       display: none;
+    }
+
+    &__theme-switch {
+      padding: 12px 24px;
     }
   }
 

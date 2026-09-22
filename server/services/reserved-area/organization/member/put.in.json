@@ -1,0 +1,30 @@
+{
+  "summary": "Update an existing organization member",
+  "description": "Update an existing organization member",
+  "_schema": "tags/member",
+  "type": "object",
+  "properties": {
+    "uid":{
+      "type":"uuid"
+    },
+    "profile_uid": {
+      "type": "uuid"
+    },
+    "organization_code": {
+      "type": "string-not-empty"
+    },
+    "group_code": {
+      "type": "string-not-empty"
+    },
+    "active": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "uid",
+    "profile_uid",
+    "organization_code",
+    "group_code",
+    "active"
+  ]
+}

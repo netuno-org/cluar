@@ -72,7 +72,7 @@ export default function Register(props) {
         const { username, password, email, name } = values;
         _service({
             method: 'POST',
-            url: 'people',
+            url: 'reserved-area/profile',
             data: {
                 name,
                 username,
@@ -83,8 +83,8 @@ export default function Register(props) {
             success: (response) => {
                 if (response.json.result) {
                     notification["success"]({
-                        message: Cluar.plainDictionary('register-form-success-message'),
-                        description: Cluar.plainDictionary('register-form-success-description'),
+                        message: Cluar.plainTranslation('register-form-success-message'),
+                        description: Cluar.plainTranslation('register-form-success-description'),
                     });
                     setSubmitting(false);
                     setReady(true);
@@ -95,20 +95,20 @@ export default function Register(props) {
                 if (e && e.status === 409 && e.json && e.json.error) {
                     if (e.json.error === 'email-already-exists') {
                         return notification["warning"]({
-                            message: Cluar.plainDictionary('register-form-existing-mail-message'),
-                            description: Cluar.plainDictionary('register-form-existing-mail-description'),
+                            message: Cluar.plainTranslation('register-form-existing-mail-message'),
+                            description: Cluar.plainTranslation('register-form-existing-mail-description'),
                         });
                     }
                     if (e.json.error === 'user-already-exists') {
                         return notification["warning"]({
-                            message: Cluar.plainDictionary('register-form-existing-username-message'),
-                            description: Cluar.plainDictionary('register-form-existing-username-description'),
+                            message: Cluar.plainTranslation('register-form-existing-username-message'),
+                            description: Cluar.plainTranslation('register-form-existing-username-description'),
                         });
                     }
                 }
                 return notification["error"]({
-                    message: Cluar.plainDictionary('register-form-failed-message'),
-                    description: Cluar.plainDictionary('register-form-failed-description'),
+                    message: Cluar.plainTranslation('register-form-failed-message'),
+                    description: Cluar.plainTranslation('register-form-failed-description'),
                 });
             }
         });
@@ -130,7 +130,7 @@ export default function Register(props) {
                 <Col {...columnConfig}>
                     <Content className="register-container">
                         <div className="content-title">
-                            <Title>{Cluar.plainDictionary('register-form-subject')}</Title>
+                            <Title>{Cluar.plainTranslation('register-form-subject')}</Title>
                         </div>
                         <div className="content-body">
                             <Form
@@ -143,72 +143,72 @@ export default function Register(props) {
                             >
                                 {Cluar.authProviders().facebook &&
                                     <Form.Item>
-                                        <Button href={`${servicePrefix}_auth_provider/register/facebook`} icon={<FaFacebook />}>{Cluar.plainDictionary('register-form-register-provider').replace('${label}', 'Facebook')}</Button>
+                                        <Button href={`${servicePrefix}_auth_provider/register/facebook`} icon={<FaFacebook />}>{Cluar.plainTranslation('register-form-register-provider').replace('${label}', 'Facebook')}</Button>
                                     </Form.Item>}
                                 {Cluar.authProviders().google &&
                                     <Form.Item>
-                                        <Button href={`${servicePrefix}_auth_provider/register/google`} icon={<FaGoogle />}>{Cluar.plainDictionary('register-form-register-provider').replace('${label}', 'Google')}</Button>
+                                        <Button href={`${servicePrefix}_auth_provider/register/google`} icon={<FaGoogle />}>{Cluar.plainTranslation('register-form-register-provider').replace('${label}', 'Google')}</Button>
                                     </Form.Item>}
                                 {Cluar.authProviders().github &&
                                     <Form.Item>
-                                        <Button href={`${servicePrefix}_auth_provider/register/github`} icon={<FaGithub />}>{Cluar.plainDictionary('register-form-register-provider').replace('${label}', 'GitHub')}</Button>
+                                        <Button href={`${servicePrefix}_auth_provider/register/github`} icon={<FaGithub />}>{Cluar.plainTranslation('register-form-register-provider').replace('${label}', 'GitHub')}</Button>
                                     </Form.Item>}
                                 {Cluar.authProviders().discord &&
                                     <Form.Item>
-                                        <Button href={`${servicePrefix}_auth_provider/register/discord`} icon={<FaDiscord />}>{Cluar.plainDictionary('register-form-register-provider').replace('${label}', 'Discotd')}</Button>
+                                        <Button href={`${servicePrefix}_auth_provider/register/discord`} icon={<FaDiscord />}>{Cluar.plainTranslation('register-form-register-provider').replace('${label}', 'Discord')}</Button>
                                     </Form.Item>}
                                 <Form.Item
-                                    label={Cluar.plainDictionary('register-form-name')}
+                                    label={Cluar.plainTranslation('register-form-name')}
                                     name="name"
                                     rules={[
-                                        { required: true, message: Cluar.plainDictionary('register-form-validate-message-required') },
-                                        { type: 'string', message: Cluar.plainDictionary('register-form-name-valid-message'), pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
+                                        { required: true, message: Cluar.plainTranslation('register-form-validate-message-required') },
+                                        { type: 'string', message: Cluar.plainTranslation('register-form-name-valid-message'), pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
                                     ]}
                                 >
                                     <Input disabled={submitting} maxLength={250} />
                                 </Form.Item>
                                 <Form.Item
-                                    label={Cluar.plainDictionary('register-form-username')}
+                                    label={Cluar.plainTranslation('register-form-username')}
                                     name="username"
                                     rules={[
-                                        { required: true, message: Cluar.plainDictionary('register-form-validate-message-required') },
-                                        { type: 'string', message: Cluar.plainDictionary('register-form-username-valid-message'), pattern: "^[a-z]+[a-z0-9]{1,24}$" }
+                                        { required: true, message: Cluar.plainTranslation('register-form-validate-message-required') },
+                                        { type: 'string', message: Cluar.plainTranslation('register-form-username-valid-message'), pattern: "^[a-z]+[a-z0-9]{1,24}$" }
                                     ]}
                                 >
                                     <Input disabled={submitting} maxLength={25} />
                                 </Form.Item>
                                 <Form.Item
-                                    label={Cluar.plainDictionary('register-form-mail')}
+                                    label={Cluar.plainTranslation('register-form-mail')}
                                     name="email"
                                     rules={[
-                                        { type: 'email', message: Cluar.plainDictionary('register-form-mail-valid-message') },
-                                        { required: true, message: Cluar.plainDictionary('register-form-validate-message-required') }
+                                        { type: 'email', message: Cluar.plainTranslation('register-form-mail-valid-message') },
+                                        { required: true, message: Cluar.plainTranslation('register-form-validate-message-required') }
                                     ]}
                                 >
                                     <Input disabled={submitting} maxLength={250} />
                                 </Form.Item>
                                 <Form.Item
-                                    label={Cluar.plainDictionary('register-form-password')}
+                                    label={Cluar.plainTranslation('register-form-password')}
                                     name="password"
                                     rules={[
-                                        { required: true, message: Cluar.plainDictionary('register-form-validate-message-required') },
-                                        { type: 'string', message: Cluar.plainDictionary('register-form-password-valid-message'), min: 8, max: 25 },
+                                        { required: true, message: Cluar.plainTranslation('register-form-validate-message-required') },
+                                        { type: 'string', message: Cluar.plainTranslation('register-form-password-valid-message'), min: 8, max: 25 },
                                     ]}
                                 >
                                     <PasswordInput disabled={submitting} maxLength={25} />
                                 </Form.Item>
                                 <Form.Item
-                                    label={Cluar.plainDictionary('register-form-confirm-password')}
+                                    label={Cluar.plainTranslation('register-form-confirm-password')}
                                     name="password_confirm"
                                     rules={[
-                                        { required: true, message: Cluar.plainDictionary('register-form-validate-message-required') },
-                                        { type: 'string', message: Cluar.plainDictionary('register-form-password-valid-message'), min: 8, max: 25 },
+                                        { required: true, message: Cluar.plainTranslation('register-form-validate-message-required') },
+                                        { type: 'string', message: Cluar.plainTranslation('register-form-password-valid-message'), min: 8, max: 25 },
                                         ({ getFieldValue }) => ({
                                             validator(_, value) {
                                                 if (!value || getFieldValue('password') === value) {
                                                     return Promise.resolve();
                                                 }
-                                                return Promise.reject(Cluar.plainDictionary('register-form-passwords-not-equals-message'));
+                                                return Promise.reject(Cluar.plainTranslation('register-form-passwords-not-equals-message'));
                                             },
                                         })
                                     ]}
@@ -229,14 +229,14 @@ export default function Register(props) {
                                 )}
                                 <Form.Item>
                                     <Button type="primary" htmlType="submit" loading={submitting} className='btn-register'>
-                                        {Cluar.plainDictionary('register-form-register')}
+                                        {Cluar.plainTranslation('register-form-register')}
                                     </Button>
                                 </Form.Item>
                                 <hr />
-                                <span><p>{Cluar.plainDictionary('register-form-division-title')}</p></span>
+                                <span><p>{Cluar.plainTranslation('register-form-division-title')}</p></span>
                                 <Link to="/login">
                                     <Button loading={submitting} type="default" >
-                                        {Cluar.plainDictionary('register-form-sign-in')}
+                                        {Cluar.plainTranslation('register-form-sign-in')}
                                     </Button>
                                 </Link>-
                             </Form>

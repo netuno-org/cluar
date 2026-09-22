@@ -1,5 +1,5 @@
 import { addClassNamesToElement } from '@lexical/utils';
-import {ElementNode} from 'lexical';
+import { ElementNode } from 'lexical';
 
 import './GridItemNode.less'
 
@@ -9,7 +9,7 @@ function $convertGridItemElement(domNode) {
     const classList = Array.from(domNode.classList);
     const spanClass = classList.find(cls => cls.startsWith('span_'));
     const columnSpan = spanClass ? spanClass : 'span_1_of_1';
-    return {node: $createGridItemNode(columnSpan)};
+    return { node: $createGridItemNode(columnSpan) };
   }
   return null;
 }
@@ -75,8 +75,8 @@ export class GridItemNode extends ElementNode {
   static importDOM() {
     return {
       div: (domNode) => {
-        if (!domNode.hasAttribute('data-lexical-grid-item') && 
-            !domNode.classList.contains('col')) {
+        if (!domNode.hasAttribute('data-lexical-grid-item') &&
+          !domNode.classList.contains('col')) {
           return null;
         }
         return {

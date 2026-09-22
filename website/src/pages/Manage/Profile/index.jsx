@@ -38,7 +38,7 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
         });
       }
       if (loggedUserInfo.avatar) {
-        setAvatarImageURL(`${_service.config().prefix}people/avatar?uid=${loggedUserInfo.uid}`);
+        setAvatarImageURL(`${_service.config().prefix}reserved-area/profile/avatar?uid=${loggedUserInfo.uid}`);
       }
     }
   }, [location, loggedUserInfo]);
@@ -48,7 +48,7 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
     const { name, username, password, email } = values;
     _service({
       method: 'PUT',
-      url: 'people',
+      url: 'reserved-area/profile',
       data: {
         name,
         username,
@@ -59,8 +59,8 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
       success: (response) => {
         if (response.json.result) {
           notification["success"]({
-            message: Cluar.plainDictionary('profile-form-success-message'),
-            description: Cluar.plainDictionary('profile-form-success-description'),
+            message: Cluar.plainTranslation('profile-form-success-message'),
+            description: Cluar.plainTranslation('profile-form-success-description'),
           });
           setSubmitting(false);
           profileForm.current.setFieldsValue({
@@ -70,8 +70,8 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
           loggedUserInfoReloadAction();
         } else {
           notification["warning"]({
-            message: Cluar.plainDictionary('profile-form-user-exists-message'),
-            description: Cluar.plainDictionary('profile-form-user-exists-description'),
+            message: Cluar.plainTranslation('profile-form-user-exists-message'),
+            description: Cluar.plainTranslation('profile-form-user-exists-description'),
           });
           setSubmitting(false);
           profileForm.current.setFieldsValue({
@@ -83,8 +83,8 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
       fail: () => {
         setSubmitting(false);
         notification["error"]({
-          message: Cluar.plainDictionary('profile-form-failed-message'),
-          description: Cluar.plainDictionary('profile-form-failed-description'),
+          message: Cluar.plainTranslation('profile-form-failed-message'),
+          description: Cluar.plainTranslation('profile-form-failed-description'),
         });
       }
     });
@@ -105,14 +105,14 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
   return (
     <div>
       <div className="content-title">
-        <Button className="go-back-btn" type="link" onClick={() => navigate(-1)}><ArrowLeftOutlined /> {Cluar.plainDictionary('profile-page-previus')}</Button>
+        <Button className="go-back-btn" type="link" onClick={() => navigate(-1)}><ArrowLeftOutlined /> {Cluar.plainTranslation('profile-page-previous')}</Button>
       </div>
       <div className="content-title">
-        <Title level={2}>{Cluar.plainDictionary('profile-page-title')}</Title>
+        <Title level={2}>{Cluar.plainTranslation('profile-page-title')}</Title>
       </div>
       <div className="content-body">
         <Avatar ref={profileAvatar} currentImage={avatarImageURL} />
-        <Divider orientation="left" plain>{Cluar.plainDictionary('profile-page-general-info')}</Divider>
+        <Divider orientation="left" plain>{Cluar.plainTranslation('profile-page-general-info')}</Divider>
         <Form
           {...layout}
           onValuesChange={onValuesChange}
@@ -124,56 +124,56 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label={Cluar.plainDictionary('profile-form-name')}
+            label={Cluar.plainTranslation('profile-form-name')}
             name="name"
             rules={[
-              { required: true, message: Cluar.plainDictionary('profile-form-validate-message-required') },
-              { type: 'string', message: Cluar.plainDictionary('profile-form-name-validate-message'), pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
+              { required: true, message: Cluar.plainTranslation('profile-form-validate-message-required') },
+              { type: 'string', message: Cluar.plainTranslation('profile-form-name-validate-message'), pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
             ]}
           >
             <Input disabled={submitting} maxLength={25} />
           </Form.Item>
           <Form.Item
-            label={Cluar.plainDictionary('profile-form-username')}
+            label={Cluar.plainTranslation('profile-form-username')}
             name="username"
             rules={[
-              { required: true, message: Cluar.plainDictionary('profile-form-validate-message-required') },
-              { type: 'string', message: Cluar.plainDictionary('profile-form-name-validate-message'), pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
+              { required: true, message: Cluar.plainTranslation('profile-form-validate-message-required') },
+              { type: 'string', message: Cluar.plainTranslation('profile-form-name-validate-message'), pattern: "^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" }
             ]}
           >
             <Input disabled={submitting} maxLength={25} />
           </Form.Item>
           <Form.Item
-            label={Cluar.plainDictionary('profile-form-mail')}
+            label={Cluar.plainTranslation('profile-form-mail')}
             name="email"
             rules={[
-              { type: 'email', message: Cluar.plainDictionary('profile-form-mail-validate-message') },
-              { required: true, message: Cluar.plainDictionary('profile-form-validate-message-required') }
+              { type: 'email', message: Cluar.plainTranslation('profile-form-mail-validate-message') },
+              { required: true, message: Cluar.plainTranslation('profile-form-validate-message-required') }
             ]}
           >
             <Input disabled={submitting} maxLength={250} />
           </Form.Item>
           <Form.Item
-            label={Cluar.plainDictionary('profile-form-password')}
+            label={Cluar.plainTranslation('profile-form-password')}
             name="password"
             rules={[
-              { type: 'string', message: Cluar.plainDictionary('profile-form-validate-password-message'), min: 8, max: 25 },
+              { type: 'string', message: Cluar.plainTranslation('profile-form-validate-password-message'), min: 8, max: 25 },
             ]}
           >
             <PasswordInput />
           </Form.Item>
           <Form.Item
-            label={Cluar.plainDictionary('profile-form-confirm-password')}
+            label={Cluar.plainTranslation('profile-form-confirm-password')}
             name="password_confirm"
             rules={[
-              { required: passwordRequired, message: Cluar.plainDictionary('profile-form-validate-message-required') },
-              { type: 'string', message: Cluar.plainDictionary('profile-form-validate-password-message'), min: 8, max: 25 },
+              { required: passwordRequired, message: Cluar.plainTranslation('profile-form-validate-message-required') },
+              { type: 'string', message: Cluar.plainTranslation('profile-form-validate-password-message'), min: 8, max: 25 },
               ({ getFieldValue }) => ({
                 validator(_, value) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(Cluar.plainDictionary('profile-form-password-not-equals-message'));
+                  return Promise.reject(Cluar.plainTranslation('profile-form-password-not-equals-message'));
                 },
               })
             ]}
@@ -184,7 +184,7 @@ function Profile({ loggedUserInfo, loggedUserInfoReloadAction }) {
             <Col>
               <Form.Item>
                 <Button type="primary" htmlType="submit" loading={submitting}>
-                  {Cluar.plainDictionary('profile-form-update')}
+                  {Cluar.plainTranslation('profile-form-update')}
                 </Button>
               </Form.Item>
             </Col>

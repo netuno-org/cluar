@@ -1,0 +1,14 @@
+{
+  "_schema":"tags/translation",
+  "summary":"Get a translation by uid",
+  "description":"Get a translation by uid",
+  "type":"object",
+  "properties":{
+    "uid":{
+      "type":"uuid"
+    }
+  },
+  "required":[
+    "uid"
+    ]
+}

@@ -1,0 +1,5 @@
+{   
+  "_schema": "tags/profile",
+  "summary": "Account Information",
+  "description": "Retrieve the information of the logged-in user."
+}

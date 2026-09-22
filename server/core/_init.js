@@ -1,2 +1,1 @@
-
-const cluar = { page: {}, custom: {} }
+const cluar = { page: {}, custom: {} };

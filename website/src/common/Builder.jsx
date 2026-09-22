@@ -16,6 +16,7 @@ import Content from "../components/Content";
 import Listing from "../components/Listing";
 import Functionality from "../components/Functionality";
 import Slider from "../components/Slider";
+import CluarRow from "../components/Row";
 import AdminBar from "../base/AdminBar";
 
 import { useNavigate } from "react-router";
@@ -32,7 +33,6 @@ const loadPersistedEditMode = () => {
   return window.sessionStorage.getItem(EDIT_MODE_STORAGE_KEY) === "1";
 };
 
-
 function Builder({ page, canEdit }) {
   const [error, setError] = useState(false);
   const [structure, setStructure] = useState([]);
@@ -45,7 +45,9 @@ function Builder({ page, canEdit }) {
   const [pageVersionExists, setPageVersionExists] = useState(false);
   const [saving, setSaving] = useState(false);
   const [publishing, setPublishing] = useState(false);
-  const [currentPageVersion, setCurrentPageVersion] = useState(page?.page_version_uid);
+  const [currentPageVersion, setCurrentPageVersion] = useState(
+    page?.page_version_uid,
+  );
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 
@@ -160,7 +162,6 @@ function Builder({ page, canEdit }) {
     window.sessionStorage.setItem(EDIT_MODE_STORAGE_KEY, editMode ? "1" : "0");
   }, [editMode]);
 
-
   useEffect(() => {
     if (hasDiff || canPublish) {
       setShowActionButtons(true);
@@ -174,7 +175,6 @@ function Builder({ page, canEdit }) {
   }, [hasDiff]);
 
   useEffect(() => {
-    // Verifica se o currentPageVersion é diferente da publicada
     if (currentPageVersion !== page?.page_version_uid && hasDiff == false) {
       setHasDiff(false);
       setCanPublish(true);
@@ -187,7 +187,7 @@ function Builder({ page, canEdit }) {
   useEffect(() => {
     if (searchParams.get("version")) {
       _service({
-        url: "/editor/page-version",
+        url: "/reserved-area/editor/page-version",
         method: "GET",
         data: {
           version: searchParams.get("version"),
@@ -267,18 +267,22 @@ function Builder({ page, canEdit }) {
   const handleSavePage = () => {
     setSaving(true);
     _service({
-      url: "/editor/page-version/save",
+      url: "/reserved-area/editor/page-version/save",
       method: "POST",
       data: {
-        structures: structure.filter((item) => item.status !== "to_remove")?.map(item => ({
-          ...item,
-          action_uids: !!item.action_uids ? item.action_uids : item.actions?.map(action => action?.uid)
-        })),
+        structures: structure
+          .filter((item) => item.status !== "to_remove")
+          ?.map((item) => ({
+            ...item,
+            action_uids: !!item.action_uids
+              ? item.action_uids
+              : item.actions?.map((action) => action?.uid),
+          })),
         page: page.uid,
       },
       success: (res) => {
         if (res.json.result) {
-          const data = res.json['data'];
+          const data = res.json["data"];
           setCurrentPageVersion(data.page_version_uid);
 
           message.success("Página guardada com sucesso");
@@ -300,11 +304,11 @@ function Builder({ page, canEdit }) {
     setPublishing(true);
 
     _service({
-      url: "/editor/page-version/save/publish",
+      url: "/reserved-area/editor/page-version/save/publish",
       method: "POST",
       data: {
         page: page.uid,
-        page_version: currentPageVersion
+        page_version: currentPageVersion,
       },
       success: (res) => {
         if (res.json.result) {
@@ -338,12 +342,12 @@ function Builder({ page, canEdit }) {
     <Row gutter={12}>
       <Col>
         <Button onClick={handleSavePage} loading={saving} disabled={!hasDiff}>
-          {Cluar.plainDictionary("extra-bar-admin-save")}
+          {Cluar.plainTranslation("extra-bar-admin-save")}
         </Button>
       </Col>
       <Col>
         <Button type="primary" onClick={handlePublishPage} loading={publishing} disabled={!canPublish || hasDiff}>
-          {Cluar.plainDictionary("extra-bar-admin-publish")}
+          {Cluar.plainTranslation("extra-bar-admin-publish")}
         </Button>
       </Col>
     </Row>
@@ -377,7 +381,7 @@ function Builder({ page, canEdit }) {
   const handleSetEditMode = (mode) => {
     setEditMode(mode);
     setShowActionButtons(mode);
-  }
+  };
 
   return (
     <main>
@@ -388,7 +392,7 @@ function Builder({ page, canEdit }) {
           pageData={page}
           editMode={editMode}
           currentStructure={structure.filter(
-            (item) => item.status !== "to_remove"
+            (item) => item.status !== "to_remove",
           )}
         />
       )}
@@ -414,6 +418,17 @@ function Builder({ page, canEdit }) {
             case "slider":
               SectionComponent = <Slider {...item} />;
               break;
+            case "row":
+              SectionComponent = (
+                <CluarRow
+                  {...item}
+                  editMode={editMode}
+                  onUpdateRow={(data) => {
+                    handleChangeSection(data, item.uid);
+                  }}
+                />
+              );
+              break;
             case "functionality":
               SectionComponent = <Functionality {...item} />;
               break;
@@ -435,13 +450,13 @@ function Builder({ page, canEdit }) {
                 onSortDown={(data) =>
                   handleChangeSection(
                     { ...data, sorter: data.sorter + 11 },
-                    item.uid
+                    item.uid,
                   )
                 }
                 onSortUp={(data) =>
                   handleChangeSection(
                     { ...data, sorter: data.sorter - 11 },
-                    item.uid
+                    item.uid,
                   )
                 }
               >

@@ -1,51 +1,25 @@
-
 # Listagem (`listing`)
 
 [:arrow_backward: Principal](../README-pt_PT.md)
 
-No menu do backoffice em `Listagem` é gerida as listas de itens, quando precisamos listar uma série de dados, como produtos, serviços, referências, notícias, e muito mais.
+As secções de listagem e os respetivos itens são geridos no editor de páginas. Servem para apresentar séries de dados, como produtos, serviços, referências ou notícias. Uma listagem pode conter título, conteúdo, imagem, ordem de apresentação, ações e itens relacionados.
 
-Por isso que dentro do menu do backoffice `Listagem` tem o `Item`, que é onde associamos os itens às respectivas listagens.
+## ReactJS e CSS/LESS
 
-A listagem pode conter Título, Conteúdo, Imagem e Ordem (ordenação).
-
-Cada listagem deve conter itens relacionionados em `Listagem > Item`
-
-## ReactJS & CSS/LESS
-
-O componente ReactJS que gere todas as Listagens (`listing`) no website fica em:
+O componente que apresenta as secções de listagem fica em:
 
 - `website/src/components/Listing`
 
-O componente recebe diversas propriedades como título (`title`), conteúdo (`content`), imagem (`image`), entre outras, além do array que contém os subitens relacionados (`items`).
-
-> Antes de realizar a customização analise as propriedades e o código CSS/LESS associado ao componente.
-
-### Tipo (`type`)
-
-A listagem (`listing`) devem conter um tipo associado.
-
-O tipo pode ser customizado no formulário `Listagem > Tipo`, onde o campo código é o valor que é utilizado pelo componente ReactJS na propriedade `type`.
-
-Então a propriedade `type` recebida no componente ReactJS `website/src/components/Listing` define o tipo de listagem que será procesada.
-
-> O `type` também é passado para os `items`, assim nos itens da listagem também é possível realizar a customizações de acordo com o tipo da listagem.
-
-A propriedade `type` pode ser utilizada em condições para customizar a estrutura HTML que será processada na renderização do componente.
- 
-O `type` também deve adicionado nas propriedades `className` de tags HTML geradas pelo componente, para manter o padrão e organização de nomes, e ainda facilita custumizar a sua aparência no código CSS/LESS.
+`website/src/components/Listing/index.jsx` implementa atualmente `Default` e também utiliza `Default` para qualquer outro valor de `type`.
 
 ### Item
 
-No backoffice os items são geridos em `Listagem > Item`, cada item contém a listagem ao qual pertence, título (`title`), conteúdo (`content`), imagem (`image`), ordem, URL (`link`) e o tipo (`type`) que é o tipo de listagem que é processada.
+Os itens são editados dentro de uma secção de listagem. Cada item pode conter título (`title`), conteúdo (`content`), imagem (`image`), ordem e URL (`link`); o `type` da listagem é passado aos seus itens.
 
-O componente ReactJS que gere todos os Itens (`Listing/Item`) no website fica em:
+O componente de item predefinido fica em:
 
-- `website/src/components/Listing/Item`
+- `website/src/components/Listing/Default/Item`
 
-A propriedade `type` pode ser utilizada em condições para customizar a estrutura HTML que será processada na renderização do componente.
- 
-O `type` também deve adicionado nas propriedades `className` de tags HTML geradas pelo componente, para manter o padrão e organização de nomes, e ainda facilita custumizar a sua aparência no código CSS/LESS.
+O componente do item usa o `type` da listagem no seu `className`, permitindo estilos LESS específicos por tipo.
 
 [:arrow_backward: Principal](../README-pt_PT.md)
-

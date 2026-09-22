@@ -1,0 +1,14 @@
+{
+  "_schema":"tags/page",
+  "summary":"Update an existing page",
+  "description":"Update an existing page",
+  "type":"object",
+  "properties":{
+    "uid":{
+      "type":"uuid"
+    }
+  },
+  "required":[
+    "uid"
+    ]
+}

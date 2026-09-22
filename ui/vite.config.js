@@ -18,7 +18,7 @@ export default defineConfig({
     react(),
     styleX(),
     {
-      closeBundle: async() => {
+      closeBundle: async () => {
         // Hack Ant.Design v5 Performance Issues
         // Using Tables causes very slow interactions on the entire page because an infinite loop executes the scrollTo function.
         const bundlePath = `${outputBasePath}/${outputFilePath}`

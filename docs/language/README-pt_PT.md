@@ -11,9 +11,9 @@ O menu de seleção do idioma é processado no Header do website em:
 
 - `website/src/base/Header`
 
-> No componente ReactJS (`index.js`) procure por `menuLanguages` e no CSS/LESS (`index.less`) é customizado pela class `menu-languages`.
+> No componente ReactJS (`index.jsx`) procura por `menuLanguages` e no CSS/LESS (`index.less`) a personalização usa a classe `menu-languages`.
 
-O componente utilizado para construir a seleção do idiomas é o [Menu do Ant.Design](https://ant.design/components/menu/).
+O componente utilizado para construir a seleção de idiomas é o [Menu do Ant.Design](https://ant.design/components/menu/).
 
 ## Programaticamente
 
@@ -21,7 +21,7 @@ Na classe JavaScript de funções úteis do CLUAR CMS:
 
 - `website/src/common/Cluar.js`
 
-É posssível trabalhar com o idioma, como por exemplo:
+É possível trabalhar com o idioma, como por exemplo:
 
 - `Cluar.defaultLanguage()` - Obter o idioma padrão.
 - `Cluar.currentLanguage()` - Obter o idioma ativo no momento atual.

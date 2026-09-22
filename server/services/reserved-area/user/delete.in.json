@@ -1,0 +1,5 @@
+{
+  "_schema":"tags/user",
+  "summary": "Remove User",
+  "description": "Delete a user account and their info."
+}

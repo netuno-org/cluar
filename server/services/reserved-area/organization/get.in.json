@@ -1,0 +1,11 @@
+{
+  "summary":"Get an existing organization by uid",
+  "description":"Get an existing organization by uid",
+  "_schema":"tags/organization",
+  "type":"object",
+  "properties":{
+    "uid":{
+      "type":"uuid"
+    }
+  }
+}

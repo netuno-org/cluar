@@ -2,7 +2,7 @@ import React from 'react';
 
 import Cluar from '../../common/Cluar';
 
-function Configuration({parameter, number, multilines}) {
+function Configuration({ parameter, number, multilines }) {
   let value = Cluar.configuration(parameter);
   if (multilines) {
     value = Cluar.configurationMultilines(parameter);
@@ -11,7 +11,7 @@ function Configuration({parameter, number, multilines}) {
     value = Cluar.configurationNumber(parameter);
   }
   return (
-    <span dangerouslySetInnerHTML={{__html: value}} />
+    <span dangerouslySetInnerHTML={{ __html: value }} />
   );
 }
 

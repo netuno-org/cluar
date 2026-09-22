@@ -28,6 +28,11 @@
     }
   },
   "devDependencies": {
-    "@netuno/server-types": "^1.4.4"
+    "@eslint/js": "^10.0.1",
+    "@jest/globals": "^30.5.2",
+    "@netuno/server-types": "^1.4.4",
+    "eslint": "^10.11.0",
+    "jest": "^30.5.2",
+    "supertest": "^7.2.2"
   }
 }

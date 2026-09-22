@@ -11,7 +11,9 @@ import {
   ApartmentOutlined,
   FileOutlined,
   RollbackOutlined,
-  LinkOutlined
+  LinkOutlined,
+  SunOutlined,
+  MoonOutlined
 } from '@ant-design/icons';
 import {
   Col,
@@ -29,13 +31,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { loggedUserInfoAction } from '../../redux/actions';
 
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../../redux/actions/theme";
+
 import _service from '@netuno/service-client';
 import _auth from '@netuno/auth-client';
 
 import "./index.less"
 import { useNavigate, useLocation } from "react-router";
-import ThemeSwitch from '../ThemeSwitch';
-import LanguageSwitch from '../LanguageSwitch';
 
 /*
  * Fonte única de "quem pode aceder a quê" dentro da área de gestão -
@@ -52,7 +55,7 @@ const MENU_PERMISSIONS = {
   actions: ["admin", "editor"],
   languages: ["admin"],
   configuration: ["admin"],
-  dictionary: ["admin", "editor"],
+  translation: ["admin", "editor"],
   organization: ["admin"],
 };
 
@@ -63,6 +66,10 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const [avatarImageURL, setAvatarImageURL] = useState('/images/profile-default.png');
   const navigate = useNavigate();
   const location = useLocation();
+
+  const dispatch = useDispatch();
+  const themeMode = useSelector((state) => state.theme?.mode || "light");
+  const isDark = themeMode === "dark";
 
   const normalizeGroupCode = (group) => {
     if (!group) {
@@ -80,9 +87,6 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const groupAliases = {
     admin: ["administrator", "admin"],
     editor: ["editor"],
-    author: ["author"],
-    contributor: ["contributor"],
-    subscriber: ["subscriber"],
   };
 
   const hasPermissions = (groupsAllowed) => {
@@ -118,65 +122,90 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const items = buildMenuItems([
     {
       key: 'profile',
-      label: Cluar.plainDictionary('user-menu-edit-profile'),
+      label: Cluar.plainTranslation('user-menu-edit-profile'),
       icon: <UserOutlined />,
       onClick: () => navigate("/reserved-area/profile"),
     },
     {
       key: 'return',
-      label: Cluar.plainDictionary('user-menu-return-site'),
+      label: Cluar.plainTranslation('user-menu-return-site'),
       icon: <RollbackOutlined />,
       onClick: () => navigate(`/${Cluar.currentLanguage().locale}/`),
+    },
+    {
+      key: 'language',
+      label: Cluar.plainTranslation('side-menu-options-language'),
+      icon: <GlobalOutlined />,
+      children: Cluar.languages()
+        .filter((language) => language.code !== Cluar.currentLanguage().code)
+        .map((language) => ({
+          key: `language-${language.code}`,
+          label: language.description,
+          onClick: () => {
+            Cluar.changeLanguage(language.locale);
+            window.location.reload();
+          },
+        })),
+    },
+    {
+      key: 'theme-toggle',
+      label: isDark
+        ? Cluar.plainTranslation('side-menu-options-theme-light')
+        : Cluar.plainTranslation('side-menu-options-theme-dark'),
+      icon: isDark ? <SunOutlined /> : <MoonOutlined />,
+      onClick: () => {
+        dispatch(toggleTheme());
+      },
     },
     hasPermissions([
       "admin",
       "editor"
     ]) && {
       key: '1',
-      label: Cluar.plainDictionary('side-menu-options-manage'),
+      label: Cluar.plainTranslation('side-menu-options-manage'),
       type: 'group',
       children: [
         {
           key: 'pages',
-          label: Cluar.plainDictionary('side-menu-options-pages'),
+          label: Cluar.plainTranslation('side-menu-options-pages'),
           icon: <FileOutlined />,
           onClick: () => navigate("/reserved-area/pages")
         },
         hasPermissions(MENU_PERMISSIONS.users) && {
           key: 'users',
-          label: Cluar.plainDictionary('side-menu-options-users'),
+          label: Cluar.plainTranslation('side-menu-options-users'),
           icon: <UserOutlined />,
           onClick: () => navigate("/reserved-area/users")
         },
         {
           key: 'actions',
-          label: Cluar.plainDictionary('side-menu-options-actions'),
+          label: Cluar.plainTranslation('side-menu-options-actions'),
           icon: <LinkOutlined />,
           onClick: () => navigate("/reserved-area/actions")
         },
         hasPermissions(MENU_PERMISSIONS.languages) && {
           key: 'languages',
-          label: Cluar.plainDictionary('side-menu-options-languages'),
+          label: Cluar.plainTranslation('side-menu-options-languages'),
           icon: <GlobalOutlined />,
           onClick: () => navigate("/reserved-area/languages")
         },
         hasPermissions(MENU_PERMISSIONS.configuration) && {
           key: 'configuration',
-          label: Cluar.plainDictionary('side-menu-options-configurations'),
+          label: Cluar.plainTranslation('side-menu-options-configurations'),
           icon: <SettingOutlined />,
           onClick: () => navigate("/reserved-area/configuration")
 
         },
         {
-          key: 'dictionary',
-          label: Cluar.plainDictionary('side-menu-options-dictionaries'),
+          key: 'translation',
+          label: Cluar.plainTranslation('side-menu-options-translations'),
           icon: <FontSizeOutlined />,
-          onClick: () => navigate("/reserved-area/dictionary")
+          onClick: () => navigate("/reserved-area/translation")
 
         },
         hasPermissions(MENU_PERMISSIONS.organization) && {
           key: 'organization',
-          label: Cluar.plainDictionary('side-menu-options-organizations'),
+          label: Cluar.plainTranslation('side-menu-options-organizations'),
           icon: <ApartmentOutlined />,
           onClick: () => navigate("/reserved-area/organization"),
         }
@@ -184,7 +213,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     },
     {
       key: 'logout',
-      label: Cluar.plainDictionary('user-menu-sign-out'),
+      label: Cluar.plainTranslation('user-menu-sign-out'),
       icon: <LogoutOutlined />,
       danger: true,
       onClick: () => onLogout(),
@@ -210,8 +239,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       groupsAllowed: MENU_PERMISSIONS.configuration,
     },
     {
-      prefix: "/reserved-area/dictionary",
-      groupsAllowed: MENU_PERMISSIONS.dictionary,
+      prefix: "/reserved-area/translation",
+      groupsAllowed: MENU_PERMISSIONS.translation,
     },
     { prefix: "/reserved-area/organization", groupsAllowed: MENU_PERMISSIONS.organization },
   ];
@@ -252,8 +281,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     if (location.pathname.startsWith("/reserved-area/configuration")) {
       return "configuration";
     }
-    if (location.pathname.startsWith("/reserved-area/dictionary")) {
-      return "dictionary";
+    if (location.pathname.startsWith("/reserved-area/translation")) {
+      return "translation";
     }
     if (location.pathname.startsWith("/reserved-area/organization")) {
       return "organization";
@@ -274,14 +303,14 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     // {
     //   key: 'profile',
     //   icon: <EditOutlined />,
-    //   label: Cluar.plainDictionary('user-menu-edit-profile'),
+    //   label: Cluar.plainTranslation('user-menu-edit-profile'),
     //   onClick: () => navigate("/reserved-area/profile"),
     // },
     // {
     //   key: 'logout',
     //   icon: <LogoutOutlined />,
     //   danger: true,
-    //   label: Cluar.plainDictionary('user-menu-sign-out'),
+    //   label: Cluar.plainTranslation('user-menu-sign-out'),
     //   onClick: () => onLogout(),
     // }
   ];
@@ -290,7 +319,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     setLoading(true);
     _service({
       method: 'GET',
-      url: 'people',
+      url: 'reserved-area/profile',
       success: (response) => {
         setLoading(false);
         if (response.json.result) {
@@ -307,8 +336,8 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         console.error('Dados do Utilizador', e);
         setLoading(false);
         notification["error"]({
-          message: Cluar.plainDictionary('side-menu-load-user-info-failed-message'),
-          description: Cluar.plainDictionary('side-menu-load-user-info-failed-description'),
+          message: Cluar.plainTranslation('side-menu-load-user-info-failed-message'),
+          description: Cluar.plainTranslation('side-menu-load-user-info-failed-description'),
         });
         window.sessionStorage.setItem("builder-edit-mode", "0");
         _auth.logout();
@@ -319,7 +348,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   useEffect(() => {
     if (loggedUserInfo && loggedUserInfo.avatar) {
       setAvatarImageURL(null);
-      setTimeout(() => setAvatarImageURL(`${_service.config().prefix}people/avatar?uid=${loggedUserInfo.uid}&${new Date().getTime()}`), 250);
+      setTimeout(() => setAvatarImageURL(`${_service.config().prefix}reserved-area/profile/avatar?uid=${loggedUserInfo.uid}&${new Date().getTime()}`), 250);
     }
   }, [loggedUserInfo]);
 
@@ -409,10 +438,6 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
             width={240}
             items={items}
           />
-        </div>
-        <div className='theme-switch-wrapper'>
-          <LanguageSwitch />
-          <ThemeSwitch />
         </div>
       </Layout.Sider>
     );

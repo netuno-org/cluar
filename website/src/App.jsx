@@ -21,11 +21,11 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ReservedArea from "./pages/ReservedArea";
 import Profile from "./pages/Manage/Profile";
-import Pages from "./pages/Manage/Pages";
-import Users from "./pages/Manage/Users";
-import Languages from "./pages/Manage/Languages";
+import Page from "./pages/Manage/Page";
+import User from "./pages/Manage/User";
+import Language from "./pages/Manage/Language";
 import Configuration from "./pages/Manage/Configuration";
-import Dictionary from "./pages/Manage/Dictionary";
+import Translation from "./pages/Manage/Translation";
 import Recovery from "./pages/Recovery";
 import Organization from "./pages/Manage/Organization";
 import Template from "./pages/Template";
@@ -38,7 +38,7 @@ import "keen-slider/keen-slider.min.css";
 import _auth from "@netuno/auth-client";
 
 import "./styles/App.less";
-import Actions from './pages/Manage/Actions';
+import Action from './pages/Manage/Action';
 
 const { Content } = Layout;
 
@@ -64,6 +64,7 @@ const ThemedConfigProvider = ({ children }) => {
   return (
     <ConfigProvider
       theme={{
+        cssVar: true,
         token: {
           colorPrimary: Cluar.configuration("primary-color") || "#FF6E1A",
           fontSize: Cluar.configuration("text-font-base") !== "text-font-base" ? Number(Cluar.configuration("text-font-base")) : 16,
@@ -110,11 +111,12 @@ function App() {
       }
 
       let comPage = <Template page={page} />;
+      const pageLink = page.link.startsWith('/') ? page.link : `/${page.link}`;
 
       subroutes.push(
         <Route
-          key={`/${language.locale}${page.link}`}
-          path={`/${language.locale}${page.link}`}
+          key={`/${language.locale}${pageLink}`}
+          path={`/${language.locale}${pageLink}`}
           exact
           element={comPage}
         />
@@ -138,7 +140,7 @@ function App() {
     useEffect(() => {
       _service({
         method: 'GET',
-        url: 'people',
+        url: 'reserved-area/profile',
         success: (response) => {
           if (response.json.result) {
             dispatch(loggedUserInfoAction(response.json.data));
@@ -173,12 +175,12 @@ function App() {
               <Route path="/recovery" element={<Recovery />} />
               <Route path="/reserved-area" element={<ReservedArea />}>
                 <Route path="profile" element={<Profile />} />
-                <Route path="pages" element={<Pages />} />
-                <Route path="users" element={<Users />} />
-                <Route path="actions" element={<Actions />} />
-                <Route path="languages" element={<Languages />} />
+                <Route path="pages" element={<Page />} />
+                <Route path="users" element={<User />} />
+                <Route path="actions" element={<Action />} />
+                <Route path="languages" element={<Language />} />
                 <Route path="configuration" element={<Configuration />} />
-                <Route path="dictionary" element={<Dictionary />} />
+                <Route path="translation" element={<Translation />} />
                 <Route path="organization" element={<Organization />} />
               </Route>
               {routes}

@@ -1,0 +1,32 @@
+{
+  "_schema":"tags/user",
+  "summary":"Update a user",
+  "description":"Update a user",
+  "type":"object",
+  "properties":{
+    "uid":{
+      "type":"uuid"
+    },
+    "name":{
+      "type":"string-not-empty"
+    },
+    "email":{
+      "type":"string-not-empty"
+    },
+    "active":{
+      "type":"boolean"
+    },
+    "username":{
+      "type":"string-not-empty"
+    },
+    "password":{
+      "type":"string"
+    }
+  },
+  "required":[
+    "uid",
+    "name",
+    "email",
+    "username"
+  ]
+}

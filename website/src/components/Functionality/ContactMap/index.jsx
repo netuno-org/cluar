@@ -5,7 +5,7 @@ import { PhoneOutlined, HomeOutlined, MailOutlined } from '@ant-design/icons';
 
 import Cluar from '../../../common/Cluar';
 import config from "./config.json"
-import Actions from "../../Actions";
+import Action from "../../Action";
 
 import './index.less';
 
@@ -116,7 +116,7 @@ function ContactMap({ section, type, title, content, actions, html_content, edit
           </Col>
           {config.action && (
             <Col lg={6} sm={24}>
-              <Actions {...{ section, type, actions }} />
+              <Action {...{ section, type, actions }} />
             </Col>
           )}
         </Row>

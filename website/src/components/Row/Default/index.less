@@ -1,0 +1,26 @@
+@import "../../../styles/variables.less";
+
+.row__default {
+  width: 100%;
+  padding-top: @header-size;
+  padding-bottom: @header-size;
+  box-sizing: border-box;
+  max-width: @site-max-width;
+  margin: 0 auto;
+
+  h2 {
+    font-size: 2em;
+    font-weight: normal;
+    letter-spacing: 0.01em;
+  }
+
+
+  @media (max-width: @header-desktop-width) {
+      padding-left: 60px;
+      padding-right: 60px;
+  }
+
+  @media only screen and (max-width: @header-mobile-width) {
+      padding: calc(@header-size-mobile + 48px) 24px 48px;
+  }
+}

@@ -3,6 +3,7 @@ import { Modal, Button, Upload, Input, Form, Divider, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
 import { INSERT_IMAGE_COMMAND } from '../utils/commands';
+import Cluar from "../../../common/Cluar";
 
 export default function InsertImageModal({ visible, onClose, activeEditor }) {
   const [form] = Form.useForm();
@@ -49,7 +50,7 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
 
   return (
     <Modal
-      title="Inserir Imagem"
+      title={Cluar.plainTranslation("toolbar-insert-image")}
       open={visible}
       onCancel={() => {
         onClose();
@@ -68,7 +69,7 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
       ]}
     >
       <Form form={form} layout="vertical">
-        <Form.Item name="file" label="Upload de Imagem">
+        <Form.Item name="file" label={Cluar.plainTranslation("toolbar-image-upload-label")}>
           <Upload
             accept="image/*"
             showUploadList={false}
@@ -83,7 +84,7 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
 
         <Form.Item
           name="url"
-          label="URL da Imagem"
+          label={Cluar.plainTranslation("toolbar-image-url-label")}
           rules={[
             {
               validator: (_, value) => {

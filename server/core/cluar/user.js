@@ -1,86 +1,90 @@
+/*
+  * Functions that deal with the logged user
+  */
+
 import { _db, _user, _val } from "@netuno/server-types";
 
 export default {
-  getLoggedPeople: () => {
-    return _db.form("people")
+  getProfile: () => {
+    return _db.form("profile")
       .where(
-        _db.where("people_user_id").equals(_user.id())
+        _db.where("profile_user_id").equals(_user.id())
       )
       .first();
   },
 
-  getUserOrganizations: () => {
-    const dbPeople = _db.queryFirst(`SELECT id FROM people WHERE people_user_id = ?`, _user.id());
+  getActiveAdminOrganizationsWithDescendants: () => {
+    const dbProfile = _db.queryFirst(`SELECT id FROM profile WHERE profile_user_id = ?`, _user.id());
 
     const dbOrganizations = _db.query(`
         WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (
-            SELECT 
-                org.name, 
-                org.id, 
+            SELECT
+                org.name,
+                org.id,
                 org.parent_id,
                 org.code,
                 org.uid,
                 org.active
-            FROM 
+            FROM
                 organization org
-            INNER JOIN 
-                organization_people op ON org.id = op.organization_id
-            WHERE 1 = 1 
-                AND op.people_id = ${dbPeople.getInt("id")}
+            INNER JOIN
+                organization_profile op ON org.id = op.organization_id
+            WHERE 1 = 1
+                AND op.profile_id = ${dbProfile.getInt("id")}
                 AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
                 AND op.active = true
             UNION
-            SELECT 
-                org.name, 
-                org.id, 
+            SELECT
+                org.name,
+                org.id,
                 org.parent_id,
                 org.code,
                 org.uid,
                 org.active
-            FROM 
+            FROM
                 organization org
             INNER JOIN user_orgs uo ON org.parent_id = uo.id
         )
-        SELECT 
+        SELECT
             user_orgs.name,
             user_orgs.code,
             user_orgs.uid,
             user_orgs.id
-        FROM 
+        FROM
             user_orgs
-        WHERE 1 = 1   
-        `);
+        WHERE 1 = 1
+    `);
 
     return dbOrganizations;
   },
 
-  getUserOrganizationHierarchy: () => {
-    const dbPeople = _db.queryFirst(`SELECT id FROM people WHERE people_user_id = ?`, _user.id());
+  getOrganizationsWithDescendants: () => {
+    const dbProfile = _db.queryFirst(`SELECT id FROM profile WHERE profile_user_id = ?`, _user.id());
 
     const dbOrganizations = _db.query(`
         WITH RECURSIVE user_orgs AS (
-            SELECT 
-                org.name, 
-                org.id, 
+            SELECT
+                org.name,
+                org.id,
                 org.parent_id,
                 org.code,
                 org.uid,
                 org.active
-            FROM 
+            FROM
                 organization org
-            INNER JOIN 
-                organization_people op ON org.id = op.organization_id
-            WHERE 1 = 1 
-                AND op.people_id = ${dbPeople.getInt("id")}
+            INNER JOIN
+                organization_profile op ON org.id = op.organization_id
+            WHERE 1 = 1
+                AND op.profile_id = ${dbProfile.getInt("id")}
             UNION
-            SELECT 
-                org.name, 
-                org.id, 
+            SELECT
+                org.name,
+                org.id,
                 org.parent_id,
                 org.code,
                 org.uid,
                 org.active
-            FROM 
+            FROM
                 organization org
             INNER JOIN user_orgs uo ON org.parent_id = uo.id
         )
@@ -89,23 +93,23 @@ export default {
             user_orgs.code org_code,
             user_orgs.uid AS org_uid,
             user_orgs.id AS org_id,
-            people.name AS people_name,
-            people.uid AS people_uid,
-            people.id AS people_id,
+            profile.name AS profile_name,
+            profile.uid AS profile_uid,
+            profile.id AS profile_id,
             user_group.name AS group_name,
             user_group.code AS group_code,
-            organization_people.active AS member_active
+            organization_profile.active AS member_active
         FROM
-            user_orgs 
-        INNER JOIN 
-            organization_people ON organization_people.organization_id = user_orgs.id
-        INNER JOIN 
-            people ON people.id = organization_people.people_id
+            user_orgs
         INNER JOIN
-            user_group ON user_group.id = organization_people.user_group_id
+            organization_profile ON organization_profile.organization_id = user_orgs.id
+        INNER JOIN
+            profile ON profile.id = organization_profile.profile_id
+        INNER JOIN
+            user_group ON user_group.id = organization_profile.user_group_id
          WHERE 1 = 1
-            AND people.id = ${dbPeople.getInt("id")} 
-        `);
+            AND profile.id = ${dbProfile.getInt("id")}
+    `);
 
     const hierarchy = _val.map();
 
@@ -125,90 +129,90 @@ export default {
               .set('name', dbOrganization.getString('group_name'))
               .set('code', dbOrganization.getString('group_code'))
           )
-      )
+      );
       const dbDescendants = _db.query(`
-          WITH RECURSIVE childrens AS (
-             SELECT 
-                 org.name, 
-                 org.id, 
+          WITH RECURSIVE descendant AS (
+             SELECT
+                 org.name,
+                 org.id,
                  org.parent_id,
                  org.code,
                  org.uid,
                  org.active
-             FROM 
+             FROM
                  organization org
-             WHERE 1 = 1 
+             WHERE 1 = 1
                 AND org.id = ${dbOrganization.getInt("org_id")}
              UNION
-             SELECT 
-                 org.name, 
-                 org.id, 
+             SELECT
+                 org.name,
+                 org.id,
                  org.parent_id,
                  org.code,
                  org.uid,
                  org.active
-             FROM 
+             FROM
                  organization org
-             INNER JOIN 
-                 childrens cs ON org.parent_id = cs.id
+             INNER JOIN
+                 descendant cs ON org.parent_id = cs.id
          )
-         SELECT 
-             childrens.name AS childrens_name,
-             childrens.code AS childrens_code,
-             childrens.uid AS childrens_uid,
-             childrens.id AS childrens_id
-         FROM 
-             childrens
-     `);
+         SELECT
+             descendant.name AS descendant_name,
+             descendant.code AS descendant_code,
+             descendant.uid AS descendant_uid,
+             descendant.id AS descendant_id
+         FROM
+             descendant
+      `);
 
       for (const dbDescendant of dbDescendants) {
         hierarchy.set(
-          dbDescendant.getString('childrens_code'),
+          dbDescendant.getString('descendant_code'),
           _val.map()
             .set('active', dbOrganization.getBoolean('member_active'))
             .set('organization',
               _val.map()
-                .set('name', dbDescendant.getString('childrens_name'))
-                .set('code', dbDescendant.getString('childrens_code'))
-                .set('uid', dbDescendant.getString("childrens_uid"))
+                .set('name', dbDescendant.getString('descendant_name'))
+                .set('code', dbDescendant.getString('descendant_code'))
+                .set('uid', dbDescendant.getString("descendant_uid"))
             )
             .set('group',
               _val.map()
                 .set('name', dbOrganization.getString('group_name'))
                 .set('code', dbOrganization.getString('group_code'))
             )
-        )
+        );
 
         const specificMember = _db.queryFirst(`
-            SELECT 
+            SELECT
                 user_group.name,
                 user_group.code,
-                organization_people.active AS member_active
+                organization_profile.active AS member_active
             FROM user_group
             INNER JOIN
-                organization_people ON organization_people.user_group_id = user_group.id
+                organization_profile ON organization_profile.user_group_id = user_group.id
             WHERE 1 = 1
-                AND organization_people.organization_id = ?
-                AND organization_people.people_id = ?
-          `, dbDescendant.getInt("childrens_id"), dbOrganization.getInt("people_id"));
+                AND organization_profile.organization_id = ?
+                AND organization_profile.profile_id = ?
+        `, dbDescendant.getInt("descendant_id"), dbOrganization.getInt("profile_id"));
 
         if (specificMember) {
           hierarchy.set(
-            dbDescendant.getString('childrens_code'),
+            dbDescendant.getString('descendant_code'),
             _val.map()
               .set('active', specificMember.getBoolean('member_active'))
               .set('organization',
                 _val.map()
-                  .set('name', dbDescendant.getString('childrens_name'))
-                  .set('code', dbDescendant.getString('childrens_code'))
-                  .set('uid', dbDescendant.getString("childrens_uid"))
+                  .set('name', dbDescendant.getString('descendant_name'))
+                  .set('code', dbDescendant.getString('descendant_code'))
+                  .set('uid', dbDescendant.getString("descendant_uid"))
               )
               .set('group',
                 _val.map()
                   .set('name', specificMember.getString('name'))
                   .set('code', specificMember.getString('code'))
               )
-          )
+          );
         }
       }
     }

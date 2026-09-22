@@ -1,0 +1,18 @@
+{
+  "_schema":"tags/actions",
+  "summary":"Activate/Deactivate an existing action by uid",
+  "description":"Activate/Deactivate an existing action by uid",
+  "type":"object",
+  "properties":{
+    "uid":{
+      "type":"uuid"
+    },
+    "active":{
+      "type":"boolean"
+    }
+  },
+  "required":[
+    "uid",
+    "active"
+  ]
+}

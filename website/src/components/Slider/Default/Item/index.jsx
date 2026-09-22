@@ -2,7 +2,7 @@ import React from "react";
 
 import "./index.less";
 import config from "../config.json"
-import Actions from "../../../Actions";
+import Action from "../../../Action";
 import Cluar from "../../../../common/Cluar";
 
 function Item({
@@ -50,7 +50,7 @@ function Item({
         ></div>
         {config.action && (
           <div className="slider__actions">
-            <Actions {...{ section, type, actions }} />
+            <Action {...{ section, type, actions }} />
           </div>
         )}
       </div>

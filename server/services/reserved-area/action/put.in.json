@@ -1,0 +1,41 @@
+{
+  "_schema": "tags/actions",
+  "summary": "Update an existing action",
+  "description": "Update an existing action",
+  "type": "object",
+  "properties": {
+    "uid": {
+      "type":"uuid"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "indication": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "active": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "language_code": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "uid",
+    "title",
+    "content",
+    "indication",
+    "link",
+    "active",
+    "language_code"
+  ]
+}

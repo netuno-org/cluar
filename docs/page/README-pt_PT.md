@@ -1,9 +1,9 @@
 
-# Pagina (`page`)
+# Página (`page`)
 
 [:arrow_backward: Principal](../README-pt_PT.md)
 
-No menu do backoffice em `Página` é onde é gerida as páginas, navegação e o menu do website.
+No menu do backoffice em `Página` é onde são geridas as páginas, navegação e o menu do website.
 
 ### Idioma
 
@@ -15,7 +15,7 @@ Pode ser definido uma outra página como "pai", o que permite construir uma hier
 
 ### Ligação (`link`)
 
-No campo ligação é onde definimos a parte da URL interna da página, deve começar sempre com `/`, não conter espaço e nem caracteres purtugueses ou outros especiais.
+No campo ligação é onde definimos a parte da URL interna da página, deve começar sempre com `/`, não conter espaços nem caracteres portugueses ou outros especiais.
 
 Exemplos de valores para o campo de ligação:
 
@@ -25,11 +25,11 @@ Exemplos de valores para o campo de ligação:
 
 ### Título
 
-No campo de título é onde definimos o título a página que vai aparecer no menu (caso esteja ativo) e também da aba (__tab__) e janela do navegador (__browser__).
+No campo de título é onde definimos o título da página que vai aparecer no menu (caso esteja ativo) e também da aba (__tab__) e janela do navegador (__browser__).
 
 ### Estado
 
-Apenas se o estado for **Publicada** então página passa a ficar disponível online.
+Apenas se o estado for **Publicada** então a página passa a ficar disponível online.
 
 Caso contrário fica indisponível no website mas permite a construção e associação de conteúdos em backoffice.
 
@@ -45,7 +45,7 @@ Exemplo de palavras-chave:
 
 ### Descrição e Imagem para as Redes Sociais
 
-Quando a página for partilhada nas redes sociais é apresentado a imagem e a descrição que estão definidas nos respectivos campos:
+Quando a página for partilhada nas redes sociais são apresentadas a imagem e a descrição que estão definidas nos respetivos campos:
 
 - `Imagem para as Redes Sociais`
 - `Descrição para as Redes Sociais`
@@ -56,6 +56,6 @@ Se o campo de Menu estiver ativo então a página aparece no menu de navegação
 
 No campo Ordem define o número de posição da página no menu.
 
-O campo Menu Título permite ter um título diferente para ser apresentado no menu de navegação do website, assim o título que aparecerá no menu de navegação poderá ser diferente do título da página, não é obrigatório o seu preenchimento e quando não preenchido é utilizado o título da página.
+O campo Menu Título permite apresentar no menu de navegação um título diferente do título da página. É obrigatório quando o campo Menu está ativo.
 
 [:arrow_backward: Principal](../README-pt_PT.md)

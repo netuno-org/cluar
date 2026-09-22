@@ -32,7 +32,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
     const onLoadConfigurations = () => {
         setLoading({ ...loading, configuration: true });
         _service({
-            url: "configuration/list",
+            url: "reserved-area/configuration/list",
             method: "POST",
             data: {
                 filters,
@@ -48,7 +48,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
                 setLoading({ ...loading, configuration: false });
                 console.error(error);
                 notification.error({
-                    message: Cluar.plainDictionary('configuration-page-load-failed-message')
+                    message: Cluar.plainTranslation('configuration-page-load-failed-message')
                 })
             }
         });
@@ -57,7 +57,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
     const onLoadLanguages = () => {
         setLoading({ ...loading, language: true });
         _service({
-            url: "language/list",
+            url: "reserved-area/language/list",
             method: "POST",
             success: (response) => {
                 setLoading({ ...loading, language: false });
@@ -77,20 +77,20 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
     const onDelete = (uid) => {
         setDeleteLoadingUid(uid);
         _service({
-            url: "configuration",
+            url: "reserved-area/configuration",
             method: "DELETE",
             data: { uid },
             success: () => {
                 setDeleteLoadingUid(null);
                 notification.success({
-                    message: Cluar.plainDictionary("configuration-table-delete-success-message")
+                    message: Cluar.plainTranslation("configuration-table-delete-success-message")
                 });
                 onLoadConfigurations();
             },
             fail: (error) => {
                 setDeleteLoadingUid(null);
                 console.error(error);
-                const errorMessage = error?.json?.error || Cluar.plainDictionary("configuration-table-delete-failed-message");
+                const errorMessage = error?.json?.error || Cluar.plainTranslation("configuration-table-delete-failed-message");
                 notification.error({ message: errorMessage });
             }
         });
@@ -122,7 +122,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
 
     const columns = [
         {
-            title: Cluar.plainDictionary('configuration-table-language'),
+            title: Cluar.plainTranslation('configuration-table-language'),
             dataIndex: 'language',
             key: 'language_codes',
             onHeaderCell: () => ({
@@ -136,7 +136,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
             }))
         },
         {
-            title: Cluar.plainDictionary('configuration-table-parameter'),
+            title: Cluar.plainTranslation('configuration-table-parameter'),
             dataIndex: 'parameter',
             key: 'parameter',
             onHeaderCell: () => ({
@@ -145,7 +145,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
             render: (val) => val.description
         },
         {
-            title: Cluar.plainDictionary('configuration-table-parameter-type'),
+            title: Cluar.plainTranslation('configuration-table-parameter-type'),
             dataIndex: 'parameter_type',
             key: 'parameter_type_name',
             onHeaderCell: () => ({
@@ -154,7 +154,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
             render: (val) => val.name
         },
         {
-            title: Cluar.plainDictionary('configuration-table-value'),
+            title: Cluar.plainTranslation('configuration-table-value'),
             dataIndex: 'value',
             key: 'value',
             onHeaderCell: () => ({
@@ -162,7 +162,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
             }),
         },
         {
-            title: Cluar.plainDictionary('configuration-table-value-img'),
+            title: Cluar.plainTranslation('configuration-table-value-img'),
             dataIndex: 'image_url',
             key: 'image_url',
             onHeaderCell: () => ({
@@ -173,7 +173,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
             ) : null
         },
         {
-            title: Cluar.plainDictionary('configuration-table-actions'),
+            title: Cluar.plainTranslation('configuration-table-actions'),
             dataIndex: 'actions',
             key: 'actions',
             onHeaderCell: () => ({
@@ -190,7 +190,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
                         icon={<EditOutlined />}
                     />
                     <Popconfirm
-                        title={Cluar.plainDictionary("configuration-table-popconfirm-delete-title")}
+                        title={Cluar.plainTranslation("configuration-table-popconfirm-delete-title")}
                         onConfirm={() => onDelete(record.uid)}
                     >
                         <Button

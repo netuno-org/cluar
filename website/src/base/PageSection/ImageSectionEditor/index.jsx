@@ -5,6 +5,8 @@ import { PlusOutlined } from "@ant-design/icons";
 
 import "./index.less";
 
+import Cluar from "../../../common/Cluar";
+
 const ImageSectionEditor = ({
   sectionData,
   form,
@@ -88,7 +90,7 @@ const ImageSectionEditor = ({
 
   return (
     <div className="image-section-editor">
-      <Form.Item label="Imagem" name={imageName}>
+      <Form.Item label={Cluar.plainTranslation("image-editor-field-image")} name={imageName}>
         <Upload
           listType="picture"
           fileList={fileList}
@@ -131,7 +133,7 @@ const ImageSectionEditor = ({
         )}
       </Form.Item>
 
-      <Form.Item label="Título da Image" name={imageTitleName}>
+      <Form.Item label={Cluar.plainTranslation("image-editor-field-title")} name={imageTitleName}>
         <Input
           onChange={(e) => {
             if (onChangeImageTitle) {
@@ -142,7 +144,7 @@ const ImageSectionEditor = ({
       </Form.Item>
 
       <Form.Item
-        label="Título Alt"
+        label={Cluar.plainTranslation("image-editor-field-alt")}
         name={imageAltName}
         onChange={(e) => {
           if (onChangeImageAlt) {

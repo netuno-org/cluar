@@ -1,25 +1,32 @@
-import { Switch, Tooltip } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { toggleTheme } from "../../redux/actions/theme";
-import { SunOutlined, MoonOutlined } from "@ant-design/icons";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { SunOutlined, MoonOutlined } from '@ant-design/icons';
 
-const ThemeSwitch = () => {
+import Cluar from '../../common/Cluar';
+import { toggleTheme } from '../../redux/actions/theme';
+
+import './index.less';
+
+function ThemeSwitch() {
     const dispatch = useDispatch();
-    const themeMode = useSelector((state) => state.theme?.mode || "light");
+    const themeMode = useSelector((state) => state.theme?.mode || 'light');
 
-    const isDark = themeMode === "dark";
+    const label =
+        themeMode === 'dark'
+            ? Cluar.plainTranslation('theme-switch-activate-light')
+            : Cluar.plainTranslation('theme-switch-activate-dark');
 
     return (
-        <Tooltip title={isDark ? "Mudar para modo claro" : "Mudar para modo escuro"}>
-            <Switch
-                checked={isDark}
-                onChange={() => dispatch(toggleTheme())}
-                checkedChildren={<MoonOutlined />}
-                unCheckedChildren={<SunOutlined />}
-                style={{ backgroundColor: isDark ? "#FF6E1A" : "#bfbfbf" }}
-            />
-        </Tooltip>
+        <button
+            type="button"
+            className="theme-switch"
+            aria-label={label}
+            title={label}
+            onClick={() => dispatch(toggleTheme())}
+        >
+            {themeMode === 'dark' ? <SunOutlined /> : <MoonOutlined />}
+        </button>
     );
-};
+}
 
 export default ThemeSwitch;
