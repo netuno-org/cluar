@@ -25,7 +25,7 @@ export default {
    * Netuno no upload (ex: o "logo").
    */
   FIXED_IMAGE_LOCATION: {
-    "favicon": { folder: "images", fileName: "favicon.png" },
+    "favicon": { folder: "images", fileName: "icon.png" },
   },
 
   configurationImageLocation: (parameterCode, uploadedFileName) => {
@@ -264,6 +264,7 @@ export default {
       if (faviconFile.exists()) {
         const iconElement = headElement.selectFirst("link[rel=icon]")
         if (iconElement) {
+          iconElement.attr("type", "image/png")
           iconElement.attr(
             "href",
             `/${faviconLocation.folder}/${faviconLocation.fileName}?v=${faviconFile.lastModified()}`
