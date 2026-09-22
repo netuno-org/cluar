@@ -22,7 +22,7 @@ const profileId = dbProfile.getInt("id");
 const membership = _db.queryFirst(`
     SELECT
         count(*) over(),
-        organization.id as user_organization_id
+        organization.uid as user_organization_uid
     FROM organization_profile
     INNER JOIN organization
     ON organization_profile.organization_id = organization.id
@@ -36,9 +36,9 @@ if (membership.getInt("count") > 1) {
   });
 }
 
-const userOrganizationId = membership.getInt("user_organization_id");
+const userOrganizationUid = membership.getString("user_organization_uid");
 const loggedUserOganizations = cluar.user.getActiveAdminOrganizationsWithDescendants();
-if (!loggedUserOganizations.some((org) => org.getInt("id") === userOrganizationId)) {
+if (!loggedUserOganizations.some((org) => org.getString("uid") === userOrganizationUid)) {
   cluar.response.error({ status: 403, error: 'permission denied' });
 }
 
