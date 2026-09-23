@@ -24,7 +24,7 @@ beforeEach(async () => {
   c11OrgUid = await createOrganization("c11", "c1");
 
   aliceUid = await createUser("alice", "c", "administrator");
-  bobUid = await createUser("bob", "b", "administrator");
+  bobUid = await createUser("bob", "b", "editor");
   charlieUid = await createUser("charlie", "c11", "administrator");
 });
 
