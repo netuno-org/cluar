@@ -6,7 +6,7 @@ const parameterUid = _req.getString('uid');
 const dbActionParameter = _db.get('action_parameter', parameterUid);
 
 if (!dbActionParameter) {
-  cluar.response.error({ status: 404, error: 'parameter not found' });
+  cluar.response.error({ status: 404, error: 'parameter not found', error_code: 'parameter-not-found' });
 }
 
 const parameterId = dbActionParameter.getInt("id");
@@ -20,6 +20,7 @@ if (inUse && inUse.getInt("total") > 0) {
   // Se estiver em uso, bloqueia a exclusão e avisa o usuário
   cluar.response.error({
     status: 409,
+    error_code: 'parameter-in-use',
     error: 'Não é possível apagar este parâmetro pois ele está sendo usado por uma ou mais ações.'
   });
 }

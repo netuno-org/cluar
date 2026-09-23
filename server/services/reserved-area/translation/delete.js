@@ -6,7 +6,7 @@ const uid = _req.getString('uid');
 const dbTranslation = _db.get('translation', uid);
 
 if (!dbTranslation) {
-  cluar.response.error({ status: 404, error: 'translation not found' });
+  cluar.response.error({ status: 404, error: 'translation not found', error_code: 'translation-not-found' });
 }
 
 _db.delete('translation', dbTranslation.getInt("id"));

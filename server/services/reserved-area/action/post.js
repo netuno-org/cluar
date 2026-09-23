@@ -15,13 +15,13 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-  cluar.response.error({ status: 404, error: `language not found with code: ${languageCode}` });
+  cluar.response.error({ status: 404, error: `language not found with code: ${languageCode}`, error_code: 'language-not-found' });
 }
 
 const dbActionParameter = _db.get('action_parameter', parameterUid);
 
 if (!dbActionParameter) {
-  cluar.response.error({ status: 404, error: 'parameter not found' });
+  cluar.response.error({ status: 404, error: 'parameter not found', error_code: 'parameter-not-found' });
 }
 
 const data = _db.form("action")

@@ -6,7 +6,7 @@ const uid = _req.getString('uid');
 const dbAction = _db.get('action', uid);
 
 if (!dbAction) {
-  cluar.response.error({ status: 404, error: 'action not found' });
+  cluar.response.error({ status: 404, error: 'action not found', error_code: 'action-not-found' });
 }
 
 const actionId = dbAction.getInt("id");
@@ -35,6 +35,7 @@ for (const check of usageChecks) {
 if (usedIn.length > 0) {
   cluar.response.error({
     status: 409,
+    error_code: 'action-in-use',
     error: `Não é possível apagar esta ação pois ela está sendo usada em: ${usedIn.join(', ')}.`
   });
 }

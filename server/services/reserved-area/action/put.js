@@ -16,18 +16,18 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-  cluar.response.error({ status: 404, error: `language not found with code: ${languageCode}` });
+  cluar.response.error({ status: 404, error: `language not found with code: ${languageCode}`, error_code: 'language-not-found' });
 }
 
 const dbActionParameter = _db.get('action_parameter', parameterUid);
 
 if (!dbActionParameter) {
-  cluar.response.error({ status: 404, error: 'parameter not found' });
+  cluar.response.error({ status: 404, error: 'parameter not found', error_code: 'parameter-not-found' });
 }
 
 const dbAction = _db.get('action', uid);
 if (!dbAction) {
-  cluar.response.error({ status: 404, error: `action not found with uid: ${uid}` });
+  cluar.response.error({ status: 404, error: `action not found with uid: ${uid}`, error_code: 'action-not-found' });
 }
 
 const data = _val.map()
