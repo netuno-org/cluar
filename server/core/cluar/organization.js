@@ -9,20 +9,20 @@ export default {
       .first();
   },
 
-  getProfileGroupsByOrg: (organizationId, profileId) => {
-    return _db.form("organization_profile")
-      .where(
-        _db.where("organization_id").equals(organizationId)
-          .and("profile_id").equals(profileId)
-          .and("active").equals(true)
-      )
-      .link("user_group")
-      .get("user_group.id")
-      .get("user_group.uid")
-      .get("user_group.name")
-      .get("user_group.code")
-      .all();
-  },
+  // getProfileGroupsByOrg: (organizationId, profileId) => {
+  //   return _db.form("organization_profile")
+  //     .where(
+  //       _db.where("organization_id").equals(organizationId)
+  //         .and("profile_id").equals(profileId)
+  //         .and("active").equals(true)
+  //     )
+  //     .link("user_group")
+  //     .get("user_group.id")
+  //     .get("user_group.uid")
+  //     .get("user_group.name")
+  //     .get("user_group.code")
+  //     .all();
+  // },
 
   isAncestorOf: (params) => {
     const ancestor = params.getValues("ancestor");

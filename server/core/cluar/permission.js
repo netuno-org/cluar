@@ -5,12 +5,12 @@ import response from "#core/cluar/response.js";
 
 export default {
   // logged user is allowed
-  isAllowed: ({ organization: orgCode, allowedGroups }) => {
-    const loggedProfile = user.getProfile();
-    const currentOrg = organization.getByCode(orgCode);
-    const profileGroups = organization.getProfileGroupsByOrg(currentOrg.getInt("id"), loggedProfile.getInt("id"));
-    return profileGroups.some((group) => allowedGroups.includes(group.getString("code")));
-  },
+  // isAllowed: ({ organization: orgCode, allowedGroups }) => {
+  //   const loggedProfile = user.getProfile();
+  //   const currentOrg = organization.getByCode(orgCode);
+  //   const profileGroups = organization.getProfileGroupsByOrg(currentOrg.getInt("id"), loggedProfile.getInt("id"));
+  //   return profileGroups.some((group) => allowedGroups.includes(group.getString("code")));
+  // },
 
   isUserAuthorizedInOrganization: (organization) => {
     const profile = user.getProfile();
