@@ -67,6 +67,7 @@ if (insertedOrganization.getInt('parent_id') > 0) {
   )
 }
 
+_header.status(201);
 _out.json(
   _val.map()
     .set('result', true)
