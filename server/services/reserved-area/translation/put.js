@@ -5,15 +5,15 @@ const value = _req.getString("value");
 const languageCode = _req.getString("language_code");
 const entryCode = _req.getString("entry_code");
 
-const dbTranslation = _db.get('translation', uid);
+const dbTranslation = _db.get("translation", uid);
 
 if (!dbTranslation) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `translation not found with uid: ${uid}`)
-      .set('error_code', `translation-not-found`)
+      .set("result", false)
+      .set("error", `translation not found with uid: ${uid}`)
+      .set("error_code", "translation-not-found")
   );
   _exec.stop();
 }
@@ -27,9 +27,9 @@ if (!dbLanguage) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `language not found with code: ${languageCode}`)
-      .set('error_code', `language-not-found`)
+      .set("result", false)
+      .set("error", `language not found with code: ${languageCode}`)
+      .set("error_code", "language-not-found")
   );
   _exec.stop();
 }
@@ -42,25 +42,25 @@ if (!dbEntry) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `entry not found with code: ${entryCode}`)
-      .set('error_code', `entry-not-found`)
+      .set("result", false)
+      .set("error", `entry not found with code: ${entryCode}`)
+      .set("error_code", "entry-not-found")
   );
   _exec.stop();
 }
 
 const data = _val.map()
-  .set('value', value)
-  .set('language_id', dbLanguage.getInt("id"))
-  .set('entry_id', dbEntry.getInt("id"));
+  .set("value", value)
+  .set("language_id", dbLanguage.getInt("id"))
+  .set("entry_id", dbEntry.getInt("id"));
 
 _db.update(
-  'translation',
+  "translation",
   dbTranslation.getInt("id"),
   data
 );
 
 _out.json(
   _val.map()
-    .set('result', true)
+    .set("result", true)
 );

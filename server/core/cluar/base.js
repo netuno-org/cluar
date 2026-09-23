@@ -72,7 +72,7 @@ export default {
             language.code "language",
             configuration_parameter.code "code",
             configuration.value_img,
-            configuration.${_db.escape('value')}
+            configuration.${_db.escape("value")}
         FROM language
             INNER JOIN configuration ON language.id = configuration.language_id
             INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
@@ -97,7 +97,7 @@ export default {
           folder.mkdirs();
         }
         const websiteFile = _app.file(`${folder.path()}/${location.fileName}`);
-        const databaseFile = _storage.database(`configuration`, "value_img", uploadedFileName).file();
+        const databaseFile = _storage.database("configuration", "value_img", uploadedFileName).file();
         if (!websiteFile.exists()
           || databaseFile.available() != websiteFile.available()
           || databaseFile.lastModified() > websiteFile.lastModified()) {
@@ -115,7 +115,7 @@ export default {
         SELECT
             configuration_parameter.code "code",
             configuration.value_img,
-            configuration.${_db.escape('value')}
+            configuration.${_db.escape("value")}
         FROM configuration
             INNER JOIN configuration_parameter ON configuration.parameter_id = configuration_parameter.id
         WHERE (configuration.language_id = 0 OR configuration.language_id IS NULL)
@@ -139,7 +139,7 @@ export default {
           folder.mkdirs();
         }
         const websiteFile = _app.file(`${folder.path()}/${location.fileName}`);
-        const databaseFile = _storage.database(`configuration`, "value_img", uploadedFileName).file();
+        const databaseFile = _storage.database("configuration", "value_img", uploadedFileName).file();
         if (!websiteFile.exists()
           || databaseFile.available() != websiteFile.available()
           || databaseFile.lastModified() > websiteFile.lastModified()) {
@@ -307,7 +307,7 @@ export default {
         SELECT
             language.code "language",
             translation_entry.code "code",
-            translation.${_db.escape('value')}
+            translation.${_db.escape("value")}
         FROM language
             INNER JOIN translation ON translation.language_id = language.id
             INNER JOIN translation_entry ON translation.entry_id = translation_entry.id
@@ -429,10 +429,10 @@ export default {
     }
 
     const dbLanguages = _db.find(
-      'language',
+      "language",
       _val.map()
         .set(
-          'where',
+          "where",
           _val.map()
             .set("active", true)
         )

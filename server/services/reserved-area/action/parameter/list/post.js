@@ -1,7 +1,7 @@
 import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
-const dbActionParameters = _db.form('action_parameter')
+const dbActionParameters = _db.form("action_parameter")
   .all()
 
 const parameters = [];

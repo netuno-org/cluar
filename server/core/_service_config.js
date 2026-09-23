@@ -23,13 +23,13 @@ if (_service.path == 'samples/my-service') {
  * ninguém consegue sequer autenticar-se.
  */
 const PUBLIC_PATHS = [
-  'contact/post',
-  'recovery/post',
-  'recovery/put',
+  "contact/post",
+  "recovery/post",
+  "recovery/put",
   // '_altcha',
   // '_auth',
-  'reserved-area/people/avatar/get',
-  'reserved-area/action/image/get',
+  "reserved-area/people/avatar/get",
+  "reserved-area/action/image/get",
 ];
 
 const PUBLIC_PATH_PREFIXES = [

@@ -15,9 +15,9 @@ if (!dbLanguage) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `language not found with uid: ${uid}`)
-      .set('error_code', `language-not-found`)
+      .set("result", false)
+      .set("error", `language not found with uid: ${uid}`)
+      .set("error_code", "language-not-found")
   );
   _exec.stop();
 }
@@ -35,27 +35,27 @@ if (languageExists) {
   _header.status(409);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `language already exists with this code or locale`)
-      .set('error_code', `language-exists`)
+      .set("result", false)
+      .set("error", "language already exists with this code or locale")
+      .set("error_code", "language-exists")
   );
   _exec.stop();
 }
 
 const data = _val.map()
-  .set('description', description)
-  .set('code', code)
-  .set('locale', locale)
-  .set('default', isDefault)
-  .set('active', active);
+  .set("description", description)
+  .set("code", code)
+  .set("locale", locale)
+  .set("default", isDefault)
+  .set("active", active);
 
 _db.update(
-  'language',
+  "language",
   dbLanguage.getInt("id"),
   data
 );
 
 _out.json(
   _val.map()
-    .set('result', true)
+    .set("result", true)
 );

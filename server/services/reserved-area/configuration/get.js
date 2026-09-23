@@ -8,9 +8,9 @@ if (!dbConfiguration) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `configuration not found with uid: ${uid}`)
-      .set('error_code', `configuration-not-found`)
+      .set("result", false)
+      .set("error", `configuration not found with uid: ${uid}`)
+      .set("error_code", "configuration-not-found")
   );
   _exec.stop();
 }
@@ -21,18 +21,18 @@ const dbParameterType = _db.get("configuration_parameter_type", dbParameter.getI
 
 _out.json(
   _val.map()
-    .set('result', true)
-    .set('configuration', _val.map()
-      .set('uid', dbConfiguration.getString("uid"))
-      .set('value', dbConfiguration.getString("value"))
-      .set('parameter', _val.map()
-        .set('description', dbParameter.getString("description"))
-        .set('code', dbParameter.getString("code"))
-        .set('type_code', dbParameterType.getString("code"))
+    .set("result", true)
+    .set("configuration", _val.map()
+      .set("uid", dbConfiguration.getString("uid"))
+      .set("value", dbConfiguration.getString("value"))
+      .set("parameter", _val.map()
+        .set("description", dbParameter.getString("description"))
+        .set("code", dbParameter.getString("code"))
+        .set("type_code", dbParameterType.getString("code"))
       )
-      .set('language', _val.map()
-        .set('description', dbLanguage.getString("description"))
-        .set('code', dbLanguage.getString("code"))
+      .set("language", _val.map()
+        .set("description", dbLanguage.getString("description"))
+        .set("code", dbLanguage.getString("code"))
       )
     )
 );

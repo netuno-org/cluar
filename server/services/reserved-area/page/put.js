@@ -31,7 +31,7 @@ if (!dbPage) {
       .map()
       .set("result", false)
       .set("error", `page not found with uid: ${uid}`)
-      .set("error_code", `page-not-found`)
+      .set("error_code", "page-not-found")
   );
   _exec.stop();
 }
@@ -67,7 +67,7 @@ if (linkExists) {
       .map()
       .set("result", false)
       .set("error", `page link already exists: ${link}`)
-      .set("error_code", `page-link-already-exists`)
+      .set("error_code", "page-link-already-exists")
   );
   _exec.stop();
 }
@@ -117,12 +117,12 @@ if (social_image != null) {
 }
 
 _db.update(
-  'page',
+  "page",
   dbPage.getInt("id"),
   data
 );
 
 _out.json(
   _val.map()
-    .set('result', true)
+    .set("result", true)
 );

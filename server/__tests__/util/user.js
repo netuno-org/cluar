@@ -32,7 +32,7 @@ const deleteUser = async (uid) => {
 const addUserToOrganization = async (userUid, org, group) => {
   let accessToken = await login.asAdmin();
   await request(NETUNO_URL)
-    .post(`/reserved-area/organization/member`)
+    .post("/reserved-area/organization/member")
     .set("Authorization", `Bearer ${accessToken}`)
     .set("Accept", "*/*")
     .set("Content-Type", "application/json")
@@ -47,7 +47,7 @@ const addUserToOrganization = async (userUid, org, group) => {
 const removeUserFromOrganization = async (userUid, orgUid) => {
   let accessToken = await login.asAdmin();
   await request(NETUNO_URL)
-    .delete(`/reserved-area/organization/member`)
+    .delete("/reserved-area/organization/member")
     .set("Authorization", `Bearer ${accessToken}`)
     .set("Accept", "*/*")
     .set("Content-Type", "application/json")

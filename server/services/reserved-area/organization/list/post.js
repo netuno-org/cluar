@@ -1,14 +1,14 @@
 import { _db, _val, _req, _out, _header, _user } from "@netuno/server-types";
 
-const filters = _req.getValues('filters');
+const filters = _req.getValues("filters");
 let queryWhere = "";
 const queryParams = _val.list();
-const pagination = _req.getValues('pagination');
+const pagination = _req.getValues("pagination");
 const page = _db.pagination(1, 10);
 
 if (pagination) {
-  page.page(pagination.getInt('page'));
-  page.size(pagination.getInt('size'));
+  page.page(pagination.getInt("page"));
+  page.size(pagination.getInt("size"));
 
   if (page.size() > 100) {
     page.size(100);
@@ -16,7 +16,7 @@ if (pagination) {
 }
 
 if (filters) {
-  const name = filters.has('name') && filters.getString('name');
+  const name = filters.has("name") && filters.getString("name");
 
   if (name) {
     queryWhere += `
@@ -25,7 +25,7 @@ if (filters) {
     queryParams.add(`%${name}%`);
   }
 
-  const code = filters.has('code') && filters.getString('code');
+  const code = filters.has("code") && filters.getString("code");
 
   if (code) {
     queryWhere += `
@@ -34,7 +34,7 @@ if (filters) {
     queryParams.add(`%${code}%`);
   }
 
-  const active = filters.has('active') && filters.getList('active');
+  const active = filters.has("active") && filters.getList("active");
 
   if (active.length > 0) {
     queryWhere += `
@@ -42,7 +42,7 @@ if (filters) {
         `;
   }
 
-  const parentName = filters.has('parent_name') && filters.getString('parent_name');
+  const parentName = filters.has("parent_name") && filters.getString("parent_name");
 
   if (parentName) {
     queryWhere += `
@@ -106,17 +106,17 @@ const organizations = _val.list();
 
 for (const dbOrganization of dbOrganizations) {
   const organization = _val.map()
-    .set('uid', dbOrganization.getString('org_uid'))
-    .set('name', dbOrganization.getString('org_name'))
-    .set('code', dbOrganization.getString('org_code'))
-    .set('active', dbOrganization.getBoolean('org_active'));
+    .set("uid", dbOrganization.getString("org_uid"))
+    .set("name", dbOrganization.getString("org_name"))
+    .set("code", dbOrganization.getString("org_code"))
+    .set("active", dbOrganization.getBoolean("org_active"));
 
-  if (dbOrganization.has('parent_uid')) {
+  if (dbOrganization.has("parent_uid")) {
     organization.set("parent",
       _val.map()
-        .set('uid', dbOrganization.getString('parent_uid'))
-        .set('name', dbOrganization.getString('parent_name'))
-        .set('code', dbOrganization.getString('parent_code'))
+        .set("uid", dbOrganization.getString("parent_uid"))
+        .set("name", dbOrganization.getString("parent_name"))
+        .set("code", dbOrganization.getString("parent_code"))
     );
   }
   organizations.add(organization);
@@ -164,6 +164,6 @@ const dbOrganizationTotal = _db.queryFirst(`
 _header.status(201);
 _out.json(
   _val.map()
-    .set('organizations', organizations)
-    .set('organization_total', dbOrganizationTotal.getInt('total'))
+    .set("organizations", organizations)
+    .set("organization_total", dbOrganizationTotal.getInt("total"))
 );

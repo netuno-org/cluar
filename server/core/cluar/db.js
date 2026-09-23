@@ -28,9 +28,9 @@ export default {
   },
 
   cascadeDeletePageVersion: (pageVersionId) => {
-    _db.execute(`DELETE FROM page_content WHERE page_version_id = ?`, pageVersionId);
-    _db.execute(`DELETE FROM page_banner WHERE page_version_id = ?`, pageVersionId);
-    _db.execute(`DELETE FROM page_functionality WHERE page_version_id = ?`, pageVersionId);
+    _db.execute("DELETE FROM page_content WHERE page_version_id = ?", pageVersionId);
+    _db.execute("DELETE FROM page_banner WHERE page_version_id = ?", pageVersionId);
+    _db.execute("DELETE FROM page_functionality WHERE page_version_id = ?", pageVersionId);
 
     _db.execute(`
       DELETE FROM page_listing_item
@@ -40,7 +40,7 @@ export default {
       `,
       pageVersionId
     );
-    _db.execute(` DELETE FROM page_listing WHERE page_version_id = ? `, pageVersionId);
+    _db.execute(" DELETE FROM page_listing WHERE page_version_id = ? ", pageVersionId);
 
     _db.execute(`
       DELETE FROM page_slider_item
@@ -50,8 +50,8 @@ export default {
     `,
       pageVersionId
     );
-    _db.execute(`DELETE FROM page_slider WHERE page_version_id = ?`, pageVersionId);
+    _db.execute("DELETE FROM page_slider WHERE page_version_id = ?", pageVersionId);
 
-    _db.execute(`DELETE FROM page_version WHERE id = ?`, pageVersionId);
+    _db.execute("DELETE FROM page_version WHERE id = ?", pageVersionId);
   }
 };

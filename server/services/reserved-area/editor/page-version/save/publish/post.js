@@ -27,7 +27,7 @@ if (dbPageVersion) {
   if (dbCurrentPageVersion) {
     // Colocar versão atual em rascunho
     _db.update(
-      'page_version',
+      "page_version",
       dbCurrentPageVersion.getInt("id"),
       _val.map()
         .set("status_id", draftStatus.getInt("id"))
@@ -35,7 +35,7 @@ if (dbPageVersion) {
 
     // Colocar a nova versão publicada
     _db.update(
-      'page_version',
+      "page_version",
       dbPageVersion.getInt("id"),
       _val.map()
         .set("status_id", publishStatus.getInt("id"))

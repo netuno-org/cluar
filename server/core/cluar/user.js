@@ -14,7 +14,7 @@ export default {
   },
 
   getActiveAdminOrganizationsWithDescendants: () => {
-    const dbProfile = _db.queryFirst(`SELECT id FROM profile WHERE profile_user_id = ?`, _user.id());
+    const dbProfile = _db.queryFirst("SELECT id FROM profile WHERE profile_user_id = ?", _user.id());
 
     const dbOrganizations = _db.query(`
         WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (

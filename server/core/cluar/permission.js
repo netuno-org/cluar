@@ -46,7 +46,7 @@ const isUserAuthorizedInOrganization = (organization) => {
       SELECT 1
       FROM user_orgs
       WHERE user_orgs.id = ?
-  `, organization.getInt('id'));
+  `, organization.getInt("id"));
 
   return !!dbIsAuthorized;
 };
@@ -58,8 +58,8 @@ export default {
     if (!isUserAuthorizedInOrganization(organization)) {
       response.error({
         status: 403,
-        error_code: 'user-unauthorized',
-        error: 'user not authorized in the organization',
+        error_code: "user-unauthorized",
+        error: "user not authorized in the organization",
       });
     }
   },

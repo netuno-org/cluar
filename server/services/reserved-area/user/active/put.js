@@ -11,9 +11,9 @@ if (!dbProfile) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `user not found with uid: ${uid}`)
-      .set('error_code', 'user-not-found')
+      .set("result", false)
+      .set("error", `user not found with uid: ${uid}`)
+      .set("error_code", "user-not-found")
   );
   _exec.stop();
 }
@@ -21,18 +21,18 @@ if (!dbProfile) {
 _user.update(
   dbProfile.getInt("profile_user_id"),
   _val.map()
-    .set('active', active),
+    .set("active", active),
   false
 );
 
 _db.update(
-  'profile',
+  "profile",
   dbProfile.getInt("id"),
   _val.map()
-    .set('active', active)
+    .set("active", active)
 );
 
 _out.json(
   _val.map()
-    .set('result', true)
+    .set("result", true)
 );

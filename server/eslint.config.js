@@ -5,6 +5,9 @@ export default [
       ecmaVersion: "latest",
       sourceType: "module",
     },
-    rules: { "no-undef": "error" },
+    rules: {
+      "no-undef": "error",
+      quotes: ["error", "double"],
+    },
   },
 ];

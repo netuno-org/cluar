@@ -13,18 +13,18 @@ const dbProfile = _db.findFirst(
     )
 );
 
-const dbLanguage = _db.form('language')
-  .get('id')
+const dbLanguage = _db.form("language")
+  .get("id")
   .where(
-    _db.where('code').equals(currentLanguageCode)
+    _db.where("code").equals(currentLanguageCode)
   ).first();
 
 if (!dbLanguage) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', 'language-not-exists')
+      .set("result", false)
+      .set("error", "language-not-exists")
   );
   _exec.stop();
 }
@@ -47,27 +47,27 @@ if (dbProfile != null && dbProfile.getBoolean("active")) {
   smtp.text = `
    
   `;
-  const translations = _db.form('translation')
+  const translations = _db.form("translation")
     .link(
-      'translation_entry',
-      _db.where('code').in('recovery-mail-message', 'recovery-mail-subject')
+      "translation_entry",
+      _db.where("code").in("recovery-mail-message", "recovery-mail-subject")
     )
     .where(
-      _db.where('language_id').equals(dbLanguage.getInt("id"))
+      _db.where("language_id").equals(dbLanguage.getInt("id"))
     )
-    .get('translation.value')
-    .get('translation_entry.code')
+    .get("translation.value")
+    .get("translation_entry.code")
     .all();
 
-  const subject = translations.find((translation) => translation.getString('code') === "recovery-mail-subject").getString('value') || "";
-  let content = translations.find((translation) => translation.getString('code') === "recovery-mail-message").getString('value') || "";
-  content = content.replace('${name}', dbProfile.getString('name'));
-  content = content.replace('${link}', dbProfile.getString('recovery_link'));
+  const subject = translations.find((translation) => translation.getString("code") === "recovery-mail-subject").getString("value") || "";
+  let content = translations.find((translation) => translation.getString("code") === "recovery-mail-message").getString("value") || "";
+  content = content.replace("${name}", dbProfile.getString("name"));
+  content = content.replace("${link}", dbProfile.getString("recovery_link"));
 
   smtp.subject = subject;
   smtp.html = _template.getOutput(
     "email/recovery-mail", _val.map()
-      .set('content', content)
+      .set("content", content)
   );
   smtp.attachment(
     "logo.png",

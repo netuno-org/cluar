@@ -13,9 +13,9 @@ if (!dbParameter) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `parameter not found with code: ${parameterCode}`)
-      .set('error_code', `parameter-not-found`)
+      .set("result", false)
+      .set("error", `parameter not found with code: ${parameterCode}`)
+      .set("error_code", "parameter-not-found")
   );
   _exec.stop();
 }
@@ -37,16 +37,16 @@ const dbLanguage = _db.queryFirst(`
 //}
 
 const data = _val.map()
-  .set('parameter_id', dbParameter.getInt("id"))
-  .set('language_id', dbLanguage?.getInt("id"));
+  .set("parameter_id", dbParameter.getInt("id"))
+  .set("language_id", dbLanguage?.getInt("id"));
 
 if (value?.includes("base64")) {
   data.set("value_img", _req.getFile("value"));
 } else {
-  data.set('value', value);
+  data.set("value", value);
 }
 
-const registedConfig = cluar.db.insertAndReturn('configuration', data);
+const registedConfig = cluar.db.insertAndReturn("configuration", data);
 
 if (value?.includes("base64")) {
   const dbNewConfiguration = _db.get("configuration", registedConfig.getInt("id"));
@@ -54,9 +54,9 @@ if (value?.includes("base64")) {
   const location = cluar.configurationImageLocation(parameterCode, fileName);
 
   _db.update(
-    'configuration',
+    "configuration",
     registedConfig.getInt("id"),
-    _val.map().set(`value`, `/${location.folder}/${location.fileName}`)
+    _val.map().set("value", `/${location.folder}/${location.fileName}`)
   );
 }
 
@@ -66,17 +66,17 @@ _header.status(201);
 _out.json(
   _val.map()
     .set("result", true)
-    .set('configuration',
+    .set("configuration",
       _val.map()
-        .set('uid', registedConfig.getString("uid"))
-        .set('value', registedConfig.getString("value"))
-        .set('parameter', _val.map()
-          .set('description', dbParameter.getString("description"))
-          .set('code', dbParameter.getString("code"))
+        .set("uid", registedConfig.getString("uid"))
+        .set("value", registedConfig.getString("value"))
+        .set("parameter", _val.map()
+          .set("description", dbParameter.getString("description"))
+          .set("code", dbParameter.getString("code"))
         )
-        .set('language', _val.map()
-          .set('description', dbLanguage?.getString("description"))
-          .set('code', dbLanguage?.getString("code"))
+        .set("language", _val.map()
+          .set("description", dbLanguage?.getString("description"))
+          .set("code", dbLanguage?.getString("code"))
         )
     )
 );

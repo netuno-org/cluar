@@ -528,10 +528,10 @@ export default {
     }
 
     if (!_env.is("dev")) {
-      const basePath = `/website/dist`;
+      const basePath = "/website/dist";
       const locale = _db
         .queryFirst(
-          `SELECT * FROM language WHERE id = ? OR code = ?`,
+          "SELECT * FROM language WHERE id = ? OR code = ?",
           dbPage.getInt("language_id"),
           dbPage.getString("language"),
         )

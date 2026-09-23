@@ -15,9 +15,9 @@ if (!dbProfile) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `user not found with uid: ${uid}`)
-      .set('error-code', 'user-not-found')
+      .set("result", false)
+      .set("error", `user not found with uid: ${uid}`)
+      .set("error-code", "user-not-found")
   );
   _exec.stop();
 }
@@ -44,9 +44,9 @@ if (profileEmailExists || userExists) {
   _header.status(409);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `email or username already exists`)
-      .set('error-code', 'user-exists')
+      .set("result", false)
+      .set("error", "email or username already exists")
+      .set("error-code", "user-exists")
   );
   _exec.stop();
 }
@@ -56,7 +56,7 @@ const userData = _val.map()
   .set("user", username)
   .set("mail", email)
   .set("pass", password)
-  .set("group_id", _group.firstByCode('profile').getInt('id'));
+  .set("group_id", _group.firstByCode("profile").getInt("id"));
 
 let shouldUpdatePass = false;
 
@@ -80,13 +80,13 @@ _user.update(
 );
 
 _db.update(
-  'profile',
+  "profile",
   dbProfile.getInt("id"),
   profileData
 );
 
 _out.json(
   _val.map()
-    .set('result', true)
+    .set("result", true)
 );
 

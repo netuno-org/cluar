@@ -20,9 +20,9 @@ if (menu === true && !menuTitle) {
   _header.status(400);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', 'menu_title is required when menu is enabled')
-      .set('error_code', 'page-menu-title-required')
+      .set("result", false)
+      .set("error", "menu_title is required when menu is enabled")
+      .set("error_code", "page-menu-title-required")
   );
   _exec.stop();
 }
@@ -35,9 +35,9 @@ if (!dbLanguage) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `language not found with code: ${languageCode}`)
-      .set('error_code', `language-not-found`)
+      .set("result", false)
+      .set("error", `language not found with code: ${languageCode}`)
+      .set("error_code", "language-not-found")
   );
   _exec.stop();
 }
@@ -52,14 +52,14 @@ if (linkExists) {
   _header.status(409);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `page link already exists: ${link}`)
-      .set('error_code', `page-link-already-exists`)
+      .set("result", false)
+      .set("error", `page link already exists: ${link}`)
+      .set("error_code", "page-link-already-exists")
   );
   _exec.stop();
 }
 
-const dbPageStatusPublished = _db.queryFirst(`SELECT id, code, description FROM page_status WHERE code = 'published'`);
+const dbPageStatusPublished = _db.queryFirst("SELECT id, code, description FROM page_status WHERE code = 'published'");
 let parentPage = null;
 if (parentUid != null) {
   parentPage = _db.get("page", parentUid);
@@ -78,13 +78,13 @@ if (isNaN(sorter)) {
 }
 
 const data = _val.map()
-  .set('title', title)
-  .set('description', description)
-  .set('keywords', keywords)
-  .set('link', link)
-  .set('menu', menu)
-  .set('menu_title', menuTitle)
-  .set('navigable', navigable)
+  .set("title", title)
+  .set("description", description)
+  .set("keywords", keywords)
+  .set("link", link)
+  .set("menu", menu)
+  .set("menu_title", menuTitle)
+  .set("navigable", navigable)
   .set("language_id", dbLanguage.getInt("id"))
   .set("status_id", dbPageStatusPublished.getInt("id"))
   .set("parent_id", parentId)
@@ -93,9 +93,9 @@ const data = _val.map()
   .set("social_description", social_description)
   .set("template", template);
 
-const dbPage = cluar.db.insertAndReturn('page', data);
+const dbPage = cluar.db.insertAndReturn("page", data);
 
 _out.json(
   _val.map()
-    .set('result', true)
+    .set("result", true)
 );

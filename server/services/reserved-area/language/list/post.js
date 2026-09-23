@@ -17,10 +17,10 @@ if (filters) {
 
 }
 
-const query = _db.form('language')
+const query = _db.form("language")
   .get("uid")
   .get("active")
-  .get('default')
+  .get("default")
   .get("code")
   .get("description")
   .get("locale");
@@ -29,5 +29,5 @@ const dbLaguages = query.page(page);
 
 _out.json(
   _val.map()
-    .set('page', dbLaguages)
+    .set("page", dbLaguages)
 );

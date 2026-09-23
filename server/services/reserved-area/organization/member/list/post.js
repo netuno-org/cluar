@@ -168,27 +168,27 @@ const members = _val.list();
 for (const dbMember of dbMembers) {
   members.add(
     _val.map()
-      .set('uid', dbMember.getString("organization_profile_uid"))
-      .set('active', dbMember.getBoolean('organization_profile_active'))
-      .set('organization', _val.map()
-        .set('uid', dbMember.getString("org_uid"))
-        .set('name', dbMember.getString("org_name"))
-        .set('code', dbMember.getString("org_code"))
+      .set("uid", dbMember.getString("organization_profile_uid"))
+      .set("active", dbMember.getBoolean("organization_profile_active"))
+      .set("organization", _val.map()
+        .set("uid", dbMember.getString("org_uid"))
+        .set("name", dbMember.getString("org_name"))
+        .set("code", dbMember.getString("org_code"))
       )
-      .set('user', _val.map()
-        .set('uid', dbMember.getString("profile_uid"))
-        .set('name', dbMember.getString("profile_name"))
+      .set("user", _val.map()
+        .set("uid", dbMember.getString("profile_uid"))
+        .set("name", dbMember.getString("profile_name"))
       )
-      .set('group', _val.map()
-        .set('uid', dbMember.getString("group_uid"))
-        .set('name', dbMember.getString("group_name"))
-        .set('code', dbMember.getString("group_code"))
+      .set("group", _val.map()
+        .set("uid", dbMember.getString("group_uid"))
+        .set("name", dbMember.getString("group_name"))
+        .set("code", dbMember.getString("group_code"))
       )
   );
 }
 
 _out.json(
   _val.map()
-    .set('members', members)
-    .set('total', dbMembersTotal.getInt("total"))
+    .set("members", members)
+    .set("total", dbMembersTotal.getInt("total"))
 );

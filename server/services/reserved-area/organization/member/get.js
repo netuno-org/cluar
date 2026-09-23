@@ -62,33 +62,33 @@ if (!dbMember) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `member not found with uid: ${uid}`)
-      .set('error_code', `member-not-found`)
+      .set("result", false)
+      .set("error", `member not found with uid: ${uid}`)
+      .set("error_code", "member-not-found")
   );
   _exec.stop();
 }
 
 _out.json(
   _val.map()
-    .set('result', true)
-    .set('member',
+    .set("result", true)
+    .set("member",
       _val.map()
-        .set('uid', dbMember.getString("organization_profile_uid"))
-        .set('active', dbMember.getBoolean('organization_profile_active'))
-        .set('organization', _val.map()
-          .set('uid', dbMember.getString("org_uid"))
-          .set('name', dbMember.getString("org_name"))
-          .set('code', dbMember.getString("org_code"))
+        .set("uid", dbMember.getString("organization_profile_uid"))
+        .set("active", dbMember.getBoolean("organization_profile_active"))
+        .set("organization", _val.map()
+          .set("uid", dbMember.getString("org_uid"))
+          .set("name", dbMember.getString("org_name"))
+          .set("code", dbMember.getString("org_code"))
         )
-        .set('user', _val.map()
-          .set('uid', dbMember.getString("profile_uid"))
-          .set('name', dbMember.getString("profile_name"))
+        .set("user", _val.map()
+          .set("uid", dbMember.getString("profile_uid"))
+          .set("name", dbMember.getString("profile_name"))
         )
-        .set('group', _val.map()
-          .set('uid', dbMember.getString("group_uid"))
-          .set('name', dbMember.getString("group_name"))
-          .set('code', dbMember.getString("group_code"))
+        .set("group", _val.map()
+          .set("uid", dbMember.getString("group_uid"))
+          .set("name", dbMember.getString("group_name"))
+          .set("code", dbMember.getString("group_code"))
         )
     )
 );

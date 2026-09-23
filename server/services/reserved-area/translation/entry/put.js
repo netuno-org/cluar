@@ -7,21 +7,21 @@ const description = _req.getString("description");
 
 /* ---------- VALIDAÇÕES DOS DADOS RECEBIDOS ---------- */
 if (!uid) {
-  cluar.response.error({ status: 400, error: 'uid is required', error_code: 'uid-required' });
+  cluar.response.error({ status: 400, error: "uid is required", error_code: "uid-required" });
 }
 
 if (!code) {
-  cluar.response.error({ status: 400, error: 'code is required', error_code: 'code-required' });
+  cluar.response.error({ status: 400, error: "code is required", error_code: "code-required" });
 }
 
 if (!description) {
-  cluar.response.error({ status: 400, error: 'description is required', error_code: 'description-required' });
+  cluar.response.error({ status: 400, error: "description is required", error_code: "description-required" });
 }
 
-const dbTranslationEntry = _db.get('translation_entry', uid);
+const dbTranslationEntry = _db.get("translation_entry", uid);
 
 if (!dbTranslationEntry) {
-  cluar.response.error({ status: 404, error: 'entry not found', error_code: 'entry-not-found' });
+  cluar.response.error({ status: 404, error: "entry not found", error_code: "entry-not-found" });
 }
 
 const codeExists = _db.queryFirst(`
@@ -30,18 +30,18 @@ const codeExists = _db.queryFirst(`
 `, code, uid);
 
 if (codeExists) {
-  cluar.response.error({ status: 409, error: `entry code already exists: ${code}`, error_code: 'entry-code-already-exists' })
+  cluar.response.error({ status: 409, error: `entry code already exists: ${code}`, error_code: "entry-code-already-exists" })
 }
 
 const entry = _db.form("translation_entry")
   .where(
-    _db.where('id').equal(dbTranslationEntry.getInt('id'))
+    _db.where("id").equal(dbTranslationEntry.getInt("id"))
   )
-  .set('code', code)
-  .set('description', description)
+  .set("code", code)
+  .set("description", description)
   .update();
 
 _out.json(
   _val.map()
-    .set('result', true)
+    .set("result", true)
 );

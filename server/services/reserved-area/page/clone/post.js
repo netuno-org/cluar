@@ -9,43 +9,43 @@ const published = _req.getBoolean("published");
 
 if (!sourcePageVersionUid) {
   _header.status(400);
-  _out.json({ result: false, error: 'source_page_version_uid is required' });
+  _out.json({ result: false, error: "source_page_version_uid is required" });
   _exec.stop();
 }
 
 if (!languageCode) {
   _header.status(400);
-  _out.json({ result: false, error: 'language_code is required' });
+  _out.json({ result: false, error: "language_code is required" });
   _exec.stop();
 }
 
 if (!title) {
   _header.status(400);
-  _out.json({ result: false, error: 'title is required' });
+  _out.json({ result: false, error: "title is required" });
   _exec.stop();
 }
 
 if (!link) {
   _header.status(400);
-  _out.json({ result: false, error: 'link is required' });
+  _out.json({ result: false, error: "link is required" });
   _exec.stop();
 }
 
 if (published !== true && published !== false) {
   _header.status(400);
-  _out.json({ result: false, error: 'published is required' });
+  _out.json({ result: false, error: "published is required" });
   _exec.stop();
 }
 
 const dbPageVersion = _db.get("page_version", sourcePageVersionUid);
 if (!dbPageVersion) {
   _header.status(400);
-  _out.json({ result: false, error: 'page version not found' });
+  _out.json({ result: false, error: "page version not found" });
   _exec.stop();
 }
 
-const draftStatus = _db.queryFirst(`SELECT * FROM page_status WHERE code = 'draft'`);
-const publishedStatus = _db.queryFirst(`SELECT * FROM page_status WHERE code = 'published'`);
+const draftStatus = _db.queryFirst("SELECT * FROM page_status WHERE code = 'draft'");
+const publishedStatus = _db.queryFirst("SELECT * FROM page_status WHERE code = 'published'");
 
 let statusId;
 if (published === true) {
@@ -99,20 +99,20 @@ const dbMaxSorter = _db.queryFirst(`
 const sorter = (dbMaxSorter?.getInt("max_sorter") || 0) + 10;
 
 const newPage = _db.form("page")
-  .set('title', title)
-  .set('description', dbSourcePage.getString('description'))
-  .set('keywords', dbSourcePage.getString('keywords'))
-  .set('link', link)
-  .set('menu', dbSourcePage.getBoolean('menu'))
-  .set('menu_title', title)
-  .set('navigable', dbSourcePage.getBoolean('navigable'))
+  .set("title", title)
+  .set("description", dbSourcePage.getString("description"))
+  .set("keywords", dbSourcePage.getString("keywords"))
+  .set("link", link)
+  .set("menu", dbSourcePage.getBoolean("menu"))
+  .set("menu_title", title)
+  .set("navigable", dbSourcePage.getBoolean("navigable"))
   .set("language_id", languageId)
   .set("status_id", publishedStatus.getInt("id"))
   .set("parent_id", "")
   .set("sorter", sorter)
   .set("social_image", "")
-  .set("social_description", dbSourcePage.getString('social_description'))
-  .set("template", dbSourcePage.getString('template'))
+  .set("social_description", dbSourcePage.getString("social_description"))
+  .set("template", dbSourcePage.getString("template"))
   .insert();
 
 const newPageVersion = _db.insert(
@@ -152,7 +152,7 @@ if (dbContent) {
 
     // ******** Actions ********
 
-    const dbContentAction = _db.form('page_content_action')
+    const dbContentAction = _db.form("page_content_action")
       .where(
         _db.where("page_content_id").equals(content.getInt("id"))
       )
@@ -160,7 +160,7 @@ if (dbContent) {
 
     if (dbContentAction) {
       for (const action of dbContentAction) {
-        const dbAction = _db.form('action')
+        const dbAction = _db.form("action")
           .where(
             _db.where("id").equals(action.getInt("action_id"))
           )
@@ -213,7 +213,7 @@ if (dbBanner) {
 
     // ******** Actions ********
 
-    const dbBannerAction = _db.form('page_banner_action')
+    const dbBannerAction = _db.form("page_banner_action")
       .where(
         _db.where("page_banner_id").equals(banner.getInt("id"))
       )
@@ -221,7 +221,7 @@ if (dbBanner) {
 
     if (dbBannerAction) {
       for (const action of dbBannerAction) {
-        const dbAction = _db.form('action')
+        const dbAction = _db.form("action")
           .where(
             _db.where("id").equals(action.getInt("action_id"))
           )
@@ -271,7 +271,7 @@ if (dbFunctionality) {
 
     // ******** Actions ********
 
-    const dbFunctionalityAction = _db.form('page_functionality_action')
+    const dbFunctionalityAction = _db.form("page_functionality_action")
       .where(
         _db.where("page_functionality_id").equals(functionality.getInt("id"))
       )
@@ -279,7 +279,7 @@ if (dbFunctionality) {
 
     if (dbFunctionalityAction) {
       for (const action of dbFunctionalityAction) {
-        const dbAction = _db.form('action')
+        const dbAction = _db.form("action")
           .where(
             _db.where("id").equals(action.getInt("action_id"))
           )
@@ -331,7 +331,7 @@ if (dbListing) {
 
     // ******** Actions ********
 
-    const dbListingAction = _db.form('page_listing_action')
+    const dbListingAction = _db.form("page_listing_action")
       .where(
         _db.where("page_listing_id").equals(listing.getInt("id"))
       )
@@ -339,7 +339,7 @@ if (dbListing) {
 
     if (dbListingAction) {
       for (const action of dbListingAction) {
-        const dbAction = _db.form('action')
+        const dbAction = _db.form("action")
           .where(
             _db.where("id").equals(action.getInt("action_id"))
           )
@@ -438,7 +438,7 @@ if (dbSlider) {
 
         // ******** Actions ********
 
-        const dbSliderItemAction = _db.form('page_slider_item_action')
+        const dbSliderItemAction = _db.form("page_slider_item_action")
           .where(
             _db.where("page_slider_item_id").equals(sliderItem.getInt("id"))
           )
@@ -446,7 +446,7 @@ if (dbSlider) {
 
         if (dbSliderItemAction) {
           for (const action of dbSliderItemAction) {
-            const dbAction = _db.form('action')
+            const dbAction = _db.form("action")
               .where(
                 _db.where("id").equals(action.getInt("action_id"))
               )
@@ -493,8 +493,8 @@ if (statusId === publishedStatus.getInt("id")) {
 
 _out.json(
   _val.map()
-    .set('result', true)
-    .set('uid', newPage.getString("uid"))
-    .set('link', link)
-    .set('language_code', languageCode)
+    .set("result", true)
+    .set("uid", newPage.getString("uid"))
+    .set("link", link)
+    .set("language_code", languageCode)
 );

@@ -1,8 +1,8 @@
 import { _req, _val, _header, _out, _exec, _db, _user } from "@netuno/server-types";
 
-const dbProfile = _db.form('profile')
+const dbProfile = _db.form("profile")
   .where(
-    _db.where('profile_user_id').equals(_user.id())
+    _db.where("profile_user_id").equals(_user.id())
   ).first()
 
 if (!dbProfile) {
@@ -26,7 +26,7 @@ const data = _val.map()
   .set("name", dbProfile.getString("name"))
   .set("email", dbProfile.getString("email"))
   .set("username", _user.get(_user.id()).getString("user"))
-  .set("avatar", dbProfile.getString("avatar") != '')
+  .set("avatar", dbProfile.getString("avatar") != "")
   .set("groups", groups)
 
 _out.json(

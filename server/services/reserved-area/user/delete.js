@@ -9,11 +9,11 @@ const dbProfile = _db.queryFirst(`
 
 const loggedUserUid = cluar.user.getProfile().getString("uid");
 if (profileUid === loggedUserUid) {
-  cluar.response.error({ status: 409, error: "users cannot delete themselves", error_code: 'cannot-delete-self' });
+  cluar.response.error({ status: 409, error: "users cannot delete themselves", error_code: "cannot-delete-self" });
 }
 
 if (!dbProfile) {
-  cluar.response.error({ status: 404, error: "user not found", error_code: 'user-not-found' });
+  cluar.response.error({ status: 404, error: "user not found", error_code: "user-not-found" });
 }
 
 // o usuário só pode ser deletado se ele perterncer à apenas uma organização
@@ -32,8 +32,8 @@ const membership = _db.queryFirst(`
 if (membership.getInt("count") > 1) {
   cluar.response.error({
     status: 409,
-    error_code: 'user-in-multiple-organizations',
-    error: 'Cannot remove user, they belong to more than one organization.'
+    error_code: "user-in-multiple-organizations",
+    error: "Cannot remove user, they belong to more than one organization."
   });
 }
 

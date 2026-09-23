@@ -5,8 +5,8 @@ const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
 const page = _db.pagination(1, 10);
 const where = _val.map()
-    .set('language', _db.where())
-    .set('parameter', _db.where());
+    .set("language", _db.where())
+    .set("parameter", _db.where());
 
 if (pagination) {
     page.size(pagination.getInt("size"));
@@ -18,93 +18,93 @@ if (pagination) {
 }
 
 if (filters) {
-    const languageCodes = filters.has('language_codes') && filters.getList('language_codes');
+    const languageCodes = filters.has("language_codes") && filters.getList("language_codes");
 
     if (languageCodes && languageCodes.size() > 0) {
-        where.get('language').and('code').in(languageCodes);
+        where.get("language").and("code").in(languageCodes);
     }
 
-    const parameterCodes = filters.has('parameter_codes') && filters.getList('parameter_codes');
+    const parameterCodes = filters.has("parameter_codes") && filters.getList("parameter_codes");
 
     if (parameterCodes && parameterCodes.size() > 0) {
-        where.get('parameter').and('code').in(parameterCodes);
+        where.get("parameter").and("code").in(parameterCodes);
     }
 }
 
-const query = _db.form('configuration')
+const query = _db.form("configuration")
     .link(
-        'configuration_parameter',
-        where.get('parameter')
+        "configuration_parameter",
+        where.get("parameter")
     )
     .leftJoin(
         _db.manyToOne(
-            'language',
-            'language_id',
+            "language",
+            "language_id",
         )
     )
     .join(
         _db.manyToOne(
-            'configuration_parameter',
-            'parameter_id',
+            "configuration_parameter",
+            "parameter_id",
         ).join(
             _db.manyToOne(
-                'configuration_parameter_type',
-                'configuration_parameter_type_id',
+                "configuration_parameter_type",
+                "configuration_parameter_type_id",
             )
         )
     )
-    .get('configuration.id', 'configuration_id')
-    .get('configuration.value')
-    .get('configuration.value_img')
-    .get('configuration.uid', 'configuration_uid')
-    .get('configuration.active', 'configuration_active')
-    .get('language.id', 'language_id')
-    .get('language.description', 'language_description')
-    .get('language.code', 'language_code')
-    .get('configuration_parameter.id', 'parameter_id')
-    .get('configuration_parameter.code', 'parameter_code')
-    .get('configuration_parameter.description', 'parameter_description')
+    .get("configuration.id", "configuration_id")
+    .get("configuration.value")
+    .get("configuration.value_img")
+    .get("configuration.uid", "configuration_uid")
+    .get("configuration.active", "configuration_active")
+    .get("language.id", "language_id")
+    .get("language.description", "language_description")
+    .get("language.code", "language_code")
+    .get("configuration_parameter.id", "parameter_id")
+    .get("configuration_parameter.code", "parameter_code")
+    .get("configuration_parameter.description", "parameter_description")
     .get("configuration_parameter_type.code", "type_code")
     .get("configuration_parameter_type.name", "type_name")
     .group(
-        'configuration.id',
-        'language.id',
-        'configuration_parameter.id',
-        'configuration_parameter_type.code',
-        'configuration_parameter_type.name'
+        "configuration.id",
+        "language.id",
+        "configuration_parameter.id",
+        "configuration_parameter_type.code",
+        "configuration_parameter_type.name"
     )
-    .order('configuration.id', 'desc');
+    .order("configuration.id", "desc");
 
 const dbPage = query.page(page);
 const items = _val.list();
 
-for (const dbItem of dbPage.getList('items')) {
+for (const dbItem of dbPage.getList("items")) {
     items.add(
         _val.map()
-            .set('uid', dbItem.getString('configuration_uid'))
-            .set('active', dbItem.getBoolean('configuration_active'))
-            .set('value', dbItem.getString('value'))
-            .set('value_img', dbItem.getString('value_img'))
-            .set('image_url', cluar.configurationImageUrl(
-                dbItem.getString('parameter_code'), dbItem.getString('value_img')
+            .set("uid", dbItem.getString("configuration_uid"))
+            .set("active", dbItem.getBoolean("configuration_active"))
+            .set("value", dbItem.getString("value"))
+            .set("value_img", dbItem.getString("value_img"))
+            .set("image_url", cluar.configurationImageUrl(
+                dbItem.getString("parameter_code"), dbItem.getString("value_img")
             ))
-            .set('parameter', _val.map()
-                .set('description', dbItem.getString('parameter_description'))
-                .set('code', dbItem.getString('parameter_code'))
+            .set("parameter", _val.map()
+                .set("description", dbItem.getString("parameter_description"))
+                .set("code", dbItem.getString("parameter_code"))
             )
-            .set('parameter_type', _val.map()
-                .set("code", dbItem.getString('type_code'))
-                .set("name", dbItem.getString('type_name'))
+            .set("parameter_type", _val.map()
+                .set("code", dbItem.getString("type_code"))
+                .set("name", dbItem.getString("type_name"))
             )
-            .set('language', _val.map()
-                .set('description', dbItem.getString('language_description'))
-                .set('code', dbItem.getString('language_code'))
+            .set("language", _val.map()
+                .set("description", dbItem.getString("language_description"))
+                .set("code", dbItem.getString("language_code"))
             )
     );
 }
-dbPage.set('items', items);
+dbPage.set("items", items);
 
 _out.json(
     _val.map()
-        .set('page', dbPage)
+        .set("page", dbPage)
 );

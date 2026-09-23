@@ -16,26 +16,26 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-  cluar.response.error({ status: 404, error: `language not found with code: ${languageCode}`, error_code: 'language-not-found' });
+  cluar.response.error({ status: 404, error: `language not found with code: ${languageCode}`, error_code: "language-not-found" });
 }
 
-const dbActionParameter = _db.get('action_parameter', parameterUid);
+const dbActionParameter = _db.get("action_parameter", parameterUid);
 
 if (!dbActionParameter) {
-  cluar.response.error({ status: 404, error: 'parameter not found', error_code: 'parameter-not-found' });
+  cluar.response.error({ status: 404, error: "parameter not found", error_code: "parameter-not-found" });
 }
 
-const dbAction = _db.get('action', uid);
+const dbAction = _db.get("action", uid);
 if (!dbAction) {
-  cluar.response.error({ status: 404, error: `action not found with uid: ${uid}`, error_code: 'action-not-found' });
+  cluar.response.error({ status: 404, error: `action not found with uid: ${uid}`, error_code: "action-not-found" });
 }
 
 const data = _val.map()
-  .set('title', title)
-  .set('content', content)
-  .set('indication', indication)
-  .set('link', link)
-  .set('active', active)
+  .set("title", title)
+  .set("content", content)
+  .set("indication", indication)
+  .set("link", link)
+  .set("active", active)
   .set("language_id", dbLanguage.getInt("id"))
   .set("parameter_id", dbActionParameter.getInt("id"));
 
@@ -46,7 +46,7 @@ if (image != null) {
 }
 
 _db.update(
-  'action',
+  "action",
   dbAction.getInt("id"),
   data
 )
@@ -54,5 +54,5 @@ _db.update(
 
 _out.json(
   _val.map()
-    .set('result', true)
+    .set("result", true)
 );

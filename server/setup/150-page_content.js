@@ -9,7 +9,7 @@
 
 import { _db, _val } from "@netuno/server-types";
 
-if (_val.global().getBoolean('cluar:setup')) {
+if (_val.global().getBoolean("cluar:setup")) {
   _db.insertIfNotExists(
     "page_content",
     _val.init()
@@ -19,7 +19,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("page_version_id", "eb14d6ee-db83-434c-879e-20e0825cff21")
       .set("image", "")
       .set("image_title", "")
-      .set("title", '<p><span style="font-size: 32px; font-family: inherit;">Documentation</span></p>')
+      .set("title", "<p><span style=\"font-size: 32px; font-family: inherit;\">Documentation</span></p>")
       .set("sorter", 20)
       .set("image_max_width", 0)
       .set("image_alt", "")
@@ -35,7 +35,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("page_version_id", "eb14d6ee-db83-434c-879e-20e0825cff21")
       .set("image", "")
       .set("image_title", "")
-      .set("title", '<p><span style="font-size: 32px; font-family: inherit;">Open Source & Community</span></p>')
+      .set("title", "<p><span style=\"font-size: 32px; font-family: inherit;\">Open Source & Community</span></p>")
       .set("sorter", 30)
       .set("image_max_width", 0)
       .set("image_alt", "")
@@ -51,7 +51,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("page_version_id", "9529dfcc-9a15-45ab-9f30-fee4bc75d154")
       .set("image", "")
       .set("image_title", "")
-      .set("title", '<p><span style="font-size: 32px; font-family: inherit;">Documenta\\u00E7\\u00E3o</span></p>')
+      .set("title", "<p><span style=\"font-size: 32px; font-family: inherit;\">Documenta\\u00E7\\u00E3o</span></p>")
       .set("sorter", 20)
       .set("image_max_width", 0)
       .set("image_alt", "")
@@ -67,7 +67,7 @@ if (_val.global().getBoolean('cluar:setup')) {
       .set("page_version_id", "9529dfcc-9a15-45ab-9f30-fee4bc75d154")
       .set("image", "")
       .set("image_title", "")
-      .set("title", '<p><span style="font-size: 32px; font-family: inherit;">C\\u00F3digo Aberto & Comunidade</span></p>')
+      .set("title", "<p><span style=\"font-size: 32px; font-family: inherit;\">C\\u00F3digo Aberto & Comunidade</span></p>")
       .set("sorter", 30)
       .set("image_max_width", 0)
       .set("image_alt", "")

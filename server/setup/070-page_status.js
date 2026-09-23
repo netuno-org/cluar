@@ -6,7 +6,7 @@
 
 import { _db, _val } from "@netuno/server-types";
 
-if (_val.global().getBoolean('cluar:setup')) {
+if (_val.global().getBoolean("cluar:setup")) {
   _db.insertIfNotExists(
     "page_status",
     _val.init()

@@ -8,23 +8,23 @@ const code = _req.getString("code");
 const provider = _req.getString("provider");
 const altchaPayload = _req.getString("altcha");
 
-const noPass = code != '' && provider != '' && password == '' && email == '';
+const noPass = code != "" && provider != "" && password == "" && email == "";
 
-let avatar = '';
+let avatar = "";
 
 if (noPass) {
   const dbProviderUser = _user.providerDataByUid(code);
-  if (dbProviderUser == null || dbProviderUser.getString('provider_code') !== provider) {
+  if (dbProviderUser == null || dbProviderUser.getString("provider_code") !== provider) {
     _header.status(409);
     _out.json(
       _val.map()
-        .set("error", `invalid-provider-data`)
+        .set("error", "invalid-provider-data")
     );
     _exec.stop();
   }
-  email = dbProviderUser.getString('email');
-  const urlAvatar = dbProviderUser.getString('avatar');
-  if (urlAvatar !== '') {
+  email = dbProviderUser.getString("email");
+  const urlAvatar = dbProviderUser.getString("avatar");
+  if (urlAvatar !== "") {
     const responseAvatar = _remote.init().asBinary().get(urlAvatar);
     if (responseAvatar.ok()) {
       avatar = responseAvatar.file();
@@ -34,7 +34,7 @@ if (noPass) {
     _header.status(409);
     _out.json(
       _val.map()
-        .set("error", `invalid-altcha-payload`)
+        .set("error", "invalid-altcha-payload")
     );
     _exec.stop();
   }
@@ -47,7 +47,7 @@ if (userEmailExists || usernameExists) {
   _header.status(409);
   _out.json(
     _val.map()
-      .set("error", `${userEmailExists ? 'email' : 'user'}-already-exists`)
+      .set("error", `${userEmailExists ? "email" : "user"}-already-exists`)
   );
   _exec.stop();
 }
@@ -66,7 +66,7 @@ const userData = _val.map()
 const user_id = _user.create(userData);
 
 _db.insertIfNotExists(
-  'profile',
+  "profile",
   _val.map()
     .set("name", name)
     .set("email", email)

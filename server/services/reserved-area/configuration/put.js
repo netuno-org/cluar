@@ -14,9 +14,9 @@ if (!dbConfiguration) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `configuration not found with uid: ${uid}`)
-      .set('error_code', `configuration-not-found`)
+      .set("result", false)
+      .set("error", `configuration not found with uid: ${uid}`)
+      .set("error_code", "configuration-not-found")
   );
   _exec.stop();
 }
@@ -29,9 +29,9 @@ if (!dbParameter) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `parameter not found with code: ${parameterCode}`)
-      .set('error_code', `parameter-not-found`)
+      .set("result", false)
+      .set("error", `parameter not found with code: ${parameterCode}`)
+      .set("error_code", "parameter-not-found")
   );
   _exec.stop();
 }
@@ -53,17 +53,17 @@ const dbLanguage = _db.queryFirst(`
 //}
 
 const data = _val.map()
-  .set('parameter_id', dbParameter.getInt("id"))
-  .set('language_id', dbLanguage?.getInt("id"));
+  .set("parameter_id", dbParameter.getInt("id"))
+  .set("language_id", dbLanguage?.getInt("id"));
 
 if (value?.includes("base64")) {
   data.set("value_img", _req.getFile("value"));
 } else {
-  data.set('value', value);
+  data.set("value", value);
 }
 
 _db.update(
-  'configuration',
+  "configuration",
   dbConfiguration.getInt("id"),
   data
 );
@@ -74,9 +74,9 @@ if (value?.includes("base64")) {
   const location = cluar.configurationImageLocation(parameterCode, fileName);
 
   _db.update(
-    'configuration',
+    "configuration",
     dbConfiguration.getInt("id"),
-    _val.map().set(`value`, `/${location.folder}/${location.fileName}`)
+    _val.map().set("value", `/${location.folder}/${location.fileName}`)
   );
 }
 

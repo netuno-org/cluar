@@ -19,32 +19,32 @@ if (languageExists) {
   _header.status(409);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `language already exists with this code or locale`)
-      .set('error_code', `language-exists`)
+      .set("result", false)
+      .set("error", "language already exists with this code or locale")
+      .set("error_code", "language-exists")
   );
   _exec.stop();
 }
 
 const data = _val.map()
-  .set('description', description)
-  .set('code', code)
-  .set('locale', locale)
-  .set('default', isDefault)
-  .set('active', active);
+  .set("description", description)
+  .set("code", code)
+  .set("locale", locale)
+  .set("default", isDefault)
+  .set("active", active);
 
 
-const registedLanguage = cluar.db.insertAndReturn('language', data);
+const registedLanguage = cluar.db.insertAndReturn("language", data);
 
 _header.status(201);
 _out.json(
   _val.map()
-    .set('result', true)
-    .set('language', _val.map()
-      .set('uid', registedLanguage.getString("uid"))
-      .set('active', registedLanguage.getBoolean("active"))
-      .set('description', registedLanguage.getString("description"))
-      .set('code', registedLanguage.getString("code"))
-      .set('locale', registedLanguage.getString("locale"))
+    .set("result", true)
+    .set("language", _val.map()
+      .set("uid", registedLanguage.getString("uid"))
+      .set("active", registedLanguage.getBoolean("active"))
+      .set("description", registedLanguage.getString("description"))
+      .set("code", registedLanguage.getString("code"))
+      .set("locale", registedLanguage.getString("locale"))
     )
 );

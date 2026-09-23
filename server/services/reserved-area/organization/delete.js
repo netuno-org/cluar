@@ -6,7 +6,7 @@ const organizationUid = _req.getString("uid");
 const dbOrganization = _db.get("organization", organizationUid);
 
 if (!dbOrganization) {
-  cluar.response.error({ status: 404, error: "organization not found", error_code: 'organization-not-found' });
+  cluar.response.error({ status: 404, error: "organization not found", error_code: "organization-not-found" });
 }
 
 cluar.permission.requireUserAuthorizedInOrganization(dbOrganization);
@@ -39,8 +39,8 @@ for (const dbOrgOrChild of dbOrganizationAndChildren) {
   if (membership.count() >= 1) {
     cluar.response.error({
       status: 409,
-      error_code: 'organization-has-members',
-      error: `there are members in this organization or one of it's children, cannot remove it.`
+      error_code: "organization-has-members",
+      error: "there are members in this organization or one of it's children, cannot remove it."
     });
   }
 }
@@ -53,7 +53,7 @@ for (const dbOrgOrChild of dbOrganizationAndChildren) {
     `, orgOrChildId
   );
 
-  _db.execute(`DELETE FROM organization WHERE id = ?::int`, orgOrChildId);
+  _db.execute("DELETE FROM organization WHERE id = ?::int", orgOrChildId);
 }
 
 _out.json(_val.map().set("result", true));

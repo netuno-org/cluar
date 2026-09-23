@@ -1,10 +1,10 @@
 import { _db, _val, _req, _out, _remote, _app, _template, _smtp } from "@netuno/server-types";
 
-const name = _req.getString('name');
-const email = _req.getString('email');
-const subject = _req.getString('subject');
-const message = _req.getString('message');
-const recaptchaValue = _req.get('recaptchaValue');
+const name = _req.getString("name");
+const email = _req.getString("email");
+const subject = _req.getString("subject");
+const message = _req.getString("message");
+const recaptchaValue = _req.get("recaptchaValue");
 
 const recaptchaURL = _app.settings.getValues("recaptcha").getString("url");
 const recaptchaSecretKey = _app.settings.getValues("recaptcha").getString("secret_key");
@@ -19,11 +19,11 @@ const responseRecaptchaJSON = responseRecaptcha.json();
 if (responseRecaptchaJSON.get("success")) {
 
   const contactData = _val.map()
-    .set('name', name)
-    .set('email', email)
-    .set('subject', subject)
-    .set('message', message)
-    .set('moment', _db.timestamp());
+    .set("name", name)
+    .set("email", email)
+    .set("subject", subject)
+    .set("message", message)
+    .set("moment", _db.timestamp());
 
   _db.insert("contact", contactData);
 
@@ -41,8 +41,8 @@ if (responseRecaptchaJSON.get("success")) {
   const smtp = _smtp.init();
 
   smtp.to(dbRecipient.getString("email"));
-  smtp.subject = 'Você recebeu um novo pedido de contacto em cluarwebsite.com';
-  smtp.html = _template.getOutput('email/contact_alert', contactData);
+  smtp.subject = "Você recebeu um novo pedido de contacto em cluarwebsite.com";
+  smtp.html = _template.getOutput("email/contact_alert", contactData);
 
   smtp.attachment(
     "logo.png",
@@ -55,12 +55,12 @@ if (responseRecaptchaJSON.get("success")) {
 
   _out.json(
     _val.map()
-      .set('result', true)
+      .set("result", true)
   );
 
 } else {
   _out.json(
     _val.map()
-      .set('result', false)
+      .set("result", false)
   );
 }

@@ -10,7 +10,7 @@ const dbProfile = _db.queryFirst(`
 if (!dbProfile) {
   _auth.signInAbortWithData(
     _val.map()
-      .set('error', 'invalid-user')
+      .set("error", "invalid-user")
   );
   _exec.stop();
 }
@@ -33,9 +33,9 @@ const isAuthorized = _db.queryFirst(`
 if (!isAuthorized) {
   _auth.signInAbortWithData(
     _val.map()
-      .set('result', false)
-      .set('error', 'user unauthorized')
-      .set('error_code', 'user-unauthorized')
+      .set("result", false)
+      .set("error", "user unauthorized")
+      .set("error_code", "user-unauthorized")
   );
   _exec.stop();
 }
@@ -45,7 +45,7 @@ const data = _val.map()
   .set("name", dbProfile.getString("name"))
   .set("email", dbProfile.getString("email"))
   .set("username", _user.get(_user.id()).getString("user"))
-  .set("avatar", dbProfile.getString("avatar") != '')
+  .set("avatar", dbProfile.getString("avatar") != "")
   .set("group", _group.code());
 
 _auth.signInExtraData(data);

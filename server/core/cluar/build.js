@@ -80,11 +80,11 @@ export default {
     const file = _app.file(`${base.basePath()}/cluar/data.js`);
     file.output().print(`window.cluar = ${data.toJSON(4)};`).close();
 
-    if (_app.settings.getValues('cluar', _val.map()).getBoolean("uglifyjs") == true) {
+    if (_app.settings.getValues("cluar", _val.map()).getBoolean("uglifyjs") == true) {
       const osUglifyJS = _os.init();
       osUglifyJS.directory(_app.folder(base.basePath()));
-      const osUglifyJSResult = osUglifyJS.command(`uglifyjs -o cluar/data.js -- cluar/data.js`);
-      if (osUglifyJSResult.output() != '' && osUglifyJSResult.error() != '') {
+      const osUglifyJSResult = osUglifyJS.command("uglifyjs -o cluar/data.js -- cluar/data.js");
+      if (osUglifyJSResult.output() != "" && osUglifyJSResult.error() != "") {
         _log.error(`UglifyJS failed:\n\tOutput: ${osUglifyJSResult.output()}\n\tError: ${osUglifyJSResult.error()}`);
       }
     }
@@ -121,7 +121,7 @@ export default {
         continue;
       }
       for (const page of pages.getValues(language.getString("code"))) {
-        if (page.getBoolean('navigable') == false) {
+        if (page.getBoolean("navigable") == false) {
           continue;
         }
         const tagURL = document.createElement("url");
@@ -132,9 +132,9 @@ export default {
         tagChangeFreq.appendChild(document.createTextNode("daily"));
         tagURL.appendChild(tagChangeFreq);
         let priority = "0.5";
-        if (page.getString("link") == '/') {
+        if (page.getString("link") == "/") {
           priority = "1.0";
-        } else if (page.getString("parent") == '') {
+        } else if (page.getString("parent") == "") {
           priority = "0.7";
         }
         const tagPriority = document.createElement("priority");
@@ -148,8 +148,8 @@ export default {
     xml.save(document, _app.file(`${base.basePath()}/sitemap.xml`));
     if (!_app.file(`${base.basePath()}/robots.txt`).exists()) {
       const output = _app.file(`${base.basePath()}/robots.txt`).output()
-        .println('User-agent: *')
-        .println('Allow: /')
+        .println("User-agent: *")
+        .println("Allow: /")
         .println(`Sitemap: ${origin}/sitemap.xml`)
         .close();
     }

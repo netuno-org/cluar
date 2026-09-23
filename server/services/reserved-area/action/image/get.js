@@ -2,8 +2,8 @@ import { _db, _req, _out, _header, _exec, _storage } from "@netuno/server-types"
 
 let dbAction = null;
 
-if (_req.getString('uid')) {
-  dbAction = _db.get('action', _req.getString('uid'));
+if (_req.getString("uid")) {
+  dbAction = _db.get("action", _req.getString("uid"));
 }
 
 if (!dbAction) {
@@ -11,11 +11,11 @@ if (!dbAction) {
   _exec.stop();
 }
 
-const dbImageName = dbAction.getString('image');
+const dbImageName = dbAction.getString("image");
 
 const storageImageFile = _storage.database(
-  'action',
-  'image',
+  "action",
+  "image",
   dbImageName
 );
 

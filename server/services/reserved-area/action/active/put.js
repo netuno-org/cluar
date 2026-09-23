@@ -16,21 +16,21 @@ if (!dbActions) {
   _header.status(404);
   _out.json(
     _val.map()
-      .set('result', false)
-      .set('error', `language not found with uid: ${uid}`)
-      .set('error_code', `language-not-found`)
+      .set("result", false)
+      .set("error", `language not found with uid: ${uid}`)
+      .set("error_code", "language-not-found")
   );
   _exec.stop();
 }
 
 _db.update(
-  'action',
+  "action",
   dbActions.getInt("id"),
   _val.map()
-    .set('active', active)
+    .set("active", active)
 );
 
 _out.json(
   _val.map()
-    .set('result', true)
+    .set("result", true)
 );

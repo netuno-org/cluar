@@ -9,7 +9,7 @@
 
 import { _db, _val } from "@netuno/server-types";
 
-if (_val.global().getBoolean('cluar:setup')) {
+if (_val.global().getBoolean("cluar:setup")) {
   _db.insertIfNotExists(
     "organization_profile",
     _val.init()
