@@ -77,7 +77,7 @@ if (parent_code) {
   );
 
   if (isParentDescendant) {
-    _header.status(401);
+    _header.status(409);
     _out.json(
       _val.map()
         .set('result', false)
