@@ -6,22 +6,22 @@ import { NETUNO_URL } from "../config.js";
 import { createUser, deleteUser } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
 
-let aUid;
-let bUid;
-let cUid;
-let c1Uid;
-let c11Uid;
+let aOrgUid;
+let bOrgUid;
+let cOrgUid;
+let c1OrgUid;
+let c11OrgUid;
 
 let aliceUid;
 let bobUid;
 let charlieUid;
 
 beforeEach(async () => {
-  aUid = await createOrganization("a", "base");
-  bUid = await createOrganization("b", "base");
-  cUid = await createOrganization("c", "base");
-  c1Uid = await createOrganization("c1", "c");
-  c11Uid = await createOrganization("c11", "c1");
+  aOrgUid = await createOrganization("a", "base");
+  bOrgUid = await createOrganization("b", "base");
+  cOrgUid = await createOrganization("c", "base");
+  c1OrgUid = await createOrganization("c1", "c");
+  c11OrgUid = await createOrganization("c11", "c1");
 
   aliceUid = await createUser("alice", "c", "administrator");
   bobUid = await createUser("bob", "b", "administrator");
@@ -33,11 +33,11 @@ afterEach(async () => {
   await deleteUser(bobUid);
   await deleteUser(charlieUid);
 
-  await deleteOrganization(aUid);
-  await deleteOrganization(bUid);
-  await deleteOrganization(cUid);
-  await deleteOrganization(c1Uid);
-  await deleteOrganization(c11Uid);
+  await deleteOrganization(aOrgUid);
+  await deleteOrganization(bOrgUid);
+  await deleteOrganization(cOrgUid);
+  await deleteOrganization(c1OrgUid);
+  await deleteOrganization(c11OrgUid);
 });
 
 it("should delete a user if logged user org is above user org", async () => {
@@ -84,7 +84,7 @@ it("shouldn't delete a user if they are in more than one organization", async ()
     .set("Accept", "*/*")
     .set("Content-Type", "application/json")
     .send({
-      organization_uid: bUid,
+      organization_uid: bOrgUid,
       profile_uid: charlieUid,
     });
 });
