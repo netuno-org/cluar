@@ -48,18 +48,7 @@ if (!dbOrganization) {
   _exec.stop();
 }
 
-const isAuthorized = cluar.permission.isUserAuthorizedInOrganization(dbOrganization);
-
-if (!isAuthorized) {
-  _header.status(401);
-  _out.json(
-    _val.map()
-      .set('result', false)
-      .set('error_code', 'user-unauthorized')
-      .set('error', `user not authorized in the organization`)
-  );
-  _exec.stop();
-}
+cluar.permission.requireUserAuthorizedInOrganization(dbOrganization);
 
 const dbGroup = _db.queryFirst(`SELECT id, name, code FROM user_group WHERE code = ?::varchar`, group_code);
 
