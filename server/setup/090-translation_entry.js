@@ -4760,3 +4760,35 @@ _db.insertIfNotExists(
     .set("code", "organization-form-validation-hierarchy-breakdown")
     .set("description", "Formul\u00E1rio de Organiza\u00E7\u00F5es - Valida\u00E7\u00E3o - Quebra de Hierarquia")
 );
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "026be599-86dd-45ee-98a9-a5a815850056")
+    .set("code", "entry-in-use")
+    .set("description", "Erro - Entrada de tradu\u00E7\u00E3o a ser usada")
+);
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "8c5034c3-b543-4ca0-8c2a-89c548e3238d")
+    .set("code", "action-in-use")
+    .set("description", "Erro - A\u00E7\u00E3o a ser usada")
+);
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "da114dce-d928-42da-b418-12602ff3b2da")
+    .set("code", "configuration-parameter-in-use")
+    .set("description", "Erro - Par\u00E2metro de configura\u00E7\u00E3o a ser usado")
+);
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "051aeacf-6866-4e10-8973-d6d6c7e79e7c")
+    .set("code", "action-parameter-in-use")
+    .set("description", "Erro - Par\u00E2metro de a\u00E7\u00E3o a ser usado")
+);

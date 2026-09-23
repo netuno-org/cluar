@@ -36,7 +36,7 @@ if (membershipCount <= 1) {
   cluar.response.error({
     status: 409,
     error_code: "user-needs-at-least-one-organization",
-    error: "Cannot remove membership, a user must be in at least one organization"
+    error: "cannot remove membership, a user must be in at least one organization"
   });
 }
 

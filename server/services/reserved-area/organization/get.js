@@ -57,7 +57,7 @@ if (!dbOrganization) {
     _val.map()
       .set("result", false)
       .set("error_code", "organization-not-found")
-      .set("error", `not fund organization with uid: ${uid}`)
+      .set("error", `organization not found with uid: ${uid}`)
   );
   _exec.stop();
 }

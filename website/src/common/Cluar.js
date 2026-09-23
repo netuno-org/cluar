@@ -167,6 +167,12 @@ export default class Cluar {
     return entry;
   }
 
+  static hasTranslation(entry) {
+    return !!data.translation[Cluar.currentLanguage().code]
+      ? !!data.translation[Cluar.currentLanguage().code][entry]
+      : false;
+  }
+
   static banner(type) {
     const i = data.banners.find(
       (e) => e.type === type && e.language === Cluar.currentLanguage().code,

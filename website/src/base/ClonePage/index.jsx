@@ -169,11 +169,11 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
           setLoading((prev) => ({ ...prev, saving: false }));
           console.error(error);
           const errorCode = error?.json?.error_code;
-          notification.error({
-            message: errorCode
-              ? Cluar.plainTranslation(errorCode)
-              : Cluar.plainTranslation("page-clone-notification-clone-fail"),
-          });
+          const errorMessage =
+            (errorCode && Cluar.hasTranslation(errorCode) && Cluar.plainTranslation(errorCode))
+            || error?.json?.error
+            || Cluar.plainTranslation("page-clone-notification-clone-fail");
+          notification.error({ message: errorMessage });
         },
       });
     });

@@ -36,7 +36,7 @@ if (usedIn.length > 0) {
   cluar.response.error({
     status: 409,
     error_code: "action-in-use",
-    error: `Não é possível apagar esta ação pois ela está sendo usada em: ${usedIn.join(", ")}.`
+    error: `the action cannot be removed because it is being used by: ${usedIn.join(", ")}`
   });
 }
 

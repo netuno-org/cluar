@@ -82,7 +82,7 @@ if (parent_code) {
       _val.map()
         .set("result", false)
         .set("error_code", "hierarchy-breakdown")
-        .set("error", "An organization cannot have as parent an organization below its hierarchy")
+        .set("error", "an organization cannot have as parent an organization below its hierarchy")
     );
     _exec.stop();
   }

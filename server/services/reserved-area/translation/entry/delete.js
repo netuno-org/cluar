@@ -21,7 +21,7 @@ if (inUse && inUse.getInt("total") > 0) {
   cluar.response.error({
     status: 409,
     error_code: "entry-in-use",
-    error: "Não é possível apagar esta entrada pois ela está sendo usada em um ou mais traduções."
+    error: "the entry cannot be removed because it is being used by one or more translations"
   });
 }
 

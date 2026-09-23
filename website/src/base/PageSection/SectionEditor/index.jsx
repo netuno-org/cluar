@@ -154,7 +154,7 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       },
       fail: (error) => {
         console.error("Erro ao gerar conteúdo:", error);
-        message.error(Cluar.plainTranslation("section-editor-notification-ai-generate-fail"));
+        message.error(error?.json?.error || Cluar.plainTranslation("section-editor-notification-ai-generate-fail"));
         setGenerating(false);
       },
     });

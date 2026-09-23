@@ -147,10 +147,12 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
         setLoading({ ...loading, saving: false });
         console.error(error);
 
-        if (error?.json?.error_code) {
+        const errorCode = error?.json?.error_code;
+        if (errorCode) {
           notification.error({
             message: editMode ? Cluar.plainTranslation("action-form-edit-failed-message") : Cluar.plainTranslation("action-form-save-failed-message"),
-            description: Cluar.plainTranslation(error.json.error_code),
+            description: (Cluar.hasTranslation(errorCode) && Cluar.plainTranslation(errorCode))
+              || error?.json?.error,
           });
           return;
         }

@@ -9,7 +9,7 @@ if (!userPrompt) {
   _out.json(
     _val.map()
       .set("result", false)
-      .set("error", "O parâmetro 'prompt' é obrigatório")
+      .set("error", "the 'prompt' parameter is required")
   );
   _exec.stop();
 }

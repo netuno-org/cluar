@@ -56,7 +56,7 @@ class OpenAI {
       if (!response.isOk()) {
         return _val.map()
           .set("success", false)
-          .set("error", "Falha ao obter resposta da OpenAI")
+          .set("error", "failed to get a response from the OpenAI service")
           .set("details", response.getContent());
       }
 

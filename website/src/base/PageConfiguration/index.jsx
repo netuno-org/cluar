@@ -214,17 +214,13 @@ const PageConfiguration = ({
           console.error(error);
 
           const errorCode = error?.json?.error_code;
-          if (errorCode) {
-            notification.error({
-              message: Cluar.plainTranslation(errorCode),
-            });
-          } else {
-            notification.error({
-              message: isNewPage
-                ? Cluar.plainTranslation("page-configuration-notification-create-fail")
-                : Cluar.plainTranslation("page-configuration-notification-update-fail"),
-            });
-          }
+          const errorMessage =
+            (errorCode && Cluar.hasTranslation(errorCode) && Cluar.plainTranslation(errorCode))
+            || error?.json?.error
+            || (isNewPage
+              ? Cluar.plainTranslation("page-configuration-notification-create-fail")
+              : Cluar.plainTranslation("page-configuration-notification-update-fail"));
+          notification.error({ message: errorMessage });
         },
       });
     });

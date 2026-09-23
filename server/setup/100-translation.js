@@ -7665,7 +7665,7 @@ _db.insertIfNotExists(
     .set("uid", "d43db069-1b71-4725-8e73-31eefc84a57b")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "05e9d57a-2204-43ec-a863-915197475c89")
-    .set("value", "Failed to generate content")
+    .set("value", "Failed to generate the content with the AI assistant. Please try again later.")
 );
 
 _db.insertIfNotExists(
@@ -7674,7 +7674,7 @@ _db.insertIfNotExists(
     .set("uid", "abe1f756-d2a0-4b4a-821e-ed046ac573b2")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "05e9d57a-2204-43ec-a863-915197475c89")
-    .set("value", "Falha ao gerar conte\u00FAdo")
+    .set("value", "Falha ao gerar o conte\u00FAdo com o assistente de IA. Tente novamente mais tarde.")
 );
 
 _db.insertIfNotExists(
@@ -10663,4 +10663,76 @@ _db.insertIfNotExists(
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "5ed5d89b-9838-4ea9-aa11-a741c1032c9d")
     .set("value", "Uma organiza\u00E7\u00E3o n\u00E3o pode ter como pai outra organiza\u00E7\u00E3o que est\u00E1 abaixo da sua hierarquia.")
+);
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "aa16219f-7280-4d49-83ed-4848838ce2e3")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "026be599-86dd-45ee-98a9-a5a815850056")
+    .set("value", "Não é possível apagar esta entrada pois ela está sendo usada em uma ou mais traduções.")
+);
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "1fa4a91d-418f-4077-b5dc-5e81f9a42acb")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "026be599-86dd-45ee-98a9-a5a815850056")
+    .set("value", "The entry cannot be removed because it is being used by one or more translations.")
+);
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "31ee1270-ccec-4f59-82d2-8ca26fab8354")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "8c5034c3-b543-4ca0-8c2a-89c548e3238d")
+    .set("value", "Não é possível apagar esta ação pois ela está sendo usada por uma ou mais páginas.")
+);
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "20063643-780a-48fc-bcc7-098feb98fd80")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "8c5034c3-b543-4ca0-8c2a-89c548e3238d")
+    .set("value", "The action cannot be removed because it is being used by one or more pages.")
+);
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "59a36dab-3f95-4e96-a95b-4320cb22861a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "da114dce-d928-42da-b418-12602ff3b2da")
+    .set("value", "Não é possível apagar este parâmetro pois ele está sendo usado por uma ou mais configurações.")
+);
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "b7aeb6dc-945b-4c52-9c79-0d4687771a16")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "da114dce-d928-42da-b418-12602ff3b2da")
+    .set("value", "The parameter cannot be removed because it is being used by one or more configurations.")
+);
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "047ffb23-ab96-43b4-a7b9-9ad57980835a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "051aeacf-6866-4e10-8973-d6d6c7e79e7c")
+    .set("value", "Não é possível apagar este parâmetro pois ele está sendo usado por uma ou mais ações.")
+);
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "2f90bad9-7b2b-428a-9e7e-8bf6aad41059")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "051aeacf-6866-4e10-8973-d6d6c7e79e7c")
+    .set("value", "The parameter cannot be removed because it is being used by one or more actions.")
 );

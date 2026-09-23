@@ -24,7 +24,7 @@ if (!dbUser) {
   _out.json(
     _val.map()
       .set("result", false)
-      .set("error", `User not found with uid: ${uid}`)
+      .set("error", `user not found with uid: ${uid}`)
       .set("error_code", "user-not-found")
   );
   _exec.stop();

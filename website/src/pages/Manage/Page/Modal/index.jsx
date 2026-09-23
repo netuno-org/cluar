@@ -115,10 +115,12 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           setLoading({ ...loading, saving: false });
           console.error(error);
 
-          if (error?.json?.error_code) {
+          const errorCode = error?.json?.error_code;
+          if (errorCode) {
             notification.error({
               message: Cluar.plainTranslation("page-form-edit-failed-message"),
-              description: Cluar.plainTranslation(error.json.error_code),
+              description: (Cluar.hasTranslation(errorCode) && Cluar.plainTranslation(errorCode))
+                || error?.json?.error,
             });
             return;
           }
@@ -147,10 +149,12 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
           setLoading({ ...loading, saving: false });
           console.error(error);
 
-          if (error?.json?.error_code) {
+          const errorCode = error?.json?.error_code;
+          if (errorCode) {
             notification.error({
               message: Cluar.plainTranslation("page-form-save-failed-message"),
-              description: Cluar.plainTranslation(error.json.error_code),
+              description: (Cluar.hasTranslation(errorCode) && Cluar.plainTranslation(errorCode))
+                || error?.json?.error,
             });
             return;
           }

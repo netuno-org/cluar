@@ -155,8 +155,11 @@ const ConfigurationParameterSelect = ({
       },
       fail: (error) => {
         console.error(error);
-        // Pega a mensagem de erro que veio do backend, se existir
-        const errorMessage = error?.json?.error || Cluar.plainTranslation("configuration-parameter-select-notification-delete-fail");
+        const errorCode = error?.json?.error_code;
+        const errorMessage =
+          (errorCode && Cluar.hasTranslation(errorCode) && Cluar.plainTranslation(errorCode))
+          || error?.json?.error
+          || Cluar.plainTranslation("configuration-parameter-select-notification-delete-fail");
         notification.error({ message: errorMessage });
       },
     });
