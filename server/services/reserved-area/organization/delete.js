@@ -9,7 +9,7 @@ if (!dbOrganization) {
   cluar.response.error({ status: 404, error: "organization not found" });
 }
 
-cluar.permission.requireOrganizationAdminAccess(organizationUid);
+cluar.permission.requireUserAuthorizedInOrganization(dbOrganization);
 
 const organizationId = dbOrganization.getInt("id");
 

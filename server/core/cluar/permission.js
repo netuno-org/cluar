@@ -63,11 +63,4 @@ export default {
       });
     }
   },
-
-  requireOrganizationAdminAccess: (organizationUid) => {
-    const userOganizations = user.getActiveAdminOrganizationsWithDescendants();
-    if (!userOganizations.some((org) => org.getString("uid") === organizationUid)) {
-      response.error({ status: 403, error: 'permission denied' });
-    }
-  }
 };

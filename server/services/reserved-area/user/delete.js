@@ -37,7 +37,8 @@ if (membership.getInt("count") > 1) {
 }
 
 const userOrganizationUid = membership.getString("user_organization_uid");
-cluar.permission.requireOrganizationAdminAccess(userOrganizationUid);
+const dbUserOrganization = _db.get("organization", userOrganizationUid);
+cluar.permission.requireUserAuthorizedInOrganization(dbUserOrganization);
 
 _db.execute(`DELETE from organization_profile WHERE profile_id = ${profileId}`);
 _db.delete(
