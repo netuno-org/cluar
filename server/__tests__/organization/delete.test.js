@@ -1,5 +1,5 @@
 import request from "supertest";
-import { beforeEach, afterEach, test, it, expect } from "@jest/globals";
+import { beforeEach, afterEach, it, expect } from "@jest/globals";
 
 import login from "../util/login.js";
 import { NETUNO_URL } from "../config.js";
