@@ -22,10 +22,7 @@ if (!dbOrganization) {
   _exec.stop();
 }
 
-const isAuthorized = cluar.permission.isUserAuthorizedInOrganization(
-  _val.map()
-    .set('organization', dbOrganization)
-);
+const isAuthorized = cluar.permission.isUserAuthorizedInOrganization(dbOrganization);
 
 if (!isAuthorized) {
   _header.status(401);
@@ -82,10 +79,7 @@ if (parent_code) {
     _exec.stop();
   }
 
-  const isAuthorized = cluar.permission.isUserAuthorizedInOrganization(
-    _val.map()
-      .set('organization', dbParent)
-  );
+  const isAuthorized = cluar.permission.isUserAuthorizedInOrganization(dbParent);
 
   if (!isAuthorized) {
     _header.status(401);
