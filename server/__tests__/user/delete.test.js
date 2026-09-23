@@ -3,7 +3,7 @@ import { beforeEach, afterEach, it, expect } from "@jest/globals";
 
 import login from "../util/login.js";
 import { NETUNO_URL } from "../config.js";
-import { createUser, deleteUser } from "../util/user.js";
+import { createUser, deleteUser, addUserToOrganization, removeUserFromOrganization } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
 
 let aOrgUid;
@@ -59,32 +59,13 @@ it("shouldn't delete a user if logged user org is not above user org", async () 
 });
 
 it("shouldn't delete a user if they are in more than one organization", async () => {
-  let accessToken = await login.asAdmin();
-  await request(NETUNO_URL)
-    .post(`/reserved-area/organization/member`)
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
-      active: true,
-      group_code: "editor",
-      organization_code: "b",
-      profile_uid: charlieUid,
-    });
+  await addUserToOrganization(charlieUid, "b", "editor");
 
-  accessToken = await login.asAlice();
+  const accessToken = await login.asAlice();
   await request(NETUNO_URL)
     .delete(`/reserved-area/user?uid=${charlieUid}`)
     .set("Authorization", `Bearer ${accessToken}`)
     .expect(409);
 
-  await request(NETUNO_URL)
-    .delete(`/reserved-area/organization/member`)
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
-      organization_uid: bOrgUid,
-      profile_uid: charlieUid,
-    });
+  await removeUserFromOrganization(charlieUid, bOrgUid);
 });

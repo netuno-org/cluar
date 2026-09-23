@@ -29,4 +29,32 @@ const deleteUser = async (uid) => {
     .set("Authorization", `Bearer ${accessToken}`)
 }
 
-export { createUser, deleteUser };
+const addUserToOrganization = async (userUid, org, group) => {
+  let accessToken = await login.asAdmin();
+  await request(NETUNO_URL)
+    .post(`/reserved-area/organization/member`)
+    .set("Authorization", `Bearer ${accessToken}`)
+    .set("Accept", "*/*")
+    .set("Content-Type", "application/json")
+    .send({
+      active: true,
+      group_code: group,
+      organization_code: org,
+      profile_uid: userUid,
+    });
+}
+
+const removeUserFromOrganization = async (userUid, orgUid) => {
+  let accessToken = await login.asAdmin();
+  await request(NETUNO_URL)
+    .delete(`/reserved-area/organization/member`)
+    .set("Authorization", `Bearer ${accessToken}`)
+    .set("Accept", "*/*")
+    .set("Content-Type", "application/json")
+    .send({
+      organization_uid: orgUid,
+      profile_uid: userUid,
+    });
+}
+
+export { createUser, deleteUser, addUserToOrganization, removeUserFromOrganization };
