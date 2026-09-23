@@ -12,9 +12,8 @@ export default {
     return profileGroups.some((group) => allowedGroups.includes(group.getString("code")));
   },
 
-  isUserAuthorizedInOrganization: (params) => {
+  isUserAuthorizedInOrganization: (organization) => {
     const profile = user.getProfile();
-    const organization = params.getValues("organization");
 
     const dbIsAuthorized = _db.queryFirst(`
         WITH RECURSIVE user_orgs AS (
