@@ -1,4 +1,4 @@
-import { _req, _db, _out, _val, _exec, _header, _user, _group } from "@netuno/server-types";
+import { _req, _db, _out, _val, _header, _user, _group } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
 
 const name = _req.getString("name");
@@ -13,38 +13,31 @@ const userEmailExists = _user.firstByMail(email);
 const usernameExists = _user.firstByUser(username);
 
 if (userEmailExists || usernameExists) {
-  _header.status(409)
-  _out.json(
-    _val.map()
-      .set("error", `${userEmailExists ? "email" : "user"}-already-exists`)
-  )
-  _exec.stop();
+  cluar.response.error({
+    status: 409,
+    error: userEmailExists ? "email already exists" : "username already exists",
+    error_code: userEmailExists ? "email-already-exists" : "user-already-exists"
+  });
 }
 
 const dbOrganization = _db.queryFirst("SELECT id, name, code FROM organization WHERE code = ?::varchar", organizationcode);
 
 if (!dbOrganization) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `organization not found with uid: ${organizationcode}`)
-      .set("error_code", "organization-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `organization not found with code: ${organizationcode}`,
+    error_code: "organization-not-found"
+  });
 }
 
 const dbGroup = _db.queryFirst("SELECT id, name, code FROM user_group WHERE code = ?::varchar", groupCode);
 
 if (!dbGroup) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `group not found with uid: ${groupCode}`)
-      .set("error_code", "group-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `group not found with code: ${groupCode}`,
+    error_code: "group-not-found"
+  });
 }
 
 cluar.permission.requireUserAuthorizedInOrganization(dbOrganization);

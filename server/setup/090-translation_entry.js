@@ -4792,3 +4792,431 @@ _db.insertIfNotExists(
     .set("code", "action-parameter-in-use")
     .set("description", "Erro - Par\u00E2metro de a\u00E7\u00E3o a ser usado")
 );
+
+// -----------------------------------------------------------
+// VALIDATION / ERROR CODES TRANSLATION ENTRIES
+//
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "8faf8a6b-b874-4e8e-a7ef-70081e4da875")
+    .set("code", "action-not-found")
+    .set("description", "Erro - A\u00e7\u00e3o n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "3b63ea23-4d23-4095-89e4-311b72f7e7f3")
+    .set("code", "cannot-delete-self")
+    .set("description", "Erro - O utilizador n\u00e3o pode remover-se a si pr\u00f3prio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "2670550f-c708-46aa-bc9f-7909bda73e9b")
+    .set("code", "code-already-in-use")
+    .set("description", "Erro - C\u00f3digo j\u00e1 em uso")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "2ff2c00b-6972-414e-993f-5a0b0bfadd95")
+    .set("code", "code-required")
+    .set("description", "Erro - C\u00f3digo obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "688f71af-6371-4573-921e-99bbcc86154d")
+    .set("code", "configuration-not-found")
+    .set("description", "Erro - Configura\u00e7\u00e3o n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "0fbf6c3d-8ac4-456d-9a56-7987bd00dddf")
+    .set("code", "description-required")
+    .set("description", "Erro - Descri\u00e7\u00e3o obrigat\u00f3ria")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "1351f687-bdd7-4a76-8d77-ca5bb8676006")
+    .set("code", "entry-code-already-exists")
+    .set("description", "Erro - C\u00f3digo de entrada de tradu\u00e7\u00e3o j\u00e1 existe")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "a044325c-551c-413c-bae3-54e3827d17e3")
+    .set("code", "entry-not-found")
+    .set("description", "Erro - Entrada de tradu\u00e7\u00e3o n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "1c458544-c5cc-4f7f-b1c0-9f8632c96beb")
+    .set("code", "group-not-found")
+    .set("description", "Erro - Grupo n\u00e3o encontrado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "208c89a1-5684-4969-9008-e8676e41626b")
+    .set("code", "hierarchy-breakdown")
+    .set("description", "Erro - Quebra de hierarquia")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "2b1de0b7-221c-4ca7-81e4-5fc4e0a7b885")
+    .set("code", "invalid-altcha-payload")
+    .set("description", "Erro - Valida\u00e7\u00e3o Altcha inv\u00e1lida")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "26fb6d14-4c7c-4a71-9410-7ffe02aba5cc")
+    .set("code", "invalid-provider-data")
+    .set("description", "Erro - Dados do provedor de autentica\u00e7\u00e3o inv\u00e1lidos")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "6b5dfc5c-bac4-48c0-8bcb-f80cff5bed30")
+    .set("code", "invalid-user")
+    .set("description", "Erro - Utilizador inv\u00e1lido")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "85db8aa4-a4af-4c06-8cff-da799a6ad24c")
+    .set("code", "language-code-required")
+    .set("description", "Erro - C\u00f3digo de idioma obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "df3445d9-3c54-492f-b8a8-baa7441d66d6")
+    .set("code", "language-exists")
+    .set("description", "Erro - Idioma j\u00e1 existe")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "adcffe40-5b27-4fd3-81b9-d4e4c75bdfc6")
+    .set("code", "language-not-found")
+    .set("description", "Erro - Idioma n\u00e3o encontrado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "40d16254-0323-42ec-bf70-edbdb5f17661")
+    .set("code", "link-required")
+    .set("description", "Erro - Link obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "d11734f8-da9c-4efc-9a76-211495bc10f7")
+    .set("code", "member-not-found")
+    .set("description", "Erro - Membro n\u00e3o encontrado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "db76a215-d819-4103-a4c8-57027960073e")
+    .set("code", "membership-not-found")
+    .set("description", "Erro - Associa\u00e7\u00e3o n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "099ae82b-7cf2-4de6-88ed-078181c69f78")
+    .set("code", "openai-service-failed")
+    .set("description", "Erro - Falha no servi\u00e7o da IA")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "4d8e4631-01c2-4a91-9251-416b7b9ed2c1")
+    .set("code", "organization-has-members")
+    .set("description", "Erro - Organiza\u00e7\u00e3o com membros")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "611163cf-6600-4b46-a9ee-952f74a38e7d")
+    .set("code", "organization-not-found")
+    .set("description", "Erro - Organiza\u00e7\u00e3o n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "bf88d2cd-abe2-4b8f-99f1-836c5ac27888")
+    .set("code", "page-has-invalid-version")
+    .set("description", "Erro - P\u00e1gina com vers\u00e3o inv\u00e1lida")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "706a85fc-35a9-4d73-8025-7c4fcba8986a")
+    .set("code", "page-has-no-previous-version")
+    .set("description", "Erro - P\u00e1gina sem vers\u00e3o anterior")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "55ededf2-d089-4781-89ad-61799a638c8c")
+    .set("code", "page-has-no-publish-version")
+    .set("description", "Erro - P\u00e1gina sem vers\u00e3o publicada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "0aba53cb-9962-4b19-adaf-9e8b3b131331")
+    .set("code", "page-link-already-exists")
+    .set("description", "Erro - Link de p\u00e1gina j\u00e1 existe")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "e573579b-3f1b-4b6b-9940-cf419f5d60ac")
+    .set("code", "page-menu-title-required")
+    .set("description", "Erro - T\u00edtulo de menu da p\u00e1gina obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "ac2e0aa3-78c1-441f-81ee-1955287bbe14")
+    .set("code", "page-not-found")
+    .set("description", "Erro - P\u00e1gina n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "ef205e89-cd81-4174-97d8-0a624c92b319")
+    .set("code", "page-version-not-found")
+    .set("description", "Erro - Vers\u00e3o de p\u00e1gina n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "e08a313b-17bb-4b7b-a7c1-01a2a0804339")
+    .set("code", "page-version-uid-required")
+    .set("description", "Erro - UID da vers\u00e3o de p\u00e1gina obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "415fa3c9-7bad-4b57-8593-40ca9570f2dd")
+    .set("code", "parameter-code-already-exists")
+    .set("description", "Erro - C\u00f3digo de par\u00e2metro j\u00e1 existe")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "8c1d1cd8-b396-4155-8cf4-531b3a85e93b")
+    .set("code", "parameter-not-found")
+    .set("description", "Erro - Par\u00e2metro n\u00e3o encontrado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "07406a09-37a0-4b63-846a-671387b63126")
+    .set("code", "parameter-type-not-found")
+    .set("description", "Erro - Tipo de par\u00e2metro n\u00e3o encontrado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "dfd840d3-8324-4e96-b01e-fd9dd8e77d09")
+    .set("code", "parent-organization-not-found")
+    .set("description", "Erro - Organiza\u00e7\u00e3o pai n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "b131602e-0fb8-4ae6-9523-2eb9671c558f")
+    .set("code", "person-already-member")
+    .set("description", "Erro - Pessoa j\u00e1 \u00e9 membro")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "d1dfc66f-452f-434f-8f48-8be902e7c324")
+    .set("code", "profile-not-found")
+    .set("description", "Erro - Perfil n\u00e3o encontrado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "de88ee4c-9b52-4a2c-98be-a2fec4938a74")
+    .set("code", "prompt-required")
+    .set("description", "Erro - Prompt obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "587f14d8-69cb-49dc-9f33-1dbb5bbae49c")
+    .set("code", "published-required")
+    .set("description", "Erro - Campo publicado obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "5bdfd949-db60-46c6-8718-1c8929a5baea")
+    .set("code", "recaptcha-validation-failed")
+    .set("description", "Erro - Falha na valida\u00e7\u00e3o do reCAPTCHA")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "18468bc2-8493-4d68-84ae-fe2615b3bd92")
+    .set("code", "source-page-not-found")
+    .set("description", "Erro - P\u00e1gina de origem n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "423c436b-40d0-4932-9fb3-4bf14cdeef9f")
+    .set("code", "title-required")
+    .set("description", "Erro - T\u00edtulo obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "3160d36b-2426-41c4-a97a-832dd1058f47")
+    .set("code", "translation-not-found")
+    .set("description", "Erro - Tradu\u00e7\u00e3o n\u00e3o encontrada")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "ef48ac50-31bc-452a-826c-cbce26dc0626")
+    .set("code", "type-code-required")
+    .set("description", "Erro - C\u00f3digo de tipo obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "a99c3912-0b01-4ba0-b76d-95d6e23745c4")
+    .set("code", "uid-required")
+    .set("description", "Erro - UID obrigat\u00f3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "ac6a7e82-b6a3-4c6d-9522-ab68fb12009f")
+    .set("code", "user-exists")
+    .set("description", "Erro - Utilizador j\u00e1 existe")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "32f85666-e87d-4c60-9068-5aaf1891248b")
+    .set("code", "user-in-multiple-organizations")
+    .set("description", "Erro - Utilizador em m\u00faltiplas organiza\u00e7\u00f5es")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "47849b15-f87c-4495-a564-e5a5119b586b")
+    .set("code", "user-needs-at-least-one-organization")
+    .set("description", "Erro - Utilizador precisa de pelo menos uma organiza\u00e7\u00e3o")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "d098c134-597c-4db3-ab2e-e2f94a10a3ee")
+    .set("code", "user-not-active")
+    .set("description", "Erro - Utilizador n\u00e3o ativo")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "dc00017b-00bc-4f84-bca7-2f8fe420db0c")
+    .set("code", "user-not-found")
+    .set("description", "Erro - Utilizador n\u00e3o encontrado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "72d01f94-7c53-468c-be4d-2453633e3f60")
+    .set("code", "user-unauthorized")
+    .set("description", "Erro - Utilizador n\u00e3o autorizado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "5258ffcd-8083-4feb-b03f-c980e76f9084")
+    .set("code", "email-already-exists")
+    .set("description", "Erro - E-mail j\u00e1 existe")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "710258c2-d45c-41c1-8257-d3742941322b")
+    .set("code", "user-already-exists")
+    .set("description", "Erro - Nome de utilizador j\u00e1 existe")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "9bac2901-eea1-4ea1-8282-bc867f6b5d2d")
+    .set("code", "contact-mail-subject")
+    .set("description", "Formul\u00e1rio de Contato - Assunto do e-mail")
+);;
+

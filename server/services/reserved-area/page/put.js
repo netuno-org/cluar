@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req, _out } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString("uid");
 
@@ -25,27 +26,19 @@ const dbLanguage = _db.queryFirst(
 
 const dbPage = _db.get("page", uid);
 if (!dbPage) {
-  _header.status(404);
-  _out.json(
-    _val
-      .map()
-      .set("result", false)
-      .set("error", `page not found with uid: ${uid}`)
-      .set("error_code", "page-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `page not found with uid: ${uid}`,
+    error_code: "page-not-found"
+  });
 }
 
 if (menu === true && !menuTitle) {
-  _header.status(400);
-  _out.json(
-    _val
-      .map()
-      .set("result", false)
-      .set("error", "menu_title is required when menu is enabled")
-      .set("error_code", "page-menu-title-required")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 400,
+    error: "menu_title is required when menu is enabled",
+    error_code: "page-menu-title-required"
+  });
 }
 
 const linkExists = _db.queryFirst(
@@ -61,15 +54,11 @@ const linkExists = _db.queryFirst(
 );
 
 if (linkExists) {
-  _header.status(409);
-  _out.json(
-    _val
-      .map()
-      .set("result", false)
-      .set("error", `page link already exists: ${link}`)
-      .set("error_code", "page-link-already-exists")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 409,
+    error: `page link already exists: ${link}`,
+    error_code: "page-link-already-exists"
+  });
 }
 
 let parentPage = null;

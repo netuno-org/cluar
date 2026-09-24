@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req, _out, _header } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const description = _req.getString("description");
@@ -16,14 +16,11 @@ const languageExists = _db.queryFirst(`
 `, code, locale).getBoolean("result");
 
 if (languageExists) {
-  _header.status(409);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", "language already exists with this code or locale")
-      .set("error_code", "language-exists")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 409,
+    error: "language already exists with this code or locale",
+    error_code: "language-exists"
+  });
 }
 
 const data = _val.map()

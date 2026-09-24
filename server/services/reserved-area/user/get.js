@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req, _out } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString("uid");
 
@@ -20,14 +21,11 @@ const dbUser = _db.form("profile")
   .first();
 
 if (!dbUser) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `user not found with uid: ${uid}`)
-      .set("error_code", "user-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `user not found with uid: ${uid}`,
+    error_code: "user-not-found"
+  });
 }
 
 const user = _val.map()

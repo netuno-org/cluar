@@ -10736,3 +10736,961 @@ _db.insertIfNotExists(
     .set("entry_id", "051aeacf-6866-4e10-8973-d6d6c7e79e7c")
     .set("value", "The parameter cannot be removed because it is being used by one or more actions.")
 );
+
+// -----------------------------------------------------------
+// VALIDATION / ERROR CODES TRANSLATIONS
+//
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "39bf7f0f-9d14-46cb-b5a2-78ffc5550d87")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "8faf8a6b-b874-4e8e-a7ef-70081e4da875")
+    .set("value", "A a\u00e7\u00e3o n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "dd382dac-923f-41bc-9052-6e662dc5cb0d")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "8faf8a6b-b874-4e8e-a7ef-70081e4da875")
+    .set("value", "The action was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "76408619-d1cd-472f-bb11-9c1324e07992")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "3b63ea23-4d23-4095-89e4-311b72f7e7f3")
+    .set("value", "N\u00e3o \u00e9 poss\u00edvel remover o pr\u00f3prio utilizador.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "cbaaa60c-dada-4caf-97c5-bafa12734ed2")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "3b63ea23-4d23-4095-89e4-311b72f7e7f3")
+    .set("value", "Users cannot delete themselves.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "bbfbf2f8-16bd-4a28-8b38-f6c2c2b88c95")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "2670550f-c708-46aa-bc9f-7909bda73e9b")
+    .set("value", "O c\u00f3digo j\u00e1 est\u00e1 em uso por outra organiza\u00e7\u00e3o.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "01081df3-606c-4fbd-8e09-95678268df26")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "2670550f-c708-46aa-bc9f-7909bda73e9b")
+    .set("value", "The code is already in use by another organization.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "8df09788-4a74-4ddd-a18f-be1647c19ba5")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "2ff2c00b-6972-414e-993f-5a0b0bfadd95")
+    .set("value", "O c\u00f3digo \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "aec16f2e-f172-4b7d-bb55-7b8cc31f515d")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "2ff2c00b-6972-414e-993f-5a0b0bfadd95")
+    .set("value", "The code is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "9d07203f-fb3f-4ea7-8a83-beda1e643dfc")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "688f71af-6371-4573-921e-99bbcc86154d")
+    .set("value", "A configura\u00e7\u00e3o n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "ddb05cc3-20aa-4a50-9168-641b9eecd68d")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "688f71af-6371-4573-921e-99bbcc86154d")
+    .set("value", "The configuration was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "7ddce4ff-20db-4c1a-98a5-c971e7e6685d")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "0fbf6c3d-8ac4-456d-9a56-7987bd00dddf")
+    .set("value", "A descri\u00e7\u00e3o \u00e9 obrigat\u00f3ria.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "2122abbd-f9d8-4bf8-adc3-eea41ed202b7")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "0fbf6c3d-8ac4-456d-9a56-7987bd00dddf")
+    .set("value", "The description is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "9909e7e8-ee7a-4163-b8cb-e4d12d1a2fe5")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "1351f687-bdd7-4a76-8d77-ca5bb8676006")
+    .set("value", "J\u00e1 existe uma entrada de tradu\u00e7\u00e3o com este c\u00f3digo.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "9870e831-6079-46c3-8afb-7e8f0b8f0789")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "1351f687-bdd7-4a76-8d77-ca5bb8676006")
+    .set("value", "A translation entry with this code already exists.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "7e9b6580-9a02-4643-bf4b-2426e84ac95b")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "a044325c-551c-413c-bae3-54e3827d17e3")
+    .set("value", "A entrada de tradu\u00e7\u00e3o n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "d8a52caa-e750-4fd4-8f1d-af76709a7381")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "a044325c-551c-413c-bae3-54e3827d17e3")
+    .set("value", "The translation entry was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "4a390c12-afa8-469c-97f9-3eb02d89f741")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "1c458544-c5cc-4f7f-b1c0-9f8632c96beb")
+    .set("value", "O grupo n\u00e3o foi encontrado.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "cfe4f54d-fa37-4a39-a110-70713aadb332")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "1c458544-c5cc-4f7f-b1c0-9f8632c96beb")
+    .set("value", "The group was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "15f6ce7b-7437-41ef-a5c0-e961c8194125")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "208c89a1-5684-4969-9008-e8676e41626b")
+    .set("value", "Uma organiza\u00e7\u00e3o n\u00e3o pode ter como org\u00e7\u00e3o pai uma organiza\u00e7\u00e3o abaixo da sua hierarquia.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "b29d1e90-88d2-43ca-9010-be58b6caa066")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "208c89a1-5684-4969-9008-e8676e41626b")
+    .set("value", "An organization cannot have as parent an organization below its hierarchy.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "e89322fd-dbcd-43cc-a97d-8c27aa5ce507")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "2b1de0b7-221c-4ca7-81e4-5fc4e0a7b885")
+    .set("value", "A valida\u00e7\u00e3o Altcha falhou.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "4986fb27-071f-4dd9-8ba2-00d4310ce455")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "2b1de0b7-221c-4ca7-81e4-5fc4e0a7b885")
+    .set("value", "The Altcha validation failed.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "fa87af20-4f00-43a8-846c-c4ee03c48647")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "26fb6d14-4c7c-4a71-9410-7ffe02aba5cc")
+    .set("value", "Os dados do provedor de autentica\u00e7\u00e3o s\u00e3o inv\u00e1lidos.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "29dd019d-3536-4cf3-bfe2-d0c6712249c6")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "26fb6d14-4c7c-4a71-9410-7ffe02aba5cc")
+    .set("value", "The authentication provider data is invalid.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "09c71bbc-29f0-4576-ac6f-6cd3efba244e")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "6b5dfc5c-bac4-48c0-8bcb-f80cff5bed30")
+    .set("value", "Utilizador inv\u00e1lido.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "70db0473-8a94-4719-afc2-3ee376684dec")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "6b5dfc5c-bac4-48c0-8bcb-f80cff5bed30")
+    .set("value", "Invalid user.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "da7d442f-1e2e-47e7-bfc9-f5c5a6ea1ca3")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "85db8aa4-a4af-4c06-8cff-da799a6ad24c")
+    .set("value", "O c\u00f3digo do idioma \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "48b49994-2c7a-4eb9-8524-66bfecd20439")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "85db8aa4-a4af-4c06-8cff-da799a6ad24c")
+    .set("value", "The language code is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "479d0672-02bb-4d6d-a6a7-52ff418336d6")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "df3445d9-3c54-492f-b8a8-baa7441d66d6")
+    .set("value", "J\u00e1 existe um idioma com este c\u00f3digo ou localidade.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "8b61dbe0-7bbe-4c48-a5d3-156d04d91086")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "df3445d9-3c54-492f-b8a8-baa7441d66d6")
+    .set("value", "A language with this code or locale already exists.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "9ee8a195-4a56-49bc-99e9-95b09b974b89")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "adcffe40-5b27-4fd3-81b9-d4e4c75bdfc6")
+    .set("value", "O idioma n\u00e3o foi encontrado.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "55871979-6550-4b23-9221-fc1673d4fd4a")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "adcffe40-5b27-4fd3-81b9-d4e4c75bdfc6")
+    .set("value", "The language was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "9c34cc2a-0871-4683-a397-d7660aa48db7")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "40d16254-0323-42ec-bf70-edbdb5f17661")
+    .set("value", "O link \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "bfd2d4d6-a195-425b-97ab-aa39293530f5")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "40d16254-0323-42ec-bf70-edbdb5f17661")
+    .set("value", "The link is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "72b1fe9e-2794-409d-9f2e-c837d12132be")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "d11734f8-da9c-4efc-9a76-211495bc10f7")
+    .set("value", "O membro n\u00e3o foi encontrado.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "91bd17d5-2341-43e6-aff5-a676c2c003ce")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "d11734f8-da9c-4efc-9a76-211495bc10f7")
+    .set("value", "The member was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "b4fd5b56-1341-4972-9465-d0bbd8bff3f2")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "db76a215-d819-4103-a4c8-57027960073e")
+    .set("value", "A associa\u00e7\u00e3o n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "186810f3-aaf8-40e2-8e4a-7bcc867dec6a")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "db76a215-d819-4103-a4c8-57027960073e")
+    .set("value", "The membership was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "80695b36-26d0-415e-8323-6872406d8685")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "099ae82b-7cf2-4de6-88ed-078181c69f78")
+    .set("value", "Falha ao processar o pedido com o servi\u00e7o de IA.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "180e764f-14a6-47ed-b182-2d386d146901")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "099ae82b-7cf2-4de6-88ed-078181c69f78")
+    .set("value", "Failed to process the request with the AI service.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "5ca5131f-ab88-44eb-b906-255dae14cba0")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "4d8e4631-01c2-4a91-9251-416b7b9ed2c1")
+    .set("value", "A organiza\u00e7\u00e3o n\u00e3o pode ser removida porque tem membros.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "305ab58d-1ffc-4226-9a5a-f9844b3afaa3")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "4d8e4631-01c2-4a91-9251-416b7b9ed2c1")
+    .set("value", "The organization cannot be removed because it has members.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "14e2198b-5ce3-46af-8f7f-9224b08c9bf4")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "611163cf-6600-4b46-a9ee-952f74a38e7d")
+    .set("value", "A organiza\u00e7\u00e3o n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "6fa0fd2c-19d3-4aef-821e-b91d79a89de9")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "611163cf-6600-4b46-a9ee-952f74a38e7d")
+    .set("value", "The organization was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "53608a59-bed9-4cdf-b45a-4a3b96e9b9df")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "bf88d2cd-abe2-4b8f-99f1-836c5ac27888")
+    .set("value", "A p\u00e1gina tem uma vers\u00e3o inv\u00e1lida.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "2152f8b4-fe61-4b3d-ab2b-b9a3ccd34ca2")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "bf88d2cd-abe2-4b8f-99f1-836c5ac27888")
+    .set("value", "The page has an invalid version.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "ab23e08c-b7cd-4a2d-9931-ad1b7824ec83")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "706a85fc-35a9-4d73-8025-7c4fcba8986a")
+    .set("value", "A p\u00e1gina n\u00e3o tem uma vers\u00e3o anterior.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "3bf7d006-9718-4725-a0c5-4efd2c7a6fac")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "706a85fc-35a9-4d73-8025-7c4fcba8986a")
+    .set("value", "The page has no previous version.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "94be628e-2d26-4f75-bfcb-ffde3944252e")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "55ededf2-d089-4781-89ad-61799a638c8c")
+    .set("value", "A p\u00e1gina n\u00e3o tem uma vers\u00e3o publicada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "08e2c493-6852-4cb9-8de7-35ba183c0552")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "55ededf2-d089-4781-89ad-61799a638c8c")
+    .set("value", "The page has no published version.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "413b470a-5590-4c02-a196-7e88c97d19c5")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "0aba53cb-9962-4b19-adaf-9e8b3b131331")
+    .set("value", "J\u00e1 existe uma p\u00e1gina com este link.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "bd29d89b-d516-4739-b5c1-a60241ebf77c")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "0aba53cb-9962-4b19-adaf-9e8b3b131331")
+    .set("value", "A page with this link already exists.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "7aef33d4-2e88-4b7f-9eff-75ad89139cef")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "e573579b-3f1b-4b6b-9940-cf419f5d60ac")
+    .set("value", "O t\u00edtulo de menu da p\u00e1gina \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "884a72e3-253b-44c7-a77e-15f5cc82ea6f")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "e573579b-3f1b-4b6b-9940-cf419f5d60ac")
+    .set("value", "The page menu title is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "1371ba6e-2d9d-4285-8471-70bd0b6faa42")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "ac2e0aa3-78c1-441f-81ee-1955287bbe14")
+    .set("value", "A p\u00e1gina n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "a1cf4f42-a14d-43b4-9ad5-7c77b957398c")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "ac2e0aa3-78c1-441f-81ee-1955287bbe14")
+    .set("value", "The page was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "d78fc222-0693-4bf7-9e49-aef0ac013443")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "ef205e89-cd81-4174-97d8-0a624c92b319")
+    .set("value", "A vers\u00e3o da p\u00e1gina n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "327fdc7e-593e-422d-bd34-04d221e18bfe")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "ef205e89-cd81-4174-97d8-0a624c92b319")
+    .set("value", "The page version was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "58ae3a09-9f40-487b-97b9-d25329f0683e")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "e08a313b-17bb-4b7b-a7c1-01a2a0804339")
+    .set("value", "O UID da vers\u00e3o da p\u00e1gina \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "93061246-a13d-4fe2-a0d2-946b586194db")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "e08a313b-17bb-4b7b-a7c1-01a2a0804339")
+    .set("value", "The page version UID is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "9c891a2e-53ad-4e25-9bb5-674034e1ed27")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "415fa3c9-7bad-4b57-8593-40ca9570f2dd")
+    .set("value", "J\u00e1 existe um par\u00e2metro com este c\u00f3digo.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "5fc42f37-9165-42be-ba99-730c5701bd46")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "415fa3c9-7bad-4b57-8593-40ca9570f2dd")
+    .set("value", "A parameter with this code already exists.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "d1054463-fdf7-487a-b763-95c742128294")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "8c1d1cd8-b396-4155-8cf4-531b3a85e93b")
+    .set("value", "O par\u00e2metro n\u00e3o foi encontrado.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "496d0da2-61dc-457c-8af3-f22eee696a1f")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "8c1d1cd8-b396-4155-8cf4-531b3a85e93b")
+    .set("value", "The parameter was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "18757148-71dd-4529-a33c-bb7a1084b4da")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "07406a09-37a0-4b63-846a-671387b63126")
+    .set("value", "O tipo de par\u00e2metro n\u00e3o foi encontrado.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "f74c9a93-d64c-494c-a73e-0219d4190347")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "07406a09-37a0-4b63-846a-671387b63126")
+    .set("value", "The parameter type was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "f9d6531e-12a3-462b-85df-b604ec3d29de")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "dfd840d3-8324-4e96-b01e-fd9dd8e77d09")
+    .set("value", "A organiza\u00e7\u00e3o pai n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "76b753ec-d904-4a06-9f1d-7eee2bb7c2da")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "dfd840d3-8324-4e96-b01e-fd9dd8e77d09")
+    .set("value", "The parent organization was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "f80c05bb-a1c8-49c7-87fe-15319d221215")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "b131602e-0fb8-4ae6-9523-2eb9671c558f")
+    .set("value", "Esta pessoa j\u00e1 \u00e9 membro desta organiza\u00e7\u00e3o.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "e98cc7e9-aa27-46d7-92b0-29ee592d85ab")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "b131602e-0fb8-4ae6-9523-2eb9671c558f")
+    .set("value", "This person is already a member of this organization.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "c9f619fe-d249-4312-a7c7-ddb5790324a1")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "d1dfc66f-452f-434f-8f48-8be902e7c324")
+    .set("value", "O perfil n\u00e3o foi encontrado.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "44f29361-4c1f-490f-959f-ff3eb74d23af")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "d1dfc66f-452f-434f-8f48-8be902e7c324")
+    .set("value", "The profile was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "3c492629-0c26-40af-9b0f-5fbf8812abbe")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "de88ee4c-9b52-4a2c-98be-a2fec4938a74")
+    .set("value", "O prompt \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "e5d9489a-cbe2-44e0-b430-1fcba485c0d0")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "de88ee4c-9b52-4a2c-98be-a2fec4938a74")
+    .set("value", "The prompt is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "d19d0c2f-d85e-49b2-ad43-8e3bf13a6a51")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "587f14d8-69cb-49dc-9f33-1dbb5bbae49c")
+    .set("value", "O campo publicado \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "0ad8495f-c8ae-40f0-9855-3a7113aa412a")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "587f14d8-69cb-49dc-9f33-1dbb5bbae49c")
+    .set("value", "The published field is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "dcc11163-d67c-49d9-93d2-0449c8e917b0")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "5bdfd949-db60-46c6-8718-1c8929a5baea")
+    .set("value", "A valida\u00e7\u00e3o do reCAPTCHA falhou.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "4b885600-6770-4123-9341-5f01a82459de")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "5bdfd949-db60-46c6-8718-1c8929a5baea")
+    .set("value", "The reCAPTCHA validation failed.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "71fb5440-48fe-415a-8331-980f3d429d7c")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "18468bc2-8493-4d68-84ae-fe2615b3bd92")
+    .set("value", "A p\u00e1gina de origem n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "fde398dc-2b35-4439-9626-69707dd92665")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "18468bc2-8493-4d68-84ae-fe2615b3bd92")
+    .set("value", "The source page was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "7c4c5e2a-6ed9-421a-ab95-746d41897072")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "423c436b-40d0-4932-9fb3-4bf14cdeef9f")
+    .set("value", "O t\u00edtulo \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "52dec3b9-47d8-4a16-b25f-8e7d69a98428")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "423c436b-40d0-4932-9fb3-4bf14cdeef9f")
+    .set("value", "The title is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "95db2966-0d0d-4338-a1ad-ebb0bd63eefc")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "3160d36b-2426-41c4-a97a-832dd1058f47")
+    .set("value", "A tradu\u00e7\u00e3o n\u00e3o foi encontrada.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "58d153e0-bfaf-4e3f-b062-b9bad510f6e4")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "3160d36b-2426-41c4-a97a-832dd1058f47")
+    .set("value", "The translation was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "4f2f0912-df6c-400c-85cf-713473a3314f")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "ef48ac50-31bc-452a-826c-cbce26dc0626")
+    .set("value", "O c\u00f3digo do tipo \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "2699dad3-4903-4525-8729-55db70ccbfa8")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "ef48ac50-31bc-452a-826c-cbce26dc0626")
+    .set("value", "The type code is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "092f14d4-9673-4997-bb3f-d384be1d7689")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "a99c3912-0b01-4ba0-b76d-95d6e23745c4")
+    .set("value", "O UID \u00e9 obrigat\u00f3rio.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "f7ca3c76-5390-42f0-a15b-66d05bfdabb8")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "a99c3912-0b01-4ba0-b76d-95d6e23745c4")
+    .set("value", "The UID is required.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "a8c9fd39-7989-468f-82a1-1f9ec34fd348")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "ac6a7e82-b6a3-4c6d-9522-ab68fb12009f")
+    .set("value", "J\u00e1 existe um utilizador com este nome de utilizador ou e-mail.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "4afd5cde-e9a1-4c3a-b202-1303c2aa6ea1")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "ac6a7e82-b6a3-4c6d-9522-ab68fb12009f")
+    .set("value", "A user with this username or email already exists.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "c86fc2f8-6cc1-4894-a398-eaef1009b0c6")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "32f85666-e87d-4c60-9068-5aaf1891248b")
+    .set("value", "N\u00e3o \u00e9 poss\u00edvel remover o utilizador, pois pertence a mais do que uma organiza\u00e7\u00e3o.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "6fe143d4-0c99-4000-bdca-5aba57354acb")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "32f85666-e87d-4c60-9068-5aaf1891248b")
+    .set("value", "Cannot remove the user because they belong to more than one organization.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "44511548-6e89-4b52-8a53-6a815e28de35")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "47849b15-f87c-4495-a564-e5a5119b586b")
+    .set("value", "O utilizador precisa de pertencer a pelo menos uma organiza\u00e7\u00e3o.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "41dbd53b-ace4-4784-b9b5-13a90b3b7d06")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "47849b15-f87c-4495-a564-e5a5119b586b")
+    .set("value", "The user needs to belong to at least one organization.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "b1f07527-1b0c-4f3e-ac09-d26518e48863")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "d098c134-597c-4db3-ab2e-e2f94a10a3ee")
+    .set("value", "O utilizador n\u00e3o est\u00e1 ativo.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "24564e21-3db4-4d8b-88b3-8c7a44a0f0ac")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "d098c134-597c-4db3-ab2e-e2f94a10a3ee")
+    .set("value", "The user is not active.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "0659a50c-c433-4510-b195-511c7aa3cb7d")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "dc00017b-00bc-4f84-bca7-2f8fe420db0c")
+    .set("value", "O utilizador n\u00e3o foi encontrado.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "cec19fff-d0ec-4c64-a71c-0e70e3049060")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "dc00017b-00bc-4f84-bca7-2f8fe420db0c")
+    .set("value", "The user was not found.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "01eac652-15d7-4983-ad8b-573f92d28a1a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "72d01f94-7c53-468c-be4d-2453633e3f60")
+    .set("value", "Utilizador n\u00e3o autorizado.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "0e348b78-aca9-4a8f-b713-17950646df3a")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "72d01f94-7c53-468c-be4d-2453633e3f60")
+    .set("value", "User unauthorized.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "8611f033-ca5e-49da-8dc3-5f034db6c744")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "5258ffcd-8083-4feb-b03f-c980e76f9084")
+    .set("value", "J\u00e1 existe um utilizador registado com este e-mail.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "f45dea3b-45a1-4f7b-b36c-9ad82adf7942")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "5258ffcd-8083-4feb-b03f-c980e76f9084")
+    .set("value", "A user with this email already exists.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "33da4bfe-ffa7-4e10-ad2f-21dae1f3ec0b")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "710258c2-d45c-41c1-8257-d3742941322b")
+    .set("value", "J\u00e1 existe um utilizador com este nome de utilizador.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "9f74c5c9-fa84-49be-853e-38897fb10e74")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "710258c2-d45c-41c1-8257-d3742941322b")
+    .set("value", "A user with this username already exists.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "2c57417e-17d7-4eeb-85de-6f0b74d1e1c4")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "9bac2901-eea1-4ea1-8282-bc867f6b5d2d")
+    .set("value", "Voc\u00ea recebeu um novo pedido de contacto em cluarwebsite.com")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "9c76ba8c-e830-4918-9cf2-01ec55349a1c")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "9bac2901-eea1-4ea1-8282-bc867f6b5d2d")
+    .set("value", "You received a new contact request on cluarwebsite.com")
+);;
+

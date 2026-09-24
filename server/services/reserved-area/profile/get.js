@@ -1,4 +1,5 @@
-import { _req, _val, _header, _out, _exec, _db, _user } from "@netuno/server-types";
+import { _req, _val, _out, _db, _user } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const dbProfile = _db.form("profile")
   .where(
@@ -6,8 +7,11 @@ const dbProfile = _db.form("profile")
   ).first()
 
 if (!dbProfile) {
-  _header.status(404)
-  _exec.stop()
+  cluar.response.error({
+    status: 404,
+    error_code: "profile-not-found",
+    error: "profile not found for the current user"
+  });
 }
 
 const groups = _db.form("organization_profile")

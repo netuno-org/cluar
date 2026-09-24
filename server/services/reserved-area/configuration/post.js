@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req, _out, _header } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const value = _req.getString("value");
@@ -10,14 +10,11 @@ const dbParameter = _db.queryFirst(`
 `, parameterCode);
 
 if (!dbParameter) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `parameter not found with code: ${parameterCode}`)
-      .set("error_code", "parameter-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `parameter not found with code: ${parameterCode}`,
+    error_code: "parameter-not-found"
+  });
 }
 
 const dbLanguage = _db.queryFirst(`

@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header } from "@netuno/server-types";
+import { _db, _val, _req, _out } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const page = _req.getString("page");
 const pageVersion = _req.getString("page_version");
@@ -46,12 +47,18 @@ if (dbPageVersion) {
         .set("result", true)
     );
   } else {
-    _header.status(409);
-    _out.json(_val.map().set("error", "page-has-no-publish-version"));
+    cluar.response.error({
+      status: 409,
+      error: "page has no publish version",
+      error_code: "page-has-no-publish-version"
+    });
   }
 } else {
-  _header.status(409);
-  _out.json(_val.map().set("error", "page-has-invalid-version"));
+  cluar.response.error({
+    status: 409,
+    error: "page has invalid version",
+    error_code: "page-has-invalid-version"
+  });
 }
 
 

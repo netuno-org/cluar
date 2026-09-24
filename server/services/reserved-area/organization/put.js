@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req, _out } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const {
@@ -12,14 +12,11 @@ const {
 const dbOrganization = _db.get("organization", uid);
 
 if (!dbOrganization) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error_code", "organization-not-found")
-      .set("error", `organization not found with uid: ${uid}`)
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error_code: "organization-not-found",
+    error: `organization not found with uid: ${uid}`
+  });
 }
 
 cluar.permission.requireUserAuthorizedInOrganization(dbOrganization);
@@ -32,14 +29,11 @@ const codeAlreadyInUse = _db.queryFirst(`
 `, code, dbOrganization.getInt("id"));
 
 if (codeAlreadyInUse) {
-  _header.status(409);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error_code", "code-already-in-use")
-      .set("error", `the code ${code} is already in use by another organization.`)
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 409,
+    error_code: "code-already-in-use",
+    error: `the code ${code} is already in use by another organization`
+  });
 }
 
 let dbParent = null;
@@ -47,25 +41,19 @@ let dbParent = null;
 if (parent_code) {
   dbParent = _db.queryFirst("SELECT id FROM organization WHERE code = ?", parent_code);
   if (!dbParent) {
-    _header.status(404);
-    _out.json(
-      _val.map()
-        .set("result", false)
-        .set("error_code", "parent-organization-not-found")
-        .set("error", `parent organization not found with code: ${parent_code}`)
-    );
-    _exec.stop();
+    cluar.response.error({
+      status: 404,
+      error_code: "parent-organization-not-found",
+      error: `parent organization not found with code: ${parent_code}`
+    });
   }
 
   if (dbParent.getInt("id") == dbOrganization.getInt("id")) {
-    _header.status(409);
-    _out.json(
-      _val.map()
-        .set("result", false)
-        .set("error_code", "redundant-organization")
-        .set("error", "the organization cannot have itself as parent")
-    );
-    _exec.stop();
+    cluar.response.error({
+      status: 409,
+      error_code: "hierarchy-breakdown",
+      error: "the organization cannot have itself as parent"
+    });
   }
 
   cluar.permission.requireUserAuthorizedInOrganization(dbParent);
@@ -77,14 +65,11 @@ if (parent_code) {
   );
 
   if (isParentDescendant) {
-    _header.status(409);
-    _out.json(
-      _val.map()
-        .set("result", false)
-        .set("error_code", "hierarchy-breakdown")
-        .set("error", "an organization cannot have as parent an organization below its hierarchy")
-    );
-    _exec.stop();
+    cluar.response.error({
+      status: 409,
+      error_code: "hierarchy-breakdown",
+      error: "an organization cannot have as parent an organization below its hierarchy"
+    });
   }
 }
 

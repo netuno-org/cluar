@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header, _exec, _user, _group, _auth, _altcha, _remote } from "@netuno/server-types";
+import { _db, _val, _req, _out, _user, _group, _auth, _altcha, _remote } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const name = _req.getString("name");
 const username = _req.getString("username");
@@ -15,12 +16,11 @@ let avatar = "";
 if (noPass) {
   const dbProviderUser = _user.providerDataByUid(code);
   if (dbProviderUser == null || dbProviderUser.getString("provider_code") !== provider) {
-    _header.status(409);
-    _out.json(
-      _val.map()
-        .set("error", "invalid-provider-data")
-    );
-    _exec.stop();
+    cluar.response.error({
+      status: 409,
+      error: "invalid provider data",
+      error_code: "invalid-provider-data"
+    });
   }
   email = dbProviderUser.getString("email");
   const urlAvatar = dbProviderUser.getString("avatar");
@@ -31,12 +31,11 @@ if (noPass) {
       avatar.rename("avatar.png");
     }
   } else if (_auth.altchaEnabled() && !_altcha.verifySolution(altchaPayload)) {
-    _header.status(409);
-    _out.json(
-      _val.map()
-        .set("error", "invalid-altcha-payload")
-    );
-    _exec.stop();
+    cluar.response.error({
+      status: 409,
+      error: "invalid altcha payload",
+      error_code: "invalid-altcha-payload"
+    });
   }
 }
 
@@ -44,12 +43,11 @@ const userEmailExists = _user.firstByMail(email);
 const usernameExists = _user.firstByUser(username);
 
 if (userEmailExists || usernameExists) {
-  _header.status(409);
-  _out.json(
-    _val.map()
-      .set("error", `${userEmailExists ? "email" : "user"}-already-exists`)
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 409,
+    error: userEmailExists ? "email already exists" : "username already exists",
+    error_code: userEmailExists ? "email-already-exists" : "user-already-exists"
+  });
 }
 
 const dbGroup = _group.firstByCode("profile");

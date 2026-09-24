@@ -81,7 +81,7 @@ class OpenAI {
       _log.error("HTML processing failed:", error);
       return _val.map()
         .set("success", false)
-        .set("error", "HTML processing failed.")
+        .set("error", "HTML processing failed")
         .set("details", error.toString());
     }
   }

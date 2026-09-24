@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header, _exec, _storage, _template, _crypto, _smtp, _time, _uid } from "@netuno/server-types";
+import { _db, _val, _req, _out, _header, _storage, _template, _crypto, _smtp, _time, _uid } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const mail = _req.getString("mail");
 const currentLanguageCode = _req.getString("current_language");
@@ -20,13 +21,11 @@ const dbLanguage = _db.form("language")
   ).first();
 
 if (!dbLanguage) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", "language-not-exists")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: "language not found",
+    error_code: "language-not-found"
+  });
 }
 
 if (dbProfile != null && dbProfile.getBoolean("active")) {
@@ -80,15 +79,15 @@ if (dbProfile != null && dbProfile.getBoolean("active")) {
     _val.map().set("result", true)
   );
 } else if (dbProfile != null && !dbProfile.getBoolean("active")) {
-  _header.status(409);
-  _out.json(
-    _val.map()
-      .set("error", "user-not-active")
-  );
+  cluar.response.error({
+    status: 409,
+    error: "user is not active",
+    error_code: "user-not-active"
+  });
 } else {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("error", "not-exists")
-  );
+  cluar.response.error({
+    status: 404,
+    error: "profile not found",
+    error_code: "profile-not-found"
+  });
 }

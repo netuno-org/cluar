@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const pageVersionUid = _req.getString("page_version_uid");
@@ -22,24 +22,20 @@ const dbPageStatusPublished = _db.queryFirst(
 
 const dbPageVersion = _db.get("page_version", pageVersionUid);
 if (!dbPageVersion) {
-  _header.status(400);
-  _out.json({
-    result: false,
-    error: "page-version-not-found"
+  cluar.response.error({
+    status: 400,
+    error: "page version not found",
+    error_code: "page-version-not-found"
   });
-
-  _exec.stop();
 }
 
 const dbPage = _db.get("page", dbPageVersion.getInt("page_id"));
 if (!dbPage) {
-  _header.status(400);
-  _out.json({
-    result: false,
-    error: "page-not-found"
+  cluar.response.error({
+    status: 400,
+    error: "page not found",
+    error_code: "page-not-found"
   });
-
-  _exec.stop();
 }
 
 _db.form("page_version")

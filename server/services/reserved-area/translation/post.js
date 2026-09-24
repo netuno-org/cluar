@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req, _out, _header } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const value = _req.getString("value");
@@ -10,14 +10,11 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `language not found with code: ${languageCode}`)
-      .set("error_code", "language-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `language not found with code: ${languageCode}`,
+    error_code: "language-not-found"
+  });
 }
 
 const dbEntry = _db.queryFirst(`
@@ -25,14 +22,11 @@ const dbEntry = _db.queryFirst(`
 `, entryCode);
 
 if (!dbEntry) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `entry not found with code: ${entryCode}`)
-      .set("error_code", "entry-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `entry not found with code: ${entryCode}`,
+    error_code: "entry-not-found"
+  });
 }
 
 const data = _val.map()

@@ -10,7 +10,9 @@ const dbProfile = _db.queryFirst(`
 if (!dbProfile) {
   _auth.signInAbortWithData(
     _val.map()
-      .set("error", "invalid-user")
+      .set("result", false)
+      .set("error", "invalid user")
+      .set("error_code", "invalid-user")
   );
   _exec.stop();
 }

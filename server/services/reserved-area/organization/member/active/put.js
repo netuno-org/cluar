@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req, _out } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const {
   uid,
@@ -8,14 +9,11 @@ const {
 const dbMember = _db.queryFirst("SELECT id FROM organization_profile WHERE uid = ?::uuid", uid);
 
 if (!dbMember) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `member not found with uid: ${uid}`)
-      .set("error_code", "member-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `member not found with uid: ${uid}`,
+    error_code: "member-not-found"
+  });
 }
 
 _db.update(

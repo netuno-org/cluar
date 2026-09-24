@@ -22,5 +22,9 @@ if (dbPage) {
 
   _out.json(_val.map().set("result", true));
 } else {
-  _out.json(_val.map().set("result", false).set("error", "not-found"));
+  cluar.response.error({
+    status: 404,
+    error: "page not found",
+    error_code: "page-not-found"
+  });
 }

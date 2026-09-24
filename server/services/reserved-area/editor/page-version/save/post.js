@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _storage } from "@netuno/server-types";
+import { _db, _val, _req, _out, _storage } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const page = _req.getString("page");
@@ -574,6 +574,9 @@ if (lastPageVersion) {
       ),
   );
 } else {
-  _header.status(409);
-  _out.json(_val.map().set("error", "page-has-no-previous-version"));
+  cluar.response.error({
+    status: 409,
+    error: "page has no previous version",
+    error_code: "page-has-no-previous-version"
+  });
 }

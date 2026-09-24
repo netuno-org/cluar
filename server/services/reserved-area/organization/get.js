@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header, _exec, _user } from "@netuno/server-types";
+import { _db, _val, _req, _out, _user } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString("uid");
 
@@ -52,14 +53,11 @@ const dbOrganization = _db.queryFirst(`
 `, uid);
 
 if (!dbOrganization) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error_code", "organization-not-found")
-      .set("error", `organization not found with uid: ${uid}`)
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error_code: "organization-not-found",
+    error: `organization not found with uid: ${uid}`
+  });
 }
 
 const organization = _val.map()

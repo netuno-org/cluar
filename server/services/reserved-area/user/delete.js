@@ -1,4 +1,4 @@
-import { _db, _val, _out, _exec, _user, _req } from "@netuno/server-types";
+import { _db, _val, _out, _user, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
 
 const profileUid = _req.getString("uid");
@@ -33,7 +33,7 @@ if (membership.getInt("count") > 1) {
   cluar.response.error({
     status: 409,
     error_code: "user-in-multiple-organizations",
-    error: "cannot remove user, they belong to more than one organization."
+    error: "cannot remove user, they belong to more than one organization"
   });
 }
 

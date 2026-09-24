@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req, _out } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const sourcePageVersionUid = _req.getString("page_version_uid");
@@ -8,40 +8,52 @@ const link = _req.getString("link");
 const published = _req.getBoolean("published");
 
 if (!sourcePageVersionUid) {
-  _header.status(400);
-  _out.json({ result: false, error: "source_page_version_uid is required" });
-  _exec.stop();
+  cluar.response.error({
+    status: 400,
+    error: "source_page_version_uid is required",
+    error_code: "page-version-uid-required"
+  });
 }
 
 if (!languageCode) {
-  _header.status(400);
-  _out.json({ result: false, error: "language_code is required" });
-  _exec.stop();
+  cluar.response.error({
+    status: 400,
+    error: "language_code is required",
+    error_code: "language-code-required"
+  });
 }
 
 if (!title) {
-  _header.status(400);
-  _out.json({ result: false, error: "title is required" });
-  _exec.stop();
+  cluar.response.error({
+    status: 400,
+    error: "title is required",
+    error_code: "title-required"
+  });
 }
 
 if (!link) {
-  _header.status(400);
-  _out.json({ result: false, error: "link is required" });
-  _exec.stop();
+  cluar.response.error({
+    status: 400,
+    error: "link is required",
+    error_code: "link-required"
+  });
 }
 
 if (published !== true && published !== false) {
-  _header.status(400);
-  _out.json({ result: false, error: "published is required" });
-  _exec.stop();
+  cluar.response.error({
+    status: 400,
+    error: "published is required",
+    error_code: "published-required"
+  });
 }
 
 const dbPageVersion = _db.get("page_version", sourcePageVersionUid);
 if (!dbPageVersion) {
-  _header.status(400);
-  _out.json({ result: false, error: "page version not found" });
-  _exec.stop();
+  cluar.response.error({
+    status: 400,
+    error: "page version not found",
+    error_code: "page-version-not-found"
+  });
 }
 
 const draftStatus = _db.queryFirst("SELECT * FROM page_status WHERE code = 'draft'");
@@ -59,9 +71,11 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-  _header.status(404);
-  _out.json({ result: false, error: `language not found with code: ${languageCode}` });
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `language not found with code: ${languageCode}`,
+    error_code: "language-not-found"
+  });
 }
 
 const languageId = dbLanguage.getInt("id");
@@ -73,16 +87,20 @@ const linkExists = _db.queryFirst(`
 `, link, languageId);
 
 if (linkExists) {
-  _header.status(409);
-  _out.json({ result: false, error: `page link already exists: ${link}` });
-  _exec.stop();
+  cluar.response.error({
+    status: 409,
+    error: `page link already exists: ${link}`,
+    error_code: "page-link-already-exists"
+  });
 }
 
 const dbSourcePageId = dbPageVersion.getInt("page_id");
 if (!dbSourcePageId) {
-  _header.status(404);
-  _out.json({ result: false, error: "source page not found." });
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: "source page not found",
+    error_code: "source-page-not-found"
+  });
 }
 
 const dbSourcePage = _db.form("page")

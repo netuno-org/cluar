@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header, _user } from "@netuno/server-types";
+import { _db, _val, _req, _out, _user } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const dbProfile = _db.queryFirst(`
     SELECT * 
@@ -17,9 +18,9 @@ if (dbProfile != null) {
       .set("result", true)
   );
 } else {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("error", "user-not-found")
-  );
+  cluar.response.error({
+    status: 404,
+    error: "user not found",
+    error_code: "user-not-found"
+  });
 }

@@ -1,4 +1,4 @@
-import { _exec, _val, _db, _heder, _out, _req, _header } from "@netuno/server-types";
+import { _val, _db, _out, _req, _header } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
 
 const {
@@ -13,14 +13,11 @@ let dbParent = null;
 if (parent_code) {
   dbParent = _db.queryFirst("SELECT * FROM organization WHERE code = ?", parent_code);
   if (!dbParent) {
-    _header.status(404);
-    _out.json(
-      _val.map()
-        .set("result", false)
-        .set("error_code", "parent-organization-not-found")
-        .set("error", `parent organization not found with code: ${parent_code}`)
-    )
-    _exec.stop();
+    cluar.response.error({
+      status: 404,
+      error_code: "parent-organization-not-found",
+      error: `parent organization not found with code: ${parent_code}`
+    });
   }
 
   cluar.permission.requireUserAuthorizedInOrganization(dbParent);
@@ -34,14 +31,11 @@ const codeAlreadyInUse = _db.queryFirst(`
 `, code);
 
 if (codeAlreadyInUse) {
-  _header.status(409);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error_code", "code-already-in-use")
-      .set("error", `the code ${code} is already in use by another organization.`)
-  )
-  _exec.stop();
+  cluar.response.error({
+    status: 409,
+    error_code: "code-already-in-use",
+    error: `the code ${code} is already in use by another organization`
+  });
 }
 
 const insertedOrganization = cluar.db.insertAndReturn(

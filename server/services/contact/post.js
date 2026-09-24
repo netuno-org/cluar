@@ -1,10 +1,12 @@
 import { _db, _val, _req, _out, _remote, _app, _template, _smtp } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const name = _req.getString("name");
 const email = _req.getString("email");
 const subject = _req.getString("subject");
 const message = _req.getString("message");
 const recaptchaValue = _req.get("recaptchaValue");
+const locale = _req.getString("locale");
 
 const recaptchaURL = _app.settings.getValues("recaptcha").getString("url");
 const recaptchaSecretKey = _app.settings.getValues("recaptcha").getString("secret_key");
@@ -38,10 +40,40 @@ if (responseRecaptchaJSON.get("success")) {
                 configuration_parameter.code = 'contact-notification-recipient'
     `);
 
+  let mailSubject = "Você recebeu um novo pedido de contacto em cluarwebsite.com";
+
+  if (locale) {
+    const dbLanguage = _db.form("language")
+      .get("id")
+      .where(
+        _db.where("code").equals(locale)
+      ).first();
+
+    if (dbLanguage) {
+      const dbTranslation = _db.form("translation")
+        .link(
+          "translation_entry",
+          _db.where("code").in("contact-mail-subject")
+        )
+        .where(
+          _db.where("language_id").equals(dbLanguage.getInt("id"))
+        )
+        .get("translation.value")
+        .first();
+
+      if (dbTranslation) {
+        const translationValue = dbTranslation.getString("value");
+        if (translationValue) {
+          mailSubject = translationValue;
+        }
+      }
+    }
+  }
+
   const smtp = _smtp.init();
 
   smtp.to(dbRecipient.getString("email"));
-  smtp.subject = "Você recebeu um novo pedido de contacto em cluarwebsite.com";
+  smtp.subject = mailSubject;
   smtp.html = _template.getOutput("email/contact_alert", contactData);
 
   smtp.attachment(
@@ -59,8 +91,9 @@ if (responseRecaptchaJSON.get("success")) {
   );
 
 } else {
-  _out.json(
-    _val.map()
-      .set("result", false)
-  );
+  cluar.response.error({
+    status: 400,
+    error_code: "recaptcha-validation-failed",
+    error: "recaptcha validation failed"
+  });
 }

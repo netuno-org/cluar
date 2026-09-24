@@ -1,4 +1,5 @@
 import { _db, _val, _out, _exec, _user } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 /**
  *  This is a sample of the user account removal.                                                           
@@ -26,9 +27,9 @@ if (dbProfile) {
       .set("result", true)
   );
 } else {
-  _out.output(404);
-  _out.json(
-    _val.map()
-      .set("error", "not-exist")
-  );
+  cluar.response.error({
+    status: 404,
+    error: "profile not found",
+    error_code: "profile-not-found"
+  });
 }

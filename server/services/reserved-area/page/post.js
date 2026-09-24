@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req, _out } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const languageCode = _req.getString("language_code");
@@ -17,14 +17,11 @@ const template = _req.getString("template");
 const sorterInput = _req.getString("sorter");
 
 if (menu === true && !menuTitle) {
-  _header.status(400);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", "menu_title is required when menu is enabled")
-      .set("error_code", "page-menu-title-required")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 400,
+    error: "menu_title is required when menu is enabled",
+    error_code: "page-menu-title-required"
+  });
 }
 
 const dbLanguage = _db.queryFirst(`
@@ -32,14 +29,11 @@ const dbLanguage = _db.queryFirst(`
 `, languageCode);
 
 if (!dbLanguage) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `language not found with code: ${languageCode}`)
-      .set("error_code", "language-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `language not found with code: ${languageCode}`,
+    error_code: "language-not-found"
+  });
 }
 
 const linkExists = _db.queryFirst(`
@@ -49,14 +43,11 @@ const linkExists = _db.queryFirst(`
 `, link, dbLanguage.getInt("id"));
 
 if (linkExists) {
-  _header.status(409);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `page link already exists: ${link}`)
-      .set("error_code", "page-link-already-exists")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 409,
+    error: `page link already exists: ${link}`,
+    error_code: "page-link-already-exists"
+  });
 }
 
 const dbPageStatusPublished = _db.queryFirst("SELECT id, code, description FROM page_status WHERE code = 'published'");

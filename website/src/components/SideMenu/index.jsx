@@ -327,7 +327,10 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         } else {
           notification["warning"]({
             message: 'Dados do Utilizador',
-            description: response.json.error,
+            description:
+              (response.json.error_code && Cluar.hasTranslation(response.json.error_code) && Cluar.plainTranslation(response.json.error_code)) ||
+              response.json.error ||
+              Cluar.plainTranslation('side-menu-load-user-info-failed-description'),
           });
           setLoading(false);
         }

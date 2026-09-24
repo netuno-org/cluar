@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header, _exec, _user, _group } from "@netuno/server-types";
+import { _db, _val, _req, _out, _user, _group } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString("uid");
 const name = _req.getString("name");
@@ -12,14 +13,11 @@ const usernameExists = _user.firstByUser(username);
 const dbProfile = _db.get("profile", uid);
 
 if (!dbProfile) {
-  _header.status(404);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", `user not found with uid: ${uid}`)
-      .set("error-code", "user-not-found")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error: `user not found with uid: ${uid}`,
+    error_code: "user-not-found"
+  });
 }
 
 const profileEmailExists = _db.queryFirst(`
@@ -41,14 +39,11 @@ const userExists = _db.queryFirst(`
 `, username, email, dbProfile.getInt("profile_user_id")).getBoolean("result");
 
 if (profileEmailExists || userExists) {
-  _header.status(409);
-  _out.json(
-    _val.map()
-      .set("result", false)
-      .set("error", "email or username already exists")
-      .set("error-code", "user-exists")
-  );
-  _exec.stop();
+  cluar.response.error({
+    status: 409,
+    error: "email or username already exists",
+    error_code: "user-exists"
+  });
 }
 
 const userData = _val.map()

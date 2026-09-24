@@ -1,4 +1,5 @@
-import { _db, _req, _out, _header, _exec, _storage } from "@netuno/server-types";
+import { _db, _req, _out, _header, _storage } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 let dbProfile = null;
 
@@ -7,8 +8,11 @@ if (_req.getString("uid")) {
 }
 
 if (!dbProfile) {
-  _header.status(404);
-  _exec.stop();
+  cluar.response.error({
+    status: 404,
+    error_code: "profile-not-found",
+    error: "profile not found"
+  });
 }
 
 const dbAvatarName = dbProfile.getString("avatar");

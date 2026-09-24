@@ -92,14 +92,14 @@ export default function Register(props) {
             },
             fail: (e) => {
                 setSubmitting(false);
-                if (e && e.status === 409 && e.json && e.json.error) {
-                    if (e.json.error === 'email-already-exists') {
+                if (e && e.status === 409 && e.json && e.json.error_code) {
+                    if (e.json.error_code === 'email-already-exists') {
                         return notification["warning"]({
                             message: Cluar.plainTranslation('register-form-existing-mail-message'),
                             description: Cluar.plainTranslation('register-form-existing-mail-description'),
                         });
                     }
-                    if (e.json.error === 'user-already-exists') {
+                    if (e.json.error_code === 'user-already-exists') {
                         return notification["warning"]({
                             message: Cluar.plainTranslation('register-form-existing-username-message'),
                             description: Cluar.plainTranslation('register-form-existing-username-description'),
