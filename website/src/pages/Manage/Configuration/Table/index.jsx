@@ -40,7 +40,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
             },
             success: (response) => {
                 setLoading({ ...loading, configuration: false });
-                const { totalElements, items } = response.json.page;
+                const { totalElements, items } = response.json.data;
                 setData(items);
                 setTotal(totalElements);
             },
@@ -61,7 +61,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
             method: "POST",
             success: (response) => {
                 setLoading({ ...loading, language: false });
-                const { items } = response.json.page;
+                const { items } = response.json.data;
                 setLanguages(items);
             },
             fail: (error) => {

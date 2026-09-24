@@ -55,8 +55,8 @@ const PageVersion = ({ pageData, open, onClose }) => {
         },
         success: (res) => {
           if (res.json.result) {
-            setVersions([...versions, ...res.json.versions]);
-            setTotalVersions(res.json.total_versions);
+            setVersions([...versions, ...res.json.data.versions]);
+            setTotalVersions(res.json.data.total_versions);
           }
         },
         fail: (error) => {

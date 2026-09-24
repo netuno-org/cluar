@@ -1,4 +1,4 @@
-import { _val, _db, _out, _req, _header } from "@netuno/server-types";
+import { _val, _db, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
 
 const {
@@ -61,10 +61,8 @@ if (insertedOrganization.getInt("parent_id") > 0) {
   )
 }
 
-_header.status(201);
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("organization", organization)
-)
+cluar.response.successWithData({
+  status: 201,
+  data: organization
+})
 

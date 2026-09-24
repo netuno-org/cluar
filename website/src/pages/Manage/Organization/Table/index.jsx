@@ -145,7 +145,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
       },
       success: (response) => {
         setLoading(false);
-        const { organizations, organization_total } = response.json
+        const { organizations, organization_total } = response.json.data
         setData(organizations);
         setTotal(organization_total);
       },

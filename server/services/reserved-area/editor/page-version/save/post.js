@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _storage } from "@netuno/server-types";
+import { _db, _val, _req, _storage } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const page = _req.getString("page");
@@ -564,15 +564,10 @@ if (lastPageVersion) {
 
   const dbNewPageVersion = _db.get("page_version", newPageVersion);
 
-  _out.json(
-    _val
-      .map()
-      .set("result", true)
-      .set(
-        "data",
-        _val.map().set("page_version_uid", dbNewPageVersion.get("uid")),
-      ),
-  );
+  cluar.response.successWithData({
+    status: 200,
+    data: _val.map().set("page_version_uid", dbNewPageVersion.get("uid"))
+  });
 } else {
   cluar.response.error({
     status: 409,

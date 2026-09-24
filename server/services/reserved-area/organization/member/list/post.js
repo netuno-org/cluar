@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _user } from "@netuno/server-types";
+import { _db, _val, _req, _user } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
@@ -187,8 +188,9 @@ for (const dbMember of dbMembers) {
   );
 }
 
-_out.json(
-  _val.map()
+cluar.response.successWithData({
+  status: 200,
+  data: _val.map()
     .set("members", members)
     .set("total", dbMembersTotal.getInt("total"))
-);
+});

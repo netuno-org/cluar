@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _user, _group, _auth, _altcha, _remote } from "@netuno/server-types";
+import { _db, _val, _req, _user, _group, _auth, _altcha, _remote } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const name = _req.getString("name");
@@ -72,7 +72,4 @@ _db.insertIfNotExists(
     .set("avatar", avatar)
 );
 
-_out.json(
-  _val.map()
-    .set("result", true)
-);
+cluar.response.successWithoutData({ status: 200 });

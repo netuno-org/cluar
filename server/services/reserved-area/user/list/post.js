@@ -1,4 +1,4 @@
-import { _db, _req, _val, _out } from "@netuno/server-types";
+import { _db, _req, _val } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
 
 const filters = _req.getValues("filters");
@@ -90,7 +90,7 @@ for (const dbItem of dbItems) {
 }
 
 pageUsers.set("items", users)
-_out.json(
-  _val.map()
-    .set("page", pageUsers)
-)
+cluar.response.successWithData({
+  status: 200,
+  data: pageUsers
+})

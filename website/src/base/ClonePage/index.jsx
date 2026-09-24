@@ -43,7 +43,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
       method: "POST",
       success: (response) => {
         setLoading((prev) => ({ ...prev, languages: false }));
-        const { items } = response.json.page;
+        const { items } = response.json.data;
         setLanguages(items);
       },
       fail: (error) => {
@@ -70,9 +70,9 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
         setLoading((prev) => ({ ...prev, versions: false }));
         if (res.json.result) {
           setVersions((prev) =>
-            page === 1 ? res.json.versions : [...prev, ...res.json.versions]
+            page === 1 ? res.json.data.versions : [...prev, ...res.json.data.versions]
           );
-          setTotalVersions(res.json.total_versions);
+          setTotalVersions(res.json.data.total_versions);
         }
       },
       fail: (error) => {
@@ -154,7 +154,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
 
           if (onSuccess) onSuccess(response);
 
-          const { link, language_code } = response.json;
+          const { link, language_code } = response.json.data;
           if (link && language_code) {
             const cleanLink = link.replace(/^\/+|\/+$/g, '');
             const targetUrl = cleanLink === ""

@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString("uid");
@@ -25,9 +25,8 @@ if (!dbLanguage) {
   });
 }
 
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("language", dbLanguage)
-);
+cluar.response.successWithData({
+  status: 200,
+  data: dbLanguage
+});
 

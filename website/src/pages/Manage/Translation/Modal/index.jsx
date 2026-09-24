@@ -44,7 +44,7 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
       method: "POST",
       success: (response) => {
         setLoading((prev) => ({ ...prev, language: false }));
-        const { items } = response.json.page;
+        const { items } = response.json.data;
         setLanguages(items);
       },
       fail: (error) => {
@@ -64,7 +64,7 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
       method: "POST",
       success: (response) => {
         setLoading((prev) => ({ ...prev, entry: false }));
-        setEntries(response.json.entries);
+        setEntries(response.json.data);
       },
       fail: (error) => {
         setLoading((prev) => ({ ...prev, entry: false }));

@@ -1,4 +1,4 @@
-import { _db, _val, _out, _user, _req } from "@netuno/server-types";
+import { _db, _user, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
 
 const profileUid = _req.getString("uid");
@@ -47,7 +47,4 @@ _db.delete(
   profileId
 );
 _user.remove(dbProfile.getInt("profile_user_id"));
-_out.json(
-  _val.map()
-    .set("result", true)
-);
+cluar.response.successWithoutData({ status: 200 });

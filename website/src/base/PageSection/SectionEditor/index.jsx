@@ -140,9 +140,9 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
         if (res.json.result) {
           // Atualiza o conteúdo do modo ativo
           if (contentEditMode === "html") {
-            setHtmlContentValue(res.json.html);
+            setHtmlContentValue(res.json.data);
           } else {
-            setContentValue(res.json.html);
+            setContentValue(res.json.data);
           }
           message.success(Cluar.plainTranslation("section-editor-notification-ai-generate-success"));
           setAIPrompt("");

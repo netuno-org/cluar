@@ -57,7 +57,7 @@ const MemberFormModal = forwardRef(({ onReloadTable, memberData, userData, organ
       },
       success: (response) => {
         setLoading({ ...loading, user: false });
-        const users = response.json.page.items;
+        const users = response.json.data.items;
         setUsers(users);
       },
       fail: (error) => {
@@ -75,8 +75,7 @@ const MemberFormModal = forwardRef(({ onReloadTable, memberData, userData, organ
       data: {},
       success: (response) => {
         setLoading({ ...loading, group: false });
-        const { groups } = response.json;
-        setGroups(groups);
+        setGroups(response.json.data);
       },
       fail: (error) => {
         setLoading({ ...loading, group: false });

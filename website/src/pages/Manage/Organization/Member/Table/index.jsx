@@ -47,8 +47,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
       method: "GET",
       data: {},
       success: (response) => {
-        const { groups } = response.json;
-        setGroups(groups);
+        setGroups(response.json.data);
       },
       fail: (error) => {
         console.error(error);
@@ -162,7 +161,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
       },
       success: (response) => {
         setLoading(false);
-        const { members, total } = response.json
+        const { members, total } = response.json.data
         setData(members);
         setTotal(total);
       },

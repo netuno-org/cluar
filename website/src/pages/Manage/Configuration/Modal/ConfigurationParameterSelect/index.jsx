@@ -89,7 +89,7 @@ const ConfigurationParameterSelect = ({
       method: "POST",
       data: createDraft,
       success: (response) => {
-        const newParameter = response.json.parameter;
+        const newParameter = response.json.data;
         onParametersChange((prev) => [...prev, newParameter]);
         onChange?.(newParameter.code);
         cancelCreate();

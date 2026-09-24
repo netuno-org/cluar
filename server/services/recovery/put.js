@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _user } from "@netuno/server-types";
+import { _db, _req, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const dbProfile = _db.queryFirst(`
@@ -13,10 +13,7 @@ if (dbProfile != null) {
   userData.set("no_pass", false);
   userData.set("pass", _req.getString("password"));
   _user.update(userData, true);
-  _out.json(
-    _val.map()
-      .set("result", true)
-  );
+  cluar.response.successWithoutData({ status: 200 });
 } else {
   cluar.response.error({
     status: 404,

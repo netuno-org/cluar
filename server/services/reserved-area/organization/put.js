@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const {
@@ -83,7 +83,4 @@ _db.update(
     .set("parent_id", dbParent ? dbParent.getInt("id") : 0)
 );
 
-_out.json(
-  _val.map()
-    .set("result", true)
-);
+cluar.response.successWithoutData({ status: 200 });

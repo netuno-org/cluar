@@ -57,7 +57,7 @@ const MemberFormModal = forwardRef(({ onReloadTable, memberData, userData }, ref
       },
       success: (response) => {
         setLoading({ ...loading, organization: false });
-        const { organizations } = response.json;
+        const { organizations } = response.json.data;
         setOrganizations(organizations);
       },
       fail: (error) => {
@@ -75,8 +75,7 @@ const MemberFormModal = forwardRef(({ onReloadTable, memberData, userData }, ref
       data: {},
       success: (response) => {
         setLoading({ ...loading, group: false });
-        const { groups } = response.json;
-        setGroups(groups);
+        setGroups(response.json.data);
       },
       fail: (error) => {
         setLoading({ ...loading, group: false });

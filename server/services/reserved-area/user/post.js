@@ -1,4 +1,4 @@
-import { _req, _db, _out, _val, _header, _user, _group } from "@netuno/server-types";
+import { _req, _db, _val, _user, _group } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
 
 const name = _req.getString("name");
@@ -70,16 +70,13 @@ _db.insert(
     .set("user_group_id", dbGroup.getInt("id"))
 )
 
-_header.status(201);
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("user", _val.map()
-      .set("name", registedProfile.getString("name"))
-      .set("email", registedProfile.getString("email"))
-      .set("active", registedUser.getBoolean("active"))
-      .set("uid", registedProfile.getString("uid"))
-      .set("username", registedUser.getString("user"))
-    )
-)
+cluar.response.successWithData({
+  status: 201,
+  data: _val.map()
+    .set("name", registedProfile.getString("name"))
+    .set("email", registedProfile.getString("email"))
+    .set("active", registedUser.getBoolean("active"))
+    .set("uid", registedProfile.getString("uid"))
+    .set("username", registedUser.getString("user"))
+});
 

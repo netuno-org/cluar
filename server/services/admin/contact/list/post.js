@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const filter = _req.getValues("filter");
 const pagination = _req.getValues("pagination");
@@ -54,7 +55,7 @@ if (sorter != null) {
   }
 }
 
-const dbResultados = _db.query(`
+const dbResults = _db.query(`
     SELECT
         name,
         email,
@@ -67,20 +68,21 @@ const dbResultados = _db.query(`
     LIMIT ${page.size} OFFSET ${page.start}
 `, queryFilter);
 
-const resultados = _val.list();
+const items = _val.list();
 
-for (const dbResultado of dbResultados) {
-  resultados.add(
+for (const dbResult of dbResults) {
+  items.add(
     _val.map()
-      .set("name", dbResultado.getString("name"))
-      .set("email", dbResultado.getString("email"))
-      .set("subject", dbResultado.getString("subject"))
-      .set("moment", dbResultado.getSQLTimestamp("moment"))
+      .set("name", dbResult.getString("name"))
+      .set("email", dbResult.getString("email"))
+      .set("subject", dbResult.getString("subject"))
+      .set("moment", dbResult.getSQLTimestamp("moment"))
   );
 }
 
-_out.json(
-  _val.map()
+cluar.response.successWithData({
+  status: 200,
+  data: _val.map()
     .set(
       "total",
       _db.queryFirst(`
@@ -89,5 +91,5 @@ _out.json(
                 WHERE 1 = 1
                 ${queryWhere}
             `, queryFilter).getInt("total")
-    ).set("resultados", resultados)
-);
+    ).set("items", items)
+});

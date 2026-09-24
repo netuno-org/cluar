@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _exec } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const code = _req.getString("code");
@@ -30,8 +30,7 @@ const entry = _db.form("translation_entry")
   .get("description")
   .insertAndReturn();
 
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("entry", entry)
-);
+cluar.response.successWithData({
+  status: 200,
+  data: entry
+});

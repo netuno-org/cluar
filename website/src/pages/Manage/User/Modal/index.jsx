@@ -56,7 +56,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
       },
       success: (response) => {
         setLoading({ ...loading, organization: false });
-        const { organizations } = response.json;
+        const { organizations } = response.json.data;
         setOrganizations(organizations);
       },
       fail: (error) => {
@@ -74,8 +74,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
       data: {},
       success: (response) => {
         setLoading({ ...loading, group: false });
-        const { groups } = response.json;
-        setGroups(groups);
+        setGroups(response.json.data);
       },
       fail: (error) => {
         setLoading({ ...loading, group: false });

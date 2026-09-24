@@ -104,7 +104,7 @@ const ActionParameterSelect = ({ value, onChange }) => {
       method: "POST",
       data: createDraft,
       success: (response) => {
-        const newParameter = response.json.parameter;
+        const newParameter = response.json.data;
         setParameters((prev) => [...prev, newParameter]);
         onChange?.(newParameter.uid);
         cancelCreate();

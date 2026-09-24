@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const languageCode = _req.getString("language_code");
@@ -86,7 +86,4 @@ const data = _val.map()
 
 const dbPage = cluar.db.insertAndReturn("page", data);
 
-_out.json(
-  _val.map()
-    .set("result", true)
-);
+cluar.response.successWithoutData({ status: 200 });

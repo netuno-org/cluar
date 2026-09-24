@@ -89,7 +89,7 @@ const TranslationEntrySelect = ({
       method: "POST",
       data: createDraft,
       success: (response) => {
-        const newEntry = response.json.entry;
+        const newEntry = response.json.data;
         onEntriesChange((prev) => [...prev, newEntry]);
         onChange?.(newEntry.code);
         cancelCreate();

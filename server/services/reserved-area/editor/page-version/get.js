@@ -1,5 +1,5 @@
 import cluar from "#core/cluar/main.js";
-import { _req, _db, _val, _out } from "@netuno/server-types";
+import { _req, _db, _val } from "@netuno/server-types";
 
 const version = _req.getString("version");
 
@@ -503,5 +503,8 @@ if (dbPageVersion) {
 
   structure.sort((a, b) => a.getInt("sorter") - b.getInt("sorter"));
 
-  _out.json(_val.map().set("result", true).set("structure", structure));
+  cluar.response.successWithData({
+    status: 200,
+    data: structure
+  });
 }

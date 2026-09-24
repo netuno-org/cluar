@@ -1,9 +1,10 @@
-import { _val, _req, _out, _app } from "@netuno/server-types";
+import { _val, _req, _app } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const language = _req.getString("language");
 
-const types = [];
-const config = [];
+const typesData = _val.list();
+const configData = _val.list();
 
 const typesPath = _app.getPathBase() + "/website/src/components/Banner";
 
@@ -25,19 +26,23 @@ if (_app.isFolder(typesPath)) {
     const configFile = _app.file(configPath);
     const configContent = configFile.input().readAllAndClose();
 
-    types.push({
-      name: templateFolder.getName(),
-      info: _val.fromJSON(fileContent).getValues(language),
-    });
+    typesData.add(
+      _val.map()
+        .set("name", templateFolder.getName())
+        .set("info", _val.fromJSON(fileContent).getValues(language))
+    );
 
-    config.push({
-      name: templateFolder.getName(),
-      action: _val.fromJSON(configContent).getBoolean("action"),
-    })
+    configData.add(
+      _val.map()
+        .set("name", templateFolder.getName())
+        .set("action", _val.fromJSON(configContent).getBoolean("action"))
+    );
   });
 }
 
-_out.json({
-  types: types,
-  config: config,
+cluar.response.successWithData({
+  status: 200,
+  data: _val.map()
+    .set("types", typesData)
+    .set("config", configData)
 });

@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _req } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const filters = _req.getValues("filters");
 const pagination = _req.getValues("pagination");
@@ -27,7 +28,7 @@ const query = _db.form("language")
 
 const dbLaguages = query.page(page);
 
-_out.json(
-  _val.map()
-    .set("page", dbLaguages)
-);
+cluar.response.successWithData({
+  status: 200,
+  data: dbLaguages
+});

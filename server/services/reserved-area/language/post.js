@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const description = _req.getString("description");
@@ -33,15 +33,12 @@ const data = _val.map()
 
 const registedLanguage = cluar.db.insertAndReturn("language", data);
 
-_header.status(201);
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("language", _val.map()
-      .set("uid", registedLanguage.getString("uid"))
-      .set("active", registedLanguage.getBoolean("active"))
-      .set("description", registedLanguage.getString("description"))
-      .set("code", registedLanguage.getString("code"))
-      .set("locale", registedLanguage.getString("locale"))
-    )
-);
+cluar.response.successWithData({
+  status: 201,
+  data: _val.map()
+    .set("uid", registedLanguage.getString("uid"))
+    .set("active", registedLanguage.getBoolean("active"))
+    .set("description", registedLanguage.getString("description"))
+    .set("code", registedLanguage.getString("code"))
+    .set("locale", registedLanguage.getString("locale"))
+});

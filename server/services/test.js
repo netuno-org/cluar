@@ -1,4 +1,4 @@
-import { _val, _req, _out } from "@netuno/server-types";
+import { _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 import { OpenAI } from "#core/openAI.js";
 
@@ -18,11 +18,10 @@ const openai = new OpenAI();
 const result = openai.processHtml(currentHtml, userPrompt);
 
 if (result.getBoolean("success")) {
-  _out.json(
-    _val.map()
-      .set("result", true)
-      .set("html", result.getString("html"))
-  );
+  cluar.response.successWithData({
+    status: 200,
+    data: result.getString("html")
+  });
 } else {
   cluar.response.error({
     status: 500,

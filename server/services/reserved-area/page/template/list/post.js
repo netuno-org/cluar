@@ -1,8 +1,9 @@
-import { _val, _req, _out, _app } from "@netuno/server-types";
+import { _val, _req, _app } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const language = _req.getString("language");
 
-const templates = [];
+const templatesData = _val.list();
 const templatesPath = _app.getPathBase() + "/website/src/pages/Template";
 
 if (_app.isFolder(templatesPath)) {
@@ -19,13 +20,15 @@ if (_app.isFolder(templatesPath)) {
     const file = _app.file(templateInfoPath);
     const fileContent = file.input().readAllAndClose();
 
-    templates.push({
-      name: templateFolder.getName(),
-      info: _val.fromJSON(fileContent).getValues(language),
-    });
+    templatesData.add(
+      _val.map()
+        .set("name", templateFolder.getName())
+        .set("info", _val.fromJSON(fileContent).getValues(language))
+    );
   });
 }
 
-_out.json({
-  templates,
+cluar.response.successWithData({
+  status: 200,
+  data: templatesData
 });

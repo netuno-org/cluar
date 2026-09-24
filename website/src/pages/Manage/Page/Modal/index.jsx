@@ -44,7 +44,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
       method: "POST",
       success: (response) => {
         setLoading({ ...loading, languages: false });
-        const { items } = response.json.page;
+        const { items } = response.json.data;
         setLanguages(items);
       },
       fail: (error) => {
@@ -71,9 +71,10 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
       },
       success: (response) => {
         setLoading({ ...loading, pages: false });
-        const { items } = response.json.page;
+        const pagesData = response.json.data || {};
+        const languagePages = pagesData[languageCode] || [];
         setPages(
-          items.filter((page) => !pageData || page.uid !== pageData.uid)
+          languagePages.filter((page) => !pageData || page.uid !== pageData.uid)
         );
       },
       fail: (error) => {
@@ -180,7 +181,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
         language: Cluar.currentLanguage().locale,
       },
       success: (res) => {
-        setTemplateOptions(res.json.templates);
+        setTemplateOptions(res.json.data);
       },
       fail: (error) => {
         console.error(error);

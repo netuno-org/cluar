@@ -60,7 +60,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
       method: "POST",
       success: (response) => {
         setLoading((prev) => ({ ...prev, language: false }));
-        const { items } = response.json.page;
+        const { items } = response.json.data;
         setLanguages(items);
       },
       fail: (error) => {
@@ -80,7 +80,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
       method: "GET",
       success: (response) => {
         setLoading((prev) => ({ ...prev, parameter: false }));
-        setParameters(response.json.parameters);
+        setParameters(response.json.data);
       },
       fail: (error) => {
         setLoading((prev) => ({ ...prev, parameter: false }));
@@ -99,7 +99,7 @@ const ConfigurationModal = forwardRef(({ configurationData, onReloadTable }, ref
       method: "GET",
       success: (response) => {
         setLoading((prev) => ({ ...prev, parameterType: false }));
-        setParameterTypes(response.json.types);
+        setParameterTypes(response.json.data);
       },
       fail: (error) => {
         setLoading((prev) => ({ ...prev, parameterType: false }));

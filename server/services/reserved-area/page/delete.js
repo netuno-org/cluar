@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js"
 
 const pageUid = _req.getString("uid");
@@ -20,7 +20,7 @@ if (dbPage) {
 
   _db.delete("page", pageId);
 
-  _out.json(_val.map().set("result", true));
+  cluar.response.successWithoutData({ status: 200 });
 } else {
   cluar.response.error({
     status: 404,

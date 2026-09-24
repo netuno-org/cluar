@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const value = _req.getString("value");
@@ -59,21 +59,17 @@ if (value?.includes("base64")) {
 
 cluar.build();
 
-_header.status(201);
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("configuration",
-      _val.map()
-        .set("uid", registedConfig.getString("uid"))
-        .set("value", registedConfig.getString("value"))
-        .set("parameter", _val.map()
-          .set("description", dbParameter.getString("description"))
-          .set("code", dbParameter.getString("code"))
-        )
-        .set("language", _val.map()
-          .set("description", dbLanguage?.getString("description"))
-          .set("code", dbLanguage?.getString("code"))
-        )
+cluar.response.successWithData({
+  status: 201,
+  data: _val.map()
+    .set("uid", registedConfig.getString("uid"))
+    .set("value", registedConfig.getString("value"))
+    .set("parameter", _val.map()
+      .set("description", dbParameter.getString("description"))
+      .set("code", dbParameter.getString("code"))
     )
-);
+    .set("language", _val.map()
+      .set("description", dbLanguage?.getString("description"))
+      .set("code", dbLanguage?.getString("code"))
+    )
+});

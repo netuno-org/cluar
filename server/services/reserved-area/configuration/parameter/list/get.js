@@ -1,4 +1,5 @@
-import { _db, _val, _out } from "@netuno/server-types";
+import { _db } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const dbParameters = _db.form("configuration_parameter")
   .get("configuration_parameter.uid")
@@ -8,7 +9,7 @@ const dbParameters = _db.form("configuration_parameter")
   .link("configuration_parameter_type")
   .all();
 
-_out.json(
-  _val.map()
-    .set("parameters", dbParameters)
-);
+cluar.response.successWithData({
+  status: 200,
+  data: dbParameters
+});

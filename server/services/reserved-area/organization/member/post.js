@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const {
@@ -65,24 +65,21 @@ const memberData = _val.map()
 
 const createdMember = cluar.db.insertAndReturn("organization_profile", memberData);
 
-_header.status(201);
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("member", _val.map()
-      .set("uid", createdMember.getString("uid"))
-      .set("active", createdMember.getBoolean("active"))
-      .set("profile", _val.map()
-        .set("name", dbProfile.getString("name"))
-        .set("uid", dbProfile.getString("uid"))
-      )
-      .set("group", _val.map()
-        .set("name", dbGroup.getString("name"))
-        .set("code", dbGroup.getString("code"))
-      )
-      .set("organization", _val.map()
-        .set("name", dbOrganization.getString("name"))
-        .set("code", dbOrganization.getString("code"))
-      )
+cluar.response.successWithData({
+  status: 201,
+  data: _val.map()
+    .set("uid", createdMember.getString("uid"))
+    .set("active", createdMember.getBoolean("active"))
+    .set("profile", _val.map()
+      .set("name", dbProfile.getString("name"))
+      .set("uid", dbProfile.getString("uid"))
     )
-);
+    .set("group", _val.map()
+      .set("name", dbGroup.getString("name"))
+      .set("code", dbGroup.getString("code"))
+    )
+    .set("organization", _val.map()
+      .set("name", dbOrganization.getString("name"))
+      .set("code", dbOrganization.getString("code"))
+    )
+});

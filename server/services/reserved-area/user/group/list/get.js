@@ -1,4 +1,5 @@
-import { _db, _val, _out } from "@netuno/server-types";
+import { _db, _val } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const dbGroups = _db.query(`
     SELECT
@@ -9,5 +10,8 @@ const dbGroups = _db.query(`
     WHERE code <> '' AND name <> ''
   `);
 
-_out.json(_val.map().set("groups", dbGroups));
+cluar.response.successWithData({
+  status: 200,
+  data: dbGroups
+});
 

@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _user } from "@netuno/server-types";
+import { _db, _val, _req, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString("uid");
@@ -75,8 +75,7 @@ if (dbOrganization.has("parent_uid")) {
   );
 }
 
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("organization", organization)
-);
+cluar.response.successWithData({
+  status: 200,
+  data: organization
+});

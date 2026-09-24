@@ -49,7 +49,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
       },
       success: (response) => {
         setLoading(false);
-        const { items, totalElements } = response.json.page;
+        const { items, totalElements } = response.json.data;
         setData(items);
         setTotal(totalElements);
       },

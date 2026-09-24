@@ -1,4 +1,4 @@
-import { _req, _val, _out, _db, _user } from "@netuno/server-types";
+import { _req, _val, _db, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const dbProfile = _db.form("profile")
@@ -33,8 +33,7 @@ const data = _val.map()
   .set("avatar", dbProfile.getString("avatar") != "")
   .set("groups", groups)
 
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("data", data)
-);
+cluar.response.successWithData({
+  status: 200,
+  data: data
+});

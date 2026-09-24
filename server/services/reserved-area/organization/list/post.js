@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out, _header, _user } from "@netuno/server-types";
+import { _db, _val, _req, _user } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const filters = _req.getValues("filters");
 let queryWhere = "";
@@ -161,9 +162,9 @@ const dbOrganizationTotal = _db.queryFirst(`
         ${queryWhere}
 `, queryParams);
 
-_header.status(201);
-_out.json(
-  _val.map()
+cluar.response.successWithData({
+  status: 201,
+  data: _val.map()
     .set("organizations", organizations)
     .set("organization_total", dbOrganizationTotal.getInt("total"))
-);
+});

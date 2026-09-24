@@ -194,7 +194,7 @@ function Builder({ page, canEdit }) {
         },
         success: (res) => {
           if (res.json.result) {
-            setStructure(res.json.structure);
+            setStructure(res.json.data);
             setCurrentPageVersion(searchParams.get("version"));
             setPageVersionExists(true);
           }

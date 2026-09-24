@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _remote, _app, _template, _smtp } from "@netuno/server-types";
+import { _db, _val, _req, _remote, _app, _template, _smtp } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const name = _req.getString("name");
@@ -85,10 +85,7 @@ if (responseRecaptchaJSON.get("success")) {
 
   smtp.send();
 
-  _out.json(
-    _val.map()
-      .set("result", true)
-  );
+  cluar.response.successWithoutData({ status: 200 });
 
 } else {
   cluar.response.error({

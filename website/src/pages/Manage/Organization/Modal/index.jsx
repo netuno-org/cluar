@@ -42,7 +42,7 @@ const OrganizationModal = forwardRef(({ onReloadTable, organizationData }, ref) 
       },
       success: (response) => {
         setLoading({ ...loading, organization: false });
-        const { organizations } = response.json;
+        const { organizations } = response.json.data;
         setOrganizations(organizations);
       },
       fail: (error) => {

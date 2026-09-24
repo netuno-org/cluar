@@ -39,7 +39,7 @@ const TranslationTable = forwardRef(({ }, ref) => {
       },
       success: (response) => {
         setLoading({ ...loading, translation: false });
-        const { totalElements, items } = response.json.page;
+        const { totalElements, items } = response.json.data;
         setData(items);
         setTotal(totalElements);
       },
@@ -60,7 +60,7 @@ const TranslationTable = forwardRef(({ }, ref) => {
       method: "POST",
       success: (response) => {
         setLoading({ ...loading, language: false });
-        const { items } = response.json.page;
+        const { items } = response.json.data;
         setLanguages(items);
       },
       fail: (error) => {

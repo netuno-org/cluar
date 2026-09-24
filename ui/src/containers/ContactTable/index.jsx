@@ -68,7 +68,7 @@ function ContactTable() {
       url: "/admin/contact/list",
       data: { filter, pagination, sorter },
       success: (response) => {
-        setDataSource(response.json.resultados.map(item => {
+        setDataSource(response.json.data.items.map(item => {
           const momentArr = item.moment.split(" ");
           const dateArr = momentArr[0].split("-");
           const timeArr = momentArr[1].slice(0, 5);
@@ -90,7 +90,7 @@ function ContactTable() {
         }));
         setPagination({
           ...pagination,
-          total: response.json.total
+          total: response.json.data.total
         });
         setLoading(false);
       },

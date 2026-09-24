@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _user, _group } from "@netuno/server-types";
+import { _db, _val, _req, _user, _group } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString("uid");
@@ -80,8 +80,5 @@ _db.update(
   profileData
 );
 
-_out.json(
-  _val.map()
-    .set("result", true)
-);
+cluar.response.successWithoutData({ status: 200 });
 

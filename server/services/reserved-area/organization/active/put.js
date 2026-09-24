@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const {
@@ -23,4 +23,4 @@ _db.update(
     .set("active", active)
 );
 
-_out.json({ result: true });
+cluar.response.successWithoutData({ status: 200 });

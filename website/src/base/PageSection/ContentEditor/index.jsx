@@ -24,13 +24,13 @@ const ContentEditor = ({ sectionData, form }) => {
         language: Cluar.currentLanguage().locale
       },
       success: (res) => {
-        setTypeOptions(res.json.types);
-        setConfig(res.json.config);
+        setTypeOptions(res.json.data.types);
+        setConfig(res.json.data.config);
 
         const initialType = form.getFieldValue("type");
         setSelectedType(initialType);
 
-        const typeConfig = res.json.config.find(c => c.name === initialType);
+        const typeConfig = res.json.data.config.find(c => c.name === initialType);
         setShowActions(typeConfig?.action || false);
       },
       fail: (error) => {

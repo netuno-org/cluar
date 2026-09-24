@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const uid = _req.getString("uid");
@@ -35,8 +35,7 @@ const user = _val.map()
   .set("active", dbUser.getBoolean("user_active"))
   .set("username", dbUser.getString("username"));
 
-_out.json(
-  _val.map()
-    .set("result", true)
-    .set("user", user)
-);
+cluar.response.successWithData({
+  status: 200,
+  data: user
+});

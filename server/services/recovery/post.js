@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out, _header, _storage, _template, _crypto, _smtp, _time, _uid } from "@netuno/server-types";
+import { _db, _val, _req, _header, _storage, _template, _crypto, _smtp, _time, _uid } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const mail = _req.getString("mail");
@@ -75,9 +75,7 @@ if (dbProfile != null && dbProfile.getBoolean("active")) {
     "logo"
   );
   smtp.send();
-  _out.json(
-    _val.map().set("result", true)
-  );
+  cluar.response.successWithoutData({ status: 200 });
 } else if (dbProfile != null && !dbProfile.getBoolean("active")) {
   cluar.response.error({
     status: 409,

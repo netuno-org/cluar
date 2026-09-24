@@ -91,7 +91,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
       method: "POST",
       success: (response) => {
         setLoading({ ...loading, languages: false });
-        const { items } = response.json.page;
+        const { items } = response.json.data;
         setLanguages(items);
       },
       fail: (error) => {

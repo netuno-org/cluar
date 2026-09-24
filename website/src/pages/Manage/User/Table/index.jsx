@@ -126,7 +126,7 @@ const UserTable = forwardRef(({ }, ref) => {
       },
       success: (response) => {
         setLoading(false);
-        const { items, totalElements } = response.json.page;
+        const { items, totalElements } = response.json.data;
         setTotal(totalElements);
         setItems(items);
       },

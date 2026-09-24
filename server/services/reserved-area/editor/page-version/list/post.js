@@ -1,4 +1,5 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
+import cluar from "#core/cluar/main.js";
 
 const pagination = _req.get("pagination");
 const pageSize = 10;
@@ -46,11 +47,11 @@ if (dbPage) {
     WHERE pv.page_id = ${dbPage.getInt("id")}
   `);
 
-  _out.json(
-    _val
+  cluar.response.successWithData({
+    status: 200,
+    data: _val
       .map()
-      .set("result", true)
       .set("versions", dbPageVersions)
       .set("total_versions", dbPageVersionsTotal.getInt("total"))
-  );
+  });
 }

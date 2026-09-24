@@ -1,4 +1,4 @@
-import { _db, _val, _req, _out } from "@netuno/server-types";
+import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const sourcePageVersionUid = _req.getString("page_version_uid");
@@ -509,10 +509,10 @@ if (statusId === publishedStatus.getInt("id")) {
   cluar.page.publish(newPage);
 }
 
-_out.json(
-  _val.map()
-    .set("result", true)
+cluar.response.successWithData({
+  status: 200,
+  data: _val.map()
     .set("uid", newPage.getString("uid"))
     .set("link", link)
     .set("language_code", languageCode)
-);
+});
