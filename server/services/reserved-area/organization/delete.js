@@ -40,7 +40,7 @@ for (const dbOrgOrChild of dbOrganizationAndChildren) {
     cluar.response.error({
       status: 409,
       error_code: "organization-has-members",
-      error: "there are members in this organization or one of it's children, cannot remove it."
+      error: "there are members in this organization or one of its children, cannot remove it"
     });
   }
 }
