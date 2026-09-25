@@ -27,7 +27,7 @@ _form.sync(
 		.set("report", false)
 		.set("report_behaviour", 0)
 		.set("show_id", true)
-		.set("title", "Pessoa")
+		.set("title", "Perfil")
 		.set("uid", "607cc695-f3c9-4e00-98be-1d8ccfb37560")
 );
 _form.syncField(

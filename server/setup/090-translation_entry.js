@@ -5072,8 +5072,8 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "b131602e-0fb8-4ae6-9523-2eb9671c558f")
-    .set("code", "person-already-member")
-    .set("description", "Erro - Pessoa j\u00e1 \u00e9 membro")
+    .set("code", "profile-already-member")
+    .set("description", "Erro - Perfil j\u00e1 \u00e9 membro")
 );;
 
 _db.insertIfNotExists(

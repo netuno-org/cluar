@@ -67,8 +67,8 @@ const memberAlreadyExists = _db.queryFirst(`
 if (memberAlreadyExists) {
   cluar.response.error({
     status: 409,
-    error: "this person is already a member of this organization, but you can manage your group",
-    error_code: "person-already-member"
+    error: "this profile is already a member of this organization, but you can manage your group",
+    error_code: "profile-already-member"
   });
 }
 

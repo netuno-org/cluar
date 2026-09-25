@@ -28,7 +28,7 @@ const PUBLIC_PATHS = [
   "recovery/put",
   // '_altcha',
   // '_auth',
-  "reserved-area/people/avatar/get",
+  "reserved-area/profile/avatar/get",
   "reserved-area/action/image/get",
 ];
 
@@ -42,9 +42,9 @@ const PUBLIC_PATH_PREFIXES = [
  */
 const CONTENT_MANAGEMENT_PATHS = [
   // editores (e admins) podem administrar o próprio perfil
-  // 'reserved-area/people/get',
-  // 'reserved-area/people/put',
-  // 'reserved-area/people/delete',
+  // 'reserved-area/profile/get',
+  // 'reserved-area/profile/put',
+  // 'reserved-area/profile/delete',
 ];
 
 const CONTENT_MANAGEMENT_PATH_PREFIXES = [
@@ -59,7 +59,7 @@ const CONTENT_MANAGEMENT_PATH_PREFIXES = [
 
 const SITE_ADMIN_PATHS = [
   // devia estar no público, apesar de que na verdade não devia existir
-  // 'reserved-area/people/post',
+  // 'reserved-area/profile/post',
 ];
 
 const SITE_ADMIN_PATH_PREFIXES = [
@@ -70,7 +70,7 @@ const SITE_ADMIN_PATH_PREFIXES = [
   // 'reserved-area/configuration/',
   // 'reserved-area/language/',
   /*
-   * Gestão de acessos (organizações, pessoas, utilizadores, contactos
+   * Gestão de acessos (organizações, perfis, utilizadores, contactos
    * recebidos) - só administrator, por serem dados sensíveis/permissões.
    */
   // 'reserved-area/organization/',

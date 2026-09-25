@@ -78,7 +78,7 @@ _form.syncField(
 		.set("rowspan", 0)
 		.set("tdheight", 0)
 		.set("tdwidth", 0)
-		.set("title", "Pessoa")
+		.set("title", "Perfil")
 		.set("type", "select")
 		.set("uid", "5f61a6ac-0fae-4819-a8ae-bf8dd76c632e")
 		.set("unique", false)

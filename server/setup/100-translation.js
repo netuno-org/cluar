@@ -11358,7 +11358,7 @@ _db.insertIfNotExists(
     .set("uid", "f80c05bb-a1c8-49c7-87fe-15319d221215")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "b131602e-0fb8-4ae6-9523-2eb9671c558f")
-    .set("value", "Esta pessoa j\u00e1 \u00e9 membro desta organiza\u00e7\u00e3o.")
+    .set("value", "Este perfil j\u00e1 \u00e9 membro desta organiza\u00e7\u00e3o.")
 );;
 
 _db.insertIfNotExists(
@@ -11367,7 +11367,7 @@ _db.insertIfNotExists(
     .set("uid", "e98cc7e9-aa27-46d7-92b0-29ee592d85ab")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "b131602e-0fb8-4ae6-9523-2eb9671c558f")
-    .set("value", "This person is already a member of this organization.")
+    .set("value", "This profile is already a member of this organization.")
 );;
 
 _db.insertIfNotExists(
