@@ -351,7 +351,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   useEffect(() => {
     if (loggedUserInfo && loggedUserInfo.avatar) {
       setAvatarImageURL(null);
-      setTimeout(() => setAvatarImageURL(`${_service.config().prefix}reserved-area/profile/avatar?uid=${loggedUserInfo.uid}&${new Date().getTime()}`), 250);
+      setTimeout(() => setAvatarImageURL(`${_service.config().prefix}/reserved-area/profile/avatar?uid=${loggedUserInfo.uid}&${new Date().getTime()}`), 250);
     }
   }, [loggedUserInfo]);
 
