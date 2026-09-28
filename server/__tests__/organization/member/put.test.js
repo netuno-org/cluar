@@ -34,7 +34,7 @@ beforeEach(async () => {
     .send({
       filters: { profile_uid: charlieUid },
     });
-  memberUid = listResponse.body.members[0].uid;
+  memberUid = listResponse.body.data.members[0].uid;
 });
 
 afterEach(async () => {

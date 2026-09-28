@@ -19,7 +19,7 @@ const createUser = async (name, org, group) => {
       password: "12345678",
       username: name,
     });
-  return response.body.user.uid;
+  return response.body.data.uid;
 }
 
 const deleteUser = async (uid) => {

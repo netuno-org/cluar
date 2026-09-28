@@ -59,7 +59,7 @@ it("should create an organization under an organization the logged user administ
     })
     .expect(201);
 
-  createdOrgUid = response.body.organization.uid;
+  createdOrgUid = response.body.data.uid;
 });
 
 it("shouldn't create an organization under an organization the logged user doesn't administer", async () => {

@@ -16,7 +16,7 @@ const createOrganization = async (name, parent) => {
       name: name,
       parent_code: parent
     });
-  return response.body.organization.uid;
+  return response.body.data.uid;
 }
 
 const deleteOrganization = async (uid) => {

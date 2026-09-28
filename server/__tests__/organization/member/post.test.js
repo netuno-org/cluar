@@ -64,7 +64,7 @@ it("should add a member to an organization the logged user administers", async (
     })
     .expect(201);
 
-  expect(response.body.member.uid).toBeDefined();
+  expect(response.body.data.uid).toBeDefined();
   membershipAddedToC = true;
 });
 
