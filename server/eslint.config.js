@@ -10,4 +10,12 @@ export default [
       quotes: ["error", "double"],
     },
   },
+  {
+    files: ["__tests__/**/*.js"],
+    languageOptions: {
+      globals: {
+        global: "readonly",
+      },
+    },
+  },
 ];
