@@ -32,6 +32,7 @@
     "@babel/preset-env": "^7.29.7",
     "@eslint/js": "^10.0.1",
     "@jest/globals": "^30.5.2",
+    "@netuno/auth-client": "^1.2.0",
     "@netuno/server-types": "^1.4.4",
     "eslint": "^10.11.0",
     "jest": "^30.5.2",
