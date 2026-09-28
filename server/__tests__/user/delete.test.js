@@ -1,8 +1,6 @@
-import request from "supertest";
 import { beforeEach, afterEach, it, expect } from "@jest/globals";
+import { asyncServiceAsAlice } from "../asyncService.js";
 
-import login from "../util/login.js";
-import { NETUNO_URL } from "../config.js";
 import { createUser, deleteUser, addUserToOrganization, removeUserFromOrganization } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
 
@@ -41,31 +39,36 @@ afterEach(async () => {
 });
 
 it("should delete a user if logged user org is above user org", async () => {
-  const accessToken = await login.asAlice();
-
-  await request(NETUNO_URL)
-    .delete(`/reserved-area/user?uid=${charlieUid}`)
-    .set("Authorization", `Bearer ${accessToken}`)
-    .expect(200);
+  const { status } = await asyncServiceAsAlice({
+    url: "reserved-area/user",
+    method: "DELETE",
+    data: {
+      uid: charlieUid
+    }
+  });
+  expect(status).toBe(200);
 });
 
 it("shouldn't delete a user if logged user org is not above user org", async () => {
-  const accessToken = await login.asAlice();
-
-  await request(NETUNO_URL)
-    .delete(`/reserved-area/user?uid=${bobUid}`)
-    .set("Authorization", `Bearer ${accessToken}`)
-    .expect(403);
+  await expect(asyncServiceAsAlice({
+    url: "reserved-area/user",
+    method: "DELETE",
+    data: {
+      uid: bobUid
+    }
+  })).rejects.toHaveProperty("status", 403);
 });
 
 it("shouldn't delete a user if they are in more than one organization", async () => {
   await addUserToOrganization(charlieUid, "b", "editor");
 
-  const accessToken = await login.asAlice();
-  await request(NETUNO_URL)
-    .delete(`/reserved-area/user?uid=${charlieUid}`)
-    .set("Authorization", `Bearer ${accessToken}`)
-    .expect(409);
+  await expect(asyncServiceAsAlice({
+    url: "reserved-area/user",
+    method: "DELETE",
+    data: {
+      uid: charlieUid
+    }
+  })).rejects.toHaveProperty("status", 409);
 
   await removeUserFromOrganization(charlieUid, bOrgUid);
 });
@@ -73,11 +76,13 @@ it("shouldn't delete a user if they are in more than one organization", async ()
 it("shouldn't delete a user if logged user is not in the admin group of the user's organization", async () => {
   await addUserToOrganization(aliceUid, "b", "editor");
 
-  const accessToken = await login.asAlice();
-  await request(NETUNO_URL)
-    .delete(`/reserved-area/user?uid=${bobUid}`)
-    .set("Authorization", `Bearer ${accessToken}`)
-    .expect(403);
+  await expect(asyncServiceAsAlice({
+    url: "reserved-area/user",
+    method: "DELETE",
+    data: {
+      uid: bobUid
+    }
+  })).rejects.toHaveProperty("status", 403);
 
   await removeUserFromOrganization(aliceUid, bOrgUid);
 });
