@@ -1,0 +1,15 @@
+{
+    "api": {
+        "services": {
+            "prefix": "http://localhost:9000/services"
+        },
+        "auth": {
+            "storage": "auth-token.json",
+            "login": {
+                "username": "admin",
+                "password": "admin"
+            }
+        }
+    }
+}
+

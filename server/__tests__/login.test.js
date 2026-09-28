@@ -1,7 +1,7 @@
 import request from "supertest";
 import { test, expect } from "@jest/globals";
 
-const NETUNO_URL = "http://localhost:9000/services";
+const NETUNO_URL = global.api.services.prefix;
 
 test("login with user admin", async () => {
   const response = await request(NETUNO_URL)
