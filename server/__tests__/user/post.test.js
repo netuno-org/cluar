@@ -1,9 +1,7 @@
 import { asyncServiceAsAlice } from "../asyncService.js";
 import { beforeEach, afterEach, it, expect } from "@jest/globals";
 
-import login from "../util/login.js";
-import { NETUNO_URL } from "../config.js";
-import { createUser, deleteUser, addUserToOrganization, removeUserFromOrganization } from "../util/user.js";
+import { createUser, deleteUser } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
 
 let aOrgUid;
@@ -12,7 +10,6 @@ let c1OrgUid;
 let c11OrgUid;
 
 let aliceUid;
-let charlieUid;
 
 beforeEach(async () => {
   aOrgUid = await createOrganization("a", "base");
@@ -21,17 +18,13 @@ beforeEach(async () => {
   c11OrgUid = await createOrganization("c11", "c1");
 
   aliceUid = await createUser("alice", "c", "administrator");
-  charlieUid = await createUser("charlie", "c11", "administrator");
 });
 
 afterEach(async () => {
   await deleteUser(aliceUid);
-  await deleteUser(charlieUid);
 
   await deleteOrganization(aOrgUid);
   await deleteOrganization(cOrgUid);
-  await deleteOrganization(c1OrgUid);
-  await deleteOrganization(c11OrgUid);
 });
 
 it("should create a user if logged user org is above new user org", async () => {
