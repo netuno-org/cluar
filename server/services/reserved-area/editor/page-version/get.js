@@ -429,7 +429,9 @@ if (dbPageVersion) {
       page_row.title,
       page_row.content,
       page_row.page_row_col_id,
-      page_row.sorter
+      page_row.sorter,
+      page_row.horizontal_gap,
+      page_row.vertical_gap
     FROM page_row
     WHERE page_row.active = TRUE
       AND page_row.page_version_id = ${pageVersionId}
@@ -448,7 +450,9 @@ if (dbPageVersion) {
       .set("content", dbRow.getString("content"))
       .set("items", _val.list())
       .set("sorter", dbRow.getInt("sorter"))
-      .set("page_row_col_id", dbRow.getInt("page_row_col_id", 0));
+      .set("page_row_col_id", dbRow.getInt("page_row_col_id", 0))
+      .set("horizontal_gap", dbRow.getInt("horizontal_gap", 0))
+      .set("vertical_gap", dbRow.getInt("vertical_gap", 0));
 
     rowsById.set(dbRow.getInt("id"), row);
     addSection(row);

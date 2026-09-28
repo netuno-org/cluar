@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Form, Select, Row, Col, Input, Divider, Button } from "antd";
+import {
+  Form,
+  Select,
+  Row,
+  Col,
+  Input,
+  Divider,
+  Button,
+  InputNumber,
+} from "antd";
 
 import SortableColumn from "./SortableColumn";
 import ImageSectionEditor from "../ImageSectionEditor";
@@ -36,7 +45,9 @@ const RowEditor = ({ sectionData, form }) => {
         const initialType = form.getFieldValue("type");
         setSelectedType(initialType);
 
-        const typeConfig = res.json.data.config.find((c) => c.name === initialType);
+        const typeConfig = res.json.data.config.find(
+          (c) => c.name === initialType,
+        );
         setShowActions(typeConfig?.action || false);
       },
       fail: (error) => {
@@ -166,11 +177,26 @@ const RowEditor = ({ sectionData, form }) => {
         </Form.Item>
       )}
 
+      <Row gutter={[24, 24]}>
+        <Col span={12}>
+          <Form.Item label="Gap Horizontal (px)" name="horizontal_gap">
+            <InputNumber style={{ width: "100%" }} />
+          </Form.Item>
+        </Col>
+
+        <Col span={12}>
+          <Form.Item label="Gap Vertical (px)" name="vertical_gap">
+            <InputNumber style={{ width: "100%" }} />
+          </Form.Item>
+        </Col>
+      </Row>
+
       <Divider />
 
       <Form.Item name="items" noStyle>
         <Input type="hidden" />
       </Form.Item>
+
       <Row gutter={[12, 12]}>
         <SortableColumn
           items={items}

@@ -12,6 +12,8 @@ const Default = ({
   itemsComponent,
   renderColumnSection,
   editMode,
+  horizontal_gap = 0,
+  vertical_gap = 0,
 }) => {
   return (
     <div className="row__default">
@@ -20,7 +22,7 @@ const Default = ({
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </Flex>
 
-      <Row style={{ width: "100%" }}>
+      <Row gutter={[horizontal_gap, vertical_gap]}>
         {itemsComponent?.map((item) => {
           let SectionComponent = renderColumnSection(item?.uid);
 
@@ -41,7 +43,6 @@ const Default = ({
                   showAddLineButton={false}
                   editMode={editMode}
                   onNewSection={(data) => onNewSection(item.uid, data)}
-
                 />
               )}
             </Col>

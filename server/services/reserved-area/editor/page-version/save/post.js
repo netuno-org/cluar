@@ -78,7 +78,9 @@ if (lastPageVersion) {
         .set("page_version_id", newPageVersion)
         .set("content", structure.getString("content"))
         .set("type", structure.getString("type"))
-        .set("sorter", structure.getInt("sorter", 0));
+        .set("sorter", structure.getInt("sorter", 0))
+        .set("horizontal_gap", structure.getInt("horizontal_gap", 0))
+        .set("vertical_gap", structure.getInt("vertical_gap", 0));
 
       if (pageRowColId) {
         rowData.set("page_row_col_id", pageRowColId);
@@ -566,12 +568,12 @@ if (lastPageVersion) {
 
   cluar.response.successWithData({
     status: 200,
-    data: _val.map().set("page_version_uid", dbNewPageVersion.get("uid"))
+    data: _val.map().set("page_version_uid", dbNewPageVersion.get("uid")),
   });
 } else {
   cluar.response.error({
     status: 409,
     error: "page has no previous version",
-    error_code: "page-has-no-previous-version"
+    error_code: "page-has-no-previous-version",
   });
 }
