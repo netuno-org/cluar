@@ -26,3 +26,5 @@ public/scripts/main.*
 storage/database/
 
 jsconfig.json
+
+server/auth-token.json
