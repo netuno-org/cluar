@@ -75,7 +75,7 @@ it("shouldn't add a member to an organization the logged user isn't a member of"
     }
   });
 
-  expect(promise).rejects.toMatchObject({
+  await expect(promise).rejects.toMatchObject({
     status: 403,
     json: {
       error_code: "user-unauthorized"
@@ -95,7 +95,7 @@ it("shouldn't add a member to an organization the logged user is just an editor 
     }
   });
 
-  expect(promise).rejects.toMatchObject({
+  await expect(promise).rejects.toMatchObject({
     status: 403,
     json: {
       error_code: "user-unauthorized"

@@ -73,7 +73,7 @@ it("shouldn't update a member in an organization the logged user doesn't adminis
     }
   });
 
-  expect(promise).rejects.toMatchObject({
+  await expect(promise).rejects.toMatchObject({
     status: 403,
     json: {
       error_code: "user-unauthorized"
