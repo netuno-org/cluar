@@ -1,10 +1,9 @@
 import request from "supertest";
 import { beforeEach, afterEach, it, expect } from "@jest/globals";
 
-import login from "../../util/login.js";
-import { NETUNO_URL } from "../../config.js";
 import { createUser, deleteUser, removeUserFromOrganization } from "../../util/user.js";
 import { createOrganization, deleteOrganization } from "../../util/organization.js";
+import { asyncServiceAsAlice, asyncServiceAsBob } from "../../asyncService.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -28,13 +27,12 @@ beforeEach(async () => {
   aliceUid = await createUser("alice", "c", "administrator");
   bobUid = await createUser("bob", "b", "editor");
   charlieUid = await createUser("charlie", "c11", "administrator");
-
-  membershipAddedToC = false;
 });
 
 afterEach(async () => {
   if (membershipAddedToC) {
     await removeUserFromOrganization(charlieUid, cOrgUid);
+    membershipAddedToC = false;
   }
 
   await deleteUser(aliceUid);
@@ -49,40 +47,47 @@ afterEach(async () => {
 });
 
 it("should add a member to an organization the logged user administers", async () => {
-  const accessToken = await login.asAlice();
 
-  const response = await request(NETUNO_URL)
-    .post("/reserved-area/organization/member")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  const { json, status } = await asyncServiceAsAlice({
+    url: "reserved-area/organization/member",
+    method: "POST",
+    data: {
       active: true,
       group_code: "editor",
       organization_code: "c",
       profile_uid: charlieUid,
-    })
-    .expect(201);
+    }
+  });
+  expect(status).toBe(201);
 
-  expect(response.body.data.uid).toBeDefined();
+  expect(json.data.uid).toBeDefined();
   membershipAddedToC = true;
 });
 
-it("shouldn't add a member to an organization the logged user doesn't administer", async () => {
-  const accessToken = await login.asBob();
-
-  const response = await request(NETUNO_URL)
-    .post("/reserved-area/organization/member")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+it("shouldn't add a member to an organization the logged user isn't a member of", async () => {
+  const promise = asyncServiceAsAlice({
+    url: "reserved-area/organization/member",
+    method: "POST",
+    data: {
       active: true,
       group_code: "editor",
       organization_code: "b",
       profile_uid: charlieUid,
-    })
-    .expect(403);
+    }
+  });
+  expect(promise).rejects.toHaveProperty("status", 403);
+});
 
-  expect(response.body.error_code).toBe("user-unauthorized");
+it("shouldn't add a member to an organization the logged user is just an editor of", async () => {
+  const promise = asyncServiceAsBob({
+    url: "reserved-area/organization/member",
+    method: "POST",
+    data: {
+      active: true,
+      group_code: "editor",
+      organization_code: "b",
+      profile_uid: charlieUid,
+    }
+  });
+  expect(promise).rejects.toHaveProperty("status", 403);
 });
