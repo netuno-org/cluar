@@ -41,6 +41,8 @@ afterEach(async () => {
   await deleteOrganization(aOrgUid);
   await deleteOrganization(bOrgUid);
   await deleteOrganization(cOrgUid);
+  await deleteOrganization(c1OrgUid);
+  await deleteOrganization(cOrgUid);
 });
 
 it("should update a member in an organization the logged user administers", async () => {
