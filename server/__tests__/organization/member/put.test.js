@@ -1,10 +1,8 @@
-import request from "supertest";
 import { beforeEach, afterEach, it, expect } from "@jest/globals";
 
-import login from "../../util/login.js";
-import { NETUNO_URL } from "../../config.js";
 import { createUser, deleteUser } from "../../util/user.js";
 import { createOrganization, deleteOrganization } from "../../util/organization.js";
+import { asyncServiceAsAlice, asyncServiceAsBob } from "../../asyncService.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -25,16 +23,14 @@ beforeEach(async () => {
   bobUid = await createUser("bob", "b", "editor");
   charlieUid = await createUser("charlie", "c", "editor");
 
-  const aliceAccessToken = await login.asAlice();
-  const listResponse = await request(NETUNO_URL)
-    .post("/reserved-area/organization/member/list")
-    .set("Authorization", `Bearer ${aliceAccessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  const listResponse = await asyncServiceAsAlice({
+    url: "reserved-area/organization/member/list",
+    method: "POST",
+    data: {
       filters: { profile_uid: charlieUid },
-    });
-  memberUid = listResponse.body.data.members[0].uid;
+    }
+  });
+  memberUid = listResponse.json.data.members[0].uid;
 });
 
 afterEach(async () => {
@@ -48,39 +44,39 @@ afterEach(async () => {
 });
 
 it("should update a member in an organization the logged user administers", async () => {
-  const accessToken = await login.asAlice();
-
-  await request(NETUNO_URL)
-    .put("/reserved-area/organization/member")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  const { json, status } = await asyncServiceAsAlice({
+    url: "reserved-area/organization/member",
+    method: "PUT",
+    data: {
       active: false,
       group_code: "editor",
       organization_code: "c",
       profile_uid: charlieUid,
       uid: memberUid,
-    })
-    .expect(200);
+    }
+  });
+
+  expect(status).toBe(200);
+  expect(json.result).toBe(true);
 });
 
 it("shouldn't update a member in an organization the logged user doesn't administer", async () => {
-  const accessToken = await login.asBob();
-
-  const response = await request(NETUNO_URL)
-    .put("/reserved-area/organization/member")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  const promise = asyncServiceAsBob({
+    url: "reserved-area/organization/member",
+    method: "POST",
+    data: {
       active: false,
       group_code: "editor",
       organization_code: "c",
       profile_uid: charlieUid,
       uid: memberUid,
-    })
-    .expect(403);
+    }
+  });
 
-  expect(response.body.error_code).toBe("user-unauthorized");
+  expect(promise).rejects.toMatchObject({
+    status: 403,
+    json: {
+      error_code: "user-unauthorized"
+    }
+  });
 });

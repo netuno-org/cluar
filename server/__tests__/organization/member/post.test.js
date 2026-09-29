@@ -47,7 +47,6 @@ afterEach(async () => {
 });
 
 it("should add a member to an organization the logged user administers", async () => {
-
   const { json, status } = await asyncServiceAsAlice({
     url: "reserved-area/organization/member",
     method: "POST",
@@ -75,7 +74,13 @@ it("shouldn't add a member to an organization the logged user isn't a member of"
       profile_uid: charlieUid,
     }
   });
-  expect(promise).rejects.toHaveProperty("status", 403);
+
+  expect(promise).rejects.toMatchObject({
+    status: 403,
+    json: {
+      error_code: "user-unauthorized"
+    }
+  });
 });
 
 it("shouldn't add a member to an organization the logged user is just an editor of", async () => {
@@ -89,5 +94,11 @@ it("shouldn't add a member to an organization the logged user is just an editor 
       profile_uid: charlieUid,
     }
   });
-  expect(promise).rejects.toHaveProperty("status", 403);
+
+  expect(promise).rejects.toMatchObject({
+    status: 403,
+    json: {
+      error_code: "user-unauthorized"
+    }
+  });
 });
