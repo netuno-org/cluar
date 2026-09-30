@@ -1,4 +1,4 @@
-import { _db, _val, _req } from "@netuno/server-types";
+import { _db, _val, _req, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const languageCode = _req.getString("language_code");
@@ -85,5 +85,22 @@ const data = _val.map()
   .set("template", template);
 
 const dbPage = cluar.db.insertAndReturn("page", data);
+
+const organizationId = _db.queryFirst(`
+    SELECT organization_id
+    FROM organization_profile
+    INNER JOIN profile
+        ON organization_profile.profile_id = profile.id
+    WHERE profile.profile_user_id = ${_db.param("int")}`,
+  _user.id)
+  .getInt("organization_id");
+
+const pageId = dbPage.getInt("id");
+
+_db.insert("page_organization",
+  _val.map()
+    .set("page_id", pageId)
+    .set("organization_id", organizationId)
+);
 
 cluar.response.successWithoutData({ status: 200 });
