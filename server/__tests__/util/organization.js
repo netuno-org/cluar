@@ -15,11 +15,17 @@ const createOrganization = async (name, parent) => {
 }
 
 const deleteOrganization = async (uid) => {
-  const response = await asyncService({
-    url: "/reserved-area/organization",
-    method: "DELETE",
-    data: { uid }
-  });
+  try {
+    await asyncService({
+      url: "/reserved-area/organization",
+      method: "DELETE",
+      data: { uid }
+    });
+  } catch (error) {
+    if (error.status !== 404) {
+      throw error;
+    }
+  }
 }
 
 export { createOrganization, deleteOrganization };

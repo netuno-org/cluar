@@ -1,16 +1,10 @@
-import request from "supertest";
-
-import login from "../util/login.js";
-import { NETUNO_URL } from "../config.js";
+import asyncService from "../asyncService";
 
 const createUser = async (name, org, group) => {
-  const accessToken = await login.asAdmin();
-  const response = await request(NETUNO_URL)
-    .post("/reserved-area/user")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  const response = await asyncService({
+    url: "/reserved-area/user",
+    method: "POST",
+    data: {
       active: true,
       email: `${name}@mail.com`,
       group_code: group,
@@ -18,43 +12,47 @@ const createUser = async (name, org, group) => {
       organization_code: org,
       password: "12345678",
       username: name,
-    });
-  return response.body.data.uid;
+    }
+  });
+  return response.json.data.uid;
 }
 
 const deleteUser = async (uid) => {
-  const accessToken = await login.asAdmin();
-  await request(NETUNO_URL)
-    .delete(`/reserved-area/user?uid=${uid}`)
-    .set("Authorization", `Bearer ${accessToken}`)
+  try {
+    await asyncService({
+      url: "/reserved-area/user",
+      method: "DELETE",
+      data: { uid }
+    });
+  } catch (error) {
+    if (error.status !== 404) {
+      throw error;
+    }
+  }
 }
 
 const addUserToOrganization = async (userUid, org, group) => {
-  let accessToken = await login.asAdmin();
-  await request(NETUNO_URL)
-    .post("/reserved-area/organization/member")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  await asyncService({
+    url: "/reserved-area/organization/member",
+    method: "POST",
+    data: {
       active: true,
       group_code: group,
       organization_code: org,
       profile_uid: userUid,
-    });
+    }
+  });
 }
 
 const removeUserFromOrganization = async (userUid, orgUid) => {
-  let accessToken = await login.asAdmin();
-  await request(NETUNO_URL)
-    .delete("/reserved-area/organization/member")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  await asyncService({
+    url: "/reserved-area/organization/member",
+    method: "DELETE",
+    data: {
       organization_uid: orgUid,
       profile_uid: userUid,
-    });
+    }
+  });
 }
 
 export { createUser, deleteUser, addUserToOrganization, removeUserFromOrganization };
