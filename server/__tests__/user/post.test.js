@@ -10,6 +10,7 @@ let c1OrgUid;
 let c11OrgUid;
 
 let aliceUid;
+let newUserUid;
 
 beforeEach(async () => {
   aOrgUid = await createOrganization("a", "base");
@@ -21,9 +22,13 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
+  await deleteUser(newUserUid);
+
   await deleteUser(aliceUid);
 
   await deleteOrganization(aOrgUid);
+  await deleteOrganization(c11OrgUid);
+  await deleteOrganization(c1OrgUid);
   await deleteOrganization(cOrgUid);
 });
 
@@ -47,6 +52,5 @@ it("should create a user if logged user org is above new user org", async () => 
   });
   expect(status).toBe(201);
 
-  const newUserUid = json.data.uid;
-  await deleteUser(newUserUid);
+  newUserUid = json.data.uid;
 });

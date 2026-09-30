@@ -27,10 +27,7 @@ beforeEach(async () => {
 });
 
 afterEach(async () => {
-  if (createdOrgUid) {
-    await deleteOrganization(createdOrgUid);
-    createdOrgUid = null;
-  }
+  await deleteOrganization(createdOrgUid);
 
   await deleteUser(aliceUid);
   await deleteUser(bobUid);
