@@ -5,13 +5,16 @@ export default [
     files: ["**/*.js", "**/*.jsx"],
     languageOptions: {
       globals: {
-        ...globals.browser, // Adds window, document, etc.
-        ...globals.node,    // Adds process, module, etc. (if needed)
+        ...globals.browser, // Adds window, document, localStorage, etc.
+        ...globals.nodeBuiltin, // Adds console, global, etc.
       },
       ecmaVersion: "latest",
       sourceType: "module",
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
-    rules: { "no-undef": "error" },
+    rules: {
+      "no-undef": "error",
+      quotes: ["error", "double"],
+    },
   },
 ];

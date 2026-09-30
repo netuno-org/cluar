@@ -1,9 +1,14 @@
+import globals from "globals";
+
 export default [
   {
     files: ["**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
+      globals: {
+        ...globals.nodeBuiltin, // Adds console, global, etc.
+      },
     },
     rules: {
       "no-undef": "error",
