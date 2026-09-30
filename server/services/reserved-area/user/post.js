@@ -58,7 +58,6 @@ const profileData = _val.map()
 const userId = _user.create(userData);
 profileData.set("profile_user_id", userId);
 
-
 const registedProfile = cluar.db.insertAndReturn("profile", profileData);
 const registedUser = _user.get(userId);
 
@@ -79,4 +78,3 @@ cluar.response.successWithData({
     .set("uid", registedProfile.getString("uid"))
     .set("username", registedUser.getString("user"))
 });
-
