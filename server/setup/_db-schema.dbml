@@ -86,7 +86,6 @@ Table page {
   menu boolean [note: 'Menu']
   menu_title varchar(250) [note: 'Menu Título']
   navigable boolean [note: 'Navegável']
-  organization_id int [ref: > organization.id, note: 'Organização']
   parent_id int [ref: > page.id, note: 'Pai']
   social_description text [note: 'Descrição para as Redes Sociais']
   social_image text [note: 'Imagem para as Redes Sociais']
@@ -217,6 +216,13 @@ Table page_listing_item {
   title text [note: 'Título']
   title_invert_background boolean [note: 'Inverter Cor de Fundo do Título']
   Note: 'Item'
+}
+
+Table page_organization {
+  id int [pk, increment]
+  organization_id int [not null, ref: > organization.id, note: 'Organização']
+  page_id int [not null, ref: > page.id, note: 'Página']
+  Note: 'Organização'
 }
 
 Table page_row {

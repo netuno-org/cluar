@@ -1,0 +1,95 @@
+/**
+  *
+  *  CODE GENERATED AUTOMATICALLY
+  *
+  *  THIS FILE SHOULD NOT BE EDITED BY HAND
+  *
+  */
+
+import {_val, _form} from "@netuno/server-types";
+
+_form.sync(
+	_val.map()
+		.set("big", false)
+		.set("control_active", true)
+		.set("control_group", false)
+		.set("control_user", false)
+		.set("description", "")
+		.set("export_id", false)
+		.set("export_json", true)
+		.set("export_lastchange", false)
+		.set("export_uid", true)
+		.set("export_xls", true)
+		.set("export_xml", true)
+		.set("firebase", "")
+		.set("name", "page_organization")
+		.set("parent_uid", "e6c40643-e58a-40aa-b430-7a003ec65246")
+		.set("reorder", 0)
+		.set("report", false)
+		.set("report_behaviour", 0)
+		.set("show_id", true)
+		.set("title", "Organiza\u00E7\u00E3o")
+		.set("uid", "066d3951-a734-460a-aa7e-4ed924c184d6")
+);
+_form.syncField(
+	"066d3951-a734-460a-aa7e-4ed924c184d6",
+	_val.map()
+		.set("colspan", 0)
+		.set("description", "")
+		.set("firebase", "")
+		.set("group_id", 0)
+		.set("height", 0)
+		.set("mandatory", true)
+		.set("max", 0)
+		.set("min", 0)
+		.set("name", "organization_id")
+		.set("properties", "{\"COLUMN_SEPARATOR\":{\"default\":\" - \",\"type\":\"LINK_SEPARATOR\",\"value\":\" - \"},\"LINK\":{\"default\":\"\",\"type\":\"LINK\",\"value\":\"organization:name\"},\"MAX_COLUMN_LENGTH\":{\"default\":\"0\",\"type\":\"INTEGER\",\"value\":\"0\"},\"ONLY_ACTIVES\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"},\"SERVICE\":{\"default\":\"com/Select.netuno\",\"type\":\"STRING\",\"value\":\"com/Select.netuno\"}}")
+		.set("rowspan", 0)
+		.set("tdheight", 0)
+		.set("tdwidth", 0)
+		.set("title", "Organiza\u00E7\u00E3o")
+		.set("type", "select")
+		.set("uid", "cb7be840-a4f4-423e-894c-3e0a49c76f4f")
+		.set("unique", false)
+		.set("user_id", 0)
+		.set("whenedit", true)
+		.set("whenexport", true)
+		.set("whenfilter", true)
+		.set("whennew", true)
+		.set("whenresult", true)
+		.set("whenview", true)
+		.set("width", 0)
+		.set("x", 1)
+		.set("y", 2)
+);
+_form.syncField(
+	"066d3951-a734-460a-aa7e-4ed924c184d6",
+	_val.map()
+		.set("colspan", 0)
+		.set("description", "")
+		.set("firebase", "")
+		.set("group_id", 0)
+		.set("height", 0)
+		.set("mandatory", true)
+		.set("max", 0)
+		.set("min", 0)
+		.set("name", "page_id")
+		.set("properties", "{\"COLUMN_SEPARATOR\":{\"default\":\" - \",\"type\":\"LINK_SEPARATOR\",\"value\":\" - \"},\"LINK\":{\"default\":\"\",\"type\":\"LINK\",\"value\":\"page:title,language_id,link\"},\"MAX_COLUMN_LENGTH\":{\"default\":\"0\",\"type\":\"INTEGER\",\"value\":\"0\"},\"ONLY_ACTIVES\":{\"default\":\"false\",\"type\":\"BOOLEAN\",\"value\":\"false\"},\"SERVICE\":{\"default\":\"com/Select.netuno\",\"type\":\"STRING\",\"value\":\"com/Select.netuno\"}}")
+		.set("rowspan", 0)
+		.set("tdheight", 0)
+		.set("tdwidth", 0)
+		.set("title", "P\u00E1gina")
+		.set("type", "select")
+		.set("uid", "d5d68c10-3aec-4739-9e03-1fb7ae9a4062")
+		.set("unique", false)
+		.set("user_id", 0)
+		.set("whenedit", true)
+		.set("whenexport", true)
+		.set("whenfilter", true)
+		.set("whennew", true)
+		.set("whenresult", true)
+		.set("whenview", true)
+		.set("width", 0)
+		.set("x", 3)
+		.set("y", 1)
+);
