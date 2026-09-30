@@ -71,7 +71,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainTranslation('organization-table-desactive-success-message') : Cluar.plainTranslation('organization-table-active-success-message')
+          message: active ? Cluar.plainTranslation("organization-table-desactive-success-message") : Cluar.plainTranslation("organization-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -81,7 +81,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation('organization-table-desactive-failed-message') : Cluar.plainTranslation('organization-table-active-failed-message')
+          message: active ? Cluar.plainTranslation("organization-table-desactive-failed-message") : Cluar.plainTranslation("organization-table-active-failed-message")
         });
       }
     })
@@ -166,9 +166,9 @@ const OrganizationTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainTranslation('organization-table-active'),
-      dataIndex: 'active',
-      key: 'active',
+      title: Cluar.plainTranslation("organization-table-active"),
+      dataIndex: "active",
+      key: "active",
       onHeaderCell: () => ({
         "data-column-key": "active",
       }),
@@ -196,37 +196,37 @@ const OrganizationTable = forwardRef(({ }, ref) => {
       ]
     },
     {
-      title: Cluar.plainTranslation('organization-table-name'),
-      dataIndex: 'name',
-      key: 'name',
+      title: Cluar.plainTranslation("organization-table-name"),
+      dataIndex: "name",
+      key: "name",
       ...getTextFilterProps("name"),
       onHeaderCell: () => ({
         "data-column-key": "name",
       }),
     },
     {
-      title: Cluar.plainTranslation('organization-table-code'),
-      dataIndex: 'code',
+      title: Cluar.plainTranslation("organization-table-code"),
+      dataIndex: "code",
       ...getTextFilterProps("code"),
       onHeaderCell: () => ({
         "data-column-key": "code",
       }),
-      key: 'code',
+      key: "code",
     },
     {
-      title: Cluar.plainTranslation('organization-table-parent'),
-      dataIndex: 'parent',
+      title: Cluar.plainTranslation("organization-table-parent"),
+      dataIndex: "parent",
       ...getTextFilterProps("parent_name"),
       onHeaderCell: () => ({
         "data-column-key": "parent",
       }),
-      key: 'parent',
+      key: "parent",
       render: (val, record) => val?.name
     },
     {
-      title: Cluar.plainTranslation('organization-table-actions'),
-      dataIndex: 'Actions',
-      key: 'actions',
+      title: Cluar.plainTranslation("organization-table-actions"),
+      dataIndex: "Actions",
+      key: "actions",
       onHeaderCell: () => ({
         "data-column-key": "actions",
       }),
@@ -306,7 +306,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         }}
         onChange={(pagination, currentFilters, currentSorter, { action }) => {
           if (action === "filter") {
-            const filtersModify = ['active'];
+            const filtersModify = ["active"];
             const newFilters = {
               ...filters
             }

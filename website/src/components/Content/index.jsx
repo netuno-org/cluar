@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import Cluar from '../../common/Cluar';
+import React, { useState, useEffect } from "react";
+import Cluar from "../../common/Cluar";
 
-import './index.less';
+import "./index.less";
 
-import TextContent from './TextContent';
-import ImageLeft from './ImageLeft';
-import ImageRight from './ImageRight';
-import ImageTop from './ImageTop';
-import ImageBottom from './ImageBottom';
-import ImageContent from './ImageContent';
-import Default from './Default';
+import TextContent from "./TextContent";
+import ImageLeft from "./ImageLeft";
+import ImageRight from "./ImageRight";
+import ImageTop from "./ImageTop";
+import ImageBottom from "./ImageBottom";
+import ImageContent from "./ImageContent";
+import Default from "./Default";
 
 const Content = (props) => {
   const [renderedActions, setRenderedActions] = useState(props.actions);
@@ -41,14 +41,14 @@ const Content = (props) => {
     imageStyle["maxWidth"] = `${props.image_max_width}px`;
   }
 
-  if (props.type === 'TextContent') {
+  if (props.type === "TextContent") {
     layout = (
       <TextContent
         {...props}
         actions={renderedActions}
       />
     );
-  } else if (props.type === 'ImageLeft') {
+  } else if (props.type === "ImageLeft") {
     layout = (
       <ImageLeft
         {...props}
@@ -57,7 +57,7 @@ const Content = (props) => {
         imageStyle={imageStyle}
       />
     );
-  } else if (props.type === 'ImageRight') {
+  } else if (props.type === "ImageRight") {
     layout = (
       <ImageRight
         {...props}
@@ -66,7 +66,7 @@ const Content = (props) => {
         imageStyle={imageStyle}
       />
     );
-  } else if (props.type === 'ImageTop') {
+  } else if (props.type === "ImageTop") {
     layout = (
       <ImageTop
         {...props}
@@ -75,7 +75,7 @@ const Content = (props) => {
         imageStyle={imageStyle}
       />
     );
-  } else if (props.type === 'ImageBottom') {
+  } else if (props.type === "ImageBottom") {
     layout = (
       <ImageBottom
         {...props}
@@ -84,7 +84,7 @@ const Content = (props) => {
         imageStyle={imageStyle}
       />
     );
-  } else if (props.type === 'ImageContent') {
+  } else if (props.type === "ImageContent") {
     layout = (
       <ImageContent
         {...props}

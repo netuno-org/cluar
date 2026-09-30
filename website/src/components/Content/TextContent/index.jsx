@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import Cluar from '../../../common/Cluar';
-import Action from '../../Action';
-import config from './config.json';
+import Cluar from "../../../common/Cluar";
+import Action from "../../Action";
+import config from "./config.json";
 
-import './index.less';
+import "./index.less";
 
 const TextContent = ({ section, type, title, content, actions, html_content, edit_mode }) => {
 
-  const resolvedContent = edit_mode === 'html'
+  const resolvedContent = edit_mode === "html"
     ? (html_content || content)
     : content;
 

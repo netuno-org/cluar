@@ -1,7 +1,7 @@
-import React from 'react';
-import { Col } from 'antd';
+import React from "react";
+import { Col } from "antd";
 
-import './index.less';
+import "./index.less";
 
 function Item({ section, type, image, image_title, image_alt, title, content, link }) {
   const imageSrc =

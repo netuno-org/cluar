@@ -78,11 +78,11 @@ export default class Cluar {
     if (!data._pagesNormalized) {
       for (const lang of Object.keys(data.pages)) {
         for (const p of data.pages[lang]) {
-          if (p.link && !p.link.startsWith('/')) {
-            p.link = '/' + p.link;
+          if (p.link && !p.link.startsWith("/")) {
+            p.link = "/" + p.link;
           }
-          if (p.parent && !p.parent.startsWith('/')) {
-            p.parent = '/' + p.parent;
+          if (p.parent && !p.parent.startsWith("/")) {
+            p.parent = "/" + p.parent;
           }
         }
       }

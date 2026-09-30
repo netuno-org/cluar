@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import Item from './Item';
+import Item from "./Item";
 
-import './index.less';
+import "./index.less";
 
 function Action({ section, type, actions }) {
   const list = [];

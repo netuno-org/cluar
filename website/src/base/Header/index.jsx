@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Layout, Menu } from 'antd';
-import { GlobalOutlined } from '@ant-design/icons';
-import Burger from '@animated-burgers/burger-slip';
-import '@animated-burgers/burger-slip/dist/styles.css';
-import classNames from 'classnames';
+import React, { useState } from "react";
+import { Layout, Menu } from "antd";
+import { GlobalOutlined } from "@ant-design/icons";
+import Burger from "@animated-burgers/burger-slip";
+import "@animated-burgers/burger-slip/dist/styles.css";
+import classNames from "classnames";
 import { Route, Link } from "react-router";
-import Cluar from '../../common/Cluar';
-import Builder from '../../common/Builder';
-import ThemeSwitch from '../../components/ThemeSwitch';
+import Cluar from "../../common/Cluar";
+import Builder from "../../common/Builder";
+import ThemeSwitch from "../../components/ThemeSwitch";
 
 import _auth from "@netuno/auth-client";
 
@@ -187,7 +187,7 @@ function BaseHeader({ canEdit }) {
             openKeys={subMenuKeys}
             items={menu}
           />
-          {['true', '1'].includes(String(Cluar.configuration('theme-switch')).toLowerCase()) && (
+          {["true", "1"].includes(String(Cluar.configuration("theme-switch")).toLowerCase()) && (
             <div className="menu-burger__theme-switch">
               <ThemeSwitch />
             </div>
@@ -202,7 +202,7 @@ function BaseHeader({ canEdit }) {
             selectedKeys={[activeMenu]}
             items={[menuLanguages]}
           />
-          {['true', '1'].includes(String(Cluar.configuration('theme-switch')).toLowerCase()) && (
+          {["true", "1"].includes(String(Cluar.configuration("theme-switch")).toLowerCase()) && (
             <div className="burger-language__theme-switch">
               <ThemeSwitch />
             </div>

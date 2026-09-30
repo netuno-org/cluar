@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import { Navigate, Link } from "react-router";
-import { Layout, Typography, Form, Input, Button, Checkbox, notification, Row, Col } from 'antd';
-import _auth from '@netuno/auth-client';
-import _service from '@netuno/service-client';
-import Cluar from '../../common/Cluar';
-import RecoverModal from './RecoverModal';
+import { Layout, Typography, Form, Input, Button, Checkbox, notification, Row, Col } from "antd";
+import _auth from "@netuno/auth-client";
+import _service from "@netuno/service-client";
+import Cluar from "../../common/Cluar";
+import RecoverModal from "./RecoverModal";
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { loggedUserInfoAction } from '../../redux/actions';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { loggedUserInfoAction } from "../../redux/actions";
 
 import {
   FaFacebook, FaGoogle, FaDiscord, FaGithub
@@ -16,7 +16,7 @@ import {
 
 import "altcha/i18n";
 
-import './index.less';
+import "./index.less";
 
 const { Title } = Typography;
 const { Content, Sider } = Layout;
@@ -98,22 +98,22 @@ function Login({ loggedUserInfoAction }) {
         if (data.isJSON) {
           if (data.json.blocked) {
             notification["error"]({
-              message: Cluar.plainTranslation('login-form-user-blocked-message'),
-              description: Cluar.plainTranslation('login-form-user-blocked-description'),
+              message: Cluar.plainTranslation("login-form-user-blocked-message"),
+              description: Cluar.plainTranslation("login-form-user-blocked-description"),
             });
             return;
           }
         }
         notification["error"]({
-          message: Cluar.plainTranslation('login-form-wrong-credentials-message'),
-          description: Cluar.plainTranslation('login-form-wrong-credentials-description'),
+          message: Cluar.plainTranslation("login-form-wrong-credentials-message"),
+          description: Cluar.plainTranslation("login-form-wrong-credentials-description"),
         });
       }
     });
   }
 
   function onFinishFailed(errorInfo) {
-    console.error('Failed:', errorInfo);
+    console.error("Failed:", errorInfo);
   }
 
   let initialValues = { remember: true };
@@ -126,14 +126,14 @@ function Login({ loggedUserInfoAction }) {
   } else {
     return (
       <Layout>
-        <Row justify={'center'} align={'middle'}>
+        <Row justify={"center"} align={"middle"}>
           <Col {...columnConfig}>
             <Content className="login-container">
               <div className="content-title">
-                <Title>{Cluar.plainTranslation('login-form-subject')}</Title>
+                <Title>{Cluar.plainTranslation("login-form-subject")}</Title>
               </div>
               <div className="content-body">
-                <p>{Cluar.plainTranslation('login-form-providers-title')}</p>
+                <p>{Cluar.plainTranslation("login-form-providers-title")}</p>
                 <Form
                   layout="vertical"
                   name="basic"
@@ -143,42 +143,42 @@ function Login({ loggedUserInfoAction }) {
                 >
                   {Cluar.authProviders().facebook &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/facebook`} name='facebook' icon={<FaFacebook />}>{Cluar.plainTranslation('login-form-login-provider').replace('${label}', 'Facebook')}</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/facebook`} name='facebook' icon={<FaFacebook />}>{Cluar.plainTranslation("login-form-login-provider").replace("${label}", "Facebook")}</Button>
                     </Form.Item>}
                   {Cluar.authProviders().google &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/google`} icon={<FaGoogle />}>{Cluar.plainTranslation('login-form-login-provider').replace('${label}', 'Google')}</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/google`} icon={<FaGoogle />}>{Cluar.plainTranslation("login-form-login-provider").replace("${label}", "Google")}</Button>
                     </Form.Item>}
                   {Cluar.authProviders().github &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/github`} icon={<FaGithub />}>{Cluar.plainTranslation('login-form-login-provider').replace('${label}', 'GitHub')}</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/github`} icon={<FaGithub />}>{Cluar.plainTranslation("login-form-login-provider").replace("${label}", "GitHub")}</Button>
                     </Form.Item>}
                   {Cluar.authProviders().discord &&
                     <Form.Item>
-                      <Button href={`${servicePrefix}_auth_provider/login/discord`} icon={<FaDiscord />}>{Cluar.plainTranslation('login-form-login-provider').replace('${label}', 'Discord')}</Button>
+                      <Button href={`${servicePrefix}_auth_provider/login/discord`} icon={<FaDiscord />}>{Cluar.plainTranslation("login-form-login-provider").replace("${label}", "Discord")}</Button>
                     </Form.Item>}
 
                   <Form.Item
-                    label={Cluar.plainTranslation('login-form-username')}
+                    label={Cluar.plainTranslation("login-form-username")}
                     name="username"
                     rules={[
-                      { required: true, message: Cluar.plainTranslation('login-form-validate-message-required') },
-                      { type: 'string', message: Cluar.plainTranslation('login-form-invalid-username-message'), pattern: "^[a-z]+[a-z0-9]{1,24}$" }
+                      { required: true, message: Cluar.plainTranslation("login-form-validate-message-required") },
+                      { type: "string", message: Cluar.plainTranslation("login-form-invalid-username-message"), pattern: "^[a-z]+[a-z0-9]{1,24}$" }
                     ]}
                   >
                     <Input />
                   </Form.Item>
 
                   <Form.Item
-                    label={Cluar.plainTranslation('login-form-password')}
+                    label={Cluar.plainTranslation("login-form-password")}
                     name="password"
-                    rules={[{ required: true, message: Cluar.plainTranslation('login-form-validate-message-required') }]}
+                    rules={[{ required: true, message: Cluar.plainTranslation("login-form-validate-message-required") }]}
                   >
                     <Input.Password />
                   </Form.Item>
 
                   <Form.Item name="remember" valuePropName="checked">
-                    <Checkbox>{Cluar.plainTranslation('login-form-remember')}</Checkbox>
+                    <Checkbox>{Cluar.plainTranslation("login-form-remember")}</Checkbox>
                   </Form.Item>
 
                   {Cluar.authAltcha() && (
@@ -196,20 +196,20 @@ function Login({ loggedUserInfoAction }) {
 
                   <Form.Item>
                     <Button loading={submitting} type="primary" className="login-btn" htmlType="submit">
-                      {Cluar.plainTranslation('login-form-sign-in')}
+                      {Cluar.plainTranslation("login-form-sign-in")}
                     </Button>
                   </Form.Item>
 
-                  <Form.Item style={{ textAlign: 'center' }}>
-                    <Button type="link" onClick={() => setVisible(!visible)} >{Cluar.plainTranslation('login-form-forgot-password')}</Button>
+                  <Form.Item style={{ textAlign: "center" }}>
+                    <Button type="link" onClick={() => setVisible(!visible)} >{Cluar.plainTranslation("login-form-forgot-password")}</Button>
                     {visible && <RecoverModal onClose={() => { setVisible(false) }} />}
                   </Form.Item>
 
                   <hr />
-                  <span><p>{Cluar.plainTranslation('login-form-division-title')}</p></span>
+                  <span><p>{Cluar.plainTranslation("login-form-division-title")}</p></span>
                   <Link to="/register">
                     <Button loading={submitting} type="default" className={"register-btn"}>
-                      {Cluar.plainTranslation('login-form-register')}
+                      {Cluar.plainTranslation("login-form-register")}
                     </Button>
                   </Link>
                 </Form>

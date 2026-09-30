@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import {
   $insertNodes,
   COMMAND_PRIORITY_EDITOR,
@@ -7,29 +7,29 @@ import {
   $createParagraphNode,
   $isRootOrShadowRoot,
   createCommand
-} from 'lexical';
+} from "lexical";
 import {
   useLexicalComposerContext
-} from '@lexical/react/LexicalComposerContext';
+} from "@lexical/react/LexicalComposerContext";
 import {
   DRAGSTART_COMMAND,
   DRAGOVER_COMMAND,
   DROP_COMMAND,
-} from 'lexical';
+} from "lexical";
 import {
   $createImageNode,
   ImageNode
-} from '../nodes/ImageNode';
-import { mergeRegister, $wrapNodeInElement } from '@lexical/utils';
+} from "../nodes/ImageNode";
+import { mergeRegister, $wrapNodeInElement } from "@lexical/utils";
 
-import { INSERT_IMAGE_COMMAND } from '../utils/commands';
+import { INSERT_IMAGE_COMMAND } from "../utils/commands";
 
 export default function ImagesPlugin({ captionsEnabled }) {
   const [editor] = useLexicalComposerContext();
 
   useEffect(() => {
     if (!editor.hasNodes([ImageNode])) {
-      throw new Error('ImagesPlugin: ImageNode not registered on editor');
+      throw new Error("ImagesPlugin: ImageNode not registered on editor");
     }
 
     return mergeRegister(

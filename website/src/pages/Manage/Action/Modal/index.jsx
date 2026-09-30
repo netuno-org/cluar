@@ -108,13 +108,13 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     const formData = new FormData();
     Object.keys(values).forEach((key) => {
       if (values[key] !== undefined && values[key] !== null) {
-        if (key === 'image') {
+        if (key === "image") {
           if (fileList.length > 0 && fileList[0].originFileObj) {
             formData.append(key, fileList[0].originFileObj);
           } else {
             formData.append(key, "");
           }
-        } else if (key === 'language_code' && values.language_code?.value) {
+        } else if (key === "language_code" && values.language_code?.value) {
           formData.append(key, values.language_code.value);
         } else if (typeof values[key] === "boolean") {
           formData.append(key, values[key] ? "true" : "false");
@@ -125,8 +125,8 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
     })
 
     if (editMode) {
-      formData.append('uid', actionData.uid);
-      formData.append('language_code', actionData.language_code);
+      formData.append("uid", actionData.uid);
+      formData.append("language_code", actionData.language_code);
     }
 
     setLoading({ ...loading, saving: true });
@@ -359,7 +359,7 @@ const ActionModal = forwardRef(({ onReloadTable, actionData }, ref) => {
                   formRef.setFieldValue("image", "");
                 }}
                 beforeUpload={() => false}
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
               >
                 {fileList.length >= 1 ? null : uploadButton}
               </Upload>

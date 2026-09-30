@@ -16,7 +16,7 @@ import "./index.less"
 import { forwardRef, useEffect, useRef, useState, useImperativeHandle } from "react";
 import UserModal from "../Modal";
 import MemberModal from "../Member";
-import _service from '@netuno/service-client';
+import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 
 const debounces = {};
@@ -68,7 +68,7 @@ const UserTable = forwardRef(({ }, ref) => {
           key: uid
         });
         notification.success({
-          message: active ? Cluar.plainTranslation('user-table-desactive-success-message') : Cluar.plainTranslation('user-table-active-success-message')
+          message: active ? Cluar.plainTranslation("user-table-desactive-success-message") : Cluar.plainTranslation("user-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -78,7 +78,7 @@ const UserTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation('user-table-desactive-failed-message') : Cluar.plainTranslation('user-table-active-failed-message')
+          message: active ? Cluar.plainTranslation("user-table-desactive-failed-message") : Cluar.plainTranslation("user-table-active-failed-message")
         });
       }
     })
@@ -182,9 +182,9 @@ const UserTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainTranslation('user-table-active'),
-      dataIndex: 'active',
-      key: 'active',
+      title: Cluar.plainTranslation("user-table-active"),
+      dataIndex: "active",
+      key: "active",
       render: (val, record) => (
         <Switch
           size="small"
@@ -213,33 +213,33 @@ const UserTable = forwardRef(({ }, ref) => {
 
     },
     {
-      title: Cluar.plainTranslation('user-table-name'),
-      dataIndex: 'name',
-      key: 'name',
+      title: Cluar.plainTranslation("user-table-name"),
+      dataIndex: "name",
+      key: "name",
       ...getTextFilterProps("name")
     },
     {
-      title: Cluar.plainTranslation('user-table-user'),
-      dataIndex: 'username',
-      key: 'username',
+      title: Cluar.plainTranslation("user-table-user"),
+      dataIndex: "username",
+      key: "username",
       ...getTextFilterProps("username")
     },
     {
-      title: Cluar.plainTranslation('user-table-mail'),
-      dataIndex: 'email',
-      key: 'email',
+      title: Cluar.plainTranslation("user-table-mail"),
+      dataIndex: "email",
+      key: "email",
       ...getTextFilterProps("email")
     },
     {
-      title: Cluar.plainTranslation('user-table-actions'),
-      dataIndex: 'actions',
-      key: 'action',
+      title: Cluar.plainTranslation("user-table-actions"),
+      dataIndex: "actions",
+      key: "action",
       render: (val, record) => (
         <Space size={4}>
           <Button
             icon={<EditOutlined />}
             type="text"
-            title={Cluar.plainTranslation('user-table-actions-edit-title')}
+            title={Cluar.plainTranslation("user-table-actions-edit-title")}
             onClick={() => {
               setUserData(record);
               userModalRef.current.openModal()
@@ -290,7 +290,7 @@ const UserTable = forwardRef(({ }, ref) => {
         scroll={{ x: 600 }}
         onChange={(pagination, currentFilters, currentSorter, { action }) => {
           if (action === "filter") {
-            const filtersModify = ['active'];
+            const filtersModify = ["active"];
             const newFilters = {
               ...filters
             }

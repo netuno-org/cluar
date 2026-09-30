@@ -1,9 +1,9 @@
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import {
   $findMatchingParent,
   $insertNodeToNearestRoot,
   mergeRegister,
-} from '@lexical/utils';
+} from "@lexical/utils";
 import {
   $createParagraphNode,
   $getNodeByKey,
@@ -16,19 +16,19 @@ import {
   KEY_ARROW_LEFT_COMMAND,
   KEY_ARROW_RIGHT_COMMAND,
   KEY_ARROW_UP_COMMAND,
-} from 'lexical';
-import { useEffect } from 'react';
+} from "lexical";
+import { useEffect } from "react";
 
 import {
   $createGridContainerNode,
   $isLayoutContainerNode,
   LayoutContainerNode,
-} from '../nodes/GridContainerNode';
+} from "../nodes/GridContainerNode";
 import {
   $createLayoutItemNode,
   $isLayoutItemNode,
   LayoutItemNode,
-} from '../nodes/GridItemNode';
+} from "../nodes/GridItemNode";
 
 export const INSERT_LAYOUT_COMMAND = createCommand();
 export const UPDATE_LAYOUT_COMMAND = createCommand();
@@ -39,7 +39,7 @@ export default function GridLayoutPlugin() {
   useEffect(() => {
     if (!editor.hasNodes([LayoutContainerNode, LayoutItemNode])) {
       throw new Error(
-        'GridLayoutPlugin: LayoutContainerNode or LayoutItemNode not registered on editor',
+        "GridLayoutPlugin: LayoutContainerNode or LayoutItemNode not registered on editor",
       );
     }
 
@@ -209,7 +209,7 @@ function getItemsCountFromTemplate(template) {
   if (Array.isArray(template)) {
     return template.length;
   }
-  if (typeof template === 'string') {
+  if (typeof template === "string") {
     return template.trim().split(/\s+/).length;
   }
 

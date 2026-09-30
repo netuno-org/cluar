@@ -48,7 +48,7 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
                 setLoading({ ...loading, configuration: false });
                 console.error(error);
                 notification.error({
-                    message: Cluar.plainTranslation('configuration-page-load-failed-message')
+                    message: Cluar.plainTranslation("configuration-page-load-failed-message")
                 })
             }
         });
@@ -122,9 +122,9 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
 
     const columns = [
         {
-            title: Cluar.plainTranslation('configuration-table-language'),
-            dataIndex: 'language',
-            key: 'language_codes',
+            title: Cluar.plainTranslation("configuration-table-language"),
+            dataIndex: "language",
+            key: "language_codes",
             onHeaderCell: () => ({
                 "data-column-key": "language",
             }),
@@ -136,35 +136,35 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
             }))
         },
         {
-            title: Cluar.plainTranslation('configuration-table-parameter'),
-            dataIndex: 'parameter',
-            key: 'parameter',
+            title: Cluar.plainTranslation("configuration-table-parameter"),
+            dataIndex: "parameter",
+            key: "parameter",
             onHeaderCell: () => ({
                 "data-column-key": "parameter",
             }),
             render: (val) => val.description
         },
         {
-            title: Cluar.plainTranslation('configuration-table-parameter-type'),
-            dataIndex: 'parameter_type',
-            key: 'parameter_type_name',
+            title: Cluar.plainTranslation("configuration-table-parameter-type"),
+            dataIndex: "parameter_type",
+            key: "parameter_type_name",
             onHeaderCell: () => ({
                 "data-column-key": "parameter_type_name",
             }),
             render: (val) => val.name
         },
         {
-            title: Cluar.plainTranslation('configuration-table-value'),
-            dataIndex: 'value',
-            key: 'value',
+            title: Cluar.plainTranslation("configuration-table-value"),
+            dataIndex: "value",
+            key: "value",
             onHeaderCell: () => ({
                 "data-column-key": "value",
             }),
         },
         {
-            title: Cluar.plainTranslation('configuration-table-value-img'),
-            dataIndex: 'image_url',
-            key: 'image_url',
+            title: Cluar.plainTranslation("configuration-table-value-img"),
+            dataIndex: "image_url",
+            key: "image_url",
             onHeaderCell: () => ({
                 "data-column-key": "image_url",
             }),
@@ -173,9 +173,9 @@ const ConfigurationTable = forwardRef(({ }, ref) => {
             ) : null
         },
         {
-            title: Cluar.plainTranslation('configuration-table-actions'),
-            dataIndex: 'actions',
-            key: 'actions',
+            title: Cluar.plainTranslation("configuration-table-actions"),
+            dataIndex: "actions",
+            key: "actions",
             onHeaderCell: () => ({
                 "data-column-key": "actions",
             }),

@@ -1,16 +1,16 @@
-import React from 'react';
-import { Row, Col } from 'antd';
+import React from "react";
+import { Row, Col } from "antd";
 
-import Cluar from '../../../common/Cluar';
-import Action from '../../Action';
-import config from './config.json';
+import Cluar from "../../../common/Cluar";
+import Action from "../../Action";
+import config from "./config.json";
 
-import './index.less';
+import "./index.less";
 
 
 const ImageLeft = ({ section, type, title, content, image_title, image_alt, imageSrc, imageStyle, actions, html_content, edit_mode }) => {
 
-  const resolvedContent = edit_mode === 'html'
+  const resolvedContent = edit_mode === "html"
     ? (html_content || content)
     : content;
 

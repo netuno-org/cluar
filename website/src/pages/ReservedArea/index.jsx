@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { Navigate, Outlet, useNavigate } from "react-router";
 
-import { Typography, Spin, Layout } from 'antd';
+import { Typography, Spin, Layout } from "antd";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import _auth from '@netuno/auth-client';
+import _auth from "@netuno/auth-client";
 
-import './index.less';
-import SideMenu from '../../components/SideMenu';
+import "./index.less";
+import SideMenu from "../../components/SideMenu";
 
 const { Title } = Typography;
 
@@ -18,7 +18,7 @@ function ReservedArea() {
   useEffect(() => {
     _auth.config({
       onLogout: () => {
-        navigate('/login');
+        navigate("/login");
       }
     });
   }, []);

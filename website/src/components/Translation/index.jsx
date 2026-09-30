@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import Cluar from '../../common/Cluar';
+import Cluar from "../../common/Cluar";
 
 function Translation({ entry, oneLine, noParagraph }) {
   let value = Cluar.translation(entry);

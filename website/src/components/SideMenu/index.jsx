@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   SettingOutlined,
   UserOutlined,
@@ -14,7 +14,7 @@ import {
   LinkOutlined,
   SunOutlined,
   MoonOutlined
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 import {
   Col,
   Layout,
@@ -24,18 +24,18 @@ import {
   notification,
   Dropdown,
   Skeleton
-} from 'antd';
-import Cluar from '../../common/Cluar'
+} from "antd";
+import Cluar from "../../common/Cluar"
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { loggedUserInfoAction } from '../../redux/actions';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { loggedUserInfoAction } from "../../redux/actions";
 
 import { useDispatch, useSelector } from "react-redux";
 import { toggleTheme } from "../../redux/actions/theme";
 
-import _service from '@netuno/service-client';
-import _auth from '@netuno/auth-client';
+import _service from "@netuno/service-client";
+import _auth from "@netuno/auth-client";
 
 import "./index.less"
 import { useNavigate, useLocation } from "react-router";
@@ -63,7 +63,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   const [collapsed, setCollapsed] = useState(false);
   const [sideMenuMobileMode, setSideMenuMobileMode] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [avatarImageURL, setAvatarImageURL] = useState('/images/profile-default.png');
+  const [avatarImageURL, setAvatarImageURL] = useState("/images/profile-default.png");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -121,20 +121,20 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
 
   const items = buildMenuItems([
     {
-      key: 'profile',
-      label: Cluar.plainTranslation('user-menu-edit-profile'),
+      key: "profile",
+      label: Cluar.plainTranslation("user-menu-edit-profile"),
       icon: <UserOutlined />,
       onClick: () => navigate("/reserved-area/profile"),
     },
     {
-      key: 'return',
-      label: Cluar.plainTranslation('user-menu-return-site'),
+      key: "return",
+      label: Cluar.plainTranslation("user-menu-return-site"),
       icon: <RollbackOutlined />,
       onClick: () => navigate(`/${Cluar.currentLanguage().locale}/`),
     },
     {
-      key: 'language',
-      label: Cluar.plainTranslation('side-menu-options-language'),
+      key: "language",
+      label: Cluar.plainTranslation("side-menu-options-language"),
       icon: <GlobalOutlined />,
       children: Cluar.languages()
         .filter((language) => language.code !== Cluar.currentLanguage().code)
@@ -148,10 +148,10 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         })),
     },
     {
-      key: 'theme-toggle',
+      key: "theme-toggle",
       label: isDark
-        ? Cluar.plainTranslation('side-menu-options-theme-light')
-        : Cluar.plainTranslation('side-menu-options-theme-dark'),
+        ? Cluar.plainTranslation("side-menu-options-theme-light")
+        : Cluar.plainTranslation("side-menu-options-theme-dark"),
       icon: isDark ? <SunOutlined /> : <MoonOutlined />,
       onClick: () => {
         dispatch(toggleTheme());
@@ -161,59 +161,59 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
       "admin",
       "editor"
     ]) && {
-      key: '1',
-      label: Cluar.plainTranslation('side-menu-options-manage'),
-      type: 'group',
+      key: "1",
+      label: Cluar.plainTranslation("side-menu-options-manage"),
+      type: "group",
       children: [
         {
-          key: 'pages',
-          label: Cluar.plainTranslation('side-menu-options-pages'),
+          key: "pages",
+          label: Cluar.plainTranslation("side-menu-options-pages"),
           icon: <FileOutlined />,
           onClick: () => navigate("/reserved-area/pages")
         },
         hasPermissions(MENU_PERMISSIONS.users) && {
-          key: 'users',
-          label: Cluar.plainTranslation('side-menu-options-users'),
+          key: "users",
+          label: Cluar.plainTranslation("side-menu-options-users"),
           icon: <UserOutlined />,
           onClick: () => navigate("/reserved-area/users")
         },
         {
-          key: 'actions',
-          label: Cluar.plainTranslation('side-menu-options-actions'),
+          key: "actions",
+          label: Cluar.plainTranslation("side-menu-options-actions"),
           icon: <LinkOutlined />,
           onClick: () => navigate("/reserved-area/actions")
         },
         hasPermissions(MENU_PERMISSIONS.languages) && {
-          key: 'languages',
-          label: Cluar.plainTranslation('side-menu-options-languages'),
+          key: "languages",
+          label: Cluar.plainTranslation("side-menu-options-languages"),
           icon: <GlobalOutlined />,
           onClick: () => navigate("/reserved-area/languages")
         },
         hasPermissions(MENU_PERMISSIONS.configuration) && {
-          key: 'configuration',
-          label: Cluar.plainTranslation('side-menu-options-configurations'),
+          key: "configuration",
+          label: Cluar.plainTranslation("side-menu-options-configurations"),
           icon: <SettingOutlined />,
           onClick: () => navigate("/reserved-area/configuration")
 
         },
         {
-          key: 'translation',
-          label: Cluar.plainTranslation('side-menu-options-translations'),
+          key: "translation",
+          label: Cluar.plainTranslation("side-menu-options-translations"),
           icon: <FontSizeOutlined />,
           onClick: () => navigate("/reserved-area/translation")
 
         },
         hasPermissions(MENU_PERMISSIONS.organization) && {
-          key: 'organization',
-          label: Cluar.plainTranslation('side-menu-options-organizations'),
+          key: "organization",
+          label: Cluar.plainTranslation("side-menu-options-organizations"),
           icon: <ApartmentOutlined />,
           onClick: () => navigate("/reserved-area/organization"),
         }
       ],
     },
     {
-      key: 'logout',
-      label: Cluar.plainTranslation('user-menu-sign-out'),
+      key: "logout",
+      label: Cluar.plainTranslation("user-menu-sign-out"),
       icon: <LogoutOutlined />,
       danger: true,
       onClick: () => onLogout(),
@@ -290,13 +290,13 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
     if (location.pathname.startsWith("/reserved-area/profile")) {
       return "profile";
     }
-    return '1';
+    return "1";
   })();
 
   function onLogout() {
     window.sessionStorage.setItem("builder-edit-mode", "0");
     _auth.logout();
-    navigate('/login');
+    navigate("/login");
   }
 
   const userMenuItems = [
@@ -318,29 +318,29 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
   useEffect(() => {
     setLoading(true);
     _service({
-      method: 'GET',
-      url: 'reserved-area/profile',
+      method: "GET",
+      url: "reserved-area/profile",
       success: (response) => {
         setLoading(false);
         if (response.json.result) {
           loggedUserInfoAction(response.json.data);
         } else {
           notification["warning"]({
-            message: 'Dados do Utilizador',
+            message: "Dados do Utilizador",
             description:
               (response.json.error_code && Cluar.hasTranslation(response.json.error_code) && Cluar.plainTranslation(response.json.error_code)) ||
               response.json.error ||
-              Cluar.plainTranslation('side-menu-load-user-info-failed-description'),
+              Cluar.plainTranslation("side-menu-load-user-info-failed-description"),
           });
           setLoading(false);
         }
       },
       fail: (e) => {
-        console.error('Dados do Utilizador', e);
+        console.error("Dados do Utilizador", e);
         setLoading(false);
         notification["error"]({
-          message: Cluar.plainTranslation('side-menu-load-user-info-failed-message'),
-          description: Cluar.plainTranslation('side-menu-load-user-info-failed-description'),
+          message: Cluar.plainTranslation("side-menu-load-user-info-failed-message"),
+          description: Cluar.plainTranslation("side-menu-load-user-info-failed-description"),
         });
         window.sessionStorage.setItem("builder-edit-mode", "0");
         _auth.logout();
@@ -373,12 +373,12 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         width={240}
       >
         <div className='side-menu'>
-          <Row className='side-menu__user-info' justify={'center'}>
+          <Row className='side-menu__user-info' justify={"center"}>
             <Col className='side-menu__user-info__content' span={24}>
-              <Row className='side-menu__user-info__content__logo' justify={'center'} align={'middle'}>
+              <Row className='side-menu__user-info__content__logo' justify={"center"} align={"middle"}>
                 <Skeleton active paragraph={false} title={{ style: { height: 60, width: 60, borderRadius: 100, margin: "0 auto", marginTop: 10 } }} />
               </Row>
-              <Row className='side-menu__user-info__content__user' justify={'center'} align={'middle'}>
+              <Row className='side-menu__user-info__content__user' justify={"center"} align={"middle"}>
                 <Skeleton active paragraph={false} title={{ style: { height: 20, width: 200, margin: "0 auto" } }} />
               </Row>
             </Col>
@@ -386,7 +386,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           <hr className='side-menu__divider' />
           <Menu
             selectedKeys={[selectedKey]}
-            defaultOpenKeys={['1']}
+            defaultOpenKeys={["1"]}
             mode="inline"
             width={240}
             items={items}
@@ -414,21 +414,21 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
         width={240}
       >
         <div className='side-menu'>
-          <Row className='side-menu__user-info' justify={'center'}>
+          <Row className='side-menu__user-info' justify={"center"}>
             <Col className='side-menu__user-info__content' span={24}>
-              <Row className='side-menu__user-info__content__logo' justify={'center'}>
+              <Row className='side-menu__user-info__content__logo' justify={"center"}>
                 <Dropdown
                   placement='bottom'
                   menu={{ items: userMenuItems }}
-                  trigger={['hover']}
+                  trigger={["hover"]}
                   arrow={{ pointAtCenter: true }}
                 >
-                  <span style={{ display: 'inline-block', cursor: 'pointer' }}>
+                  <span style={{ display: "inline-block", cursor: "pointer" }}>
                     {avatarImageURL ? <img src={avatarImageURL} alt="logo" /> : null}
                   </span>
                 </Dropdown>
               </Row>
-              <Row className='side-menu__user-info__content__user' justify={'center'}>
+              <Row className='side-menu__user-info__content__user' justify={"center"}>
                 <Typography.Text type='secondary' ellipsis >{loggedUserInfo.name}</Typography.Text>
               </Row>
             </Col>
@@ -436,7 +436,7 @@ const SideMenu = ({ loggedUserInfo, loggedUserInfoReload, loggedUserInfoAction }
           <hr className='side-menu__divider' />
           <Menu
             selectedKeys={[selectedKey]}
-            defaultOpenKeys={['1']}
+            defaultOpenKeys={["1"]}
             mode="inline"
             width={240}
             items={items}

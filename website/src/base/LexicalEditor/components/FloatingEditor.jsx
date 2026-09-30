@@ -1,5 +1,5 @@
-import { useRef, useState, useCallback, useEffect } from 'react';
-import { BoldOutlined, ItalicOutlined, UnderlineOutlined, LinkOutlined } from '@ant-design/icons';
+import { useRef, useState, useCallback, useEffect } from "react";
+import { BoldOutlined, ItalicOutlined, UnderlineOutlined, LinkOutlined } from "@ant-design/icons";
 import {
   $getSelection,
   $isRangeSelection,
@@ -11,7 +11,7 @@ import {
   $isAtNodeEnd
 } from "@lexical/selection";
 import { TOGGLE_LINK_COMMAND, $isLinkNode } from "@lexical/link";
-import { mergeRegister } from '@lexical/utils';
+import { mergeRegister } from "@lexical/utils";
 
 import Cluar from "../../../common/Cluar";
 
@@ -63,9 +63,9 @@ export default function FloatingEditor({ editor }) {
       const isLink = $isLinkNode(parent) || $isLinkNode(node);
 
       setFormatState({
-        bold: selection.hasFormat('bold'),
-        italic: selection.hasFormat('italic'),
-        underline: selection.hasFormat('underline'),
+        bold: selection.hasFormat("bold"),
+        italic: selection.hasFormat("italic"),
+        underline: selection.hasFormat("underline"),
         link: isLink
       });
     }
@@ -93,7 +93,7 @@ export default function FloatingEditor({ editor }) {
       setLastSelection(selection);
       updateFormatState(selection);
       return true;
-    } else if (!activeElement || !activeElement.closest('.floating-editor')) {
+    } else if (!activeElement || !activeElement.closest(".floating-editor")) {
       positionEditorElement(editorElem, null);
       setLastSelection(null);
     }
@@ -151,8 +151,8 @@ export default function FloatingEditor({ editor }) {
     <div ref={editorRef} className="floating-editor">
       <div className="floating-editor-toolbar">
         <button
-          className={`toolbar-button ${formatState.bold ? 'active' : ''}`}
-          onClick={() => handleFormatCommand('bold')}
+          className={`toolbar-button ${formatState.bold ? "active" : ""}`}
+          onClick={() => handleFormatCommand("bold")}
           onMouseDown={(event) => event.preventDefault()}
           title={`${Cluar.plainTranslation("toolbar-bold")} (Ctrl+B)`}
         >
@@ -160,8 +160,8 @@ export default function FloatingEditor({ editor }) {
         </button>
 
         <button
-          className={`toolbar-button ${formatState.italic ? 'active' : ''}`}
-          onClick={() => handleFormatCommand('italic')}
+          className={`toolbar-button ${formatState.italic ? "active" : ""}`}
+          onClick={() => handleFormatCommand("italic")}
           onMouseDown={(event) => event.preventDefault()}
           title={`${Cluar.plainTranslation("toolbar-italic")} (Ctrl+I)`}
         >
@@ -169,8 +169,8 @@ export default function FloatingEditor({ editor }) {
         </button>
 
         <button
-          className={`toolbar-button ${formatState.underline ? 'active' : ''}`}
-          onClick={() => handleFormatCommand('underline')}
+          className={`toolbar-button ${formatState.underline ? "active" : ""}`}
+          onClick={() => handleFormatCommand("underline")}
           onMouseDown={(event) => event.preventDefault()}
           title={`${Cluar.plainTranslation("toolbar-underline")} (Ctrl+U)`}
         >
@@ -180,7 +180,7 @@ export default function FloatingEditor({ editor }) {
         <div className="toolbar-separator"></div>
 
         <button
-          className={`toolbar-button ${formatState.link ? 'active' : ''}`}
+          className={`toolbar-button ${formatState.link ? "active" : ""}`}
           onClick={() => handleLinkCommand()}
           onMouseDown={(event) => event.preventDefault()}
           title={`${Cluar.plainTranslation("toolbar-link")} (Ctrl+K)`}

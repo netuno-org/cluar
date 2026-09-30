@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import Cluar from '../../common/Cluar';
+import Cluar from "../../common/Cluar";
 
 function Configuration({ parameter, number, multilines }) {
   let value = Cluar.configuration(parameter);

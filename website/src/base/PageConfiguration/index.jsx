@@ -163,7 +163,7 @@ const PageConfiguration = ({
               formData.append(key, "");
             }
           } else if (key === "link") {
-            const cleanLink = (value || "").replace(/^\/+|\/+$/g, '');
+            const cleanLink = (value || "").replace(/^\/+|\/+$/g, "");
             const normalizedLink = cleanLink === "" ? "/" : `/${cleanLink}`;
             formData.append(key, normalizedLink);
           } else {

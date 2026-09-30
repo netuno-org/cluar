@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import ReactGA from 'react-ga';
+import { useEffect } from "react";
+import PropTypes from "prop-types";
+import ReactGA from "react-ga";
 
-const logPageChange = (pathname, search = '', options) => {
+const logPageChange = (pathname, search = "", options) => {
   const page = pathname + search;
   const { location } = window;
   ReactGA.set({

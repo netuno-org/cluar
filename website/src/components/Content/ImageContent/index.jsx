@@ -1,8 +1,8 @@
-import React from 'react';
-import Action from '../../Action';
-import config from './config.json';
+import React from "react";
+import Action from "../../Action";
+import config from "./config.json";
 
-import './index.less';
+import "./index.less";
 
 const ImageContent = ({ section, type, image_title, image_alt, imageSrc, imageStyle, actions }) => {
   return (

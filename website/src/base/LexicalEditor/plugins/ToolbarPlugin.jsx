@@ -16,7 +16,7 @@ import {
   PlusOutlined,
   RedoOutlined,
   UndoOutlined
-} from '@ant-design/icons';
+} from "@ant-design/icons";
 import {
   $createParagraphNode,
   $getSelection,
@@ -31,7 +31,7 @@ import {
   SELECTION_CHANGE_COMMAND,
   UNDO_COMMAND
 } from "lexical";
-import { mergeRegister } from '@lexical/utils';
+import { mergeRegister } from "@lexical/utils";
 import { $createHeadingNode, $createQuoteNode } from "@lexical/rich-text";
 import { $setBlocksType, $getSelectionStyleValueForProperty, $patchStyleText, $isAtNodeEnd } from "@lexical/selection";
 import { $isLinkNode, TOGGLE_LINK_COMMAND, $createLinkNode } from "@lexical/link";
@@ -61,9 +61,9 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   const [currentFontFamily, setCurrentFontFamily] = useState(FONT_FAMILY_OPTIONS[0][0]);
   const [currentFontSize, setCurrentFontSize] = useState("16");
 
-  const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
-  const [currentFontColor, setCurrentFontColor] = useState(isDarkMode ? '#ffffff' : "#000000");
-  const [currentBgColor, setCurrentBgColor] = useState('');
+  const isDarkMode = document.documentElement.getAttribute("data-theme") === "dark";
+  const [currentFontColor, setCurrentFontColor] = useState(isDarkMode ? "#ffffff" : "#000000");
+  const [currentBgColor, setCurrentBgColor] = useState("");
   const [isLink, setIsLink] = useState(false);
   const [currentTextAlign, setCurrentTextAlign] = useState("left");
 
@@ -104,27 +104,27 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
     const getStyleValue = (property, fallback = "") => $getSelectionStyleValueForProperty(selection, property, fallback);
 
     // Font Family
-    const fontFamily = getStyleValue('font-family');
+    const fontFamily = getStyleValue("font-family");
     if (fontFamily) setCurrentFontFamily(fontFamily);
 
     // Font Size (sem 'px')
-    const fontSize = getStyleValue('font-size');
-    setCurrentFontSize(fontSize ? fontSize.replace('px', '') : "16");
+    const fontSize = getStyleValue("font-size");
+    setCurrentFontSize(fontSize ? fontSize.replace("px", "") : "16");
 
     // Font Color
-    const fontColor = getStyleValue('color');
+    const fontColor = getStyleValue("color");
     if (fontColor) {
       setCurrentFontColor(fontColor);
     }
     // Background Color
-    const bgColor = getStyleValue('background-color');
+    const bgColor = getStyleValue("background-color");
     if (bgColor) setCurrentBgColor(bgColor);
 
     const anchorNode = selection.anchor.getNode();
     const element = anchorNode.getParent();
 
     if (element) {
-      const textAlign = element.getStyle('text-align');
+      const textAlign = element.getStyle("text-align");
       if (textAlign) {
         setCurrentTextAlign(textAlign);
       } else {
@@ -133,31 +133,31 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
       const elementType = element.getType();
       switch (elementType) {
-        case 'heading': {
+        case "heading": {
           const tag = element.getTag();
-          if (['h1', 'h2', 'h3'].includes(tag)) {
+          if (["h1", "h2", "h3"].includes(tag)) {
             setSelectedFormat(tag.toUpperCase());
           }
           break;
         }
-        case 'paragraph':
-          setSelectedFormat('Normal');
+        case "paragraph":
+          setSelectedFormat("Normal");
           break;
-        case 'list':
-        case 'listitem': {
+        case "list":
+        case "listitem": {
           const parentList = element.getParent();
-          if (parentList?.getType() === 'list') {
+          if (parentList?.getType() === "list") {
             const listType = parentList.getListType();
-            if (listType === 'bullet') setSelectedFormat('Bullet List');
-            else if (listType === 'number') setSelectedFormat('Numbered List');
+            if (listType === "bullet") setSelectedFormat("Bullet List");
+            else if (listType === "number") setSelectedFormat("Numbered List");
           }
           break;
         }
-        case 'quote':
-          setSelectedFormat('quote');
+        case "quote":
+          setSelectedFormat("quote");
           break;
         default:
-          setSelectedFormat('Normal');
+          setSelectedFormat("Normal");
       }
     }
 
@@ -231,14 +231,14 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor, updateToolbar]);
 
   const formatLabels = {
-    'paragraph': 'Normal',
-    'h1': 'Heading 1',
-    'h2': 'Heading 2',
-    'h3': 'Heading 3',
-    'bullet': 'Bullet List',
-    'number': 'Number List',
-    'check': 'Check List',
-    'quote': 'Quote'
+    "paragraph": "Normal",
+    "h1": "Heading 1",
+    "h2": "Heading 2",
+    "h3": "Heading 3",
+    "bullet": "Bullet List",
+    "number": "Number List",
+    "check": "Check List",
+    "quote": "Quote"
   };
 
   const getFormatLabel = useCallback((key) => {
@@ -254,7 +254,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
       }
     });
     setStylesDropdownVisible(false);
-    setSelectedFormat('paragraph');
+    setSelectedFormat("paragraph");
   }, [editor]);
 
   const formatHeading = useCallback((tag) => {
@@ -305,7 +305,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
     editor.update(() => {
       const selection = $getSelection();
       if ($isRangeSelection(selection)) {
-        const fontSizeWithUnit = fontSize.toString().includes('px') ? fontSize : `${fontSize}px`;
+        const fontSizeWithUnit = fontSize.toString().includes("px") ? fontSize : `${fontSize}px`;
         $patchStyleText(selection, { "font-size": fontSizeWithUnit });
       }
     });
@@ -407,15 +407,15 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
   const insertMenuItems = [
     {
-      key: '1',
+      key: "1",
       icon: <FileImageOutlined />,
-      label: 'Imagem',
+      label: "Imagem",
       onClick: () => setIsImageModalOpen(true),
     },
     {
-      key: '2',
+      key: "2",
       icon: <AppstoreOutlined />,
-      label: 'Colunas',
+      label: "Colunas",
       onClick: () => setIsColumnsModalOpen(true),
     },
   ];
@@ -431,7 +431,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
         type="button"
         className="toolbar-item"
       >
-        <UndoOutlined style={{ transform: 'rotate(90deg)', fontSize: 15 }} />
+        <UndoOutlined style={{ transform: "rotate(90deg)", fontSize: 15 }} />
       </button>
       <button
         disabled={!canRedo}
@@ -442,7 +442,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
         type="button"
         className="toolbar-item"
       >
-        <RedoOutlined style={{ transform: 'rotate(-90deg)', fontSize: 15 }} />
+        <RedoOutlined style={{ transform: "rotate(-90deg)", fontSize: 15 }} />
       </button>
       <div className="divider" />
 
@@ -450,81 +450,81 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
         <Dropdown
           open={stylesDropdownVisible}
           onOpenChange={setStylesDropdownVisible}
-          trigger={['click']}
+          trigger={["click"]}
           menu={{
             items: [
               {
-                key: 'paragraph',
+                key: "paragraph",
                 label: (
                   <div className="icon-text-container">
                     <i className="icon paragraph"></i>
-                    <span className="text">{formatLabels['paragraph']}</span>
+                    <span className="text">{formatLabels["paragraph"]}</span>
                   </div>
                 ),
                 onClick: () => formatParagraph()
               },
               {
-                key: 'h1',
+                key: "h1",
                 label: (
                   <div className="icon-text-container">
                     <i className="icon h1"></i>
-                    <span className="text">{formatLabels['h1']}</span>
+                    <span className="text">{formatLabels["h1"]}</span>
                   </div>
                 ),
                 onClick: () => formatHeading("h1")
               },
               {
-                key: 'h2',
+                key: "h2",
                 label: (
                   <div className="icon-text-container">
                     <i className="icon h2"></i>
-                    <span className="text">{formatLabels['h2']}</span>
+                    <span className="text">{formatLabels["h2"]}</span>
                   </div>
                 ),
                 onClick: () => formatHeading("h2")
               },
               {
-                key: 'h3',
+                key: "h3",
                 label: (
                   <div className="icon-text-container">
                     <i className="icon h3"></i>
-                    <span className="text">{formatLabels['h3']}</span>
+                    <span className="text">{formatLabels["h3"]}</span>
                   </div>
                 ),
                 onClick: () => formatHeading("h3")
               },
               {
-                key: 'bullet',
+                key: "bullet",
                 label: (
                   <div className="icon-text-container">
                     <i className="icon bullet-list"></i>
-                    <span className="text">{formatLabels['bullet']}</span>
+                    <span className="text">{formatLabels["bullet"]}</span>
                   </div>
                 ),
                 onClick: () => formatList("bullet")
               },
               {
-                key: 'number',
+                key: "number",
                 label: (
                   <div className="icon-text-container">
                     <i className="icon bullet-list"></i>
-                    <span className="text">{formatLabels['number']}</span>
+                    <span className="text">{formatLabels["number"]}</span>
                   </div>
                 ),
                 onClick: () => formatList("number")
               },
               {
-                key: 'check',
+                key: "check",
                 label: (
                   <div className="icon-text-container">
                     <i className="icon bullet-list"></i>
-                    <span className="text">{formatLabels['check']}</span>
+                    <span className="text">{formatLabels["check"]}</span>
                   </div>
                 ),
                 onClick: () => editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined)
               },
               {
-                key: 'quote',
+                key: "quote",
                 label: (
                   <div className="icon-text-container">
                     <i className="icon bullet-list"></i>
@@ -552,7 +552,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
         <Dropdown
           open={fontFamilyDropdownVisible}
           onOpenChange={setFontFamilyDropdownVisible}
-          trigger={['click']}
+          trigger={["click"]}
           menu={{
             items: FONT_FAMILY_OPTIONS.map(([font, label]) => ({
               key: font,
@@ -577,13 +577,13 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
       <div className="divider" />
 
-      <div className="font-size-container" style={{ display: 'flex', alignItems: 'center' }}>
+      <div className="font-size-container" style={{ display: "flex", alignItems: "center" }}>
         <button
           className="toolbar-item"
           title={Cluar.plainTranslation("toolbar-font-size-decrease")}
           type="button"
           onClick={decreaseFontSize}
-          style={{ padding: '0 8px' }}
+          style={{ padding: "0 8px" }}
         >
           -
         </button>
@@ -599,14 +599,14 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
           title={Cluar.plainTranslation("toolbar-font-size-increase")}
           type="button"
           onClick={increaseFontSize}
-          style={{ padding: '0 8px' }}
+          style={{ padding: "0 8px" }}
         >
           +
         </button>
       </div>
       <div className="divider" />
-      <div className="font-color-container" style={{ display: 'flex', alignItems: 'center' }}>
-        <FontColorsOutlined style={{ width: 18, height: 18, marginRight: 4, verticalAlign: 'middle' }} />
+      <div className="font-color-container" style={{ display: "flex", alignItems: "center" }}>
+        <FontColorsOutlined style={{ width: 18, height: 18, marginRight: 4, verticalAlign: "middle" }} />
         <ColorPicker
           value={currentFontColor}
           onChange={applyFontColor}
@@ -624,15 +624,15 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
           }}
           presets={[
             {
-              label: 'Presets',
-              colors: ['#000000', '#ff4d4f', '#52c41a', '#1677ff', '#faad14', '#eb2f96']
+              label: "Presets",
+              colors: ["#000000", "#ff4d4f", "#52c41a", "#1677ff", "#faad14", "#eb2f96"]
             }
           ]}
         />
       </div>
 
-      <div className="bg-color-container" style={{ display: 'flex', alignItems: 'center', marginLeft: '8px' }}>
-        <BgColorsOutlined style={{ width: 18, height: 18, marginRight: 4, verticalAlign: 'middle' }} />
+      <div className="bg-color-container" style={{ display: "flex", alignItems: "center", marginLeft: "8px" }}>
+        <BgColorsOutlined style={{ width: 18, height: 18, marginRight: 4, verticalAlign: "middle" }} />
         <ColorPicker
           value={currentBgColor}
           onChange={applyBgColor}
@@ -650,8 +650,8 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
           }}
           presets={[
             {
-              label: 'Presets',
-              colors: ['#fffff', '#000000', '#ff4d4f', '#52c41a', '#1677ff', '#faad14', '#eb2f96']
+              label: "Presets",
+              colors: ["#fffff", "#000000", "#ff4d4f", "#52c41a", "#1677ff", "#faad14", "#eb2f96"]
             }
           ]}
         />
@@ -660,7 +660,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
       <div className="divider" />
       <button
-        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')}
+        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold")}
         className={`toolbar-item ${isBold ? "active" : ""}`}
         title={Cluar.plainTranslation("toolbar-bold")}
         type="button"
@@ -668,7 +668,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
         <i>B</i>
       </button>
       <button
-        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')}
+        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic")}
         className={`toolbar-item ${isItalic ? "active" : ""}`}
         title={Cluar.plainTranslation("toolbar-italic")}
         type="button"
@@ -677,7 +677,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
       </button>
       <button
         onClick={() => {
-          editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
+          editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
         }}
         className={`toolbar-item ${isUnderline ? "active" : ""}`}
         title={Cluar.plainTranslation("toolbar-underline")}
@@ -690,11 +690,11 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
         onClick={() => insertLink()}
         title={Cluar.plainTranslation("toolbar-link")}
         type="button"
-        className={isLink ? 'btn-active' : 'btn-inactive'}
+        className={isLink ? "btn-active" : "btn-inactive"}
         style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           padding: 6,
           width: 32,
           height: 32,
@@ -707,22 +707,22 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
       {isSelected &&
         createPortal(<FloatingEditor editor={editor} />, document.body)}
       <div className="divider" />
-      <Dropdown menu={{ items: insertMenuItems }} trigger={['click']}>
+      <Dropdown menu={{ items: insertMenuItems }} trigger={["click"]}>
         <button type="link" style={{
           padding: 0,
-          display: 'flex',
-          alignItems: 'center',
-          gap: '6px'
+          display: "flex",
+          alignItems: "center",
+          gap: "6px"
         }}>
           <PlusOutlined /> Inserir <DownOutlined />
         </button>
       </Dropdown>
       <div className="divider" />
 
-      <div className="alignment-buttons-container" style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'nowrap' }}>
+      <div className="alignment-buttons-container" style={{ display: "flex", alignItems: "center", gap: "4px", flexWrap: "nowrap" }}>
         <button
           onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left');
+            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "left");
           }}
           className="toolbar-item spaced"
           aria-label={Cluar.plainTranslation("toolbar-align-left")}
@@ -733,7 +733,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
         <button
           onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center');
+            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "center");
           }}
           className="toolbar-item spaced"
           aria-label={Cluar.plainTranslation("toolbar-align-center")}
@@ -744,7 +744,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
         <button
           onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right');
+            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "right");
           }}
           className="toolbar-item spaced"
           aria-label={Cluar.plainTranslation("toolbar-align-right")}
@@ -760,13 +760,13 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
         title={Cluar.plainTranslation("toolbar-html-mode")}
         type="button"
         style={{
-          minWidth: '50px',
-          padding: '6px 8px',
-          fontSize: '12px',
-          fontWeight: '600',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis'
+          minWidth: "50px",
+          padding: "6px 8px",
+          fontSize: "12px",
+          fontWeight: "600",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis"
         }}
       >
         HTML

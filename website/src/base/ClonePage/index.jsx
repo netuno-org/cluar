@@ -16,7 +16,7 @@ import _service from "@netuno/service-client";
 import Cluar from "../../common/Cluar";
 import { useSearchParams } from "react-router";
 import dayjs from "dayjs";
-import './index.less';
+import "./index.less";
 
 const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
   const [form] = Form.useForm();
@@ -131,7 +131,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
     form.validateFields().then((values) => {
       setLoading((prev) => ({ ...prev, saving: true }));
 
-      const cleanLink = (values.link || "").replace(/^\/+|\/+$/g, '');
+      const cleanLink = (values.link || "").replace(/^\/+|\/+$/g, "");
       const normalizedLink = cleanLink === "" ? "/" : `/${cleanLink}`;
       const data = {
         source_uid: pageData.uid,
@@ -156,7 +156,7 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
 
           const { link, language_code } = response.json.data;
           if (link && language_code) {
-            const cleanLink = link.replace(/^\/+|\/+$/g, '');
+            const cleanLink = link.replace(/^\/+|\/+$/g, "");
             const targetUrl = cleanLink === ""
               ? `/${language_code}`
               : `/${language_code}/${cleanLink}`;

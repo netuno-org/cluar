@@ -26,7 +26,7 @@ const Translation = () => {
         <Col span={24}>
           <Row justify={"space-between"} align={"middle"} gutter={[16, 16]}>
             <Col>
-              <HeadTitle level={4} type={"secondary"} text={Cluar.plainTranslation('translation-page-title')} />
+              <HeadTitle level={4} type={"secondary"} text={Cluar.plainTranslation("translation-page-title")} />
             </Col>
             <Col>
               <Button
@@ -34,7 +34,7 @@ const Translation = () => {
                 icon={<PlusOutlined />}
                 onClick={() => { translationModalRef.current.onOpenModal() }}
               >
-                {Cluar.plainTranslation('translation-page-new')}
+                {Cluar.plainTranslation("translation-page-new")}
               </Button>
             </Col>
           </Row>

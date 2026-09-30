@@ -1,10 +1,10 @@
-import { addClassNamesToElement } from '@lexical/utils';
-import { ElementNode } from 'lexical';
+import { addClassNamesToElement } from "@lexical/utils";
+import { ElementNode } from "lexical";
 
-import './GridContainerNode.less';
+import "./GridContainerNode.less";
 
 function $convertGridContainerElement(domNode) {
-  if (domNode.classList.contains('section') && domNode.classList.contains('group')) {
+  if (domNode.classList.contains("section") && domNode.classList.contains("group")) {
     const node = $createGridContainerNode();
     return { node };
   }
@@ -17,7 +17,7 @@ export class GridContainerNode extends ElementNode {
   }
 
   static getType() {
-    return 'grid-container';
+    return "grid-container";
   }
 
   static clone(node) {
@@ -37,18 +37,18 @@ export class GridContainerNode extends ElementNode {
   }
 
   createDOM(config) {
-    const dom = document.createElement('div');
-    dom.className = 'section group';
-    if (typeof config.theme.layoutContainer === 'string') {
+    const dom = document.createElement("div");
+    dom.className = "section group";
+    if (typeof config.theme.layoutContainer === "string") {
       addClassNamesToElement(dom, config.theme.layoutContainer);
     }
     return dom;
   }
 
   exportDOM() {
-    const element = document.createElement('div');
-    element.className = 'section group';
-    element.setAttribute('data-lexical-grid-container', 'true');
+    const element = document.createElement("div");
+    element.className = "section group";
+    element.setAttribute("data-lexical-grid-container", "true");
     return { element };
   }
 
@@ -59,8 +59,8 @@ export class GridContainerNode extends ElementNode {
   static importDOM() {
     return {
       div: (domNode) => {
-        if (!domNode.hasAttribute('data-lexical-grid-container') &&
-          !(domNode.classList.contains('section') && domNode.classList.contains('group'))) {
+        if (!domNode.hasAttribute("data-lexical-grid-container") &&
+          !(domNode.classList.contains("section") && domNode.classList.contains("group"))) {
           return null;
         }
         return {

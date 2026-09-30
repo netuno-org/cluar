@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import _service from "@netuno/service-client";
 import _auth from "@netuno/auth-client";

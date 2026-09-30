@@ -1,4 +1,4 @@
-import { LOGGED_USER_INFO, LOGGED_USER_INFO_RELOAD } from '../actions/actionTypes';
+import { LOGGED_USER_INFO, LOGGED_USER_INFO_RELOAD } from "../actions/actionTypes";
 
 const initialState = {
   loggedUserInfo: null,

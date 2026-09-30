@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import { Modal, Button, Upload, Input, Form, Divider, message } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import React, { useEffect, useRef } from "react";
+import { Modal, Button, Upload, Input, Form, Divider, message } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 
-import { INSERT_IMAGE_COMMAND } from '../utils/commands';
+import { INSERT_IMAGE_COMMAND } from "../utils/commands";
 import Cluar from "../../../common/Cluar";
 
 export default function InsertImageModal({ visible, onClose, activeEditor }) {
@@ -14,9 +14,9 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
     const handler = (e) => {
       hasModifier.current = e.altKey;
     };
-    document.addEventListener('keydown', handler);
+    document.addEventListener("keydown", handler);
     return () => {
-      document.removeEventListener('keydown', handler);
+      document.removeEventListener("keydown", handler);
     };
   }, []);
 
@@ -39,9 +39,9 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
         };
         reader.readAsDataURL(file);
       } else if (values.url) {
-        onInsert({ altText: 'Image from URL', src: values.url });
+        onInsert({ altText: "Image from URL", src: values.url });
       } else {
-        message.warning('Por favor, forneça uma imagem (upload ou URL).');
+        message.warning("Por favor, forneça uma imagem (upload ou URL).");
       }
     } catch (err) {
       // Validation errors
@@ -88,9 +88,9 @@ export default function InsertImageModal({ visible, onClose, activeEditor }) {
           rules={[
             {
               validator: (_, value) => {
-                const fileField = form.getFieldValue('file');
+                const fileField = form.getFieldValue("file");
                 if (!value && !fileField) {
-                  return Promise.reject(new Error('Insira um arquivo ou uma URL.'));
+                  return Promise.reject(new Error("Insira um arquivo ou uma URL."));
                 }
                 return Promise.resolve();
               },

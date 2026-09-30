@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { Row, Col, Form, Input, Button, notification } from 'antd';
-import _service from '@netuno/service-client';
-import Cluar from '../../../common/Cluar';
+import React, { useState } from "react";
+import { Row, Col, Form, Input, Button, notification } from "antd";
+import _service from "@netuno/service-client";
+import Cluar from "../../../common/Cluar";
 import config from "./config.json"
 import Action from "../../Action";
 import ReCAPTCHA from "react-google-recaptcha";
 
-import './index.less';
+import "./index.less";
 
 const { TextArea } = Input;
 
@@ -15,32 +15,32 @@ function ContactForm({ section, type, title, actions }) {
   const [recaptchaValue, setRecaptchaValue] = useState("")
 
   const validateMessages = {
-    required: Cluar.plainTranslation('contact-form-validate-message-required'),
+    required: Cluar.plainTranslation("contact-form-validate-message-required"),
     types: {
-      email: Cluar.plainTranslation('contact-form-validate-message-email')
+      email: Cluar.plainTranslation("contact-form-validate-message-email")
     }
   };
 
   const layout = {
     rowGutter: { gutter: [25, 0] },
-    labelCol: { span: 'hide' }
+    labelCol: { span: "hide" }
   };
 
   const [loading, setLoading] = useState(false);
   const handleFinish = (values) => {
-    values.contactForm.locale = window.localStorage.getItem('locale');
+    values.contactForm.locale = window.localStorage.getItem("locale");
     setLoading(true);
     const fail = () => {
       setLoading(false);
       notification.error({
         message: title,
-        description: Cluar.plainTranslation('contact-form-fail'),
+        description: Cluar.plainTranslation("contact-form-fail"),
         top: 100
       });
     };
     _service({
       url: "contact",
-      method: 'POST',
+      method: "POST",
       data: {
         recaptchaValue,
         ...values.contactForm
@@ -50,7 +50,7 @@ function ContactForm({ section, type, title, actions }) {
           setLoading(false);
           notification.success({
             message: title,
-            description: Cluar.plainTranslation('contact-form-success'),
+            description: Cluar.plainTranslation("contact-form-success"),
             top: 100
           });
         } else {
@@ -71,27 +71,27 @@ function ContactForm({ section, type, title, actions }) {
           <h2 dangerouslySetInnerHTML={{ __html: title }} />
           <Row {...layout.rowGutter}>
             <Col lg={12} md={12} sm={24} xs={24}>
-              <Form.Item {...layout.labelCol} label={Cluar.plainTranslation('contact-form-name')} name={['contactForm', 'name']} rules={[{ required: true }]}>
-                <Input placeholder={Cluar.plainTranslation('contact-form-name')} />
+              <Form.Item {...layout.labelCol} label={Cluar.plainTranslation("contact-form-name")} name={["contactForm", "name"]} rules={[{ required: true }]}>
+                <Input placeholder={Cluar.plainTranslation("contact-form-name")} />
               </Form.Item>
             </Col>
             <Col lg={12} md={12} sm={24} xs={24}>
-              <Form.Item {...layout.labelCol} label={Cluar.plainTranslation('contact-form-email')} name={['contactForm', 'email']} rules={[{ required: true, type: 'email' }]}>
-                <Input placeholder={Cluar.plainTranslation('contact-form-email')} />
+              <Form.Item {...layout.labelCol} label={Cluar.plainTranslation("contact-form-email")} name={["contactForm", "email"]} rules={[{ required: true, type: "email" }]}>
+                <Input placeholder={Cluar.plainTranslation("contact-form-email")} />
               </Form.Item>
             </Col>
           </Row>
           <Row {...layout.rowGutter}>
             <Col span={24}>
-              <Form.Item {...layout.labelCol} label={Cluar.plainTranslation('contact-form-subject')} name={['contactForm', 'subject']} rules={[{ required: true }]}>
-                <Input placeholder={Cluar.plainTranslation('contact-form-subject')} />
+              <Form.Item {...layout.labelCol} label={Cluar.plainTranslation("contact-form-subject")} name={["contactForm", "subject"]} rules={[{ required: true }]}>
+                <Input placeholder={Cluar.plainTranslation("contact-form-subject")} />
               </Form.Item>
             </Col>
           </Row>
           <Row {...layout.rowGutter}>
             <Col span={24}>
-              <Form.Item {...layout.labelCol} label={Cluar.plainTranslation('contact-form-message')} name={['contactForm', 'message']} rules={[{ required: true }]} >
-                <TextArea autoSize={{ minRows: 3 }} placeholder={Cluar.plainTranslation('contact-form-message')} />
+              <Form.Item {...layout.labelCol} label={Cluar.plainTranslation("contact-form-message")} name={["contactForm", "message"]} rules={[{ required: true }]} >
+                <TextArea autoSize={{ minRows: 3 }} placeholder={Cluar.plainTranslation("contact-form-message")} />
               </Form.Item>
             </Col>
           </Row>

@@ -1,27 +1,27 @@
-import { addClassNamesToElement } from '@lexical/utils';
-import { ElementNode } from 'lexical';
+import { addClassNamesToElement } from "@lexical/utils";
+import { ElementNode } from "lexical";
 
-import './GridItemNode.less'
+import "./GridItemNode.less"
 
 function $convertGridItemElement(domNode) {
-  if (domNode.classList.contains('col')) {
+  if (domNode.classList.contains("col")) {
     // Extrair a classe de span para determinar o tamanho da coluna
     const classList = Array.from(domNode.classList);
-    const spanClass = classList.find(cls => cls.startsWith('span_'));
-    const columnSpan = spanClass ? spanClass : 'span_1_of_1';
+    const spanClass = classList.find(cls => cls.startsWith("span_"));
+    const columnSpan = spanClass ? spanClass : "span_1_of_1";
     return { node: $createGridItemNode(columnSpan) };
   }
   return null;
 }
 
 export class GridItemNode extends ElementNode {
-  constructor(columnSpan = 'span_1_of_1', key) {
+  constructor(columnSpan = "span_1_of_1", key) {
     super(key);
     this.__columnSpan = columnSpan;
   }
 
   static getType() {
-    return 'grid-item';
+    return "grid-item";
   }
 
   static clone(node) {
@@ -49,19 +49,19 @@ export class GridItemNode extends ElementNode {
   }
 
   createDOM(config) {
-    const dom = document.createElement('div');
+    const dom = document.createElement("div");
     dom.className = `col ${this.__columnSpan}`;
-    dom.setAttribute('data-lexical-grid-item', 'true');
-    if (typeof config.theme.layoutItem === 'string') {
+    dom.setAttribute("data-lexical-grid-item", "true");
+    if (typeof config.theme.layoutItem === "string") {
       addClassNamesToElement(dom, config.theme.layoutItem);
     }
     return dom;
   }
 
   exportDOM() {
-    const element = document.createElement('div');
+    const element = document.createElement("div");
     element.className = `col ${this.__columnSpan}`;
-    element.setAttribute('data-lexical-grid-item', 'true');
+    element.setAttribute("data-lexical-grid-item", "true");
     return { element };
   }
 
@@ -75,8 +75,8 @@ export class GridItemNode extends ElementNode {
   static importDOM() {
     return {
       div: (domNode) => {
-        if (!domNode.hasAttribute('data-lexical-grid-item') &&
-          !domNode.classList.contains('col')) {
+        if (!domNode.hasAttribute("data-lexical-grid-item") &&
+          !domNode.classList.contains("col")) {
           return null;
         }
         return {
@@ -117,11 +117,11 @@ export class GridItemNode extends ElementNode {
   }
 }
 
-export function $createGridItemNode(columnSpan = 'span_1_of_1') {
+export function $createGridItemNode(columnSpan = "span_1_of_1") {
   return new GridItemNode(columnSpan);
 }
 
-export function $createLayoutItemNode(columnSpan = 'span_1_of_1') {
+export function $createLayoutItemNode(columnSpan = "span_1_of_1") {
   return new GridItemNode(columnSpan);
 }
 

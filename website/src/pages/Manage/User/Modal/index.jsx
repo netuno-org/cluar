@@ -10,7 +10,7 @@ import {
   Select
 } from "antd";
 import { useState, useImperativeHandle, forwardRef, useEffect } from "react";
-import _service from '@netuno/service-client';
+import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 
 import "./index.less"
@@ -135,7 +135,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         success: (response) => {
           setOnFinishLoading(false);
           notification.success({
-            message: Cluar.plainTranslation('user-form-edit-success-message')
+            message: Cluar.plainTranslation("user-form-edit-success-message")
           });
           setIsModalOpen(false);
           onReloadTable();
@@ -144,7 +144,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
           setOnFinishLoading(false);
           console.error(error);
           notification.error({
-            message: Cluar.plainTranslation('user-form-edit-failed-message')
+            message: Cluar.plainTranslation("user-form-edit-failed-message")
           })
         }
       })
@@ -158,7 +158,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         success: (response) => {
           setOnFinishLoading(false);
           notification.success({
-            message: Cluar.plainTranslation('user-form-save-success-message')
+            message: Cluar.plainTranslation("user-form-save-success-message")
           });
           setIsModalOpen(false);
           onReloadTable();
@@ -167,7 +167,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
           setOnFinishLoading(false);
           console.error(error);
           notification.error({
-            message: Cluar.plainTranslation('user-form-save-failed-message')
+            message: Cluar.plainTranslation("user-form-save-failed-message")
           })
         }
       })
@@ -182,7 +182,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
   return (
     <div className="modal-content">
       <Modal
-        title={userData ? Cluar.plainTranslation('user-modal-title-edit') : Cluar.plainTranslation('user-modal-title-new')}
+        title={userData ? Cluar.plainTranslation("user-modal-title-edit") : Cluar.plainTranslation("user-modal-title-new")}
         maskClosable={false}
         destroyOnHidden={true}
         centered
@@ -192,10 +192,10 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
         afterClose={() => formRef.resetFields()}
         footer={[
           <Button key="back" onClick={() => setIsModalOpen(false)}>
-            {Cluar.plainTranslation('user-form-cancel')}
+            {Cluar.plainTranslation("user-form-cancel")}
           </Button>,
           <Button key="send" type="primary" onClick={() => { formRef.submit() }} loading={onFinishLoading}>
-            {Cluar.plainTranslation('user-form-save')}
+            {Cluar.plainTranslation("user-form-save")}
           </Button>
         ]}
       >
@@ -207,7 +207,7 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
           <Row justify={"space-between"} align={"middle"} gutter={[10, 0]}>
             <Col {...configColumn}>
               <Form.Item
-                label={Cluar.plainTranslation('user-form-active')}
+                label={Cluar.plainTranslation("user-form-active")}
                 name="active"
                 initialValue={false}
               >
@@ -216,36 +216,36 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
             </Col>
             <Col {...configColumn}>
               <Form.Item
-                label={Cluar.plainTranslation('user-form-name')}
+                label={Cluar.plainTranslation("user-form-name")}
                 name="name"
-                rules={[{ required: true, message: Cluar.plainTranslation('user-form-validate-message-required') }]}
+                rules={[{ required: true, message: Cluar.plainTranslation("user-form-validate-message-required") }]}
               >
                 <Input />
               </Form.Item>
             </Col>
             <Col {...configColumn}>
               <Form.Item
-                label={Cluar.plainTranslation('user-form-username')}
+                label={Cluar.plainTranslation("user-form-username")}
                 name="username"
-                rules={[{ required: true, message: Cluar.plainTranslation('user-form-validate-message-required') }]}
+                rules={[{ required: true, message: Cluar.plainTranslation("user-form-validate-message-required") }]}
               >
                 <Input />
               </Form.Item>
             </Col>
             <Col {...configColumn}>
               <Form.Item
-                label={Cluar.plainTranslation('user-form-password')}
+                label={Cluar.plainTranslation("user-form-password")}
                 name="password"
-                rules={[{ required: userData ? false : true, message: Cluar.plainTranslation('user-form-validate-message-required') }]}
+                rules={[{ required: userData ? false : true, message: Cluar.plainTranslation("user-form-validate-message-required") }]}
               >
                 <Input.Password autoComplete="off" />
               </Form.Item>
             </Col>
             <Col span={24}>
               <Form.Item
-                label={Cluar.plainTranslation('user-form-email')}
+                label={Cluar.plainTranslation("user-form-email")}
                 name="email"
-                rules={[{ required: true, type: "email", message: Cluar.plainTranslation('user-form-validate-message-required') }]}
+                rules={[{ required: true, type: "email", message: Cluar.plainTranslation("user-form-validate-message-required") }]}
               >
                 <Input />
               </Form.Item>
@@ -255,8 +255,8 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 <Col span={24}>
                   <Form.Item
                     name="organization_code"
-                    label={Cluar.plainTranslation('user-form-organization')}
-                    rules={[{ required: true, message: Cluar.plainTranslation('user-form-validate-message-required') }]}
+                    label={Cluar.plainTranslation("user-form-organization")}
+                    rules={[{ required: true, message: Cluar.plainTranslation("user-form-validate-message-required") }]}
                   >
                     <Select
                       labelInValue
@@ -276,8 +276,8 @@ const UserModal = forwardRef(({ userData, onReloadTable }, ref) => {
                 <Col span={24}>
                   <Form.Item
                     name="group_code"
-                    label={Cluar.plainTranslation('user-form-group')}
-                    rules={[{ required: true, message: Cluar.plainTranslation('user-form-validate-message-required') }]}
+                    label={Cluar.plainTranslation("user-form-group")}
+                    rules={[{ required: true, message: Cluar.plainTranslation("user-form-validate-message-required") }]}
                   >
                     <Select
                       labelInValue

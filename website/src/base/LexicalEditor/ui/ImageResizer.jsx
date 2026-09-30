@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { calculateZoomLevel } from '@lexical/utils';
+import React, { useRef } from "react";
+import { calculateZoomLevel } from "@lexical/utils";
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
@@ -25,8 +25,8 @@ export default function ImageResizer({
 }) {
   const controlWrapperRef = useRef(null);
   const userSelect = useRef({
-    priority: '',
-    value: 'default',
+    priority: "",
+    value: "default",
   });
   const positioningRef = useRef({
     currentHeight: 0,
@@ -61,27 +61,27 @@ export default function ImageResizer({
       (direction & Direction.north && direction & Direction.west) ||
       (direction & Direction.south && direction & Direction.east);
 
-    const cursorDir = ew ? 'ew' : ns ? 'ns' : nwse ? 'nwse' : 'nesw';
+    const cursorDir = ew ? "ew" : ns ? "ns" : nwse ? "nwse" : "nesw";
 
     if (editorRootElement !== null) {
-      editorRootElement.style.setProperty('cursor', `${cursorDir}-resize`, 'important');
+      editorRootElement.style.setProperty("cursor", `${cursorDir}-resize`, "important");
     }
     if (document.body !== null) {
-      document.body.style.setProperty('cursor', `${cursorDir}-resize`, 'important');
-      userSelect.current.value = document.body.style.getPropertyValue('-webkit-user-select');
-      userSelect.current.priority = document.body.style.getPropertyPriority('-webkit-user-select');
-      document.body.style.setProperty('-webkit-user-select', `none`, 'important');
+      document.body.style.setProperty("cursor", `${cursorDir}-resize`, "important");
+      userSelect.current.value = document.body.style.getPropertyValue("-webkit-user-select");
+      userSelect.current.priority = document.body.style.getPropertyPriority("-webkit-user-select");
+      document.body.style.setProperty("-webkit-user-select", "none", "important");
     }
   };
 
   const setEndCursor = () => {
     if (editorRootElement !== null) {
-      editorRootElement.style.setProperty('cursor', 'text');
+      editorRootElement.style.setProperty("cursor", "text");
     }
     if (document.body !== null) {
-      document.body.style.setProperty('cursor', 'default');
+      document.body.style.setProperty("cursor", "default");
       document.body.style.setProperty(
-        '-webkit-user-select',
+        "-webkit-user-select",
         userSelect.current.value,
         userSelect.current.priority,
       );
@@ -113,12 +113,12 @@ export default function ImageResizer({
       setStartCursor(direction);
       onResizeStart();
 
-      controlWrapper.classList.add('image-control-wrapper--resizing');
+      controlWrapper.classList.add("image-control-wrapper--resizing");
       image.style.height = `${height}px`;
       image.style.width = `${width}px`;
 
-      document.addEventListener('pointermove', handlePointerMove);
-      document.addEventListener('pointerup', handlePointerUp);
+      document.addEventListener("pointermove", handlePointerMove);
+      document.addEventListener("pointerup", handlePointerUp);
     }
   };
 
@@ -179,13 +179,13 @@ export default function ImageResizer({
       positioning.currentHeight = 0;
       positioning.isResizing = false;
 
-      controlWrapper.classList.remove('image-control-wrapper--resizing');
+      controlWrapper.classList.remove("image-control-wrapper--resizing");
 
       setEndCursor();
       onResizeEnd(width, height);
 
-      document.removeEventListener('pointermove', handlePointerMove);
-      document.removeEventListener('pointerup', handlePointerUp);
+      document.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerup", handlePointerUp);
     }
   };
 

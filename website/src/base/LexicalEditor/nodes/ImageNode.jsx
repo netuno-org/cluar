@@ -6,18 +6,18 @@ import {
   ParagraphNode,
   RootNode,
   TextNode,
-} from 'lexical';
+} from "lexical";
 
-import { HashtagNode } from '@lexical/hashtag';
-import { LinkNode } from '@lexical/link';
+import { HashtagNode } from "@lexical/hashtag";
+import { LinkNode } from "@lexical/link";
 
-import React, { lazy } from 'react';
+import React, { lazy } from "react";
 
-const ImageComponent = lazy(() => import('./ImageComponent'));
+const ImageComponent = lazy(() => import("./ImageComponent"));
 
 function $convertImageElement(domNode) {
   const img = domNode;
-  if (img.src.startsWith('file:///')) {
+  if (img.src.startsWith("file:///")) {
     return null;
   }
   const { alt: altText, src, width, height } = img;
@@ -30,8 +30,8 @@ class ImageNode extends DecoratorNode {
     src,
     altText,
     maxWidth,
-    width = 'inherit',
-    height = 'inherit',
+    width = "inherit",
+    height = "inherit",
     showCaption = false,
     caption,
     captionsEnabled = true,
@@ -47,7 +47,7 @@ class ImageNode extends DecoratorNode {
     this.__caption =
       caption ||
       createEditor({
-        namespace: 'Playground/ImageNodeCaption',
+        namespace: "Playground/ImageNodeCaption",
         nodes: [
           RootNode,
           TextNode,
@@ -61,7 +61,7 @@ class ImageNode extends DecoratorNode {
   }
 
   static getType() {
-    return 'image';
+    return "image";
   }
 
   static clone(node) {
@@ -103,11 +103,11 @@ class ImageNode extends DecoratorNode {
   }
 
   exportDOM() {
-    const element = document.createElement('img');
-    element.setAttribute('src', this.__src);
-    element.setAttribute('alt', this.__altText);
-    element.setAttribute('width', this.__width.toString());
-    element.setAttribute('height', this.__height.toString());
+    const element = document.createElement("img");
+    element.setAttribute("src", this.__src);
+    element.setAttribute("alt", this.__altText);
+    element.setAttribute("width", this.__width.toString());
+    element.setAttribute("height", this.__height.toString());
     return { element };
   }
 
@@ -125,11 +125,11 @@ class ImageNode extends DecoratorNode {
       ...super.exportJSON(),
       altText: this.getAltText(),
       caption: this.__caption.toJSON(),
-      height: this.__height === 'inherit' ? 0 : this.__height,
+      height: this.__height === "inherit" ? 0 : this.__height,
       maxWidth: this.__maxWidth,
       showCaption: this.__showCaption,
       src: this.getSrc(),
-      width: this.__width === 'inherit' ? 0 : this.__width,
+      width: this.__width === "inherit" ? 0 : this.__width,
     };
   }
 
@@ -145,7 +145,7 @@ class ImageNode extends DecoratorNode {
   }
 
   createDOM(config) {
-    const span = document.createElement('span');
+    const span = document.createElement("span");
     const className = config.theme?.image;
     if (className !== undefined) {
       span.className = className;

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Cluar from "../../common/Cluar";
 
 import "./index.less";
-import Default from './Default';
+import Default from "./Default";
 
 function Listing(props) {
   const [renderedActions, setRenderedActions] = useState(props.actions);

@@ -94,7 +94,7 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
         success: (response) => {
           setLoading((prev) => ({ ...prev, save: false }));
           notification.success({
-            message: Cluar.plainTranslation('translation-form-edit-success-message')
+            message: Cluar.plainTranslation("translation-form-edit-success-message")
           });
           setIsModalOpen(false);
           onReloadTable();
@@ -103,7 +103,7 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
           console.error(error);
           setLoading((prev) => ({ ...prev, save: false }));
           notification.error({
-            message: Cluar.plainTranslation('translation-form-edit-failed-message')
+            message: Cluar.plainTranslation("translation-form-edit-failed-message")
           });
         }
       });
@@ -118,7 +118,7 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
         success: (response) => {
           setLoading((prev) => ({ ...prev, save: false }));
           notification.success({
-            message: Cluar.plainTranslation('translation-form-new-success-message')
+            message: Cluar.plainTranslation("translation-form-new-success-message")
           });
           setIsModalOpen(false);
           onReloadTable();
@@ -127,7 +127,7 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
           console.error(error);
           setLoading((prev) => ({ ...prev, save: false }));
           notification.error({
-            message: Cluar.plainTranslation('translation-form-new-failed-message')
+            message: Cluar.plainTranslation("translation-form-new-failed-message")
           });
         }
       });
@@ -160,7 +160,7 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
 
   return (
     <Modal
-      title={editMode ? Cluar.plainTranslation('translation-modal-edit-title') : Cluar.plainTranslation('translation-modal-new-title')}
+      title={editMode ? Cluar.plainTranslation("translation-modal-edit-title") : Cluar.plainTranslation("translation-modal-new-title")}
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       onClose={() => { setIsModalOpen(false) }}
@@ -169,13 +169,13 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
 
       afterClose={() => formRef.resetFields()}
       footer={[
-        <Button onClick={() => setIsModalOpen(false)} > {Cluar.plainTranslation('translation-form-cancel')} </Button>,
+        <Button onClick={() => setIsModalOpen(false)} > {Cluar.plainTranslation("translation-form-cancel")} </Button>,
         <Button
           type="primary"
           onClick={() => formRef.submit()}
           loading={loading.save}
         >
-          {Cluar.plainTranslation('translation-form-save')}
+          {Cluar.plainTranslation("translation-form-save")}
         </Button>
       ]}
     >
@@ -188,8 +188,8 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
           <Col span={24}>
             <Form.Item
               name="entry_code"
-              label={Cluar.plainTranslation('translation-form-entry')}
-              rules={[{ required: true, message: Cluar.plainTranslation('translation-form-validate-message-required') }]}
+              label={Cluar.plainTranslation("translation-form-entry")}
+              rules={[{ required: true, message: Cluar.plainTranslation("translation-form-validate-message-required") }]}
             >
               <TranslationEntrySelect
                 entries={entries}
@@ -201,8 +201,8 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
           <Col span={24}>
             <Form.Item
               name="language_code"
-              label={Cluar.plainTranslation('translation-form-language')}
-              rules={[{ required: true, message: Cluar.plainTranslation('translation-form-validate-message-required') }]}
+              label={Cluar.plainTranslation("translation-form-language")}
+              rules={[{ required: true, message: Cluar.plainTranslation("translation-form-validate-message-required") }]}
             >
               <Select
                 loading={loading.language}
@@ -217,8 +217,8 @@ const TranslationModal = forwardRef(({ translationData, onReloadTable }, ref) =>
           <Col span={24}>
             <Form.Item
               name="value"
-              label={Cluar.plainTranslation('translation-form-value')}
-              rules={[{ required: true, message: Cluar.plainTranslation('translation-form-validate-message-required') }]}
+              label={Cluar.plainTranslation("translation-form-value")}
+              rules={[{ required: true, message: Cluar.plainTranslation("translation-form-validate-message-required") }]}
             >
               <Input.TextArea />
             </Form.Item>

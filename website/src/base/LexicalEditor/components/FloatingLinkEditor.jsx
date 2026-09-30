@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState, useRef } from "react";
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import {
   $getSelection,
   $isRangeSelection,
@@ -11,7 +11,7 @@ import {
   $isAtNodeEnd
 } from "@lexical/selection";
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
-import { mergeRegister, $findMatchingParent } from '@lexical/utils';
+import { mergeRegister, $findMatchingParent } from "@lexical/utils";
 
 import "./index.less";
 
@@ -51,7 +51,7 @@ export default function FloatingLinkEditor({ editor }) {
   const [isEditMode, setEditMode] = useState(false);
   const [lastSelection, setLastSelection] = useState(null);
 
-  const updateLinkEditor = useCallback((source = 'default', linkNode = null) => {
+  const updateLinkEditor = useCallback((source = "default", linkNode = null) => {
     const selection = $getSelection();
     let resolvedLinkNode = linkNode;
 
@@ -129,10 +129,10 @@ export default function FloatingLinkEditor({ editor }) {
             const node = getSelectedNode(selection);
             const linkNode = $findMatchingParent(node, $isLinkNode);
             if ($isLinkNode(linkNode) && (payload.metaKey || payload.ctrlKey)) {
-              window.open(linkNode.getURL(), '_blank');
+              window.open(linkNode.getURL(), "_blank");
               return true;
             } else if (payload.detail === 1) {
-              updateLinkEditor('click', linkNode);
+              updateLinkEditor("click", linkNode);
             }
           }
           return false;

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Cluar from "../../common/Cluar";
 
-import ContactForm from './ContactForm';
-import ContactMap from './ContactMap';
+import ContactForm from "./ContactForm";
+import ContactMap from "./ContactMap";
 
 const Functionality = (props) => {
   const [renderedActions, setRenderedActions] = useState(props.actions);
@@ -23,14 +23,14 @@ const Functionality = (props) => {
 
   let layout = null;
 
-  if (props.type === 'ContactForm') {
+  if (props.type === "ContactForm") {
     layout = (
       <ContactForm
         {...props}
         actions={renderedActions}
       />
     );
-  } else if (props.type === 'ContactMap') {
+  } else if (props.type === "ContactMap") {
     layout = (
       <ContactMap
         {...props}

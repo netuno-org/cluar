@@ -38,7 +38,7 @@ const MemberModal = forwardRef(({ organizationData }, ref) => {
       onCancel={() => setIsModalOpen(false)}
       footer={[
         <Button key="back" onClick={() => setIsModalOpen(false)}>
-          {Cluar.plainTranslation('member-form-cancel')}
+          {Cluar.plainTranslation("member-form-cancel")}
         </Button>
       ]}
     >
@@ -57,7 +57,7 @@ const MemberModal = forwardRef(({ organizationData }, ref) => {
                   icon={<PlusOutlined />}
                   onClick={() => { membersFormModalRef.current.onOpenModal() }}
                 >
-                  {Cluar.plainTranslation('member-page-new')}
+                  {Cluar.plainTranslation("member-page-new")}
                 </Button>
               </Col>
             </Row>

@@ -1,4 +1,4 @@
-import { TOGGLE_THEME, SET_THEME } from '../reducers/theme';
+import { TOGGLE_THEME, SET_THEME } from "../reducers/theme";
 
 export const toggleTheme = () => ({
   type: TOGGLE_THEME,

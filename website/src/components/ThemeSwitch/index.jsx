@@ -1,20 +1,20 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { SunOutlined, MoonOutlined } from '@ant-design/icons';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { SunOutlined, MoonOutlined } from "@ant-design/icons";
 
-import Cluar from '../../common/Cluar';
-import { toggleTheme } from '../../redux/actions/theme';
+import Cluar from "../../common/Cluar";
+import { toggleTheme } from "../../redux/actions/theme";
 
-import './index.less';
+import "./index.less";
 
 function ThemeSwitch() {
     const dispatch = useDispatch();
-    const themeMode = useSelector((state) => state.theme?.mode || 'light');
+    const themeMode = useSelector((state) => state.theme?.mode || "light");
 
     const label =
-        themeMode === 'dark'
-            ? Cluar.plainTranslation('theme-switch-activate-light')
-            : Cluar.plainTranslation('theme-switch-activate-dark');
+        themeMode === "dark"
+            ? Cluar.plainTranslation("theme-switch-activate-light")
+            : Cluar.plainTranslation("theme-switch-activate-dark");
 
     return (
         <button
@@ -24,7 +24,7 @@ function ThemeSwitch() {
             title={label}
             onClick={() => dispatch(toggleTheme())}
         >
-            {themeMode === 'dark' ? <SunOutlined /> : <MoonOutlined />}
+            {themeMode === "dark" ? <SunOutlined /> : <MoonOutlined />}
         </button>
     );
 }

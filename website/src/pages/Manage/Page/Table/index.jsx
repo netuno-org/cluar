@@ -74,7 +74,7 @@ const PageTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainTranslation('page-table-desactive-success-message') : Cluar.plainTranslation('page-table-active-success-message')
+          message: active ? Cluar.plainTranslation("page-table-desactive-success-message") : Cluar.plainTranslation("page-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -84,7 +84,7 @@ const PageTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation('page-table-desactive-failed-message') : Cluar.plainTranslation('page-table-active-failed-message')
+          message: active ? Cluar.plainTranslation("page-table-desactive-failed-message") : Cluar.plainTranslation("page-table-active-failed-message")
         });
       }
     })

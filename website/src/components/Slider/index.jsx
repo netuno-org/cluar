@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import Default from './Default';
+import Default from "./Default";
 
 const Slider = (props) => {
   let layout = null;
 
-  if (props.type == 'Default') {
+  if (props.type == "Default") {
     layout = (
       <Default
         {...props}

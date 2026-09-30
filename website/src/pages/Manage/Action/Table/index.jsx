@@ -76,7 +76,7 @@ const ActionTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainTranslation('action-table-desactive-success-message') : Cluar.plainTranslation('action-table-active-success-message')
+          message: active ? Cluar.plainTranslation("action-table-desactive-success-message") : Cluar.plainTranslation("action-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -86,7 +86,7 @@ const ActionTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation('action-table-desactive-failed-message') : Cluar.plainTranslation('action-table-active-failed-message')
+          message: active ? Cluar.plainTranslation("action-table-desactive-failed-message") : Cluar.plainTranslation("action-table-active-failed-message")
         });
       }
     })
@@ -174,9 +174,9 @@ const ActionTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainTranslation('action-table-active'),
-      dataIndex: 'active',
-      key: 'active',
+      title: Cluar.plainTranslation("action-table-active"),
+      dataIndex: "active",
+      key: "active",
       onHeaderCell: () => ({
         "data-column-key": "active",
       }),
@@ -247,17 +247,17 @@ const ActionTable = forwardRef(({ }, ref) => {
     },
     {
       title: Cluar.plainTranslation("action-table-image"),
-      dataIndex: 'image',
-      key: 'image',
+      dataIndex: "image",
+      key: "image",
       render: (val, record) => {
         if (!val) {
-          return <div style={{ textAlign: 'center' }}>-</div>;
+          return <div style={{ textAlign: "center" }}>-</div>;
         }
         return (
           <img
             src={`${_service.config().prefix}reserved-area/action/image?uid=${record.uid}`}
             alt={Cluar.plainTranslation("action-table-image")}
-            style={{ width: 50, height: 50, objectFit: 'cover', display: 'block', margin: '0 auto' }}
+            style={{ width: 50, height: 50, objectFit: "cover", display: "block", margin: "0 auto" }}
           />
         );
       },

@@ -1,11 +1,11 @@
-import React from 'react';
-import { Layout, Row, Col } from 'antd';
-import { PhoneOutlined, HomeOutlined, MailOutlined } from '@ant-design/icons';
-import { FaHome, FaPhone, FaEnvelope, FaYoutube, FaGithub, FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaDiscord } from 'react-icons/fa';
-import { RiOpenSourceFill } from 'react-icons/ri';
-import Configuration from '../../components/Configuration';
+import React from "react";
+import { Layout, Row, Col } from "antd";
+import { PhoneOutlined, HomeOutlined, MailOutlined } from "@ant-design/icons";
+import { FaHome, FaPhone, FaEnvelope, FaYoutube, FaGithub, FaFacebook, FaLinkedin, FaTwitter, FaInstagram, FaDiscord } from "react-icons/fa";
+import { RiOpenSourceFill } from "react-icons/ri";
+import Configuration from "../../components/Configuration";
 
-import './index.less';
+import "./index.less";
 
 const { Footer } = Layout;
 

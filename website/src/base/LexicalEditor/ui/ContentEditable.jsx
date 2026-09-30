@@ -1,7 +1,7 @@
-import React from 'react';
-import { ContentEditable } from '@lexical/react/LexicalContentEditable';
+import React from "react";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 
-import './ContentEditable.less';
+import "./ContentEditable.less";
 
 export default function LexicalContentEditable({
   className,
@@ -10,10 +10,10 @@ export default function LexicalContentEditable({
 }) {
   return (
     <ContentEditable
-      className={className ?? 'ContentEditable__root'}
+      className={className ?? "ContentEditable__root"}
       aria-placeholder={placeholder}
       placeholder={
-        <div className={placeholderClassName ?? 'ContentEditable__placeholder'}>
+        <div className={placeholderClassName ?? "ContentEditable__placeholder"}>
           {placeholder}
         </div>
       }

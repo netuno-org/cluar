@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import { Navigate, useLocation } from "react-router";
-import { Layout, Typography, Form, Input, Button, notification, Row, Col } from 'antd';
+import { Layout, Typography, Form, Input, Button, notification, Row, Col } from "antd";
 import { PasswordInput } from "antd-password-input-strength";
-import _service from '@netuno/service-client';
-import Cluar from '../../common/Cluar';
+import _service from "@netuno/service-client";
+import Cluar from "../../common/Cluar";
 
-import './index.less';
+import "./index.less";
 
 const { Title } = Typography;
 const { Content, Sider } = Layout;
@@ -47,8 +47,8 @@ export default function Recovery(props) {
     setSubmitting(true);
     const { password } = values;
     _service({
-      method: 'PUT',
-      url: 'recovery',
+      method: "PUT",
+      url: "recovery",
       data: {
         password,
         key: hash
@@ -56,8 +56,8 @@ export default function Recovery(props) {
       success: (response) => {
         if (response.json.result) {
           notification["success"]({
-            message: Cluar.plainTranslation('recovery-form-success-message'),
-            description: Cluar.plainTranslation('recovery-form-success-description'),
+            message: Cluar.plainTranslation("recovery-form-success-message"),
+            description: Cluar.plainTranslation("recovery-form-success-description"),
           });
           setSubmitting(false);
           setReady(true);
@@ -66,15 +66,15 @@ export default function Recovery(props) {
       fail: () => {
         setSubmitting(false);
         notification["error"]({
-          message: Cluar.plainTranslation('recovery-form-failed-message'),
-          description: Cluar.plainTranslation('recovery-form-failed-description'),
+          message: Cluar.plainTranslation("recovery-form-failed-message"),
+          description: Cluar.plainTranslation("recovery-form-failed-description"),
         });
       }
     });
   }
 
   function onFinishFailed(errorInfo) {
-    console.error('Failed:', errorInfo);
+    console.error("Failed:", errorInfo);
   }
 
   if (ready) {
@@ -83,10 +83,10 @@ export default function Recovery(props) {
     return (
       <Layout>
         <Content className="recovery-container">
-          <Row justify={'center'}>
+          <Row justify={"center"}>
             <Col {...columnConfig}>
               <div className="content-title">
-                <Title>{Cluar.plainTranslation('recovery-form-title')}</Title>
+                <Title>{Cluar.plainTranslation("recovery-form-title")}</Title>
               </div>
               <div className="content-body">
                 <Form
@@ -98,27 +98,27 @@ export default function Recovery(props) {
                   onFinishFailed={onFinishFailed}
                 >
                   <Form.Item
-                    label={Cluar.plainTranslation('recovery-form-password')}
+                    label={Cluar.plainTranslation("recovery-form-password")}
                     name="password"
                     rules={[
-                      { required: true, message: Cluar.plainTranslation('recovery-form-validate-message-required') },
-                      { type: 'string', message: Cluar.plainTranslation('recovery-form-password-valid-message'), min: 8, max: 25 },
+                      { required: true, message: Cluar.plainTranslation("recovery-form-validate-message-required") },
+                      { type: "string", message: Cluar.plainTranslation("recovery-form-password-valid-message"), min: 8, max: 25 },
                     ]}
                   >
                     <PasswordInput disabled={submitting} maxLength={25} />
                   </Form.Item>
                   <Form.Item
-                    label={Cluar.plainTranslation('recovery-form-confirm-password')}
+                    label={Cluar.plainTranslation("recovery-form-confirm-password")}
                     name="password_confirm"
                     rules={[
-                      { required: true, message: Cluar.plainTranslation('recovery-form-validate-message-required') },
-                      { type: 'string', message: Cluar.plainTranslation('recovery-form-password-valid-message'), min: 8, max: 25 },
+                      { required: true, message: Cluar.plainTranslation("recovery-form-validate-message-required") },
+                      { type: "string", message: Cluar.plainTranslation("recovery-form-password-valid-message"), min: 8, max: 25 },
                       ({ getFieldValue }) => ({
                         validator(_, value) {
-                          if (!value || getFieldValue('password') === value) {
+                          if (!value || getFieldValue("password") === value) {
                             return Promise.resolve();
                           }
-                          return Promise.reject(Cluar.plainTranslation('recovery-form-passwords-not-equals-message'));
+                          return Promise.reject(Cluar.plainTranslation("recovery-form-passwords-not-equals-message"));
                         },
                       })
                     ]}
@@ -127,7 +127,7 @@ export default function Recovery(props) {
                   </Form.Item>
                   <Form.Item>
                     <Button type="primary" htmlType="submit" loading={submitting}>
-                      {Cluar.plainTranslation('recovery-form-confirm-password')}
+                      {Cluar.plainTranslation("recovery-form-confirm-password")}
                     </Button>
                   </Form.Item>
                 </Form>

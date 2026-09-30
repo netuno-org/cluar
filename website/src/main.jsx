@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import App from './App';
-import * as serviceWorker from './common/serviceWorker';
+import App from "./App";
+import * as serviceWorker from "./common/serviceWorker";
 
-import Cluar from './common/Cluar';
+import Cluar from "./common/Cluar";
 
-import './styles/index.less';
+import "./styles/index.less";
 
 const CluarDataScript = document.createElement("script");
 const CluarSettingsScript = document.createElement("script");
@@ -26,7 +26,7 @@ Promise.all([
 ]).then(() => {
   Cluar.init();
 
-  const root = ReactDOM.createRoot(document.getElementById('root'));
+  const root = ReactDOM.createRoot(document.getElementById("root"));
   root.render(
     <React.StrictMode>
       <App />

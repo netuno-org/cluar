@@ -1,15 +1,15 @@
-import './ImageNode.less';
+import "./ImageNode.less";
 
-import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react';
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin';
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
-import { HistoryPlugin, createEmptyHistoryState } from '@lexical/react/LexicalHistoryPlugin';
-import { LexicalNestedComposer } from '@lexical/react/LexicalNestedComposer';
-import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
-import { useLexicalEditable } from '@lexical/react/useLexicalEditable';
-import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection';
-import { mergeRegister } from '@lexical/utils';
+import React, { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
+import { HistoryPlugin, createEmptyHistoryState } from "@lexical/react/LexicalHistoryPlugin";
+import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { useLexicalEditable } from "@lexical/react/useLexicalEditable";
+import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
+import { mergeRegister } from "@lexical/utils";
 import {
   $getNodeByKey,
   $getSelection,
@@ -23,20 +23,20 @@ import {
   KEY_ENTER_COMMAND,
   KEY_ESCAPE_COMMAND,
   SELECTION_CHANGE_COMMAND,
-} from 'lexical';
+} from "lexical";
 
-import brokenImage from '../../../images/image-broken.svg';
+import brokenImage from "../../../images/image-broken.svg";
 import { LinkPlugin } from "@lexical/react/LexicalLinkPlugin";
-import ContentEditable from '../ui/ContentEditable';
-import ImageResizer from '../ui/ImageResizer';
-import { $isImageNode } from './ImageNode';
+import ContentEditable from "../ui/ContentEditable";
+import ImageResizer from "../ui/ImageResizer";
+import { $isImageNode } from "./ImageNode";
 
 const imageCache = new Map();
-export const RIGHT_CLICK_IMAGE_COMMAND = createCommand('RIGHT_CLICK_IMAGE_COMMAND');
+export const RIGHT_CLICK_IMAGE_COMMAND = createCommand("RIGHT_CLICK_IMAGE_COMMAND");
 
 function useSuspenseImage(src) {
   let cached = imageCache.get(src);
-  if (typeof cached === 'boolean') {
+  if (typeof cached === "boolean") {
     return cached;
   }
   if (!cached) {
@@ -56,7 +56,7 @@ function useSuspenseImage(src) {
 }
 
 function isSVG(src) {
-  return src.toLowerCase().endsWith('.svg');
+  return src.toLowerCase().endsWith(".svg");
 }
 
 function LazyImage({ altText, className, imageRef, src, width, height, maxWidth, onError }) {
@@ -218,7 +218,7 @@ export default function ImageComponent({
     editor.getEditorState().read(() => {
       const latestSel = $getSelection();
       const dom = event.target;
-      if (dom.tagName === 'IMG' && $isRangeSelection(latestSel) && latestSel.getNodes().length === 1) {
+      if (dom.tagName === "IMG" && $isRangeSelection(latestSel) && latestSel.getNodes().length === 1) {
         editor.dispatchCommand(RIGHT_CLICK_IMAGE_COMMAND, event);
       }
     });
@@ -245,10 +245,10 @@ export default function ImageComponent({
     );
 
     const rootEl = editor.getRootElement();
-    rootEl?.addEventListener('contextmenu', onRightClick);
+    rootEl?.addEventListener("contextmenu", onRightClick);
     return () => {
       unregister();
-      rootEl?.removeEventListener('contextmenu', onRightClick);
+      rootEl?.removeEventListener("contextmenu", onRightClick);
     };
   }, [editor, onClick, onRightClick, onEnter, onEscape]);
 
@@ -274,7 +274,7 @@ export default function ImageComponent({
   return (
     <Suspense fallback={null}>
       <div
-        className={`image-container ${isSelected ? 'selected' : ''}`}
+        className={`image-container ${isSelected ? "selected" : ""}`}
         draggable={draggable}
       >
         <div className="image-selection-indicator" />
@@ -283,7 +283,7 @@ export default function ImageComponent({
           <BrokenImage />
         ) : (
           <LazyImage
-            className={isFocused ? `focused ${$isNodeSelection(selection) ? 'draggable' : ''}` : null}
+            className={isFocused ? `focused ${$isNodeSelection(selection) ? "draggable" : ""}` : null}
             src={src}
             altText={altText}
             imageRef={imageRef}

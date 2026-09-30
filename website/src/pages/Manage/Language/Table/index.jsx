@@ -57,7 +57,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
         setLoading(false);
         console.error(error);
         notification.error({
-          message: Cluar.plainTranslation('language-load-failed-message')
+          message: Cluar.plainTranslation("language-load-failed-message")
         })
       }
     })
@@ -92,7 +92,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainTranslation('language-table-desactive-success-message') : Cluar.plainTranslation('language-table-active-success-message')
+          message: active ? Cluar.plainTranslation("language-table-desactive-success-message") : Cluar.plainTranslation("language-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -102,7 +102,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation('language-table-desactive-failed-message') : Cluar.plainTranslation('language-table-active-failed-message')
+          message: active ? Cluar.plainTranslation("language-table-desactive-failed-message") : Cluar.plainTranslation("language-table-active-failed-message")
         });
       }
     })
@@ -138,7 +138,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
             })
           });
           notification.success({
-            message: Cluar.plainTranslation('language-table-default-success-message')
+            message: Cluar.plainTranslation("language-table-default-success-message")
           });
         },
         fail: (error) => {
@@ -148,7 +148,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
           });
           console.error(error);
           notification.error({
-            message: Cluar.plainTranslation('language-table-default-failed-message')
+            message: Cluar.plainTranslation("language-table-default-failed-message")
           });
         }
       })
@@ -163,9 +163,9 @@ const LanguageTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainTranslation('language-table-active'),
-      dataIndex: 'active',
-      key: 'active',
+      title: Cluar.plainTranslation("language-table-active"),
+      dataIndex: "active",
+      key: "active",
       onHeaderCell: () => ({
         "data-column-key": "active",
       }),
@@ -182,33 +182,33 @@ const LanguageTable = forwardRef(({ }, ref) => {
       )
     },
     {
-      title: Cluar.plainTranslation('language-table-description'),
-      dataIndex: 'description',
-      key: 'description',
+      title: Cluar.plainTranslation("language-table-description"),
+      dataIndex: "description",
+      key: "description",
       onHeaderCell: () => ({
         "data-column-key": "description",
       }),
     },
     {
-      title: Cluar.plainTranslation('language-table-code'),
-      dataIndex: 'code',
-      key: 'code',
+      title: Cluar.plainTranslation("language-table-code"),
+      dataIndex: "code",
+      key: "code",
       onHeaderCell: () => ({
         "data-column-key": "code",
       }),
     },
     {
-      title: Cluar.plainTranslation('language-table-locale'),
-      dataIndex: 'locale',
+      title: Cluar.plainTranslation("language-table-locale"),
+      dataIndex: "locale",
       onHeaderCell: () => ({
         "data-column-key": "locale",
       }),
-      key: 'locale',
+      key: "locale",
     },
     {
-      title: Cluar.plainTranslation('language-table-default'),
-      dataIndex: 'default',
-      key: 'default',
+      title: Cluar.plainTranslation("language-table-default"),
+      dataIndex: "default",
+      key: "default",
       onHeaderCell: () => ({
         "data-column-key": "default",
       }),
@@ -225,9 +225,9 @@ const LanguageTable = forwardRef(({ }, ref) => {
       )
     },
     {
-      title: Cluar.plainTranslation('language-table-actions'),
-      dataIndex: 'Actions',
-      key: 'actions',
+      title: Cluar.plainTranslation("language-table-actions"),
+      dataIndex: "Actions",
+      key: "actions",
       onHeaderCell: () => ({
         "data-column-key": "actions",
       }),

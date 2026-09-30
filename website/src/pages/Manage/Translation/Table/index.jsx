@@ -47,7 +47,7 @@ const TranslationTable = forwardRef(({ }, ref) => {
         setLoading({ ...loading, translation: false });
         console.error(error);
         notification.error({
-          message: Cluar.plainTranslation('translation-load-failed-message')
+          message: Cluar.plainTranslation("translation-load-failed-message")
         });
       }
     })
@@ -121,9 +121,9 @@ const TranslationTable = forwardRef(({ }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainTranslation('translation-table-language'),
-      dataIndex: 'language',
-      key: 'language_codes',
+      title: Cluar.plainTranslation("translation-table-language"),
+      dataIndex: "language",
+      key: "language_codes",
       onHeaderCell: () => ({
         "data-column-key": "language",
       }),
@@ -135,27 +135,27 @@ const TranslationTable = forwardRef(({ }, ref) => {
       }))
     },
     {
-      title: Cluar.plainTranslation('translation-table-entry'),
-      dataIndex: 'entry',
-      key: 'entry_code',
+      title: Cluar.plainTranslation("translation-table-entry"),
+      dataIndex: "entry",
+      key: "entry_code",
       onHeaderCell: () => ({
         "data-column-key": "entry",
       }),
       render: (val) => val.description
     },
     {
-      title: Cluar.plainTranslation('translation-table-value'),
-      dataIndex: 'value',
-      key: 'value',
+      title: Cluar.plainTranslation("translation-table-value"),
+      dataIndex: "value",
+      key: "value",
       onHeaderCell: () => ({
         "data-column-key": "value",
       }),
       render: val => Cluar.plainHTML(val),
     },
     {
-      title: Cluar.plainTranslation('translation-table-actions'),
-      dataIndex: 'actions',
-      key: 'actions',
+      title: Cluar.plainTranslation("translation-table-actions"),
+      dataIndex: "actions",
+      key: "actions",
       onHeaderCell: () => ({
         "data-column-key": "actions",
       }),

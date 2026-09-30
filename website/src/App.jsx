@@ -1,5 +1,5 @@
-import React, { Children, useEffect } from 'react';
-import { ConfigProvider, Layout, theme } from 'antd';
+import React, { Children, useEffect } from "react";
+import { ConfigProvider, Layout, theme } from "antd";
 import {
   BrowserRouter,
   Routes,
@@ -8,10 +8,10 @@ import {
   useLocation,
 } from "react-router";
 
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import { Store } from './redux/store';
-import _service from '@netuno/service-client';
-import { loggedUserInfoAction } from './redux/actions';
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { Store } from "./redux/store";
+import _service from "@netuno/service-client";
+import { loggedUserInfoAction } from "./redux/actions";
 
 //import Analytics from './common/Analytics';
 import Cluar from "./common/Cluar";
@@ -29,7 +29,7 @@ import Translation from "./pages/Manage/Translation";
 import Recovery from "./pages/Recovery";
 import Organization from "./pages/Manage/Organization";
 import Template from "./pages/Template";
-import { setTheme } from './redux/actions/theme';
+import { setTheme } from "./redux/actions/theme";
 
 import "@animated-burgers/burger-slip/dist/styles.css?inline";
 import "sal.js/dist/sal.css?inline";
@@ -38,13 +38,13 @@ import "keen-slider/keen-slider.min.css";
 import _auth from "@netuno/auth-client";
 
 import "./styles/App.less";
-import Action from './pages/Manage/Action';
+import Action from "./pages/Manage/Action";
 
 const { Content } = Layout;
 
 const ThemedConfigProvider = ({ children }) => {
   const dispatch = useDispatch();
-  const themeMode = useSelector((state) => state.theme?.mode || 'light');
+  const themeMode = useSelector((state) => state.theme?.mode || "light");
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
@@ -69,8 +69,8 @@ const ThemedConfigProvider = ({ children }) => {
           colorPrimary: Cluar.configuration("primary-color") || "#FF6E1A",
           fontSize: Cluar.configuration("text-font-base") !== "text-font-base" ? Number(Cluar.configuration("text-font-base")) : 16,
           borderRadius: 7,
-          colorBgLayout: themeMode === 'light' ? Cluar.configuration("background-color-light") || '#fff' : Cluar.configuration("background-color-dark") || '#000',
-          colorBgFlex: themeMode === "light" ? Cluar.configuration("background-color-light") || '#fff' : Cluar.configuration("background-color-dark") || '#000',
+          colorBgLayout: themeMode === "light" ? Cluar.configuration("background-color-light") || "#fff" : Cluar.configuration("background-color-dark") || "#000",
+          colorBgFlex: themeMode === "light" ? Cluar.configuration("background-color-light") || "#fff" : Cluar.configuration("background-color-dark") || "#000",
         },
         components: {
           Layout: {
@@ -111,7 +111,7 @@ function App() {
       }
 
       let comPage = <Template page={page} />;
-      const pageLink = page.link.startsWith('/') ? page.link : `/${page.link}`;
+      const pageLink = page.link.startsWith("/") ? page.link : `/${page.link}`;
 
       subroutes.push(
         <Route
@@ -139,15 +139,15 @@ function App() {
 
     useEffect(() => {
       _service({
-        method: 'GET',
-        url: 'reserved-area/profile',
+        method: "GET",
+        url: "reserved-area/profile",
         success: (response) => {
           if (response.json.result) {
             dispatch(loggedUserInfoAction(response.json.data));
           }
         },
         fail: (e) => {
-          console.error('Dados do Utilizador', e);
+          console.error("Dados do Utilizador", e);
         },
       });
     }, [loggedUserInfoReload]);

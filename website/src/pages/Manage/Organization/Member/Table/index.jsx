@@ -84,7 +84,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainTranslation('member-table-desactive-success-message') : Cluar.plainTranslation('member-table-active-success-message')
+          message: active ? Cluar.plainTranslation("member-table-desactive-success-message") : Cluar.plainTranslation("member-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -94,7 +94,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation('member-table-desactive-failed-message') : Cluar.plainTranslation('member-table-active-failed-message')
+          message: active ? Cluar.plainTranslation("member-table-desactive-failed-message") : Cluar.plainTranslation("member-table-active-failed-message")
         });
       }
     })
@@ -182,9 +182,9 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
 
   const columns = [
     {
-      title: Cluar.plainTranslation('member-table-active'),
-      dataIndex: 'active',
-      key: 'active',
+      title: Cluar.plainTranslation("member-table-active"),
+      dataIndex: "active",
+      key: "active",
       onHeaderCell: () => ({
         "data-column-key": "active",
       }),
@@ -222,22 +222,22 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
     //     render: (val, record) => val?.name
     // },
     {
-      title: Cluar.plainTranslation('member-table-user'),
-      dataIndex: 'user',
+      title: Cluar.plainTranslation("member-table-user"),
+      dataIndex: "user",
       ...getTextFilterProps("user_name"),
       onHeaderCell: () => ({
         "data-column-key": "user",
       }),
-      key: 'user',
+      key: "user",
       render: (val, record) => val?.name
     },
     {
-      title: Cluar.plainTranslation('member-table-group'),
-      dataIndex: 'group',
+      title: Cluar.plainTranslation("member-table-group"),
+      dataIndex: "group",
       onHeaderCell: () => ({
         "data-column-key": "group",
       }),
-      key: 'group_codes',
+      key: "group_codes",
       render: (val, record) => val?.name,
       filtered: filters.group_codes,
       filters: groups.map((group) => ({
@@ -247,9 +247,9 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
 
     },
     {
-      title: Cluar.plainTranslation('member-table-actions'),
-      dataIndex: 'Actions',
-      key: 'actions',
+      title: Cluar.plainTranslation("member-table-actions"),
+      dataIndex: "Actions",
+      key: "actions",
       onHeaderCell: () => ({
         "data-column-key": "actions",
       }),
@@ -322,7 +322,7 @@ const MemberTable = forwardRef(({ organizationData }, ref) => {
         }}
         onChange={(pagination, currentFilters, currentSorter, { action }) => {
           if (action === "filter") {
-            const filtersModify = ['active'];
+            const filtersModify = ["active"];
             const newFilters = {
               ...filters
             }

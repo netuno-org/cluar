@@ -24,7 +24,7 @@ function Default({
       ? `/cluar/images/page_${section}/${image}`
       : image;
 
-  const resolvedContent = edit_mode === 'html'
+  const resolvedContent = edit_mode === "html"
     ? (html_content || content)
     : content;
 
