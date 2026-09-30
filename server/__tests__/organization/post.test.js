@@ -1,10 +1,8 @@
-import request from "supertest";
 import { beforeEach, afterEach, it, expect } from "@jest/globals";
 
-import login from "../util/login.js";
-import { NETUNO_URL } from "../config.js";
 import { createUser, deleteUser } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
+import { asyncServiceAsAlice } from "../asyncService.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -31,6 +29,7 @@ beforeEach(async () => {
 afterEach(async () => {
   if (createdOrgUid) {
     await deleteOrganization(createdOrgUid);
+    createdOrgUid = null;
   }
 
   await deleteUser(aliceUid);
@@ -44,39 +43,35 @@ afterEach(async () => {
 });
 
 it("should create an organization under an organization the logged user administers", async () => {
-  const accessToken = await login.asAlice();
-
-  const response = await request(NETUNO_URL)
-    .post("/reserved-area/organization")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  const { json, status } = await asyncServiceAsAlice({
+    url: "reserved-area/organization",
+    method: "POST",
+    data: {
       active: true,
       code: "x",
       name: "x",
       parent_code: "c1",
-    })
-    .expect(201);
-
-  createdOrgUid = response.body.data.uid;
+    }
+  });
+  expect(status).toBe(201);
+  createdOrgUid = json.data.uid;
 });
 
 it("shouldn't create an organization under an organization the logged user doesn't administer", async () => {
-  const accessToken = await login.asAlice();
-
-  const response = await request(NETUNO_URL)
-    .post("/reserved-area/organization")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  await expect(asyncServiceAsAlice({
+    url: "reserved-area/organization",
+    method: "POST",
+    data: {
       active: true,
       code: "x",
       name: "x",
       parent_code: "b",
-    })
-    .expect(403);
-
-  expect(response.body.error_code).toBe("user-unauthorized");
+    }
+  }))
+    .rejects.toMatchObject({
+      status: 403,
+      json: {
+        error_code: "user-unauthorized"
+      }
+    });
 });

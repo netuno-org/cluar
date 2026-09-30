@@ -1,10 +1,8 @@
-import request from "supertest";
 import { beforeEach, afterEach, it, expect } from "@jest/globals";
 
-import login from "../util/login.js";
-import { NETUNO_URL } from "../config.js";
 import { createUser, deleteUser } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
+import { asyncServiceAsAlice, asyncServiceAsBob } from "../asyncService.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -38,59 +36,57 @@ afterEach(async () => {
 });
 
 it("should update an organization the logged user administers", async () => {
-  const accessToken = await login.asAlice();
-
-  await request(NETUNO_URL)
-    .put("/reserved-area/organization")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  const { status } = await asyncServiceAsAlice({
+    url: "/reserved-area/organization",
+    method: "PUT",
+    data: {
       active: true,
       code: "c1",
       name: "c1-updated",
       parent_code: "c",
       uid: c1OrgUid,
-    })
-    .expect(200);
+    }
+  });
+  expect(status).toBe(200);
 });
 
 it("shouldn't update an organization the logged user doesn't administer", async () => {
-  const accessToken = await login.asBob();
-
-  const response = await request(NETUNO_URL)
-    .put("/reserved-area/organization")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  await expect(asyncServiceAsBob({
+    url: "/reserved-area/organization",
+    method: "PUT",
+    data: {
       active: true,
       code: "b",
       name: "b-updated",
       parent_code: "base",
       uid: bOrgUid,
-    })
-    .expect(403);
-
-  expect(response.body.error_code).toBe("user-unauthorized");
+    }
+  }))
+    .rejects.toMatchObject({
+      status: 403,
+      json: {
+        error_code: "user-unauthorized"
+      }
+    });
 });
 
 it("shouldn't allow an organization to have a descendant as parent", async () => {
-  const accessToken = await login.asAlice();
 
-  const response = await request(NETUNO_URL)
-    .put("/reserved-area/organization")
-    .set("Authorization", `Bearer ${accessToken}`)
-    .set("Accept", "*/*")
-    .set("Content-Type", "application/json")
-    .send({
+  await expect(asyncServiceAsAlice({
+    url: "/reserved-area/organization",
+    method: "PUT",
+    data: {
       active: true,
       code: "c",
       name: "c",
       parent_code: "c1",
       uid: cOrgUid,
-    })
-    .expect(409);
-
-  expect(response.body.error_code).toBe("hierarchy-breakdown");
+    }
+  }))
+    .rejects.toMatchObject({
+      status: 409,
+      json: {
+        error_code: "hierarchy-breakdown"
+      }
+    });
 });
