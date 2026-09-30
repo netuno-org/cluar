@@ -86,21 +86,54 @@ const data = _val.map()
 
 const dbPage = cluar.db.insertAndReturn("page", data);
 
-const organizationId = _db.queryFirst(`
+const newPageId = dbPage.getInt("id");
+
+let organizationId;
+
+if (parentId === 0) {
+  organizationId = _db.queryFirst(`
     SELECT organization_id
     FROM organization_profile
     INNER JOIN profile
         ON organization_profile.profile_id = profile.id
     WHERE profile.profile_user_id = ${_db.param("int")}`,
-  _user.id)
+    _user.id)
+    .getInt("organization_id");
+} else {
+  organizationId = _db.queryFirst(`
+    SELECT organization_id
+    FROM page_organization
+    WHERE page_id = ${_db.param("int")}`,
+    parentId)
   .getInt("organization_id");
+}
 
-const pageId = dbPage.getInt("id");
-
-_db.insert("page_organization",
+const dbPageOrganizationId = _db.insert("page_organization",
   _val.map()
-    .set("page_id", pageId)
+    .set("page_id", newPageId)
     .set("organization_id", organizationId)
 );
 
-cluar.response.successWithoutData({ status: 200 });
+const organizationCode = _db.queryFirst(`
+    SELECT organization.code 
+    FROM page_organization
+    INNER JOIN organization
+    ON page_organization.organization_id = organization.id
+    WHERE page_organization.id = ${_db.param("int")}`,
+  dbPageOrganizationId)
+  .getString("code");
+
+const newPageDb = _db.queryFirst(`
+    SELECT uid, title, link
+    FROM page
+    WHERE id = ${_db.param("int")}`,
+  newPageId);
+
+cluar.response.successWithData({
+  status: 200,
+  data: _val.map()
+    .set("uid", newPageDb.getString("uid"))
+    .set("title", newPageDb.getString("title"))
+    .set("link", newPageDb.getString("link"))
+    .set("organizationCode", organizationCode)
+});
