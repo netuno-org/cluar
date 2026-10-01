@@ -16,6 +16,19 @@ const social_description = _req.getString("social_description");
 const template = _req.getString("template");
 const sorterInput = _req.getString("sorter");
 
+if (parentUid) {
+  const parentPageOrg = _db.queryFirst(`
+      SELECT organization.id
+      FROM page
+      INNER JOIN page_organization
+      ON page.id = page_organization.page_id
+      INNER JOIN organization ON page_organization.organization_id = organization.id
+      WHERE page.uid = ${_db.param("uid")}`,
+    parentUid);
+
+  cluar.permission.requireUserAuthorizedInOrganization(parentPageOrg);
+}
+
 if (menu === true && !menuTitle) {
   cluar.response.error({
     status: 400,
@@ -39,7 +52,7 @@ if (!dbLanguage) {
 const linkExists = _db.queryFirst(`
     SELECT * FROM page 
     WHERE link = ?
-        AND language_id = ?
+    AND language_id = ?
 `, link, dbLanguage.getInt("id"));
 
 if (linkExists) {
@@ -62,8 +75,8 @@ if (isNaN(sorter)) {
   const dbMaxSorter = _db.queryFirst(`
         SELECT MAX(sorter) as max_sorter FROM page
         WHERE language_id = ?
-            AND parent_id = ?
-    `, dbLanguage.getInt("id"), parentId);
+        AND parent_id = ?
+      `, dbLanguage.getInt("id"), parentId);
 
   sorter = (dbMaxSorter?.getInt("max_sorter") || 0) + 10;
 }
@@ -105,7 +118,7 @@ if (parentId === 0) {
     FROM page_organization
     WHERE page_id = ${_db.param("int")}`,
     parentId)
-  .getInt("organization_id");
+    .getInt("organization_id");
 }
 
 const dbPageOrganizationId = _db.insert("page_organization",
