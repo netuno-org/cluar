@@ -266,7 +266,7 @@ const PageModal = forwardRef(({ onReloadTable, pageData }, ref) => {
                   value: language.code,
                 }))}
                 loading={loading.languages}
-              //   onChange={handleLanguageChange}
+                onChange={handleLanguageChange}
               />
             </Form.Item>
           </Col>
