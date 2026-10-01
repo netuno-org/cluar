@@ -13,6 +13,71 @@ export default {
       .first();
   },
 
+  /*
+   * Organization of the logged user used as a fallback when something has to
+   * be assigned to "the user's organization".
+   *
+   * The fallback has to stay inside the hierarchy of the organization that is
+   * being given up, otherwise the page would jump to an unrelated branch of the
+   * tree. With "base -> a" and "base -> b -> b1 -> b2", a user administering
+   * both "a" and "b" removing the last organization of a page from "b2"
+   * reassigns it to "b", never to "a".
+   *
+   * Therefore the organization itself is excluded and only its ancestors that
+   * the user actively administers are candidates. When several qualify the
+   * closest one is used, which keeps the page as deep in the tree as possible.
+   * Returns null when the user administers no ancestor, so the caller can
+   * refuse the operation instead of moving the page somewhere unrelated.
+   *
+   * Matches the anchor condition of the authorized organizations recursive
+   * query: an active membership in the "administrator" group.
+   */
+  getAdministratorOrganization: (organizationId) => {
+    return _db.queryFirst(`
+        WITH RECURSIVE ancestors(id, uid, name, code, parent_id, depth) AS (
+            SELECT
+                organization.id,
+                organization.uid,
+                organization.name,
+                organization.code,
+                organization.parent_id,
+                0
+            FROM organization
+            WHERE 1 = 1
+                AND organization.id = ?::int
+            UNION ALL
+            SELECT
+                parent.id,
+                parent.uid,
+                parent.name,
+                parent.code,
+                parent.parent_id,
+                ancestors.depth + 1
+            FROM organization parent
+            INNER JOIN ancestors ON parent.id = ancestors.parent_id
+        )
+        SELECT
+            ancestors.id,
+            ancestors.uid,
+            ancestors.name,
+            ancestors.code
+        FROM ancestors
+        INNER JOIN organization_profile
+            ON ancestors.id = organization_profile.organization_id
+        INNER JOIN profile
+            ON organization_profile.profile_id = profile.id
+        INNER JOIN user_group
+            ON organization_profile.user_group_id = user_group.id
+        WHERE 1 = 1
+            AND ancestors.depth > 0
+            AND profile.profile_user_id = ?
+            AND organization_profile.active = true
+            AND user_group.code = 'administrator'
+        ORDER BY ancestors.depth ASC
+        LIMIT 1
+    `, organizationId, _user.id());
+  },
+
   getActiveAdminOrganizationsWithDescendants: () => {
     const dbProfile = _db.queryFirst("SELECT id FROM profile WHERE profile_user_id = ?", _user.id());
 

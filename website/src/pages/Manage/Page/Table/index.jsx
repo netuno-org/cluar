@@ -14,10 +14,11 @@ import {
   useRef,
   useState
 } from "react";
-import { EditOutlined, DeleteOutlined, SearchOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined, SearchOutlined, ApartmentOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 import PageModal from "../Modal";
+import OrganizationModal from "../Organization";
 
 const debounces = {}
 
@@ -26,7 +27,9 @@ const PageTable = forwardRef(({ }, ref) => {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const pageModalRef = useRef();
+  const organizationModalRef = useRef();
   const [pageEditData, setPageEditData] = useState(null);
+  const [pageOrganizationData, setPageOrganizationData] = useState(null);
   const [deleteLoadingUid, setDeleteLoadingUid] = useState(null);
   const [activeLoading, setActiveLoading] = useState({
     key: "",
@@ -286,6 +289,15 @@ const PageTable = forwardRef(({ }, ref) => {
         <Space size={4}>
           <Button
             type="text"
+            title={Cluar.plainTranslation("page-table-button-organizations")}
+            icon={<ApartmentOutlined />}
+            onClick={() => {
+              setPageOrganizationData(record);
+              organizationModalRef.current.openModal();
+            }}
+          />
+          <Button
+            type="text"
             title={Cluar.plainTranslation("page-table-button-edit")}
             icon={<EditOutlined />}
             onClick={() => {
@@ -331,6 +343,10 @@ const PageTable = forwardRef(({ }, ref) => {
         ref={pageModalRef}
         pageData={pageEditData}
         onReloadTable={onReloadTable}
+      />
+      <OrganizationModal
+        ref={organizationModalRef}
+        pageData={pageOrganizationData}
       />
       <Table
         columns={columns}

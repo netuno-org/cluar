@@ -11694,3 +11694,58 @@ _db.insertIfNotExists(
     .set("value", "You received a new contact request on cluarwebsite.com")
 );;
 
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "f91121aa-9eb0-43c9-8146-653519b5a2e1")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "1c6a8a0a-418e-4486-bee2-c8fc1d752452")
+    .set("value", "Organizations")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "58fccfdd-fac6-47af-aadf-c56b79213a16")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "1c6a8a0a-418e-4486-bee2-c8fc1d752452")
+    .set("value", "Organiza\u00E7\u00F5es")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "895634f5-1e97-4926-bc6f-7145472ce94e")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "710fd503-f5c2-4a86-af31-5211960b3ff1")
+    .set("value", "Page Organizations")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "87623903-dbce-471c-a299-f965aa652217")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "710fd503-f5c2-4a86-af31-5211960b3ff1")
+    .set("value", "Organiza\u00E7\u00F5es da P\u00E1gina")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "2c2b77bc-c8b5-4152-b8b1-68a43bc819e9")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "86602e94-9f47-4045-aca3-a0ab9681505c")
+    .set("value", "The page was reassigned to your organization.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "b4c7318f-4d56-43e6-8475-7e0f9cf0489a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "86602e94-9f47-4045-aca3-a0ab9681505c")
+    .set("value", "A p\u00E1gina foi reatribu\u00EDda \u00E0 sua organiza\u00E7\u00E3o.")
+);;
+

@@ -5220,3 +5220,28 @@ _db.insertIfNotExists(
     .set("description", "Formul\u00e1rio de Contato - Assunto do e-mail")
 );;
 
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "1c6a8a0a-418e-4486-bee2-c8fc1d752452")
+    .set("code", "page-table-button-organizations")
+    .set("description", "Tabela de P\u00E1ginas - Bot\u00E3o - Organiza\u00E7\u00F5es")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "710fd503-f5c2-4a86-af31-5211960b3ff1")
+    .set("code", "page-organizations-title")
+    .set("description", "Tabela de P\u00E1ginas - Modal - Organiza\u00E7\u00F5es da P\u00E1gina")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "86602e94-9f47-4045-aca3-a0ab9681505c")
+    .set("code", "page-organization-table-reassigned-message")
+    .set("description", "Tabela de P\u00E1ginas - Organiza\u00E7\u00F5es - Notifica\u00E7\u00E3o - Reatribu\u00EDdo")
+);;
+

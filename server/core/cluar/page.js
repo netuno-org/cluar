@@ -624,4 +624,43 @@ export default {
       }
     }
   },
+
+  getOrganizations: (pageId) => {
+    return _db.query(`
+        SELECT
+            organization.id,
+            organization.uid,
+            organization.name,
+            organization.code,
+            organization.active
+        FROM
+            page_organization
+        INNER JOIN organization
+            ON page_organization.organization_id = organization.id
+        WHERE 1 = 1
+            AND page_organization.page_id = ?::int
+        ORDER BY organization.name
+    `, pageId);
+  },
+
+  getOrganizationLink: (pageId, organizationId) => {
+    return _db.queryFirst(`
+        SELECT
+            page_organization.id,
+            page_organization.uid
+        FROM
+            page_organization
+        WHERE 1 = 1
+            AND page_organization.page_id = ?::int
+            AND page_organization.organization_id = ?::int
+    `, pageId, organizationId);
+  },
+
+  countOrganizations: (pageId) => {
+    return _db.form("page_organization")
+      .where(
+        _db.where("page_id").equals(pageId)
+      )
+      .count();
+  },
 };
