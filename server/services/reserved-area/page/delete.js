@@ -15,6 +15,8 @@ if (!dbPage) {
 
 const pageId = dbPage.getInt("id");
 
+cluar.permission.requireUserAuthorizedInAnyOrganizationOfPage(dbPage.getInt("id"));
+
 const dbPageVersions = _db.query(`
       SELECT * FROM page_version
       WHERE page_id = ?::int
