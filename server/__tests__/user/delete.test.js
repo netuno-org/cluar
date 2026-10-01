@@ -56,7 +56,8 @@ it("should not delete a user if logged user org is not above user org", async ()
     data: {
       uid: bobUid
     }
-  })).rejects.toHaveProperty("status", 403);
+  }))
+    .rejects.toHaveProperty("status", 403);
 });
 
 it("should not delete a user if they are in more than one organization", async () => {
@@ -68,7 +69,8 @@ it("should not delete a user if they are in more than one organization", async (
     data: {
       uid: charlieUid
     }
-  })).rejects.toHaveProperty("status", 409);
+  }))
+    .rejects.toHaveProperty("status", 409);
 
   await removeUserFromOrganization(charlieUid, bOrgUid);
 });
@@ -82,7 +84,8 @@ it("should not delete a user if logged user is not in the admin group of the use
     data: {
       uid: bobUid
     }
-  })).rejects.toHaveProperty("status", 403);
+  }))
+    .rejects.toHaveProperty("status", 403);
 
   await removeUserFromOrganization(aliceUid, bOrgUid);
 });
