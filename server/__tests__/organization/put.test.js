@@ -50,7 +50,7 @@ it("should update an organization the logged user administers", async () => {
   expect(status).toBe(200);
 });
 
-it("shouldn't update an organization the logged user doesn't administer", async () => {
+it("should not update an organization the logged user doesn't administer", async () => {
   await expect(asyncServiceAsBob({
     url: "/reserved-area/organization",
     method: "PUT",
@@ -70,7 +70,7 @@ it("shouldn't update an organization the logged user doesn't administer", async 
     });
 });
 
-it("shouldn't allow an organization to have a descendant as parent", async () => {
+it("should not allow an organization to have a descendant as parent", async () => {
 
   await expect(asyncServiceAsAlice({
     url: "/reserved-area/organization",

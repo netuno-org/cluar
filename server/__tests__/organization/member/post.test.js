@@ -63,7 +63,7 @@ it("should add a member to an organization the logged user administers", async (
   membershipAddedToC = true;
 });
 
-it("shouldn't add a member to an organization the logged user isn't a member of", async () => {
+it("should not add a member to an organization the logged user isn't a member of", async () => {
   const promise = asyncServiceAsAlice({
     url: "reserved-area/organization/member",
     method: "POST",
@@ -83,7 +83,7 @@ it("shouldn't add a member to an organization the logged user isn't a member of"
   });
 });
 
-it("shouldn't add a member to an organization the logged user is just an editor of", async () => {
+it("should not add a member to an organization the logged user is just an editor of", async () => {
   const promise = asyncServiceAsBob({
     url: "reserved-area/organization/member",
     method: "POST",

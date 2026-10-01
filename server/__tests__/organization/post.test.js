@@ -54,7 +54,7 @@ it("should create an organization under an organization the logged user administ
   createdOrgUid = json.data.uid;
 });
 
-it("shouldn't create an organization under an organization the logged user doesn't administer", async () => {
+it("should not create an organization under an organization the logged user doesn't administer", async () => {
   await expect(asyncServiceAsAlice({
     url: "reserved-area/organization",
     method: "POST",

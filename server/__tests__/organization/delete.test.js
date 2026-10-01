@@ -32,7 +32,7 @@ afterEach(async () => {
   await deleteOrganization(cOrgUid);
 });
 
-it("shouldn't delete an organization if one of it's children has a member", async () => {
+it("should not delete an organization if one of it's children has a member", async () => {
   await expect(asyncService({
     url: "/reserved-area/organization",
     method: "DELETE",
@@ -40,7 +40,7 @@ it("shouldn't delete an organization if one of it's children has a member", asyn
   })).rejects.toHaveProperty("status", 409);
 });
 
-it("shouldn't delete an organization if logged user is not a member", async () => {
+it("should not delete an organization if logged user is not a member", async () => {
   await expect(asyncServiceAsAlice({
     url: "/reserved-area/organization",
     method: "DELETE",

@@ -60,7 +60,7 @@ it("should update a member in an organization the logged user administers", asyn
   expect(json.result).toBe(true);
 });
 
-it("shouldn't update a member in an organization the logged user doesn't administer", async () => {
+it("should not update a member in an organization the logged user doesn't administer", async () => {
   const promise = asyncServiceAsBob({
     url: "reserved-area/organization/member",
     method: "POST",

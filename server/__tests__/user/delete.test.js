@@ -49,7 +49,7 @@ it("should delete a user if logged user org is above user org", async () => {
   expect(status).toBe(200);
 });
 
-it("shouldn't delete a user if logged user org is not above user org", async () => {
+it("should not delete a user if logged user org is not above user org", async () => {
   await expect(asyncServiceAsAlice({
     url: "reserved-area/user",
     method: "DELETE",
@@ -59,7 +59,7 @@ it("shouldn't delete a user if logged user org is not above user org", async () 
   })).rejects.toHaveProperty("status", 403);
 });
 
-it("shouldn't delete a user if they are in more than one organization", async () => {
+it("should not delete a user if they are in more than one organization", async () => {
   await addUserToOrganization(charlieUid, "b", "editor");
 
   await expect(asyncServiceAsAlice({
@@ -73,7 +73,7 @@ it("shouldn't delete a user if they are in more than one organization", async ()
   await removeUserFromOrganization(charlieUid, bOrgUid);
 });
 
-it("shouldn't delete a user if logged user is not in the admin group of the user's organization", async () => {
+it("should not delete a user if logged user is not in the admin group of the user's organization", async () => {
   await addUserToOrganization(aliceUid, "b", "editor");
 
   await expect(asyncServiceAsAlice({
