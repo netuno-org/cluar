@@ -3,14 +3,6 @@ import user from "#core/cluar/user.js";
 import organization from "#core/cluar/organization.js";
 import response from "#core/cluar/response.js";
 
-// logged user is allowed
-// isAllowed: ({ organization: orgCode, allowedGroups }) => {
-//   const loggedProfile = user.getProfile();
-//   const currentOrg = organization.getByCode(orgCode);
-//   const profileGroups = organization.getProfileGroupsByOrg(currentOrg.getInt("id"), loggedProfile.getInt("id"));
-//   return profileGroups.some((group) => allowedGroups.includes(group.getString("code")));
-// },
-
 const isUserAuthorizedInOrganization = (organization) => {
   const profile = user.getProfile();
 
