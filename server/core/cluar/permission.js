@@ -165,4 +165,14 @@ export default {
       });
     }
   },
+
+  requireUserAuthorizedInRootOrganization: () => {
+    if (!user.isAdminOfRootOrganization()) {
+      response.error({
+        status: 403,
+        error_code: "user-unauthorized",
+        error: "user not authorized in the root organization",
+      });
+    }
+  },
 };

@@ -1,6 +1,8 @@
 import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
+cluar.permission.requireUserAuthorizedInRootOrganization();
+
 const uid = _req.getString("uid");
 const parameterUid = _req.getString("parameter_uid")
 const languageCode = _req.getString("language_code");

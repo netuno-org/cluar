@@ -13,6 +13,22 @@ export default {
       .first();
   },
 
+  isAdminOfRootOrganization: () => {
+    return !!_db.queryFirst(`
+        SELECT 1
+        FROM profile p
+        INNER JOIN organization_profile op
+            ON p.id = op.profile_id
+        INNER JOIN organization o
+            ON op.organization_id = o.id
+        WHERE 1 = 1
+            AND o.parent_id = 0
+            AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
+            AND op.active = true
+            AND p.profile_user_id = ${_db.param("id")}`
+      , _user.id);
+  },
+
   /*
    * Organization of the logged user used as a fallback when something has to
    * be assigned to "the user's organization".
@@ -34,33 +50,33 @@ export default {
    */
   getAdministratorOrganization: (organizationId) => {
     return _db.queryFirst(`
-        WITH RECURSIVE ancestors(id, uid, name, code, parent_id, depth) AS (
-            SELECT
+        WITH RECURSIVE ancestors(id, uid, name, code, parent_id, depth) AS(
+      SELECT
                 organization.id,
-                organization.uid,
-                organization.name,
-                organization.code,
-                organization.parent_id,
-                0
+      organization.uid,
+      organization.name,
+      organization.code,
+      organization.parent_id,
+      0
             FROM organization
             WHERE 1 = 1
-                AND organization.id = ?::int
+                AND organization.id = ?:: int
             UNION ALL
             SELECT
                 parent.id,
-                parent.uid,
-                parent.name,
-                parent.code,
-                parent.parent_id,
-                ancestors.depth + 1
+      parent.uid,
+      parent.name,
+      parent.code,
+      parent.parent_id,
+      ancestors.depth + 1
             FROM organization parent
             INNER JOIN ancestors ON parent.id = ancestors.parent_id
-        )
+    )
         SELECT
             ancestors.id,
-            ancestors.uid,
-            ancestors.name,
-            ancestors.code
+      ancestors.uid,
+      ancestors.name,
+      ancestors.code
         FROM ancestors
         INNER JOIN organization_profile
             ON ancestors.id = organization_profile.organization_id
@@ -71,25 +87,25 @@ export default {
         WHERE 1 = 1
             AND ancestors.depth > 0
             AND profile.profile_user_id = ?
-            AND organization_profile.active = true
+      AND organization_profile.active = true
             AND user_group.code = 'administrator'
         ORDER BY ancestors.depth ASC
         LIMIT 1
-    `, organizationId, _user.id());
+      `, organizationId, _user.id());
   },
 
   getActiveAdminOrganizationsWithDescendants: () => {
     const dbProfile = _db.queryFirst("SELECT id FROM profile WHERE profile_user_id = ?", _user.id());
 
     const dbOrganizations = _db.query(`
-        WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (
-            SELECT
+        WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS(
+        SELECT
                 org.name,
-                org.id,
-                org.parent_id,
-                org.code,
-                org.uid,
-                org.active
+        org.id,
+        org.parent_id,
+        org.code,
+        org.uid,
+        org.active
             FROM
                 organization org
             INNER JOIN
@@ -101,24 +117,24 @@ export default {
             UNION
             SELECT
                 org.name,
-                org.id,
-                org.parent_id,
-                org.code,
-                org.uid,
-                org.active
+      org.id,
+      org.parent_id,
+      org.code,
+      org.uid,
+      org.active
             FROM
                 organization org
             INNER JOIN user_orgs uo ON org.parent_id = uo.id
-        )
-        SELECT
-            user_orgs.name,
-            user_orgs.code,
-            user_orgs.uid,
-            user_orgs.id
-        FROM
-            user_orgs
+    )
+    SELECT
+    user_orgs.name,
+      user_orgs.code,
+      user_orgs.uid,
+      user_orgs.id
+    FROM
+    user_orgs
         WHERE 1 = 1
-    `);
+      `);
 
     return dbOrganizations;
   },
@@ -127,14 +143,14 @@ export default {
     const dbProfile = _db.queryFirst("SELECT id FROM profile WHERE profile_user_id = ?", _user.id());
 
     const dbOrganizations = _db.query(`
-        WITH RECURSIVE user_orgs AS (
-            SELECT
+        WITH RECURSIVE user_orgs AS(
+        SELECT
                 org.name,
-                org.id,
-                org.parent_id,
-                org.code,
-                org.uid,
-                org.active
+        org.id,
+        org.parent_id,
+        org.code,
+        org.uid,
+        org.active
             FROM
                 organization org
             INNER JOIN
@@ -144,28 +160,28 @@ export default {
             UNION
             SELECT
                 org.name,
-                org.id,
-                org.parent_id,
-                org.code,
-                org.uid,
-                org.active
+        org.id,
+        org.parent_id,
+        org.code,
+        org.uid,
+        org.active
             FROM
                 organization org
             INNER JOIN user_orgs uo ON org.parent_id = uo.id
-        )
-        SELECT DISTINCT ON (user_orgs.id)
-            user_orgs.name org_name,
-            user_orgs.code org_code,
-            user_orgs.uid AS org_uid,
-            user_orgs.id AS org_id,
+      )
+        SELECT DISTINCT ON(user_orgs.id)
+    user_orgs.name org_name,
+      user_orgs.code org_code,
+        user_orgs.uid AS org_uid,
+          user_orgs.id AS org_id,
             profile.name AS profile_name,
-            profile.uid AS profile_uid,
-            profile.id AS profile_id,
-            user_group.name AS group_name,
-            user_group.code AS group_code,
-            organization_profile.active AS member_active
-        FROM
-            user_orgs
+              profile.uid AS profile_uid,
+                profile.id AS profile_id,
+                  user_group.name AS group_name,
+                    user_group.code AS group_code,
+                      organization_profile.active AS member_active
+    FROM
+    user_orgs
         INNER JOIN
             organization_profile ON organization_profile.organization_id = user_orgs.id
         INNER JOIN
@@ -196,14 +212,14 @@ export default {
           )
       );
       const dbDescendants = _db.query(`
-          WITH RECURSIVE descendant AS (
-             SELECT
+          WITH RECURSIVE descendant AS(
+      SELECT
                  org.name,
-                 org.id,
-                 org.parent_id,
-                 org.code,
-                 org.uid,
-                 org.active
+      org.id,
+      org.parent_id,
+      org.code,
+      org.uid,
+      org.active
              FROM
                  organization org
              WHERE 1 = 1
@@ -211,23 +227,23 @@ export default {
              UNION
              SELECT
                  org.name,
-                 org.id,
-                 org.parent_id,
-                 org.code,
-                 org.uid,
-                 org.active
+      org.id,
+      org.parent_id,
+      org.code,
+      org.uid,
+      org.active
              FROM
                  organization org
              INNER JOIN
                  descendant cs ON org.parent_id = cs.id
-         )
-         SELECT
-             descendant.name AS descendant_name,
-             descendant.code AS descendant_code,
-             descendant.uid AS descendant_uid,
-             descendant.id AS descendant_id
-         FROM
-             descendant
+    )
+    SELECT
+    descendant.name AS descendant_name,
+      descendant.code AS descendant_code,
+        descendant.uid AS descendant_uid,
+          descendant.id AS descendant_id
+    FROM
+    descendant
       `);
 
       for (const dbDescendant of dbDescendants) {
@@ -249,16 +265,16 @@ export default {
         );
 
         const specificMember = _db.queryFirst(`
-            SELECT
-                user_group.name,
-                user_group.code,
-                organization_profile.active AS member_active
+    SELECT
+    user_group.name,
+      user_group.code,
+      organization_profile.active AS member_active
             FROM user_group
             INNER JOIN
                 organization_profile ON organization_profile.user_group_id = user_group.id
             WHERE 1 = 1
                 AND organization_profile.organization_id = ?
-                AND organization_profile.profile_id = ?
+      AND organization_profile.profile_id = ?
         `, dbDescendant.getInt("descendant_id"), dbOrganization.getInt("profile_id"));
 
         if (specificMember) {
