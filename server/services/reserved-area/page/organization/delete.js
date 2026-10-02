@@ -27,7 +27,7 @@ if (!dbOrganization) {
 }
 
 cluar.permission.requireUserAuthorizedInAnyOrganizationOfPage(dbPage.getInt("id"));
-cluar.permission.requireUserAuthorizedInOrganization(dbOrganization);
+cluar.permission.requireUserAuthorizedInOrganization(dbOrganization.getInt("id"));
 
 const dbPageOrganization = cluar.page.getOrganizationLink(
   dbPage.getInt("id"),

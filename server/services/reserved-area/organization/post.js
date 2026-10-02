@@ -20,7 +20,7 @@ if (parent_code) {
     });
   }
 
-  cluar.permission.requireUserAuthorizedInOrganization(dbParent);
+  cluar.permission.requireUserAuthorizedInOrganization(dbParent.getInt("id"));
 }
 
 const codeAlreadyInUse = _db.queryFirst(`

@@ -40,7 +40,7 @@ if (!dbGroup) {
   });
 }
 
-cluar.permission.requireUserAuthorizedInOrganization(dbOrganization);
+cluar.permission.requireUserAuthorizedInOrganization(dbOrganization.getInt("id"));
 
 const userData = _val.map()
   .set("name", name)

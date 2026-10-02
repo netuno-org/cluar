@@ -17,7 +17,7 @@ const template = _req.getString("template");
 const sorterInput = _req.getString("sorter");
 
 if (parentUid) {
-  const parentPageOrg = _db.queryFirst(`
+  const dbParentPageOrganization = _db.queryFirst(`
       SELECT organization.id
       FROM page
       INNER JOIN page_organization
@@ -26,7 +26,15 @@ if (parentUid) {
       WHERE page.uid = ${_db.param("uid")}`,
     parentUid);
 
-  cluar.permission.requireUserAuthorizedInOrganization(parentPageOrg);
+  if (!dbParentPageOrganization) {
+    cluar.response.error({
+      status: 404,
+      error: `parent page not found, or not associated with any organization, with uid: ${parentUid}`,
+      error_code: "parent-page-not-found"
+    });
+  }
+
+  cluar.permission.requireUserAuthorizedInOrganization(dbParentPageOrganization.getInt("id"));
 }
 
 if (menu === true && !menuTitle) {

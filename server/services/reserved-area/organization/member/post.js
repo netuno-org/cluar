@@ -29,7 +29,7 @@ if (!dbOrganization) {
   });
 }
 
-cluar.permission.requireUserAuthorizedInOrganization(dbOrganization);
+cluar.permission.requireUserAuthorizedInOrganization(dbOrganization.getInt("id"));
 
 const dbGroup = _db.queryFirst("SELECT id, name, code FROM user_group WHERE code = ?::varchar", group_code);
 

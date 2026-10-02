@@ -22,7 +22,7 @@ const profileId = dbProfile.getInt("id");
 const membership = _db.queryFirst(`
     SELECT
         count(*) over(),
-        organization.uid as user_organization_uid
+        organization.id AS organization_id
     FROM organization_profile
     INNER JOIN organization
     ON organization_profile.organization_id = organization.id
@@ -37,9 +37,8 @@ if (membership.getInt("count") > 1) {
   });
 }
 
-const userOrganizationUid = membership.getString("user_organization_uid");
-const dbUserOrganization = _db.get("organization", userOrganizationUid);
-cluar.permission.requireUserAuthorizedInOrganization(dbUserOrganization);
+const userOrganizationId = membership.getInt("organization_id");
+cluar.permission.requireUserAuthorizedInOrganization(userOrganizationId);
 
 _db.execute(`DELETE from organization_profile WHERE profile_id = ${profileId}`);
 _db.delete(

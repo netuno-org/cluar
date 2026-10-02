@@ -9,9 +9,9 @@ if (!dbOrganization) {
   cluar.response.error({ status: 404, error: "organization not found", error_code: "organization-not-found" });
 }
 
-cluar.permission.requireUserAuthorizedInOrganization(dbOrganization);
-
 const organizationId = dbOrganization.getInt("id");
+
+cluar.permission.requireUserAuthorizedInOrganization(organizationId);
 
 const dbOrganizationAndChildren = _db.query(`
     WITH RECURSIVE org_and_children AS (

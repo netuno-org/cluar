@@ -43,14 +43,26 @@ const AUTHORIZED_ORGANIZATIONS_CTE = `
     )
 `;
 
-const isUserAuthorizedInOrganization = (organization) => {
+/*
+ * An organization id is enough to identify what is being authorized, so the
+ * caller only has to supply the id, never a whole organization record.
+ *
+ * A missing id (null, undefined or 0) means there is no organization to
+ * authorize against, so the answer is "not authorized": failing closed makes it
+ * impossible to bypass the check by forgetting to pass an organization.
+ */
+const isUserAuthorizedInOrganization = (organizationId) => {
+  if (!organizationId) {
+    return false;
+  }
+
   const profile = user.getProfile();
 
   const dbIsAuthorized = _db.queryFirst(`${AUTHORIZED_ORGANIZATIONS_CTE}
       SELECT 1
       FROM authorized_organizations
       WHERE authorized_organizations.id = ?
-  `, profile.getInt("id"), organization.getInt("id"));
+  `, profile.getInt("id"), organizationId);
 
   return !!dbIsAuthorized;
 };
@@ -146,8 +158,8 @@ export default {
   isUserAuthorizedInAnyOrganizationOfPage,
   getAuthorizedPages,
 
-  requireUserAuthorizedInOrganization: (organization) => {
-    if (!isUserAuthorizedInOrganization(organization)) {
+  requireUserAuthorizedInOrganization: (organizationId) => {
+    if (!isUserAuthorizedInOrganization(organizationId)) {
       response.error({
         status: 403,
         error_code: "user-unauthorized",
