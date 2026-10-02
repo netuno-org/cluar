@@ -1,24 +1,40 @@
 import { _db, _val, _req, _user, _group } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
-const uid = _req.getString("uid");
+const profileUid = _req.getString("uid");
 const name = _req.getString("name");
 const username = _req.getString("username");
 let email = _req.getString("email");
 const password = _req.getString("password");
 
-const userEmailExists = _user.firstByMail(email);
-const usernameExists = _user.firstByUser(username);
-
-const dbProfile = _db.get("profile", uid);
+const dbProfile = _db.get("profile", profileUid);
 
 if (!dbProfile) {
   cluar.response.error({
     status: 404,
-    error: `user not found with uid: ${uid}`,
+    error: `user not found with uid: ${profileUid}`,
     error_code: "user-not-found"
   });
 }
+
+const dbUserOrganizationIds = _db.query(`
+    SELECT organization_profile.organization_id
+    FROM organization_profile
+    INNER JOIN profile
+        ON organization_profile.profile_id = profile.id
+    WHERE profile.uid = ${_db.param("uid")}`,
+  profileUid);
+
+const userOrganizationIds = [];
+
+for (const dbUserOrganization of dbUserOrganizationIds) {
+  userOrganizationIds.push(dbUserOrganization.getInt("organization_id"));
+}
+
+cluar.permission.requireUserAuthorizedInAnyOrganization(userOrganizationIds);
+
+const userEmailExists = _user.firstByMail(email);
+const usernameExists = _user.firstByUser(username);
 
 const profileEmailExists = _db.queryFirst(`
     SELECT 

@@ -68,6 +68,28 @@ const isUserAuthorizedInOrganization = (organizationId) => {
 };
 
 /*
+ * An entity associated with several organizations (a page, a profile) is
+ * reachable by whoever administers at least one of them: the entity is shared,
+ * so the organizations that do not know about it have no claim over it.
+ *
+ * Requiring every organization would lock the entity away from any
+ * administrator that shares only part of it, with no one able to fix it.
+ *
+ * An empty list means there is no organization to be authorized against, so the
+ * answer is "not authorized", unlike a page with no organizations, which is
+ * left to the organization it is about to be associated with.
+ */
+const isUserAuthorizedInAnyOrganization = (organizationIds) => {
+  for (const organizationId of organizationIds) {
+    if (isUserAuthorizedInOrganization(organizationId)) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+/*
  * A page belongs to every organization associated with it, and a user is
  * authorized when they administer at least one of them.
  *
@@ -155,6 +177,7 @@ const getAuthorizedPages = () => {
 
 export default {
   isUserAuthorizedInOrganization,
+  isUserAuthorizedInAnyOrganization,
   isUserAuthorizedInAnyOrganizationOfPage,
   getAuthorizedPages,
 
@@ -164,6 +187,16 @@ export default {
         status: 403,
         error_code: "user-unauthorized",
         error: "user not authorized in the organization",
+      });
+    }
+  },
+
+  requireUserAuthorizedInAnyOrganization: (organizationIds) => {
+    if (!isUserAuthorizedInAnyOrganization(organizationIds)) {
+      response.error({
+        status: 403,
+        error_code: "user-unauthorized",
+        error: "user not authorized in any of these organizations",
       });
     }
   },
