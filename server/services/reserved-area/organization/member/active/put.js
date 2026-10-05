@@ -6,9 +6,15 @@ const {
   active
 } = JSON.parse(_req.toJSON());
 
-const dbMember = _db.queryFirst("SELECT id FROM organization_profile WHERE uid = ?::uuid", uid);
+const dbMembership = _db.queryFirst(`
+    SELECT organization_profile.id membership_id, organization.id organization_id
+    FROM organization_profile
+    INNER JOIN organization
+    ON organization.id = organization_profile.organization_id
+    WHERE organization_profile.uid = ${_db.param("uid")}`
+  , uid);
 
-if (!dbMember) {
+if (!dbMembership) {
   cluar.response.error({
     status: 404,
     error: `member not found with uid: ${uid}`,
@@ -16,9 +22,12 @@ if (!dbMember) {
   });
 }
 
+const userOrganizationId = dbMembership.getInt("organization_id");
+cluar.permission.requireUserAuthorizedInOrganization(userOrganizationId);
+
 _db.update(
   "organization_profile",
-  dbMember.getInt("id"),
+  dbMembership.getInt("membership_id"),
   _val.map()
     .set("active", active)
 );
