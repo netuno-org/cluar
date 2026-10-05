@@ -10,7 +10,6 @@ if (!dbOrganization) {
 }
 
 const organizationId = dbOrganization.getInt("id");
-
 cluar.permission.requireUserAuthorizedInOrganization(organizationId);
 
 const dbOrganizationAndChildren = _db.query(`

@@ -8,7 +8,6 @@ const {
   active
 } = JSON.parse(_req.toJSON());
 
-
 const dbProfile = _db.queryFirst("SELECT id, uid, name FROM profile WHERE uid = ?::uuid", profile_uid);
 
 if (!dbProfile) {

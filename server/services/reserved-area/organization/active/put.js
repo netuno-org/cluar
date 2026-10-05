@@ -16,6 +16,9 @@ if (!dbOrganization) {
   });
 }
 
+const organizationId = dbOrganization.getInt("id");
+cluar.permission.requireUserAuthorizedInOrganization(organizationId);
+
 _db.update(
   "organization",
   dbOrganization.getInt("id"),

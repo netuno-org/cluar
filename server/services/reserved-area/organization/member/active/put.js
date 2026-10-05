@@ -22,6 +22,14 @@ if (!dbMembership) {
   });
 }
 
+if (!dbMembership) {
+  cluar.response.error({
+    status: 404,
+    error: "membership not found",
+    error_code: "membership-not-found"
+  });
+}
+
 const userOrganizationId = dbMembership.getInt("organization_id");
 cluar.permission.requireUserAuthorizedInOrganization(userOrganizationId);
 

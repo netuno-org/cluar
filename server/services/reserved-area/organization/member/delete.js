@@ -17,7 +17,7 @@ if (!dbOrganization) {
 const organizationId = dbOrganization.getInt("id");
 
 const dbMembership = _db.queryFirst(`
-    SELECT id
+    SELECT id, organization_id
     FROM organization_profile
     WHERE 1 = 1
         AND profile_id = ?::int
@@ -25,8 +25,15 @@ const dbMembership = _db.queryFirst(`
   `, profileId, organizationId);
 
 if (!dbMembership) {
-  cluar.response.error({ status: 404, error: "membership not found", error_code: "membership-not-found" });
+  cluar.response.error({
+    status: 404,
+    error: "membership not found",
+    error_code: "membership-not-found"
+  });
 }
+
+const userOrganizationId = dbMembership.getInt("organization_id");
+cluar.permission.requireUserAuthorizedInOrganization(userOrganizationId);
 
 const membershipCount = _db.form("organization_profile")
   .where(_db.where("profile_id").equals(profileId))
