@@ -4,7 +4,7 @@ import cluar from "#core/cluar/main.js";
 const pagination = _req.get("pagination");
 const pageSize = 10;
 const page = { start: 0, size: pageSize };
-const pageUID = _req.getString("page_uid");
+const pageUid = _req.getString("page_uid");
 
 if (pagination) {
   page.size = pagination.getInt("size", pageSize);
@@ -15,16 +15,15 @@ if (pagination) {
   page.start = (pagination.getInt("page", 1) - 1) * page.size;
 }
 
-const dbPage = _db.queryFirst(`
-  SELECT
-    *
-  FROM
-    page
-  WHERE uid = '${pageUID}'
-`);
+const dbPage = _db.get("page", pageUid);
+if (!dbPage) {
+  cluar.response.error({ status: 404, error: "page not found", error_code: "page-not-found" });
+}
+const pageId = dbPage.getInt("id");
 
-if (dbPage) {
-  const dbPageVersions = _db.query(`
+cluar.permission.requireUserAuthorizedToEditInAnyOrganizationOfPage(dbPage.getInt("id"));
+
+const dbPageVersions = _db.query(`
     SELECT
       pv.created_at,
       pv.uid,
@@ -39,7 +38,7 @@ if (dbPage) {
     LIMIT ${page.size} OFFSET ${page.start}
   `);
 
-  const dbPageVersionsTotal = _db.queryFirst(`
+const dbPageVersionsTotal = _db.queryFirst(`
     SELECT
       count(1) AS total
     FROM
@@ -47,11 +46,10 @@ if (dbPage) {
     WHERE pv.page_id = ${dbPage.getInt("id")}
   `);
 
-  cluar.response.successWithData({
-    status: 200,
-    data: _val
-      .map()
-      .set("versions", dbPageVersions)
-      .set("total_versions", dbPageVersionsTotal.getInt("total"))
-  });
-}
+cluar.response.successWithData({
+  status: 200,
+  data: _val
+    .map()
+    .set("versions", dbPageVersions)
+    .set("total_versions", dbPageVersionsTotal.getInt("total"))
+});

@@ -30,7 +30,7 @@ const asyncServiceAsAlice = async (config) => asyncServiceAs(config, "alice");
 const asyncServiceAsBob = async (config) => asyncServiceAs(config, "bob");
 const asyncServiceAsCharlie = async (config) => asyncServiceAs(config, "charlie");
 
-export { asyncServiceAsAlice, asyncServiceAsBob, asyncServiceAsCharlie };
+export { asyncServiceAs, asyncServiceAsAlice, asyncServiceAsBob, asyncServiceAsCharlie };
 
 export default async (config) => {
   await request(_auth.login, global.api.auth.login);

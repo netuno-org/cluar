@@ -1,8 +1,16 @@
 import { _db, _val, _req, _storage } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
-const page = _req.getString("page");
+const pageUid = _req.getString("page");
 const structures = _req.get("structures");
+
+const dbPage = _db.get("page", pageUid);
+if (!dbPage) {
+  cluar.response.error({ status: 404, error: "page not found", error_code: "page-not-found" });
+}
+const pageId = dbPage.getInt("id");
+
+cluar.permission.requireUserAuthorizedToEditInAnyOrganizationOfPage(dbPage.getInt("id"));
 
 const lastPageVersion = _db.queryFirst(`
   SELECT
@@ -12,7 +20,7 @@ const lastPageVersion = _db.queryFirst(`
   FROM
     page_version pv
   INNER JOIN page p ON p.id = pv.page_id
-  WHERE p.uid = '${page}'
+  WHERE p.uid = '${pageUid}'
   ORDER BY pv.version DESC
 `);
 

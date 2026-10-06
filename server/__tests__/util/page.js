@@ -1,7 +1,7 @@
-import asyncService, { asyncServiceAsAlice } from "../asyncService.js";
+import asyncService, { asyncServiceAs } from "../asyncService.js";
 
-const createPageAsAlice = async (name, parent) => {
-  const response = await asyncServiceAsAlice({
+const createPageAs = async (username, name, parent) => {
+  const response = await asyncServiceAs({
     url: "/reserved-area/page",
     method: "POST",
     data: {
@@ -13,9 +13,11 @@ const createPageAsAlice = async (name, parent) => {
       template: "Default",
       title: name,
     }
-  });
+  }, username);
   return response.json.data.uid;
-}
+};
+
+const createPageAsAlice = async (name, parent) => createPageAs("alice", name, parent);
 
 const deletePage = async (uid) => {
   if (!uid) {
@@ -34,4 +36,4 @@ const deletePage = async (uid) => {
   }
 }
 
-export { createPageAsAlice, deletePage };
+export { createPageAs, createPageAsAlice, deletePage };

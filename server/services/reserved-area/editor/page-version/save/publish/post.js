@@ -1,8 +1,16 @@
 import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
-const page = _req.getString("page");
+const pageUid = _req.getString("page");
 const pageVersion = _req.getString("page_version");
+
+const dbPage = _db.get("page", pageUid);
+if (!dbPage) {
+  cluar.response.error({ status: 404, error: "page not found", error_code: "page-not-found" });
+}
+const pageId = dbPage.getInt("id");
+
+cluar.permission.requireUserAuthorizedToEditInAnyOrganizationOfPage(dbPage.getInt("id"));
 
 const publishStatus = _db.queryFirst(`
   SELECT *

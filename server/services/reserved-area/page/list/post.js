@@ -4,11 +4,13 @@ import cluar from "#core/cluar/main.js";
 /*
  * `cluar.pages()` is shared with the public website and is cached in the
  * application config, so it cannot be filtered in place. Only the pages the
- * logged user effectively administers are returned here.
+ * logged user may edit are returned here, so administrators and editors both
+ * see the content of the organizations they belong to (and of their
+ * descendants).
  */
 const authorizedPageUids = new Set();
 
-for (const dbAuthorizedPage of cluar.permission.getAuthorizedPages()) {
+for (const dbAuthorizedPage of cluar.permission.getEditablePages()) {
   authorizedPageUids.add(dbAuthorizedPage.getString("uid"));
 }
 
