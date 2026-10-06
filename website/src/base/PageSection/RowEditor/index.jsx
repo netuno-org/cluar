@@ -15,6 +15,17 @@ import ImageSectionEditor from "../ImageSectionEditor";
 import _service from "@netuno/service-client";
 import Cluar from "../../../common/Cluar";
 
+const COLUMN_BREAKPOINTS = [
+  "span",
+  "xs",
+  "sm",
+  "md",
+  "lg",
+  "xl",
+  "xxl",
+  "xxxl",
+];
+
 const RowEditor = ({ sectionData, form }) => {
   const [itemsOrder, setItemsOrder] = useState([]);
   const [itemsByUid, setItemsByUid] = useState({});
@@ -76,26 +87,49 @@ const RowEditor = ({ sectionData, form }) => {
     });
   };
 
-  const handleAddItem = () => {
-    const uid = new Date().getTime().toString();
+  const createItem = (width) => ({
+    uid: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    section: "col",
+    title: "",
+    content: "",
+    html_content: "",
+    edit_mode: "visual",
+    link: "",
+    ...(width
+      ? Object.fromEntries(
+          COLUMN_BREAKPOINTS.map((breakpoint) => [breakpoint, width]),
+        )
+      : {}),
+  });
 
-    const newItem = {
-      uid,
-      section: "col",
-      title: "",
-      content: "",
-      html_content: "",
-      edit_mode: "visual",
-      link: "",
-    };
+  const handleAddItem = () => {
+    const newItem = createItem();
 
     const newItemsByUid = {
       ...itemsByUid,
-      [uid]: newItem,
+      [newItem.uid]: newItem,
     };
 
     setItemsByUid(newItemsByUid);
-    setItemsOrder([...itemsOrder, uid]);
+    setItemsOrder([...itemsOrder, newItem.uid]);
+
+    form.setFieldsValue({
+      itemsByUid: newItemsByUid,
+    });
+  };
+
+  const handleAddPreset = (columnCount) => {
+    const width = 24 / columnCount;
+    const newItems = Array.from({ length: columnCount }, () =>
+      createItem(width),
+    );
+    const newItemsByUid = {
+      ...itemsByUid,
+      ...Object.fromEntries(newItems.map((item) => [item.uid, item])),
+    };
+
+    setItemsByUid(newItemsByUid);
+    setItemsOrder([...itemsOrder, ...newItems.map((item) => item.uid)]);
 
     form.setFieldsValue({
       itemsByUid: newItemsByUid,
@@ -198,6 +232,40 @@ const RowEditor = ({ sectionData, form }) => {
       </Form.Item>
 
       <Row gutter={[12, 12]}>
+        <Col span={24}>
+          <Row gutter={[16, 16]}>
+            {[2, 3, 4].map((columnCount) => (
+              <Col xs={24} md={8} key={columnCount}>
+                <Button
+                  block
+                  style={{ height: "auto", padding: 12 }}
+                  onClick={() => handleAddPreset(columnCount)}
+                >
+                  <div style={{ width: "100%" }}>
+                    <Row gutter={8} style={{ height: 40 }}>
+                      {Array.from({ length: columnCount }, (_, index) => (
+                        <Col key={index} span={24 / columnCount}>
+                          <div
+                            style={{
+                              height: "100%",
+                              border: "1px solid #d9d9d9",
+                              borderRadius: 4,
+                              background: "#f0f0f0",
+                            }}
+                          />
+                        </Col>
+                      ))}
+                    </Row>
+                    <div style={{ marginTop: 8 }}>
+                      {columnCount} colunas
+                    </div>
+                  </div>
+                </Button>
+              </Col>
+            ))}
+          </Row>
+        </Col>
+        
         <SortableColumn
           items={items}
           setItemsOrder={(newOrder) => setItemsOrder(newOrder)}
@@ -205,6 +273,7 @@ const RowEditor = ({ sectionData, form }) => {
           onRemoveItem={handleRemoveItem}
           form={form}
         />
+
         <Col span={24}>
           <Button onClick={handleAddItem}>
             {Cluar.plainTranslation("row-editor-button-new-item")}
