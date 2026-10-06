@@ -368,6 +368,7 @@ export default {
             AND page_status.code = 'published'
         ORDER BY language.code, page.sorter, page.link
     `);
+
     const pages = _val.map();
     for (const dbPage of dbPages) {
       if (!pages.has(dbPage.getString("language"))) {
@@ -385,6 +386,20 @@ export default {
         parentLink = dbParentPage.getString("link");
         parentUid = dbParentPage.getString("uid");
       }
+
+      const dbPageOrganizations = _db.query(`
+          SELECT o.uid
+          FROM page_organization po
+          INNER JOIN organization o
+          ON po.organization_id = o.id
+          WHERE page_id = ${_db.param("id")}`
+        , dbPage.getInt("id")
+      );
+
+      const organizations = dbPageOrganizations.map(
+        dbPageOrganization => dbPageOrganization.getString("uid")
+      );
+
       pages
         .getValues(dbPage.getString("language"))
         .add(
@@ -405,6 +420,7 @@ export default {
             .set("social_image", dbPage.getString("social_image"))
             .set("page_version_uid", dbPage.getString("page_version_uid"))
             .set("template", dbPage.getString("template"))
+            .set("organizations", organizations)
         );
 
       if (publishFn) {
