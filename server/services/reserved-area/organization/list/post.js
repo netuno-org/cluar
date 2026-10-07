@@ -93,7 +93,7 @@ const dbOrganizations = _db.query(`
             organization_profile op ON org.id = op.organization_id
         WHERE 1 = 1 
             AND op.profile_id = ${dbProfile.getInt("id")}
-            AND op.user_group_id = (${queryGroups})
+            AND op.user_group_id IN (${queryGroups})
             AND op.active = true
         UNION
         SELECT 
