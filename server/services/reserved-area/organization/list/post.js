@@ -78,7 +78,7 @@ const dbProfile = _db.queryFirst(`
     SELECT id FROM profile WHERE profile_user_id = ? 
 `, _user.id());
 
-const dbOrganizations = _db.query(`
+const userOrgsCTE = `
     WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (
         SELECT 
             org.name, 
@@ -107,6 +107,10 @@ const dbOrganizations = _db.query(`
             organization org
         INNER JOIN user_orgs uo ON org.parent_id = uo.id
     )
+`;
+
+const dbOrganizations = _db.query(`
+  ${userOrgsCTE}
     SELECT 
         user_orgs.name AS org_name,
         user_orgs.code AS org_code,
@@ -145,34 +149,7 @@ for (const dbOrganization of dbOrganizations) {
 }
 
 const dbOrganizationTotal = _db.queryFirst(`
-    WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (
-        SELECT 
-            org.name, 
-            org.id, 
-            org.parent_id,
-            org.code,
-            org.uid,
-            org.active
-        FROM 
-            organization org
-        INNER JOIN 
-            organization_profile op ON org.id = op.organization_id
-        WHERE 1 = 1 
-            AND op.profile_id = ${dbProfile.getInt("id")}
-            AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
-            AND op.active = true
-        UNION
-        SELECT 
-            org.name, 
-            org.id, 
-            org.parent_id,
-            org.code,
-            org.uid,
-            org.active
-        FROM 
-            organization org
-        INNER JOIN user_orgs uo ON org.parent_id = uo.id
-    )
+  ${userOrgsCTE}
     SELECT 
         COUNT(1) AS "total"
     FROM 
