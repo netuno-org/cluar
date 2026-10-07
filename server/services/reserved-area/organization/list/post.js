@@ -57,7 +57,6 @@ if (filters) {
   const groupCodes = filters.has("groupCodes") && filters.get("groupCodes");
 
   if (groupCodes) {
-    console.log(groupCodes);
     const groups = [];
     for (const groupCode of groupCodes) {
       groups.push(groupCode);
