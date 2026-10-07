@@ -2,10 +2,12 @@ import { _db, _val, _req, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const filters = _req.getValues("filters");
-let queryWhere = "";
 const queryParams = _val.list();
 const pagination = _req.getValues("pagination");
 const page = _db.pagination(1, 10);
+
+let queryWhere = "";
+let queryGroups = "";
 
 if (pagination) {
   page.page(pagination.getInt("page"));
@@ -51,6 +53,25 @@ if (filters) {
         `;
     queryParams.add(`%${parentName}%`);
   }
+
+  const groupCodes = filters.has("groupCodes") && filters.get("groupCodes");
+
+  if (groupCodes) {
+    console.log(groupCodes);
+    const groups = [];
+    for (const groupCode of groupCodes) {
+      groups.push(groupCode);
+    }
+
+    queryGroups = ` 
+        SELECT id FROM user_group
+        WHERE code IN (${groups.map(group => `'${group}'`).join(", ")})
+    `;
+  } else {
+    queryGroups = "SELECT id FROM user_group WHERE code = 'administrator'";
+  }
+} else {
+  queryGroups = "SELECT id FROM user_group WHERE code = 'administrator'";
 }
 
 const dbProfile = _db.queryFirst(`
@@ -72,7 +93,7 @@ const dbOrganizations = _db.query(`
             organization_profile op ON org.id = op.organization_id
         WHERE 1 = 1 
             AND op.profile_id = ${dbProfile.getInt("id")}
-            AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
+            AND op.user_group_id = (${queryGroups})
             AND op.active = true
         UNION
         SELECT 
