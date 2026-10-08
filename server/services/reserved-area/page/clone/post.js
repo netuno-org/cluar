@@ -1,4 +1,4 @@
-import { _db, _val, _req } from "@netuno/server-types";
+import { _db, _val, _req, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const sourcePageVersionUid = _req.getString("page_version_uid");
@@ -133,6 +133,13 @@ const newPage = _db.form("page")
   .set("template", dbSourcePage.getString("template"))
   .insert();
 
+const profileId = _db.queryFirst(`
+    SELECT profile.id
+    FROM profile
+    WHERE profile.profile_user_id = ${_db.param("int")}
+  `,
+  _user.id()).getInt("id");
+
 const newPageVersion = _db.insert(
   "page_version",
   _val
@@ -142,6 +149,7 @@ const newPageVersion = _db.insert(
     .set("version", 2)
     .set("status_id", draftStatus.getInt("id"))
     .set("created_at", _db.timestamp())
+    .set("profile_id", profileId)
 );
 
 const dbContent = _db.form("page_content")
