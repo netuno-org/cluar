@@ -28,3 +28,9 @@ storage/database/
 jsconfig.json
 
 server/auth-token.json
+
+CachedProfilesData/
+User/
+coder.json
+extensions/
+machineid
