@@ -86,6 +86,7 @@ const PageVersion = ({ pageData, open, onClose }) => {
                   version.created_at,
                   "YYYY-MM-DD HH:mm:ss"
                 ).format("DD/MM/YYYY [às] HH:mm")}`}{" "}
+                {version.profile}{" "}
                 {version.uid === searchParams.get("version") ||
                   (!searchParams.has("version") &&
                     version.code === "published") ? (

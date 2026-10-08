@@ -25,24 +25,23 @@ cluar.permission.requireUserAuthorizedToEditInAnyOrganizationOfPage(dbPage.getIn
 
 const dbPageVersions = _db.query(`
     SELECT
-      pv.created_at,
-      pv.uid,
-      pv.version,
-      ps.code
-    FROM
-      page_version pv
+        pv.created_at,
+        pv.uid,
+        pv.version,
+        ps.code,
+        p.name as profile
+    FROM page_version pv
     INNER JOIN page_status ps ON ps.id = pv.status_id
+    INNER JOIN profile p ON p.id = pv.profile_id
     WHERE 1 = 1
-      AND pv.page_id = ${dbPage.getInt("id")}
+        AND pv.page_id = ${dbPage.getInt("id")}
     ORDER BY pv.id DESC
     LIMIT ${page.size} OFFSET ${page.start}
   `);
 
 const dbPageVersionsTotal = _db.queryFirst(`
-    SELECT
-      count(1) AS total
-    FROM
-      page_version pv
+    SELECT count(1) AS total
+    FROM page_version pv
     WHERE pv.page_id = ${dbPage.getInt("id")}
   `);
 

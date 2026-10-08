@@ -18,6 +18,7 @@ if (_val.global().getBoolean("cluar:setup")) {
       .set("version", 1)
       .set("status_id", "e24a0cdf-c860-48f2-b597-689f165fd110")
       .set("created_at", _db.timestamp())
+      .set("profile_id", "c8d507dc-e6b9-4850-92ef-14f710745573")
   );
 
   _db.insertIfNotExists(
@@ -28,5 +29,6 @@ if (_val.global().getBoolean("cluar:setup")) {
       .set("version", 1)
       .set("status_id", "e24a0cdf-c860-48f2-b597-689f165fd110")
       .set("created_at", _db.timestamp())
+      .set("profile_id", "c8d507dc-e6b9-4850-92ef-14f710745573")
   );
 }

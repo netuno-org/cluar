@@ -306,6 +306,7 @@ Table page_version {
   id int [pk, increment]
   created_at timestamp [note: 'Data de Criação']
   page_id int [ref: > page.id, note: 'Página']
+  profile_id int [not null, ref: > profile.id, note: 'Perfil']
   status_id int [ref: > page_status.id, note: 'Estado']
   version int [note: 'Versão']
   Note: 'Versão'
