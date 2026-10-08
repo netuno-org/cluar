@@ -10,7 +10,7 @@ if (!dbPage) {
 }
 const pageId = dbPage.getInt("id");
 
-cluar.permission.requireUserAuthorizedToEditInAnyOrganizationOfPage(dbPage.getInt("id"));
+cluar.permission.requireUserAuthorizedToEditPage(dbPage.getInt("id"));
 
 const lastPageVersion = _db.queryFirst(`
   SELECT

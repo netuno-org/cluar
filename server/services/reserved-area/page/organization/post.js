@@ -26,7 +26,7 @@ if (!dbOrganization) {
   });
 }
 
-cluar.permission.requireUserAuthorizedInAnyOrganizationOfPage(dbPage.getInt("id"));
+cluar.permission.requireUserAuthorizedToManagePage(dbPage.getInt("id"));
 cluar.permission.requireUserAuthorizedInOrganization(dbOrganization.getInt("id"));
 
 const dbPageOrganizationExists = cluar.page.getOrganizationLink(

@@ -13,7 +13,7 @@ if (!dbPage) {
   });
 }
 
-cluar.permission.requireUserAuthorizedInAnyOrganizationOfPage(dbPage.getInt("id"));
+cluar.permission.requireUserAuthorizedToManagePage(dbPage.getInt("id"));
 
 const organizations = _val.list();
 

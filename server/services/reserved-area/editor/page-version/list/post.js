@@ -21,7 +21,7 @@ if (!dbPage) {
 }
 const pageId = dbPage.getInt("id");
 
-cluar.permission.requireUserAuthorizedToEditInAnyOrganizationOfPage(dbPage.getInt("id"));
+cluar.permission.requireUserAuthorizedToEditPage(dbPage.getInt("id"));
 
 const dbPageVersions = _db.query(`
     SELECT

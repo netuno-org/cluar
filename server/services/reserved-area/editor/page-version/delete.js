@@ -14,7 +14,7 @@ if (!dbPageVersion) {
 }
 
 const pageId = dbPageVersion.getInt("page_id");
-cluar.permission.requireUserAuthorizedToEditInAnyOrganizationOfPage(pageId);
+cluar.permission.requireUserAuthorizedToEditPage(pageId);
 
 cluar.db.cascadeDeletePageVersion(dbPageVersion.getInt("id"));
 cluar.response.successWithoutData({ status: 200 });

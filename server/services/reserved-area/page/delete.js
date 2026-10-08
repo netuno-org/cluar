@@ -15,7 +15,7 @@ if (!dbPage) {
 
 const pageId = dbPage.getInt("id");
 
-cluar.permission.requireUserAuthorizedInAnyOrganizationOfPage(dbPage.getInt("id"));
+cluar.permission.requireUserAuthorizedToManagePage(dbPage.getInt("id"));
 
 const dbPageVersions = _db.query(`
       SELECT * FROM page_version

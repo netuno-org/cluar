@@ -301,7 +301,7 @@ export default {
     }
   },
 
-  requireUserAuthorizedInAnyOrganizationOfPage: (pageId) => {
+  requireUserAuthorizedToManagePage: (pageId) => {
     if (!isUserAuthorizedInAnyOrganizationOfPage(pageId)) {
       response.error({
         status: 403,
@@ -321,7 +321,7 @@ export default {
     }
   },
 
-  requireUserAuthorizedToEditInAnyOrganizationOfPage: (pageId) => {
+  requireUserAuthorizedToEditPage: (pageId) => {
     if (!isUserAuthorizedToEditInAnyOrganizationOfPage(pageId)) {
       response.error({
         status: 403,
