@@ -1,4 +1,4 @@
-import { _db, _val, _req, _storage } from "@netuno/server-types";
+import { _db, _val, _req, _storage, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const pageUid = _req.getString("page");
