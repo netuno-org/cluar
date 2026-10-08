@@ -14,11 +14,10 @@ cluar.permission.requireUserAuthorizedToEditInAnyOrganizationOfPage(dbPage.getIn
 
 const lastPageVersion = _db.queryFirst(`
   SELECT
-    p.id,
-    p.language_id,
-    pv.version
-  FROM
-    page_version pv
+      p.id,
+      p.language_id,
+      pv.version
+  FROM page_version pv
   INNER JOIN page p ON p.id = pv.page_id
   WHERE p.uid = '${pageUid}'
   ORDER BY pv.version DESC
@@ -44,10 +43,8 @@ const imagesToPublish = {
 };
 
 const draftStatus = _db.queryFirst(`
-    SELECT
-      *
-    FROM
-      page_status
+    SELECT *
+    FROM page_status
     WHERE code = 'draft'
   `);
 
@@ -574,8 +571,7 @@ for (const key in imagesToPublish) {
 
   const dbStructures = _db.query(
     `
-        SELECT
-          *
+        SELECT *
         FROM page_${key}
         WHERE id IN (${structuresIdsToPublishImages.map(() => "?").join(",")})
       `,
