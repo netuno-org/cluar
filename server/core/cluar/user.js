@@ -60,7 +60,7 @@ export default {
                 0
             FROM organization
             WHERE 1 = 1
-                AND organization.id = ?:: int
+                AND organization.id = ${_db.param("int")} 
             UNION ALL
             SELECT
                 parent.id,
@@ -86,7 +86,7 @@ export default {
             ON organization_profile.user_group_id = user_group.id
         WHERE 1 = 1
             AND ancestors.depth > 0
-            AND profile.profile_user_id = ?
+            AND profile.profile_user_id = ${_db.param("int")}
             AND organization_profile.active = true
             AND user_group.code = 'administrator'
         ORDER BY ancestors.depth ASC
@@ -94,9 +94,7 @@ export default {
       `, organizationId, _user.id());
   },
 
-  getActiveAdminOrganizationsWithDescendants: () => {
-    const dbProfile = _db.queryFirst("SELECT id FROM profile WHERE profile_user_id = ?", _user.id());
-
+  getOrganizationsWithDescendants: ({ active = true, admin = true }) => {
     const dbOrganizations = _db.query(`
         WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS(
             SELECT
@@ -107,11 +105,14 @@ export default {
                 org.uid,
                 org.active
             FROM organization org
-            INNER JOIN organization_profile op ON org.id = op.organization_id
+            INNER JOIN organization_profile op
+                ON org.id = op.organization_id
+            INNER JOIN profile p
+                ON op.profile_id = p.id
             WHERE 1 = 1
-                AND op.profile_id = ${dbProfile.getInt("id")}
-                AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')
-                AND op.active = true
+                ${admin ? "AND op.user_group_id = (SELECT id FROM user_group WHERE code = 'administrator')" : ""}
+                AND p.profile_user_id = ${_db.param("int")}
+                ${active ? "AND op.active = true" : ""} 
 
             UNION
 
@@ -131,8 +132,9 @@ export default {
             user_orgs.uid,
             user_orgs.id
         FROM user_orgs
-        WHERE 1 = 1
-      `);
+      `,
+      _user.id()
+    );
 
     return dbOrganizations;
   },

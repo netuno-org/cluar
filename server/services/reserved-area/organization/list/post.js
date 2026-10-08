@@ -86,10 +86,8 @@ const userOrgsCTE = `
             org.code,
             org.uid,
             org.active
-        FROM 
-            organization org
-        INNER JOIN 
-            organization_profile op ON org.id = op.organization_id
+        FROM organization org
+        INNER JOIN organization_profile op ON org.id = op.organization_id
         WHERE 1 = 1 
             AND op.profile_id = ${dbProfile.getInt("id")}
             AND op.user_group_id IN (${queryGroups})
