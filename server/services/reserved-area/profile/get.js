@@ -33,9 +33,9 @@ const data = _val.map()
   .set("avatar", dbProfile.getString("avatar") != "")
   .set("groups", groups)
 
-const orgs = cluar.user.getOrganizationsWithDescendants({ active: true, admin: false });
+const organizations = cluar.user.getOrganizationsWithDescendants({ active: true, admin: false });
 
-data.set("orgs", orgs);
+data.set("organizations", organizations);
 
 cluar.response.successWithData({
   status: 200,
