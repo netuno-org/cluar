@@ -13,59 +13,55 @@ const pageId = dbPage.getInt("id");
 cluar.permission.requireUserAuthorizedToEditPage(dbPage.getInt("id"));
 
 const publishStatus = _db.queryFirst(`
-  SELECT *
-  FROM page_status
-  WHERE code = 'published'
+    SELECT *
+    FROM page_status
+    WHERE code = 'published'
 `);
+
 const draftStatus = _db.queryFirst(`
-  SELECT *
-  FROM page_status
-  WHERE code = 'draft'
+    SELECT *
+    FROM page_status
+    WHERE code = 'draft'
 `);
 
 const dbPageVersion = _db.get("page_version", pageVersion);
-if (dbPageVersion) {
-  const pageId = dbPageVersion.getInt("page_id");
-  const dbCurrentPageVersion = _db.queryFirst(`
-    SELECT *
-    FROM page_version
-    WHERE page_id = ?
-      AND status_id = ?
-  `, pageId, publishStatus.getInt("id"));
-
-  if (dbCurrentPageVersion) {
-    // Colocar versão atual em rascunho
-    _db.update(
-      "page_version",
-      dbCurrentPageVersion.getInt("id"),
-      _val.map()
-        .set("status_id", draftStatus.getInt("id"))
-    );
-
-    // Colocar a nova versão publicada
-    _db.update(
-      "page_version",
-      dbPageVersion.getInt("id"),
-      _val.map()
-        .set("status_id", publishStatus.getInt("id"))
-    );
-
-    cluar.response.successWithoutData({ status: 200 });
-  } else {
-    cluar.response.error({
-      status: 409,
-      error: "page has no publish version",
-      error_code: "page-has-no-publish-version"
-    });
-  }
-} else {
+if (!dbPageVersion) {
   cluar.response.error({
     status: 409,
     error: "page has invalid version",
     error_code: "page-has-invalid-version"
   });
 }
+const pageId = dbPageVersion.getInt("page_id");
+const dbCurrentPageVersion = _db.queryFirst(`
+    SELECT *
+    FROM page_version
+    WHERE page_id = ?
+        AND status_id = ?
+  `, pageId, publishStatus.getInt("id"));
 
+if (!dbCurrentPageVersion) {
+  cluar.response.error({
+    status: 409,
+    error: "page has no publish version",
+    error_code: "page-has-no-publish-version"
+  });
+}
 
+// Coloca versão atual em rascunho
+_db.update(
+  "page_version",
+  dbCurrentPageVersion.getInt("id"),
+  _val.map()
+    .set("status_id", draftStatus.getInt("id"))
+);
 
+// Coloca a nova versão publicada
+_db.update(
+  "page_version",
+  dbPageVersion.getInt("id"),
+  _val.map()
+    .set("status_id", publishStatus.getInt("id"))
+);
 
+cluar.response.successWithoutData({ status: 200 });

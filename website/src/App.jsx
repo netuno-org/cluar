@@ -99,21 +99,21 @@ function App() {
     }
   }
 
-  const routes = [];
+  const pageRoutes = [];
   for (const language of Cluar.languages()) {
     if (!Cluar.pages()[language.code]) {
       continue;
     }
-    const subroutes = [];
-    for (const page of Cluar.pages()[language.code]) {
-      if (page.navigable == false || page.link.indexOf("//") >= 0) {
+    const pageSubroutes = [];
+    for (const pageJSON of Cluar.pages()[language.code]) {
+      if (pageJSON.navigable == false || pageJSON.link.indexOf("//") >= 0) {
         continue;
       }
 
-      let comPage = <Template page={page} />;
-      const pageLink = page.link.startsWith("/") ? page.link : `/${page.link}`;
+      let comPage = <Template page={pageJSON} />;
+      const pageLink = pageJSON.link.startsWith("/") ? pageJSON.link : `/${pageJSON.link}`;
 
-      subroutes.push(
+      pageSubroutes.push(
         <Route
           key={`/${language.locale}${pageLink}`}
           path={`/${language.locale}${pageLink}`}
@@ -122,9 +122,9 @@ function App() {
         />
       );
     }
-    routes.push(
+    pageRoutes.push(
       <Route key={`/${language.locale}/`} path={`/${language.locale}/`}>
-        {subroutes}
+        {pageSubroutes}
       </Route>
     );
   }
@@ -183,7 +183,7 @@ function App() {
                 <Route path="translation" element={<Translation />} />
                 <Route path="organization" element={<Organization />} />
               </Route>
-              {routes}
+              {pageRoutes}
               <Route path='*' element={<NotFound />} />
             </Routes>
           </Content>

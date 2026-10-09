@@ -13,14 +13,14 @@ const pageId = dbPage.getInt("id");
 cluar.permission.requireUserAuthorizedToEditPage(dbPage.getInt("id"));
 
 const lastPageVersion = _db.queryFirst(`
-  SELECT
-      p.id,
-      p.language_id,
-      pv.version
-  FROM page_version pv
-  INNER JOIN page p ON p.id = pv.page_id
-  WHERE p.uid = '${pageUid}'
-  ORDER BY pv.version DESC
+    SELECT
+        p.id,
+        p.language_id,
+        pv.version
+    FROM page_version pv
+    INNER JOIN page p ON p.id = pv.page_id
+    WHERE p.uid = '${pageUid}'
+    ORDER BY pv.version DESC
 `);
 
 const languageId = lastPageVersion.getInt("language_id");
@@ -569,12 +569,11 @@ for (const key in imagesToPublish) {
     continue;
   }
 
-  const dbStructures = _db.query(
-    `
-        SELECT *
-        FROM page_${key}
-        WHERE id IN (${structuresIdsToPublishImages.map(() => "?").join(",")})
-      `,
+  const dbStructures = _db.query(`
+      SELECT *
+      FROM page_${key}
+      WHERE id IN (${structuresIdsToPublishImages.map(() => "?").join(",")})
+    `,
     structuresIdsToPublishImages,
   );
 

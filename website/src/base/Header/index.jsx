@@ -28,21 +28,23 @@ function BaseHeader({ canEdit }) {
     window.scrollTo(0, 0);
   };
 
-  const menuLanguages = {
+  const languagesMenu = {
     label: Cluar.currentLanguage().code,
     key: "langs",
     icon: <GlobalOutlined />,
     children: [],
   };
-  const menu = [];
-  const subMenuKeys = [];
+  const pagesMenu = [];
+  const subpagesMenu = [];
   const routes = [];
+
   for (const language of Cluar.languages()) {
     if (!Cluar.pages()[language.code]) {
       continue;
     }
+
     if (language.code !== Cluar.currentLanguage().code) {
-      menuLanguages.children.push({
+      languagesMenu.children.push({
         key: language.code,
         label: (
           <div
@@ -60,20 +62,21 @@ function BaseHeader({ canEdit }) {
         ),
       });
     }
-    const buildChildren = (page) => {
-      const children = Cluar.pages()[language.code].filter(
+
+    const buildSubpagesMenu = (page) => {
+      const subPage = Cluar.pages()[language.code].filter(
         (p) => p.parent === page.link
       );
 
-      if (children.length === 0) {
+      if (subPage.length === 0) {
         return;
       }
 
-      return children.map((p) => {
+      return subPage.map((p) => {
         const key = p.link;
         const label = p.menu_title || p.title;
 
-        subMenuKeys.push(key);
+        subpagesMenu.push(key);
 
         if (p.menu) {
           return {
@@ -94,17 +97,18 @@ function BaseHeader({ canEdit }) {
             ) : (
               <a>{label}</a>
             ),
-            children: buildChildren(p),
+            children: buildSubpagesMenu(p),
           };
         }
       });
     };
-    const buildMenu = (page) => {
+
+    const buildPagesMenu = (page) => {
       if (page.menu && language.code === Cluar.currentLanguage().code) {
         const key = `${page.link}`;
         const label = page.menu_title || page.title;
 
-        subMenuKeys.push(key);
+        subpagesMenu.push(key);
 
         if (!page.parent && page.menu) {
           return {
@@ -125,7 +129,7 @@ function BaseHeader({ canEdit }) {
               <a>{label}</a>
             ),
             key,
-            children: buildChildren(page),
+            children: buildSubpagesMenu(page),
           };
         }
       }
@@ -139,7 +143,7 @@ function BaseHeader({ canEdit }) {
         page.parent === "" &&
         language.code === Cluar.currentLanguage().code
       ) {
-        menu.push(buildMenu(page, 0));
+        pagesMenu.push(buildPagesMenu(page, 0));
       }
     }
   }
@@ -169,14 +173,14 @@ function BaseHeader({ canEdit }) {
             mode="horizontal"
             defaultSelectedKeys={[activeMenu]}
             selectedKeys={[activeMenu]}
-            items={menu}
+            items={pagesMenu}
           />
         </div>
         <div
           className={classNames({
             menu: true,
-            "menu-burger": true,
-            "menu-burger-open": burgerMenu,
+            "burger-menu": true,
+            "burger-menu-open": burgerMenu,
           })}
         >
           <Menu
@@ -184,11 +188,11 @@ function BaseHeader({ canEdit }) {
             mode="inline"
             defaultSelectedKeys={[activeMenu]}
             selectedKeys={[activeMenu]}
-            openKeys={subMenuKeys}
-            items={menu}
+            openKeys={subpagesMenu}
+            items={pagesMenu}
           />
           {["true", "1"].includes(String(Cluar.configuration("theme-switch")).toLowerCase()) && (
-            <div className="menu-burger__theme-switch">
+            <div className="burger-menu__theme-switch">
               <ThemeSwitch />
             </div>
           )}
@@ -196,18 +200,18 @@ function BaseHeader({ canEdit }) {
         <div className='burger-language'>
           <Menu
             theme="light"
-            className="menu-languages"
+            className="languages-menu"
             mode={"horizontal"}
             defaultSelectedKeys={[activeMenu]}
             selectedKeys={[activeMenu]}
-            items={[menuLanguages]}
+            items={[languagesMenu]}
           />
           {["true", "1"].includes(String(Cluar.configuration("theme-switch")).toLowerCase()) && (
             <div className="burger-language__theme-switch">
               <ThemeSwitch />
             </div>
           )}
-          <div className="menu-burger-button">
+          <div className="burger-menu-button">
             <Burger
               isOpen={burgerMenu}
               onClick={() => {
