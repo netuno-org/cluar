@@ -188,7 +188,6 @@ function BaseHeader({ canEdit }) {
             mode="inline"
             defaultSelectedKeys={[activeMenu]}
             selectedKeys={[activeMenu]}
-            openKeys={subpagesMenu}
             items={pagesMenu}
           />
           {["true", "1"].includes(String(Cluar.configuration("theme-switch")).toLowerCase()) && (
