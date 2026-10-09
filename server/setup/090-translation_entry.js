@@ -7,7 +7,7 @@
 // CODE GENERATED AUTOMATICALLY
 // 
 
-import {_val, _db} from "@netuno/server-types";
+import { _val, _db } from "@netuno/server-types";
 
 _db.insertIfNotExists(
   "translation_entry",
@@ -4976,7 +4976,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "bf88d2cd-abe2-4b8f-99f1-836c5ac27888")
-    .set("code", "page-has-invalid-version")
+    .set("code", "invalid-page-version-uid")
     .set("description", "Erro - P\u00e1gina com vers\u00e3o inv\u00e1lida")
 );;
 
@@ -4992,7 +4992,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "55ededf2-d089-4781-89ad-61799a638c8c")
-    .set("code", "page-has-no-publish-version")
+    .set("code", "page-has-no-published-version")
     .set("description", "Erro - P\u00e1gina sem vers\u00e3o publicada")
 );;
 

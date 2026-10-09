@@ -2,7 +2,7 @@ import { _db, _val, _req } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const pageUid = _req.getString("page");
-const pageVersion = _req.getString("page_version");
+const pageVersionUid = _req.getString("page_version");
 
 const dbPage = _db.get("page", pageUid);
 if (!dbPage) {
@@ -12,39 +12,40 @@ const pageId = dbPage.getInt("id");
 
 cluar.permission.requireUserAuthorizedToEditPage(dbPage.getInt("id"));
 
-const publishStatus = _db.queryFirst(`
+const publishedStatusId = _db.queryFirst(`
     SELECT *
     FROM page_status
     WHERE code = 'published'
-`);
+`).getInt("id");
 
-const draftStatus = _db.queryFirst(`
+const draftStatusId = _db.queryFirst(`
     SELECT *
     FROM page_status
     WHERE code = 'draft'
-`);
+`).getInt("id");
 
-const dbPageVersion = _db.get("page_version", pageVersion);
+const dbPageVersion = _db.get("page_version", pageVersionUid);
 if (!dbPageVersion) {
   cluar.response.error({
     status: 409,
-    error: "page has invalid version",
-    error_code: "page-has-invalid-version"
+    error: "invalid page version uid",
+    error_code: "invalid-page-version-uid"
   });
 }
-const pageId = dbPageVersion.getInt("page_id");
+
 const dbCurrentPageVersion = _db.queryFirst(`
     SELECT *
     FROM page_version
-    WHERE page_id = ?
-        AND status_id = ?
-  `, pageId, publishStatus.getInt("id"));
+    WHERE 1 = 1
+        AND page_id = ${_db.param("int")}
+        AND status_id = ${_db.param("int")} 
+  `, pageId, publishedStatusId);
 
 if (!dbCurrentPageVersion) {
   cluar.response.error({
     status: 409,
-    error: "page has no publish version",
-    error_code: "page-has-no-publish-version"
+    error: "page has no published version",
+    error_code: "page-has-no-published-version"
   });
 }
 
@@ -53,7 +54,7 @@ _db.update(
   "page_version",
   dbCurrentPageVersion.getInt("id"),
   _val.map()
-    .set("status_id", draftStatus.getInt("id"))
+    .set("status_id", draftStatusId)
 );
 
 // Coloca a nova versão publicada
@@ -61,7 +62,7 @@ _db.update(
   "page_version",
   dbPageVersion.getInt("id"),
   _val.map()
-    .set("status_id", publishStatus.getInt("id"))
+    .set("status_id", publishedStatusId)
 );
 
 cluar.response.successWithoutData({ status: 200 });
