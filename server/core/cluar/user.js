@@ -130,7 +130,8 @@ export default {
             user_orgs.name,
             user_orgs.code,
             user_orgs.uid,
-            user_orgs.id
+            user_orgs.id,
+            user_orgs.active
         FROM user_orgs
       `,
       _user.id()
