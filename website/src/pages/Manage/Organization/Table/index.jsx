@@ -103,7 +103,11 @@ const OrganizationTable = forwardRef(({ }, ref) => {
       fail: (error) => {
         setDeleteLoadingUid(null);
         console.error(error);
-        const errorMessage = error?.json?.error || Cluar.plainTranslation("organization-table-delete-failed-message");
+        const errorCode = error?.json?.error_code;
+        const errorMessage =
+          (errorCode && Cluar.hasTranslation(errorCode) && Cluar.plainTranslation(errorCode))
+          || error?.json?.error
+          || Cluar.plainTranslation("organization-table-delete-failed-message");
         notification.error({ message: errorMessage });
       }
     });

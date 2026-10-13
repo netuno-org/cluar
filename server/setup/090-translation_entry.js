@@ -4961,7 +4961,15 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "4d8e4631-01c2-4a91-9251-416b7b9ed2c1")
     .set("code", "organization-has-members")
-    .set("description", "Erro - Organiza\u00e7\u00e3o com membros")
+    .set("description", "Erro - Organiza\u00E7\u00E3o com membros")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "7b3c887d-edde-4724-b53b-4b1863198cfe")
+    .set("code", "organization-has-pages")
+    .set("description", "Erro - Organiza\u00E7\u00E3o com p\u00E1ginas")
 );;
 
 _db.insertIfNotExists(

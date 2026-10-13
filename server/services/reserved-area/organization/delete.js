@@ -42,6 +42,17 @@ for (const dbOrgOrChild of dbOrganizationAndChildren) {
       error: "there are members in this organization or one of its children, cannot remove it"
     });
   }
+
+  const pages = _db.form("page_organization")
+    .where(_db.where("organization_id").equals(orgOrChildId));
+
+  if (pages.count() >= 1) {
+    cluar.response.error({
+      status: 409,
+      error_code: "organization-has-pages",
+      error: "there are pages in this organization or one of its children, cannot remove it"
+    });
+  }
 }
 
 for (const dbOrgOrChild of dbOrganizationAndChildren) {

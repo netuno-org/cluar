@@ -11749,3 +11749,21 @@ _db.insertIfNotExists(
     .set("value", "A p\u00E1gina foi reatribu\u00EDda \u00E0 sua organiza\u00E7\u00E3o.")
 );;
 
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "47ad460b-5f54-457b-83d9-819bc0237c24")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "7b3c887d-edde-4724-b53b-4b1863198cfe")
+    .set("value", "The organization cannot be removed because it has pages.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "bd9fdcdc-c92e-402d-ae08-2a22d23063ba")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "7b3c887d-edde-4724-b53b-4b1863198cfe")
+    .set("value", "A organiza\u00E7\u00E3o n\u00E3o pode ser removida porque tem p\u00E1ginas.")
+);;
+
