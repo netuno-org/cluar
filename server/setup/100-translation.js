@@ -2328,7 +2328,7 @@ _db.insertIfNotExists(
     .set("uid", "00ed7982-fcfe-477a-810e-8101b524891c")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "58eae766-a1e9-4976-b5d0-830707eddcab")
-    .set("value", "Nova")
+    .set("value", "Novo")
 );
 
 _db.insertIfNotExists(
@@ -4128,7 +4128,7 @@ _db.insertIfNotExists(
     .set("uid", "29fa9b4d-ebec-40a5-88ba-4929c0863eb5")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "1f8a0bca-6eeb-4289-af0e-0eafe8d74d3f")
-    .set("value", "Cancelar")
+    .set("value", "Fechar")
 );
 
 _db.insertIfNotExists(
@@ -5397,7 +5397,7 @@ _db.insertIfNotExists(
     .set("uid", "ce2174ee-bbe8-4720-ba56-2b7d590a3cdc")
     .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
     .set("entry_id", "1f8a0bca-6eeb-4289-af0e-0eafe8d74d3f")
-    .set("value", "Cancel")
+    .set("value", "Close")
 );
 
 _db.insertIfNotExists(
@@ -5730,7 +5730,7 @@ _db.insertIfNotExists(
     .set("uid", "eca4e75d-e5f1-41b8-86e9-f418d76abd43")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "8209f931-d4ee-4fd1-b7c0-b3c286b54bd4")
-    .set("value", "Novo")
+    .set("value", "Nova")
 );
 
 _db.insertIfNotExists(
@@ -11765,5 +11765,23 @@ _db.insertIfNotExists(
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "7b3c887d-edde-4724-b53b-4b1863198cfe")
     .set("value", "A organiza\u00E7\u00E3o n\u00E3o pode ser removida porque tem p\u00E1ginas.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "a947191a-d8d4-47a6-91f0-fe30f48bc647")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "b1d19dff-3d19-44e1-bcb7-5a23f3f0eaa9")
+    .set("value", "Close")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "c9b70e14-178a-4727-bf33-b6d618548452")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "b1d19dff-3d19-44e1-bcb7-5a23f3f0eaa9")
+    .set("value", "Fechar")
 );;
 

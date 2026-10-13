@@ -1222,7 +1222,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "ee32cf09-a300-4bc8-9660-306f78e81677")
     .set("code", "action-modal-new-title")
-    .set("description", "Modal de A\u00E7\u00F5es - T\u00EDtulo - Novo")
+    .set("description", "Modal de A\u00E7\u00F5es - T\u00EDtulo - Nova")
 );
 
 _db.insertIfNotExists(
@@ -1310,7 +1310,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "6da8cd84-90c8-4374-a522-c973d500d858")
     .set("code", "page-modal-new-title")
-    .set("description", "Modal de P\u00E1ginas - T\u00EDtulo - Novo")
+    .set("description", "Modal de P\u00E1ginas - T\u00EDtulo - Nova")
 );
 
 _db.insertIfNotExists(
@@ -1958,7 +1958,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "a73528a8-5c4c-46d5-bff6-55df42332125")
     .set("code", "configuration-page-new")
-    .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - Novo")
+    .set("description", "P\u00E1gina de Configura\u00E7\u00E3o - Nova")
 );
 
 _db.insertIfNotExists(
@@ -2030,7 +2030,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "87b56caa-b055-435e-9cf1-6d3bfc605719")
     .set("code", "configuration-modal-new-title")
-    .set("description", "Modal de Configura\u00E7\u00E3o - Novo - T\u00EDtulo")
+    .set("description", "Modal de Configura\u00E7\u00E3o - Nova - T\u00EDtulo")
 );
 
 _db.insertIfNotExists(
@@ -2046,7 +2046,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "cf9d6a57-b31c-4673-8dbe-1eaa8ba22011")
     .set("code", "configuration-form-new-success-message")
-    .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Novo - Sucesso - Mensagem")
+    .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Nova - Sucesso - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -2054,7 +2054,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "175a2b74-7e9b-45e6-a95c-bbfc039895e5")
     .set("code", "configuration-form-new-failed-message")
-    .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Novo - Falha - Mensagem")
+    .set("description", "Formul\u00E1rio de Configura\u00E7\u00E3o - Nova - Falha - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -2102,7 +2102,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "aa18e013-5806-4704-8e0e-73a9444e26fc")
     .set("code", "translation-page-new")
-    .set("description", "P\u00E1gina de Tradu\u00E7\u00E3o - Novo")
+    .set("description", "P\u00E1gina de Tradu\u00E7\u00E3o - Nova")
 );
 
 _db.insertIfNotExists(
@@ -2150,7 +2150,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "391d9bc8-312b-46b3-8700-4f169560da23")
     .set("code", "translation-form-new-success-message")
-    .set("description", "Formul\u00E1rio de Tradu\u00E7\u00E3o - Novo - Sucesso - Mensagem")
+    .set("description", "Formul\u00E1rio de Tradu\u00E7\u00E3o - Nova - Sucesso - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -2158,7 +2158,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "c98a1856-eda5-47fd-aeae-3d6b0feaab56")
     .set("code", "translation-form-new-failed-message")
-    .set("description", "Formul\u00E1rio de Tradu\u00E7\u00E3o - Novo - falha - Mensagem")
+    .set("description", "Formul\u00E1rio de Tradu\u00E7\u00E3o - Nova - falha - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -2182,7 +2182,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "3a5820d8-b9f9-4a58-8577-345e7a0973f2")
     .set("code", "translation-modal-new-title")
-    .set("description", "Modal de Tradu\u00E7\u00E3o - Novo - T\u00EDtulo")
+    .set("description", "Modal de Tradu\u00E7\u00E3o - Nova - T\u00EDtulo")
 );
 
 _db.insertIfNotExists(
@@ -2222,7 +2222,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "748da9ef-a657-407e-92a7-0a16229b7232")
     .set("code", "organization-page-new")
-    .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Novo")
+    .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Nova")
 );
 
 _db.insertIfNotExists(
@@ -2310,7 +2310,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "52b890b9-6907-4a10-91e1-bb73bde6ec3c")
     .set("code", "organization-modal-new-title")
-    .set("description", "Modal de Organiza\u00E7\u00F5es - Novo - T\u00EDtulo")
+    .set("description", "Modal de Organiza\u00E7\u00F5es - Nova - T\u00EDtulo")
 );
 
 _db.insertIfNotExists(
@@ -2430,7 +2430,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "8209f931-d4ee-4fd1-b7c0-b3c286b54bd4")
     .set("code", "member-page-new")
-    .set("description", "P\u00E1gina de Membros - Novo")
+    .set("description", "P\u00E1gina de Membros - Nova")
 );
 
 _db.insertIfNotExists(
@@ -2575,6 +2575,14 @@ _db.insertIfNotExists(
     .set("uid", "c3839a26-a4f6-4349-909d-78645661e3ab")
     .set("code", "member-form-save")
     .set("description", "Formul\u00E1rio de Membros - Guardar")
+);
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "b1d19dff-3d19-44e1-bcb7-5a23f3f0eaa9")
+    .set("code", "member-form-close")
+    .set("description", "Formul\u00E1rio de Membros - Fechar")
 );
 
 _db.insertIfNotExists(
@@ -4734,7 +4742,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "194b6ffe-6289-47a0-98a7-5202f14410ec")
     .set("code", "page-page-new")
-    .set("description", "P\u00E1gina de P\u00E1ginas - Novo")
+    .set("description", "P\u00E1gina de P\u00E1ginas - Nova")
 );
 
 _db.insertIfNotExists(
@@ -4742,7 +4750,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "6043fffd-088a-4465-8f78-c430bb9ccbc8")
     .set("code", "action-page-new")
-    .set("description", "P\u00E1gina de A\u00E7\u00F5es - Novo")
+    .set("description", "P\u00E1gina de A\u00E7\u00F5es - Nova")
 );
 
 _db.insertIfNotExists(

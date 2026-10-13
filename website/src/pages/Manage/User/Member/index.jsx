@@ -38,7 +38,7 @@ const MemberModal = forwardRef(({ userData }, ref) => {
       onCancel={() => setIsModalOpen(false)}
       footer={[
         <Button key="back" onClick={() => setIsModalOpen(false)}>
-          {Cluar.plainTranslation("member-form-cancel")}
+          {Cluar.plainTranslation("member-form-close")}
         </Button>
       ]}
     >
