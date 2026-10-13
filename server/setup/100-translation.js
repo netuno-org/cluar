@@ -2328,7 +2328,7 @@ _db.insertIfNotExists(
     .set("uid", "00ed7982-fcfe-477a-810e-8101b524891c")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "58eae766-a1e9-4976-b5d0-830707eddcab")
-    .set("value", "Novo")
+    .set("value", "Nova")
 );
 
 _db.insertIfNotExists(
@@ -4443,7 +4443,7 @@ _db.insertIfNotExists(
     .set("uid", "875f6b78-33a5-401a-902f-4fbb15e7fb00")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "a73528a8-5c4c-46d5-bff6-55df42332125")
-    .set("value", "Novo")
+    .set("value", "Nova")
 );
 
 _db.insertIfNotExists(
@@ -4812,7 +4812,7 @@ _db.insertIfNotExists(
     .set("uid", "f9f61140-b7ce-40c1-b360-4ee667f56b52")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "aa18e013-5806-4704-8e0e-73a9444e26fc")
-    .set("value", "Novo")
+    .set("value", "Nova")
 );
 
 _db.insertIfNotExists(
@@ -5073,7 +5073,7 @@ _db.insertIfNotExists(
     .set("uid", "10b62ef9-41b1-41a9-be53-ac7431d9b8fb")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "748da9ef-a657-407e-92a7-0a16229b7232")
-    .set("value", "Novo")
+    .set("value", "Nova")
 );
 
 _db.insertIfNotExists(
@@ -10608,7 +10608,7 @@ _db.insertIfNotExists(
     .set("uid", "79db2f87-2b74-4728-9422-6d57f44efc83")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "194b6ffe-6289-47a0-98a7-5202f14410ec")
-    .set("value", "Novo")
+    .set("value", "Nova")
 );
 
 _db.insertIfNotExists(
@@ -10626,7 +10626,7 @@ _db.insertIfNotExists(
     .set("uid", "32487e55-0d2a-42cf-a6a1-46eec7df5ee1")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "6043fffd-088a-4465-8f78-c430bb9ccbc8")
-    .set("value", "Novo")
+    .set("value", "Nova")
 );
 
 _db.insertIfNotExists(
