@@ -256,7 +256,6 @@ function Builder({ page, canEdit }) {
       newStructure[index] = data;
       newStructure = newStructure
         .sort((a, b) => a.sorter - b.sorter)
-        .map((item, index) => ({ ...item, sorter: (index + 1) * 10 }));
 
       setStructure([...newStructure]);
       setHasDiff(true);
@@ -447,25 +446,38 @@ function Builder({ page, canEdit }) {
                 sortArrowsVisible={true}
                 disableSortUp={index === 0}
                 disableSortDown={index === structure.length - 1}
-                onSortDown={(data) =>
-                  handleChangeSection(
-                    { ...data, sorter: data.sorter + 11 },
-                    item.uid,
-                  )
-                }
-                onSortUp={(data) =>
-                  handleChangeSection(
-                    { ...data, sorter: data.sorter - 11 },
-                    item.uid,
-                  )
-                }
+                onSortDown={(data) => {
+                  const index = structure.findIndex((i) => i.uid === item.uid);
+                  if (index < structure.length - 1) {
+                    const sorterOfOneAfter = structure[index + 1].sorter;
+                    const sorterOfTwoAfter = (index < structure.length - 2) ? structure[index + 2].sorter
+                      : structure[index + 1].sorter + 20;
+                    const newSorter = (sorterOfOneAfter + sorterOfTwoAfter) / 2;
+                    handleChangeSection(
+                      { ...data, sorter: newSorter },
+                      item.uid,
+                    )
+                  }
+                }}
+                onSortUp={(data) => {
+                  const index = structure.findIndex((i) => i.uid === item.uid);
+                  if (index >= 1) {
+                    const sorterOfOneBefore = structure[index - 1].sorter;
+                    const sorterOfTwoBefore = (index >= 2) ? structure[index - 2].sorter : 0;
+                    const newSorter = (sorterOfOneBefore + sorterOfTwoBefore) / 2;
+                    handleChangeSection(
+                      { ...data, sorter: newSorter },
+                      item.uid,
+                    )
+                  }
+                }}
               >
                 {SectionComponent}
               </PageSection>
             </div>
           );
         })}
-    </main>
+    </main >
   );
 }
 
