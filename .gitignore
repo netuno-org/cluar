@@ -29,8 +29,8 @@ jsconfig.json
 
 server/auth-token.json
 
-CachedProfilesData/
-User/
-coder.json
-extensions/
-machineid
+/CachedProfilesData/
+/User/
+/coder.json
+/extensions/
+/machineid
