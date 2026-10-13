@@ -33,8 +33,8 @@ const ClonePage = ({ pageData, open, onClose, onSuccess }) => {
   const defaultVersionSetRef = useRef(false);
 
   const isCurrentVersion = (version) =>
-    version.uid === searchParams.get("version") ||
-    (!searchParams.has("version") && version.code === "published");
+    version.uid === searchParams.get("versionUid") ||
+    (!searchParams.has("versionUid") && version.code === "published");
 
   const onLoadLanguages = () => {
     setLoading((prev) => ({ ...prev, languages: true }));

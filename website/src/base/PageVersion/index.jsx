@@ -81,14 +81,14 @@ const PageVersion = ({ pageData, open, onClose }) => {
         items={versions.map((version) => ({
           children: (
             <Flex align="center" gap={8}>
-              <Link to={`?version=${version.uid}`}>
+              <Link to={`?versionUid=${version.uid}`}>
                 {`${version.version} - ${dayjs(
                   version.created_at,
                   "YYYY-MM-DD HH:mm:ss"
                 ).format("DD/MM/YYYY [às] HH:mm")}`}{" "}
                 {version.profile}{" "}
-                {version.uid === searchParams.get("version") ||
-                  (!searchParams.has("version") &&
+                {version.uid === searchParams.get("versionUid") ||
+                  (!searchParams.has("versionUid") &&
                     version.code === "published") ? (
                   <Tag color="orange">{Cluar.plainTranslation("page-versions-tag-current")}</Tag>
                 ) : null}{" "}
@@ -104,7 +104,7 @@ const PageVersion = ({ pageData, open, onClose }) => {
               >
                 <Button
                   disabled={
-                    version.uid === searchParams.get("version") ||
+                    version.uid === searchParams.get("versionUid") ||
                     version.code === "published" ||
                     deleting.some((item) => item === version.uid)
                   }

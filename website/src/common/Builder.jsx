@@ -185,17 +185,17 @@ function Builder({ page, canEdit }) {
   }, [currentPageVersion]);
 
   useEffect(() => {
-    if (searchParams.get("version")) {
+    if (searchParams.get("versionUid")) {
       _service({
         url: "/reserved-area/editor/page-version",
         method: "GET",
         data: {
-          version: searchParams.get("version"),
+          versionUid: searchParams.get("versionUid"),
         },
         success: (res) => {
           if (res.json.result) {
             setStructure(res.json.data);
-            setCurrentPageVersion(searchParams.get("version"));
+            setCurrentPageVersion(searchParams.get("versionUid"));
             setPageVersionExists(true);
           }
         },
@@ -287,7 +287,7 @@ function Builder({ page, canEdit }) {
           message.success("Página guardada com sucesso");
           setHasDiff(false);
         }
-        navigate(`?version=${res.json.data?.page_version_uid}`);
+        navigate(`?versionUid=${res.json.data?.page_version_uid}`);
         setHasDiff(false);
         setSaving(false);
       },

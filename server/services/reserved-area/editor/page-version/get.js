@@ -1,9 +1,9 @@
 import cluar from "#core/cluar/main.js";
 import { _req, _db, _val } from "@netuno/server-types";
 
-const version = _req.getString("version");
+const versionUid = _req.getString("versionUid");
 
-const dbPageVersion = _db.get("page_version", version);
+const dbPageVersion = _db.get("page_version", versionUid);
 
 if (dbPageVersion) {
   const structure = _val.list();
@@ -291,8 +291,8 @@ if (dbPageVersion) {
                     uid, title, content, html_content, edit_mode, image, image_alt, image_title, sorter, id, title_invert_background, content_invert_background
                 FROM page_slider_item
                 WHERE page_slider_id = ${dbSlider.getInt(
-                  "id",
-                )} AND active = TRUE
+      "id",
+    )} AND active = TRUE
                 `);
 
     for (const dbItem of dbItems) {

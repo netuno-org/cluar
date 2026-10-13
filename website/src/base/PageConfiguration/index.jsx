@@ -241,7 +241,7 @@ const PageConfiguration = ({
             notification.success({
               message: Cluar.plainTranslation("page-configuration-notification-structure-order-success"),
             });
-            window.location = `?version=${res.json.data?.page_version_uid}`;
+            window.location = `?versionUid=${res.json.data?.page_version_uid}`;
           }
         },
         fail: (error) => {
