@@ -289,20 +289,20 @@ const PageTable = forwardRef(({ }, ref) => {
         <Space size={4}>
           <Button
             type="text"
-            title={Cluar.plainTranslation("page-table-button-organizations")}
-            icon={<ApartmentOutlined />}
-            onClick={() => {
-              setPageOrganizationData(record);
-              organizationModalRef.current.openModal();
-            }}
-          />
-          <Button
-            type="text"
             title={Cluar.plainTranslation("page-table-button-edit")}
             icon={<EditOutlined />}
             onClick={() => {
               setPageEditData(record);
               pageModalRef.current.openModal();
+            }}
+          />
+          <Button
+            type="text"
+            title={Cluar.plainTranslation("page-table-button-organizations")}
+            icon={<ApartmentOutlined />}
+            onClick={() => {
+              setPageOrganizationData(record);
+              organizationModalRef.current.openModal();
             }}
           />
           <Popconfirm
