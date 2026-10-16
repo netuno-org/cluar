@@ -77,7 +77,7 @@ const dbProfile = _db.queryFirst(`
     SELECT id FROM profile WHERE profile_user_id = ? 
 `, _user.id());
 
-const userOrgsCTE = `
+const userOrgsCte = `
     WITH RECURSIVE user_orgs(name, id, parent_id, code, uid, active) AS (
         SELECT 
             org.name, 
@@ -107,7 +107,7 @@ const userOrgsCTE = `
 `;
 
 const dbOrganizations = _db.query(`
-  ${userOrgsCTE}
+    ${userOrgsCte}
     SELECT 
         user_orgs.name AS org_name,
         user_orgs.code AS org_code,
@@ -146,13 +146,11 @@ for (const dbOrganization of dbOrganizations) {
 }
 
 const dbOrganizationTotal = _db.queryFirst(`
-  ${userOrgsCTE}
-    SELECT 
-        COUNT(1) AS "total"
-    FROM 
-        user_orgs
-    LEFT JOIN 
-        organization parent ON user_orgs.parent_id = parent.id
+    ${userOrgsCte}
+    SELECT COUNT(1) AS "total"
+    FROM user_orgs
+    LEFT JOIN organization parent
+    ON user_orgs.parent_id = parent.id
     WHERE 1 = 1
         ${queryWhere}
 `, queryParams);
