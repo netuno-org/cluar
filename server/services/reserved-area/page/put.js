@@ -33,6 +33,8 @@ if (!dbPage) {
   });
 }
 
+cluar.permission.requireUserAuthorizedToEditPage(dbPage.getInt("id"));
+
 if (menu === true && !menuTitle) {
   cluar.response.error({
     status: 400,
