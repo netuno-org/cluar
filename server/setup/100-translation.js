@@ -11157,6 +11157,24 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "translation",
   _val.map()
+    .set("uid", "5d91e060-0dce-4246-b3ee-92cf807e5faf")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "908e48bb-b481-4c91-8d39-b7da91220f8f")
+    .set("value", "A p\u00e1gina tem subp\u00e1ginas, n\u00e3o \u00e9 poss\u00edvel remov\u00ea-la.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "820f6c53-6c9c-45c8-a9e5-3e5b13b0f983")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "908e48bb-b481-4c91-8d39-b7da91220f8f")
+    .set("value", "The page has children, it cannot be removed.")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
     .set("uid", "ab23e08c-b7cd-4a2d-9931-ad1b7824ec83")
     .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
     .set("entry_id", "706a85fc-35a9-4d73-8025-7c4fcba8986a")

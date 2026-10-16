@@ -4999,6 +4999,14 @@ _db.insertIfNotExists(
 _db.insertIfNotExists(
   "translation_entry",
   _val.map()
+    .set("uid", "908e48bb-b481-4c91-8d39-b7da91220f8f")
+    .set("code", "page-has-children")
+    .set("description", "Erro - P\u00e1gina com filhos")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
     .set("uid", "706a85fc-35a9-4d73-8025-7c4fcba8986a")
     .set("code", "page-has-no-previous-version")
     .set("description", "Erro - P\u00e1gina sem vers\u00e3o anterior")
