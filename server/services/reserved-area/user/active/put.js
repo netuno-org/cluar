@@ -31,6 +31,16 @@ if (dbProfile.getInt("count") > 1) {
   cluar.permission.requireUserAuthorizedInOrganization(userOrganizationId);
 }
 
+const userId = dbProfile.getInt("profile_user_id");
+
+if (userId === _user.id()) {
+  cluar.response.error({
+    status: 409,
+    error: "users cannot deactivate themselves",
+    error_code: "cannot-deactivate-self"
+  });
+}
+
 _user.update(
   dbProfile.getInt("profile_user_id"),
   _val.map()
