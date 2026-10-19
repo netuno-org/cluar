@@ -255,7 +255,7 @@ function Builder({ page, canEdit }) {
     if (index !== -1) {
       let newStructure = [...structure];
 
-      if (newIndex >= 0 && newIndex < newStructure.length && newIndex !== index) {
+      if (Number.isInteger(newIndex) && newIndex >= 0 && newIndex < newStructure.length && newIndex !== index) {
         if (index > newIndex) {
           for (let i = index; i > newIndex; i--) {
             newStructure[i] = newStructure[i - 1];
