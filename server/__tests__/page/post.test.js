@@ -4,6 +4,7 @@ import { beforeEach, afterEach, it, expect, beforeAll, afterAll } from "@jest/gl
 import { createUser, deleteUser } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
 import { createPageAsAlice, deletePage } from "../util/page.js";
+import { EDITOR, ADMIN } from "../util/group.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -18,8 +19,8 @@ beforeAll(async () => {
   aOrgUid = await createOrganization("a", "base");
   bOrgUid = await createOrganization("b", "base");
 
-  aliceUid = await createUser("alice", "a", "administrator");
-  bobUid = await createUser("bob", "b", "administrator");
+  aliceUid = await createUser("alice", "a", ADMIN);
+  bobUid = await createUser("bob", "b", ADMIN);
 });
 
 afterEach(async () => {
@@ -54,6 +55,7 @@ it("should create a page belonging to the user's organization", async () => {
   });
 
   newPageUid = json?.data?.uid;
+  console.log(newPageUid);
 
   expect(status).toBe(200);
   expect(json.data.organizationCode).toBe("a");
@@ -74,6 +76,7 @@ it("should create a subpage belonging to the parent page's organization", async 
     }
   });
   newPageUid = parentReponse?.json?.data?.uid;
+  console.log(newPageUid);
 
   const subpageResponse = await asyncService({
     url: "reserved-area/page",
@@ -89,6 +92,7 @@ it("should create a subpage belonging to the parent page's organization", async 
     }
   });
   subpageUid = subpageResponse?.json?.data?.uid;
+  console.log(subpageUid);
 
   expect(subpageResponse.status).toBe(200);
   expect(subpageResponse.json.data.organizationCode).toBe("a");

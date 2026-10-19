@@ -4,6 +4,7 @@ import { createUser, deleteUser } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
 import { createPageAs, deletePage } from "../util/page.js";
 import { asyncServiceAs } from "../asyncService.js";
+import { EDITOR, ADMIN } from "../util/group.js";
 
 let laOrgUid;
 let la1OrgUid;
@@ -41,10 +42,10 @@ beforeEach(async () => {
   la1OrgUid = await createOrganization("la1", "la");
   lbOrgUid = await createOrganization("lb", "base");
 
-  aliceUid = await createUser("alice", "la", "administrator");
-  erinUid = await createUser("erin", "la1", "administrator");
-  fredUid = await createUser("fred", "la", "editor");
-  bobUid = await createUser("bob", "lb", "editor");
+  aliceUid = await createUser("alice", "la", ADMIN);
+  erinUid = await createUser("erin", "la1", ADMIN);
+  fredUid = await createUser("fred", "la", EDITOR);
+  bobUid = await createUser("bob", "lb", EDITOR);
 
   laPageUid = await createPageAs("alice", "la-page", null);
   la1PageUid = await createPageAs("erin", "la1-page", null);

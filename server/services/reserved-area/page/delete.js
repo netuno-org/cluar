@@ -44,8 +44,8 @@ if (pageAndChildrenTotal > 1) {
 }
 
 const dbPageVersions = _db.query(`
-      SELECT * FROM page_version
-      WHERE page_id = ?::int
+    SELECT * FROM page_version
+    WHERE page_id = ?::int
     `, pageId
 );
 

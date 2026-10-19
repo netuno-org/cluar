@@ -3,6 +3,7 @@ import { beforeEach, afterEach, it, expect } from "@jest/globals";
 import { createUser, deleteUser } from "../../util/user.js";
 import { createOrganization, deleteOrganization } from "../../util/organization.js";
 import { asyncServiceAsAlice, asyncServiceAsBob } from "../../asyncService.js";
+import { EDITOR, ADMIN } from "../../util/group.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -19,9 +20,9 @@ beforeEach(async () => {
   bOrgUid = await createOrganization("b", "base");
   cOrgUid = await createOrganization("c", "base");
 
-  aliceUid = await createUser("alice", "c", "administrator");
-  bobUid = await createUser("bob", "b", "editor");
-  charlieUid = await createUser("charlie", "c", "editor");
+  aliceUid = await createUser("alice", "c", ADMIN);
+  bobUid = await createUser("bob", "b", EDITOR);
+  charlieUid = await createUser("charlie", "c", EDITOR);
 
   const listResponse = await asyncServiceAsAlice({
     url: "reserved-area/organization/member/list",
@@ -49,7 +50,7 @@ it("should update a member in an organization the logged user administers", asyn
     method: "PUT",
     data: {
       active: false,
-      group_code: "editor",
+      group_code: EDITOR,
       organization_code: "c",
       profile_uid: charlieUid,
       uid: memberUid,
@@ -66,7 +67,7 @@ it("should not update a member in an organization the logged user doesn't admini
     method: "POST",
     data: {
       active: false,
-      group_code: "editor",
+      group_code: EDITOR,
       organization_code: "c",
       profile_uid: charlieUid,
       uid: memberUid,

@@ -3,6 +3,7 @@ import { beforeEach, afterEach, it, expect } from "@jest/globals";
 import { createUser, deleteUser, addUserToOrganization, removeUserFromOrganization } from "../../../util/user.js";
 import { createOrganization, deleteOrganization } from "../../../util/organization.js";
 import asyncService, { asyncServiceAsCharlie } from "../../../asyncService.js";
+import { EDITOR, ADMIN } from "../../../util/group.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -17,9 +18,9 @@ beforeEach(async () => {
   aOrgUid = await createOrganization("a", "base");
   bOrgUid = await createOrganization("b", "base");
 
-  aliceUid = await createUser("alice", "a", "administrator");
-  bobUid = await createUser("bob", "b", "editor");
-  charlieUid = await createUser("charlie", "a", "administrator");
+  aliceUid = await createUser("alice", "a", ADMIN);
+  bobUid = await createUser("bob", "b", EDITOR);
+  charlieUid = await createUser("charlie", "a", ADMIN);
 });
 
 afterEach(async () => {
@@ -37,7 +38,7 @@ afterEach(async () => {
 });
 
 it("should not deactivate a member in an organization the logged user doesn't administer", async () => {
-  await addUserToOrganization(charlieUid, "b", "editor");
+  await addUserToOrganization(charlieUid, "b", EDITOR);
   charlieAddedToB = true;
 
   const membershipListResponse = await asyncService({

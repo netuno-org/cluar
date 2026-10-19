@@ -3,6 +3,7 @@ import { asyncServiceAsAlice } from "../asyncService.js";
 
 import { createUser, deleteUser, addUserToOrganization, removeUserFromOrganization } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
+import { EDITOR, ADMIN } from "../util/group.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -21,9 +22,9 @@ beforeEach(async () => {
   c1OrgUid = await createOrganization("c1", "c");
   c11OrgUid = await createOrganization("c11", "c1");
 
-  aliceUid = await createUser("alice", "c", "administrator");
-  bobUid = await createUser("bob", "b", "editor");
-  charlieUid = await createUser("charlie", "c11", "administrator");
+  aliceUid = await createUser("alice", "c", ADMIN);
+  bobUid = await createUser("bob", "b", EDITOR);
+  charlieUid = await createUser("charlie", "c11", ADMIN);
 });
 
 afterEach(async () => {
@@ -61,7 +62,7 @@ it("should not delete a user if logged user org is not above user org", async ()
 });
 
 it("should not delete a user if they are in more than one organization", async () => {
-  await addUserToOrganization(charlieUid, "b", "editor");
+  await addUserToOrganization(charlieUid, "b", EDITOR);
 
   await expect(asyncServiceAsAlice({
     url: "reserved-area/user",
@@ -76,7 +77,7 @@ it("should not delete a user if they are in more than one organization", async (
 });
 
 it("should not delete a user if logged user is not in the admin group of the user's organization", async () => {
-  await addUserToOrganization(aliceUid, "b", "editor");
+  await addUserToOrganization(aliceUid, "b", EDITOR);
 
   await expect(asyncServiceAsAlice({
     url: "reserved-area/user",

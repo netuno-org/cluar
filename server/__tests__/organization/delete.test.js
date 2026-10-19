@@ -3,6 +3,7 @@ import { beforeEach, afterEach, it, expect } from "@jest/globals";
 import { createUser, deleteUser } from "../util/user.js";
 import { createOrganization, deleteOrganization } from "../util/organization.js";
 import asyncService, { asyncServiceAsAlice } from "../asyncService.js";
+import { EDITOR, ADMIN } from "../util/group.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -19,7 +20,7 @@ beforeEach(async () => {
   c1OrgUid = await createOrganization("c1", "c");
   c11OrgUid = await createOrganization("c11", "c1");
 
-  aliceUid = await createUser("alice", "c11", "administrator");
+  aliceUid = await createUser("alice", "c11", ADMIN);
 });
 
 afterEach(async () => {

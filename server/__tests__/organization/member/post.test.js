@@ -4,6 +4,7 @@ import { beforeEach, afterEach, it, expect } from "@jest/globals";
 import { createUser, deleteUser, removeUserFromOrganization } from "../../util/user.js";
 import { createOrganization, deleteOrganization } from "../../util/organization.js";
 import { asyncServiceAsAlice, asyncServiceAsBob } from "../../asyncService.js";
+import { EDITOR, ADMIN } from "../../util/group.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -24,9 +25,9 @@ beforeEach(async () => {
   c1OrgUid = await createOrganization("c1", "c");
   c11OrgUid = await createOrganization("c11", "c1");
 
-  aliceUid = await createUser("alice", "c", "administrator");
-  bobUid = await createUser("bob", "b", "editor");
-  charlieUid = await createUser("charlie", "c11", "administrator");
+  aliceUid = await createUser("alice", "c", ADMIN);
+  bobUid = await createUser("bob", "b", EDITOR);
+  charlieUid = await createUser("charlie", "c11", ADMIN);
 });
 
 afterEach(async () => {
@@ -52,7 +53,7 @@ it("should add a member to an organization the logged user administers", async (
     method: "POST",
     data: {
       active: true,
-      group_code: "editor",
+      group_code: EDITOR,
       organization_code: "c",
       profile_uid: charlieUid,
     }
@@ -69,7 +70,7 @@ it("should not add a member to an organization the logged user isn't a member of
     method: "POST",
     data: {
       active: true,
-      group_code: "editor",
+      group_code: EDITOR,
       organization_code: "b",
       profile_uid: charlieUid,
     }
@@ -89,7 +90,7 @@ it("should not add a member to an organization the logged user is just an editor
     method: "POST",
     data: {
       active: true,
-      group_code: "editor",
+      group_code: EDITOR,
       organization_code: "b",
       profile_uid: charlieUid,
     }

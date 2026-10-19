@@ -3,6 +3,7 @@ import { beforeEach, afterEach, it, expect } from "@jest/globals";
 import { createUser, deleteUser, addUserToOrganization, removeUserFromOrganization } from "../../util/user.js";
 import { createOrganization, deleteOrganization } from "../../util/organization.js";
 import { asyncServiceAsAlice } from "../../asyncService.js";
+import { EDITOR, ADMIN } from "../../util/group.js";
 
 let aOrgUid;
 let bOrgUid;
@@ -16,8 +17,8 @@ beforeEach(async () => {
   aOrgUid = await createOrganization("a", "base");
   bOrgUid = await createOrganization("b", "base");
 
-  aliceUid = await createUser("alice", "a", "administrator");
-  bobUid = await createUser("bob", "b", "editor");
+  aliceUid = await createUser("alice", "a", ADMIN);
+  bobUid = await createUser("bob", "b", EDITOR);
 });
 
 afterEach(async () => {
@@ -51,7 +52,7 @@ it("should not deactivate a user if the logged user is not an admin of the same 
 
 it("should not deactivate a user if they belong to more than one organization",
   async () => {
-    await addUserToOrganization(bobUid, "a", "editor");
+    await addUserToOrganization(bobUid, "a", EDITOR);
     bobAddedToA = true;
 
     await expect(
