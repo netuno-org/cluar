@@ -1,4 +1,4 @@
-import { _db, _val, _req } from "@netuno/server-types";
+import { _db, _val, _req, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const {
@@ -7,7 +7,10 @@ const {
 } = JSON.parse(_req.toJSON());
 
 const dbMembership = _db.queryFirst(`
-    SELECT organization_profile.id membership_id, organization.id organization_id
+    SELECT
+        organization_profile.id membership_id,
+        organization_profile.profile_id,
+        organization.id organization_id
     FROM organization_profile
     INNER JOIN organization
     ON organization.id = organization_profile.organization_id
@@ -22,16 +25,19 @@ if (!dbMembership) {
   });
 }
 
-if (!dbMembership) {
+const membershipOrganizationId = dbMembership.getInt("organization_id");
+cluar.permission.requireUserAuthorizedInOrganization(membershipOrganizationId);
+
+const dbProfile = _db.get("profile", dbMembership.getInt("profile_id"));
+const userId = dbProfile.getInt("profile_user_id");
+
+if (userId === _user.id()) {
   cluar.response.error({
-    status: 404,
-    error: "membership not found",
-    error_code: "membership-not-found"
+    status: 409,
+    error: "members cannot deactivate themselves",
+    error_code: "member-cannot-deactivate-self"
   });
 }
-
-const userOrganizationId = dbMembership.getInt("organization_id");
-cluar.permission.requireUserAuthorizedInOrganization(userOrganizationId);
 
 _db.update(
   "organization_profile",
