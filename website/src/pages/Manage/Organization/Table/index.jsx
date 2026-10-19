@@ -71,7 +71,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainTranslation("organization-table-desactive-success-message") : Cluar.plainTranslation("organization-table-active-success-message")
+          message: active ? Cluar.plainTranslation("organization-table-inactive-success-message") : Cluar.plainTranslation("organization-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -81,7 +81,7 @@ const OrganizationTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation("organization-table-desactive-failed-message") : Cluar.plainTranslation("organization-table-active-failed-message")
+          message: active ? Cluar.plainTranslation("organization-table-inactive-failed-message") : Cluar.plainTranslation("organization-table-active-failed-message")
         });
       }
     })

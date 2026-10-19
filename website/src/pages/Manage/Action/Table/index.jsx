@@ -76,7 +76,7 @@ const ActionTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainTranslation("action-table-desactive-success-message") : Cluar.plainTranslation("action-table-active-success-message")
+          message: active ? Cluar.plainTranslation("action-table-inactive-success-message") : Cluar.plainTranslation("action-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -86,7 +86,7 @@ const ActionTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation("action-table-desactive-failed-message") : Cluar.plainTranslation("action-table-active-failed-message")
+          message: active ? Cluar.plainTranslation("action-table-inactive-failed-message") : Cluar.plainTranslation("action-table-active-failed-message")
         });
       }
     })

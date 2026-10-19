@@ -92,7 +92,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainTranslation("language-table-desactive-success-message") : Cluar.plainTranslation("language-table-active-success-message")
+          message: active ? Cluar.plainTranslation("language-table-inactive-success-message") : Cluar.plainTranslation("language-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -102,7 +102,7 @@ const LanguageTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation("language-table-desactive-failed-message") : Cluar.plainTranslation("language-table-active-failed-message")
+          message: active ? Cluar.plainTranslation("language-table-inactive-failed-message") : Cluar.plainTranslation("language-table-active-failed-message")
         });
       }
     })

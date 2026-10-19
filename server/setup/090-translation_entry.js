@@ -877,7 +877,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "c0e85d7c-adc6-486c-8de1-53c988eb8696")
-    .set("code", "language-table-desactive-success-message")
+    .set("code", "language-table-inactive-success-message")
     .set("description", "Tabela de Idioma - Desactivar - Sucesso - Mensagem")
 );
 
@@ -1078,7 +1078,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "9f447ef7-d096-4b0e-886c-13db1971afd8")
     .set("code", "user-table-active-success-message")
-    .set("description", "Tabela de Utilizadores - Active - Sucesso - Mensagem")
+    .set("description", "Tabela de Utilizadores - Ativo - Sucesso - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -1086,7 +1086,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "ef55fd8a-0777-4726-bc57-920e528de15a")
     .set("code", "user-table-active-success-description")
-    .set("description", "Tabela de Utilizadores - Active - Sucesso - Descri\u00E7\u00E3o")
+    .set("description", "Tabela de Utilizadores - Ativo - Sucesso - Descri\u00E7\u00E3o")
 );
 
 _db.insertIfNotExists(
@@ -1094,7 +1094,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "9fa040cb-6bf9-49c7-805c-946e88768171")
     .set("code", "user-table-active-failed-message")
-    .set("description", "Tabela de Utilizadores - Active - Failed - Mensagem")
+    .set("description", "Tabela de Utilizadores - Ativo - Failed - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -1102,7 +1102,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "671aa3d2-79e6-44a2-85fd-39db4aa1805b")
     .set("code", "user-table-active-failed-description")
-    .set("description", "Tabela de Utilizadores - Active - Failed - Descri\u00E7\u00E3o")
+    .set("description", "Tabela de Utilizadores - Ativo - Failed - Descri\u00E7\u00E3o")
 );
 
 _db.insertIfNotExists(
@@ -1125,32 +1125,32 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "c11efd6a-9634-4ba0-bbe2-fedffa97bc82")
-    .set("code", "user-table-desactive-success-message")
-    .set("description", "Tabela de Utilizadores - Desactive - Sucesso - Mensagem")
+    .set("code", "user-table-inactive-success-message")
+    .set("description", "Tabela de Utilizadores - Inativo - Sucesso - Mensagem")
 );
 
 _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "ab2dbd34-3b6b-4696-a157-188ce223b266")
-    .set("code", "user-table-desactive-success-description")
-    .set("description", "Tabela de Utilizadores - Desactive - Sucesso - Description")
+    .set("code", "user-table-inactive-success-description")
+    .set("description", "Tabela de Utilizadores - Inativo - Sucesso - Description")
 );
 
 _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "384101dd-2e4e-4d41-9ee3-cff1e35883f0")
-    .set("code", "user-table-desactive-failed-description")
-    .set("description", "Tabela de Utilizadores - Desactive - Falha - Descri\u00E7\u00E3o")
+    .set("code", "user-table-inactive-failed-description")
+    .set("description", "Tabela de Utilizadores - Inativo - Falha - Descri\u00E7\u00E3o")
 );
 
 _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "f9aac546-1091-4eda-a930-ca49915cb3a2")
-    .set("code", "user-table-desactive-failed-message")
-    .set("description", "Tabela de Utilizadores - Desactive - Falha - Mensagem")
+    .set("code", "user-table-inactive-failed-message")
+    .set("description", "Tabela de Utilizadores - Inativo - Falha - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -1670,7 +1670,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "1089597b-1e53-473a-9b6f-019aa20c577c")
     .set("code", "language-table-active")
-    .set("description", "Tabela de Idioma - Active")
+    .set("description", "Tabela de Idioma - Ativo")
 );
 
 _db.insertIfNotExists(
@@ -1765,7 +1765,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "0e16b5e4-777f-4c53-a55e-157d5ec99fd8")
-    .set("code", "language-table-desactive-failed-message")
+    .set("code", "language-table-inactive-failed-message")
     .set("description", "Tabela de Idioma - Desactivar - Falha - Mensagem")
 );
 
@@ -2238,7 +2238,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "8e0d5702-5ea2-4ada-a186-204d3bcd5e8e")
     .set("code", "organization-table-active")
-    .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - Active")
+    .set("description", "P\u00E1gina de Organiza\u00E7\u00F5es - Tabela - Ativo")
 );
 
 _db.insertIfNotExists(
@@ -2381,8 +2381,8 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "aa6d53ed-05d1-4882-a11c-47ac91973e3d")
-    .set("code", "organization-table-desactive-success-message")
-    .set("description", "Tabela de Organiza\u00E7\u00F5es - Desactive - Sucesso - Mensagem")
+    .set("code", "organization-table-inactive-success-message")
+    .set("description", "Tabela de Organiza\u00E7\u00F5es - Inativo - Sucesso - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -2390,7 +2390,7 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "1fc54c9f-9df3-4f7f-bdaa-89ede681e789")
     .set("code", "organization-table-active-success-message")
-    .set("description", "Tabela de Organiza\u00E7\u00F5es - Active - Sucesso - Mensagem")
+    .set("description", "Tabela de Organiza\u00E7\u00F5es - Ativo - Sucesso - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -2398,15 +2398,15 @@ _db.insertIfNotExists(
   _val.map()
     .set("uid", "f67ca465-d026-40c7-8af0-33b6161a4a4b")
     .set("code", "organization-table-active-failed-message")
-    .set("description", "Tabela de Organiza\u00E7\u00F5es - Active - Falha - Mensagem")
+    .set("description", "Tabela de Organiza\u00E7\u00F5es - Ativo - Falha - Mensagem")
 );
 
 _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "e0d784bc-8283-4fb4-aae2-d74117c908f4")
-    .set("code", "organization-table-desactive-failed-message")
-    .set("description", "Tabela de Organiza\u00E7\u00F5es - Desactive - Falha - Mensagem")
+    .set("code", "organization-table-inactive-failed-message")
+    .set("description", "Tabela de Organiza\u00E7\u00F5es - Inativo - Falha - Mensagem")
 );
 
 _db.insertIfNotExists(
@@ -2437,7 +2437,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "0227f944-4457-420c-a573-125b908a5952")
-    .set("code", "member-table-desactive-success-message")
+    .set("code", "member-table-inactive-success-message")
     .set("description", "Tabela de Membros - Desactivo - Sucesso")
 );
 
@@ -2453,7 +2453,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "d2f6a57b-a310-4035-8534-04d0aa1b4c6d")
-    .set("code", "member-table-desactive-failed-message")
+    .set("code", "member-table-inactive-failed-message")
     .set("description", "Tabela de Membros - Desactivo - Falha")
 );
 
@@ -3797,7 +3797,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "1b863bd9-19ab-41af-9d67-c06e9a27d086")
-    .set("code", "action-table-desactive-success-message")
+    .set("code", "action-table-inactive-success-message")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Sucesso ao desativar")
 );
 
@@ -3813,7 +3813,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "61b7dfc8-2620-4682-a508-071ec3bce975")
-    .set("code", "action-table-desactive-failed-message")
+    .set("code", "action-table-inactive-failed-message")
     .set("description", "A\u00E7\u00F5es - Tabela - Notifica\u00E7\u00E3o - Falha ao desativar")
 );
 
@@ -4285,7 +4285,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "3a248c34-a1ce-45d1-a02a-766ad99d43a1")
-    .set("code", "page-table-desactive-failed-message")
+    .set("code", "page-table-inactive-failed-message")
     .set("description", "Tabela de P\u00E1ginas - Desativar - Falha - Mensagem")
 );
 
@@ -4293,7 +4293,7 @@ _db.insertIfNotExists(
   "translation_entry",
   _val.map()
     .set("uid", "760ffb25-7e62-47d9-9c06-9025d5fb69a1")
-    .set("code", "page-table-desactive-success-message")
+    .set("code", "page-table-inactive-success-message")
     .set("description", "Tabela de P\u00E1ginas - Desativar - Sucesso - Mensagem")
 );
 

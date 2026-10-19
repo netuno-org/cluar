@@ -68,7 +68,7 @@ const UserTable = forwardRef(({ }, ref) => {
           key: uid
         });
         notification.success({
-          message: active ? Cluar.plainTranslation("user-table-desactive-success-message") : Cluar.plainTranslation("user-table-active-success-message")
+          message: active ? Cluar.plainTranslation("user-table-inactive-success-message") : Cluar.plainTranslation("user-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -78,7 +78,7 @@ const UserTable = forwardRef(({ }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation("user-table-desactive-failed-message") : Cluar.plainTranslation("user-table-active-failed-message")
+          message: active ? Cluar.plainTranslation("user-table-inactive-failed-message") : Cluar.plainTranslation("user-table-active-failed-message")
         });
       }
     })

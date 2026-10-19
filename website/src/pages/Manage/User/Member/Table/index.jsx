@@ -84,7 +84,7 @@ const MemberTable = forwardRef(({ userData }, ref) => {
           })
         });
         notification.success({
-          message: active ? Cluar.plainTranslation("member-table-desactive-success-message") : Cluar.plainTranslation("member-table-active-success-message")
+          message: active ? Cluar.plainTranslation("member-table-inactive-success-message") : Cluar.plainTranslation("member-table-active-success-message")
         })
       },
       fail: (error) => {
@@ -94,7 +94,7 @@ const MemberTable = forwardRef(({ userData }, ref) => {
         });
         console.error(error);
         notification.error({
-          message: active ? Cluar.plainTranslation("member-table-desactive-failed-message") : Cluar.plainTranslation("member-table-active-failed-message")
+          message: active ? Cluar.plainTranslation("member-table-inactive-failed-message") : Cluar.plainTranslation("member-table-active-failed-message")
         });
       }
     })
