@@ -250,12 +250,30 @@ function Builder({ page, canEdit }) {
 
   const handleChangeSection = (data, current) => {
     const index = structure.findIndex((item) => item.uid === current);
+    const newIndex = data.sorter;
 
     if (index !== -1) {
       let newStructure = [...structure];
-      newStructure[index] = data;
-      newStructure = newStructure
-        .sort((a, b) => a.sorter - b.sorter)
+
+      if (newIndex >= 0 && newIndex < newStructure.length && newIndex !== index) {
+        if (index > newIndex) {
+          for (let i = index; i > newIndex; i--) {
+            newStructure[i] = newStructure[i - 1];
+            newStructure[i].sorter = i;
+            newStructure[i].status = "to_update";
+          }
+          newStructure[newIndex] = data;
+        } else if (newIndex > index) {
+          for (let i = index; i < newIndex; i++) {
+            newStructure[i] = newStructure[i + 1];
+            newStructure[i].sorter = i;
+            newStructure[i].status = "to_update";
+          }
+          newStructure[newIndex] = data;
+        }
+      } else {
+        newStructure[index] = data;
+      }
 
       setStructure([...newStructure]);
       setHasDiff(true);
@@ -449,24 +467,17 @@ function Builder({ page, canEdit }) {
                 onSortDown={(data) => {
                   const index = structure.findIndex((i) => i.uid === item.uid);
                   if (index < structure.length - 1) {
-                    const sorterOfOneAfter = structure[index + 1].sorter;
-                    const sorterOfTwoAfter = (index < structure.length - 2) ? structure[index + 2].sorter
-                      : structure[index + 1].sorter + 20;
-                    const newSorter = (sorterOfOneAfter + sorterOfTwoAfter) / 2;
                     handleChangeSection(
-                      { ...data, sorter: newSorter },
+                      { ...data, sorter: index + 1 },
                       item.uid,
                     )
                   }
                 }}
                 onSortUp={(data) => {
                   const index = structure.findIndex((i) => i.uid === item.uid);
-                  if (index >= 1) {
-                    const sorterOfOneBefore = structure[index - 1].sorter;
-                    const sorterOfTwoBefore = (index >= 2) ? structure[index - 2].sorter : 0;
-                    const newSorter = (sorterOfOneBefore + sorterOfTwoBefore) / 2;
+                  if (index >= 0) {
                     handleChangeSection(
-                      { ...data, sorter: newSorter },
+                      { ...data, sorter: index - 1 },
                       item.uid,
                     )
                   }
