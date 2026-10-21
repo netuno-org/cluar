@@ -1,4 +1,4 @@
-import { _req, _val, _db, _user } from "@netuno/server-types";
+import { _val, _db, _user } from "@netuno/server-types";
 import cluar from "#core/cluar/main.js";
 
 const dbProfile = _db.form("profile")
