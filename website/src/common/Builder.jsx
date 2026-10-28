@@ -255,7 +255,12 @@ function Builder({ page, canEdit }) {
     if (index !== -1) {
       let newStructure = [...structure];
 
-      if (Number.isInteger(newIndex) && newIndex >= 0 && newIndex < newStructure.length && newIndex !== index) {
+      if (
+        Number.isInteger(newIndex) &&
+        newIndex >= 0 &&
+        newIndex < newStructure.length &&
+        newIndex !== index
+      ) {
         if (index > newIndex) {
           for (let i = index; i > newIndex; i--) {
             newStructure[i] = newStructure[i - 1];
@@ -343,6 +348,46 @@ function Builder({ page, canEdit }) {
     });
   };
 
+  const handleDuplicateSection = (data, current) => {
+    const index = structure.findIndex((item) => item.uid === current);
+
+    if (index === -1) {
+      return;
+    }
+
+    const sectionToDuplicate = structure[index];
+    let uid = Date.now();
+    while (structure.some((item) => String(item.uid) === String(uid))) {
+      uid += 1;
+    }
+
+    const duplicatedSection = {
+      ...sectionToDuplicate,
+      ...data,
+      uid,
+      status: "to_create",
+      actions: sectionToDuplicate.actions?.map((action) => ({ ...action })),
+      items: sectionToDuplicate.items?.map((item) => ({
+        ...item,
+        ...(item.section ? { section: { ...item.section } } : {}),
+      })),
+    };
+
+    const newStructure = [...structure];
+    newStructure.splice(index + 1, 0, {
+      ...duplicatedSection,
+      sorter: sectionToDuplicate.sorter ? sectionToDuplicate.sorter + 1 : 10,
+    });
+
+    setStructure(
+      newStructure
+        .sort((a, b) => a.sorter - b.sorter)
+        .map((item, index) => ({ ...item, sorter: (index + 1) * 10 })),
+    );
+    setHasDiff(true);
+    setCanPublish(true);
+  };
+
   /*const handleSetEditMode = (mode) => {
   setEditMode(mode);
   console.log("mode", mode);
@@ -363,7 +408,12 @@ function Builder({ page, canEdit }) {
         </Button>
       </Col>
       <Col>
-        <Button type="primary" onClick={handlePublishPage} loading={publishing} disabled={!canPublish || hasDiff}>
+        <Button
+          type="primary"
+          onClick={handlePublishPage}
+          loading={publishing}
+          disabled={!canPublish || hasDiff}
+        >
           {Cluar.plainTranslation("extra-bar-admin-publish")}
         </Button>
       </Col>
@@ -416,6 +466,7 @@ function Builder({ page, canEdit }) {
       <PageSection
         editMode={editMode}
         onNewSection={handleAddNewSection}
+        showDuplicateButton={false}
       ></PageSection>
       {structure
         .filter((item) => item.status !== "to_remove")
@@ -464,13 +515,16 @@ function Builder({ page, canEdit }) {
                 sortArrowsVisible={true}
                 disableSortUp={index === 0}
                 disableSortDown={index === structure.length - 1}
+                onDuplicateSection={(data) =>
+                  handleDuplicateSection(data, item.uid)
+                }
                 onSortDown={(data) => {
                   const index = structure.findIndex((i) => i.uid === item.uid);
                   if (index < structure.length - 1) {
                     handleChangeSection(
                       { ...data, sorter: index + 1 },
                       item.uid,
-                    )
+                    );
                   }
                 }}
                 onSortUp={(data) => {
@@ -479,7 +533,7 @@ function Builder({ page, canEdit }) {
                     handleChangeSection(
                       { ...data, sorter: index - 1 },
                       item.uid,
-                    )
+                    );
                   }
                 }}
               >
@@ -488,7 +542,7 @@ function Builder({ page, canEdit }) {
             </div>
           );
         })}
-    </main >
+    </main>
   );
 }
 

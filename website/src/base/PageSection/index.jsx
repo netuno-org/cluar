@@ -7,6 +7,7 @@ import {
   DeleteOutlined,
   ArrowDownOutlined,
   ArrowUpOutlined,
+  CopyOutlined,
 } from "@ant-design/icons";
 
 import SectionEditor from "./SectionEditor";
@@ -29,6 +30,8 @@ const PageSection = ({
   disableSortDown = false,
   showAddSectionButton = true,
   showAddLineButton = true,
+  showDuplicateButton = true,
+  onDuplicateSection,
 }) => {
   const [openEditor, setOpenEditor] = useState(false);
   const [newSectionVisible, setNewSectionVisible] = useState(false);
@@ -99,6 +102,11 @@ const PageSection = ({
               <Button onClick={() => setOpenEditor(true)}>
                 <EditOutlined />
               </Button>
+              {showDuplicateButton && (
+                <Button onClick={() => onDuplicateSection?.(sectionData)}>
+                  <CopyOutlined />
+                </Button>
+              )}
               <Button onClick={handleRemoveSection}>
                 <DeleteOutlined />
               </Button>

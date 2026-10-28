@@ -31,6 +31,7 @@ const Default = ({
               {SectionComponent ? (
                 <PageSection
                   showAddSectionButton={false}
+                  showDuplicateButton={false}
                   sectionData={item?.section}
                   editMode={editMode}
                   onRemoveSection={() => onRemoveSection(item.uid)}
@@ -41,6 +42,7 @@ const Default = ({
               ) : (
                 <PageSection
                   showAddLineButton={false}
+                  showDuplicateButton={false}
                   editMode={editMode}
                   onNewSection={(data) => onNewSection(item.uid, data)}
                 />
