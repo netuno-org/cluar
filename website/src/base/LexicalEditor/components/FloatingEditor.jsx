@@ -1,8 +1,11 @@
 import { useRef, useState, useCallback, useEffect } from "react";
-import { BoldOutlined, ItalicOutlined, UnderlineOutlined, LinkOutlined } from "@ant-design/icons";
+import { BoldOutlined, ItalicOutlined, UnderlineOutlined, LinkOutlined, TranslationOutlined } from "@ant-design/icons";
+import { Modal, Select, Input, Button, message } from "antd";
 import {
+  $createRangeSelection,
   $getSelection,
   $isRangeSelection,
+  $setSelection,
   SELECTION_CHANGE_COMMAND,
   COMMAND_PRIORITY_LOW,
   FORMAT_TEXT_COMMAND
@@ -13,6 +16,7 @@ import {
 import { TOGGLE_LINK_COMMAND, $isLinkNode } from "@lexical/link";
 import { mergeRegister } from "@lexical/utils";
 
+import _service from "@netuno/service-client";
 import Cluar from "../../../common/Cluar";
 
 import "./FloatingEditor.less";
@@ -47,6 +51,7 @@ function positionEditorElement(editor, rect) {
 
 export default function FloatingEditor({ editor }) {
   const editorRef = useRef(null);
+  const savedSelectionRef = useRef(null);
   const [lastSelection, setLastSelection] = useState(null);
   const [formatState, setFormatState] = useState({
     bold: false,
@@ -54,6 +59,11 @@ export default function FloatingEditor({ editor }) {
     underline: false,
     link: false
   });
+  const [translateModalOpen, setTranslateModalOpen] = useState(false);
+  const [targetLanguage, setTargetLanguage] = useState(null);
+  const [selectedText, setSelectedText] = useState("");
+  const [translating, setTranslating] = useState(false);
+  const [translationResult, setTranslationResult] = useState(null);
 
   const updateFormatState = useCallback((selection) => {
     if ($isRangeSelection(selection)) {
@@ -68,6 +78,7 @@ export default function FloatingEditor({ editor }) {
         underline: selection.hasFormat("underline"),
         link: isLink
       });
+      setSelectedText(selection.getTextContent());
     }
   }, []);
 
@@ -93,13 +104,13 @@ export default function FloatingEditor({ editor }) {
       setLastSelection(selection);
       updateFormatState(selection);
       return true;
-    } else if (!activeElement || !activeElement.closest(".floating-editor")) {
+    } else if (!translateModalOpen && (!activeElement || !activeElement.closest(".floating-editor"))) {
       positionEditorElement(editorElem, null);
       setLastSelection(null);
     }
 
     return true;
-  }, [editor, updateFormatState]);
+  }, [editor, updateFormatState, translateModalOpen]);
 
   const handleFormatCommand = useCallback((format) => {
     if (lastSelection) {
@@ -121,6 +132,101 @@ export default function FloatingEditor({ editor }) {
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, "https://");
     }
   }, [editor, lastSelection]);
+
+  const openTranslateModal = useCallback(() => {
+    let text = "";
+    let points = null;
+
+    editor.getEditorState().read(() => {
+      const selection = $getSelection();
+      if ($isRangeSelection(selection)) {
+        const content = selection.getTextContent();
+        if (content) {
+          text = content;
+          points = {
+            anchorKey: selection.anchor.key,
+            anchorOffset: selection.anchor.offset,
+            anchorType: selection.anchor.type,
+            focusKey: selection.focus.key,
+            focusOffset: selection.focus.offset,
+            focusType: selection.focus.type,
+          };
+        }
+      }
+    });
+
+    if (!text || !points) {
+      return;
+    }
+
+    savedSelectionRef.current = points;
+    setSelectedText(text);
+    setTargetLanguage(null);
+    setTranslationResult(null);
+    setTranslateModalOpen(true);
+  }, [editor]);
+
+  const closeTranslateModal = useCallback(() => {
+    setTranslateModalOpen(false);
+    setTargetLanguage(null);
+    setTranslationResult(null);
+    setTranslating(false);
+  }, []);
+
+  const handleTranslate = useCallback(() => {
+    if (!targetLanguage || !selectedText) {
+      message.warning("Seleciona o idioma de destino.");
+      return;
+    }
+
+    const targetLanguageName =
+      (Cluar.languages() || []).find((language) => language.code === targetLanguage)
+        ?.description || targetLanguage;
+
+    setTranslating(true);
+
+    _service({
+      url: "reserved-area/editor/translate",
+      method: "POST",
+      data: {
+        text: selectedText,
+        language: targetLanguageName,
+      },
+      success: (response) => {
+        setTranslating(false);
+
+        if (response.json.result) {
+          setTranslationResult(response.json.translation);
+        } else {
+          message.error(response.json.error || "Falha ao traduzir o texto.");
+        }
+      },
+      fail: (error) => {
+        setTranslating(false);
+        message.error(error?.json?.error || "Falha ao traduzir o texto.");
+      },
+    });
+  }, [selectedText, targetLanguage]);
+
+  const handleApproveTranslation = useCallback(() => {
+    const saved = savedSelectionRef.current;
+
+    if (!translationResult || !saved) {
+      return;
+    }
+
+    editor.update(() => {
+      const selection = $createRangeSelection();
+      selection.anchor.set(saved.anchorKey, saved.anchorOffset, saved.anchorType);
+      selection.focus.set(saved.focusKey, saved.focusOffset, saved.focusType);
+
+      $setSelection(selection);
+      selection.insertText(translationResult);
+    });
+
+    message.success("Texto traduzido.");
+    closeTranslateModal();
+  }, [editor, translationResult, closeTranslateModal]);
 
   useEffect(() => {
     return mergeRegister(
@@ -146,6 +252,11 @@ export default function FloatingEditor({ editor }) {
       updateFloatingEditor();
     });
   }, [editor, updateFloatingEditor]);
+
+  const currentLanguageCode = Cluar.currentLanguage()?.code;
+  const availableLanguages = (Cluar.languages() || []).filter(
+    (language) => language.code !== currentLanguageCode
+  );
 
   return (
     <div ref={editorRef} className="floating-editor">
@@ -187,7 +298,62 @@ export default function FloatingEditor({ editor }) {
         >
           <LinkOutlined />
         </button>
+
+        <div className="toolbar-separator"></div>
+
+        <button
+          className="toolbar-button"
+          onClick={openTranslateModal}
+          onMouseDown={(event) => event.preventDefault()}
+          title="Traduzir seleção"
+        >
+          <TranslationOutlined />
+        </button>
       </div>
+
+      <Modal
+        title="Traduzir seleção"
+        open={translateModalOpen}
+        onCancel={closeTranslateModal}
+        destroyOnHidden
+        footer={[
+          <Button key="cancel" onClick={closeTranslateModal}>
+            Cancelar
+          </Button>,
+          translationResult !== null ? (
+            <Button key="approve" type="primary" onClick={handleApproveTranslation}>
+              Aprovar
+            </Button>
+          ) : (
+            <Button key="translate" type="primary" loading={translating} onClick={handleTranslate}>
+              Traduzir
+            </Button>
+          ),
+        ]}
+      >
+        <Select
+          style={{ width: "100%" }}
+          placeholder="Seleciona o idioma de destino"
+          value={targetLanguage}
+          onChange={(value) => {
+            setTargetLanguage(value);
+            setTranslationResult(null);
+          }}
+          options={availableLanguages.map((language) => ({
+            value: language.code,
+            label: language.description || language.code,
+          }))}
+        />
+
+        {translationResult !== null && (
+          <Input.TextArea
+            readOnly
+            value={translationResult}
+            autoSize={{ minRows: 3, maxRows: 8 }}
+            style={{ marginTop: 16 }}
+          />
+        )}
+      </Modal>
     </div>
   );
 }

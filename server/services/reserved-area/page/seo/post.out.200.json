@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "boolean"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "keywords": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

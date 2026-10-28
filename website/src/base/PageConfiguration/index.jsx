@@ -13,8 +13,11 @@ import {
   List,
   Flex,
   Tag,
+  Modal,
+  Space,
+  message,
 } from "antd";
-import { PlusOutlined, HolderOutlined } from "@ant-design/icons";
+import { PlusOutlined, HolderOutlined, RobotOutlined, ThunderboltOutlined } from "@ant-design/icons";
 import _service from "@netuno/service-client";
 import Cluar from "../../common/Cluar";
 import { useSearchParams, useNavigate } from "react-router";
@@ -49,6 +52,10 @@ const PageConfiguration = ({
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState([]);
+  const [generatingSeo, setGeneratingSeo] = useState(false);
+  const [structureModalOpen, setStructureModalOpen] = useState(false);
+  const [structurePrompt, setStructurePrompt] = useState("");
+  const [generatingStructure, setGeneratingStructure] = useState(false);
 
   const menuEnabled = Form.useWatch("menu", form);
 
@@ -253,6 +260,106 @@ const PageConfiguration = ({
     }
   };
 
+  const handleGenerateSeo = () => {
+    const pageTitle = form.getFieldValue("title");
+
+    if (!pageTitle) {
+      message.warning("Indica primeiro o título da página.");
+      return;
+    }
+
+    const pageContent = (currentStructure || [])
+      .map((item) => `${item.title || ""} ${item.content || ""}`)
+      .join("\n");
+
+    setGeneratingSeo(true);
+
+    _service({
+      url: "reserved-area/page/seo",
+      method: "POST",
+      data: {
+        title: pageTitle,
+        content: pageContent,
+        language: Cluar.currentLanguage().description || Cluar.currentLanguage().code,
+      },
+      success: (response) => {
+        setGeneratingSeo(false);
+
+        if (response.json.result) {
+          const seo = response.json.data || {};
+          form.setFieldsValue({
+            title: seo.title || pageTitle,
+            description: seo.description || "",
+            keywords: seo.keywords || "",
+            social_description: seo.description || "",
+          });
+          notification.success({
+            message: "SEO gerado com sucesso.",
+          });
+        } else {
+          notification.error({
+            message: response.json.error || "Falha ao gerar o SEO.",
+          });
+        }
+      },
+      fail: (error) => {
+        setGeneratingSeo(false);
+        notification.error({
+          message: error?.json?.error || "Falha ao gerar o SEO.",
+        });
+      },
+    });
+  };
+
+  const handleGenerateStructure = () => {
+    if (!structurePrompt.trim()) {
+      message.warning("Descreve a página que pretendes gerar.");
+      return;
+    }
+
+    setGeneratingStructure(true);
+
+    _service({
+      url: "reserved-area/page/structure",
+      method: "POST",
+      data: {
+        prompt: structurePrompt,
+        language: Cluar.currentLanguage().description || Cluar.currentLanguage().code,
+      },
+      success: (response) => {
+        setGeneratingStructure(false);
+
+        if (response.json.result) {
+          const generated = (response.json.data || []).map((item, index) => ({
+            ...item,
+            uid:
+              item.uid ||
+              `gen-${Date.now()}-${index}`,
+            sorter: index * 10,
+          }));
+
+          setStructure(generated);
+          setStructureModalOpen(false);
+          setStructurePrompt("");
+
+          notification.success({
+            message: "Estrutura gerada. Revê e guarda a página.",
+          });
+        } else {
+          notification.error({
+            message: response.json.error || "Falha ao gerar a estrutura.",
+          });
+        }
+      },
+      fail: (error) => {
+        setGeneratingStructure(false);
+        notification.error({
+          message: error?.json?.error || "Falha ao gerar a estrutura.",
+        });
+      },
+    });
+  };
+
   useEffect(() => {
     if (pageData) {
       if (pageData.social_image) {
@@ -349,11 +456,21 @@ const PageConfiguration = ({
               }))}
             />
           </Form.Item>
-          <Form.Item label={Cluar.plainTranslation("page-form-description")}>
+          <Form.Item label={Cluar.plainTranslation("page-form-description")} name="description">
             <Input.TextArea rows={3} />
           </Form.Item>
           <Form.Item label={Cluar.plainTranslation("page-form-keywords")} name="keywords">
             <Input.TextArea rows={2} />
+          </Form.Item>
+          <Form.Item>
+            <Button
+              type="dashed"
+              icon={<RobotOutlined />}
+              loading={generatingSeo}
+              onClick={handleGenerateSeo}
+            >
+              Gerar SEO
+            </Button>
           </Form.Item>
           <Form.Item label={Cluar.plainTranslation("page-form-social-image")} name="social_image">
             <Upload
@@ -441,14 +558,41 @@ const PageConfiguration = ({
           </Form.Item>
           {!isNewPage && (
             <Form.Item label={Cluar.plainTranslation("page-form-structure")}>
-              <SortableStructure
-                structure={structure}
-                setStructure={setStructure}
-              />
+              <Space direction="vertical" style={{ width: "100%" }}>
+                <Button
+                  type="dashed"
+                  icon={<ThunderboltOutlined />}
+                  onClick={() => setStructureModalOpen(true)}
+                >
+                  Gerar estrutura
+                </Button>
+                <SortableStructure
+                  structure={structure}
+                  setStructure={setStructure}
+                />
+              </Space>
             </Form.Item>
           )}
         </Form>
       </Drawer>
+
+      <Modal
+        title="Gerar estrutura"
+        open={structureModalOpen}
+        onCancel={() => setStructureModalOpen(false)}
+        onOk={handleGenerateStructure}
+        okText="Gerar"
+        cancelText="Cancelar"
+        confirmLoading={generatingStructure}
+        destroyOnHidden
+      >
+        <Input.TextArea
+          rows={4}
+          value={structurePrompt}
+          onChange={(event) => setStructurePrompt(event.target.value)}
+          placeholder="Ex.: Landing page para venda de serviços de consultoria"
+        />
+      </Modal>
     </div>
   );
 };

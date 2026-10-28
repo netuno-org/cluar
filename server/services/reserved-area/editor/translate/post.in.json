@@ -1,0 +1,22 @@
+{
+  "summary": "Translate the selected text",
+  "description": "Translates the given text to the target language using the Netuno AI service.",
+  "tags": [
+    "editor"
+  ],
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string",
+      "description": "The text to be translated."
+    },
+    "language": {
+      "type": "string",
+      "description": "The target language name (e.g. English, Português)."
+    }
+  },
+  "required": [
+    "text",
+    "language"
+  ]
+}

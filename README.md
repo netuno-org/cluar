@@ -155,3 +155,17 @@ You can auto-start the website with the Netuno server, enabling the command in t
       }
    ]
 ```
+
+## NetunoAI Integration :brain:
+
+When creating a new service inside the `server/services/` directory, you can leverage the power of NetunoAI by adding the following import statement at the top of your service file:
+
+```javascript
+import { NetunoAI } from "#core/netunoAI.js";
+```
+
+### Available Functions
+
+*   `processPrompt`: Manual prompt execution. Receives the user prompt and, optionally, a system prompt and configuration options.
+*   `processHtml`: Generation and modification of HTML structures. Receives the current HTML along with user instructions, returning strictly the resulting HTML code.
+*   `processTranslation`: Text translation service. Receives the original text content alongside the target language, returning only the translated text output.

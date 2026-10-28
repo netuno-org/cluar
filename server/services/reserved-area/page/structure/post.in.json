@@ -1,0 +1,22 @@
+{
+  "summary": "Generate a page structure",
+  "description": "Generates a page structure (list of sections) from a natural language description using the Netuno AI service.",
+  "tags": [
+    "page"
+  ],
+  "type": "object",
+  "properties": {
+    "prompt": {
+      "type": "string",
+      "description": "Description of the page to generate."
+    },
+    "language": {
+      "type": "string",
+      "description": "Language used to generate the content."
+    }
+  },
+  "required": [
+    "prompt",
+    "language"
+  ]
+}

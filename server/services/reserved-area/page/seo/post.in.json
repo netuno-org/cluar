@@ -1,0 +1,26 @@
+{
+  "summary": "Generate page SEO metadata",
+  "description": "Generates optimized title, meta description and keywords for the page using the Netuno AI service.",
+  "tags": [
+    "page"
+  ],
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Current page title."
+    },
+    "content": {
+      "type": "string",
+      "description": "Page content used as context for the SEO generation."
+    },
+    "language": {
+      "type": "string",
+      "description": "Language used to generate the metadata."
+    }
+  },
+  "required": [
+    "title",
+    "language"
+  ]
+}

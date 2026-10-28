@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "result": {
+      "type": "boolean"
+    },
+    "error": {
+      "type": "string"
+    }
+  }
+}
