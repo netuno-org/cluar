@@ -2,18 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Form, Select } from "antd";
 import ImageSectionEditor from "../ImageSectionEditor";
 import _service from "@netuno/service-client";
-import Cluar from "../../../common/Cluar"
+import Cluar from "../../../common/Cluar";
+
+import MetadataEditor from "../../../base/MetadataEditor";
 
 const ContentEditor = ({ sectionData, form }) => {
   const [typeOptions, setTypeOptions] = useState([]);
   const [config, setConfig] = useState([]);
   const [showActions, setShowActions] = useState(false);
+  const [showMetadata, setShowMetadata] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
 
   const currentLangCode = Cluar.currentLanguage()?.code;
   const allActions = Cluar.actions() || [];
   const actionsData = allActions.filter(
-    (action) => action.language_code === currentLangCode
+    (action) => action.language_code === currentLangCode,
   );
 
   useEffect(() => {
@@ -21,7 +24,7 @@ const ContentEditor = ({ sectionData, form }) => {
       url: "/reserved-area/component/content/list",
       method: "POST",
       data: {
-        language: Cluar.currentLanguage().locale
+        language: Cluar.currentLanguage().locale,
       },
       success: (res) => {
         setTypeOptions(res.json.data.types);
@@ -30,8 +33,11 @@ const ContentEditor = ({ sectionData, form }) => {
         const initialType = form.getFieldValue("type");
         setSelectedType(initialType);
 
-        const typeConfig = res.json.data.config.find(c => c.name === initialType);
+        const typeConfig = res.json.data.config.find(
+          (c) => c.name === initialType,
+        );
         setShowActions(typeConfig?.action || false);
+        setShowMetadata(typeConfig?.metadata || false);
       },
       fail: (error) => {
         console.error(error);
@@ -41,7 +47,10 @@ const ContentEditor = ({ sectionData, form }) => {
 
   return (
     <div className="content-editor">
-      <Form.Item label={Cluar.plainTranslation("content-editor-field-type")} name="type">
+      <Form.Item
+        label={Cluar.plainTranslation("content-editor-field-type")}
+        name="type"
+      >
         <Select
           options={typeOptions.map((item) => ({
             label: item.info.label,
@@ -49,7 +58,7 @@ const ContentEditor = ({ sectionData, form }) => {
           }))}
           onChange={(value) => {
             setSelectedType(value);
-            const typeConfig = config.find(c => c.name === value);
+            const typeConfig = config.find((c) => c.name === value);
             setShowActions(typeConfig?.action || false);
           }}
         />
@@ -57,16 +66,27 @@ const ContentEditor = ({ sectionData, form }) => {
       <ImageSectionEditor sectionData={sectionData} form={form} />
 
       {showActions && (
-        <Form.Item label={Cluar.plainTranslation("content-editor-field-actions")} name="action_uids">
+        <Form.Item
+          label={Cluar.plainTranslation("content-editor-field-actions")}
+          name="action_uids"
+        >
           <Select
             options={actionsData.map((action) => ({
               label: action.title,
               value: action.uid,
             }))}
-            placeholder={Cluar.plainTranslation("content-editor-placeholder-add")}
+            placeholder={Cluar.plainTranslation(
+              "content-editor-placeholder-add",
+            )}
             mode="multiple"
             allowClear
           />
+        </Form.Item>
+      )}
+
+      {showMetadata && (
+        <Form.Item label="Metadata" name="metadata">
+          <MetadataEditor />
         </Form.Item>
       )}
     </div>

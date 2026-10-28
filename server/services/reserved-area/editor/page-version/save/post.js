@@ -6,7 +6,11 @@ const structures = _req.get("structures");
 
 const dbPage = _db.get("page", pageUid);
 if (!dbPage) {
-  cluar.response.error({ status: 404, error: "page not found", error_code: "page-not-found" });
+  cluar.response.error({
+    status: 404,
+    error: "page not found",
+    error_code: "page-not-found",
+  });
 }
 const pageId = dbPage.getInt("id");
 
@@ -48,12 +52,16 @@ const draftStatus = _db.queryFirst(`
     WHERE code = 'draft'
   `);
 
-const profileId = _db.queryFirst(`
+const profileId = _db
+  .queryFirst(
+    `
     SELECT profile.id
     FROM profile
     WHERE profile.profile_user_id = ${_db.param("int")}
   `,
-  _user.id()).getInt("id");
+    _user.id(),
+  )
+  .getInt("id");
 
 const newPageVersion = _db.insert(
   "page_version",
@@ -64,7 +72,7 @@ const newPageVersion = _db.insert(
     .set("version", lastPageVersion.getInt("version") + 1)
     .set("status_id", draftStatus.getInt("id"))
     .set("created_at", _db.timestamp())
-    .set("profile_id", profileId)
+    .set("profile_id", profileId),
 );
 
 const structuresToProcess = [];
@@ -99,6 +107,7 @@ for (const structure of structuresToProcess) {
       .set("content", structure.getString("content"))
       .set("type", structure.getString("type"))
       .set("sorter", structure.getInt("sorter", 0))
+      .set("metadata", structure.getString("metadata"))
       .set("horizontal_gap", structure.getInt("horizontal_gap", 0))
       .set("vertical_gap", structure.getInt("vertical_gap", 0));
 
@@ -141,6 +150,7 @@ for (const structure of structuresToProcess) {
       .set("type", structure.getString("type"))
       .set("page_version_id", newPageVersion)
       .set("image_title", structure.getString("image_title"))
+      .set("metadata", structure.getString("metadata"))
       .set("image_alt", structure.getString("image_alt"))
       .set("language_id", languageId)
       .set(
@@ -201,6 +211,7 @@ for (const structure of structuresToProcess) {
       .set("type", structure.getString("type"))
       .set("page_version_id", newPageVersion)
       .set("image_title", structure.getString("image_title"))
+      .set("metadata", structure.getString("metadata"))
       .set("image_alt", structure.getString("image_alt"))
       .set("language_id", languageId)
       .set(
@@ -263,6 +274,7 @@ for (const structure of structuresToProcess) {
       .set("sorter", structure.getInt("sorter", 0))
       .set("image_title", structure.getString("image_title"))
       .set("image_alt", structure.getString("image_alt"))
+      .set("metadata", structure.getString("metadata"))
       .set("type", structure.getString("type"))
       .set("language_id", languageId)
       .set(
@@ -390,6 +402,7 @@ for (const structure of structuresToProcess) {
       .set("title", structure.getString("title"))
       .set("sorter", structure.getInt("sorter", 0))
       .set("type", structure.getString("type"))
+      .set("metadata", structure.getString("metadata"))
       .set("language_id", languageId)
       .set(
         "title_invert_background",
@@ -458,11 +471,7 @@ for (const structure of structuresToProcess) {
         sliderItemData.set("image", sliderItemImage);
       } else if (sliderItem.getString("image")) {
         const imageFile = _storage
-          .database(
-            "page_slider_item",
-            "image",
-            sliderItem.getString("image"),
-          )
+          .database("page_slider_item", "image", sliderItem.getString("image"))
           .file();
         if (imageFile.exists()) {
           sliderItemData.set("image", imageFile);
@@ -475,10 +484,7 @@ for (const structure of structuresToProcess) {
         imagesToPublish["slider_item"].push(sliderItemId);
       }
 
-      const sliderItemActions = sliderItem.getList(
-        "action_uids",
-        _val.list(),
-      );
+      const sliderItemActions = sliderItem.getList("action_uids", _val.list());
 
       let actionSorter = 10;
 
@@ -498,16 +504,14 @@ for (const structure of structuresToProcess) {
       }
     }
   } else if (sectionType === "functionality") {
-    const functionalityActions = structure.getList(
-      "action_uids",
-      _val.list(),
-    );
+    const functionalityActions = structure.getList("action_uids", _val.list());
     const functionalityData = _val
       .map()
       .set("page_version_id", newPageVersion)
       .set("type", structure.getString("type"))
       .set("title", structure.getString("title"))
       .set("content", structure.getString("content"))
+      .set("metadata", structure.getString("metadata"))
       .set(
         "title_invert_background",
         structure.getBoolean("title_invert_background"),
@@ -528,10 +532,7 @@ for (const structure of structuresToProcess) {
       functionalityData.set("page_row_col_id", pageRowColId);
     }
 
-    const functionlityId = _db.insert(
-      "page_functionality",
-      functionalityData,
-    );
+    const functionlityId = _db.insert("page_functionality", functionalityData);
 
     if (image) {
       structuresToPublishImages.push(functionlityId);
@@ -569,7 +570,8 @@ for (const key in imagesToPublish) {
     continue;
   }
 
-  const dbStructures = _db.query(`
+  const dbStructures = _db.query(
+    `
       SELECT *
       FROM page_${key}
       WHERE id IN (${structuresIdsToPublishImages.map(() => "?").join(",")})

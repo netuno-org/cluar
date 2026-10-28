@@ -27,22 +27,23 @@ if (_app.isFolder(typesPath)) {
     const configContent = configFile.input().readAllAndClose();
 
     typesData.add(
-      _val.map()
+      _val
+        .map()
         .set("name", templateFolder.getName())
-        .set("info", _val.fromJSON(fileContent).getValues(language))
+        .set("info", _val.fromJSON(fileContent).getValues(language)),
     );
 
     configData.add(
-      _val.map()
+      _val
+        .map()
         .set("name", templateFolder.getName())
         .set("action", _val.fromJSON(configContent).getBoolean("action"))
+        .set("metadata", _val.fromJSON(configContent).getBoolean("metadata")),
     );
   });
 }
 
 cluar.response.successWithData({
   status: 200,
-  data: _val.map()
-    .set("types", typesData)
-    .set("config", configData)
+  data: _val.map().set("types", typesData).set("config", configData),
 });

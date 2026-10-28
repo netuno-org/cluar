@@ -33,6 +33,7 @@
     "antd-password-input-strength": "^2.0.1",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.19",
+    "json-edit-react": "^2.0.5",
     "keen-slider": "^6.8.6",
     "less": "4.5.1",
     "lexical": "^0.39.0",

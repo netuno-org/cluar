@@ -7,6 +7,7 @@ import Cluar from "../../../common/Cluar"
 
 import SortableSliderItem from "./SortableSliderItem";
 import ImageSectionEditor from "../ImageSectionEditor";
+import MetadataEditor from "../../../base/MetadataEditor";
 
 const SliderEditor = ({ sectionData, form }) => {
   const [itemsOrder, setItemsOrder] = useState([]);
@@ -98,6 +99,7 @@ const SliderEditor = ({ sectionData, form }) => {
 
   const [showActions, setShowActions] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
+  const [showMetadata, setShowMetadata] = useState(false);
 
   const currentLangCode = Cluar.currentLanguage()?.code;
   const allActions = Cluar.actions() || [];
@@ -121,6 +123,7 @@ const SliderEditor = ({ sectionData, form }) => {
 
         const typeConfig = res.json.data.config.find(c => c.name === initialType);
         setShowActions(typeConfig?.action || false);
+        setShowMetadata(typeConfig?.metadata || false);
       },
       fail: (error) => {
         console.error(error);
@@ -141,9 +144,16 @@ const SliderEditor = ({ sectionData, form }) => {
 
             const typeConfig = config.find(c => c.name === value);
             setShowActions(typeConfig?.action || false);
+            setShowMetadata(typeConfig?.metadata || false);
           }}
         />
       </Form.Item>
+
+      {showMetadata && (
+        <Form.Item label="Metadata" name="metadata">
+          <MetadataEditor />
+        </Form.Item>
+      )}
 
       {/* <ImageSectionEditor form={form} sectionData={sectionData} /> */}
 

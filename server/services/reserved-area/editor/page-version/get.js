@@ -43,7 +43,8 @@ if (dbPageVersion) {
       content.page_row_col_id,
       content.title_invert_background,
       content.content_invert_background,
-      content.sorter
+      content.sorter,
+      content.metadata
     FROM page_content content
     WHERE content.active = TRUE
       AND content.active = TRUE
@@ -61,6 +62,7 @@ if (dbPageVersion) {
         .set("content", dbContent.getString("content"))
         .set("html_content", dbContent.getString("html_content"))
         .set("edit_mode", dbContent.getString("edit_mode"))
+        .set("metadata", dbContent.getString("metadata"))
         .set("image", dbContent.getString("image"))
         .set("image_alt", dbContent.getString("image_alt"))
         .set("image_title", dbContent.getString("image_title"))
@@ -107,7 +109,8 @@ if (dbPageVersion) {
       banner.position_y,
       banner.title_invert_background,
       banner.content_invert_background,
-      banner.sorter
+      banner.sorter,
+      banner.metadata
     FROM page_banner banner
     WHERE banner.active = TRUE
       AND banner.active = TRUE
@@ -126,6 +129,7 @@ if (dbPageVersion) {
         .set("html_content", dbBanner.getString("html_content"))
         .set("edit_mode", dbBanner.getString("edit_mode"))
         .set("image", dbBanner.getString("image"))
+        .set("metadata", dbBanner.getString("metadata"))
         .set("image_alt", dbBanner.getString("image_alt"))
         .set("image_title", dbBanner.getString("image_title"))
         .set("page_row_col_id", dbBanner.getInt("page_row_col_id", 0))
@@ -176,7 +180,8 @@ if (dbPageVersion) {
       listing.page_row_col_id,
       listing.title_invert_background,
       listing.content_invert_background,
-      listing.sorter
+      listing.sorter,
+      listing.metadata
     FROM page_listing listing
     WHERE listing.active = TRUE
       AND listing.active = TRUE
@@ -233,6 +238,7 @@ if (dbPageVersion) {
         .set("html_content", dbListing.getString("html_content"))
         .set("edit_mode", dbListing.getString("edit_mode"))
         .set("image", dbListing.getString("image"))
+        .set("metadata", dbListing.getString("metadata"))
         .set("page_row_col_id", dbListing.getInt("page_row_col_id", 0))
         .set("image_alt", dbListing.getString("image_alt"))
         .set("image_title", dbListing.getString("image_title"))
@@ -277,7 +283,8 @@ if (dbPageVersion) {
                 slider.page_row_col_id,
                 slider.title_invert_background,
                 slider.content_invert_background,
-                slider.sorter
+                slider.sorter,
+                slider.metadata
             FROM page_slider slider
             WHERE slider.active = TRUE
                 AND slider.active = TRUE
@@ -291,8 +298,8 @@ if (dbPageVersion) {
                     uid, title, content, html_content, edit_mode, image, image_alt, image_title, sorter, id, title_invert_background, content_invert_background
                 FROM page_slider_item
                 WHERE page_slider_id = ${dbSlider.getInt(
-      "id",
-    )} AND active = TRUE
+                  "id",
+                )} AND active = TRUE
                 `);
 
     for (const dbItem of dbItems) {
@@ -340,6 +347,7 @@ if (dbPageVersion) {
         .set("content", dbSlider.getString("content"))
         .set("html_content", dbSlider.getString("html_content"))
         .set("edit_mode", dbSlider.getString("edit_mode"))
+        .set("metadata", dbSlider.getString("metadata"))
         .set("image", dbSlider.getString("image"))
         .set("page_row_col_id", dbSlider.getInt("page_row_col_id", 0))
         .set("image_alt", dbSlider.getString("image_alt"))
@@ -375,7 +383,8 @@ if (dbPageVersion) {
       functionality.page_row_col_id,
       functionality.title_invert_background,
       functionality.content_invert_background,
-      functionality.sorter
+      functionality.sorter,
+      functionality.metadata
     FROM page_functionality functionality
     WHERE functionality.active = TRUE
       AND functionality.active = TRUE
@@ -393,6 +402,7 @@ if (dbPageVersion) {
         .set("content", dbFunctionality.getString("content"))
         .set("html_content", dbFunctionality.getString("html_content"))
         .set("edit_mode", dbFunctionality.getString("edit_mode"))
+        .set("metadata", dbFunctionality.getString("metadata"))
         .set("image", dbFunctionality.getString("image"))
         .set("page_row_col_id", dbFunctionality.getInt("page_row_col_id", 0))
         .set("sorter", dbFunctionality.getInt("sorter"))
@@ -431,7 +441,8 @@ if (dbPageVersion) {
       page_row.page_row_col_id,
       page_row.sorter,
       page_row.horizontal_gap,
-      page_row.vertical_gap
+      page_row.vertical_gap,
+      page_row.metadata
     FROM page_row
     WHERE page_row.active = TRUE
       AND page_row.page_version_id = ${pageVersionId}
@@ -449,6 +460,7 @@ if (dbPageVersion) {
       .set("title", dbRow.getString("title"))
       .set("content", dbRow.getString("content"))
       .set("items", _val.list())
+      .set("metadata", dbRow.getString("metadata"))
       .set("sorter", dbRow.getInt("sorter"))
       .set("page_row_col_id", dbRow.getInt("page_row_col_id", 0))
       .set("horizontal_gap", dbRow.getInt("horizontal_gap", 0))
@@ -509,6 +521,6 @@ if (dbPageVersion) {
 
   cluar.response.successWithData({
     status: 200,
-    data: structure
+    data: structure,
   });
 }

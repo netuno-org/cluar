@@ -65,7 +65,8 @@ export default {
             content.sorter,
             content.type,
             content.title_invert_background,
-            content.content_invert_background
+            content.content_invert_background,
+            content.metadata
         FROM page_content content
         WHERE content.active = TRUE
             AND content.active = TRUE
@@ -89,6 +90,7 @@ export default {
           .set("image_max_width", dbContent.getString("image_max_width"))
           .set("page_row_col_id", dbContent.getInt("page_row_col_id", 0))
           .set("sorter", dbContent.getInt("sorter"))
+          .set("metadata", dbContent.getString("metadata"))
           .set("actions", action.getByItem("content", dbContent.getInt("id")))
           .set(
             "title_invert_background",
@@ -123,7 +125,8 @@ export default {
             banner.page_row_col_id,
             banner.sorter,
             banner.title_invert_background,
-            banner.content_invert_background
+            banner.content_invert_background,
+            banner.metadata
         FROM page_banner banner
         WHERE banner.active = TRUE
             AND banner.active = TRUE
@@ -142,6 +145,7 @@ export default {
           .set("edit_mode", dbBanner.getString("edit_mode"))
           .set("image", dbBanner.getString("image"))
           .set("image_alt", dbBanner.getString("image_alt"))
+          .set("metadata", dbBanner.getString("metadata"))
           .set("image_title", dbBanner.getString("image_title"))
           .set("sorter", dbBanner.getInt("sorter"))
           .set(
@@ -187,7 +191,8 @@ export default {
             listing.page_row_col_id,
             listing.sorter,
             listing.title_invert_background,
-            listing.content_invert_background
+            listing.content_invert_background,
+            listing.metadata
         FROM page_listing listing
         WHERE listing.active = TRUE
             AND listing.active = TRUE
@@ -239,6 +244,7 @@ export default {
           .set("image", dbListing.getString("image"))
           .set("image_alt", dbListing.getString("image_alt"))
           .set("image_title", dbListing.getString("image_title"))
+          .set("metadata", dbListing.getString("metadata"))
           .set("items", items)
           .set("page_row_col_id", dbListing.getInt("page_row_col_id", 0))
           .set("sorter", dbListing.getInt("sorter"))
@@ -274,7 +280,8 @@ export default {
             slider.page_row_col_id,
             slider.sorter,
             slider.title_invert_background,
-            slider.content_invert_background
+            slider.content_invert_background,
+            slider.metadata
         FROM page_slider slider
         WHERE slider.active = TRUE
             AND slider.active = TRUE
@@ -337,6 +344,7 @@ export default {
           .set("edit_mode", dbSlider.getString("edit_mode"))
           .set("image", dbSlider.getString("image"))
           .set("image_alt", dbSlider.getString("image_alt"))
+          .set("metadata", dbSlider.getString("metadata"))
           .set("image_title", dbSlider.getString("image_title"))
           .set("items", items)
           .set("page_row_col_id", dbSlider.getInt("page_row_col_id", 0))
@@ -370,7 +378,8 @@ export default {
             functionality.page_row_col_id,
             functionality.sorter,
             functionality.title_invert_background,
-            functionality.content_invert_background
+            functionality.content_invert_background,
+            functionality.metadata
         FROM page_functionality functionality
         WHERE functionality.active = TRUE
             AND functionality.active = TRUE
@@ -388,6 +397,7 @@ export default {
           .set("html_content", dbFunctionality.getString("html_content"))
           .set("edit_mode", dbFunctionality.getString("edit_mode"))
           .set("image", dbFunctionality.getString("image"))
+          .set("metadata", dbFunctionality.getString("metadata"))
           .set("page_row_col_id", dbFunctionality.getInt("page_row_col_id", 0))
           .set("sorter", dbFunctionality.getInt("sorter"))
           .set(
@@ -416,7 +426,8 @@ export default {
         page_row.sorter,
         page_row.page_row_col_id,
         page_row.horizontal_gap,
-        page_row.vertical_gap
+        page_row.vertical_gap,
+        page_row.metadata
       FROM page_row
       WHERE page_row.active = TRUE
         AND page_row.page_version_id = ${pageVersionId}
@@ -432,6 +443,7 @@ export default {
         .set("section", "row")
         .set("type", dbRow.getString("type"))
         .set("title", dbRow.getString("title"))
+        .set("metadata", dbRow.getString("metadata"))
         .set("content", dbRow.getString("content"))
         .set("items", _val.list())
         .set("sorter", dbRow.getInt("sorter"))
@@ -626,7 +638,8 @@ export default {
   },
 
   getOrganizations: (pageId) => {
-    return _db.query(`
+    return _db.query(
+      `
         SELECT
             organization.id,
             organization.uid,
@@ -640,11 +653,14 @@ export default {
         WHERE 1 = 1
             AND page_organization.page_id = ?::int
         ORDER BY organization.name
-    `, pageId);
+    `,
+      pageId,
+    );
   },
 
   getOrganizationLink: (pageId, organizationId) => {
-    return _db.queryFirst(`
+    return _db.queryFirst(
+      `
         SELECT
             page_organization.id,
             page_organization.uid
@@ -653,14 +669,16 @@ export default {
         WHERE 1 = 1
             AND page_organization.page_id = ?::int
             AND page_organization.organization_id = ?::int
-    `, pageId, organizationId);
+    `,
+      pageId,
+      organizationId,
+    );
   },
 
   countOrganizations: (pageId) => {
-    return _db.form("page_organization")
-      .where(
-        _db.where("page_id").equals(pageId)
-      )
+    return _db
+      .form("page_organization")
+      .where(_db.where("page_id").equals(pageId))
       .count();
   },
 };

@@ -4,6 +4,7 @@ import { Form, Select } from "antd";
 
 import _service from "@netuno/service-client";
 import Cluar from "../../../common/Cluar"
+import MetadataEditor from "../../../base/MetadataEditor";
 
 const FunctionalityEditor = ({ sectionData, form }) => {
   const [typeOptions, setTypeOptions] = useState([]);
@@ -11,6 +12,7 @@ const FunctionalityEditor = ({ sectionData, form }) => {
 
   const [showActions, setShowActions] = useState(false);
   const [selectedType, setSelectedType] = useState(null);
+  const [showMetadata, setShowMetadata] = useState(false);
 
   const currentLangCode = Cluar.currentLanguage()?.code;
   const allActions = Cluar.actions() || [];
@@ -34,6 +36,7 @@ const FunctionalityEditor = ({ sectionData, form }) => {
 
         const typeConfig = res.json.data.config.find(c => c.name === initialType);
         setShowActions(typeConfig?.action || false);
+        setShowMetadata(typeConfig?.metadata || false);
       },
       fail: (error) => {
         console.error(error);
@@ -54,6 +57,7 @@ const FunctionalityEditor = ({ sectionData, form }) => {
 
             const typeConfig = config.find(c => c.name === value);
             setShowActions(typeConfig?.action || false);
+            setShowMetadata(typeConfig?.metadata || false);
           }}
         />
       </Form.Item>
@@ -69,6 +73,12 @@ const FunctionalityEditor = ({ sectionData, form }) => {
             mode="multiple"
             allowClear
           />
+        </Form.Item>
+      )}
+
+      {showMetadata && (
+        <Form.Item label="Metadata" name="metadata">
+          <MetadataEditor />
         </Form.Item>
       )}
     </div>
