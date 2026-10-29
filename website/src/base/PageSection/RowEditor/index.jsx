@@ -8,6 +8,7 @@ import {
   Divider,
   Button,
   InputNumber,
+  Collapse,
 } from "antd";
 
 import SortableColumn from "./SortableColumn";
@@ -26,10 +27,27 @@ const COLUMN_BREAKPOINTS = [
   "xxl",
   "xxxl",
 ];
+const COLUMN_BREAKPOINT_LABELS = {
+  span: "Todos os tamanhos",
+  xs: "Extra pequeno (xs)",
+  sm: "Pequeno (sm)",
+  md: "Médio (md)",
+  lg: "Grande (lg)",
+  xl: "Extra grande (xl)",
+  xxl: "Muito grande (xxl)",
+  xxxl: "Ultra grande (xxxl)",
+};
+const ANT_GRID_COLUMNS = 24;
 
 const RowEditor = ({ sectionData, form }) => {
   const [itemsOrder, setItemsOrder] = useState([]);
   const [itemsByUid, setItemsByUid] = useState({});
+  const [selectedColumns, setSelectedColumns] = useState([]);
+  const [bulkColumnSizes, setBulkColumnSizes] = useState(
+    Object.fromEntries(
+      COLUMN_BREAKPOINTS.map((breakpoint) => [breakpoint, null]),
+    ),
+  );
 
   const [typeOptions, setTypeOptions] = useState([]);
   const [config, setConfig] = useState([]);
@@ -143,11 +161,42 @@ const RowEditor = ({ sectionData, form }) => {
     const { [uid]: removedItem, ...newItemsByUid } = itemsByUid;
     const newItemsOrder = itemsOrder.filter((id) => id !== uid);
 
+    setSelectedColumns((previous) => previous.filter((id) => id !== uid));
     setItemsByUid(newItemsByUid);
     setItemsOrder(newItemsOrder);
 
     form.setFieldsValue({
       itemsByUid: newItemsByUid,
+    });
+  };
+
+  const handleApplyColumnSizes = () => {
+    const sizesToApply = Object.fromEntries(
+      COLUMN_BREAKPOINTS.filter(
+        (breakpoint) => bulkColumnSizes[breakpoint] !== null,
+      ).map((breakpoint) => [
+        breakpoint,
+        Math.round(
+          (Number(bulkColumnSizes[breakpoint]) / 100) * ANT_GRID_COLUMNS,
+        ),
+      ]),
+    );
+
+    if (!selectedColumns.length || !Object.keys(sizesToApply).length) {
+      return;
+    }
+
+    const updatedItemsByUid = { ...itemsByUid };
+    selectedColumns.forEach((uid) => {
+      updatedItemsByUid[uid] = {
+        ...updatedItemsByUid[uid],
+        ...sizesToApply,
+      };
+    });
+
+    setItemsByUid(updatedItemsByUid);
+    form.setFieldsValue({
+      itemsByUid: updatedItemsByUid,
     });
   };
 
@@ -266,16 +315,81 @@ const RowEditor = ({ sectionData, form }) => {
                         </Col>
                       ))}
                     </Row>
-                    <div style={{ marginTop: 8 }}>
-                      {columnCount} colunas
-                    </div>
+                    <div style={{ marginTop: 8 }}>{columnCount} colunas</div>
                   </div>
                 </Button>
               </Col>
             ))}
           </Row>
         </Col>
-        
+
+        <Col span={24}>
+          <Collapse
+            items={[
+              {
+                key: "bulk-column-sizes",
+                label: "Editar várias colunas",
+                children: (
+                  <>
+                    <Form.Item label="Colunas">
+                      <Select
+                        mode="multiple"
+                        value={selectedColumns}
+                        onChange={setSelectedColumns}
+                        placeholder="Selecione as colunas"
+                        options={items.map((item, index) => ({
+                          label: item.title
+                            ? Cluar.plainHTML(item.title)
+                            : `Coluna ${index + 1}`,
+                          value: item.uid,
+                        }))}
+                      />
+                    </Form.Item>
+                    <Row gutter={[12, 12]}>
+                      {COLUMN_BREAKPOINTS.map((breakpoint) => (
+                        <Col xs={8} key={breakpoint}>
+                          <Form.Item
+                            label={COLUMN_BREAKPOINT_LABELS[breakpoint]}
+                          >
+                            <InputNumber
+                              style={{ width: "100%" }}
+                              min={0}
+                              max={100}
+                              precision={2}
+                              step={0.01}
+                              addonAfter="%"
+                              mode="spinner"
+                              value={bulkColumnSizes[breakpoint]}
+                              onChange={(value) =>
+                                setBulkColumnSizes((previous) => ({
+                                  ...previous,
+                                  [breakpoint]: value,
+                                }))
+                              }
+                            />
+                          </Form.Item>
+                        </Col>
+                      ))}
+                    </Row>
+                    <Button
+                      type="primary"
+                      disabled={
+                        !selectedColumns.length ||
+                        !COLUMN_BREAKPOINTS.some(
+                          (breakpoint) => bulkColumnSizes[breakpoint] !== null,
+                        )
+                      }
+                      onClick={handleApplyColumnSizes}
+                    >
+                      Aplicar
+                    </Button>
+                  </>
+                ),
+              },
+            ]}
+          />
+        </Col>
+
         <SortableColumn
           items={items}
           setItemsOrder={(newOrder) => setItemsOrder(newOrder)}

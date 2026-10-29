@@ -138,6 +138,11 @@ const SortableItem = ({
     setHtmlContentValue(item?.html_content || "");
     setTitleInvert(item?.title_invert_background || false);
     setContentInvert(item?.content_invert_background || false);
+    setBreakpointValues(
+      Object.fromEntries(
+        BREAKPOINTS.map((size) => [size, gridToPercentage(item?.[size])]),
+      ),
+    );
   }, [item]);
 
   const handleContentEditModeChange = (newMode) => {
