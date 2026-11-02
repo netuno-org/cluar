@@ -4,7 +4,7 @@ import prettier from "prettier/standalone";
 import parserHtml from "prettier/parser-html";
 import Cluar from "../../common/Cluar";
 
-const MonacoEditor = ({ value, onChange }) => {
+const MonacoEditor = ({ value, onChange, language = "html", title = "HTML" }) => {
   const editorRef = useRef(null);
 
   const handleEditorDidMount = (editor, monaco) => {
@@ -45,7 +45,7 @@ const MonacoEditor = ({ value, onChange }) => {
       <div className="monaco-editor-header">
         <span className="monaco-editor-header__title">
           <span className="monaco-editor-header__dot" />
-          HTML
+          {title}
         </span>
         <span className="monaco-editor-header__shortcut">
           {Cluar.plainTranslation("monaco-editor-shortcut-format")}
@@ -54,7 +54,7 @@ const MonacoEditor = ({ value, onChange }) => {
       <div className="monaco-editor-wrapper">
         <Editor
           height="400px"
-          defaultLanguage="html"
+          language={language}
           value={value || ""}
           onMount={handleEditorDidMount}
           onChange={handleEditorChange}

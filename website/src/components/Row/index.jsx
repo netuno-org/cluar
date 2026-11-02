@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useId } from "react";
 
 import Default from "./Default";
 
@@ -11,6 +11,7 @@ import CluarRow from "../Row";
 
 function Row(props) {
   const [itemsComponent, setItemsComponent] = useState([...props.items]);
+  const styleScopeId = `row-${useId().replace(/:/g, "")}`;
 
   const handleAddItem = (columnUid, sectionData) => {
     let arrItems = [...itemsComponent];
@@ -107,7 +108,14 @@ function Row(props) {
     );
   }
 
-  return <section className="row">{rowLayout}</section>;
+  return (
+    <section className="row" id={styleScopeId}>
+      {props.style && (
+        <style>{`@scope (#${styleScopeId}) {\n${props.style}\n}`}</style>
+      )}
+      {rowLayout}
+    </section>
+  );
 }
 
 export default Row;

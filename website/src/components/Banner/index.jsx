@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useId } from "react";
 import Cluar from "../../common/Cluar";
 
 import Default from "./Default";
@@ -8,10 +8,11 @@ import DefaultSubBanner from "./DefaultSubBanner";
 const Banner = (props) => {
   const [renderedActions, setRenderedActions] = useState(props.actions);
   const [isFirstRender, setIsFirstRender] = useState(true);
+  const styleScopeId = `banner-${useId().replace(/:/g, "")}`;
 
   const actionsData = Cluar.actions() || [];
   const actions = (props.action_uids || [])
-    .map(uid => actionsData.find(item => item.uid === uid))
+    .map((uid) => actionsData.find((item) => item.uid === uid))
     .filter(Boolean);
 
   useEffect(() => {
@@ -34,7 +35,14 @@ const Banner = (props) => {
     layout = <Default {...props} actions={renderedActions} />;
   }
 
-  return <section className="banner">{layout}</section>;
+  return (
+    <section className="banner" id={styleScopeId}>
+      {props.style && (
+        <style>{`@scope (#${styleScopeId}) {\n${props.style}\n}`}</style>
+      )}
+      {layout}
+    </section>
+  );
 };
 
 export default Banner;

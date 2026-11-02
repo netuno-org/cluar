@@ -13,6 +13,7 @@ import {
   Card,
   Switch,
   Radio,
+  Divider,
 } from "antd";
 import { RobotOutlined, EditOutlined } from "@ant-design/icons";
 import BannerEditor from "../BannerEditor";
@@ -120,7 +121,11 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
 
   const handleAIGenerate = () => {
     if (!aiPrompt.trim()) {
-      message.warning(Cluar.plainTranslation("section-editor-notification-ai-prompt-required"));
+      message.warning(
+        Cluar.plainTranslation(
+          "section-editor-notification-ai-prompt-required",
+        ),
+      );
       return;
     }
 
@@ -144,17 +149,31 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
           } else {
             setContentValue(res.json.data);
           }
-          message.success(Cluar.plainTranslation("section-editor-notification-ai-generate-success"));
+          message.success(
+            Cluar.plainTranslation(
+              "section-editor-notification-ai-generate-success",
+            ),
+          );
           setAIPrompt("");
           setShowAIPrompt(false);
         } else {
-          message.error(res.json.error || Cluar.plainTranslation("section-editor-notification-ai-generate-fail"));
+          message.error(
+            res.json.error ||
+              Cluar.plainTranslation(
+                "section-editor-notification-ai-generate-fail",
+              ),
+          );
         }
         setGenerating(false);
       },
       fail: (error) => {
         console.error("Erro ao gerar conteúdo:", error);
-        message.error(error?.json?.error || Cluar.plainTranslation("section-editor-notification-ai-generate-fail"));
+        message.error(
+          error?.json?.error ||
+            Cluar.plainTranslation(
+              "section-editor-notification-ai-generate-fail",
+            ),
+        );
         setGenerating(false);
       },
     });
@@ -163,7 +182,9 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
   const handleSaveTitleModal = () => {
     form.setFieldsValue({ title: titleValue });
     setIsTitleModalOpen(false);
-    message.success(Cluar.plainTranslation("section-editor-notification-title-success"));
+    message.success(
+      Cluar.plainTranslation("section-editor-notification-title-success"),
+    );
   };
 
   const handleSaveContentModal = () => {
@@ -173,7 +194,9 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       edit_mode: contentEditMode,
     });
     setIsContentModalOpen(false);
-    message.success(Cluar.plainTranslation("section-editor-notification-content-success"));
+    message.success(
+      Cluar.plainTranslation("section-editor-notification-content-success"),
+    );
   };
 
   const isContentSection = sectionData?.section === "content";
@@ -205,7 +228,9 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
           }}
           form={form}
         >
-          <Form.Item label={Cluar.plainTranslation("section-editor-field-title")}>
+          <Form.Item
+            label={Cluar.plainTranslation("section-editor-field-title")}
+          >
             <Card
               size="small"
               actions={[
@@ -228,7 +253,9 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
             <Input />
           </Form.Item>
 
-          <Form.Item label={Cluar.plainTranslation("section-editor-field-content")}>
+          <Form.Item
+            label={Cluar.plainTranslation("section-editor-field-content")}
+          >
             <Card
               size="small"
               actions={[
@@ -246,11 +273,16 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                     icon={<EditOutlined />}
                     onClick={() => setIsContentModalOpen(true)}
                   >
-                    {Cluar.plainTranslation("section-editor-button-edit-content")}
+                    {Cluar.plainTranslation(
+                      "section-editor-button-edit-content",
+                    )}
                   </Button>
                   {/* Indicador do modo ativo  */}
                   <span style={{ fontSize: 12, color: "#888" }}>
-                    {Cluar.plainTranslation("section-editor-mode-label")} {contentEditMode === "html" ? Cluar.plainTranslation("section-editor-mode-code") : Cluar.plainTranslation("section-editor-mode-visual")}
+                    {Cluar.plainTranslation("section-editor-mode-label")}{" "}
+                    {contentEditMode === "html"
+                      ? Cluar.plainTranslation("section-editor-mode-code")
+                      : Cluar.plainTranslation("section-editor-mode-visual")}
                   </span>
                 </div>,
               ]}
@@ -272,10 +304,20 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
             <Input />
           </Form.Item>
 
-          <Form.Item name="sorter" label={Cluar.plainTranslation("section-editor-field-order")}>
+          <Form.Item
+            name="sorter"
+            label={Cluar.plainTranslation("section-editor-field-order")}
+          >
             <InputNumber style={{ width: "100%" }} />
           </Form.Item>
+
           <MoreEditor />
+
+          <Divider />
+
+          <Form.Item label="CSS" name="style" style={{ marginTop: 16 }}>
+            <MonacoEditor language="css" title="CSS" />
+          </Form.Item>
         </Form>
       </Drawer>
 
@@ -290,7 +332,9 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               paddingRight: 30,
             }}
           >
-            <span>{Cluar.plainTranslation("section-editor-modal-title-edit-title")}</span>
+            <span>
+              {Cluar.plainTranslation("section-editor-modal-title-edit-title")}
+            </span>
             <Space>
               <span style={{ fontSize: "12px", fontWeight: "normal" }}>
                 {Cluar.plainTranslation("section-editor-invert-background")}
@@ -342,7 +386,11 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               paddingRight: 30,
             }}
           >
-            <span>{Cluar.plainTranslation("section-editor-modal-title-edit-content")}</span>
+            <span>
+              {Cluar.plainTranslation(
+                "section-editor-modal-title-edit-content",
+              )}
+            </span>
             <Space>
               <Radio.Group
                 className="editor-mode-toggle"
@@ -352,13 +400,19 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
                 buttonStyle="solid"
                 size="small"
               >
-                <Radio.Button value="visual">{Cluar.plainTranslation("section-editor-mode-visual")}</Radio.Button>
-                <Radio.Button value="html">{Cluar.plainTranslation("section-editor-mode-code")}</Radio.Button>
+                <Radio.Button value="visual">
+                  {Cluar.plainTranslation("section-editor-mode-visual")}
+                </Radio.Button>
+                <Radio.Button value="html">
+                  {Cluar.plainTranslation("section-editor-mode-code")}
+                </Radio.Button>
               </Radio.Group>
               {contentEditMode === "visual" && (
                 <>
                   <span style={{ fontSize: "12px", fontWeight: "normal" }}>
-                    {Cluar.plainTranslation("sortable-list-item-invert-background")}
+                    {Cluar.plainTranslation(
+                      "sortable-list-item-invert-background",
+                    )}
                   </span>
                   <Switch
                     checked={contentInvert}
@@ -415,7 +469,9 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               onClick={() => setShowAIPrompt(!showAIPrompt)}
               style={{ marginBottom: 16 }}
             >
-              {showAIPrompt ? Cluar.plainTranslation("section-editor-button-hide-ai") : Cluar.plainTranslation("section-editor-button-ai-assistant")}
+              {showAIPrompt
+                ? Cluar.plainTranslation("section-editor-button-hide-ai")
+                : Cluar.plainTranslation("section-editor-button-ai-assistant")}
             </Button>
           </div>
         )}
@@ -435,7 +491,9 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               rows={3}
               value={aiPrompt}
               onChange={(e) => setAIPrompt(e.target.value)}
-              placeholder={Cluar.plainTranslation("section-editor-placeholder-ai-instructions")}
+              placeholder={Cluar.plainTranslation(
+                "section-editor-placeholder-ai-instructions",
+              )}
               style={{ marginBottom: 12 }}
             />
             <Button

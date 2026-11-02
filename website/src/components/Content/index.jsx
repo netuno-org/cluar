@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useId } from "react";
 import Cluar from "../../common/Cluar";
 
 import "./index.less";
@@ -14,10 +14,11 @@ import Default from "./Default";
 const Content = (props) => {
   const [renderedActions, setRenderedActions] = useState(props.actions);
   const [isFirstRender, setIsFirstRender] = useState(true);
+  const styleScopeId = `content-${useId().replace(/:/g, "")}`;
 
   const actionsData = Cluar.actions() || [];
   const actions = (props.action_uids || [])
-    .map(uid => actionsData.find(item => item.uid === uid))
+    .map((uid) => actionsData.find((item) => item.uid === uid))
     .filter(Boolean);
 
   useEffect(() => {
@@ -42,12 +43,7 @@ const Content = (props) => {
   }
 
   if (props.type === "TextContent") {
-    layout = (
-      <TextContent
-        {...props}
-        actions={renderedActions}
-      />
-    );
+    layout = <TextContent {...props} actions={renderedActions} />;
   } else if (props.type === "ImageLeft") {
     layout = (
       <ImageLeft
@@ -105,10 +101,11 @@ const Content = (props) => {
   }
 
   return (
-    <section className="content">
-      <div className="content__wrapper">
-        {layout}
-      </div>
+    <section className="content" id={styleScopeId}>
+      {props.style && (
+        <style>{`@scope (#${styleScopeId}) {\n${props.style}\n}`}</style>
+      )}
+      <div className="content__wrapper">{layout}</div>
     </section>
   );
 };

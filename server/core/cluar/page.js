@@ -66,7 +66,8 @@ export default {
             content.type,
             content.title_invert_background,
             content.content_invert_background,
-            content.metadata
+            content.metadata,
+            content.style
         FROM page_content content
         WHERE content.active = TRUE
             AND content.active = TRUE
@@ -91,6 +92,7 @@ export default {
           .set("page_row_col_id", dbContent.getInt("page_row_col_id", 0))
           .set("sorter", dbContent.getInt("sorter"))
           .set("metadata", dbContent.getString("metadata"))
+          .set("style", dbContent.getString("style"))
           .set("actions", action.getByItem("content", dbContent.getInt("id")))
           .set(
             "title_invert_background",
@@ -126,7 +128,8 @@ export default {
             banner.sorter,
             banner.title_invert_background,
             banner.content_invert_background,
-            banner.metadata
+            banner.metadata,
+            banner.style
         FROM page_banner banner
         WHERE banner.active = TRUE
             AND banner.active = TRUE
@@ -146,6 +149,7 @@ export default {
           .set("image", dbBanner.getString("image"))
           .set("image_alt", dbBanner.getString("image_alt"))
           .set("metadata", dbBanner.getString("metadata"))
+          .set("style", dbBanner.getString("style"))
           .set("image_title", dbBanner.getString("image_title"))
           .set("sorter", dbBanner.getInt("sorter"))
           .set(
@@ -192,7 +196,8 @@ export default {
             listing.sorter,
             listing.title_invert_background,
             listing.content_invert_background,
-            listing.metadata
+            listing.metadata,
+            listing.style
         FROM page_listing listing
         WHERE listing.active = TRUE
             AND listing.active = TRUE
@@ -245,6 +250,7 @@ export default {
           .set("image_alt", dbListing.getString("image_alt"))
           .set("image_title", dbListing.getString("image_title"))
           .set("metadata", dbListing.getString("metadata"))
+          .set("style", dbListing.getString("style"))
           .set("items", items)
           .set("page_row_col_id", dbListing.getInt("page_row_col_id", 0))
           .set("sorter", dbListing.getInt("sorter"))
@@ -281,7 +287,8 @@ export default {
             slider.sorter,
             slider.title_invert_background,
             slider.content_invert_background,
-            slider.metadata
+            slider.metadata,
+            slider.style
         FROM page_slider slider
         WHERE slider.active = TRUE
             AND slider.active = TRUE
@@ -345,6 +352,7 @@ export default {
           .set("image", dbSlider.getString("image"))
           .set("image_alt", dbSlider.getString("image_alt"))
           .set("metadata", dbSlider.getString("metadata"))
+          .set("style", dbSlider.getString("style"))
           .set("image_title", dbSlider.getString("image_title"))
           .set("items", items)
           .set("page_row_col_id", dbSlider.getInt("page_row_col_id", 0))
@@ -379,7 +387,8 @@ export default {
             functionality.sorter,
             functionality.title_invert_background,
             functionality.content_invert_background,
-            functionality.metadata
+            functionality.metadata,
+            functionality.style
         FROM page_functionality functionality
         WHERE functionality.active = TRUE
             AND functionality.active = TRUE
@@ -398,6 +407,7 @@ export default {
           .set("edit_mode", dbFunctionality.getString("edit_mode"))
           .set("image", dbFunctionality.getString("image"))
           .set("metadata", dbFunctionality.getString("metadata"))
+          .set("style", dbFunctionality.getString("style"))
           .set("page_row_col_id", dbFunctionality.getInt("page_row_col_id", 0))
           .set("sorter", dbFunctionality.getInt("sorter"))
           .set(
@@ -427,7 +437,8 @@ export default {
         page_row.page_row_col_id,
         page_row.horizontal_gap,
         page_row.vertical_gap,
-        page_row.metadata
+        page_row.metadata,
+        page_row.style
       FROM page_row
       WHERE page_row.active = TRUE
         AND page_row.page_version_id = ${pageVersionId}
@@ -444,6 +455,7 @@ export default {
         .set("type", dbRow.getString("type"))
         .set("title", dbRow.getString("title"))
         .set("metadata", dbRow.getString("metadata"))
+        .set("style", dbRow.getString("style"))
         .set("content", dbRow.getString("content"))
         .set("items", _val.list())
         .set("sorter", dbRow.getInt("sorter"))
