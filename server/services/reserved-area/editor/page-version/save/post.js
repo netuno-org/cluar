@@ -108,6 +108,7 @@ for (const structure of structuresToProcess) {
       .set("type", structure.getString("type"))
       .set("sorter", structure.getInt("sorter", 0))
       .set("metadata", structure.getString("metadata"))
+      .set("icon", structure.getString("icon"))
       .set("horizontal_gap", structure.getInt("horizontal_gap", 0))
       .set("style", structure.getString("style"))
       .set("vertical_gap", structure.getInt("vertical_gap", 0));
@@ -152,6 +153,7 @@ for (const structure of structuresToProcess) {
       .set("page_version_id", newPageVersion)
       .set("image_title", structure.getString("image_title"))
       .set("metadata", structure.getString("metadata"))
+      .set("icon", structure.getString("icon"))
       .set("style", structure.getString("style"))
       .set("image_alt", structure.getString("image_alt"))
       .set("language_id", languageId)
@@ -214,6 +216,7 @@ for (const structure of structuresToProcess) {
       .set("page_version_id", newPageVersion)
       .set("image_title", structure.getString("image_title"))
       .set("metadata", structure.getString("metadata"))
+      .set("icon", structure.getString("icon"))
       .set("style", structure.getString("style"))
       .set("image_alt", structure.getString("image_alt"))
       .set("language_id", languageId)
@@ -278,6 +281,7 @@ for (const structure of structuresToProcess) {
       .set("image_title", structure.getString("image_title"))
       .set("image_alt", structure.getString("image_alt"))
       .set("metadata", structure.getString("metadata"))
+      .set("icon", structure.getString("icon"))
       .set("type", structure.getString("type"))
       .set("language_id", languageId)
       .set("style", structure.getString("style"))
@@ -407,6 +411,7 @@ for (const structure of structuresToProcess) {
       .set("sorter", structure.getInt("sorter", 0))
       .set("type", structure.getString("type"))
       .set("metadata", structure.getString("metadata"))
+      .set("icon", structure.getString("icon"))
       .set("style", structure.getString("style"))
       .set("language_id", languageId)
       .set(
@@ -517,6 +522,7 @@ for (const structure of structuresToProcess) {
       .set("title", structure.getString("title"))
       .set("content", structure.getString("content"))
       .set("metadata", structure.getString("metadata"))
+      .set("icon", structure.getString("icon"))
       .set("style", structure.getString("style"))
       .set(
         "title_invert_background",

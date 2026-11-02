@@ -24,6 +24,7 @@ import LexicalEditor from "../../LexicalEditor";
 import MonacoEditor from "../../MonacoEditor";
 import SliderEditor from "../SliderEditor";
 import RowEditor from "../RowEditor";
+import { IconSelect } from "../../../base/Icon";
 
 import _service from "@netuno/service-client";
 import Cluar from "../../../common/Cluar";
@@ -309,6 +310,10 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
             label={Cluar.plainTranslation("section-editor-field-order")}
           >
             <InputNumber style={{ width: "100%" }} />
+          </Form.Item>
+
+          <Form.Item label="Ícone" name="icon">
+            <IconSelect />
           </Form.Item>
 
           <MoreEditor />
