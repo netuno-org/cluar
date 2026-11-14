@@ -220,6 +220,7 @@ Table page_listing_item {
   content_invert_background boolean [note: 'Inverter Cor de Fundo do Conteúdo']
   edit_mode varchar(250) [note: 'Modo de Edição']
   html_content text [note: 'Conteúdo HTML']
+  icon varchar(250) [note: 'Ícone']
   image text [note: 'Imagem']
   image_alt text [note: 'Imagem Alt']
   image_title varchar(250) [note: 'Imagem Título']
