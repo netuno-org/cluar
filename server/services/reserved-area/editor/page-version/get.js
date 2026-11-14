@@ -202,7 +202,7 @@ if (dbPageVersion) {
     const items = _val.list();
     const dbItems = _db.query(`
       SELECT
-          uid, title, content, html_content, edit_mode, image, image_alt, image_title, sorter, link, title_invert_background, content_invert_background
+          uid, title, content, html_content, edit_mode, icon, image, image_alt, image_title, sorter, link, title_invert_background, content_invert_background
       FROM page_listing_item
       WHERE page_listing_id = ${dbListing.getInt("id")} AND active = TRUE
       `);
@@ -217,6 +217,7 @@ if (dbPageVersion) {
           .set("content", dbItem.getString("content"))
           .set("html_content", dbItem.getString("html_content"))
           .set("edit_mode", dbItem.getString("edit_mode"))
+          .set("icon", dbItem.getString("icon"))
           .set("image", dbItem.getString("image"))
           .set("image_alt", dbItem.getString("image_alt"))
           .set("image_title", dbItem.getString("image_title"))

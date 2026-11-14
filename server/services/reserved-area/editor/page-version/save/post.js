@@ -367,6 +367,7 @@ for (const structure of structuresToProcess) {
         .set("content", listingItem.getString("content"))
         .set("link", listingItem.getString("link"))
         .set("sorter", listingItem.getString("sorter"))
+        .set("icon", listingItem.getString("icon"))
         .set("image_title", listingItem.getString("image_title"))
         .set(
           "title_invert_background",

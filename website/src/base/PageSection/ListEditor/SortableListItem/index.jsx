@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Col, Form, Input, Collapse, Button, Flex, Modal, Card, message, Space, Switch, Radio } from "antd";
+import {
+  Col,
+  Form,
+  Input,
+  Collapse,
+  Button,
+  Flex,
+  Modal,
+  Card,
+  message,
+  Space,
+  Switch,
+  Radio,
+} from "antd";
 
 import {
   DndContext,
@@ -22,6 +35,7 @@ import LexicalEditor from "../../../LexicalEditor";
 import MonacoEditor from "../../../MonacoEditor";
 import Cluar from "../../../../common/Cluar";
 import ImageSectionEditor from "../../ImageSectionEditor";
+import { IconSelect } from "../../../../base/Icon";
 
 import "./index.less";
 
@@ -50,14 +64,18 @@ const SortableItem = ({
 
   // Modo HTML Puro
   const [contentEditMode, setContentEditMode] = useState(
-    item?.edit_mode || "visual"
+    item?.edit_mode || "visual",
   );
   const [htmlContentValue, setHtmlContentValue] = useState(
-    item?.html_content || ""
+    item?.html_content || "",
   );
 
-  const [titleInvert, setTitleInvert] = useState(item?.title_invert_background || false);
-  const [contentInvert, setContentInvert] = useState(item?.content_invert_background || false);
+  const [titleInvert, setTitleInvert] = useState(
+    item?.title_invert_background || false,
+  );
+  const [contentInvert, setContentInvert] = useState(
+    item?.content_invert_background || false,
+  );
 
   useEffect(() => {
     setTitleValue(item?.title || "");
@@ -83,7 +101,9 @@ const SortableItem = ({
     });
     onChangeItem(item.uid, "title", titleValue);
     setIsTitleModalOpen(false);
-    message.success(Cluar.plainTranslation("sortable-list-item-notification-title-success"));
+    message.success(
+      Cluar.plainTranslation("sortable-list-item-notification-title-success"),
+    );
   };
 
   const handleSaveContentModal = () => {
@@ -100,14 +120,22 @@ const SortableItem = ({
     onChangeItem(item.uid, "html_content", htmlContentValue);
     onChangeItem(item.uid, "edit_mode", contentEditMode);
     setIsContentModalOpen(false);
-    message.success(Cluar.plainTranslation("sortable-list-item-notification-content-success"));
+    message.success(
+      Cluar.plainTranslation("sortable-list-item-notification-content-success"),
+    );
   };
 
-  const activeContentPreview = contentEditMode === "html" ? htmlContentValue : contentValue;
+  const activeContentPreview =
+    contentEditMode === "html" ? htmlContentValue : contentValue;
 
   return (
     <>
-      <Col span={24} key={item.uid} style={style} className="sortable-list-item">
+      <Col
+        span={24}
+        key={item.uid}
+        style={style}
+        className="sortable-list-item"
+      >
         <Flex align="center" className="sortable-list-item__wrapper">
           <Collapse
             className="sortable-list-item__wrapper__collapse"
@@ -127,17 +155,25 @@ const SortableItem = ({
                 ),
                 children: (
                   <div>
-                    <Form.Item label={Cluar.plainTranslation("sortable-list-item-field-title")}>
+                    <Form.Item
+                      label={Cluar.plainTranslation(
+                        "sortable-list-item-field-title",
+                      )}
+                    >
                       <Card
                         size="small"
                         actions={[
-                          <div style={{ textAlign: "left", paddingLeft: "12px" }}>
+                          <div
+                            style={{ textAlign: "left", paddingLeft: "12px" }}
+                          >
                             <Button
                               type="primary"
                               icon={<EditOutlined />}
                               onClick={() => setIsTitleModalOpen(true)}
                             >
-                              {Cluar.plainTranslation("sortable-list-item-button-edit-title")}
+                              {Cluar.plainTranslation(
+                                "sortable-list-item-button-edit-title",
+                              )}
                             </Button>
                           </div>,
                         ]}
@@ -156,7 +192,11 @@ const SortableItem = ({
                       />
                     </Form.Item>
 
-                    <Form.Item label={Cluar.plainTranslation("sortable-list-item-field-content")}>
+                    <Form.Item
+                      label={Cluar.plainTranslation(
+                        "sortable-list-item-field-content",
+                      )}
+                    >
                       <Card
                         size="small"
                         actions={[
@@ -174,32 +214,63 @@ const SortableItem = ({
                               icon={<EditOutlined />}
                               onClick={() => setIsContentModalOpen(true)}
                             >
-                              {Cluar.plainTranslation("sortable-list-item-button-edit-content")}
+                              {Cluar.plainTranslation(
+                                "sortable-list-item-button-edit-content",
+                              )}
                             </Button>
                             <span style={{ fontSize: 12, color: "#888" }}>
-                              {Cluar.plainTranslation("sortable-list-item-mode-label")} {contentEditMode === "html" ? Cluar.plainTranslation("sortable-list-item-mode-code") : Cluar.plainTranslation("sortable-list-item-mode-visual")}
+                              {Cluar.plainTranslation(
+                                "sortable-list-item-mode-label",
+                              )}{" "}
+                              {contentEditMode === "html"
+                                ? Cluar.plainTranslation(
+                                    "sortable-list-item-mode-code",
+                                  )
+                                : Cluar.plainTranslation(
+                                    "sortable-list-item-mode-visual",
+                                  )}
                             </span>
                           </div>,
                         ]}
                       >
                         <div>
-                          {Cluar.plainHTML(activeContentPreview).slice(0, 97) + "..."}
+                          {Cluar.plainHTML(activeContentPreview).slice(0, 97) +
+                            "..."}
                         </div>
                       </Card>
                     </Form.Item>
 
-                    <Form.Item name={["itemsByUid", itemIndex, "content"]} hidden>
+                    <Form.Item
+                      name={["itemsByUid", itemIndex, "content"]}
+                      hidden
+                    >
                       <Input
                         onChange={(e) =>
                           onChangeItem(item.uid, "content", e.target.value)
                         }
                       />
                     </Form.Item>
+
+                    <Form.Item
+                      label="Ícone"
+                      name={["itemsByUid", itemIndex, "icon"]}
+                    >
+                      <IconSelect
+                        onChange={(val) => onChangeItem(item.uid, "icon", val)}
+                      />
+                    </Form.Item>
+
                     {/* campos hidden */}
-                    <Form.Item name={["itemsByUid", itemIndex, "html_content"]} hidden>
+                    <Form.Item
+                      name={["itemsByUid", itemIndex, "html_content"]}
+                      hidden
+                    >
                       <Input />
                     </Form.Item>
-                    <Form.Item name={["itemsByUid", itemIndex, "edit_mode"]} hidden>
+                    <Form.Item
+                      name={["itemsByUid", itemIndex, "edit_mode"]}
+                      hidden
+                    >
                       <Input />
                     </Form.Item>
 
@@ -209,12 +280,20 @@ const SortableItem = ({
                       imageName={["itemsByUid", itemIndex, "image"]}
                       imageTitleName={["itemsByUid", itemIndex, "image_title"]}
                       imageAltName={["itemsByUid", itemIndex, "image_alt"]}
-                      onChangeImage={(val) => onChangeItem(item.uid, "image", val)}
-                      onChangeImageAlt={(val) => onChangeItem(item.uid, "image_alt", val)}
-                      onChangeImageTitle={(val) => onChangeItem(item.uid, "image_title", val)}
+                      onChangeImage={(val) =>
+                        onChangeItem(item.uid, "image", val)
+                      }
+                      onChangeImageAlt={(val) =>
+                        onChangeItem(item.uid, "image_alt", val)
+                      }
+                      onChangeImageTitle={(val) =>
+                        onChangeItem(item.uid, "image_title", val)
+                      }
                     />
                     <Form.Item
-                      label={Cluar.plainTranslation("sortable-list-item-field-link")}
+                      label={Cluar.plainTranslation(
+                        "sortable-list-item-field-link",
+                      )}
                       name={["itemsByUid", itemIndex, "link"]}
                     >
                       <Input
@@ -224,7 +303,9 @@ const SortableItem = ({
                       />
                     </Form.Item>
                     <Form.Item
-                      label={Cluar.plainTranslation("sortable-list-item-field-section")}
+                      label={Cluar.plainTranslation(
+                        "sortable-list-item-field-section",
+                      )}
                       name={["itemsByUid", itemIndex, "section"]}
                       initialValue={item.section}
                       style={{ display: "none" }}
@@ -232,7 +313,9 @@ const SortableItem = ({
                       <Input rows={3} />
                     </Form.Item>
                     <Form.Item
-                      label={Cluar.plainTranslation("sortable-list-item-field-uid")}
+                      label={Cluar.plainTranslation(
+                        "sortable-list-item-field-uid",
+                      )}
                       name={["itemsByUid", itemIndex, "uid"]}
                       initialValue={item.uid}
                       style={{ display: "none" }}
@@ -266,7 +349,11 @@ const SortableItem = ({
               paddingRight: 30,
             }}
           >
-            <span>{Cluar.plainTranslation("sortable-list-item-modal-title-edit-title")}</span>
+            <span>
+              {Cluar.plainTranslation(
+                "sortable-list-item-modal-title-edit-title",
+              )}
+            </span>
             <Space>
               <span style={{ fontSize: "12px", fontWeight: "normal" }}>
                 {Cluar.plainTranslation("sortable-list-item-invert-background")}
@@ -292,7 +379,9 @@ const SortableItem = ({
         <div
           style={{
             backgroundColor: titleInvert
-              ? themeMode === "dark" ? "#ffffff" : "#141414"
+              ? themeMode === "dark"
+                ? "#ffffff"
+                : "#141414"
               : "transparent",
             borderRadius: "4px",
             transition: "all 0.3s",
@@ -317,7 +406,11 @@ const SortableItem = ({
               paddingRight: 30,
             }}
           >
-            <span>{Cluar.plainTranslation("sortable-list-item-modal-title-edit-content")}</span>
+            <span>
+              {Cluar.plainTranslation(
+                "sortable-list-item-modal-title-edit-content",
+              )}
+            </span>
             <Space>
               <Radio.Group
                 className="editor-mode-toggle"
@@ -327,13 +420,19 @@ const SortableItem = ({
                 buttonStyle="solid"
                 size="small"
               >
-                <Radio.Button value="visual">{Cluar.plainTranslation("sortable-list-item-mode-visual")}</Radio.Button>
-                <Radio.Button value="html">{Cluar.plainTranslation("sortable-list-item-mode-code")}</Radio.Button>
+                <Radio.Button value="visual">
+                  {Cluar.plainTranslation("sortable-list-item-mode-visual")}
+                </Radio.Button>
+                <Radio.Button value="html">
+                  {Cluar.plainTranslation("sortable-list-item-mode-code")}
+                </Radio.Button>
               </Radio.Group>
               {contentEditMode === "visual" && (
                 <>
                   <span style={{ fontSize: "12px", fontWeight: "normal" }}>
-                    {Cluar.plainTranslation("sortable-list-item-invert-background")}
+                    {Cluar.plainTranslation(
+                      "sortable-list-item-invert-background",
+                    )}
                   </span>
                   <Switch
                     checked={contentInvert}
@@ -358,7 +457,9 @@ const SortableItem = ({
         <div
           style={{
             backgroundColor: contentInvert
-              ? themeMode === "dark" ? "#ffffff" : "#141414"
+              ? themeMode === "dark"
+                ? "#ffffff"
+                : "#141414"
               : "transparent",
             borderRadius: "4px",
             transition: "all 0.3s",
