@@ -9,6 +9,7 @@ import organization from "#core/cluar/organization.js";
 import page from "#core/cluar/page.js";
 import permission from "#core/cluar/permission.js";
 import response from "#core/cluar/response.js";
+import theme from "#core/cluar/theme.js";
 import user from "#core/cluar/user.js";
 
 export default {
@@ -22,5 +23,6 @@ export default {
   page: { ...page },
   permission: { ...permission },
   response: { ...response },
+  theme: { ...theme },
   user: { ...user },
 };

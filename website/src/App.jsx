@@ -1,4 +1,4 @@
-import React, { Children, useEffect } from "react";
+import React, { Children, useEffect, useState } from "react";
 import { ConfigProvider, Layout, theme } from "antd";
 import {
   BrowserRouter,
@@ -29,6 +29,7 @@ import Translation from "./pages/Manage/Translation";
 import Recovery from "./pages/Recovery";
 import Organization from "./pages/Manage/Organization";
 import Template from "./pages/Template";
+import Theme from "./pages/Manage/Theme";
 import { setTheme } from "./redux/actions/theme";
 
 import "@animated-burgers/burger-slip/dist/styles.css?inline";
@@ -43,8 +44,17 @@ import Action from "./pages/Manage/Action";
 const { Content } = Layout;
 
 const ThemedConfigProvider = ({ children }) => {
+  const [antdTheme, setAntdTheme] = useState(null);
   const dispatch = useDispatch();
   const themeMode = useSelector((state) => state.theme?.mode || "light");
+  const location = useLocation();
+  const themeVersion = new URLSearchParams(location.search).get("t");
+
+  useEffect(() => {
+    fetch(`/antdTheme.json?t=${themeVersion || Date.now()}`)
+      .then((response) => response.json())
+      .then(setAntdTheme);
+  }, [themeVersion]);
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
@@ -57,34 +67,25 @@ const ThemedConfigProvider = ({ children }) => {
     document.documentElement.setAttribute("data-theme", themeMode);
   }, [themeMode]);
 
-  const antdAlgorithm = themeMode === "dark"
-    ? theme.darkAlgorithm
-    : theme.defaultAlgorithm;
+  const antdAlgorithm =
+    themeMode === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm;
+
+  if (!antdTheme) {
+    return null;
+  }
 
   return (
     <ConfigProvider
       theme={{
+        ...(themeMode === "light" ? antdTheme?.light : antdTheme?.dark),
         cssVar: true,
-        token: {
-          colorPrimary: Cluar.configuration("primary-color") || "#FF6E1A",
-          fontSize: Cluar.configuration("text-font-base") !== "text-font-base" ? Number(Cluar.configuration("text-font-base")) : 16,
-          borderRadius: 7,
-          colorBgLayout: themeMode === "light" ? Cluar.configuration("background-color-light") || "#fff" : Cluar.configuration("background-color-dark") || "#000",
-          colorBgFlex: themeMode === "light" ? Cluar.configuration("background-color-light") || "#fff" : Cluar.configuration("background-color-dark") || "#000",
-        },
-        components: {
-          Layout: {
-            headerBg: themeMode === "light" ? "#fff" : "#141414",
-            footerBg: themeMode === "light" ? "#E6E6E6" : "#141414",
-          }
-        },
         algorithm: antdAlgorithm,
       }}
     >
       {children}
     </ConfigProvider>
-  )
-}
+  );
+};
 
 function App() {
   let urlLang = null;
@@ -111,7 +112,9 @@ function App() {
       }
 
       let comPage = <Template page={pageJSON} />;
-      const pageLink = pageJSON.link.startsWith("/") ? pageJSON.link : `/${pageJSON.link}`;
+      const pageLink = pageJSON.link.startsWith("/")
+        ? pageJSON.link
+        : `/${pageJSON.link}`;
 
       pageSubroutes.push(
         <Route
@@ -119,13 +122,13 @@ function App() {
           path={`/${language.locale}${pageLink}`}
           exact
           element={comPage}
-        />
+        />,
       );
     }
     pageRoutes.push(
       <Route key={`/${language.locale}/`} path={`/${language.locale}/`}>
         {pageSubroutes}
-      </Route>
+      </Route>,
     );
   }
 
@@ -134,7 +137,7 @@ function App() {
     const isReservedArea = location.pathname.startsWith("/reserved-area");
     const dispatch = useDispatch();
     const loggedUserInfoReload = useSelector(
-      (state) => state.loggedUserInfoState?.loggedUserInfoReload
+      (state) => state.loggedUserInfoState?.loggedUserInfoReload,
     );
 
     useEffect(() => {
@@ -180,11 +183,12 @@ function App() {
                 <Route path="actions" element={<Action />} />
                 <Route path="languages" element={<Language />} />
                 <Route path="configuration" element={<Configuration />} />
+                <Route path="themes" element={<Theme />} />
                 <Route path="translation" element={<Translation />} />
                 <Route path="organization" element={<Organization />} />
               </Route>
               {pageRoutes}
-              <Route path='*' element={<NotFound />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Content>
           <BaseCookies />
@@ -195,11 +199,11 @@ function App() {
 
   return (
     <Provider store={Store}>
-      <ThemedConfigProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <ThemedConfigProvider>
           <AppContent />
-        </BrowserRouter>
-      </ThemedConfigProvider>
+        </ThemedConfigProvider>
+      </BrowserRouter>
     </Provider>
   );
 }

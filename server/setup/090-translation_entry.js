@@ -5269,3 +5269,251 @@ _db.insertIfNotExists(
     .set("description", "Tabela de P\u00E1ginas - Organiza\u00E7\u00F5es - Notifica\u00E7\u00E3o - Reatribu\u00EDdo")
 );;
 
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "c855c024-2da9-4509-a5e0-de81b18ecdc2")
+    .set("code", "theme-page-title")
+    .set("description", "P\u00E1gina de Temas - T\u00EDtulo")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "74d2e0f9-93d1-47de-9fbd-999ef0dc2aa9")
+    .set("code", "theme-page-new")
+    .set("description", "P\u00E1gina de Temas - Novo")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "5d81543c-596f-47ae-a92c-4e10a6c13aac")
+    .set("code", "theme-table-applied")
+    .set("description", "Tabela de Temas - Aplicado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "e5855413-4d09-4d90-8598-ee42e72e1863")
+    .set("code", "theme-table-title")
+    .set("description", "Tabela de Temas - T\u00EDtulo")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "f0533f66-fb6f-475b-9407-05f7d0369aa6")
+    .set("code", "theme-table-actions")
+    .set("description", "Tabela de Temas - A\u00E7\u00F5es")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "cb96f27d-ec14-4d4e-8e58-aface79e2cba")
+    .set("code", "theme-table-button-edit")
+    .set("description", "Tabela de Temas - Bot\u00E3o - Editar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "ce9580f1-f924-4662-8e66-e8ed18e091f2")
+    .set("code", "theme-table-button-delete")
+    .set("description", "Tabela de Temas - Bot\u00E3o - Apagar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "49246b40-e0bc-4282-bde7-23cbbee312fd")
+    .set("code", "theme-table-popconfirm-delete-title")
+    .set("description", "Tabela de Temas - Confirma\u00E7\u00E3o - Apagar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "f9ecfc67-da61-428e-8006-d347bfe6ea51")
+    .set("code", "theme-table-notification-load-fail")
+    .set("description", "Tabela de Temas - Notifica\u00E7\u00E3o - Falha ao carregar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "aa1ad684-3408-43ce-a4ec-fca0d9dc17bb")
+    .set("code", "theme-table-delete-success-message")
+    .set("description", "Tabela de Temas - Notifica\u00E7\u00E3o - Apagado com sucesso")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "45eb2600-9202-48d7-948f-5e62641371d9")
+    .set("code", "theme-table-delete-failed-message")
+    .set("description", "Tabela de Temas - Notifica\u00E7\u00E3o - Falha ao apagar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "208c3708-1b3f-4e25-a601-d6c24a31aee9")
+    .set("code", "theme-table-applied-success-message")
+    .set("description", "Tabela de Temas - Notifica\u00E7\u00E3o - Aplicado com sucesso")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "6918de0b-fff5-4574-a6e8-f2fbb7f30eff")
+    .set("code", "theme-table-unapplied-success-message")
+    .set("description", "Tabela de Temas - Notifica\u00E7\u00E3o - Desativado com sucesso")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "1652cf6a-c61b-4d05-9679-6010f5ee30fd")
+    .set("code", "theme-table-applied-failed-message")
+    .set("description", "Tabela de Temas - Notifica\u00E7\u00E3o - Falha ao aplicar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "8a573671-83b4-4fe2-8446-b5a605af8187")
+    .set("code", "theme-table-unapplied-failed-message")
+    .set("description", "Tabela de Temas - Notifica\u00E7\u00E3o - Falha ao desativar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "5477d592-5e31-4c35-91dd-6cacb3d58469")
+    .set("code", "theme-modal-new-title")
+    .set("description", "Modal de Temas - T\u00EDtulo - Novo")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "5843c56a-1a77-4768-bdf7-537ba8fda893")
+    .set("code", "theme-modal-edit-title")
+    .set("description", "Modal de Temas - T\u00EDtulo - Editar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "bbb9ea6e-3b9d-4c14-98be-aee9e1c75e39")
+    .set("code", "theme-form-title")
+    .set("description", "Formul\u00E1rio de Temas - T\u00EDtulo")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "061fee87-8b8d-45c8-81fa-0e77a4a2c5cd")
+    .set("code", "theme-form-content")
+    .set("description", "Formul\u00E1rio de Temas - Conte\u00FAdo")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "a6d61387-ac45-44a1-83c8-50a4657ad41c")
+    .set("code", "theme-form-cancel")
+    .set("description", "Formul\u00E1rio de Temas - Cancelar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "b2748b7b-3ab6-4fcb-9b53-0bf824d63b9c")
+    .set("code", "theme-form-save")
+    .set("description", "Formul\u00E1rio de Temas - Guardar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "c4dddc63-ba50-4dea-b5b0-98bf62d19de4")
+    .set("code", "theme-form-validate-message-required")
+    .set("description", "Formul\u00E1rio de Temas - Valida\u00E7\u00E3o - Obrigat\u00F3rio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "12d7e229-c9a5-4afd-9fec-019fc9b24e56")
+    .set("code", "theme-form-save-success-message")
+    .set("description", "Formul\u00E1rio de Temas - Notifica\u00E7\u00E3o - Guardado com sucesso")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "16862e07-8f31-4e13-a369-425dbe569004")
+    .set("code", "theme-form-save-failed-message")
+    .set("description", "Formul\u00E1rio de Temas - Notifica\u00E7\u00E3o - Falha ao guardar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "2976626b-ff72-4c5a-b1c0-eaa39951bd2b")
+    .set("code", "theme-form-edit-success-message")
+    .set("description", "Formul\u00E1rio de Temas - Notifica\u00E7\u00E3o - Editado com sucesso")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "3802a7b0-b1c5-4284-9c32-a33edb6c2780")
+    .set("code", "theme-form-edit-failed-message")
+    .set("description", "Formul\u00E1rio de Temas - Notifica\u00E7\u00E3o - Falha ao editar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "e81a61a2-e91e-4019-b164-1397d47bee65")
+    .set("code", "theme-not-found")
+    .set("description", "Servi\u00E7os de Temas - Tema n\u00E3o encontrado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "687f72d1-b5f6-4075-8e4b-0cabea4e3a49")
+    .set("code", "theme-in-use")
+    .set("description", "Servi\u00E7os de Temas - Tema aplicado n\u00E3o pode ser apagado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "90647baa-8096-407b-9d8e-dc7443f83dad")
+    .set("code", "theme-form-content-mode-editor")
+    .set("description", "Formul\u00E1rio de Temas - Conte\u00FAdo - Alternar para editor visual")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "1ddc0951-846d-412b-ba6d-206a712d9418")
+    .set("code", "theme-form-content-mode-text")
+    .set("description", "Formul\u00E1rio de Temas - Conte\u00FAdo - Alternar para texto")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "c02d9d17-42c6-4e20-8620-4e9643a3ce8b")
+    .set("code", "theme-form-content-invalid-json")
+    .set("description", "Formul\u00E1rio de Temas - Conte\u00FAdo - JSON inv\u00E1lido")
+);;

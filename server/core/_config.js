@@ -1,4 +1,5 @@
 import { _config, _env, _url, _header, _app, _val, _auth, _req, _log } from "@netuno/server-types";
+import { DEFAULT_THEME_CONTENT } from "#core/cluar/theme-content.js";
 
 _config.set("_lang", _config.get("_lang:default"));
 
@@ -31,7 +32,7 @@ if (_app.isFolder(websiteBuildPath)) {
   if (!_app.isFolder(`${websiteBuildPath}/cluar`)) {
     _app.file(`${websiteBuildPath}/cluar`).mkdir();
   }
-  
+
   const websiteConfigFile = _app.file(`${websiteBuildPath}/cluar/settings.js`);
   if (_app.configReloaded() || !websiteConfigFile.exists()) {
     const websiteConfig = _val
@@ -62,6 +63,11 @@ if (_app.isFolder(websiteBuildPath)) {
     websiteConfigFile
       .output()
       .printAndClose(`window.cluarSettings = ${websiteConfig.toJSON(4)};`);
+  }
+
+  const antdThemeFile = _app.file(`${websiteBuildPath}/antdTheme.json`);
+  if (!antdThemeFile.exists()) {
+    antdThemeFile.output().print(DEFAULT_THEME_CONTENT).close();
   }
 } else {
   _log.fatal(

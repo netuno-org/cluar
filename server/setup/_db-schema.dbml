@@ -343,6 +343,14 @@ Table profile {
   Note: 'Perfil'
 }
 
+Table theme {
+  id int [pk, increment]
+  applied boolean [note: 'Aplicado']
+  content text [note: 'Conteúdo']
+  title varchar(250) [note: 'Título']
+  Note: 'Tema'
+}
+
 Table translation {
   id int [pk, increment]
   entry_id int [not null, ref: > translation_entry.id, note: 'Chave']

@@ -43,6 +43,7 @@ src/config/config.json
 /public/root.css
 
 /public/reauthkit.js
+/public/antdTheme.json
 
 /public/sitemap.xml
 
