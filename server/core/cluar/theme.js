@@ -1,7 +1,10 @@
 import { _app, _db, _user, _val } from "@netuno/server-types";
 import permission from "#core/cluar/permission.js";
 import response from "#core/cluar/response.js";
-import { DEFAULT_THEME_CONTENT } from "#core/cluar/theme-content.js";
+import {
+  DEFAULT_THEME_CONTENT,
+  DEFAULT_THEME_STYLE,
+} from "#core/cluar/theme-content.js";
 
 const currentUserOrganization = () =>
   _db.queryFirst(
@@ -45,6 +48,7 @@ const serialize = (dbTheme) =>
     .set("uid", dbTheme.getString("uid"))
     .set("title", dbTheme.getString("title"))
     .set("content", dbTheme.getString("content"))
+    .set("style", dbTheme.getString("style"))
     .set("applied", dbTheme.getBoolean("applied"));
 
 const setApplied = (themeId, applied) => {
@@ -59,12 +63,21 @@ const setApplied = (themeId, applied) => {
   }
 };
 
+const writeThemeFiles = (fileName, content) => {
+  _app.file(`website/public/${fileName}`).output().print(content).close();
+
+  if (_app.isFolder("website/dist")) {
+    _app.file(`website/dist/${fileName}`).output().print(content).close();
+  }
+};
+
 const writeAppliedThemeFile = () => {
   const dbAppliedTheme = _db.queryFirst(
-    "SELECT content FROM theme WHERE applied = true LIMIT 1",
+    "SELECT content, style FROM theme WHERE applied = true LIMIT 1",
   );
 
   let content = DEFAULT_THEME_CONTENT;
+  let style = DEFAULT_THEME_STYLE;
 
   if (dbAppliedTheme) {
     const themeContent = dbAppliedTheme.getString("content");
@@ -73,13 +86,12 @@ const writeAppliedThemeFile = () => {
       JSON.parse(themeContent);
       content = themeContent;
     } catch (error) {}
+
+    style = dbAppliedTheme.getString("style") || DEFAULT_THEME_STYLE;
   }
 
-  _app.file("website/public/antdTheme.json").output().print(content).close();
-
-  if (_app.isFolder("website/dist")) {
-    _app.file("website/dist/antdTheme.json").output().print(content).close();
-  }
+  writeThemeFiles("antdTheme.json", content);
+  writeThemeFiles("antdTheme.css", style);
 };
 
 export default {

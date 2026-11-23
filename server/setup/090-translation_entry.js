@@ -5517,3 +5517,27 @@ _db.insertIfNotExists(
     .set("code", "theme-form-content-invalid-json")
     .set("description", "Formul\u00E1rio de Temas - Conte\u00FAdo - JSON inv\u00E1lido")
 );;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "812213c3-2f7d-482b-9b16-957c5910e20f")
+    .set("code", "theme-form-style")
+    .set("description", "Formul\u00E1rio de Temas - Estilo (CSS)")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "77ac5014-8ff3-47c4-b613-71eb4c4da4ca")
+    .set("code", "theme-form-tab-json")
+    .set("description", "Formul\u00E1rio de Temas - Separador - Configura\u00E7\u00E3o JSON")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "fc93fc17-f103-4328-b900-75d266b29033")
+    .set("code", "theme-form-tab-css")
+    .set("description", "Formul\u00E1rio de Temas - Separador - CSS")
+);;

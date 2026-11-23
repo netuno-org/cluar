@@ -12361,3 +12361,57 @@ _db.insertIfNotExists(
     .set("entry_id", "c02d9d17-42c6-4e20-8620-4e9643a3ce8b")
     .set("value", "The content is not valid JSON. Fix it before using the visual editor.")
 );;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "2b31799c-9373-4ed9-8bb0-bad366e78366")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "812213c3-2f7d-482b-9b16-957c5910e20f")
+    .set("value", "Estilo (CSS global)")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "d19bd5a8-46b7-40d9-bb75-36808753cd4f")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "812213c3-2f7d-482b-9b16-957c5910e20f")
+    .set("value", "Style (global CSS)")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "eaed5979-85e9-49a3-87df-d311043e7097")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "77ac5014-8ff3-47c4-b613-71eb4c4da4ca")
+    .set("value", "Configura\u00E7\u00E3o JSON")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "a31f26f8-aff8-4584-ad3a-7b2db2ffdbc8")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "77ac5014-8ff3-47c4-b613-71eb4c4da4ca")
+    .set("value", "JSON configuration")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "b2e92d1c-9dae-48bd-9b30-c89c21963182")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "fc93fc17-f103-4328-b900-75d266b29033")
+    .set("value", "CSS")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "9d315a6a-606f-48a5-a994-4ae461cee320")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "fc93fc17-f103-4328-b900-75d266b29033")
+    .set("value", "CSS")
+);;

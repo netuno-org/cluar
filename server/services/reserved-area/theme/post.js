@@ -5,12 +5,14 @@ cluar.theme.requireCurrentUserOrganizationAuthorization();
 
 const title = _req.getString("title");
 const content = _req.getString("content");
+const style = _req.getString("style");
 const applied = _req.getBoolean("applied");
 
 const data = _val
   .map()
   .set("title", title)
   .set("content", content)
+  .set("style", style)
   .set("applied", false);
 
 const dbTheme = cluar.db.insertAndReturn("theme", data);

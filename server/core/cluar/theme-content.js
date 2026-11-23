@@ -1,3 +1,5 @@
+export const DEFAULT_THEME_STYLE = "";
+
 export const DEFAULT_THEME_CONTENT = `{
   "light": {
     "token": {

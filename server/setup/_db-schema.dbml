@@ -347,6 +347,7 @@ Table theme {
   id int [pk, increment]
   applied boolean [note: 'Aplicado']
   content text [note: 'Conteúdo']
+  style text [note: 'CSS']
   title varchar(250) [note: 'Título']
   Note: 'Tema'
 }

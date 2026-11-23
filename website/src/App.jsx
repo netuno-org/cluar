@@ -57,6 +57,17 @@ const ThemedConfigProvider = ({ children }) => {
   }, [themeVersion]);
 
   useEffect(() => {
+    let link = document.getElementById("cluar-theme-style");
+    if (!link) {
+      link = document.createElement("link");
+      link.id = "cluar-theme-style";
+      link.rel = "stylesheet";
+      document.head.appendChild(link);
+    }
+    link.href = `/antdTheme.css?t=${themeVersion || Date.now()}`;
+  }, [themeVersion]);
+
+  useEffect(() => {
     const saved = localStorage.getItem("theme");
     if (saved && saved !== themeMode) {
       dispatch(setTheme(saved));

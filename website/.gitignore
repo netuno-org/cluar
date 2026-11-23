@@ -44,6 +44,7 @@ src/config/config.json
 
 /public/reauthkit.js
 /public/antdTheme.json
+/public/antdTheme.css
 
 /public/sitemap.xml
 

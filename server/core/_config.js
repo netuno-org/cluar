@@ -1,5 +1,8 @@
 import { _config, _env, _url, _header, _app, _val, _auth, _req, _log } from "@netuno/server-types";
-import { DEFAULT_THEME_CONTENT } from "#core/cluar/theme-content.js";
+import {
+  DEFAULT_THEME_CONTENT,
+  DEFAULT_THEME_STYLE,
+} from "#core/cluar/theme-content.js";
 
 _config.set("_lang", _config.get("_lang:default"));
 
@@ -65,9 +68,19 @@ if (_app.isFolder(websiteBuildPath)) {
       .printAndClose(`window.cluarSettings = ${websiteConfig.toJSON(4)};`);
   }
 
-  const antdThemeFile = _app.file(`${websiteBuildPath}/antdTheme.json`);
-  if (!antdThemeFile.exists()) {
-    antdThemeFile.output().print(DEFAULT_THEME_CONTENT).close();
+  const antdThemeFiles = [
+    { folder: "website/public", name: "antdTheme.json", content: DEFAULT_THEME_CONTENT },
+    { folder: "website/public", name: "antdTheme.css", content: DEFAULT_THEME_STYLE },
+    { folder: websiteBuildPath, name: "antdTheme.json", content: DEFAULT_THEME_CONTENT },
+    { folder: websiteBuildPath, name: "antdTheme.css", content: DEFAULT_THEME_STYLE },
+  ];
+  for (const themeFile of antdThemeFiles) {
+    if (_app.isFolder(themeFile.folder)) {
+      const targetFile = _app.file(`${themeFile.folder}/${themeFile.name}`);
+      if (!targetFile.exists()) {
+        targetFile.output().print(themeFile.content).close();
+      }
+    }
   }
 } else {
   _log.fatal(

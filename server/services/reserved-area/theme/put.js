@@ -22,7 +22,8 @@ _db.update(
   themeId,
   _val.map()
     .set("title", _req.getString("title"))
-    .set("content", _req.getString("content")),
+    .set("content", _req.getString("content"))
+    .set("style", _req.getString("style")),
 );
 
 cluar.response.successWithoutData({ status: 200 });

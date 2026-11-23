@@ -36,6 +36,7 @@ const dbPage = _db.form("theme")
   .get("uid")
   .get("title")
   .get("content")
+  .get("style")
   .get("applied")
   .order("id", "desc")
   .page(page);

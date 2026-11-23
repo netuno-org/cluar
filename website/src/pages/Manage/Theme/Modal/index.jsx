@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Modal, Row, notification } from "antd";
+import { Button, Col, Form, Input, Modal, Row, Tabs, notification } from "antd";
 import { AppstoreOutlined, CodeOutlined } from "@ant-design/icons";
 import {
   useState,
@@ -10,6 +10,7 @@ import {
 import _service from "@netuno/service-client";
 import Cluar from "../../../../common/Cluar";
 import MetadataEditor from "../../../../base/MetadataEditor";
+import MonacoEditor from "../../../../base/MonacoEditor";
 
 import "./index.less";
 
@@ -18,6 +19,7 @@ const ThemeModal = forwardRef(
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [onFinishLoading, setOnFinishLoading] = useState(false);
     const [contentMode, setContentMode] = useState("editor");
+    const [activeTab, setActiveTab] = useState("json");
     const [formRef] = Form.useForm();
     const editMode = themeData ? true : false;
     const themeDataRef = useRef(themeData);
@@ -33,6 +35,7 @@ const ThemeModal = forwardRef(
         }
       }
       setContentMode(nextContentMode);
+      setActiveTab("json");
       setIsModalOpen(true);
     };
 
@@ -164,7 +167,19 @@ const ThemeModal = forwardRef(
             </Button>,
           ]}
         >
-          <Form layout="vertical" form={formRef} onFinish={onFinish}>
+          <Form
+            layout="vertical"
+            form={formRef}
+            onFinish={onFinish}
+            onFinishFailed={({ errorFields }) => {
+              const invalidFields = errorFields.map((field) => field.name[0]);
+              if (invalidFields.includes("content")) {
+                setActiveTab("json");
+              } else if (invalidFields.includes("style")) {
+                setActiveTab("css");
+              }
+            }}
+          >
             <Row justify={"space-between"} align={"middle"} gutter={[10, 0]}>
               <Col span={24}>
                 <Form.Item
@@ -183,35 +198,68 @@ const ThemeModal = forwardRef(
                 </Form.Item>
               </Col>
               <Col span={24}>
-                <div className="theme-content-header">
-                  <span className="theme-content-header-label">
-                    {Cluar.plainTranslation("theme-form-content")}
-                  </span>
-                  <Button type="link" size="small" onClick={toggleContentMode}>
-                    {contentMode === "editor"
-                      ? Cluar.plainTranslation("theme-form-content-mode-text")
-                      : Cluar.plainTranslation(
-                          "theme-form-content-mode-editor",
-                        )}
-                  </Button>
-                </div>
-                <Form.Item
-                  name="content"
-                  rules={[
+                <Tabs
+                  className="theme-form-tabs"
+                  activeKey={activeTab}
+                  onChange={setActiveTab}
+                  items={[
                     {
-                      required: true,
-                      message: Cluar.plainTranslation(
-                        "theme-form-validate-message-required",
+                      key: "json",
+                      label: Cluar.plainTranslation("theme-form-tab-json"),
+                      children: (
+                        <>
+                          <div className="theme-content-header">
+                            <span className="theme-content-header-label">
+                              {Cluar.plainTranslation("theme-form-content")}
+                            </span>
+                            <Button
+                              type="link"
+                              size="small"
+                              onClick={toggleContentMode}
+                            >
+                              {contentMode === "editor"
+                                ? Cluar.plainTranslation(
+                                    "theme-form-content-mode-text",
+                                  )
+                                : Cluar.plainTranslation(
+                                    "theme-form-content-mode-editor",
+                                  )}
+                            </Button>
+                          </div>
+                          <Form.Item
+                            name="content"
+                            rules={[
+                              {
+                                required: true,
+                                message: Cluar.plainTranslation(
+                                  "theme-form-validate-message-required",
+                                ),
+                              },
+                            ]}
+                          >
+                            {contentMode === "editor" ? (
+                              <MetadataEditor />
+                            ) : (
+                              <Input.TextArea rows={16} />
+                            )}
+                          </Form.Item>
+                        </>
+                      ),
+                    },
+                    {
+                      key: "css",
+                      label: Cluar.plainTranslation("theme-form-tab-css"),
+                      children: (
+                        <Form.Item
+                          label={Cluar.plainTranslation("theme-form-style")}
+                          name="style"
+                        >
+                          <MonacoEditor language="css" title="CSS" />
+                        </Form.Item>
                       ),
                     },
                   ]}
-                >
-                  {contentMode === "editor" ? (
-                    <MetadataEditor />
-                  ) : (
-                    <Input.TextArea rows={16} />
-                  )}
-                </Form.Item>
+                />
               </Col>
             </Row>
           </Form>
