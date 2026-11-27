@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import {
   Col,
   Form,
@@ -12,7 +11,6 @@ import {
   message,
   Space,
   Switch,
-  Radio,
 } from "antd";
 
 import {
@@ -32,6 +30,7 @@ import { CSS } from "@dnd-kit/utilities";
 
 import { HolderOutlined, CloseOutlined, EditOutlined } from "@ant-design/icons";
 import LexicalEditor from "../../../LexicalEditor";
+import CodeModePanel from "../../../LexicalEditor/components/CodeModePanel";
 import MonacoEditor from "../../../MonacoEditor";
 import Cluar from "../../../../common/Cluar";
 import ImageSectionEditor from "../../ImageSectionEditor";
@@ -53,8 +52,6 @@ const SortableItem = ({
     transform: CSS.Transform.toString(transform),
     transition,
   };
-
-  const themeMode = useSelector((state) => state.theme?.mode || "light");
 
   const [isTitleModalOpen, setIsTitleModalOpen] = useState(false);
   const [titleValue, setTitleValue] = useState(item?.title || "");
@@ -378,17 +375,13 @@ const SortableItem = ({
       >
         <div
           style={{
-            backgroundColor: titleInvert
-              ? themeMode === "dark"
-                ? "#ffffff"
-                : "#141414"
-              : "transparent",
             borderRadius: "4px",
             transition: "all 0.3s",
           }}
         >
           <LexicalEditor
             initialHtml={titleValue}
+            inverted={titleInvert}
             onChange={(html) => setTitleValue(html)}
             mode="simple"
             stripRootParagraph
@@ -412,21 +405,6 @@ const SortableItem = ({
               )}
             </span>
             <Space>
-              <Radio.Group
-                className="editor-mode-toggle"
-                value={contentEditMode}
-                onChange={(e) => handleContentEditModeChange(e.target.value)}
-                optionType="button"
-                buttonStyle="solid"
-                size="small"
-              >
-                <Radio.Button value="visual">
-                  {Cluar.plainTranslation("sortable-list-item-mode-visual")}
-                </Radio.Button>
-                <Radio.Button value="html">
-                  {Cluar.plainTranslation("sortable-list-item-mode-code")}
-                </Radio.Button>
-              </Radio.Group>
               {contentEditMode === "visual" && (
                 <>
                   <span style={{ fontSize: "12px", fontWeight: "normal" }}>
@@ -456,14 +434,8 @@ const SortableItem = ({
       >
         <div
           style={{
-            backgroundColor: contentInvert
-              ? themeMode === "dark"
-                ? "#ffffff"
-                : "#141414"
-              : "transparent",
             borderRadius: "4px",
             transition: "all 0.3s",
-            paddingTop: contentEditMode === "html" ? 12 : 0,
           }}
         >
           {contentEditMode === "visual" ? (
@@ -471,12 +443,17 @@ const SortableItem = ({
               key="content-visual"
               initialHtml={contentValue}
               onChange={(html) => setContentValue(html)}
+              inverted={contentInvert}
+              onCodeModeRequest={() => handleContentEditModeChange("html")}
+              codeModeLabel={Cluar.plainTranslation("sortable-list-item-mode-code")}
             />
           ) : (
-            <MonacoEditor
+            <CodeModePanel
               key="content-html"
               value={htmlContentValue}
               onChange={(value) => setHtmlContentValue(value)}
+              onVisualRequest={() => handleContentEditModeChange("visual")}
+              codeLabel={Cluar.plainTranslation("sortable-list-item-mode-code")}
             />
           )}
         </div>

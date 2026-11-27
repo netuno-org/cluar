@@ -12415,3 +12415,165 @@ _db.insertIfNotExists(
     .set("entry_id", "fc93fc17-f103-4328-b900-75d266b29033")
     .set("value", "CSS")
 );;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "10b7e179-4bbb-498a-957b-1d8f4627117b")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "da8c08be-adb9-4522-af88-82bef6a3cff2")
+    .set("value", "Cor do texto")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "ef0c8cdd-bce8-42dd-9902-b3cc5498d986")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "da8c08be-adb9-4522-af88-82bef6a3cff2")
+    .set("value", "Text color")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "77bb767c-4c1a-48a8-8d2c-96d2e7110fed")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "20868d06-8667-4dda-8fe7-d222d96fce0a")
+    .set("value", "Cor de fundo")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "a3b2052c-1237-46db-96a7-2bbcf9cdb895")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "20868d06-8667-4dda-8fe7-d222d96fce0a")
+    .set("value", "Background color")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "c7d98aff-91a7-4655-b79f-a015e4b83d3b")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "480914f3-cb17-4df6-8845-c17cd2c5dbe2")
+    .set("value", "Gradiente de texto")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "86605f34-bd68-48ee-abe3-a9659d920641")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "480914f3-cb17-4df6-8845-c17cd2c5dbe2")
+    .set("value", "Text gradient")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "8aabd2ed-5841-4de2-84b0-373912314702")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "df1ab56a-172f-4571-81d6-b11642a796e9")
+    .set("value", "Predefinidos")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "6dc357d3-b8b9-4544-b341-805317903937")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "df1ab56a-172f-4571-81d6-b11642a796e9")
+    .set("value", "Presets")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "08840cc3-6cfa-4b03-a730-a5793c544d4a")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "0eb89f5f-4704-44b1-bf1d-8fba199736c9")
+    .set("value", "Personalizado")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "b59b08ae-f733-4910-b917-1c4eed861e9d")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "0eb89f5f-4704-44b1-bf1d-8fba199736c9")
+    .set("value", "Custom")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "0e8e92cd-8567-4b46-8532-4c24bf7d633d")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "ec0295e8-246d-49d0-9916-3b0f9c4e1175")
+    .set("value", "\u00C2ngulo")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "f3149d5f-b102-489d-9525-e18300cf676d")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "ec0295e8-246d-49d0-9916-3b0f9c4e1175")
+    .set("value", "Angle")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "09d0542f-3472-470f-89f9-e8c2234ba528")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "c55b3b85-7ec6-407c-91d9-1ca9bd057444")
+    .set("value", "Cor do meio")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "2563ff0d-6635-4d4a-a9a8-ffe95ca7baf4")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "c55b3b85-7ec6-407c-91d9-1ca9bd057444")
+    .set("value", "Middle color")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "b531eb6a-e4d2-428a-a44d-fe3a687a4b15")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "abbe383b-bcd5-4de9-9fc8-2cc0724b9bbd")
+    .set("value", "Aplicar")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "656fb209-9ad4-45b8-8650-812dc0167ffe")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "abbe383b-bcd5-4de9-9fc8-2cc0724b9bbd")
+    .set("value", "Apply")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "ddb9a498-4a71-432c-aa1c-510dcc2263da")
+    .set("language_id", "b6804103-2f6c-4184-a431-0c8b94ea7322")
+    .set("entry_id", "f99034e5-0a99-4925-9429-9cb8883c7b6e")
+    .set("value", "Remover")
+);;
+
+_db.insertIfNotExists(
+  "translation",
+  _val.map()
+    .set("uid", "11f7ebb5-ceeb-4ac6-b346-67326937020b")
+    .set("language_id", "dd9ca34e-3f70-461d-a42d-234651233658")
+    .set("entry_id", "f99034e5-0a99-4925-9429-9cb8883c7b6e")
+    .set("value", "Remove")
+);;

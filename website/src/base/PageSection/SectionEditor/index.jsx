@@ -12,7 +12,6 @@ import {
   Modal,
   Card,
   Switch,
-  Radio,
   Divider,
 } from "antd";
 import { RobotOutlined, EditOutlined } from "@ant-design/icons";
@@ -21,6 +20,7 @@ import ListEditor from "../ListEditor";
 import FunctionalityEditor from "../FunctionalityEditor";
 import ContentEditor from "../ContentEditor";
 import LexicalEditor from "../../LexicalEditor";
+import CodeModePanel from "../../LexicalEditor/components/CodeModePanel";
 import MonacoEditor from "../../MonacoEditor";
 import SliderEditor from "../SliderEditor";
 import RowEditor from "../RowEditor";
@@ -364,17 +364,13 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       >
         <div
           style={{
-            backgroundColor: titleInvert
-              ? themeMode === "dark"
-                ? "#ffffff"
-                : "#141414"
-              : "transparent",
             borderRadius: "4px",
             transition: "all 0.3s",
           }}
         >
           <LexicalEditor
             initialHtml={titleValue}
+            inverted={titleInvert}
             onChange={(html) => setTitleValue(html)}
             stripRootParagraph={true}
           />
@@ -397,21 +393,6 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               )}
             </span>
             <Space>
-              <Radio.Group
-                className="editor-mode-toggle"
-                value={contentEditMode}
-                onChange={(e) => handleContentEditModeChange(e.target.value)}
-                optionType="button"
-                buttonStyle="solid"
-                size="small"
-              >
-                <Radio.Button value="visual">
-                  {Cluar.plainTranslation("section-editor-mode-visual")}
-                </Radio.Button>
-                <Radio.Button value="html">
-                  {Cluar.plainTranslation("section-editor-mode-code")}
-                </Radio.Button>
-              </Radio.Group>
               {contentEditMode === "visual" && (
                 <>
                   <span style={{ fontSize: "12px", fontWeight: "normal" }}>
@@ -441,14 +422,8 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
       >
         <div
           style={{
-            backgroundColor: contentInvert
-              ? themeMode === "dark"
-                ? "#ffffff"
-                : "#141414"
-              : "transparent",
             borderRadius: "4px",
             transition: "all 0.3s",
-            paddingTop: contentEditMode === "html" ? 12 : 0,
           }}
         >
           {contentEditMode === "visual" ? (
@@ -456,18 +431,28 @@ const SectionEditor = ({ open, onClose, sectionData, onConfirmChanges }) => {
               key="content-visual"
               initialHtml={contentValue}
               onChange={(html) => setContentValue(html)}
+              inverted={contentInvert}
+              onCodeModeRequest={() => handleContentEditModeChange("html")}
+              codeModeLabel={Cluar.plainTranslation("section-editor-mode-code")}
             />
           ) : (
-            <MonacoEditor
+            <CodeModePanel
               key="content-html"
               value={htmlContentValue}
               onChange={(value) => setHtmlContentValue(value)}
+              onVisualRequest={() => handleContentEditModeChange("visual")}
+              codeLabel={Cluar.plainTranslation("section-editor-mode-code")}
             />
           )}
         </div>
 
         {isContentSection && (
-          <div style={{ borderTop: "1px solid #f0f0f0", paddingTop: 16 }}>
+          <div
+            style={{
+              borderTop: `1px solid ${themeMode === "dark" ? "#FFFFFF1F" : "#f0f0f0"}`,
+              paddingTop: 16,
+            }}
+          >
             <Button
               type="primary"
               icon={<RobotOutlined />}

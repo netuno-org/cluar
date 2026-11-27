@@ -1,7 +1,7 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useCallback, useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Dropdown, Input, ColorPicker, Menu } from "antd";
+import { Dropdown, Menu } from "antd";
 import {
   AlignLeftOutlined,
   AlignCenterOutlined,
@@ -18,6 +18,7 @@ import {
   UndoOutlined
 } from "@ant-design/icons";
 import {
+  $createTextNode,
   $createParagraphNode,
   $getSelection,
   $isRangeSelection,
@@ -34,21 +35,27 @@ import {
 import { mergeRegister } from "@lexical/utils";
 import { $createHeadingNode, $createQuoteNode } from "@lexical/rich-text";
 import { $setBlocksType, $getSelectionStyleValueForProperty, $patchStyleText, $isAtNodeEnd } from "@lexical/selection";
-import { $isLinkNode, TOGGLE_LINK_COMMAND, $createLinkNode } from "@lexical/link";
+import { $isLinkNode, TOGGLE_LINK_COMMAND, $createLinkNode, $toggleLink } from "@lexical/link";
 import { $createListNode, INSERT_CHECK_LIST_COMMAND } from "@lexical/list";
 
 import Cluar from "../../../common/Cluar";
 
 import FloatingEditor from "../components/FloatingEditor";
+import FontSizeControl from "../components/FontSizeControl";
+import ColorControl from "../components/ColorControl";
+import useSavedSelection from "../components/useSavedSelection";
+import GradientPicker from "../components/GradientPicker";
 import FloatingLinkEditor from "../components/FloatingLinkEditor";
 import InsertImageModal from "../components/ImageModal";
 import InsertColumnsModal from "../components/ColumnsModal";
 
-import { FONT_FAMILY_OPTIONS } from "./constants";
+import { FONT_FAMILY_OPTIONS, TEXT_COLOR_PRESETS, BG_COLOR_PRESETS } from "./constants";
 
 export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
   const [editor] = useLexicalComposerContext();
   const toolbarRef = useRef(null);
+  // Seleção guardada ao abrir os dropdowns (o menu abre fora do editor e tira a seleção)
+  const dropdownSelection = useSavedSelection();
   const [isSelected, setIsSelected] = useState(false);
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
@@ -122,12 +129,9 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
     const element = anchorNode.getParent();
 
     if (element) {
-      const textAlign = element.getStyle("text-align");
-      if (textAlign) {
-        setCurrentTextAlign(textAlign);
-      } else {
-        setCurrentTextAlign("left");
-      }
+      // O alinhamento fica no "format" do bloco (não no style)
+      const textAlign = element.getFormatType?.();
+      setCurrentTextAlign(textAlign && textAlign !== "start" ? textAlign : "left");
     }
 
     // Verifica se o nó ou seu pai é link
@@ -179,15 +183,16 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
             }
 
             if (!url) {
-              const nodes = selection.getNodes();
-              nodes.forEach(node => {
-                if ($isLinkNode(node)) {
-                  node.unwrap();
-                }
-              });
-            } else {
+              // Remove o link mantendo o texto
+              $toggleLink(null);
+            } else if (selection.isCollapsed()) {
+              // Sem texto selecionado: insere o link com a própria URL como texto
               const linkNode = $createLinkNode(url);
+              linkNode.append($createTextNode(url));
               selection.insertNodes([linkNode]);
+            } else {
+              // Envolve o texto selecionado no link (antes o texto era substituído por um link vazio)
+              $toggleLink(url);
             }
             handled = true;
           });
@@ -215,6 +220,7 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
   }, [formatLabels]);
 
   const applyFontFamily = useCallback((fontFamily) => {
+    dropdownSelection.restore();
 
     editor.update(() => {
       const selection = $getSelection();
@@ -306,25 +312,8 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
     );
   }, [editor, updateToolbar]);
 
-  const increaseFontSize = useCallback(() => {
-    const newSize = parseInt(currentFontSize) + 1;
-    setCurrentFontSize(newSize.toString());
-    applyFontSize(newSize.toString());
-  }, [currentFontSize, applyFontSize]);
 
-  const decreaseFontSize = useCallback(() => {
-    const newSize = Math.max(1, parseInt(currentFontSize) - 1);
-    setCurrentFontSize(newSize.toString());
-    applyFontSize(newSize.toString());
-  }, [currentFontSize, applyFontSize]);
 
-  const handleFontSizeChange = useCallback((e) => {
-    const value = e.target.value;
-    if (value && !isNaN(value)) {
-      setCurrentFontSize(value);
-      applyFontSize(value);
-    }
-  }, [applyFontSize]);
 
 
   const handleInsertMenuClick = ({ key }) => {
@@ -349,250 +338,145 @@ export default function ToolbarPluginSimple({ onToggleHtmlMode, isHtmlMode }) {
 
   return (
     <div className="toolbar" ref={toolbarRef}>
-      <button
-        disabled={!canUndo}
-        onClick={() => {
-          editor.dispatchCommand(UNDO_COMMAND, undefined);
-        }}
-        title={Cluar.plainTranslation("toolbar-undo")}
-        type="button"
-        className="toolbar-item"
-      >
-        <UndoOutlined style={{ transform: "rotate(90deg)", fontSize: 15 }} />
-      </button>
-      <button
-        disabled={!canRedo}
-        onClick={() => {
-          editor.dispatchCommand(REDO_COMMAND, undefined);
-        }}
-        title={Cluar.plainTranslation("toolbar-redo")}
-        type="button"
-        className="toolbar-item"
-      >
-        <RedoOutlined style={{ transform: "rotate(-90deg)", fontSize: 15 }} />
-      </button>
+      <div className="toolbar__group">
+        <button
+          disabled={!canUndo}
+          onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}
+          title={Cluar.plainTranslation("toolbar-undo")}
+          type="button"
+          className="toolbar-item"
+        >
+          <UndoOutlined />
+        </button>
+        <button
+          disabled={!canRedo}
+          onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}
+          title={Cluar.plainTranslation("toolbar-redo")}
+          type="button"
+          className="toolbar-item"
+        >
+          <RedoOutlined />
+        </button>
+      </div>
 
-
-      <div className="divider" />
-
-      <div className="dropdown-container">
+      {/* Fonte: família e tamanho */}
+      <div className="toolbar__group">
         <Dropdown
           open={fontFamilyDropdownVisible}
-          onOpenChange={setFontFamilyDropdownVisible}
+          onOpenChange={(open) => {
+            if (open) dropdownSelection.save();
+            setFontFamilyDropdownVisible(open);
+          }}
           trigger={["click"]}
           menu={{
             items: FONT_FAMILY_OPTIONS.map(([font, label]) => ({
               key: font,
               label: (
                 <div className="icon-text-container">
-                  <span className="text" style={{ fontFamily: font }}>{label}</span>
+                  <span className="text" style={{ fontFamily: font }}>
+                    {label}
+                  </span>
                 </div>
               ),
-              onClick: () => applyFontFamily(font)
-            }))
+              onClick: () => applyFontFamily(font),
+            })),
           }}
         >
-          <button
-            className="toolbar-item dropdown-button"
-            title={Cluar.plainTranslation("toolbar-font")}
-            type="button"
-          >
-            <span style={{ fontFamily: currentFontFamily }}>{FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily) ? FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily)[1] : currentFontFamily}</span>
+          <button className="toolbar-item dropdown-button" title={Cluar.plainTranslation("toolbar-font")} type="button">
+            <span style={{ fontFamily: currentFontFamily }}>
+              {FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily)
+                ? FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily)[1]
+                : currentFontFamily}
+            </span>
+            <DownOutlined style={{ fontSize: 10 }} />
           </button>
         </Dropdown>
+        <FontSizeControl value={currentFontSize} onApply={applyFontSize} />
       </div>
 
-      <div className="divider" />
-
-      <div className="font-size-container" style={{ display: "flex", alignItems: "center" }}>
-        <button
-          className="toolbar-item"
-          title={Cluar.plainTranslation("toolbar-font-size-decrease")}
-          type="button"
-          onClick={decreaseFontSize}
-          style={{ padding: "0 8px" }}
-        >
-          -
-        </button>
-        <Input
-          type="number"
-          className="font-size-input"
-          value={currentFontSize}
-          onChange={handleFontSizeChange}
-          min="1"
-        />
-        <button
-          className="toolbar-item"
-          title={Cluar.plainTranslation("toolbar-font-size-increase")}
-          type="button"
-          onClick={increaseFontSize}
-          style={{ padding: "0 8px" }}
-        >
-          +
-        </button>
-      </div>
-      <div className="divider" />
-      <div className="font-color-container" style={{ display: "flex", alignItems: "center" }}>
-        <FontColorsOutlined style={{ width: 18, height: 18, marginRight: 4, verticalAlign: "middle" }} />
-        <ColorPicker
+      {/* Cores: texto, fundo e gradiente */}
+      <div className="toolbar__group">
+        <ColorControl
+          icon={<FontColorsOutlined />}
+          title={Cluar.plainTranslation("toolbar-font-color")}
           value={currentFontColor}
           onChange={applyFontColor}
-          placement="bottomLeft"
-          size="small"
-          onOpenChange={(open) => {
-            if (open) {
-              editor.update(() => {
-                const selection = $getSelection();
-                if ($isRangeSelection(selection)) {
-                  selection.save();
-                }
-              });
-            }
-          }}
           presets={[
             {
               label: "Presets",
-              colors: ["#000000", "#ff4d4f", "#52c41a", "#1677ff", "#faad14", "#eb2f96"]
-            }
+              colors: TEXT_COLOR_PRESETS,
+            },
           ]}
         />
-      </div>
-
-      <div className="bg-color-container" style={{ display: "flex", alignItems: "center", marginLeft: "8px" }}>
-        <BgColorsOutlined style={{ width: 18, height: 18, marginRight: 4, verticalAlign: "middle" }} />
-        <ColorPicker
+        <ColorControl
+          icon={<BgColorsOutlined />}
+          title={Cluar.plainTranslation("toolbar-bg-color")}
           value={currentBgColor}
           onChange={applyBgColor}
-          placement="bottomLeft"
-          size="small"
-          onOpenChange={(open) => {
-            if (open) {
-              editor.update(() => {
-                const selection = $getSelection();
-                if ($isRangeSelection(selection)) {
-                  selection.save();
-                }
-              });
-            }
-          }}
-          presets={[
-            {
-              label: "Presets",
-              colors: ["#fffff", "#000000", "#ff4d4f", "#52c41a", "#1677ff", "#faad14", "#eb2f96"]
-            }
-          ]}
+          presets={[{ label: "Presets", colors: BG_COLOR_PRESETS }]}
         />
+        <GradientPicker />
       </div>
 
-
-      <div className="divider" />
-      <button
-        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold")}
-        className={`toolbar-item ${isBold ? "active" : ""}`}
-        title={Cluar.plainTranslation("toolbar-bold")}
-        type="button"
-      >
-        <i>B</i>
-      </button>
-      <button
-        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic")}
-        className={`toolbar-item ${isItalic ? "active" : ""}`}
-        title={Cluar.plainTranslation("toolbar-italic")}
-        type="button"
-      >
-        <i>I</i>
-      </button>
-      <button
-        onClick={() => {
-          editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
-        }}
-        className={`toolbar-item ${isUnderline ? "active" : ""}`}
-        title={Cluar.plainTranslation("toolbar-underline")}
-        type="button"
-      >
-        <i>U</i>
-      </button>
-
-      <button
-        onClick={() => insertLink()}
-        title={Cluar.plainTranslation("toolbar-link")}
-        type="button"
-        className={isLink ? "btn-active" : "btn-inactive"}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 6,
-          width: 32,
-          height: 32,
-        }}
-      >
-        <LinkOutlined style={{ fontSize: 14 }} />
-      </button>
-      {isLink &&
-        createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
-      {isSelected &&
-        createPortal(<FloatingEditor editor={editor} />, document.body)}
-      <div className="divider" />
-
-      <div className="alignment-buttons-container" style={{ display: "flex", alignItems: "center", gap: "4px", flexWrap: "nowrap" }}>
+      {/* Formato: negrito, itálico, sublinhado e link */}
+      <div className="toolbar__group">
         <button
-          onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "left");
-          }}
-          className="toolbar-item spaced"
-          aria-label={Cluar.plainTranslation("toolbar-align-left")}
+          onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold")}
+          className={`toolbar-item toolbar-format-bold ${isBold ? "active" : ""}`}
+          title={Cluar.plainTranslation("toolbar-bold")}
           type="button"
         >
-          <AlignLeftOutlined />
+          <i>B</i>
         </button>
-
         <button
-          onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "center");
-          }}
-          className="toolbar-item spaced"
-          aria-label={Cluar.plainTranslation("toolbar-align-center")}
+          onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic")}
+          className={`toolbar-item toolbar-format-italic ${isItalic ? "active" : ""}`}
+          title={Cluar.plainTranslation("toolbar-italic")}
           type="button"
         >
-          <AlignCenterOutlined />
+          <i>I</i>
         </button>
-
         <button
-          onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "right");
-          }}
-          className="toolbar-item spaced"
-          aria-label={Cluar.plainTranslation("toolbar-align-right")}
+          onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline")}
+          className={`toolbar-item toolbar-format-underline ${isUnderline ? "active" : ""}`}
+          title={Cluar.plainTranslation("toolbar-underline")}
           type="button"
         >
-          <AlignRightOutlined />
+          <i>U</i>
+        </button>
+        <button
+          onClick={() => insertLink()}
+          className={`toolbar-item ${isLink ? "active" : ""}`}
+          title={Cluar.plainTranslation("toolbar-link")}
+          type="button"
+        >
+          <LinkOutlined />
         </button>
       </div>
 
-      {/* <button
-        onClick={onToggleHtmlMode}
-        className={`toolbar-item ${isHtmlMode ? "active" : ""}`}
-        title="Modo HTML"
-        type="button"
-        style={{
-          minWidth: '50px',
-          padding: '6px 8px',
-          fontSize: '12px',
-          fontWeight: '600',
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis'
-        }}
-      >
-        HTML
-      </button> */}
+      {/* Alinhamento */}
+      <div className="toolbar__group">
+        {[
+          ["left", <AlignLeftOutlined />, "toolbar-align-left"],
+          ["center", <AlignCenterOutlined />, "toolbar-align-center"],
+          ["right", <AlignRightOutlined />, "toolbar-align-right"],
+        ].map(([align, alignIcon, label]) => (
+          <button
+            key={align}
+            onClick={() => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, align)}
+            className={`toolbar-item ${currentTextAlign === align ? "active" : ""}`}
+            title={Cluar.plainTranslation(label)}
+            aria-label={Cluar.plainTranslation(label)}
+            type="button"
+          >
+            {alignIcon}
+          </button>
+        ))}
+      </div>
 
-      <InsertImageModal
-        visible={isImageModalOpen}
-        onClose={() => setIsImageModalOpen(false)}
-        activeEditor={editor}
-      />
+      {isLink && createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
+      {isSelected && createPortal(<FloatingEditor editor={editor} />, document.body)}
+      <InsertImageModal visible={isImageModalOpen} onClose={() => setIsImageModalOpen(false)} activeEditor={editor} />
       <InsertColumnsModal
         visible={isColumnsModalOpen}
         onClose={() => setIsColumnsModalOpen(false)}

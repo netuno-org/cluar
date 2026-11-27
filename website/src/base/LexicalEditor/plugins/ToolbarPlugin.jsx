@@ -1,7 +1,7 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useCallback, useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Dropdown, Input, ColorPicker, Menu } from "antd";
+import { Dropdown, Menu } from "antd";
 import {
   AlignLeftOutlined,
   AlignCenterOutlined,
@@ -18,6 +18,7 @@ import {
   UndoOutlined
 } from "@ant-design/icons";
 import {
+  $createTextNode,
   $createParagraphNode,
   $getSelection,
   $isRangeSelection,
@@ -34,21 +35,28 @@ import {
 import { mergeRegister } from "@lexical/utils";
 import { $createHeadingNode, $createQuoteNode } from "@lexical/rich-text";
 import { $setBlocksType, $getSelectionStyleValueForProperty, $patchStyleText, $isAtNodeEnd } from "@lexical/selection";
-import { $isLinkNode, TOGGLE_LINK_COMMAND, $createLinkNode } from "@lexical/link";
+import { $isLinkNode, TOGGLE_LINK_COMMAND, $createLinkNode, $toggleLink } from "@lexical/link";
 import { $createListNode, INSERT_CHECK_LIST_COMMAND } from "@lexical/list";
 
 import Cluar from "../../../common/Cluar";
 
 import FloatingEditor from "../components/FloatingEditor";
+import FontSizeControl from "../components/FontSizeControl";
+import ColorControl from "../components/ColorControl";
+import useSavedSelection from "../components/useSavedSelection";
+import EditorModeSwitch from "../components/EditorModeSwitch";
+import GradientPicker from "../components/GradientPicker";
 import FloatingLinkEditor from "../components/FloatingLinkEditor";
 import InsertImageModal from "../components/ImageModal";
 import InsertColumnsModal from "../components/ColumnsModal";
 
-import { FONT_FAMILY_OPTIONS } from "./constants";
+import { FONT_FAMILY_OPTIONS, TEXT_COLOR_PRESETS, BG_COLOR_PRESETS } from "./constants";
 
-export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
+export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode, showModeSwitch = true, codeLabel }) {
   const [editor] = useLexicalComposerContext();
   const toolbarRef = useRef(null);
+  // Seleção guardada ao abrir os dropdowns (o menu abre fora do editor e tira a seleção)
+  const dropdownSelection = useSavedSelection();
   const [isSelected, setIsSelected] = useState(false);
   const [canUndo, setCanUndo] = useState(false);
   const [canRedo, setCanRedo] = useState(false);
@@ -124,12 +132,9 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
     const element = anchorNode.getParent();
 
     if (element) {
-      const textAlign = element.getStyle("text-align");
-      if (textAlign) {
-        setCurrentTextAlign(textAlign);
-      } else {
-        setCurrentTextAlign("left");
-      }
+      // O alinhamento fica no "format" do bloco (não no style)
+      const textAlign = element.getFormatType?.();
+      setCurrentTextAlign(textAlign && textAlign !== "start" ? textAlign : "left");
 
       const elementType = element.getType();
       switch (elementType) {
@@ -210,15 +215,16 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
             }
 
             if (!url) {
-              const nodes = selection.getNodes();
-              nodes.forEach(node => {
-                if ($isLinkNode(node)) {
-                  node.unwrap();
-                }
-              });
-            } else {
+              // Remove o link mantendo o texto
+              $toggleLink(null);
+            } else if (selection.isCollapsed()) {
+              // Sem texto selecionado: insere o link com a própria URL como texto
               const linkNode = $createLinkNode(url);
+              linkNode.append($createTextNode(url));
               selection.insertNodes([linkNode]);
+            } else {
+              // Envolve o texto selecionado no link (antes o texto era substituído por um link vazio)
+              $toggleLink(url);
             }
             handled = true;
           });
@@ -247,6 +253,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
 
   const formatParagraph = useCallback(() => {
+    dropdownSelection.restore();
     editor.update(() => {
       const selection = $getSelection();
       if ($isRangeSelection(selection)) {
@@ -258,6 +265,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor]);
 
   const formatHeading = useCallback((tag) => {
+    dropdownSelection.restore();
 
     editor.update(() => {
       const selection = $getSelection();
@@ -270,6 +278,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor]);
 
   const formatList = useCallback((type) => {
+    dropdownSelection.restore();
 
     editor.update(() => {
       const selection = $getSelection();
@@ -284,6 +293,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor]);
 
   const applyFontFamily = useCallback((fontFamily) => {
+    dropdownSelection.restore();
 
     editor.update(() => {
       const selection = $getSelection();
@@ -341,6 +351,7 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
   }, [editor, isLink]);
 
   const formatQuote = useCallback(() => {
+    dropdownSelection.restore();
     editor.update(() => {
       const selection = $getSelection();
       if ($isRangeSelection(selection)) {
@@ -384,25 +395,8 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
     );
   }, [editor, updateToolbar]);
 
-  const increaseFontSize = useCallback(() => {
-    const newSize = parseInt(currentFontSize) + 1;
-    setCurrentFontSize(newSize.toString());
-    applyFontSize(newSize.toString());
-  }, [currentFontSize, applyFontSize]);
 
-  const decreaseFontSize = useCallback(() => {
-    const newSize = Math.max(1, parseInt(currentFontSize) - 1);
-    setCurrentFontSize(newSize.toString());
-    applyFontSize(newSize.toString());
-  }, [currentFontSize, applyFontSize]);
 
-  const handleFontSizeChange = useCallback((e) => {
-    const value = e.target.value;
-    if (value && !isNaN(value)) {
-      setCurrentFontSize(value);
-      applyFontSize(value);
-    }
-  }, [applyFontSize]);
 
 
   const insertMenuItems = [
@@ -422,361 +416,278 @@ export default function ToolbarPlugin({ onToggleHtmlMode, isHtmlMode }) {
 
   return (
     <div className="toolbar" ref={toolbarRef}>
-      <button
-        disabled={!canUndo}
-        onClick={() => {
-          editor.dispatchCommand(UNDO_COMMAND, undefined);
-        }}
-        title={Cluar.plainTranslation("toolbar-undo")}
-        type="button"
-        className="toolbar-item"
-      >
-        <UndoOutlined style={{ transform: "rotate(90deg)", fontSize: 15 }} />
-      </button>
-      <button
-        disabled={!canRedo}
-        onClick={() => {
-          editor.dispatchCommand(REDO_COMMAND, undefined);
-        }}
-        title={Cluar.plainTranslation("toolbar-redo")}
-        type="button"
-        className="toolbar-item"
-      >
-        <RedoOutlined style={{ transform: "rotate(-90deg)", fontSize: 15 }} />
-      </button>
-      <div className="divider" />
+      {!isHtmlMode && (
+        <>
+          <div className="toolbar__group">
+            <button
+              disabled={!canUndo}
+              onClick={() => editor.dispatchCommand(UNDO_COMMAND, undefined)}
+              title={Cluar.plainTranslation("toolbar-undo")}
+              type="button"
+              className="toolbar-item"
+            >
+              <UndoOutlined />
+            </button>
+            <button
+              disabled={!canRedo}
+              onClick={() => editor.dispatchCommand(REDO_COMMAND, undefined)}
+              title={Cluar.plainTranslation("toolbar-redo")}
+              type="button"
+              className="toolbar-item"
+            >
+              <RedoOutlined />
+            </button>
+          </div>
 
-      <div className="dropdown-container">
-        <Dropdown
-          open={stylesDropdownVisible}
-          onOpenChange={setStylesDropdownVisible}
-          trigger={["click"]}
-          menu={{
-            items: [
-              {
-                key: "paragraph",
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon paragraph"></i>
-                    <span className="text">{formatLabels["paragraph"]}</span>
-                  </div>
-                ),
-                onClick: () => formatParagraph()
-              },
-              {
-                key: "h1",
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon h1"></i>
-                    <span className="text">{formatLabels["h1"]}</span>
-                  </div>
-                ),
-                onClick: () => formatHeading("h1")
-              },
-              {
-                key: "h2",
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon h2"></i>
-                    <span className="text">{formatLabels["h2"]}</span>
-                  </div>
-                ),
-                onClick: () => formatHeading("h2")
-              },
-              {
-                key: "h3",
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon h3"></i>
-                    <span className="text">{formatLabels["h3"]}</span>
-                  </div>
-                ),
-                onClick: () => formatHeading("h3")
-              },
-              {
-                key: "bullet",
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon bullet-list"></i>
-                    <span className="text">{formatLabels["bullet"]}</span>
-                  </div>
-                ),
-                onClick: () => formatList("bullet")
-              },
-              {
-                key: "number",
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon bullet-list"></i>
-                    <span className="text">{formatLabels["number"]}</span>
-                  </div>
-                ),
-                onClick: () => formatList("number")
-              },
-              {
-                key: "check",
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon bullet-list"></i>
-                    <span className="text">{formatLabels["check"]}</span>
-                  </div>
-                ),
-                onClick: () => editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined)
-              },
-              {
-                key: "quote",
-                label: (
-                  <div className="icon-text-container">
-                    <i className="icon bullet-list"></i>
-                    <span className="text">Quote</span>
-                  </div>
-                ),
-                onClick: () => formatQuote(editor, selectedFormat)
-              }
-            ]
-          }}
-        >
-          <button
-            className="toolbar-item dropdown-button"
-            title={Cluar.plainTranslation("toolbar-styles")}
-            type="button"
-          >
-            <span>{getFormatLabel(selectedFormat)}</span>
-          </button>
-        </Dropdown>
-      </div>
+          {/* Bloco: estilo (parágrafo, títulos, listas) e alinhamento */}
+          <div className="toolbar__group">
+            <Dropdown
+              open={stylesDropdownVisible}
+              onOpenChange={(open) => {
+                if (open) dropdownSelection.save();
+                setStylesDropdownVisible(open);
+              }}
+              trigger={["click"]}
+              menu={{
+                items: [
+                  {
+                    key: "paragraph",
+                    label: (
+                      <div className="icon-text-container">
+                        <i className="icon paragraph"></i>
+                        <span className="text">{formatLabels["paragraph"]}</span>
+                      </div>
+                    ),
+                    onClick: () => formatParagraph(),
+                  },
+                  {
+                    key: "h1",
+                    label: (
+                      <div className="icon-text-container">
+                        <i className="icon h1"></i>
+                        <span className="text">{formatLabels["h1"]}</span>
+                      </div>
+                    ),
+                    onClick: () => formatHeading("h1"),
+                  },
+                  {
+                    key: "h2",
+                    label: (
+                      <div className="icon-text-container">
+                        <i className="icon h2"></i>
+                        <span className="text">{formatLabels["h2"]}</span>
+                      </div>
+                    ),
+                    onClick: () => formatHeading("h2"),
+                  },
+                  {
+                    key: "h3",
+                    label: (
+                      <div className="icon-text-container">
+                        <i className="icon h3"></i>
+                        <span className="text">{formatLabels["h3"]}</span>
+                      </div>
+                    ),
+                    onClick: () => formatHeading("h3"),
+                  },
+                  {
+                    key: "bullet",
+                    label: (
+                      <div className="icon-text-container">
+                        <i className="icon bullet-list"></i>
+                        <span className="text">{formatLabels["bullet"]}</span>
+                      </div>
+                    ),
+                    onClick: () => formatList("bullet"),
+                  },
+                  {
+                    key: "number",
+                    label: (
+                      <div className="icon-text-container">
+                        <i className="icon bullet-list"></i>
+                        <span className="text">{formatLabels["number"]}</span>
+                      </div>
+                    ),
+                    onClick: () => formatList("number"),
+                  },
+                  {
+                    key: "check",
+                    label: (
+                      <div className="icon-text-container">
+                        <i className="icon bullet-list"></i>
+                        <span className="text">{formatLabels["check"]}</span>
+                      </div>
+                    ),
+                    onClick: () => {
+                      dropdownSelection.restore();
+                      editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined);
+                      setStylesDropdownVisible(false);
+                    },
+                  },
+                  {
+                    key: "quote",
+                    label: (
+                      <div className="icon-text-container">
+                        <i className="icon bullet-list"></i>
+                        <span className="text">Quote</span>
+                      </div>
+                    ),
+                    onClick: () => formatQuote(editor, selectedFormat),
+                  },
+                ],
+              }}
+            >
+              <button
+                className="toolbar-item dropdown-button"
+                title={Cluar.plainTranslation("toolbar-styles")}
+                type="button"
+              >
+                <span>{getFormatLabel(selectedFormat)}</span>
+                <DownOutlined style={{ fontSize: 10 }} />
+              </button>
+            </Dropdown>
+            {[
+              ["left", <AlignLeftOutlined />, "toolbar-align-left"],
+              ["center", <AlignCenterOutlined />, "toolbar-align-center"],
+              ["right", <AlignRightOutlined />, "toolbar-align-right"],
+            ].map(([align, alignIcon, label]) => (
+              <button
+                key={align}
+                onClick={() => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, align)}
+                className={`toolbar-item ${currentTextAlign === align ? "active" : ""}`}
+                title={Cluar.plainTranslation(label)}
+                aria-label={Cluar.plainTranslation(label)}
+                type="button"
+              >
+                {alignIcon}
+              </button>
+            ))}
+          </div>
 
-      <div className="divider" />
+          {/* Fonte: família e tamanho */}
+          <div className="toolbar__group">
+            <Dropdown
+              open={fontFamilyDropdownVisible}
+              onOpenChange={(open) => {
+                if (open) dropdownSelection.save();
+                setFontFamilyDropdownVisible(open);
+              }}
+              trigger={["click"]}
+              menu={{
+                items: FONT_FAMILY_OPTIONS.map(([font, label]) => ({
+                  key: font,
+                  label: (
+                    <div className="icon-text-container">
+                      <span className="text" style={{ fontFamily: font }}>
+                        {label}
+                      </span>
+                    </div>
+                  ),
+                  onClick: () => applyFontFamily(font),
+                })),
+              }}
+            >
+              <button
+                className="toolbar-item dropdown-button"
+                title={Cluar.plainTranslation("toolbar-font")}
+                type="button"
+              >
+                <span style={{ fontFamily: currentFontFamily }}>
+                  {FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily)
+                    ? FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily)[1]
+                    : currentFontFamily}
+                </span>
+                <DownOutlined style={{ fontSize: 10 }} />
+              </button>
+            </Dropdown>
+            <FontSizeControl value={currentFontSize} onApply={applyFontSize} />
+          </div>
 
-      <div className="dropdown-container">
-        <Dropdown
-          open={fontFamilyDropdownVisible}
-          onOpenChange={setFontFamilyDropdownVisible}
-          trigger={["click"]}
-          menu={{
-            items: FONT_FAMILY_OPTIONS.map(([font, label]) => ({
-              key: font,
-              label: (
-                <div className="icon-text-container">
-                  <span className="text" style={{ fontFamily: font }}>{label}</span>
-                </div>
-              ),
-              onClick: () => applyFontFamily(font)
-            }))
-          }}
-        >
-          <button
-            className="toolbar-item dropdown-button"
-            title={Cluar.plainTranslation("toolbar-font")}
-            type="button"
-          >
-            <span style={{ fontFamily: currentFontFamily }}>{FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily) ? FONT_FAMILY_OPTIONS.find((i) => i[0] === currentFontFamily)[1] : currentFontFamily}</span>
-          </button>
-        </Dropdown>
-      </div>
+          {/* Cores: texto, fundo e gradiente */}
+          <div className="toolbar__group">
+            <ColorControl
+              icon={<FontColorsOutlined />}
+              title={Cluar.plainTranslation("toolbar-font-color")}
+              value={currentFontColor}
+              onChange={applyFontColor}
+              presets={[
+                {
+                  label: "Presets",
+                  colors: TEXT_COLOR_PRESETS,
+                },
+              ]}
+            />
+            <ColorControl
+              icon={<BgColorsOutlined />}
+              title={Cluar.plainTranslation("toolbar-bg-color")}
+              value={currentBgColor}
+              onChange={applyBgColor}
+              presets={[
+                {
+                  label: "Presets",
+                  colors: BG_COLOR_PRESETS,
+                },
+              ]}
+            />
+            <GradientPicker />
+          </div>
 
-      <div className="divider" />
+          {/* Formato: negrito, itálico, sublinhado e link */}
+          <div className="toolbar__group">
+            <button
+              onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold")}
+              className={`toolbar-item toolbar-format-bold ${isBold ? "active" : ""}`}
+              title={Cluar.plainTranslation("toolbar-bold")}
+              type="button"
+            >
+              <i>B</i>
+            </button>
+            <button
+              onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic")}
+              className={`toolbar-item toolbar-format-italic ${isItalic ? "active" : ""}`}
+              title={Cluar.plainTranslation("toolbar-italic")}
+              type="button"
+            >
+              <i>I</i>
+            </button>
+            <button
+              onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline")}
+              className={`toolbar-item toolbar-format-underline ${isUnderline ? "active" : ""}`}
+              title={Cluar.plainTranslation("toolbar-underline")}
+              type="button"
+            >
+              <i>U</i>
+            </button>
+            <button
+              onClick={() => insertLink()}
+              className={`toolbar-item ${isLink ? "active" : ""}`}
+              title={Cluar.plainTranslation("toolbar-link")}
+              type="button"
+            >
+              <LinkOutlined />
+            </button>
+          </div>
 
-      <div className="font-size-container" style={{ display: "flex", alignItems: "center" }}>
-        <button
-          className="toolbar-item"
-          title={Cluar.plainTranslation("toolbar-font-size-decrease")}
-          type="button"
-          onClick={decreaseFontSize}
-          style={{ padding: "0 8px" }}
-        >
-          -
-        </button>
-        <Input
-          type="number"
-          className="font-size-input"
-          value={currentFontSize}
-          onChange={handleFontSizeChange}
-          min="1"
-        />
-        <button
-          className="toolbar-item"
-          title={Cluar.plainTranslation("toolbar-font-size-increase")}
-          type="button"
-          onClick={increaseFontSize}
-          style={{ padding: "0 8px" }}
-        >
-          +
-        </button>
-      </div>
-      <div className="divider" />
-      <div className="font-color-container" style={{ display: "flex", alignItems: "center" }}>
-        <FontColorsOutlined style={{ width: 18, height: 18, marginRight: 4, verticalAlign: "middle" }} />
-        <ColorPicker
-          value={currentFontColor}
-          onChange={applyFontColor}
-          placement="bottomLeft"
-          size="small"
-          onOpenChange={(open) => {
-            if (open) {
-              editor.update(() => {
-                const selection = $getSelection();
-                if ($isRangeSelection(selection)) {
-                  selection.save();
-                }
-              });
-            }
-          }}
-          presets={[
-            {
-              label: "Presets",
-              colors: ["#000000", "#ff4d4f", "#52c41a", "#1677ff", "#faad14", "#eb2f96"]
-            }
-          ]}
-        />
-      </div>
+          {/* Inserir: imagem e colunas */}
+          <div className="toolbar__group">
+            <Dropdown menu={{ items: insertMenuItems }} trigger={["click"]}>
+              <button type="button" className="toolbar-item dropdown-button" title="Inserir">
+                <PlusOutlined /> <span>Inserir</span> <DownOutlined style={{ fontSize: 10 }} />
+              </button>
+            </Dropdown>
+          </div>
 
-      <div className="bg-color-container" style={{ display: "flex", alignItems: "center", marginLeft: "8px" }}>
-        <BgColorsOutlined style={{ width: 18, height: 18, marginRight: 4, verticalAlign: "middle" }} />
-        <ColorPicker
-          value={currentBgColor}
-          onChange={applyBgColor}
-          placement="bottomLeft"
-          size="small"
-          onOpenChange={(open) => {
-            if (open) {
-              editor.update(() => {
-                const selection = $getSelection();
-                if ($isRangeSelection(selection)) {
-                  selection.save();
-                }
-              });
-            }
-          }}
-          presets={[
-            {
-              label: "Presets",
-              colors: ["#fffff", "#000000", "#ff4d4f", "#52c41a", "#1677ff", "#faad14", "#eb2f96"]
-            }
-          ]}
-        />
-      </div>
+          {isLink && createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
+          {isSelected && createPortal(<FloatingEditor editor={editor} />, document.body)}
+        </>
+      )}
 
+      {/* Modo de edição: visual (Lexical) ou código HTML */}
+      {showModeSwitch && (
+        <EditorModeSwitch isCodeMode={isHtmlMode} onChange={() => onToggleHtmlMode()} codeLabel={codeLabel} />
+      )}
 
-      <div className="divider" />
-      <button
-        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold")}
-        className={`toolbar-item ${isBold ? "active" : ""}`}
-        title={Cluar.plainTranslation("toolbar-bold")}
-        type="button"
-      >
-        <i>B</i>
-      </button>
-      <button
-        onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic")}
-        className={`toolbar-item ${isItalic ? "active" : ""}`}
-        title={Cluar.plainTranslation("toolbar-italic")}
-        type="button"
-      >
-        <i>I</i>
-      </button>
-      <button
-        onClick={() => {
-          editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
-        }}
-        className={`toolbar-item ${isUnderline ? "active" : ""}`}
-        title={Cluar.plainTranslation("toolbar-underline")}
-        type="button"
-      >
-        <i>U</i>
-      </button>
-
-      <button
-        onClick={() => insertLink()}
-        title={Cluar.plainTranslation("toolbar-link")}
-        type="button"
-        className={isLink ? "btn-active" : "btn-inactive"}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 6,
-          width: 32,
-          height: 32,
-        }}
-      >
-        <LinkOutlined style={{ fontSize: 14 }} />
-      </button>
-      {isLink &&
-        createPortal(<FloatingLinkEditor editor={editor} />, document.body)}
-      {isSelected &&
-        createPortal(<FloatingEditor editor={editor} />, document.body)}
-      <div className="divider" />
-      <Dropdown menu={{ items: insertMenuItems }} trigger={["click"]}>
-        <button type="link" style={{
-          padding: 0,
-          display: "flex",
-          alignItems: "center",
-          gap: "6px"
-        }}>
-          <PlusOutlined /> Inserir <DownOutlined />
-        </button>
-      </Dropdown>
-      <div className="divider" />
-
-      <div className="alignment-buttons-container" style={{ display: "flex", alignItems: "center", gap: "4px", flexWrap: "nowrap" }}>
-        <button
-          onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "left");
-          }}
-          className="toolbar-item spaced"
-          aria-label={Cluar.plainTranslation("toolbar-align-left")}
-          type="button"
-        >
-          <AlignLeftOutlined />
-        </button>
-
-        <button
-          onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "center");
-          }}
-          className="toolbar-item spaced"
-          aria-label={Cluar.plainTranslation("toolbar-align-center")}
-          type="button"
-        >
-          <AlignCenterOutlined />
-        </button>
-
-        <button
-          onClick={() => {
-            editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "right");
-          }}
-          className="toolbar-item spaced"
-          aria-label={Cluar.plainTranslation("toolbar-align-right")}
-          type="button"
-        >
-          <AlignRightOutlined />
-        </button>
-      </div>
-
-      <button
-        onClick={onToggleHtmlMode}
-        className={`toolbar-item ${isHtmlMode ? "active" : ""}`}
-        title={Cluar.plainTranslation("toolbar-html-mode")}
-        type="button"
-        style={{
-          minWidth: "50px",
-          padding: "6px 8px",
-          fontSize: "12px",
-          fontWeight: "600",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-          textOverflow: "ellipsis"
-        }}
-      >
-        HTML
-      </button>
-
-      <InsertImageModal
-        visible={isImageModalOpen}
-        onClose={() => setIsImageModalOpen(false)}
-        activeEditor={editor}
-      />
+      <InsertImageModal visible={isImageModalOpen} onClose={() => setIsImageModalOpen(false)} activeEditor={editor} />
       <InsertColumnsModal
         visible={isColumnsModalOpen}
         onClose={() => setIsColumnsModalOpen(false)}

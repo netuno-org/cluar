@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { $getRoot, $createParagraphNode, $createTextNode, TextNode, ParagraphNode } from "lexical";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
@@ -86,8 +87,69 @@ const cleanHeadingsAndAttrs = (html) => {
   return cleaned;
 };
 
-const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagraph = false }) => {
+// Tag das atualizações feitas ao carregar HTML no editor (não geram onChange)
+const IMPORT_TAG = "cluar-html-import";
+
+// Junta espaços, tabs e quebras de linha num único espaço, como o navegador faz ao renderizar
+const collapseWhitespace = (text) => text.replace(/\s+/g, " ");
+
+// Propriedades de texto de um bloco (<p>) que devem passar para o texto dentro dele
+const INHERITABLE_STYLE = /^(font|color|line-height|letter-spacing|word-spacing|text-transform|text-decoration|text-shadow)/;
+
+const parseStyle = (cssText) => {
+  const element = document.createElement("span");
+  element.style.cssText = cssText || "";
+  return element.style;
+};
+
+// Estilo inline do próprio elemento, sem o alinhamento (que é tratado no bloco)
+const getOwnTextStyle = (domNode) => {
+  const style = parseStyle(domNode.getAttribute("style"));
+  style.removeProperty("text-align");
+  return style.cssText;
+};
+
+// Só as propriedades de texto do estilo de um bloco
+const getInheritableStyle = (domNode) => {
+  const source = parseStyle(domNode.getAttribute("style"));
+  const target = parseStyle("");
+  Array.from(source).forEach((property) => {
+    if (INHERITABLE_STYLE.test(property)) {
+      target.setProperty(property, source.getPropertyValue(property), source.getPropertyPriority(property));
+    }
+  });
+  return target.cssText;
+};
+
+// Soma dois estilos inline; o segundo tem prioridade
+const mergeStyles = (baseStyle, ownStyle) => {
+  if (!baseStyle) return ownStyle || "";
+  if (!ownStyle) return baseStyle;
+  const target = parseStyle(baseStyle);
+  const source = parseStyle(ownStyle);
+  Array.from(source).forEach((property) => {
+    target.setProperty(property, source.getPropertyValue(property), source.getPropertyPriority(property));
+  });
+  return target.cssText;
+};
+
+// allowHtmlMode: mostra o seletor Visual / HTML (modo HTML interno do Lexical).
+// onCodeModeRequest: usado pelos editores de conteúdo que têm o próprio modo "Código"
+//   (html_content). O seletor aparece igual, mas o "Código" chama esta função em vez do modo interno.
+// inverted: inverte o tema do editor (claro <-> escuro) para editar textos de cor clara/escura.
+const LexicalEditor = ({
+  initialHtml,
+  onChange,
+  mode = "full",
+  stripRootParagraph = false,
+  allowHtmlMode = true,
+  onCodeModeRequest,
+  codeModeLabel,
+  inverted = false,
+}) => {
   const [isHtmlMode, setIsHtmlMode] = useState(false);
+  const themeMode = useSelector((state) => state.theme?.mode || "light");
+  const isDarkEditor = (themeMode === "dark") !== inverted;
   const [htmlEditorValue, setHtmlEditorValue] = useState("");
   const editorRef = useRef(null);
 
@@ -120,7 +182,12 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
     useEffect(() => {
       editorRef.current = editor;
 
-      return editor.registerUpdateListener(() => {
+      return editor.registerUpdateListener(({ tags, dirtyElements, dirtyLeaves }) => {
+        // Não sobrescreve o HTML quando o conteúdo foi carregado a partir do código
+        // (modo HTML → visual) nem quando só mudou a seleção/foco.
+        if (tags.has(IMPORT_TAG)) return;
+        if (dirtyElements.size === 0 && dirtyLeaves.size === 0) return;
+
         if (editor._rootElement) {
           const clonedElement = editor._rootElement.cloneNode(true);
 
@@ -163,10 +230,11 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
       let sanitizedHtml = cleanHeadingsAndAttrs(html);
 
       if (stripRootParagraph) {
-        // Remove <p> externo único (com ou sem atributos)
-        let match = sanitizedHtml.match(/^<p\b[^>]*>(.*?)<\/p>$/i);
-        if (match) {
-          sanitizedHtml = match[1];
+        // Remove <p> externo único, a menos que ele tenha estilo (ex.: text-align: center),
+        // que seria perdido junto com ele
+        let match = sanitizedHtml.match(/^<p\b([^>]*)>(.*?)<\/p>$/i);
+        if (match && !/\bstyle\s*=/.test(match[1])) {
+          sanitizedHtml = match[2];
         }
 
         // Remove headings (h1-h6) mantendo apenas seu conteúdo interno
@@ -232,13 +300,17 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
   };
 
   // Função para processar nós com filhos
-  const processNodeWithChildren = (domNode, lexicalParent) => {
+  const processNodeWithChildren = (domNode, lexicalParent, inheritedStyle = "") => {
     if (!domNode) return;
 
     if (domNode.nodeType === Node.TEXT_NODE) {
-      const text = domNode.textContent;
+      // Quebras de linha e indentação do código não viram texto (como no navegador)
+      let text = collapseWhitespace(domNode.textContent);
+      if (!domNode.previousSibling) text = text.trimStart();
+      if (!domNode.nextSibling) text = text.trimEnd();
       if (text.trim()) {
         const textNode = $createTextNode(text);
+        if (inheritedStyle) textNode.setStyle(inheritedStyle);
         lexicalParent.append(textNode);
       }
       return;
@@ -247,32 +319,10 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
     if (domNode.nodeType === Node.ELEMENT_NODE) {
       const tagName = domNode.nodeName.toUpperCase();
       const classList = domNode.classList;
-      const styles = [];
 
-      const computedStyle = window.getComputedStyle(domNode);
-      let color = domNode.style.color || computedStyle.color;
-      const backgroundColor = domNode.style.backgroundColor || computedStyle.backgroundColor;
-      const fontFamilyRaw = domNode.style.fontFamily || computedStyle.fontFamily || "";
-      const fontFamily = fontFamilyRaw.replace(/^['"]+|['"]+$/g, "");
-      const fontSize = domNode.style.fontSize || computedStyle.fontSize;
-      const textAlign = domNode.style.textAlign || computedStyle.textAlign;
-
-      if (color) {
-        const normalized = color.toLowerCase().replace(/\s+/g, "");
-        if (
-          normalized === "rgb(0,0,0)" ||
-          normalized === "black" ||
-          normalized === "#000" ||
-          normalized === "#000000"
-        ) {
-          color = null; // Não aplique cor padrão
-        }
-      }
-      if (color) styles.push(`color: ${color}`);
-      if (backgroundColor) styles.push(`background-color: ${backgroundColor}`);
-      if (fontFamily) styles.push(`font-family: ${fontFamily}`);
-      if (fontSize) styles.push(`font-size: ${fontSize}`);
-      if (textAlign && textAlign !== "start" && textAlign !== "left") styles.push(`text-align: ${textAlign}`);
+      // Estilo inline do próprio elemento (sem text-align, que é do bloco) somado ao herdado
+      const mergedStyle = mergeStyles(inheritedStyle, getOwnTextStyle(domNode));
+      const styles = mergedStyle ? [mergedStyle] : [];
 
       // GRID CONTAINER - Detectar div com classes "section group"
       if (tagName === "DIV" && classList.contains("section") && classList.contains("group")) {
@@ -392,7 +442,7 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
         domNode.firstChild.nodeType === Node.TEXT_NODE &&
         domNode.firstChild.textContent
       ) {
-        const text = domNode.firstChild.textContent;
+        const text = collapseWhitespace(domNode.firstChild.textContent);
         const textNode = $createTextNode(text);
         if (isBold) textNode.toggleFormat("bold");
         if (isItalic) textNode.toggleFormat("italic");
@@ -406,38 +456,22 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
 
       // Children Node
       Array.from(domNode.childNodes).forEach(child => {
-        processNodeWithChildren(child, lexicalParent);
+        processNodeWithChildren(child, lexicalParent, mergedStyle);
       });
     }
   };
 
-  // Remove cores "default" do HTML antes de converter para Lexical
-  function cleanHtmlDefaultColors(html) {
-    return html.replace(/(<[^>]+style\s*=\s*["'])([^"']*)["']/gi, (match, prefix, styleAttr) => {
-      // Remove regras de cor que sejam "padrão"
-      const cleanedStyle = styleAttr
-        .split(";")
-        .filter(rule => {
-          const trimmed = rule.trim();
-          if (!trimmed.startsWith("color:")) return true;
-          // Normaliza a cor para comparação
-          const colorValue = trimmed.substring(6).trim().toLowerCase();
-          return !(
-            colorValue === "black" ||
-            colorValue === "#000" ||
-            colorValue === "#000000" ||
-            colorValue === "rgb(0, 0, 0)" ||
-            colorValue === "rgb(0,0,0)"
-          );
-        })
-        .join(";")
-        .trim();
-
-      if (cleanedStyle) {
-        return `${prefix}${cleanedStyle}"`;
-      } else {
-        // Se não sobrou estilo, remove o atributo style inteiro
-        return match.replace(/\s+style\s*=\s*["'][^"']*["']/, "");
+  // Remove cores "default" (preto) do HTML antes de converter para Lexical.
+  // Feito no DOM já parseado: uma regex no texto cortava o style em valores com aspas
+  // (ex.: font-family: 'Space Grotesk').
+  function cleanDomDefaultColors(dom) {
+    dom.body.querySelectorAll("[style]").forEach((element) => {
+      const color = element.style.color.toLowerCase().replace(/\s+/g, "");
+      if (["black", "#000", "#000000", "rgb(0,0,0)"].includes(color)) {
+        element.style.removeProperty("color");
+      }
+      if (!element.getAttribute("style")?.trim()) {
+        element.removeAttribute("style");
       }
     });
   }
@@ -448,9 +482,9 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
 
     const editor = editorRef.current;
     const parser = new DOMParser();
-    // 👇 LIMPA as cores padrão ANTES de parsear o HTML
-    const cleanedHtml = cleanHtmlDefaultColors(html);
-    const dom = parser.parseFromString(cleanedHtml, "text/html");
+    const dom = parser.parseFromString(html, "text/html");
+    // 👇 LIMPA as cores padrão antes de converter para Lexical
+    cleanDomDefaultColors(dom);
 
     editor.update(() => {
       const root = $getRoot();
@@ -466,8 +500,8 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
       Array.from(bodyNodes).forEach((node) => {
         // 1. Trata nós de texto (ex.: "Slider" puro)
         if (node.nodeType === Node.TEXT_NODE) {
-          const text = node.textContent;
-          if (text.trim()) {
+          const text = collapseWhitespace(node.textContent).trim();
+          if (text) {
             const paragraph = $createParagraphNode();
             paragraph.append($createTextNode(text));
             root.append(paragraph);
@@ -584,19 +618,28 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
           lexicalNode.setFormat(textAlign);
         }
 
-        processNodeWithChildren(node, lexicalNode);
+        if (tag === "P" || tag === "BLOCKQUOTE") {
+          // Estilos de texto do bloco (font-size, color...) passam para o texto dentro dele
+          Array.from(node.childNodes).forEach((child) => {
+            processNodeWithChildren(child, lexicalNode, getInheritableStyle(node));
+          });
+        } else {
+          processNodeWithChildren(node, lexicalNode);
+        }
         root.append(lexicalNode);
       });
-    });
+    }, { tag: IMPORT_TAG });
   };
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
-      <div className="editor-container">
+      <div className={`editor-container editor-container--${isDarkEditor ? "dark" : "light"}`}>
         {mode == "full" ? (
           <ToolbarPlugin
-            onToggleHtmlMode={handleToggleHtmlMode}
+            onToggleHtmlMode={onCodeModeRequest || handleToggleHtmlMode}
             isHtmlMode={isHtmlMode}
+            showModeSwitch={allowHtmlMode || !!onCodeModeRequest}
+            codeLabel={codeModeLabel}
           />
         ) : (
           <ToolbarPluginSimple
@@ -607,7 +650,14 @@ const LexicalEditor = ({ initialHtml, onChange, mode = "full", stripRootParagrap
         <div className="editor-inner">
           {!isHtmlMode ? (
             <RichTextPlugin
-              contentEditable={<ContentEditable className={mode == "full" ? "editor-input" : "editor-input__simple"} />}
+              contentEditable={
+                <ContentEditable
+                  className={mode == "full" ? "editor-input" : "editor-input__simple"}
+                  // No Chrome, o corretor ortográfico impede o texto em gradiente de aparecer
+                  // nas palavras marcadas; em títulos (texto curto, nomes de marca) fica desligado
+                  spellCheck={!stripRootParagraph}
+                />
+              }
               placeholder={mode == "full" ?
                 (<div className="placeholder">Digite algum texto...</div>) :
                 (<div className="placeholder">Digite o Título...</div>)}

@@ -1,0 +1,99 @@
+.gradient-picker {
+    width: 236px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &__label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #64748B;
+    }
+
+    &__presets {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+
+    &__preset {
+        height: 24px;
+        border: 1px solid #E2E8F0;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &__preview {
+        height: 28px;
+        border-radius: 6px;
+        border: 1px solid #E2E8F0;
+    }
+
+    &__colors {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    &__middle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 6px;
+        padding-top: 4px;
+        border-top: 1px solid #F1F5F9;
+
+        // Botões nunca saem do popover, mesmo com textos longos
+        .ant-btn {
+            max-width: 100%;
+            height: auto;
+            white-space: normal;
+        }
+    }
+
+    &__trigger {
+        padding: 0 6px;
+    }
+
+    &__trigger-swatch {
+        display: block;
+        width: 18px;
+        height: 18px;
+        border-radius: 4px;
+        // Segue a cor primária do site (configuração "primary-color")
+        background: linear-gradient(135deg,
+                color-mix(in srgb, var(--cluar-loading-color, #FF6E1A) 70%, #000000) 0%,
+                var(--cluar-loading-color, #FF6E1A) 50%,
+                color-mix(in srgb, var(--cluar-loading-color, #FF6E1A) 45%, #FFFFFF) 100%);
+    }
+}
+
+// Tema escuro do site
+html[data-theme="dark"] .gradient-picker {
+    &__label {
+        color: #94A3B8;
+    }
+
+    &__preset,
+    &__preview {
+        border-color: #FFFFFF1F;
+    }
+
+    &__actions {
+        border-top-color: #FFFFFF14;
+    }
+}

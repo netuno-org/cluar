@@ -1,438 +1,286 @@
+/* ─── Cores do editor (claro / escuro) ───
+   O tema vem da classe editor-container--light / --dark (tema do site,
+   ou o oposto quando "Inverter cor de fundo" está ligado).
+   A cor de destaque vem da configuração "primary-color" (root.css:
+   --cluar-loading-color); os tons claros/escuros são derivados dela. */
 .editor-container {
-    background: transparent;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+    --editor-accent: var(--cluar-loading-color, #FF6E1A);
+
+    --editor-border: #E2E8F0;
+    --editor-bg: #FFFFFF;
+    --editor-text: #0F172A;
+    --editor-placeholder: #94A3B8;
+
+    --toolbar-bg: #F8FAFC;
+    --toolbar-border: #E2E8F0;
+    --toolbar-group-bg: #FFFFFF;
+    --toolbar-group-border: #E2E8F0;
+
+    --toolbar-btn-color: #334155;
+    --toolbar-btn-hover-bg: #F1F5F9;
+    --toolbar-btn-hover-color: #0F172A;
+    --toolbar-btn-active-bg: color-mix(in srgb, var(--editor-accent) 12%, #FFFFFF);
+    --toolbar-btn-active-color: var(--editor-accent);
+    --toolbar-btn-disabled-color: #CBD5E1;
+
+    --toolbar-input-bg: #FFFFFF;
+    --toolbar-input-border: #CBD5E1;
+
+    --toolbar-mode-bg: #E2E8F0;
+    --toolbar-mode-active-bg: #FFFFFF;
+    --toolbar-mode-active-color: var(--editor-accent);
+}
+
+.editor-container.editor-container--dark {
+    --editor-border: #FFFFFF1F;
+    --editor-bg: #1F1F1F;
+    --editor-text: #F1F5F9;
+    --editor-placeholder: #64748B;
+
+    --toolbar-bg: #141414;
+    --toolbar-border: #FFFFFF1F;
+    --toolbar-group-bg: #1F1F1F;
+    --toolbar-group-border: #FFFFFF1A;
+
+    --toolbar-btn-color: #CBD5E1;
+    --toolbar-btn-hover-bg: #FFFFFF14;
+    --toolbar-btn-hover-color: #FFFFFF;
+    --toolbar-btn-active-bg: color-mix(in srgb, var(--editor-accent) 28%, transparent);
+    --toolbar-btn-active-color: color-mix(in srgb, var(--editor-accent) 45%, #FFFFFF);
+    --toolbar-btn-disabled-color: #475569;
+
+    --toolbar-input-bg: #141414;
+    --toolbar-input-border: #FFFFFF2E;
+
+    --toolbar-mode-bg: #FFFFFF14;
+    --toolbar-mode-active-bg: var(--editor-accent);
+    --toolbar-mode-active-color: #FFFFFF;
+}
+
+/* ─── Container ─── */
+.editor-container {
     position: relative;
-
-    .ant-color-picker-color-block {
-        //display: none;
-    }
-
-    .ant-color-picker-sm {
-        min-width: 18px;
-        min-height: 18px;
-    }
-
-    .font-size-input {
-        width: 30px;
-        height: 20px;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        text-align: center;
-    }
-
-    .font-size-input::-webkit-inner-spin-button,
-    .font-size-input::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    .font-size-input {
-        -moz-appearance: textfield;
-    }
-
-    .toolbar {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0px;
-
-        .btn-active {
-            background-color: #1890ff;
-            color: white;
-            border: 1px solid #1890ff;
-            border-radius: 4px;
-        }
-
-        .btn-inactive {
-            background-color: transparent;
-            color: inherit;
-            border: 1px solid transparent;
-        }
-
-        i {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-    }
+    margin-bottom: 20px;
+    background: var(--editor-bg);
+    border: 1px solid var(--editor-border);
+    border-radius: 8px;
+    overflow: hidden;
 
     .col {
         border: 1px dashed #ddd !important;
     }
-}
 
-html[data-theme="dark"] .editor-container {
-    background-color: transparent;
-    border: 1px solid #FFFFFF1F;
-    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+    // Modo HTML dentro do editor: o Monaco ocupa o espaço sem margem nem borda dupla
+    .editor-inner .monaco-editor-container {
+        margin-top: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
 }
 
 .editor-inner {
-    background: transparent;
     position: relative;
-}
-
-html[data-theme="dark"] .editor-inner {
     background: transparent;
 }
 
-html[data-theme="dark"] .editor-input,
-html[data-theme="dark"] .editor-input__simple {
-    color: #ffffff;
-    caret-color: #ffffff;
+.editor-input,
+.editor-input__simple {
+    position: relative;
+    padding: 15px;
+    resize: none;
+    font-size: 15px;
+    line-height: 1.5;
+    tab-size: 1;
+    outline: 0;
+    color: var(--editor-text);
+    caret-color: var(--editor-text);
+
+    &:focus {
+        outline: none;
+    }
 }
 
 .editor-input {
     min-height: 150px;
-    padding: 15px;
-    resize: none;
-    font-size: 15px;
-    caret-color: rgb(5, 5, 5);
-    position: relative;
-    tab-size: 1;
-    outline: 0;
-    line-height: 1.5;
-
-    &__simple {
-        min-height: 75px;
-        padding: 15px;
-        resize: none;
-        font-size: 15px;
-        caret-color: rgb(5, 5, 5);
-        position: relative;
-        tab-size: 1;
-        outline: 0;
-        line-height: 1.5;
-    }
 }
 
-.editor-input:focus {
-    outline: none;
+.editor-input__simple {
+    min-height: 75px;
 }
 
-.editor-placeholder {
-    color: #999;
-    overflow: hidden;
+.editor-placeholder,
+.editor-inner .placeholder {
     position: absolute;
-    text-overflow: ellipsis;
     top: 15px;
     left: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 15px;
+    color: var(--editor-placeholder);
     user-select: none;
     display: inline-block;
     pointer-events: none;
 }
 
-html[data-theme="dark"] .toolbar {
-    border-bottom: 1px solid #FFFFFF1F;
-}
-
+/* ─── Barra de ferramentas ─── */
 .toolbar {
     display: flex;
-    margin-bottom: 1px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    padding: 8px 12px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    vertical-align: middle;
-    overflow-x: auto;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-bottom: 1px solid #dee2e6;
     flex-wrap: wrap;
-    gap: 4px;
-    min-height: 48px;
     align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    background: var(--toolbar-bg);
+    border-bottom: 1px solid var(--toolbar-border);
 
-    @media (max-width: 768px) {
-        padding: 6px 8px;
-        gap: 2px;
-        overflow-x: auto;
-        flex-wrap: nowrap;
-
-        &::-webkit-scrollbar {
-            height: 4px;
-        }
-
-        &::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 2px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 2px;
-        }
-
-        &::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
-    }
-
-    @media (max-width: 480px) {
-        padding: 4px 6px;
-        min-height: 44px;
-    }
-}
-
-.toolbar button {
-    border: 0;
-    display: flex;
-    background: #ffffff !important;
-    border-radius: 6px;
-    padding: 8px 10px;
-    cursor: pointer;
-    vertical-align: middle;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease-in-out;
-    border: 1px solid transparent;
-    min-width: 32px;
-    min-height: 32px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #495057;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
-    &:hover {
-        background: #e3f2fd;
-        border-color: #90caf9;
-        transform: translateY(-1px);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        color: #1976d2;
-    }
-
-    &:active {
-        transform: translateY(0);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    }
-
-    &.active {
-        background: #1976d2;
-        color: #ffffff;
-        border-color: #1565c0;
-        box-shadow: 0 2px 6px rgba(25, 118, 210, 0.3);
-
-        &:hover {
-            background: #1565c0;
-            transform: translateY(-1px);
-        }
-    }
-
-    &:disabled {
-        background: #f8f9fa;
-        color: #adb5bd;
-        cursor: not-allowed;
-        box-shadow: none;
-
-        &:hover {
-            background: #f8f9fa;
-            transform: none;
-            border-color: transparent;
-        }
-    }
-
-    // Responsividade para botões
-    @media (max-width: 768px) {
-        padding: 6px 8px;
-        min-width: 28px;
-        min-height: 28px;
-        font-size: 13px;
-    }
-
-    @media (max-width: 480px) {
-        padding: 5px 6px;
-        min-width: 26px;
-        min-height: 26px;
-        font-size: 12px;
-    }
-}
-
-html[data-theme="dark"] .toolbar button {
-    background: #000 !important;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-.toolbar .divider {
-    width: 1px;
-    background: linear-gradient(to bottom, transparent 20%, #dee2e6 50%, transparent 80%);
-    margin: 0 6px;
-    height: 24px;
-    flex-shrink: 0;
-
-    @media (max-width: 768px) {
-        margin: 0 4px;
-        height: 20px;
-    }
-
-    @media (max-width: 480px) {
-        margin: 0 3px;
-        height: 18px;
-    }
-}
-
-// Estilos para dropdowns
-.toolbar .dropdown-container {
-    position: relative;
-
-    .dropdown-button {
+    // Grupo de controlos relacionados (ex.: B I U, alinhamento, cores)
+    &__group {
         display: flex;
         align-items: center;
+        gap: 2px;
+        padding: 2px;
+        background: var(--toolbar-group-bg);
+        border: 1px solid var(--toolbar-group-border);
+        border-radius: 6px;
+    }
+
+    // Botões
+    button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         gap: 6px;
-        padding: 8px 12px;
-        min-width: auto;
+        min-width: 28px;
+        height: 28px;
+        padding: 0 6px;
+        border: 0;
+        border-radius: 4px;
+        background: transparent;
+        color: var(--toolbar-btn-color);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1;
+        cursor: pointer;
+        transition: background-color 0.15s ease, color 0.15s ease;
+
+        &:hover:not(:disabled) {
+            background: var(--toolbar-btn-hover-bg);
+            color: var(--toolbar-btn-hover-color);
+        }
+
+        &.active {
+            background: var(--toolbar-btn-active-bg);
+            color: var(--toolbar-btn-active-color);
+        }
+
+        &:disabled {
+            color: var(--toolbar-btn-disabled-color);
+            cursor: not-allowed;
+        }
+
+        i {
+            font-style: normal;
+        }
+    }
+
+    // B I U com a aparência do próprio formato
+    .toolbar-format-bold i {
+        font-weight: 700;
+    }
+
+    .toolbar-format-italic i {
+        font-style: italic;
+        font-family: Georgia, serif;
+    }
+
+    .toolbar-format-underline i {
+        text-decoration: underline;
+    }
+
+    // Dropdowns (estilo do bloco, fonte, inserir)
+    .dropdown-button {
         max-width: 150px;
+        padding: 0 8px;
 
         span {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-
-        @media (max-width: 768px) {
-            padding: 6px 8px;
-            max-width: 120px;
-            font-size: 12px;
-        }
-
-        @media (max-width: 480px) {
-            padding: 5px 6px;
-            max-width: 100px;
-            font-size: 11px;
-        }
-    }
-}
-
-.toolbar .font-size-container,
-.toolbar .font-color-container,
-.toolbar .bg-color-container {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: #ffffff;
-    border-radius: 6px;
-    padding: 4px 8px;
-    border: 1px solid #dee2e6;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
-    @media (max-width: 768px) {
-        padding: 3px 6px;
-        gap: 3px;
     }
 
-    @media (max-width: 480px) {
-        padding: 2px 4px;
+    // Tamanho da fonte
+    .font-size-container {
+        display: flex;
+        align-items: center;
         gap: 2px;
     }
-}
 
-html[data-theme="dark"] .toolbar .font-size-container,
-html[data-theme="dark"] .toolbar .font-color-container,
-html[data-theme="dark"] .toolbar .bg-color-container {
-    background-color: #000;
-    border: 1px solid #3A3F44;
-    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
-}
-
-html[data-theme="dark"] .toolbar .font-size-input {
-    border: 1px solid #3A3F44;
-}
-
-.toolbar .font-size-input {
-    width: 50px;
-    text-align: center;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    padding: 4px;
-    font-size: 13px;
-
-    @media (max-width: 768px) {
-        width: 45px;
-        font-size: 12px;
-        padding: 3px;
-    }
-
-    @media (max-width: 480px) {
-        width: 40px;
-        font-size: 11px;
-        padding: 2px;
-    }
-}
-
-html[data-theme="dark"] .toolbar .alignment-buttons-container {
-    border: 1px solid #3A3F44;
-}
-
-.toolbar .alignment-buttons-container {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    background: #ffffff;
-    border-radius: 6px;
-    padding: 2px;
-    border: 1px solid #dee2e6;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-
-    button {
-        margin: 0;
-        box-shadow: none;
+    .font-size-input {
+        width: 44px;
+        height: 24px;
+        padding: 0 4px;
+        text-align: center;
+        font-size: 13px;
+        background: var(--toolbar-input-bg);
+        border: 1px solid var(--toolbar-input-border);
         border-radius: 4px;
+        color: var(--editor-text);
 
-        &:hover {
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        &:hover,
+        &:focus,
+        &.ant-input-focused {
+            border-color: var(--editor-accent);
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 2px color-mix(in srgb, var(--editor-accent) 20%, transparent);
         }
     }
-}
 
-html[data-theme="dark"] .toolbar .alignment-buttons-container {
-    background: #000;
-    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
-}
+    // Seletores de cor
+    .toolbar-color {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 0 4px;
+        height: 28px;
+        color: var(--toolbar-btn-color);
 
-.toolbar {
-    display: flex;
-    margin-bottom: 1px;
-    background: #f5f5f5;
-    padding: 4px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    vertical-align: middle;
-    overflow-x: auto;
-}
+        .ant-color-picker-trigger {
+            min-width: 20px;
+            min-height: 20px;
+            padding: 1px;
+        }
+    }
 
-html[data-theme="dark"] .toolbar {
-    background: #000;
-}
+    // Seletor Visual / HTML, sempre à direita (mesmo quando a barra quebra linha)
+    &__mode {
+        margin-left: auto;
+        display: inline-flex;
+        padding: 2px;
+        gap: 2px;
+        background: var(--toolbar-mode-bg);
+        border-radius: 6px;
 
-.toolbar button {
-    border: 0;
-    display: flex;
-    background: none;
-    border-radius: 4px;
-    padding: 6px;
-    cursor: pointer;
-    vertical-align: middle;
-    align-items: center;
-    justify-content: center;
-}
+        button {
+            height: 24px;
+            padding: 0 10px;
+            font-size: 12px;
+            font-weight: 600;
 
-.toolbar button:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-}
+            &.active {
+                background: var(--toolbar-mode-active-bg);
+                color: var(--toolbar-mode-active-color);
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+            }
+        }
+    }
 
-.toolbar button.active {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.toolbar .divider {
-    width: 1px;
-    background-color: #ddd;
-    margin: 0 8px;
+    @media (max-width: 768px) {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
 }
 
 .placeholder {
@@ -627,9 +475,9 @@ html[data-theme="dark"] .toolbar {
     text-decoration: underline;
 }
 
-html[data-theme="dark"] .editor-text-bold,
-html[data-theme="dark"] .editor-text-italic,
-html[data-theme="dark"] .editor-text-underline {
+.editor-container--dark .editor-text-bold,
+.editor-container--dark .editor-text-italic,
+.editor-container--dark .editor-text-underline {
     color: inherit !important;
 }
 
@@ -650,11 +498,17 @@ html[data-theme="dark"] .editor-text-underline {
 
 /* ─── Monaco Editor — Modo HTML Puro ─── */
 .monaco-editor-container {
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    --monaco-border: rgba(0, 0, 0, 0.12);
+    --monaco-header-bg: #F8FAFC;
+    --monaco-header-border: rgba(0, 0, 0, 0.06);
+    --monaco-header-color: #64748B;
+    --monaco-bg: #FFFFFF;
+
+    border: 1px solid var(--monaco-border);
     border-radius: 8px;
     overflow: hidden;
     margin-top: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
     /* Cabeçalho do editor */
     .monaco-editor-header {
@@ -662,10 +516,10 @@ html[data-theme="dark"] .editor-text-underline {
         align-items: center;
         justify-content: space-between;
         padding: 8px 12px;
-        background: #1e1e1e;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        background: var(--monaco-header-bg);
+        border-bottom: 1px solid var(--monaco-header-border);
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.5);
+        color: var(--monaco-header-color);
 
         .monaco-editor-header__title {
             display: flex;
@@ -681,31 +535,23 @@ html[data-theme="dark"] .editor-text-underline {
         }
 
         .monaco-editor-header__shortcut {
-            opacity: 0.6;
+            opacity: 0.7;
             font-family: monospace;
         }
     }
 
     /* Wrapper do Monaco */
     .monaco-editor-wrapper {
-        background: #1e1e1e;
+        background: var(--monaco-bg);
     }
 }
 
-/* Dark mode do sistema — ajuste fino */
-@media (prefers-color-scheme: light) {
-    .monaco-editor-container {
-        border-color: rgba(0, 0, 0, 0.12);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-
-        .monaco-editor-header {
-            background: #f5f5f5;
-            border-bottom-color: rgba(0, 0, 0, 0.06);
-            color: rgba(0, 0, 0, 0.45);
-        }
-
-        .monaco-editor-wrapper {
-            background: #ffffff;
-        }
-    }
+/* Tema escuro do site */
+html[data-theme="dark"] .monaco-editor-container {
+    --monaco-border: rgba(255, 255, 255, 0.12);
+    --monaco-header-bg: #1E1E1E;
+    --monaco-header-border: rgba(255, 255, 255, 0.08);
+    --monaco-header-color: rgba(255, 255, 255, 0.55);
+    --monaco-bg: #1E1E1E;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }

@@ -5541,3 +5541,75 @@ _db.insertIfNotExists(
     .set("code", "theme-form-tab-css")
     .set("description", "Formul\u00E1rio de Temas - Separador - CSS")
 );;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "da8c08be-adb9-4522-af88-82bef6a3cff2")
+    .set("code", "toolbar-font-color")
+    .set("description", "Barra do Editor - Cor do Texto")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "20868d06-8667-4dda-8fe7-d222d96fce0a")
+    .set("code", "toolbar-bg-color")
+    .set("description", "Barra do Editor - Cor de Fundo do Texto")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "480914f3-cb17-4df6-8845-c17cd2c5dbe2")
+    .set("code", "toolbar-gradient")
+    .set("description", "Barra do Editor - Gradiente de Texto")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "df1ab56a-172f-4571-81d6-b11642a796e9")
+    .set("code", "toolbar-gradient-presets")
+    .set("description", "Barra do Editor - Gradiente - Predefinidos")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "0eb89f5f-4704-44b1-bf1d-8fba199736c9")
+    .set("code", "toolbar-gradient-custom")
+    .set("description", "Barra do Editor - Gradiente - Personalizado")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "ec0295e8-246d-49d0-9916-3b0f9c4e1175")
+    .set("code", "toolbar-gradient-angle")
+    .set("description", "Barra do Editor - Gradiente - \u00C2ngulo")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "c55b3b85-7ec6-407c-91d9-1ca9bd057444")
+    .set("code", "toolbar-gradient-middle-color")
+    .set("description", "Barra do Editor - Gradiente - Cor do Meio")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "abbe383b-bcd5-4de9-9fc8-2cc0724b9bbd")
+    .set("code", "toolbar-gradient-apply")
+    .set("description", "Barra do Editor - Gradiente - Aplicar")
+);;
+
+_db.insertIfNotExists(
+  "translation_entry",
+  _val.map()
+    .set("uid", "f99034e5-0a99-4925-9429-9cb8883c7b6e")
+    .set("code", "toolbar-gradient-remove")
+    .set("description", "Barra do Editor - Gradiente - Remover")
+);;

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 import Editor from "@monaco-editor/react";
 import prettier from "prettier/standalone";
 import parserHtml from "prettier/parser-html";
@@ -6,6 +7,7 @@ import Cluar from "../../common/Cluar";
 
 const MonacoEditor = ({ value, onChange, language = "html", title = "HTML" }) => {
   const editorRef = useRef(null);
+  const themeMode = useSelector((state) => state.theme?.mode || "light");
 
   const handleEditorDidMount = (editor, monaco) => {
     editorRef.current = editor;
@@ -54,6 +56,7 @@ const MonacoEditor = ({ value, onChange, language = "html", title = "HTML" }) =>
       <div className="monaco-editor-wrapper">
         <Editor
           height="400px"
+          theme={themeMode === "dark" ? "vs-dark" : "light"}
           language={language}
           value={value || ""}
           onMount={handleEditorDidMount}
